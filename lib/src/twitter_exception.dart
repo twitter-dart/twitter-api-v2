@@ -2,4 +2,11 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-class TwitterException {}
+// Package imports:
+import 'package:http/http.dart';
+
+class TwitterException {
+  TwitterException(this.response);
+
+  final Response response;
+}

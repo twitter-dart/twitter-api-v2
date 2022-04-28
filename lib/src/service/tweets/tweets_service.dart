@@ -2,14 +2,19 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+// Dart imports:
 import 'dart:convert';
 
+// Project imports:
+import 'package:twitter_api_v2/src/service/tweets/tweet_data.dart';
+import 'package:twitter_api_v2/src/service/tweets/tweet_meta.dart';
+import 'package:twitter_api_v2/src/service/twitter_response.dart';
 import 'package:twitter_api_v2/src/twitter_client.dart';
 
-abstract class TweetService {
-  /// Returns the new instance of [TweetService].
-  factory TweetService({required TwitterClient client}) =>
-      _TweetService(client: client);
+abstract class TweetsService {
+  /// Returns the new instance of [TweetsService].
+  factory TweetsService({required TwitterClient client}) =>
+      _TweetsService(client: client);
 
   /// Causes the user ID identified in the path parameter to Like the target Tweet.
   ///
@@ -64,12 +69,13 @@ abstract class TweetService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-recent
-  Future<void> searchRecent({required String query});
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> searchRecent(
+      {required String query});
 }
 
-class _TweetService implements TweetService {
-  /// Returns the new instance of [_TweetService].
-  _TweetService({required this.client});
+class _TweetsService implements TweetsService {
+  /// Returns the new instance of [_TweetsService].
+  _TweetsService({required this.client});
 
   /// The twitter client
   final TwitterClient client;
@@ -79,7 +85,7 @@ class _TweetService implements TweetService {
     final response = await client.post(
       Uri.https('api.twitter.com', '/2/users/$userId/likes'),
       headers: {'Content-type': 'application/json'},
-      body: {'tweet_id': tweetId},
+      body: jsonEncode({'tweet_id': tweetId}),
     );
 
     final json = jsonDecode(response.body);
@@ -88,7 +94,8 @@ class _TweetService implements TweetService {
   }
 
   @override
-  Future<void> searchRecent({required String query}) async {
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> searchRecent(
+      {required String query}) async {
     final response = await client.get(
       Uri.https(
         'api.twitter.com',
@@ -99,6 +106,14 @@ class _TweetService implements TweetService {
 
     final json = jsonDecode(response.body);
 
-    return json['data']['liked'];
+    final data = <TweetData>[];
+    for (final _data in json['data']) {
+      data.add(TweetData.fromJson(_data));
+    }
+
+    return TwitterResponse(
+      data: data,
+      meta: TweetMeta.fromJson(json['meta']),
+    );
   }
 }
