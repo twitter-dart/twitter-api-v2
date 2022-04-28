@@ -29,49 +29,82 @@
 <!-- TOC -->
 
 - [1. Guide](#1-guide)
-  - [1.1. Mission](#11-mission)
-  - [1.2. Features](#12-features)
-  - [1.3. Getting Started](#13-getting-started)
-    - [1.3.1. Install Library](#131-install-library)
-    - [1.3.2. Import](#132-import)
-  - [1.4. Contribution](#14-contribution)
-  - [1.5. Support](#15-support)
-  - [1.6. License](#16-license)
-  - [1.7. More Information](#17-more-information)
+  - [1.1. Getting Started](#11-getting-started)
+    - [1.1.1. Install Library](#111-install-library)
+    - [1.1.2. Import](#112-import)
+    - [1.1.3. Implementation](#113-implementation)
+  - [1.2. Contribution](#12-contribution)
+  - [1.3. Support](#13-support)
+  - [1.4. License](#14-license)
+  - [1.5. More Information](#15-more-information)
 
 <!-- /TOC -->
 
 # 1. Guide
 
-## 1.1. Mission
+This library provides the easiest way to use [Twitter API v2.0](https://developer.twitter.com/en/docs/twitter-api/data-dictionary/introduction).
 
-## 1.2. Features
+## 1.1. Getting Started
 
-## 1.3. Getting Started
+### 1.1.1. Install Library
 
-### 1.3.1. Install Library
+**With Dart:**
 
 ```bash
  dart pub add twitter_api_v2
 ```
 
+**Or With Flutter:**
+
 ```bash
  flutter pub add twitter_api_v2
 ```
 
-### 1.3.2. Import
+### 1.1.2. Import
 
 ```dart
 import 'package:twitter_api_v2/twitter_api_v2';
 ```
 
-## 1.4. Contribution
+### 1.1.3. Implementation
+
+```dart
+import 'package:twitter_api_v2/twitter_api_v2.dart';
+
+void main() async {
+  // You need to get keys and tokens at
+  // https://developer.twitter.com
+  final twitter = TwitterApi(
+    consumerKey: 'YOUR_CONSUMER_KEY', // Or it's called "API Key"
+    consumerSecret: 'YOUR_CONSUMER_SECRET', // Or it's called "API Secret"
+    accessToken: 'YOUR_ACCESS_TOKEN',
+    accessTokenSecret: 'YOUR_ACCESS_TOKEN_SECRET',
+  );
+
+  try {
+    final me = await twitter.usersService.lookupMe();
+    final tweets = await twitter.tweetService.searchRecent(query: 'Elon Musk');
+
+    final response = await twitter.tweetService.likes(
+      userId: me.data.id,
+      tweetId: tweets.data.first.id,
+    );
+
+    print(response);
+  } on TwitterException catch (e) {
+    print(e.response.headers);
+    print(e.response.body);
+  }
+}
+```
+
+## 1.2. Contribution
 
 If you would like to contribute to `twitter_api_v2`, please create an [issue](https://github.com/twitter-dart/twitter-api-v2/issues) or create a Pull Request.
 
 Owner will respond to issues and review pull requests as quickly as possible.
 
-## 1.5. Support
+## 1.3. Support
 
 The simplest way to show us your support is by giving the project a star at [here](https://github.com/twitter-dart/twitter-api-v2).
 
@@ -91,7 +124,7 @@ Sponsors can be individuals or corporations, and the amount is optional.
   </p>
 </div>
 
-## 1.6. License
+## 1.4. License
 
 All resources of `twitter_api_v2` is provided under the `BSD-3` license.
 
@@ -100,7 +133,7 @@ All resources of `twitter_api_v2` is provided under the `BSD-3` license.
 > Note:
 > License notices in the source are strictly validated based on `.github/header-checker-lint.yml`. Please check [header-checker-lint.yml](https://github.com/twitter-dart/twitter-api-v2/tree/main/.github/header-checker-lint.yml) for the permitted standards.
 
-## 1.7. More Information
+## 1.5. More Information
 
 `twitter_api_v2` was designed and implemented by **_Kato Shinya_**.
 
