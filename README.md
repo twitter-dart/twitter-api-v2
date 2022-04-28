@@ -44,6 +44,8 @@
 
 This library provides the easiest way to use [Twitter API v2.0](https://developer.twitter.com/en/docs/twitter-api/data-dictionary/introduction).
 
+**Show some ❤️ and star the repo to support the project.**
+
 ## 1.1. Getting Started
 
 ### 1.1.1. Install Library
