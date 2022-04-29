@@ -2,10 +2,8 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Dart imports:
-import 'dart:convert';
-
 // Project imports:
+import 'package:twitter_api_v2/src/service/base_service.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_data.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_meta.dart';
 import 'package:twitter_api_v2/src/service/twitter_response.dart';
@@ -268,36 +266,23 @@ abstract class TweetsService {
       {required String query});
 }
 
-class _TweetsService implements TweetsService {
+class _TweetsService extends BaseService implements TweetsService {
   /// Returns the new instance of [_TweetsService].
-  _TweetsService({required this.client});
-
-  /// The twitter client
-  final TwitterClient client;
+  _TweetsService({required TwitterClient client}) : super(client: client);
 
   @override
   Future<TwitterResponse<TweetData, void>> createTweet(
       {required String text}) async {
-    final response = await client.post(
-      Uri.https('api.twitter.com', '/2/tweets'),
-      headers: {'Content-type': 'application/json'},
-      body: jsonEncode({'text': text}),
-    );
+    final response = await super.post('/2/tweets', body: {'text': text});
 
-    final json = jsonDecode(response.body);
-
-    return TwitterResponse(data: TweetData.fromJson(json));
+    return TwitterResponse(data: TweetData.fromJson(response));
   }
 
   @override
   Future<bool> destroyTweet({required String tweetId}) async {
-    final response = await client.delete(
-      Uri.https('api.twitter.com', '/2/tweets/$tweetId'),
-    );
+    final response = await super.delete('/2/tweets/$tweetId');
 
-    final json = jsonDecode(response.body);
-
-    return json['data']['deleted'];
+    return response['data']['deleted'];
   }
 
   @override
@@ -305,15 +290,12 @@ class _TweetsService implements TweetsService {
     required String userId,
     required String tweetId,
   }) async {
-    final response = await client.post(
-      Uri.https('api.twitter.com', '/2/users/$userId/likes'),
-      headers: {'Content-type': 'application/json'},
-      body: jsonEncode({'tweet_id': tweetId}),
+    final response = await super.post(
+      '/2/users/$userId/likes',
+      body: {'tweet_id': tweetId},
     );
 
-    final json = jsonDecode(response.body);
-
-    return json['data']['liked'];
+    return response['data']['liked'];
   }
 
   @override
@@ -321,13 +303,11 @@ class _TweetsService implements TweetsService {
     required String userId,
     required String tweetId,
   }) async {
-    final response = await client.delete(
-      Uri.https('api.twitter.com', '/2/users/$userId/likes/$tweetId'),
+    final response = await super.delete(
+      '/2/users/$userId/likes/$tweetId',
     );
 
-    final json = jsonDecode(response.body);
-
-    return !json['data']['liked'];
+    return !response['data']['liked'];
   }
 
   @override
@@ -335,15 +315,12 @@ class _TweetsService implements TweetsService {
     required String userId,
     required String tweetId,
   }) async {
-    final response = await client.post(
-      Uri.https('api.twitter.com', '/2/users/$userId/retweets'),
-      headers: {'Content-type': 'application/json'},
-      body: jsonEncode({'tweet_id': tweetId}),
+    final response = await super.post(
+      '/2/users/$userId/retweets',
+      body: {'tweet_id': tweetId},
     );
 
-    final json = jsonDecode(response.body);
-
-    return json['data']['retweeted'];
+    return response['data']['retweeted'];
   }
 
   @override
@@ -351,29 +328,18 @@ class _TweetsService implements TweetsService {
     required String userId,
     required String tweetId,
   }) async {
-    final response = await client.delete(
-      Uri.https('api.twitter.com', '/2/users/$userId/retweets/$tweetId'),
-    );
+    final response = await super.delete('/2/users/$userId/retweets/$tweetId');
 
-    final json = jsonDecode(response.body);
-
-    return !json['data']['retweeted'];
+    return !response['data']['retweeted'];
   }
 
   @override
   Future<TwitterResponse<List<UserData>, void>> likingUsers(
       {required String tweetId}) async {
-    final response = await client.get(
-      Uri.https(
-        'api.twitter.com',
-        '/2/tweets/$tweetId/liking_users',
-      ),
-    );
-
-    final json = jsonDecode(response.body);
+    final response = await super.get('/2/tweets/$tweetId/liking_users');
 
     return TwitterResponse(
-      data: json['data']
+      data: response['data']
           .map<UserData>((user) => UserData.fromJson(user))
           .toList(),
     );
@@ -382,17 +348,10 @@ class _TweetsService implements TweetsService {
   @override
   Future<TwitterResponse<List<TweetData>, void>> likingTweets(
       {required String userId}) async {
-    final response = await client.get(
-      Uri.https(
-        'api.twitter.com',
-        '/2/users/$userId/liked_tweets',
-      ),
-    );
-
-    final json = jsonDecode(response.body);
+    final response = await super.get('/2/users/$userId/liked_tweets');
 
     return TwitterResponse(
-      data: json['data']
+      data: response['data']
           .map<TweetData>((tweet) => TweetData.fromJson(tweet))
           .toList(),
     );
@@ -401,17 +360,10 @@ class _TweetsService implements TweetsService {
   @override
   Future<TwitterResponse<List<UserData>, void>> retweetedBy(
       {required String tweetId}) async {
-    final response = await client.get(
-      Uri.https(
-        'api.twitter.com',
-        '/2/tweets/$tweetId/retweeted_by',
-      ),
-    );
-
-    final json = jsonDecode(response.body);
+    final response = await super.get('/2/tweets/$tweetId/retweeted_by');
 
     return TwitterResponse(
-      data: json['data']
+      data: response['data']
           .map<UserData>((user) => UserData.fromJson(user))
           .toList(),
     );
@@ -420,21 +372,16 @@ class _TweetsService implements TweetsService {
   @override
   Future<TwitterResponse<List<TweetData>, TweetMeta>> searchRecent(
       {required String query}) async {
-    final response = await client.get(
-      Uri.https(
-        'api.twitter.com',
-        '/2/tweets/search/recent',
-        {'query': query},
-      ),
+    final response = await super.get(
+      '/2/tweets/search/recent',
+      queryParameters: {'query': query},
     );
 
-    final json = jsonDecode(response.body);
-
     return TwitterResponse(
-      data: json['data']
+      data: response['data']
           .map<TweetData>((tweet) => TweetData.fromJson(tweet))
           .toList(),
-      meta: TweetMeta.fromJson(json['meta']),
+      meta: TweetMeta.fromJson(response['meta']),
     );
   }
 }

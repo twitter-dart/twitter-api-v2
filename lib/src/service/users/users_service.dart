@@ -2,10 +2,8 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Dart imports:
-import 'dart:convert';
-
 // Project imports:
+import 'package:twitter_api_v2/src/service/base_service.dart';
 import 'package:twitter_api_v2/src/service/twitter_response.dart';
 import 'package:twitter_api_v2/src/service/users/user_data.dart';
 import 'package:twitter_api_v2/src/twitter_client.dart';
@@ -32,21 +30,14 @@ abstract class UsersService {
   Future<TwitterResponse<UserData, void>> lookupMe();
 }
 
-class _UsersService implements UsersService {
+class _UsersService extends BaseService implements UsersService {
   /// Returns the new instance of [_UsersService].
-  _UsersService({required this.client});
-
-  /// The twitter client
-  final TwitterClient client;
+  _UsersService({required TwitterClient client}) : super(client: client);
 
   @override
   Future<TwitterResponse<UserData, void>> lookupMe() async {
-    final response = await client.get(
-      Uri.https('api.twitter.com', '/2/users/me'),
-    );
+    final response = await super.get('/2/users/me');
 
-    final json = jsonDecode(response.body);
-
-    return TwitterResponse(data: UserData.fromJson(json['data']));
+    return TwitterResponse(data: UserData.fromJson(response['data']));
   }
 }
