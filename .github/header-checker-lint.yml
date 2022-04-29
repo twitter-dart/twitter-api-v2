@@ -5,4 +5,5 @@ allowedLicenses:
 sourceFileExtensions:
   - 'dart'
 ignoreFiles: 
-  - ["**/*.g.dart", "**/*.freezed.dart"]
+  - '**/*.g.dart'
+  - '**/*.freezed.dart'
