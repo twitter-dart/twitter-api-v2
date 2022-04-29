@@ -4,4 +4,5 @@ allowedLicenses:
   - 'BSD-3'
 sourceFileExtensions:
   - 'dart'
-# ignoreFiles are empty
+ignoreFiles: 
+  - ["**/*.g.dart", "**/*.freezed.dart"]
