@@ -1,0 +1,17 @@
+service/Tweets:
+- lib/src/service/tweets/*.dart
+
+service/Users:
+- lib/src/service/users/*.dart
+
+service/Spaces:
+- lib/src/service/spaces/*.dart
+
+service/Lists:
+- lib/src/service/lists/*.dart
+
+service/Compliance:
+- lib/src/service/compliance/*.dart
+
+test:
+- test/**/*.dart
