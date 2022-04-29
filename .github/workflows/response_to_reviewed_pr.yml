@@ -6,7 +6,7 @@ on:
 
 jobs:
   check-state:
-    if: github.event.review.state != 'approved' && github.event.pull_request.base.ref == 'main' && ${{ startsWith(github.event.comment.body, 'passed') }}
+    if: github.event.review.state != 'approved' && github.event.pull_request.base.ref == 'main' && ${{ startsWith(github.event.comment.body, 'pass') }}
     runs-on: ubuntu-latest
     steps:
       - name: Find last comment
