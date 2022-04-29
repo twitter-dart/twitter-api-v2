@@ -111,6 +111,59 @@ abstract class TweetsService {
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/likes/api-reference/delete-users-id-likes-tweet_id
   Future<bool> destroyLike({required String userId, required String tweetId});
 
+  /// Causes the user ID identified in the path parameter to Retweet the target Tweet.
+  ///
+  /// ## Parameters
+  ///
+  /// - [userId]: The user ID who you are Retweeting a Tweet on behalf of.
+  ///             It must match your own user ID or that of an authenticating user,
+  ///             meaning that you must pass the Access Tokens associated with
+  ///             the user ID when authenticating your request.
+  ///
+  /// - [tweetId]: The ID of the Tweet that you would like the user id to Retweet.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/users/:id/retweets
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    50 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/tweets/retweets/api-reference/post-users-id-retweets
+  Future<bool> createRetweet({required String userId, required String tweetId});
+
+  /// Allows a user or authenticated user ID to remove the Retweet of a Tweet.
+  ///
+  /// The request succeeds with no action when the user sends a request to
+  /// a user they're not Retweeting the Tweet or have already removed the Retweet of.
+  /// ## Parameters
+  ///
+  /// - [userId]: The user ID who you are removing a the Retweet of a Tweet on behalf of.
+  ///             It must match your own user ID or that of an authenticating user,
+  ///             meaning that you must pass the Access Tokens associated with
+  ///             the user ID when authenticating your request.
+  ///
+  /// - [tweetId]: The ID of the Tweet that you would like the id to remove the Retweet of.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/users/:id/retweets/:source_tweet_id
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    50 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/tweets/retweets/api-reference/delete-users-id-retweets-tweet_id
+  Future<bool> destroyRetweet(
+      {required String userId, required String tweetId});
+
   /// Allows you to get information about a Tweet’s liking users.
   ///
   /// ## Parameters
@@ -158,6 +211,30 @@ abstract class TweetsService {
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/likes/api-reference/get-users-id-liked_tweets
   Future<TwitterResponse<List<TweetData>, void>> likingTweets(
       {required String userId});
+
+  /// Allows you to get information about who has Retweeted a Tweet.
+  ///
+  /// ## Parameters
+  ///
+  /// - [tweetId]: Tweet ID of the Tweet to request Retweeting users of.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/tweets/:id/retweeted_by
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **App rate limit (OAuth 2.0 App Access Token)**:
+  ///    75 requests per 15-minute window shared among all users of your app
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    75 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/tweets/retweets/api-reference/get-tweets-id-retweeted_by
+  Future<TwitterResponse<UserData, void>> retweetedBy(
+      {required String tweetId});
 
   /// TODO: Fix document
   ///
@@ -254,6 +331,36 @@ class _TweetsService implements TweetsService {
   }
 
   @override
+  Future<bool> createRetweet({
+    required String userId,
+    required String tweetId,
+  }) async {
+    final response = await client.post(
+      Uri.https('api.twitter.com', '/2/users/$userId/retweets'),
+      headers: {'Content-type': 'application/json'},
+      body: jsonEncode({'tweet_id': tweetId}),
+    );
+
+    final json = jsonDecode(response.body);
+
+    return json['data']['retweeted'];
+  }
+
+  @override
+  Future<bool> destroyRetweet({
+    required String userId,
+    required String tweetId,
+  }) async {
+    final response = await client.delete(
+      Uri.https('api.twitter.com', '/2/users/$userId/retweets/$tweetId'),
+    );
+
+    final json = jsonDecode(response.body);
+
+    return !json['data']['retweeted'];
+  }
+
+  @override
   Future<TwitterResponse<List<UserData>, void>> likingUsers(
       {required String tweetId}) async {
     final response = await client.get(
@@ -287,6 +394,25 @@ class _TweetsService implements TweetsService {
     return TwitterResponse(
       data: json['data']
           .map<TweetData>((tweet) => TweetData.fromJson(tweet))
+          .toList(),
+    );
+  }
+
+  @override
+  Future<TwitterResponse<UserData, void>> retweetedBy(
+      {required String tweetId}) async {
+    final response = await client.get(
+      Uri.https(
+        'api.twitter.com',
+        '/2/tweets/$tweetId/retweeted_by',
+      ),
+    );
+
+    final json = jsonDecode(response.body);
+
+    return TwitterResponse(
+      data: json['data']
+          .map<UserData>((user) => UserData.fromJson(user))
           .toList(),
     );
   }
