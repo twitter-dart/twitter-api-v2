@@ -38,6 +38,13 @@ abstract class TwitterClient {
     dynamic body,
     Duration timeout = const Duration(seconds: 10),
   });
+
+  Future<http.Response> delete(
+    Uri uri, {
+    Map<String, String> headers = const {},
+    dynamic body,
+    Duration timeout = const Duration(seconds: 10),
+  });
 }
 
 class _TwitterClient implements TwitterClient {
@@ -103,6 +110,24 @@ class _TwitterClient implements TwitterClient {
       _checkResponse(
         await oauthClient
             .post(
+              uri,
+              headers: headers,
+              body: body,
+              encoding: utf8,
+            )
+            .timeout(timeout),
+      );
+
+  @override
+  Future<http.Response> delete(
+    Uri uri, {
+    Map<String, String> headers = const {},
+    dynamic body,
+    Duration timeout = const Duration(seconds: 10),
+  }) async =>
+      _checkResponse(
+        await oauthClient
+            .delete(
               uri,
               headers: headers,
               body: body,
