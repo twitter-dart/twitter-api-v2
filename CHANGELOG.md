@@ -14,6 +14,11 @@
   - DELETE /2/users/:id/retweets/:source_tweet_id
   - GET /2/tweets/:id/retweeted_by
   - POST /2/users/:id/retweets
+- Added **Users Follows** endpoints. ([#21](https://github.com/twitter-dart/twitter-api-v2/issues/21))
+  - DELETE /2/users/:source_user_id/following/:target_user_id
+  - GET /2/users/:id/followers
+  - GET /2/users/:id/following
+  - POST /2/users/:id/following
 
 ## v0.0.1
 
