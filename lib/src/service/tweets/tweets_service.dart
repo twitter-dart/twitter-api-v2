@@ -233,7 +233,7 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/retweets/api-reference/get-tweets-id-retweeted_by
-  Future<TwitterResponse<UserData, void>> retweetedBy(
+  Future<TwitterResponse<List<UserData>, void>> retweetedBy(
       {required String tweetId});
 
   /// TODO: Fix document
@@ -399,7 +399,7 @@ class _TweetsService implements TweetsService {
   }
 
   @override
-  Future<TwitterResponse<UserData, void>> retweetedBy(
+  Future<TwitterResponse<List<UserData>, void>> retweetedBy(
       {required String tweetId}) async {
     final response = await client.get(
       Uri.https(
