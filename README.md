@@ -24,6 +24,12 @@
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](https://github.com/twitter-dart/twitter-api-v2/blob/main/CODE_OF_CONDUCT.md)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Ftwitter-dart%2Ftwitter-api-v2.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Ftwitter-dart%2Ftwitter-api-v2?ref=badge_shield)
 
+<p>
+  <a href="https://github.com/sponsors/myconsciousness">
+    <img src="https://cdn.ko-fi.com/cdn/kofi3.png?v=3" height="50" width="210" alt="myconsciousness" />
+  </a>
+</p>
+
 ---
 
 <!-- TOC -->
@@ -33,10 +39,11 @@
     - [1.1.1. Install Library](#111-install-library)
     - [1.1.2. Import](#112-import)
     - [1.1.3. Implementation](#113-implementation)
-  - [1.2. Contribution](#12-contribution)
-  - [1.3. Support](#13-support)
-  - [1.4. License](#14-license)
-  - [1.5. More Information](#15-more-information)
+  - [1.2. Supported Endpoints](#12-supported-endpoints)
+  - [1.3. Contribution](#13-contribution)
+  - [1.4. Support](#14-support)
+  - [1.5. License](#15-license)
+  - [1.6. More Information](#16-more-information)
 
 <!-- /TOC -->
 
@@ -100,13 +107,29 @@ void main() async {
 }
 ```
 
-## 1.2. Contribution
+## 1.2. Supported Endpoints
+
+1. **Tweets Service**
+   1. **Manage Tweet**
+      1. [DELETE /2/tweets/:id](https://developer.twitter.com/en/docs/twitter-api/tweets/manage-tweets/api-reference/delete-tweets-id)
+      2. [POST /2/tweets](https://developer.twitter.com/en/docs/twitter-api/tweets/manage-tweets/api-reference/post-tweets)
+   2. **Likes**
+      1. [DELETE /2/users/:id/likes/:tweet_id](https://developer.twitter.com/en/docs/twitter-api/tweets/likes/api-reference/delete-users-id-likes-tweet_id)
+      2. [GET /2/tweets/:id/liking_users](https://developer.twitter.com/en/docs/twitter-api/tweets/likes/api-reference/get-tweets-id-liking_users)
+      3. [GET /2/users/:id/liked_tweets](https://developer.twitter.com/en/docs/twitter-api/tweets/likes/api-reference/get-users-id-liked_tweets)
+      4. [POST /2/users/:id/likes](https://developer.twitter.com/en/docs/twitter-api/tweets/likes/api-reference/post-users-id-likes)
+   3. **Retweets**
+      1. [DELETE /2/users/:id/retweets/:source_tweet_id](https://developer.twitter.com/en/docs/twitter-api/tweets/retweets/api-reference/delete-users-id-retweets-tweet_id)
+      2. [GET /2/tweets/:id/retweeted_by](https://developer.twitter.com/en/docs/twitter-api/tweets/retweets/api-reference/get-tweets-id-retweeted_by)
+      3. [POST /2/users/:id/retweets](https://developer.twitter.com/en/docs/twitter-api/tweets/retweets/api-reference/post-users-id-retweets)
+
+## 1.3. Contribution
 
 If you would like to contribute to `twitter_api_v2`, please create an [issue](https://github.com/twitter-dart/twitter-api-v2/issues) or create a Pull Request.
 
 Owner will respond to issues and review pull requests as quickly as possible.
 
-## 1.3. Support
+## 1.4. Support
 
 The simplest way to show us your support is by giving the project a star at [here](https://github.com/twitter-dart/twitter-api-v2).
 
@@ -126,7 +149,7 @@ Sponsors can be individuals or corporations, and the amount is optional.
   </p>
 </div>
 
-## 1.4. License
+## 1.5. License
 
 All resources of `twitter_api_v2` is provided under the `BSD-3` license.
 
@@ -135,7 +158,7 @@ All resources of `twitter_api_v2` is provided under the `BSD-3` license.
 > Note:
 > License notices in the source are strictly validated based on `.github/header-checker-lint.yml`. Please check [header-checker-lint.yml](https://github.com/twitter-dart/twitter-api-v2/tree/main/.github/header-checker-lint.yml) for the permitted standards.
 
-## 1.5. More Information
+## 1.6. More Information
 
 `twitter_api_v2` was designed and implemented by **_Kato Shinya_**.
 
