@@ -17,6 +17,47 @@ abstract class TweetsService {
   factory TweetsService({required TwitterClient client}) =>
       _TweetsService(client: client);
 
+  /// Creates a Tweet on behalf of an authenticated user.
+  ///
+  /// ## Parameters
+  ///
+  /// - [text]: Text of the Tweet being created.
+  ///           This field is required if media.media_ids is not present.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/tweets
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///     200 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/tweets/manage-tweets/api-reference/post-tweets
+  Future<TwitterResponse<TweetData, void>> createTweet({required String text});
+
+  /// Allows a user or authenticated user ID to delete a Tweet.
+  ///
+  /// ## Parameters
+  ///
+  /// - [tweetId]: The Tweet ID you are deleting.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/tweets/:id
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    50 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/tweets/manage-tweets/api-reference/delete-tweets-id
+  Future<bool> destroyTweet({required String tweetId});
+
   /// Causes the user ID identified in the path parameter to Like the target Tweet.
   ///
   /// ## Parameters
@@ -156,6 +197,31 @@ class _TweetsService implements TweetsService {
 
   /// The twitter client
   final TwitterClient client;
+
+  @override
+  Future<TwitterResponse<TweetData, void>> createTweet(
+      {required String text}) async {
+    final response = await client.post(
+      Uri.https('api.twitter.com', '/2/tweets'),
+      headers: {'Content-type': 'application/json'},
+      body: jsonEncode({'text': text}),
+    );
+
+    final json = jsonDecode(response.body);
+
+    return TwitterResponse(data: TweetData.fromJson(json));
+  }
+
+  @override
+  Future<bool> destroyTweet({required String tweetId}) async {
+    final response = await client.delete(
+      Uri.https('api.twitter.com', '/2/tweets/$tweetId'),
+    );
+
+    final json = jsonDecode(response.body);
+
+    return json['data']['deleted'];
+  }
 
   @override
   Future<bool> createLike({

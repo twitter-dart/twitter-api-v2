@@ -7,6 +7,9 @@
   - GET /2/tweets/:id/liking_users
   - GET /2/users/:id/liked_tweets
   - POST /2/users/:id/likes
+- Added **Tweets Manage** endpoints. ([#7](https://github.com/twitter-dart/twitter-api-v2/issues/7))
+  - DELETE /2/tweets/:id
+  - POST /2/tweets
 
 ## v0.0.1
 
