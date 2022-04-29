@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/twitter-dart/twitter-api-v2.dart">
+  <a href="https://github.com/twitter-dart/twitter-api-v2">
     <img alt="twitter_api_v2" width="500px" src="https://user-images.githubusercontent.com/13072231/165789212-8f335632-64b2-4eac-be54-8147ccfe7ab1.png">
   </a>
 </p>
