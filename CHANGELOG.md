@@ -1,5 +1,10 @@
 # Release Note
 
+## v0.2.0
+
+- Added **Quote Tweets** endpoint. ([#8](https://github.com/twitter-dart/twitter-api-v2/issues/8))
+  - GET /2/tweets/:id/quote_tweets
+
 ## v0.1.0
 
 - Added **Tweets Likes** endpoints. ([#6](https://github.com/twitter-dart/twitter-api-v2/issues/6))

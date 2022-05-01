@@ -234,6 +234,32 @@ abstract class TweetsService {
   Future<TwitterResponse<List<UserData>, void>> retweetedBy(
       {required String tweetId});
 
+  /// Returns Quote Tweets for a Tweet specified by the requested Tweet ID.
+  ///
+  /// The Tweets returned by this endpoint count towards the Project-level Tweet cap.
+  ///
+  /// ## Parameters
+  ///
+  /// - [tweetId]: Unique identifier of the Tweet to request.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/tweets/:id/quote_tweets
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **App rate limit (OAuth 2.0 App Access Token)**:
+  ///    75 requests per 15-minute window shared among all users of your app
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    75 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/tweets/quote-tweets/api-reference/get-tweets-id-quote_tweets
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> quoteTweets(
+      {required tweetId});
+
   /// TODO: Fix document
   ///
   /// ## Parameters
@@ -366,6 +392,19 @@ class _TweetsService extends BaseService implements TweetsService {
       data: response['data']
           .map<UserData>((user) => UserData.fromJson(user))
           .toList(),
+    );
+  }
+
+  @override
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> quoteTweets(
+      {required tweetId}) async {
+    final response = await super.get('/2/tweets/$tweetId/quote_tweets');
+
+    return TwitterResponse(
+      data: response['data']
+          .map<TweetData>((tweet) => TweetData.fromJson(tweet))
+          .toList(),
+      meta: TweetMeta.fromJson(response),
     );
   }
 

@@ -11,9 +11,10 @@ part 'tweet_meta.g.dart';
 @freezed
 class TweetMeta with _$TweetMeta {
   const factory TweetMeta({
-    @JsonKey(name: 'newest_id') required String newestId,
-    @JsonKey(name: 'oldest_id') required String oldestId,
-    @JsonKey(name: 'result_count') required int resultCount,
+    @JsonKey(name: 'newest_id') String? newestId,
+    @JsonKey(name: 'oldest_id') String? oldestId,
+    @JsonKey(name: 'result_count') int? resultCount,
+    @JsonKey(name: 'next_token') String? nextToken,
   }) = _TweetMeta;
 
   factory TweetMeta.fromJson(Map<String, Object?> json) =>
