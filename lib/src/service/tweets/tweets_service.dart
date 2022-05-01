@@ -260,7 +260,9 @@ abstract class TweetsService {
   Future<TwitterResponse<List<TweetData>, TweetMeta>> quoteTweets(
       {required tweetId});
 
-  /// TODO: Fix document
+  /// The recent search endpoint returns Tweets from the last seven days that match a search query.
+  ///
+  /// The Tweets returned by this endpoint count towards the Project-level Tweet cap.
   ///
   /// ## Parameters
   ///
@@ -289,6 +291,39 @@ abstract class TweetsService {
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-recent
   Future<TwitterResponse<List<TweetData>, TweetMeta>> searchRecent(
+      {required String query});
+
+  /// This endpoint is only available to those users who have been approved for
+  /// Academic Research access.
+  ///
+  /// The full-archive search endpoint returns the complete history of public Tweets
+  /// matching a search query; since the first Tweet was created March 26, 2006.
+  ///
+  /// The Tweets returned by this endpoint count towards the Project-level Tweet cap.
+  ///
+  /// ## Parameters
+  ///
+  /// - [query]: One query for matching Tweets.
+  ///            You can learn how to build this query by reading our build a
+  ///            query guide. You can use all available operators and can make
+  ///            queries up to 1,024 characters long.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/tweets/search/all
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **App rate limit (OAuth 2.0 App Access Token)**:
+  ///    300 requests per 15-minute window shared among all users of your app
+  ///
+  /// - **App rate limit (OAuth 2.0 App Access Token)**:
+  ///    1 request per second shared among all users of your app
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-all
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> searchAll(
       {required String query});
 }
 
@@ -413,6 +448,22 @@ class _TweetsService extends BaseService implements TweetsService {
       {required String query}) async {
     final response = await super.get(
       '/2/tweets/search/recent',
+      queryParameters: {'query': query},
+    );
+
+    return TwitterResponse(
+      data: response['data']
+          .map<TweetData>((tweet) => TweetData.fromJson(tweet))
+          .toList(),
+      meta: TweetMeta.fromJson(response['meta']),
+    );
+  }
+
+  @override
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> searchAll(
+      {required String query}) async {
+    final response = await super.get(
+      '/2/tweets/search/all',
       queryParameters: {'query': query},
     );
 
