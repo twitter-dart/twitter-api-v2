@@ -4,6 +4,9 @@
 
 - Added **Quote Tweets** endpoint. ([#8](https://github.com/twitter-dart/twitter-api-v2/issues/8))
   - GET /2/tweets/:id/quote_tweets
+- Added **Tweets Search** endpoints. ([#10](https://github.com/twitter-dart/twitter-api-v2/issues/10))
+  - GET /2/tweets/search/all
+  - GET /2/tweets/search/recent
 
 ## v0.1.0
 
