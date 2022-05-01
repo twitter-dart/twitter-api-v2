@@ -21,11 +21,13 @@ TweetMeta _$TweetMetaFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$TweetMeta {
   @JsonKey(name: 'newest_id')
-  String get newestId => throw _privateConstructorUsedError;
+  String? get newestId => throw _privateConstructorUsedError;
   @JsonKey(name: 'oldest_id')
-  String get oldestId => throw _privateConstructorUsedError;
+  String? get oldestId => throw _privateConstructorUsedError;
   @JsonKey(name: 'result_count')
-  int get resultCount => throw _privateConstructorUsedError;
+  int? get resultCount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'next_token')
+  String? get nextToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,9 +40,10 @@ abstract class $TweetMetaCopyWith<$Res> {
   factory $TweetMetaCopyWith(TweetMeta value, $Res Function(TweetMeta) then) =
       _$TweetMetaCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'newest_id') String newestId,
-      @JsonKey(name: 'oldest_id') String oldestId,
-      @JsonKey(name: 'result_count') int resultCount});
+      {@JsonKey(name: 'newest_id') String? newestId,
+      @JsonKey(name: 'oldest_id') String? oldestId,
+      @JsonKey(name: 'result_count') int? resultCount,
+      @JsonKey(name: 'next_token') String? nextToken});
 }
 
 /// @nodoc
@@ -56,20 +59,25 @@ class _$TweetMetaCopyWithImpl<$Res> implements $TweetMetaCopyWith<$Res> {
     Object? newestId = freezed,
     Object? oldestId = freezed,
     Object? resultCount = freezed,
+    Object? nextToken = freezed,
   }) {
     return _then(_value.copyWith(
       newestId: newestId == freezed
           ? _value.newestId
           : newestId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       oldestId: oldestId == freezed
           ? _value.oldestId
           : oldestId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       resultCount: resultCount == freezed
           ? _value.resultCount
           : resultCount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
+      nextToken: nextToken == freezed
+          ? _value.nextToken
+          : nextToken // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -81,9 +89,10 @@ abstract class _$TweetMetaCopyWith<$Res> implements $TweetMetaCopyWith<$Res> {
       __$TweetMetaCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'newest_id') String newestId,
-      @JsonKey(name: 'oldest_id') String oldestId,
-      @JsonKey(name: 'result_count') int resultCount});
+      {@JsonKey(name: 'newest_id') String? newestId,
+      @JsonKey(name: 'oldest_id') String? oldestId,
+      @JsonKey(name: 'result_count') int? resultCount,
+      @JsonKey(name: 'next_token') String? nextToken});
 }
 
 /// @nodoc
@@ -100,20 +109,25 @@ class __$TweetMetaCopyWithImpl<$Res> extends _$TweetMetaCopyWithImpl<$Res>
     Object? newestId = freezed,
     Object? oldestId = freezed,
     Object? resultCount = freezed,
+    Object? nextToken = freezed,
   }) {
     return _then(_TweetMeta(
       newestId: newestId == freezed
           ? _value.newestId
           : newestId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       oldestId: oldestId == freezed
           ? _value.oldestId
           : oldestId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       resultCount: resultCount == freezed
           ? _value.resultCount
           : resultCount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
+      nextToken: nextToken == freezed
+          ? _value.nextToken
+          : nextToken // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -122,26 +136,30 @@ class __$TweetMetaCopyWithImpl<$Res> extends _$TweetMetaCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_TweetMeta implements _TweetMeta {
   const _$_TweetMeta(
-      {@JsonKey(name: 'newest_id') required this.newestId,
-      @JsonKey(name: 'oldest_id') required this.oldestId,
-      @JsonKey(name: 'result_count') required this.resultCount});
+      {@JsonKey(name: 'newest_id') this.newestId,
+      @JsonKey(name: 'oldest_id') this.oldestId,
+      @JsonKey(name: 'result_count') this.resultCount,
+      @JsonKey(name: 'next_token') this.nextToken});
 
   factory _$_TweetMeta.fromJson(Map<String, dynamic> json) =>
       _$$_TweetMetaFromJson(json);
 
   @override
   @JsonKey(name: 'newest_id')
-  final String newestId;
+  final String? newestId;
   @override
   @JsonKey(name: 'oldest_id')
-  final String oldestId;
+  final String? oldestId;
   @override
   @JsonKey(name: 'result_count')
-  final int resultCount;
+  final int? resultCount;
+  @override
+  @JsonKey(name: 'next_token')
+  final String? nextToken;
 
   @override
   String toString() {
-    return 'TweetMeta(newestId: $newestId, oldestId: $oldestId, resultCount: $resultCount)';
+    return 'TweetMeta(newestId: $newestId, oldestId: $oldestId, resultCount: $resultCount, nextToken: $nextToken)';
   }
 
   @override
@@ -152,7 +170,8 @@ class _$_TweetMeta implements _TweetMeta {
             const DeepCollectionEquality().equals(other.newestId, newestId) &&
             const DeepCollectionEquality().equals(other.oldestId, oldestId) &&
             const DeepCollectionEquality()
-                .equals(other.resultCount, resultCount));
+                .equals(other.resultCount, resultCount) &&
+            const DeepCollectionEquality().equals(other.nextToken, nextToken));
   }
 
   @JsonKey(ignore: true)
@@ -161,7 +180,8 @@ class _$_TweetMeta implements _TweetMeta {
       runtimeType,
       const DeepCollectionEquality().hash(newestId),
       const DeepCollectionEquality().hash(oldestId),
-      const DeepCollectionEquality().hash(resultCount));
+      const DeepCollectionEquality().hash(resultCount),
+      const DeepCollectionEquality().hash(nextToken));
 
   @JsonKey(ignore: true)
   @override
@@ -176,23 +196,26 @@ class _$_TweetMeta implements _TweetMeta {
 
 abstract class _TweetMeta implements TweetMeta {
   const factory _TweetMeta(
-          {@JsonKey(name: 'newest_id') required final String newestId,
-          @JsonKey(name: 'oldest_id') required final String oldestId,
-          @JsonKey(name: 'result_count') required final int resultCount}) =
-      _$_TweetMeta;
+      {@JsonKey(name: 'newest_id') final String? newestId,
+      @JsonKey(name: 'oldest_id') final String? oldestId,
+      @JsonKey(name: 'result_count') final int? resultCount,
+      @JsonKey(name: 'next_token') final String? nextToken}) = _$_TweetMeta;
 
   factory _TweetMeta.fromJson(Map<String, dynamic> json) =
       _$_TweetMeta.fromJson;
 
   @override
   @JsonKey(name: 'newest_id')
-  String get newestId => throw _privateConstructorUsedError;
+  String? get newestId => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'oldest_id')
-  String get oldestId => throw _privateConstructorUsedError;
+  String? get oldestId => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'result_count')
-  int get resultCount => throw _privateConstructorUsedError;
+  int? get resultCount => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'next_token')
+  String? get nextToken => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$TweetMetaCopyWith<_TweetMeta> get copyWith =>
