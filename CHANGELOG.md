@@ -7,6 +7,9 @@
 - Added **Tweets Search** endpoints. ([#10](https://github.com/twitter-dart/twitter-api-v2/issues/10))
   - GET /2/tweets/search/all
   - GET /2/tweets/search/recent
+- Added **Tweets Lookup** endpoints. ([#13](https://github.com/twitter-dart/twitter-api-v2/issues/13))
+  - GET /2/tweets
+  - GET /2/tweets/:id
 
 ## v0.1.0
 

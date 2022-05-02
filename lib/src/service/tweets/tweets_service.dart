@@ -325,6 +325,55 @@ abstract class TweetsService {
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-all
   Future<TwitterResponse<List<TweetData>, TweetMeta>> searchAll(
       {required String query});
+
+  /// Returns a variety of information about a single Tweet specified by the requested ID.
+  ///
+  /// ## Parameters
+  ///
+  /// - [tweetId]: Unique identifier of the Tweet to request.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/tweets/:id
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **App rate limit (OAuth 2.0 App Access Token)**:
+  ///    900 requests per 15-minute window shared among all users of your app
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    900 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference/get-tweets-id
+  Future<TwitterResponse<TweetData, void>> lookupTweet(
+      {required String tweetId});
+
+  /// Returns a variety of information about the Tweet specified by the requested ID or list of IDs.
+  ///
+  /// ## Parameters
+  ///
+  /// - [tweetIds]: Unique identifiers of the Tweet to request.
+  ///               Up to 100 are allowed in a single request.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/tweets
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **App rate limit (OAuth 2.0 App Access Token)**:
+  ///    900 requests per 15-minute window shared among all users of your app
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    900 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference/get-tweets
+  Future<TwitterResponse<List<TweetData>, void>> lookupTweets(
+      {required List<String> tweetIds});
 }
 
 class _TweetsService extends BaseService implements TweetsService {
@@ -472,6 +521,31 @@ class _TweetsService extends BaseService implements TweetsService {
           .map<TweetData>((tweet) => TweetData.fromJson(tweet))
           .toList(),
       meta: TweetMeta.fromJson(response['meta']),
+    );
+  }
+
+  @override
+  Future<TwitterResponse<TweetData, void>> lookupTweet(
+      {required String tweetId}) async {
+    final response = await super.get('/2/tweets/$tweetId');
+
+    return TwitterResponse(
+      data: TweetData.fromJson(response['data']),
+    );
+  }
+
+  @override
+  Future<TwitterResponse<List<TweetData>, void>> lookupTweets(
+      {required List<String> tweetIds}) async {
+    final response = await super.get(
+      '/2/tweets',
+      queryParameters: {'ids': tweetIds.join(',')},
+    );
+
+    return TwitterResponse(
+      data: response['data']
+          .map<TweetData>((tweet) => TweetData.fromJson(tweet))
+          .toList(),
     );
   }
 }
