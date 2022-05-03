@@ -5,9 +5,13 @@
 // Dart imports:
 import 'dart:convert';
 
+// Package imports:
+import 'package:http/http.dart';
+
 // Project imports:
 import 'package:twitter_api_v2/src/client/client_context.dart';
 import 'package:twitter_api_v2/src/client/user_context.dart';
+import 'package:twitter_api_v2/twitter_api_v2.dart';
 
 abstract class Service {
   Future<dynamic> get(UserContext userContext, String unencodedPath);
@@ -42,7 +46,7 @@ abstract class BaseService implements Service {
       Uri.https(_authority, unencodedPath, queryParameters),
     );
 
-    return jsonDecode(response.body);
+    return _checkResponseBody(response);
   }
 
   @override
@@ -58,7 +62,7 @@ abstract class BaseService implements Service {
       body: jsonEncode(body),
     );
 
-    return jsonDecode(response.body);
+    return _checkResponseBody(response);
   }
 
   @override
@@ -71,6 +75,17 @@ abstract class BaseService implements Service {
       Uri.https('api.twitter.com', unencodedPath),
     );
 
-    return jsonDecode(response.body);
+    return _checkResponseBody(response);
+  }
+
+  Map<String, dynamic> _checkResponseBody(final Response response) {
+    final body = jsonDecode(response.body);
+    if (!body.containsKey('data')) {
+      //! This occurs when the tweet to be processed has been deleted or
+      //! when the target data does not exist at the time of search.
+      throw TwitterException(response);
+    }
+
+    return body;
   }
 }
