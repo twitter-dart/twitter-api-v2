@@ -14,6 +14,8 @@
   - GET /2/users/by
   - GET /2/users/by/username/:username
   - GET /2/users/me
+- Added **Spaces Search** endpoints. ([#23](https://github.com/twitter-dart/twitter-api-v2/issues/23))
+  - GET /2/spaces/search
 
 ## v1.0.0
 

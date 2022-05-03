@@ -528,7 +528,7 @@ class _TweetsService extends BaseService implements TweetsService {
       body: {'text': text},
     );
 
-    return TwitterResponse(data: TweetData.fromJson(response));
+    return TwitterResponse(data: TweetData.fromJson(response['data']));
   }
 
   @override
