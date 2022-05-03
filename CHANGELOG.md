@@ -2,7 +2,10 @@
 
 ## v1.1.0
 
-- Added **Tweet Counts** endpoints. ([#12](https://github.com/twitter-dart/twitter-api-v2/issues/12)
+- Added **Tweet Counts** endpoints. ([#12](https://github.com/twitter-dart/twitter-api-v2/issues/12))
+  - GET /2/tweets/counts/all
+  - GET /2/tweets/counts/recent
+- Added **Tweet Bookmarks** endpoints. ([#2](https://github.com/twitter-dart/twitter-api-v2/issues/2))
   - GET /2/tweets/counts/all
   - GET /2/tweets/counts/recent
 

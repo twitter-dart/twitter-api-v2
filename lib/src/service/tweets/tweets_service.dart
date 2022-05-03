@@ -438,6 +438,81 @@ abstract class TweetsService {
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/counts/api-reference/get-tweets-counts-all
   Future<TwitterResponse<List<TweetCountData>, TweetCountMeta>> countAll(
       {required String query});
+
+  /// Causes the user ID of an authenticated user identified in the path parameter
+  /// to Bookmark the target Tweet provided in the request body.
+  ///
+  /// ## Parameters
+  ///
+  /// - [userId]: The user ID of an authenticated user who you are bookmarking
+  ///             a Tweet on behalf of. It must match your own user ID or
+  ///             that of an authenticating user, meaning that you must pass
+  ///             the Access Token associated with the user ID when authenticating
+  ///             your request.
+  ///
+  /// - [tweetId]: The ID of the Tweet that you would like the user id to Bookmark.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/users/:id/bookmarks
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    50 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/tweets/bookmarks/api-reference/post-users-id-bookmarks
+  Future<bool> createBookmark(
+      {required String userId, required String tweetId});
+
+  /// Allows a user or authenticated user ID to remove a Bookmark of a Tweet.
+  ///
+  /// ## Parameters
+  ///
+  /// - [userId]: The user ID who you are removing a Bookmark of a Tweet on behalf of.
+  ///             It must match your own user ID or that of an authenticating user,
+  ///             meaning that you must pass the Access Token associated with
+  ///             the user ID when authenticating your request.
+  ///
+  /// - [tweetId]: The ID of the Tweet that you would like the id to remove a Bookmark of.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/users/:id/bookmarks/:tweet_id
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    50 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/tweets/bookmarks/api-reference/delete-users-id-bookmarks-tweet_id
+  Future<bool> destroyBookmark(
+      {required String userId, required String tweetId});
+
+  /// Allows you to get information about a authenticated user’s 800 most recent bookmarked Tweets.
+  ///
+  /// ## Parameters
+  ///
+  /// - [userId]: User ID of an authenticated user to request bookmarked Tweets for.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/users/:id/bookmarks/:tweet_id
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    180 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/tweets/bookmarks/api-reference/get-users-id-bookmarks
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> bookmarks(
+      {required String userId});
 }
 
 class _TweetsService extends BaseService implements TweetsService {
@@ -677,6 +752,49 @@ class _TweetsService extends BaseService implements TweetsService {
               (tweetCount) => TweetCountData.fromJson(tweetCount))
           .toList(),
       meta: TweetCountMeta.fromJson(response['meta']),
+    );
+  }
+
+  @override
+  Future<bool> createBookmark({
+    required String userId,
+    required String tweetId,
+  }) async {
+    final response = await super.post(
+      UserContext.oauth2,
+      '/2/users/$userId/bookmarks',
+      body: {'tweet_id': tweetId},
+    );
+
+    return response['data']['bookmarked'];
+  }
+
+  @override
+  Future<bool> destroyBookmark({
+    required String userId,
+    required String tweetId,
+  }) async {
+    final response = await super.delete(
+      UserContext.oauth2,
+      '/2/users/$userId/bookmarks/$tweetId',
+    );
+
+    return !response['data']['bookmarked'];
+  }
+
+  @override
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> bookmarks(
+      {required String userId}) async {
+    final response = await super.get(
+      UserContext.oauth2,
+      '/2/users/$userId/bookmarks',
+    );
+
+    return TwitterResponse(
+      data: response['data']
+          .map<TweetData>((tweet) => TweetData.fromJson(tweet))
+          .toList(),
+      meta: TweetMeta.fromJson(response['meta']),
     );
   }
 }

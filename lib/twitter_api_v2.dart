@@ -10,4 +10,7 @@ export 'package:twitter_api_v2/src/client/oauth_tokens.dart';
 export 'package:twitter_api_v2/src/service/twitter_response.dart';
 export 'package:twitter_api_v2/src/service/tweets/tweet_data.dart';
 export 'package:twitter_api_v2/src/service/tweets/tweet_meta.dart';
+export 'package:twitter_api_v2/src/service/tweets/tweet_count_data.dart';
+export 'package:twitter_api_v2/src/service/tweets/tweet_count_meta.dart';
 export 'package:twitter_api_v2/src/service/users/user_data.dart';
+export 'package:twitter_api_v2/src/service/users/user_meta.dart';
