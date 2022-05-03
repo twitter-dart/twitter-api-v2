@@ -19,7 +19,7 @@ abstract class TwitterApi {
       _TwitterApi(bearerToken: bearerToken, oauthTokens: oauthTokens);
 
   /// Returns the tweets service.
-  TweetsService get tweetService;
+  TweetsService get tweetsService;
 
   /// Returns the users service.
   UsersService get usersService;
@@ -43,7 +43,7 @@ class _TwitterApi implements TwitterApi {
   final TwitterService _twitterService;
 
   @override
-  TweetsService get tweetService => _twitterService.tweetsService;
+  TweetsService get tweetsService => _twitterService.tweetsService;
 
   @override
   UsersService get usersService => _twitterService.usersService;

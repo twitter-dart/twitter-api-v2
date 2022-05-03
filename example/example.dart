@@ -26,9 +26,9 @@ void main() async {
 
   try {
     final me = await twitter.usersService.lookupMe();
-    final tweets = await twitter.tweetService.searchRecent(query: '#ElonMusk');
+    final tweets = await twitter.tweetsService.searchRecent(query: '#ElonMusk');
 
-    final response = await twitter.tweetService.createLike(
+    final response = await twitter.tweetsService.createLike(
       userId: me.data.id,
       tweetId: tweets.data.first.id,
     );

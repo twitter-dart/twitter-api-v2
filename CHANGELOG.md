@@ -1,5 +1,9 @@
 # Release Note
 
+## v1.2.0
+
+- Fixed typo from `tweetService` to `tweetsService`.
+
 ## v1.1.0
 
 - Added **Tweet Counts** endpoints. ([#12](https://github.com/twitter-dart/twitter-api-v2/issues/12))
