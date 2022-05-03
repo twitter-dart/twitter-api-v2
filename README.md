@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <b>The Lightweight and Cross-Platform Wrapper for Twitter API v2.0.</b>
+  <b>The Lightweight and Cross-Platform Wrapper for Twitter API v2.0 🐦</b>
 </p>
 
 ---
