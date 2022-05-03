@@ -10,17 +10,3 @@ enum SpaceState {
   /// "live"
   live,
 }
-
-extension SpaceStateExtension on SpaceState {
-  /// Returns the space state associated with [state].
-  static SpaceState toEnum(final String state) {
-    switch (state) {
-      case 'scheduled':
-        return SpaceState.scheduled;
-      case 'live':
-        return SpaceState.live;
-      default:
-        throw ArgumentError('Unknown state: $state');
-    }
-  }
-}
