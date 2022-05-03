@@ -159,7 +159,7 @@ Owner will respond to issues and review pull requests as quickly as possible.
 
 The simplest way to show us your support is by giving the project a star at [here](https://github.com/twitter-dart/twitter-api-v2).
 
-And I'm always looking for sponsors to support this project. I'm not asking for royalties for use in providing this framework, but I do need support to continue ongoing open source development.
+And I'm always looking for sponsors to support this project.
 
 Sponsors can be individuals or corporations, and the amount is optional.
 
