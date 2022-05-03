@@ -6,6 +6,8 @@
 import 'package:twitter_api_v2/src/client/client_context.dart';
 import 'package:twitter_api_v2/src/client/user_context.dart';
 import 'package:twitter_api_v2/src/service/base_service.dart';
+import 'package:twitter_api_v2/src/service/tweets/tweet_count_data.dart';
+import 'package:twitter_api_v2/src/service/tweets/tweet_count_meta.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_data.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_meta.dart';
 import 'package:twitter_api_v2/src/service/twitter_response.dart';
@@ -375,6 +377,67 @@ abstract class TweetsService {
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference/get-tweets
   Future<TwitterResponse<List<TweetData>, void>> lookupTweets(
       {required List<String> tweetIds});
+
+  /// The recent Tweet counts endpoint returns count of Tweets from the last seven days that match a query.
+  ///
+  /// ## Parameters
+  ///
+  /// - [query]: One query for matching Tweets. You can learn how to build
+  ///            this query by reading a [build a query guide](https://developer.twitter.com/en/docs/twitter-api/tweets/counts/integrate/build-a-query).
+  ///
+  ///            If you have Essential or Elevated access, you can use
+  ///            the Basic operators when building your query and can make queries
+  ///            up to 512 characters long.
+  ///
+  ///            If you have been approved for Academic Research access,
+  ///            you can use all available operators and can make queries
+  ///            up to 1,024 characters long.
+  ///
+  ///            Learn more about our access levels on the `about Twitter API page`.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/tweets/counts/recent
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **App rate limit (OAuth 2.0 App Access Token)**:
+  ///    300 requests per 15-minute window shared among all users of your app
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/tweets/counts/api-reference/get-tweets-counts-recent
+  Future<TwitterResponse<List<TweetCountData>, TweetCountMeta>> countRecent(
+      {required String query});
+
+  /// This endpoint is only available to those users who have been approved
+  /// for Academic Research access.
+  ///
+  /// The full-archive Tweet counts endpoint returns the count of Tweets that
+  /// match your query from the complete history of public Tweets;
+  /// since the first Tweet was created March 26, 2006.
+  ///
+  /// ## Parameters
+  ///
+  /// - [query]: One query for matching Tweets.
+  ///            You can learn how to build this query by reading a [build a query guide](https://developer.twitter.com/en/docs/twitter-api/tweets/counts/integrate/build-a-query).
+  ///            You can use all available operators and can make queries
+  ///            up to 1,024 characters long.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/tweets/counts/all
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **App rate limit (OAuth 2.0 App Access Token)**:
+  ///    300 requests per 15-minute window shared among all users of your app
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/tweets/counts/api-reference/get-tweets-counts-all
+  Future<TwitterResponse<List<TweetCountData>, TweetCountMeta>> countAll(
+      {required String query});
 }
 
 class _TweetsService extends BaseService implements TweetsService {
@@ -578,6 +641,42 @@ class _TweetsService extends BaseService implements TweetsService {
       data: response['data']
           .map<TweetData>((tweet) => TweetData.fromJson(tweet))
           .toList(),
+    );
+  }
+
+  @override
+  Future<TwitterResponse<List<TweetCountData>, TweetCountMeta>> countRecent(
+      {required String query}) async {
+    final response = await super.get(
+      UserContext.oauth2AppOnly,
+      '/2/tweets/counts/recent',
+      queryParameters: {'query': query},
+    );
+
+    return TwitterResponse(
+      data: response['data']
+          .map<TweetCountData>(
+              (tweetCount) => TweetCountData.fromJson(tweetCount))
+          .toList(),
+      meta: TweetCountMeta.fromJson(response['meta']),
+    );
+  }
+
+  @override
+  Future<TwitterResponse<List<TweetCountData>, TweetCountMeta>> countAll(
+      {required String query}) async {
+    final response = await super.get(
+      UserContext.oauth2AppOnly,
+      '/2/tweets/counts/all',
+      queryParameters: {'query': query},
+    );
+
+    return TwitterResponse(
+      data: response['data']
+          .map<TweetCountData>(
+              (tweetCount) => TweetCountData.fromJson(tweetCount))
+          .toList(),
+      meta: TweetCountMeta.fromJson(response['meta']),
     );
   }
 }
