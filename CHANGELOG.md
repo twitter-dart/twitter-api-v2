@@ -2,7 +2,8 @@
 
 ## v1.2.0
 
-- Fixed typo from `tweetService` to `tweetsService`.
+- Fixed typo from `tweetService` to `tweetsService` in `TwitterApi`.
+- Improved error handling. ([#41](https://github.com/twitter-dart/twitter-api-v2/issues/41))
 
 ## v1.1.0
 
