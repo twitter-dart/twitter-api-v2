@@ -3,14 +3,14 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
+import 'package:twitter_api_v2/src/client/client_context.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweets_service.dart';
 import 'package:twitter_api_v2/src/service/users/users_service.dart';
-import 'package:twitter_api_v2/src/twitter_client.dart';
 
 /// The class represents the twitter services.
 abstract class TwitterService {
-  factory TwitterService({required TwitterClient client}) =>
-      _TwitterService(client: client);
+  factory TwitterService({required ClientContext context}) =>
+      _TwitterService(context: context);
 
   /// Returns the tweets service.
   TweetsService get tweetsService;
@@ -21,9 +21,9 @@ abstract class TwitterService {
 
 class _TwitterService implements TwitterService {
   /// Returns the new instance of [_TwitterService].
-  _TwitterService({required TwitterClient client})
-      : tweetsService = TweetsService(client: client),
-        usersService = UsersService(client: client);
+  _TwitterService({required ClientContext context})
+      : tweetsService = TweetsService(context: context),
+        usersService = UsersService(context: context);
 
   @override
   final TweetsService tweetsService;

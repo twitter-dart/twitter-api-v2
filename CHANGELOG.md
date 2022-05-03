@@ -1,7 +1,8 @@
 # Release Note
 
-## v0.2.0
+## v1.0.0
 
+- Specification changes and improvements have been made to the authentication method. ([#44](https://github.com/twitter-dart/twitter-api-v2/issues/44))
 - Added **Quote Tweets** endpoint. ([#8](https://github.com/twitter-dart/twitter-api-v2/issues/8))
   - GET /2/tweets/:id/quote_tweets
 - Added **Tweets Search** endpoints. ([#10](https://github.com/twitter-dart/twitter-api-v2/issues/10))

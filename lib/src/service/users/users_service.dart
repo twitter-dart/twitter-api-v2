@@ -3,16 +3,17 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
+import 'package:twitter_api_v2/src/client/client_context.dart';
+import 'package:twitter_api_v2/src/client/user_context.dart';
 import 'package:twitter_api_v2/src/service/base_service.dart';
 import 'package:twitter_api_v2/src/service/twitter_response.dart';
 import 'package:twitter_api_v2/src/service/users/user_data.dart';
 import 'package:twitter_api_v2/src/service/users/user_meta.dart';
-import 'package:twitter_api_v2/src/twitter_client.dart';
 
 abstract class UsersService {
   /// Returns the new instance of [UsersService].
-  factory UsersService({required TwitterClient client}) =>
-      _UsersService(client: client);
+  factory UsersService({required ClientContext context}) =>
+      _UsersService(context: context);
 
   /// Allows a user ID to follow another user.
   ///
@@ -140,7 +141,7 @@ abstract class UsersService {
 
 class _UsersService extends BaseService implements UsersService {
   /// Returns the new instance of [_UsersService].
-  _UsersService({required TwitterClient client}) : super(client: client);
+  _UsersService({required ClientContext context}) : super(context: context);
 
   @override
   Future<bool> createFollow({
@@ -148,6 +149,7 @@ class _UsersService extends BaseService implements UsersService {
     required String targetUserId,
   }) async {
     final response = await super.post(
+      UserContext.oauth2,
       '/2/users/$userId/following',
       body: {'target_user_id': targetUserId},
     );
@@ -161,6 +163,7 @@ class _UsersService extends BaseService implements UsersService {
     required String targetUserId,
   }) async {
     final response = await super.delete(
+      UserContext.oauth2,
       '/2/users/$userId/following/$targetUserId',
     );
 
@@ -170,7 +173,10 @@ class _UsersService extends BaseService implements UsersService {
   @override
   Future<TwitterResponse<List<UserData>, UserMeta>> followers(
       {required String userId}) async {
-    final response = await super.get('/2/users/$userId/followers');
+    final response = await super.get(
+      UserContext.oauth2,
+      '/2/users/$userId/followers',
+    );
 
     return TwitterResponse(
       data: response['data']
@@ -183,7 +189,10 @@ class _UsersService extends BaseService implements UsersService {
   @override
   Future<TwitterResponse<List<UserData>, UserMeta>> followings(
       {required String userId}) async {
-    final response = await super.get('/2/users/$userId/following');
+    final response = await super.get(
+      UserContext.oauth2,
+      '/2/users/$userId/following',
+    );
 
     return TwitterResponse(
       data: response['data']
@@ -195,7 +204,10 @@ class _UsersService extends BaseService implements UsersService {
 
   @override
   Future<TwitterResponse<UserData, void>> lookupMe() async {
-    final response = await super.get('/2/users/me');
+    final response = await super.get(
+      UserContext.oauth2,
+      '/2/users/me',
+    );
 
     return TwitterResponse(data: UserData.fromJson(response['data']));
   }
