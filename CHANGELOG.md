@@ -1,5 +1,9 @@
 # Release Note
 
+## v1.3.0
+
+- Improved the error message from `TwitterException`. ([#48](https://github.com/twitter-dart/twitter-api-v2/issues/48))
+
 ## v1.2.0
 
 - Fixed typo from `tweetService` to `tweetsService` in `TwitterApi`.
