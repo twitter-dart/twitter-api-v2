@@ -2,9 +2,13 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+// Dart imports:
 import 'dart:convert';
 
+// Package imports:
 import 'package:http/http.dart' as http;
+
+// Project imports:
 import 'package:twitter_api_v2/src/client/client.dart';
 import 'package:twitter_api_v2/src/twitter_exception.dart';
 
