@@ -90,8 +90,10 @@ void main() async {
     bearerToken: 'YOUR_TOKEN_HERE',
 
     //! Or perhaps you would prefer to use the good old OAuth1.0a method
-    //! instead of OAuth2.0 PKCE method. Then you can use the following code
+    //! over the OAuth2.0 PKCE method. Then you can use the following code
     //! to set the OAuth1.0a tokens.
+    //!
+    //! Note, however, that some endpoints cannot be used for OAuth 1.0a method authentication.
     oauthTokens: v2.OAuthTokens(
       consumerKey: 'YOUR_CONSUMER_KEY_HERE',
       consumerSecret: 'YOUR_CONSUMER_SECRET_HERE',
@@ -142,6 +144,9 @@ void main() async {
       1. [GET /2/tweets](https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference/get-tweets)
       2. [GET /2/tweets/:id](https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference/get-tweets-id)
    7. **Tweet Counts**
+      1. [GET /2/tweets/counts/all](https://developer.twitter.com/en/docs/twitter-api/tweets/counts/api-reference/get-tweets-counts-all)
+      2. [GET /2/tweets/counts/recent](https://developer.twitter.com/en/docs/twitter-api/tweets/counts/api-reference/get-tweets-counts-recent)
+   8. **Bookmarks**
       1. [GET /2/tweets/counts/all](https://developer.twitter.com/en/docs/twitter-api/tweets/counts/api-reference/get-tweets-counts-all)
       2. [GET /2/tweets/counts/recent](https://developer.twitter.com/en/docs/twitter-api/tweets/counts/api-reference/get-tweets-counts-recent)
 
