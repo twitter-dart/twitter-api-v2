@@ -3,17 +3,18 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
+import 'package:twitter_api_v2/src/client/client_context.dart';
+import 'package:twitter_api_v2/src/client/user_context.dart';
 import 'package:twitter_api_v2/src/service/base_service.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_data.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_meta.dart';
 import 'package:twitter_api_v2/src/service/twitter_response.dart';
 import 'package:twitter_api_v2/src/service/users/user_data.dart';
-import 'package:twitter_api_v2/src/twitter_client.dart';
 
 abstract class TweetsService {
   /// Returns the new instance of [TweetsService].
-  factory TweetsService({required TwitterClient client}) =>
-      _TweetsService(client: client);
+  factory TweetsService({required ClientContext context}) =>
+      _TweetsService(context: context);
 
   /// Creates a Tweet on behalf of an authenticated user.
   ///
@@ -378,19 +379,26 @@ abstract class TweetsService {
 
 class _TweetsService extends BaseService implements TweetsService {
   /// Returns the new instance of [_TweetsService].
-  _TweetsService({required TwitterClient client}) : super(client: client);
+  _TweetsService({required ClientContext context}) : super(context: context);
 
   @override
   Future<TwitterResponse<TweetData, void>> createTweet(
       {required String text}) async {
-    final response = await super.post('/2/tweets', body: {'text': text});
+    final response = await super.post(
+      UserContext.oauth2,
+      '/2/tweets',
+      body: {'text': text},
+    );
 
     return TwitterResponse(data: TweetData.fromJson(response));
   }
 
   @override
   Future<bool> destroyTweet({required String tweetId}) async {
-    final response = await super.delete('/2/tweets/$tweetId');
+    final response = await super.delete(
+      UserContext.oauth2,
+      '/2/tweets/$tweetId',
+    );
 
     return response['data']['deleted'];
   }
@@ -401,6 +409,7 @@ class _TweetsService extends BaseService implements TweetsService {
     required String tweetId,
   }) async {
     final response = await super.post(
+      UserContext.oauth2,
       '/2/users/$userId/likes',
       body: {'tweet_id': tweetId},
     );
@@ -414,6 +423,7 @@ class _TweetsService extends BaseService implements TweetsService {
     required String tweetId,
   }) async {
     final response = await super.delete(
+      UserContext.oauth2,
       '/2/users/$userId/likes/$tweetId',
     );
 
@@ -426,6 +436,7 @@ class _TweetsService extends BaseService implements TweetsService {
     required String tweetId,
   }) async {
     final response = await super.post(
+      UserContext.oauth2,
       '/2/users/$userId/retweets',
       body: {'tweet_id': tweetId},
     );
@@ -438,7 +449,10 @@ class _TweetsService extends BaseService implements TweetsService {
     required String userId,
     required String tweetId,
   }) async {
-    final response = await super.delete('/2/users/$userId/retweets/$tweetId');
+    final response = await super.delete(
+      UserContext.oauth2,
+      '/2/users/$userId/retweets/$tweetId',
+    );
 
     return !response['data']['retweeted'];
   }
@@ -446,7 +460,10 @@ class _TweetsService extends BaseService implements TweetsService {
   @override
   Future<TwitterResponse<List<UserData>, void>> likingUsers(
       {required String tweetId}) async {
-    final response = await super.get('/2/tweets/$tweetId/liking_users');
+    final response = await super.get(
+      UserContext.oauth2,
+      '/2/tweets/$tweetId/liking_users',
+    );
 
     return TwitterResponse(
       data: response['data']
@@ -458,7 +475,10 @@ class _TweetsService extends BaseService implements TweetsService {
   @override
   Future<TwitterResponse<List<TweetData>, void>> likingTweets(
       {required String userId}) async {
-    final response = await super.get('/2/users/$userId/liked_tweets');
+    final response = await super.get(
+      UserContext.oauth2,
+      '/2/users/$userId/liked_tweets',
+    );
 
     return TwitterResponse(
       data: response['data']
@@ -470,7 +490,10 @@ class _TweetsService extends BaseService implements TweetsService {
   @override
   Future<TwitterResponse<List<UserData>, void>> retweetedBy(
       {required String tweetId}) async {
-    final response = await super.get('/2/tweets/$tweetId/retweeted_by');
+    final response = await super.get(
+      UserContext.oauth2,
+      '/2/tweets/$tweetId/retweeted_by',
+    );
 
     return TwitterResponse(
       data: response['data']
@@ -482,7 +505,10 @@ class _TweetsService extends BaseService implements TweetsService {
   @override
   Future<TwitterResponse<List<TweetData>, TweetMeta>> quoteTweets(
       {required tweetId}) async {
-    final response = await super.get('/2/tweets/$tweetId/quote_tweets');
+    final response = await super.get(
+      UserContext.oauth2,
+      '/2/tweets/$tweetId/quote_tweets',
+    );
 
     return TwitterResponse(
       data: response['data']
@@ -496,6 +522,7 @@ class _TweetsService extends BaseService implements TweetsService {
   Future<TwitterResponse<List<TweetData>, TweetMeta>> searchRecent(
       {required String query}) async {
     final response = await super.get(
+      UserContext.oauth2,
       '/2/tweets/search/recent',
       queryParameters: {'query': query},
     );
@@ -512,6 +539,7 @@ class _TweetsService extends BaseService implements TweetsService {
   Future<TwitterResponse<List<TweetData>, TweetMeta>> searchAll(
       {required String query}) async {
     final response = await super.get(
+      UserContext.oauth2AppOnly,
       '/2/tweets/search/all',
       queryParameters: {'query': query},
     );
@@ -527,7 +555,10 @@ class _TweetsService extends BaseService implements TweetsService {
   @override
   Future<TwitterResponse<TweetData, void>> lookupTweet(
       {required String tweetId}) async {
-    final response = await super.get('/2/tweets/$tweetId');
+    final response = await super.get(
+      UserContext.oauth2,
+      '/2/tweets/$tweetId',
+    );
 
     return TwitterResponse(
       data: TweetData.fromJson(response['data']),
@@ -538,6 +569,7 @@ class _TweetsService extends BaseService implements TweetsService {
   Future<TwitterResponse<List<TweetData>, void>> lookupTweets(
       {required List<String> tweetIds}) async {
     final response = await super.get(
+      UserContext.oauth2,
       '/2/tweets',
       queryParameters: {'ids': tweetIds.join(',')},
     );

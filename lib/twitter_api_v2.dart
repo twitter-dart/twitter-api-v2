@@ -2,9 +2,9 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Base
 export 'package:twitter_api_v2/src/twitter_api.dart';
 export 'package:twitter_api_v2/src/twitter_exception.dart';
+export 'package:twitter_api_v2/src/client/oauth_tokens.dart';
 
 // Response
 export 'package:twitter_api_v2/src/service/twitter_response.dart';

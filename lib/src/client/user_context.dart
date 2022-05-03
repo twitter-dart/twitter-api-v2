@@ -2,9 +2,10 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
-import 'package:test/scaffolding.dart';
+enum UserContext {
+  /// OAuth 2.0 User Context
+  oauth2,
 
-void main() {
-  test('', () {});
+  /// OAuth 2.0 Application-Only
+  oauth2AppOnly,
 }
