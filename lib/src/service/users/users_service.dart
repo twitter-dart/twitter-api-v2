@@ -122,6 +122,103 @@ abstract class UsersService {
   Future<TwitterResponse<List<UserData>, UserMeta>> followings(
       {required String userId});
 
+  /// Returns a variety of information about a single user specified by the requested ID.
+  ///
+  /// ## Parameters
+  ///
+  /// - [userId]: The ID of the user to lookup.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/users/:id
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **App rate limit (OAuth 2.0 App Access Token)**:
+  ///    900 requests per 15-minute window shared among all users of your app
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    900 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users-id
+  Future<TwitterResponse<UserData, void>> lookupById({required String userId});
+
+  /// Returns a variety of information about one or more users specified by the requested IDs.
+  ///
+  /// ## Parameters
+  ///
+  /// - [userIds]: 	A list of user IDs.
+  ///               Up to 100 are allowed in a single request.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/users
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **App rate limit (OAuth 2.0 App Access Token)**:
+  ///    900 requests per 15-minute window shared among all users of your app
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    900 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users
+  Future<TwitterResponse<List<UserData>, void>> lookupByIds(
+      {required List<String> userIds});
+
+  /// Returns a variety of information about one or more users specified by their usernames.
+  ///
+  /// ## Parameters
+  ///
+  /// - [username]: The Twitter username (handle) of the user.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/users/by/username/:username
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **App rate limit (OAuth 2.0 App Access Token)**:
+  ///    900 requests per 15-minute window shared among all users of your app
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    900 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users-by-username-username
+  Future<TwitterResponse<UserData, void>> lookupByName(
+      {required String username});
+
+  /// Returns a variety of information about one or more users specified by their usernames.
+  ///
+  /// ## Parameters
+  ///
+  /// - [usernames]: A list of Twitter usernames (handles).
+  ///                Up to 100 are allowed in a single request.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/users/by
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **App rate limit (OAuth 2.0 App Access Token)**:
+  ///    900 requests per 15-minute window shared among all users of your app
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    900 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users-by
+  Future<TwitterResponse<List<UserData>, void>> lookupByNames(
+      {required List<String> usernames});
+
   /// Returns information about an authorized user.
   ///
   /// ## Endpoint Url
@@ -199,6 +296,60 @@ class _UsersService extends BaseService implements UsersService {
           .map<UserData>((user) => UserData.fromJson(user))
           .toList(),
       meta: UserMeta.fromJson(response['meta']),
+    );
+  }
+
+  @override
+  Future<TwitterResponse<UserData, void>> lookupById(
+      {required String userId}) async {
+    final response = await super.get(
+      UserContext.oauth2,
+      '/2/users/$userId',
+    );
+
+    return TwitterResponse(data: UserData.fromJson(response['data']));
+  }
+
+  @override
+  Future<TwitterResponse<List<UserData>, void>> lookupByIds(
+      {required List<String> userIds}) async {
+    final response = await super.get(
+      UserContext.oauth2,
+      '/2/users',
+      queryParameters: {'ids': userIds.join(',')},
+    );
+
+    return TwitterResponse(
+      data: response['data']
+          .map<UserData>((user) => UserData.fromJson(user))
+          .toList(),
+    );
+  }
+
+  @override
+  Future<TwitterResponse<UserData, void>> lookupByName(
+      {required String username}) async {
+    final response = await super.get(
+      UserContext.oauth2,
+      '/2/users/by/username/$username',
+    );
+
+    return TwitterResponse(data: UserData.fromJson(response['data']));
+  }
+
+  @override
+  Future<TwitterResponse<List<UserData>, void>> lookupByNames(
+      {required List<String> usernames}) async {
+    final response = await super.get(
+      UserContext.oauth2,
+      '/2/users/by',
+      queryParameters: {'usernames': usernames.join(',')},
+    );
+
+    return TwitterResponse(
+      data: response['data']
+          .map<UserData>((user) => UserData.fromJson(user))
+          .toList(),
     );
   }
 

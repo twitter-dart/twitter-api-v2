@@ -8,6 +8,12 @@
 - Added **Tweet Bookmarks** endpoints. ([#2](https://github.com/twitter-dart/twitter-api-v2/issues/2))
   - GET /2/tweets/counts/all
   - GET /2/tweets/counts/recent
+- Added **Users Lookup** endpoints. ([#23](https://github.com/twitter-dart/twitter-api-v2/issues/23))
+  - GET /2/users
+  - GET /2/users/:id
+  - GET /2/users/by
+  - GET /2/users/by/username/:username
+  - GET /2/users/me
 
 ## v1.0.0
 
