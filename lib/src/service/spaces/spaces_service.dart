@@ -15,6 +15,33 @@ abstract class SpacesService {
   factory SpacesService({required ClientContext context}) =>
       _SpacesService(context: context);
 
+  /// Return live or scheduled Spaces matching your specified search terms.
+  ///
+  /// This endpoint performs a keyword search, meaning that it will return Spaces
+  /// that are an exact case-insensitive match of the specified search term.
+  ///
+  /// The search term will match the original title of the Space.
+  ///
+  /// ## Parameters
+  ///
+  /// - [query]: Your search term. This can be any text (including mentions and Hashtags)
+  ///           present in the title of the Space.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/spaces/search
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    300 requests per 15-minute window per each authenticated user
+  ///
+  /// - **App rate limit (OAuth 2.0 App Access Token)**:
+  ///    300 requests per 15-minute window shared among all users of your app
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/spaces/search/api-reference/get-spaces-search
   Future<TwitterResponse<List<SpaceData>, SpaceMeta>> search(
       {required String query});
 }
