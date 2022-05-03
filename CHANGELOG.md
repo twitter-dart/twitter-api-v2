@@ -1,5 +1,11 @@
 # Release Note
 
+## v1.1.0
+
+- Added **Tweet Counts** endpoints. ([#12](https://github.com/twitter-dart/twitter-api-v2/issues/12)
+  - GET /2/tweets/counts/all
+  - GET /2/tweets/counts/recent
+
 ## v1.0.0
 
 - Specification changes and improvements have been made to the authentication method. ([#44](https://github.com/twitter-dart/twitter-api-v2/issues/44))
