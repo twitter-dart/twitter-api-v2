@@ -16,6 +16,9 @@ void main() async {
     //! Or perhaps you would prefer to use the good old OAuth1.0a method
     //! over the OAuth2.0 PKCE method. Then you can use the following code
     //! to set the OAuth1.0a tokens.
+    //!
+    //! However, note that some endpoints cannot be used for OAuth 1.0a method
+    //! authentication.
     oauthTokens: v2.OAuthTokens(
       consumerKey: 'YOUR_CONSUMER_KEY_HERE',
       consumerSecret: 'YOUR_CONSUMER_SECRET_HERE',
