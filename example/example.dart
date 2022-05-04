@@ -40,5 +40,6 @@ void main() async {
   } on v2.TwitterException catch (e) {
     print(e.response.headers);
     print(e.response.body);
+    print(e);
   }
 }
