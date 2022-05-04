@@ -18,6 +18,9 @@ class TwitterException implements Exception {
   String toString() =>
       '''TwitterException: An exception occurred in communication with the Twitter API.
 
+✅ Status Code:
+   ${response.statusCode}
+
 ✅ Request:
    ${response.request}
 
