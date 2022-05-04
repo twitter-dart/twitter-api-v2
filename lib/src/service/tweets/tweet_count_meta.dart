@@ -12,6 +12,7 @@ part 'tweet_count_meta.g.dart';
 class TweetCountMeta with _$TweetCountMeta {
   const factory TweetCountMeta({
     @JsonKey(name: 'total_tweet_count') required int total,
+    @JsonKey(name: 'next_token') String? nextToken,
   }) = _TweetCountMeta;
 
   factory TweetCountMeta.fromJson(Map<String, Object?> json) =>

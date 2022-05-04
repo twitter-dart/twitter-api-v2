@@ -171,6 +171,11 @@ abstract class TweetsService {
   ///
   /// - [tweetId]: Tweet ID of the Tweet to request liking users of.
   ///
+  /// - [paginationToken]: Used to request the next page of results if all results weren't
+  ///                      returned with the latest request, or to go back to the previous page of results.
+  ///                      To return the next page, pass the `next_token` returned in your previous response.
+  ///                      To go back one page, pass the `previous_token` returned in your previous response.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/:id/liking_users
@@ -186,14 +191,19 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/likes/api-reference/get-tweets-id-liking_users
-  Future<TwitterResponse<List<UserData>, void>> likingUsers(
-      {required String tweetId});
+  Future<TwitterResponse<List<UserData>, TweetMeta>> likingUsers(
+      {required String tweetId, String? paginationToken});
 
   /// Allows you to get information about a user’s liked Tweets.
   ///
   /// ## Parameters
   ///
   /// - [userId]: User ID of the user to request liked Tweets for.
+  ///
+  /// - [paginationToken]: Used to request the next page of results if all results weren't
+  ///                      returned with the latest request, or to go back to the previous page of results.
+  ///                      To return the next page, pass the `next_token` returned in your previous response.
+  ///                      To go back one page, pass the `previous_token` returned in your previous response.
   ///
   /// ## Endpoint Url
   ///
@@ -210,14 +220,19 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/likes/api-reference/get-users-id-liked_tweets
-  Future<TwitterResponse<List<TweetData>, void>> likingTweets(
-      {required String userId});
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> likingTweets(
+      {required String userId, String? paginationToken});
 
   /// Allows you to get information about who has Retweeted a Tweet.
   ///
   /// ## Parameters
   ///
   /// - [tweetId]: Tweet ID of the Tweet to request Retweeting users of.
+  ///
+  /// - [paginationToken]: Used to request the next page of results if all results weren't
+  ///                      returned with the latest request, or to go back to the previous page of results.
+  ///                      To return the next page, pass the `next_token` returned in your previous response.
+  ///                      To go back one page, pass the `previous_token` returned in your previous response.
   ///
   /// ## Endpoint Url
   ///
@@ -234,8 +249,8 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/retweets/api-reference/get-tweets-id-retweeted_by
-  Future<TwitterResponse<List<UserData>, void>> retweetedBy(
-      {required String tweetId});
+  Future<TwitterResponse<List<UserData>, TweetMeta>> retweetedBy(
+      {required String tweetId, String? paginationToken});
 
   /// Returns Quote Tweets for a Tweet specified by the requested Tweet ID.
   ///
@@ -244,6 +259,11 @@ abstract class TweetsService {
   /// ## Parameters
   ///
   /// - [tweetId]: Unique identifier of the Tweet to request.
+  ///
+  /// - [paginationToken]: This parameter is used to move forwards through 'pages' of results,
+  ///                      based on the value of the `next_token`. The value used with
+  ///                      the parameter is pulled directly from the response provided
+  ///                      by the API, and should not be modified.
   ///
   /// ## Endpoint Url
   ///
@@ -261,7 +281,7 @@ abstract class TweetsService {
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/quote-tweets/api-reference/get-tweets-id-quote_tweets
   Future<TwitterResponse<List<TweetData>, TweetMeta>> quoteTweets(
-      {required tweetId});
+      {required String tweetId, String? paginationToken});
 
   /// The recent search endpoint returns Tweets from the last seven days that match a search query.
   ///
@@ -277,6 +297,11 @@ abstract class TweetsService {
   ///            512 characters long.
   ///
   ///            Learn more about our access levels on the `about Twitter API page`.
+  ///
+  /// - [nextToken]: This parameter is used to get the next 'page' of results.
+  ///                The value used with the parameter is pulled directly from
+  ///                the response provided by the API, and should not be modified.
+  ///                You can learn more by visiting our page on [pagination](https://developer.twitter.com/en/docs/twitter-api/tweets/search/integrate/paginate).
   ///
   /// ## Endpoint Url
   ///
@@ -294,7 +319,7 @@ abstract class TweetsService {
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-recent
   Future<TwitterResponse<List<TweetData>, TweetMeta>> searchRecent(
-      {required String query});
+      {required String query, String? nextToken});
 
   /// This endpoint is only available to those users who have been approved for
   /// Academic Research access.
@@ -310,6 +335,11 @@ abstract class TweetsService {
   ///            You can learn how to build this query by reading our build a
   ///            query guide. You can use all available operators and can make
   ///            queries up to 1,024 characters long.
+  ///
+  /// - [nextToken]: This parameter is used to get the next 'page' of results.
+  ///                The value used with the parameter is pulled directly from
+  ///                the response provided by the API, and should not be modified.
+  ///                You can learn more by visiting our page on [pagination](https://developer.twitter.com/en/docs/twitter-api/tweets/search/integrate/paginate).
   ///
   /// ## Endpoint Url
   ///
@@ -327,7 +357,7 @@ abstract class TweetsService {
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-all
   Future<TwitterResponse<List<TweetData>, TweetMeta>> searchAll(
-      {required String query});
+      {required String query, String? nextToken});
 
   /// Returns a variety of information about a single Tweet specified by the requested ID.
   ///
@@ -395,6 +425,12 @@ abstract class TweetsService {
   ///
   ///            Learn more about our access levels on the `about Twitter API page`.
   ///
+  /// - [nextToken]: This parameter is used to get the next 'page' of results.
+  ///                The value used with the parameter is pulled directly from
+  ///                the response provided by the API, assuming that your request
+  ///                contains more than 31 days-worth of results, and should not be modified.
+  ///                You can learn more by visiting our page on [pagination](https://developer.twitter.com/en/docs/twitter-api/pagination).
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/counts/recent
@@ -408,7 +444,7 @@ abstract class TweetsService {
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/counts/api-reference/get-tweets-counts-recent
   Future<TwitterResponse<List<TweetCountData>, TweetCountMeta>> countRecent(
-      {required String query});
+      {required String query, String? nextToken});
 
   /// This endpoint is only available to those users who have been approved
   /// for Academic Research access.
@@ -424,6 +460,12 @@ abstract class TweetsService {
   ///            You can use all available operators and can make queries
   ///            up to 1,024 characters long.
   ///
+  /// - [nextToken]: This parameter is used to get the next 'page' of results.
+  ///                The value used with the parameter is pulled directly from
+  ///                the response provided by the API, assuming that your request
+  ///                contains more than 31 days-worth of results, and should not be modified.
+  ///                You can learn more by visiting our page on [pagination](https://developer.twitter.com/en/docs/twitter-api/pagination).
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/counts/all
@@ -437,7 +479,7 @@ abstract class TweetsService {
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/counts/api-reference/get-tweets-counts-all
   Future<TwitterResponse<List<TweetCountData>, TweetCountMeta>> countAll(
-      {required String query});
+      {required String query, String? nextToken});
 
   /// Causes the user ID of an authenticated user identified in the path parameter
   /// to Bookmark the target Tweet provided in the request body.
@@ -596,56 +638,65 @@ class _TweetsService extends BaseService implements TweetsService {
   }
 
   @override
-  Future<TwitterResponse<List<UserData>, void>> likingUsers(
-      {required String tweetId}) async {
+  Future<TwitterResponse<List<UserData>, TweetMeta>> likingUsers({
+    required String tweetId,
+    String? paginationToken,
+  }) async {
     final response = await super.get(
       UserContext.oauth2,
       '/2/tweets/$tweetId/liking_users',
+      queryParameters: {'pagination_token': paginationToken},
     );
 
     return TwitterResponse(
       data: response['data']
           .map<UserData>((user) => UserData.fromJson(user))
           .toList(),
+      meta: TweetMeta.fromJson(response['meta']),
     );
   }
 
   @override
-  Future<TwitterResponse<List<TweetData>, void>> likingTweets(
-      {required String userId}) async {
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> likingTweets(
+      {required String userId, String? paginationToken}) async {
     final response = await super.get(
       UserContext.oauth2,
       '/2/users/$userId/liked_tweets',
+      queryParameters: {'pagination_token': paginationToken},
     );
 
     return TwitterResponse(
       data: response['data']
           .map<TweetData>((tweet) => TweetData.fromJson(tweet))
           .toList(),
+      meta: TweetMeta.fromJson(response['meta']),
     );
   }
 
   @override
-  Future<TwitterResponse<List<UserData>, void>> retweetedBy(
-      {required String tweetId}) async {
+  Future<TwitterResponse<List<UserData>, TweetMeta>> retweetedBy(
+      {required String tweetId, String? paginationToken}) async {
     final response = await super.get(
       UserContext.oauth2,
       '/2/tweets/$tweetId/retweeted_by',
+      queryParameters: {'pagination_token': paginationToken},
     );
 
     return TwitterResponse(
       data: response['data']
           .map<UserData>((user) => UserData.fromJson(user))
           .toList(),
+      meta: TweetMeta.fromJson(response['meta']),
     );
   }
 
   @override
   Future<TwitterResponse<List<TweetData>, TweetMeta>> quoteTweets(
-      {required tweetId}) async {
+      {required String tweetId, String? paginationToken}) async {
     final response = await super.get(
       UserContext.oauth2,
       '/2/tweets/$tweetId/quote_tweets',
+      queryParameters: {'pagination_token': paginationToken},
     );
 
     return TwitterResponse(
@@ -658,11 +709,14 @@ class _TweetsService extends BaseService implements TweetsService {
 
   @override
   Future<TwitterResponse<List<TweetData>, TweetMeta>> searchRecent(
-      {required String query}) async {
+      {required String query, String? nextToken}) async {
     final response = await super.get(
       UserContext.oauth2,
       '/2/tweets/search/recent',
-      queryParameters: {'query': query},
+      queryParameters: {
+        'query': query,
+        'next_token': nextToken,
+      },
     );
 
     return TwitterResponse(
@@ -675,11 +729,14 @@ class _TweetsService extends BaseService implements TweetsService {
 
   @override
   Future<TwitterResponse<List<TweetData>, TweetMeta>> searchAll(
-      {required String query}) async {
+      {required String query, String? nextToken}) async {
     final response = await super.get(
       UserContext.oauth2AppOnly,
       '/2/tweets/search/all',
-      queryParameters: {'query': query},
+      queryParameters: {
+        'query': query,
+        'next_token': nextToken,
+      },
     );
 
     return TwitterResponse(
@@ -721,11 +778,14 @@ class _TweetsService extends BaseService implements TweetsService {
 
   @override
   Future<TwitterResponse<List<TweetCountData>, TweetCountMeta>> countRecent(
-      {required String query}) async {
+      {required String query, String? nextToken}) async {
     final response = await super.get(
       UserContext.oauth2AppOnly,
       '/2/tweets/counts/recent',
-      queryParameters: {'query': query},
+      queryParameters: {
+        'query': query,
+        'next_token': nextToken,
+      },
     );
 
     return TwitterResponse(
@@ -739,11 +799,14 @@ class _TweetsService extends BaseService implements TweetsService {
 
   @override
   Future<TwitterResponse<List<TweetCountData>, TweetCountMeta>> countAll(
-      {required String query}) async {
+      {required String query, String? nextToken}) async {
     final response = await super.get(
       UserContext.oauth2AppOnly,
       '/2/tweets/counts/all',
-      queryParameters: {'query': query},
+      queryParameters: {
+        'query': query,
+        'next_token': nextToken,
+      },
     );
 
     return TwitterResponse(
