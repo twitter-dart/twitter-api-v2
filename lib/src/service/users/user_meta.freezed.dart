@@ -21,7 +21,7 @@ UserMeta _$UserMetaFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserMeta {
   @JsonKey(name: 'result_count')
-  int? get resultCount => throw _privateConstructorUsedError;
+  int get resultCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'next_token')
   String? get nextToken => throw _privateConstructorUsedError;
   @JsonKey(name: 'previous_token')
@@ -38,7 +38,7 @@ abstract class $UserMetaCopyWith<$Res> {
   factory $UserMetaCopyWith(UserMeta value, $Res Function(UserMeta) then) =
       _$UserMetaCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'result_count') int? resultCount,
+      {@JsonKey(name: 'result_count') int resultCount,
       @JsonKey(name: 'next_token') String? nextToken,
       @JsonKey(name: 'previous_token') String? previousToken});
 }
@@ -61,7 +61,7 @@ class _$UserMetaCopyWithImpl<$Res> implements $UserMetaCopyWith<$Res> {
       resultCount: resultCount == freezed
           ? _value.resultCount
           : resultCount // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       nextToken: nextToken == freezed
           ? _value.nextToken
           : nextToken // ignore: cast_nullable_to_non_nullable
@@ -80,7 +80,7 @@ abstract class _$UserMetaCopyWith<$Res> implements $UserMetaCopyWith<$Res> {
       __$UserMetaCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'result_count') int? resultCount,
+      {@JsonKey(name: 'result_count') int resultCount,
       @JsonKey(name: 'next_token') String? nextToken,
       @JsonKey(name: 'previous_token') String? previousToken});
 }
@@ -104,7 +104,7 @@ class __$UserMetaCopyWithImpl<$Res> extends _$UserMetaCopyWithImpl<$Res>
       resultCount: resultCount == freezed
           ? _value.resultCount
           : resultCount // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       nextToken: nextToken == freezed
           ? _value.nextToken
           : nextToken // ignore: cast_nullable_to_non_nullable
@@ -121,7 +121,7 @@ class __$UserMetaCopyWithImpl<$Res> extends _$UserMetaCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_UserMeta implements _UserMeta {
   const _$_UserMeta(
-      {@JsonKey(name: 'result_count') this.resultCount,
+      {@JsonKey(name: 'result_count') required this.resultCount,
       @JsonKey(name: 'next_token') this.nextToken,
       @JsonKey(name: 'previous_token') this.previousToken});
 
@@ -130,7 +130,7 @@ class _$_UserMeta implements _UserMeta {
 
   @override
   @JsonKey(name: 'result_count')
-  final int? resultCount;
+  final int resultCount;
   @override
   @JsonKey(name: 'next_token')
   final String? nextToken;
@@ -176,7 +176,7 @@ class _$_UserMeta implements _UserMeta {
 
 abstract class _UserMeta implements UserMeta {
   const factory _UserMeta(
-          {@JsonKey(name: 'result_count') final int? resultCount,
+          {@JsonKey(name: 'result_count') required final int resultCount,
           @JsonKey(name: 'next_token') final String? nextToken,
           @JsonKey(name: 'previous_token') final String? previousToken}) =
       _$_UserMeta;
@@ -185,7 +185,7 @@ abstract class _UserMeta implements UserMeta {
 
   @override
   @JsonKey(name: 'result_count')
-  int? get resultCount => throw _privateConstructorUsedError;
+  int get resultCount => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'next_token')
   String? get nextToken => throw _privateConstructorUsedError;

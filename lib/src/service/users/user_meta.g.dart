@@ -13,7 +13,7 @@ _$_UserMeta _$$_UserMetaFromJson(Map json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = _$_UserMeta(
-          resultCount: $checkedConvert('result_count', (v) => v as int?),
+          resultCount: $checkedConvert('result_count', (v) => v as int),
           nextToken: $checkedConvert('next_token', (v) => v as String?),
           previousToken: $checkedConvert('previous_token', (v) => v as String?),
         );
