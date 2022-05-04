@@ -17,6 +17,7 @@ _$_TweetMeta _$$_TweetMetaFromJson(Map json) => $checkedCreate(
           oldestId: $checkedConvert('oldest_id', (v) => v as String?),
           resultCount: $checkedConvert('result_count', (v) => v as int?),
           nextToken: $checkedConvert('next_token', (v) => v as String?),
+          previousToken: $checkedConvert('previous_token', (v) => v as String?),
         );
         return val;
       },
@@ -24,7 +25,8 @@ _$_TweetMeta _$$_TweetMetaFromJson(Map json) => $checkedCreate(
         'newestId': 'newest_id',
         'oldestId': 'oldest_id',
         'resultCount': 'result_count',
-        'nextToken': 'next_token'
+        'nextToken': 'next_token',
+        'previousToken': 'previous_token'
       },
     );
 
@@ -34,4 +36,5 @@ Map<String, dynamic> _$$_TweetMetaToJson(_$_TweetMeta instance) =>
       'oldest_id': instance.oldestId,
       'result_count': instance.resultCount,
       'next_token': instance.nextToken,
+      'previous_token': instance.previousToken,
     };

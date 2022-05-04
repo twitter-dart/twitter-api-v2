@@ -22,6 +22,8 @@ TweetCountMeta _$TweetCountMetaFromJson(Map<String, dynamic> json) {
 mixin _$TweetCountMeta {
   @JsonKey(name: 'total_tweet_count')
   int get total => throw _privateConstructorUsedError;
+  @JsonKey(name: 'next_token')
+  String? get nextToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +36,9 @@ abstract class $TweetCountMetaCopyWith<$Res> {
   factory $TweetCountMetaCopyWith(
           TweetCountMeta value, $Res Function(TweetCountMeta) then) =
       _$TweetCountMetaCopyWithImpl<$Res>;
-  $Res call({@JsonKey(name: 'total_tweet_count') int total});
+  $Res call(
+      {@JsonKey(name: 'total_tweet_count') int total,
+      @JsonKey(name: 'next_token') String? nextToken});
 }
 
 /// @nodoc
@@ -49,12 +53,17 @@ class _$TweetCountMetaCopyWithImpl<$Res>
   @override
   $Res call({
     Object? total = freezed,
+    Object? nextToken = freezed,
   }) {
     return _then(_value.copyWith(
       total: total == freezed
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
               as int,
+      nextToken: nextToken == freezed
+          ? _value.nextToken
+          : nextToken // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -66,7 +75,9 @@ abstract class _$TweetCountMetaCopyWith<$Res>
           _TweetCountMeta value, $Res Function(_TweetCountMeta) then) =
       __$TweetCountMetaCopyWithImpl<$Res>;
   @override
-  $Res call({@JsonKey(name: 'total_tweet_count') int total});
+  $Res call(
+      {@JsonKey(name: 'total_tweet_count') int total,
+      @JsonKey(name: 'next_token') String? nextToken});
 }
 
 /// @nodoc
@@ -83,12 +94,17 @@ class __$TweetCountMetaCopyWithImpl<$Res>
   @override
   $Res call({
     Object? total = freezed,
+    Object? nextToken = freezed,
   }) {
     return _then(_TweetCountMeta(
       total: total == freezed
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
               as int,
+      nextToken: nextToken == freezed
+          ? _value.nextToken
+          : nextToken // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -97,7 +113,8 @@ class __$TweetCountMetaCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_TweetCountMeta implements _TweetCountMeta {
   const _$_TweetCountMeta(
-      {@JsonKey(name: 'total_tweet_count') required this.total});
+      {@JsonKey(name: 'total_tweet_count') required this.total,
+      @JsonKey(name: 'next_token') this.nextToken});
 
   factory _$_TweetCountMeta.fromJson(Map<String, dynamic> json) =>
       _$$_TweetCountMetaFromJson(json);
@@ -105,10 +122,13 @@ class _$_TweetCountMeta implements _TweetCountMeta {
   @override
   @JsonKey(name: 'total_tweet_count')
   final int total;
+  @override
+  @JsonKey(name: 'next_token')
+  final String? nextToken;
 
   @override
   String toString() {
-    return 'TweetCountMeta(total: $total)';
+    return 'TweetCountMeta(total: $total, nextToken: $nextToken)';
   }
 
   @override
@@ -116,13 +136,16 @@ class _$_TweetCountMeta implements _TweetCountMeta {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _TweetCountMeta &&
-            const DeepCollectionEquality().equals(other.total, total));
+            const DeepCollectionEquality().equals(other.total, total) &&
+            const DeepCollectionEquality().equals(other.nextToken, nextToken));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(total));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(total),
+      const DeepCollectionEquality().hash(nextToken));
 
   @JsonKey(ignore: true)
   @override
@@ -137,7 +160,8 @@ class _$_TweetCountMeta implements _TweetCountMeta {
 
 abstract class _TweetCountMeta implements TweetCountMeta {
   const factory _TweetCountMeta(
-          {@JsonKey(name: 'total_tweet_count') required final int total}) =
+          {@JsonKey(name: 'total_tweet_count') required final int total,
+          @JsonKey(name: 'next_token') final String? nextToken}) =
       _$_TweetCountMeta;
 
   factory _TweetCountMeta.fromJson(Map<String, dynamic> json) =
@@ -146,6 +170,9 @@ abstract class _TweetCountMeta implements TweetCountMeta {
   @override
   @JsonKey(name: 'total_tweet_count')
   int get total => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'next_token')
+  String? get nextToken => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$TweetCountMetaCopyWith<_TweetCountMeta> get copyWith =>

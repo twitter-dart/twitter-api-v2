@@ -43,7 +43,11 @@ abstract class BaseService implements Service {
   }) async {
     final response = await _context.get(
       userContext,
-      Uri.https(_authority, unencodedPath, queryParameters),
+      Uri.https(
+        _authority,
+        unencodedPath,
+        _removeNullParameters(queryParameters),
+      ),
     );
 
     return _checkResponseBody(response);
@@ -77,6 +81,9 @@ abstract class BaseService implements Service {
 
     return _checkResponseBody(response);
   }
+
+  Map<String, dynamic> _removeNullParameters(Map<String, dynamic> parameters) =>
+      Map.from(parameters)..removeWhere((_, value) => value == null);
 
   Map<String, dynamic> _checkResponseBody(final Response response) {
     final body = jsonDecode(response.body);

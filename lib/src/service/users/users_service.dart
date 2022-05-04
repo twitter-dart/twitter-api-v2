@@ -80,6 +80,12 @@ abstract class UsersService {
   ///
   /// - [userId]: The user ID whose followers you would like to retrieve.
   ///
+  /// - [paginationToken]: Used to request the next page of results if all results weren't
+  ///                      returned with the latest request, or to go back to the previous page
+  ///                      of results. To return the next page, pass the `next_token` returned
+  ///                      in your previous response. To go back one page, pass
+  ///                      the `previous_token` returned in your previous response.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/followers
@@ -96,13 +102,19 @@ abstract class UsersService {
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/users/follows/api-reference/get-users-id-followers
   Future<TwitterResponse<List<UserData>, UserMeta>> followers(
-      {required String userId});
+      {required String userId, String? paginationToken});
 
   /// Returns a list of users the specified user ID is following.
   ///
   /// ## Parameters
   ///
   /// - [userId]: The user ID whose following you would like to retrieve.
+  ///
+  /// - [paginationToken]: Used to request the next page of results if all results weren't
+  ///                      returned with the latest request, or to go back to the previous page
+  ///                      of results. To return the next page, pass the `next_token` returned
+  ///                      in your previous response. To go back one page, pass
+  ///                      the `previous_token` returned in your previous response.
   ///
   /// ## Endpoint Url
   ///
@@ -120,7 +132,7 @@ abstract class UsersService {
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/users/follows/api-reference/get-users-id-following
   Future<TwitterResponse<List<UserData>, UserMeta>> followings(
-      {required String userId});
+      {required String userId, String? paginationToken});
 
   /// Returns a variety of information about a single user specified by the requested ID.
   ///
@@ -269,10 +281,11 @@ class _UsersService extends BaseService implements UsersService {
 
   @override
   Future<TwitterResponse<List<UserData>, UserMeta>> followers(
-      {required String userId}) async {
+      {required String userId, String? paginationToken}) async {
     final response = await super.get(
       UserContext.oauth2,
       '/2/users/$userId/followers',
+      queryParameters: {'pagination_token': paginationToken},
     );
 
     return TwitterResponse(
@@ -285,10 +298,11 @@ class _UsersService extends BaseService implements UsersService {
 
   @override
   Future<TwitterResponse<List<UserData>, UserMeta>> followings(
-      {required String userId}) async {
+      {required String userId, String? paginationToken}) async {
     final response = await super.get(
       UserContext.oauth2,
       '/2/users/$userId/following',
+      queryParameters: {'pagination_token': paginationToken},
     );
 
     return TwitterResponse(

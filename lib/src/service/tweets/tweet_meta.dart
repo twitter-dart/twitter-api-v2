@@ -15,6 +15,7 @@ class TweetMeta with _$TweetMeta {
     @JsonKey(name: 'oldest_id') String? oldestId,
     @JsonKey(name: 'result_count') int? resultCount,
     @JsonKey(name: 'next_token') String? nextToken,
+    @JsonKey(name: 'previous_token') String? previousToken,
   }) = _TweetMeta;
 
   factory TweetMeta.fromJson(Map<String, Object?> json) =>
