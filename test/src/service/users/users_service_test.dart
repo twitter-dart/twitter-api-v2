@@ -7,7 +7,7 @@ import 'package:twitter_api_v2/src/client/user_context.dart';
 import 'package:twitter_api_v2/src/service/users/users_service.dart';
 import 'package:twitter_api_v2/twitter_api_v2.dart';
 
-import '../client_context_stubs.dart' as context;
+import '../../../mocks//client_context_stubs.dart' as context;
 
 void main() {
   test('.createFollow', () async {
