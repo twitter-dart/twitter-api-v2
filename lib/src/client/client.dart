@@ -8,6 +8,9 @@ import 'dart:async';
 // Package imports:
 import 'package:http/http.dart' as http;
 
+// Project imports:
+import 'package:twitter_api_v2/src/twitter_exception.dart';
+
 abstract class Client {
   Future<http.Response> get(
     Uri uri, {
@@ -27,4 +30,13 @@ abstract class Client {
     dynamic body,
     Duration timeout = const Duration(seconds: 10),
   });
+
+  http.Response checkResponse(final http.Response response) {
+    final statusCode = response.statusCode;
+    if (200 <= statusCode && statusCode <= 299) {
+      return response;
+    }
+
+    throw TwitterException(response);
+  }
 }

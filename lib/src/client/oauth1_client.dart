@@ -11,9 +11,8 @@ import 'package:oauth1/oauth1.dart' as oauth1;
 
 // Project imports:
 import 'package:twitter_api_v2/src/client/client.dart';
-import 'package:twitter_api_v2/src/twitter_exception.dart';
 
-class OAuth1Client implements Client {
+class OAuth1Client extends Client {
   OAuth1Client({
     required String consumerKey,
     required String consumerSecret,
@@ -59,7 +58,7 @@ class OAuth1Client implements Client {
     Uri uri, {
     Duration timeout = const Duration(seconds: 10),
   }) async =>
-      _checkResponse(
+      checkResponse(
         await oauthClient.get(uri).timeout(timeout),
       );
 
@@ -70,7 +69,7 @@ class OAuth1Client implements Client {
     dynamic body,
     Duration timeout = const Duration(seconds: 10),
   }) async =>
-      _checkResponse(
+      checkResponse(
         await oauthClient
             .post(
               uri,
@@ -88,7 +87,7 @@ class OAuth1Client implements Client {
     dynamic body,
     Duration timeout = const Duration(seconds: 10),
   }) async =>
-      _checkResponse(
+      checkResponse(
         await oauthClient
             .delete(
               uri,
@@ -98,12 +97,4 @@ class OAuth1Client implements Client {
             )
             .timeout(timeout),
       );
-
-  http.Response _checkResponse(final http.Response response) {
-    if (response.statusCode != 200) {
-      throw TwitterException(response);
-    }
-
-    return response;
-  }
 }

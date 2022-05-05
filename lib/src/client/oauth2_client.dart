@@ -10,9 +10,8 @@ import 'package:http/http.dart' as http;
 
 // Project imports:
 import 'package:twitter_api_v2/src/client/client.dart';
-import 'package:twitter_api_v2/src/twitter_exception.dart';
 
-class OAuth2Client implements Client {
+class OAuth2Client extends Client {
   /// Returns the new instance of [OAuth2Client].
   OAuth2Client({required String bearerToken}) : _bearerToken = bearerToken;
 
@@ -24,7 +23,7 @@ class OAuth2Client implements Client {
     Uri uri, {
     Duration timeout = const Duration(seconds: 10),
   }) async =>
-      _checkResponse(
+      checkResponse(
         await http.get(
           uri,
           headers: {'Authorization': 'Bearer $_bearerToken'},
@@ -38,7 +37,7 @@ class OAuth2Client implements Client {
     dynamic body,
     Duration timeout = const Duration(seconds: 10),
   }) async =>
-      _checkResponse(
+      checkResponse(
         await http
             .post(
               uri,
@@ -57,7 +56,7 @@ class OAuth2Client implements Client {
     dynamic body,
     Duration timeout = const Duration(seconds: 10),
   }) async =>
-      _checkResponse(
+      checkResponse(
         await http
             .delete(
               uri,
@@ -68,12 +67,4 @@ class OAuth2Client implements Client {
             )
             .timeout(timeout),
       );
-
-  http.Response _checkResponse(final http.Response response) {
-    if (response.statusCode != 200) {
-      throw TwitterException(response);
-    }
-
-    return response;
-  }
 }

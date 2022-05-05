@@ -46,7 +46,12 @@ abstract class BaseService implements Service {
       Uri.https(
         _authority,
         unencodedPath,
-        _removeNullParameters(queryParameters),
+        _removeNullParameters(queryParameters).map(
+          //! Uri.https(...) needs iterable in the value for query params by which
+          //! it means a String in the value of the Map too. So you need to convert it
+          //! from Map<String, dynamic> to Map<String, String>
+          (key, value) => MapEntry(key, value.toString()),
+        ),
       ),
     );
 
@@ -63,7 +68,7 @@ abstract class BaseService implements Service {
       userContext,
       Uri.https('api.twitter.com', unencodedPath),
       headers: {'Content-type': 'application/json'},
-      body: jsonEncode(body),
+      body: jsonEncode(_removeNullParameters(body)),
     );
 
     return _checkResponseBody(response);
