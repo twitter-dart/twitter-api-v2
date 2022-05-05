@@ -11,8 +11,7 @@ void main() async {
     //!
     //! Note that to use endpoints that require certain user permissions,
     //! such as Tweets and Likes, you need a token issued by OAuth2.0 PKCE.
-    bearerToken:
-        'AAAAAAAAAAAAAAAAAAAAAFnmbwEAAAAAlSAfKD74QTIQ3POQYZYbx4ugeig%3DqV7uY8lRde7K1BHHodOov1UPSVfFjdf6zxJGxk7z0lFWA2RpCQ',
+    bearerToken: 'YOUR_TOKEN_HERE',
 
     //! Or perhaps you would prefer to use the good old OAuth1.0a method
     //! over the OAuth2.0 PKCE method. Then you can use the following code
@@ -21,26 +20,23 @@ void main() async {
     //! However, note that some endpoints cannot be used for OAuth 1.0a method
     //! authentication.
     oauthTokens: v2.OAuthTokens(
-      consumerKey: '7K0JiE9eiaH3gbnQz2WSV0Eu9',
-      consumerSecret: 'cdbHtEoHKZFhbdfNecBm9yxjTkvoTyN3bCfcO91N7cDS9OCNFz',
-      accessToken: '1392337296997851139-goWtiQzbL8mrxDeB4ME1BqG1MRBPcn',
-      accessTokenSecret: 'WEDQhlnOvQWJopJ8xhCldnlleYXnXkIbvG89S2ircM08X',
+      consumerKey: 'YOUR_CONSUMER_KEY_HERE',
+      consumerSecret: 'YOUR_CONSUMER_SECRET_HERE',
+      accessToken: 'YOUR_ACCESS_TOKEN_HERE',
+      accessTokenSecret: 'YOUR_ACCESS_TOKEN_SECRET_HERE',
     ),
   );
 
   try {
     final me = await twitter.usersService.lookupMe();
-    final tweets = await twitter.usersService.followings(
+    final tweets = await twitter.tweetsService.searchRecent(query: '#ElonMusk');
+
+    final response = await twitter.tweetsService.createLike(
       userId: me.data.id,
-      maxResults: 200,
+      tweetId: tweets.data.first.id,
     );
 
-    // final response = await twitter.tweetsService.createLike(
-    //   userId: me.data.id,
-    //   tweetId: tweets.data.first.id,
-    // );
-
-    print(tweets);
+    print(response);
   } on v2.TwitterException catch (e) {
     print(e.response.headers);
     print(e.response.body);
