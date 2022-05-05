@@ -12,6 +12,7 @@ import 'package:twitter_api_v2/src/service/tweets/tweet_data.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_meta.dart';
 import 'package:twitter_api_v2/src/service/twitter_response.dart';
 import 'package:twitter_api_v2/src/service/users/user_data.dart';
+import 'package:twitter_api_v2/src/service/users/user_meta.dart';
 
 abstract class TweetsService {
   /// Returns the new instance of [TweetsService].
@@ -203,7 +204,7 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/likes/api-reference/get-tweets-id-liking_users
-  Future<TwitterResponse<List<UserData>, TweetMeta>> likingUsers(
+  Future<TwitterResponse<List<UserData>, UserMeta>> likingUsers(
       {required String tweetId, int? maxResults, String? paginationToken});
 
   /// Allows you to get information about a user’s liked Tweets.
@@ -269,7 +270,7 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/retweets/api-reference/get-tweets-id-retweeted_by
-  Future<TwitterResponse<List<UserData>, TweetMeta>> retweetedBy(
+  Future<TwitterResponse<List<UserData>, UserMeta>> retweetedBy(
       {required String tweetId, int? maxResults, String? paginationToken});
 
   /// Returns Quote Tweets for a Tweet specified by the requested Tweet ID.
@@ -686,7 +687,7 @@ class _TweetsService extends BaseService implements TweetsService {
   }
 
   @override
-  Future<TwitterResponse<List<UserData>, TweetMeta>> likingUsers({
+  Future<TwitterResponse<List<UserData>, UserMeta>> likingUsers({
     required String tweetId,
     int? maxResults,
     String? paginationToken,
@@ -704,7 +705,7 @@ class _TweetsService extends BaseService implements TweetsService {
       data: response['data']
           .map<UserData>((user) => UserData.fromJson(user))
           .toList(),
-      meta: TweetMeta.fromJson(response['meta']),
+      meta: UserMeta.fromJson(response['meta']),
     );
   }
 
@@ -732,7 +733,7 @@ class _TweetsService extends BaseService implements TweetsService {
   }
 
   @override
-  Future<TwitterResponse<List<UserData>, TweetMeta>> retweetedBy({
+  Future<TwitterResponse<List<UserData>, UserMeta>> retweetedBy({
     required String tweetId,
     int? maxResults,
     String? paginationToken,
@@ -750,7 +751,7 @@ class _TweetsService extends BaseService implements TweetsService {
       data: response['data']
           .map<UserData>((user) => UserData.fromJson(user))
           .toList(),
-      meta: TweetMeta.fromJson(response['meta']),
+      meta: UserMeta.fromJson(response['meta']),
     );
   }
 
