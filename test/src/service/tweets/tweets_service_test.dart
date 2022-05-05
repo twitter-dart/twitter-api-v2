@@ -2,6 +2,7 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+import 'package:twitter_api_v2/src/client/client_context.dart';
 import 'package:twitter_api_v2/src/client/user_context.dart';
 
 import 'package:twitter_api_v2/src/service/tweets/tweets_service.dart';
@@ -11,20 +12,37 @@ import 'package:twitter_api_v2/twitter_api_v2.dart';
 import '../../../mocks/client_context_stubs.dart' as context;
 
 void main() {
-  test('.createTweet', () async {
-    final tweetsService = TweetsService(
-      context: context.buildPostStub(
-        '/2/tweets',
-        'test/src/service/tweets/data/create_tweet.json',
-      ),
-    );
+  group('.createTweet', () {
+    test('normal case', () async {
+      final tweetsService = TweetsService(
+        context: context.buildPostStub(
+          '/2/tweets',
+          'test/src/service/tweets/data/create_tweet.json',
+        ),
+      );
 
-    final response = await tweetsService.createTweet(text: 'Hello, World!');
+      final response = await tweetsService.createTweet(text: 'Hello, World!');
 
-    expect(response, isA<TwitterResponse>());
-    expect(response.data, isA<TweetData>());
-    expect(response.data.id, '1445880548472328192');
-    expect(response.data.text, 'Hello, World!');
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<TweetData>());
+      expect(response.data.id, '1445880548472328192');
+      expect(response.data.text, 'Hello, World!');
+    });
+
+    test('throws TwitterException', () async {
+      final tweetsService = TweetsService(
+        context: ClientContext(bearerToken: ''),
+      );
+
+      expect(
+        () async =>
+            await tweetsService.createTweet(text: 'Throw TwitterException'),
+        throwsA(
+          allOf(isA<TwitterException>(),
+              predicate((e) => e.toString().isNotEmpty)),
+        ),
+      );
+    });
   });
 
   test('.destroyTweet', () async {
