@@ -8,14 +8,14 @@ import 'package:twitter_api_v2/src/service/tweets/tweets_service.dart';
 import 'package:test/test.dart';
 import 'package:twitter_api_v2/twitter_api_v2.dart';
 
-import '../client_context_stubs.dart' as context;
+import '../../../mocks/client_context_stubs.dart' as context;
 
 void main() {
   test('.createTweet', () async {
     final tweetsService = TweetsService(
       context: context.buildPostStub(
         '/2/tweets',
-        'test/tweets/data/create_tweet.json',
+        'test/src/service/tweets/data/create_tweet.json',
       ),
     );
 
@@ -31,7 +31,7 @@ void main() {
     final tweetsService = TweetsService(
       context: context.buildDeleteStub(
         '/2/tweets/1111',
-        'test/tweets/data/destroy_tweet.json',
+        'test/src/service/tweets/data/destroy_tweet.json',
       ),
     );
 
@@ -45,7 +45,7 @@ void main() {
     final tweetsService = TweetsService(
       context: context.buildPostStub(
         '/2/users/0000/likes',
-        'test/tweets/data/create_like.json',
+        'test/src/service/tweets/data/create_like.json',
       ),
     );
 
@@ -62,7 +62,7 @@ void main() {
     final tweetsService = TweetsService(
       context: context.buildDeleteStub(
         '/2/users/0000/likes/1111',
-        'test/tweets/data/destroy_like.json',
+        'test/src/service/tweets/data/destroy_like.json',
       ),
     );
 
@@ -79,7 +79,7 @@ void main() {
     final tweetsService = TweetsService(
       context: context.buildPostStub(
         '/2/users/0000/retweets',
-        'test/tweets/data/create_retweet.json',
+        'test/src/service/tweets/data/create_retweet.json',
       ),
     );
 
@@ -96,7 +96,7 @@ void main() {
     final tweetsService = TweetsService(
       context: context.buildDeleteStub(
         '/2/users/0000/retweets/1111',
-        'test/tweets/data/destroy_retweet.json',
+        'test/src/service/tweets/data/destroy_retweet.json',
       ),
     );
 
@@ -114,7 +114,7 @@ void main() {
       context: context.buildGetStub(
         UserContext.oauth2,
         '/2/tweets/1111/liking_users',
-        'test/tweets/data/liking_users.json',
+        'test/src/service/tweets/data/liking_users.json',
         {},
       ),
     );
@@ -136,7 +136,7 @@ void main() {
       context: context.buildGetStub(
         UserContext.oauth2,
         '/2/users/0000/liked_tweets',
-        'test/tweets/data/liked_tweets.json',
+        'test/src/service/tweets/data/liked_tweets.json',
         {},
       ),
     );
@@ -158,7 +158,7 @@ void main() {
       context: context.buildGetStub(
         UserContext.oauth2,
         '/2/tweets/1111/retweeted_by',
-        'test/tweets/data/retweeted_by.json',
+        'test/src/service/tweets/data/retweeted_by.json',
         {},
       ),
     );
@@ -180,7 +180,7 @@ void main() {
       context: context.buildGetStub(
         UserContext.oauth2,
         '/2/tweets/1111/quote_tweets',
-        'test/tweets/data/quote_tweets.json',
+        'test/src/service/tweets/data/quote_tweets.json',
         {},
       ),
     );
@@ -202,7 +202,7 @@ void main() {
       context: context.buildGetStub(
         UserContext.oauth2,
         '/2/tweets/search/recent',
-        'test/tweets/data/search_recent.json',
+        'test/src/service/tweets/data/search_recent.json',
         {'query': 'hello'},
       ),
     );
@@ -224,7 +224,7 @@ void main() {
       context: context.buildGetStub(
         UserContext.oauth2AppOnly,
         '/2/tweets/search/all',
-        'test/tweets/data/search_all.json',
+        'test/src/service/tweets/data/search_all.json',
         {'query': 'hello'},
       ),
     );
@@ -246,7 +246,7 @@ void main() {
       context: context.buildGetStub(
         UserContext.oauth2,
         '/2/tweets/1111',
-        'test/tweets/data/lookup_tweet.json',
+        'test/src/service/tweets/data/lookup_tweet.json',
         {},
       ),
     );
@@ -265,7 +265,7 @@ void main() {
       context: context.buildGetStub(
         UserContext.oauth2,
         '/2/tweets',
-        'test/tweets/data/lookup_tweets.json',
+        'test/src/service/tweets/data/lookup_tweets.json',
         {'ids': '1261326399320715264,1278347468690915330'},
       ),
     );
@@ -284,7 +284,7 @@ void main() {
       context: context.buildGetStub(
         UserContext.oauth2AppOnly,
         '/2/tweets/counts/recent',
-        'test/tweets/data/counts_recent.json',
+        'test/src/service/tweets/data/counts_recent.json',
         {'query': 'hello'},
       ),
     );
@@ -304,7 +304,7 @@ void main() {
       context: context.buildGetStub(
         UserContext.oauth2AppOnly,
         '/2/tweets/counts/all',
-        'test/tweets/data/counts_all.json',
+        'test/src/service/tweets/data/counts_all.json',
         {'query': 'hello'},
       ),
     );
@@ -323,7 +323,7 @@ void main() {
     final tweetsService = TweetsService(
       context: context.buildPostStub(
         '/2/users/0000/bookmarks',
-        'test/tweets/data/create_bookmark.json',
+        'test/src/service/tweets/data/create_bookmark.json',
       ),
     );
 
@@ -340,7 +340,7 @@ void main() {
     final tweetsService = TweetsService(
       context: context.buildDeleteStub(
         '/2/users/0000/bookmarks/1111',
-        'test/tweets/data/destroy_bookmark.json',
+        'test/src/service/tweets/data/destroy_bookmark.json',
       ),
     );
 
@@ -358,7 +358,7 @@ void main() {
       context: context.buildGetStub(
         UserContext.oauth2,
         '/2/users/0000/bookmarks',
-        'test/tweets/data/bookmarks.json',
+        'test/src/service/tweets/data/bookmarks.json',
         {},
       ),
     );

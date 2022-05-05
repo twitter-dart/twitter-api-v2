@@ -7,14 +7,14 @@ import 'package:twitter_api_v2/src/client/user_context.dart';
 import 'package:twitter_api_v2/src/service/users/users_service.dart';
 import 'package:twitter_api_v2/twitter_api_v2.dart';
 
-import '../client_context_stubs.dart' as context;
+import '../../../mocks//client_context_stubs.dart' as context;
 
 void main() {
   test('.createFollow', () async {
     final usersService = UsersService(
       context: context.buildPostStub(
         '/2/users/0000/following',
-        'test/users/data/create_follow.json',
+        'test/src/service/users/data/create_follow.json',
       ),
     );
 
@@ -31,7 +31,7 @@ void main() {
     final usersService = UsersService(
       context: context.buildDeleteStub(
         '/2/users/0000/following/1111',
-        'test/users/data/destroy_follow.json',
+        'test/src/service/users/data/destroy_follow.json',
       ),
     );
 
@@ -49,7 +49,7 @@ void main() {
       context: context.buildGetStub(
         UserContext.oauth2,
         '/2/users/0000/followers',
-        'test/users/data/followers.json',
+        'test/src/service/users/data/followers.json',
         {},
       ),
     );
@@ -68,7 +68,7 @@ void main() {
       context: context.buildGetStub(
         UserContext.oauth2,
         '/2/users/0000/following',
-        'test/users/data/followings.json',
+        'test/src/service/users/data/followings.json',
         {},
       ),
     );
@@ -87,7 +87,7 @@ void main() {
       context: context.buildGetStub(
         UserContext.oauth2,
         '/2/users/0000',
-        'test/users/data/lookup_by_id.json',
+        'test/src/service/users/data/lookup_by_id.json',
         {},
       ),
     );
@@ -106,7 +106,7 @@ void main() {
       context: context.buildGetStub(
         UserContext.oauth2,
         '/2/users',
-        'test/users/data/lookup_by_ids.json',
+        'test/src/service/users/data/lookup_by_ids.json',
         {'ids': '2244994945,783214'},
       ),
     );
@@ -125,7 +125,7 @@ void main() {
       context: context.buildGetStub(
         UserContext.oauth2,
         '/2/users/by/username/TwitterDev',
-        'test/users/data/lookup_by_name.json',
+        'test/src/service/users/data/lookup_by_name.json',
         {},
       ),
     );
@@ -143,7 +143,7 @@ void main() {
       context: context.buildGetStub(
         UserContext.oauth2,
         '/2/users/by',
-        'test/users/data/lookup_by_names.json',
+        'test/src/service/users/data/lookup_by_names.json',
         {'usernames': 'TwitterDev,Twitter'},
       ),
     );
@@ -162,7 +162,7 @@ void main() {
       context: context.buildGetStub(
         UserContext.oauth2,
         '/2/users/me',
-        'test/users/data/lookup_me.json',
+        'test/src/service/users/data/lookup_me.json',
         {},
       ),
     );
