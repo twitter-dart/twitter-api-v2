@@ -7,3 +7,4 @@ sourceFileExtensions:
 ignoreFiles: 
   - '**/*.g.dart'
   - '**/*.freezed.dart'
+  - '**/*.mocks.dart'
