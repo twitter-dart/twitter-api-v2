@@ -63,7 +63,7 @@ abstract class BaseService implements Service {
       userContext,
       Uri.https('api.twitter.com', unencodedPath),
       headers: {'Content-type': 'application/json'},
-      body: jsonEncode(body),
+      body: jsonEncode(_removeNullParameters(body)),
     );
 
     return _checkResponseBody(response);
