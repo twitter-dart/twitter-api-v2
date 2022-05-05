@@ -25,6 +25,10 @@ abstract class TweetsService {
   /// - [text]: Text of the Tweet being created.
   ///           This field is required if media.media_ids is not present.
   ///
+  /// - [quoteTweetId]: Link to the Tweet being quoted.
+  ///
+  /// - [forSuperFollowersOnly]: Allows you to Tweet exclusively for [Super Followers](https://help.twitter.com/en/using-twitter/super-follows).
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets
@@ -37,7 +41,11 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/manage-tweets/api-reference/post-tweets
-  Future<TwitterResponse<TweetData, void>> createTweet({required String text});
+  Future<TwitterResponse<TweetData, void>> createTweet({
+    required String text,
+    String? quoteTweetId,
+    bool? forSuperFollowersOnly,
+  });
 
   /// Allows a user or authenticated user ID to delete a Tweet.
   ///
@@ -171,6 +179,10 @@ abstract class TweetsService {
   ///
   /// - [tweetId]: Tweet ID of the Tweet to request liking users of.
   ///
+  /// - [maxResults]: The maximum number of results to be returned per page.
+  ///                 This can be a number between 1 and 100. By default,
+  ///                 each page will return 100 results.
+  ///
   /// - [paginationToken]: Used to request the next page of results if all results weren't
   ///                      returned with the latest request, or to go back to the previous page of results.
   ///                      To return the next page, pass the `next_token` returned in your previous response.
@@ -192,13 +204,17 @@ abstract class TweetsService {
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/likes/api-reference/get-tweets-id-liking_users
   Future<TwitterResponse<List<UserData>, TweetMeta>> likingUsers(
-      {required String tweetId, String? paginationToken});
+      {required String tweetId, int? maxResults, String? paginationToken});
 
   /// Allows you to get information about a user’s liked Tweets.
   ///
   /// ## Parameters
   ///
   /// - [userId]: User ID of the user to request liked Tweets for.
+  ///
+  /// - [maxResults]: The maximum number of results to be returned per page.
+  ///                 This can be a number between 10 and 100. By default,
+  ///                 each page will return 100 results.
   ///
   /// - [paginationToken]: Used to request the next page of results if all results weren't
   ///                      returned with the latest request, or to go back to the previous page of results.
@@ -221,13 +237,17 @@ abstract class TweetsService {
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/likes/api-reference/get-users-id-liked_tweets
   Future<TwitterResponse<List<TweetData>, TweetMeta>> likingTweets(
-      {required String userId, String? paginationToken});
+      {required String userId, int? maxResults, String? paginationToken});
 
   /// Allows you to get information about who has Retweeted a Tweet.
   ///
   /// ## Parameters
   ///
   /// - [tweetId]: Tweet ID of the Tweet to request Retweeting users of.
+  ///
+  /// - [maxResults]: The maximum number of results to be returned per page.
+  ///                 This can be a number between 1 and 100. By default,
+  ///                 each page will return 100 results.
   ///
   /// - [paginationToken]: Used to request the next page of results if all results weren't
   ///                      returned with the latest request, or to go back to the previous page of results.
@@ -250,7 +270,7 @@ abstract class TweetsService {
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/retweets/api-reference/get-tweets-id-retweeted_by
   Future<TwitterResponse<List<UserData>, TweetMeta>> retweetedBy(
-      {required String tweetId, String? paginationToken});
+      {required String tweetId, int? maxResults, String? paginationToken});
 
   /// Returns Quote Tweets for a Tweet specified by the requested Tweet ID.
   ///
@@ -259,6 +279,13 @@ abstract class TweetsService {
   /// ## Parameters
   ///
   /// - [tweetId]: Unique identifier of the Tweet to request.
+  ///
+  /// - [maxResults]: Specifies the number of Tweets to try and retrieve,
+  ///                 up to a maximum of 100 per distinct request. By default,
+  ///                 10 results are returned if this parameter is not supplied.
+  ///                 The minimum permitted value is 10. It is possible to receive
+  ///                 less than the max_results per request throughout the
+  ///                 pagination process.
   ///
   /// - [paginationToken]: This parameter is used to move forwards through 'pages' of results,
   ///                      based on the value of the `next_token`. The value used with
@@ -281,7 +308,7 @@ abstract class TweetsService {
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/quote-tweets/api-reference/get-tweets-id-quote_tweets
   Future<TwitterResponse<List<TweetData>, TweetMeta>> quoteTweets(
-      {required String tweetId, String? paginationToken});
+      {required String tweetId, int? maxResults, String? paginationToken});
 
   /// The recent search endpoint returns Tweets from the last seven days that match a search query.
   ///
@@ -297,6 +324,10 @@ abstract class TweetsService {
   ///            512 characters long.
   ///
   ///            Learn more about our access levels on the `about Twitter API page`.
+  ///
+  /// - [maxResults]: The maximum number of search results to be returned by a request.
+  ///                 A number between 10 and 100. By default, a request response
+  ///                 will return 10 results.
   ///
   /// - [nextToken]: This parameter is used to get the next 'page' of results.
   ///                The value used with the parameter is pulled directly from
@@ -318,8 +349,11 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-recent
-  Future<TwitterResponse<List<TweetData>, TweetMeta>> searchRecent(
-      {required String query, String? nextToken});
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> searchRecent({
+    required String query,
+    int? maxResults,
+    String? nextToken,
+  });
 
   /// This endpoint is only available to those users who have been approved for
   /// Academic Research access.
@@ -335,6 +369,10 @@ abstract class TweetsService {
   ///            You can learn how to build this query by reading our build a
   ///            query guide. You can use all available operators and can make
   ///            queries up to 1,024 characters long.
+  ///
+  /// - [maxResults]: The maximum number of search results to be returned by a request.
+  ///                 A number between 10 and the system limit (currently 500).
+  ///                 By default, a request response will return 10 results.
   ///
   /// - [nextToken]: This parameter is used to get the next 'page' of results.
   ///                The value used with the parameter is pulled directly from
@@ -356,8 +394,11 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-all
-  Future<TwitterResponse<List<TweetData>, TweetMeta>> searchAll(
-      {required String query, String? nextToken});
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> searchAll({
+    required String query,
+    int? maxResults,
+    String? nextToken,
+  });
 
   /// Returns a variety of information about a single Tweet specified by the requested ID.
   ///
@@ -562,12 +603,19 @@ class _TweetsService extends BaseService implements TweetsService {
   _TweetsService({required ClientContext context}) : super(context: context);
 
   @override
-  Future<TwitterResponse<TweetData, void>> createTweet(
-      {required String text}) async {
+  Future<TwitterResponse<TweetData, void>> createTweet({
+    required String text,
+    String? quoteTweetId,
+    bool? forSuperFollowersOnly,
+  }) async {
     final response = await super.post(
       UserContext.oauth2,
       '/2/tweets',
-      body: {'text': text},
+      body: {
+        'text': text,
+        'quote_tweet_id': quoteTweetId,
+        'for_super_followers_only': forSuperFollowersOnly,
+      },
     );
 
     return TwitterResponse(data: TweetData.fromJson(response['data']));
@@ -640,12 +688,16 @@ class _TweetsService extends BaseService implements TweetsService {
   @override
   Future<TwitterResponse<List<UserData>, TweetMeta>> likingUsers({
     required String tweetId,
+    int? maxResults,
     String? paginationToken,
   }) async {
     final response = await super.get(
       UserContext.oauth2,
       '/2/tweets/$tweetId/liking_users',
-      queryParameters: {'pagination_token': paginationToken},
+      queryParameters: {
+        'max_results': maxResults,
+        'pagination_token': paginationToken,
+      },
     );
 
     return TwitterResponse(
@@ -657,12 +709,18 @@ class _TweetsService extends BaseService implements TweetsService {
   }
 
   @override
-  Future<TwitterResponse<List<TweetData>, TweetMeta>> likingTweets(
-      {required String userId, String? paginationToken}) async {
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> likingTweets({
+    required String userId,
+    int? maxResults,
+    String? paginationToken,
+  }) async {
     final response = await super.get(
       UserContext.oauth2,
       '/2/users/$userId/liked_tweets',
-      queryParameters: {'pagination_token': paginationToken},
+      queryParameters: {
+        'max_results': maxResults,
+        'pagination_token': paginationToken,
+      },
     );
 
     return TwitterResponse(
@@ -674,12 +732,18 @@ class _TweetsService extends BaseService implements TweetsService {
   }
 
   @override
-  Future<TwitterResponse<List<UserData>, TweetMeta>> retweetedBy(
-      {required String tweetId, String? paginationToken}) async {
+  Future<TwitterResponse<List<UserData>, TweetMeta>> retweetedBy({
+    required String tweetId,
+    int? maxResults,
+    String? paginationToken,
+  }) async {
     final response = await super.get(
       UserContext.oauth2,
       '/2/tweets/$tweetId/retweeted_by',
-      queryParameters: {'pagination_token': paginationToken},
+      queryParameters: {
+        'max_results': maxResults,
+        'pagination_token': paginationToken,
+      },
     );
 
     return TwitterResponse(
@@ -691,30 +755,40 @@ class _TweetsService extends BaseService implements TweetsService {
   }
 
   @override
-  Future<TwitterResponse<List<TweetData>, TweetMeta>> quoteTweets(
-      {required String tweetId, String? paginationToken}) async {
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> quoteTweets({
+    required String tweetId,
+    int? maxResults,
+    String? paginationToken,
+  }) async {
     final response = await super.get(
       UserContext.oauth2,
       '/2/tweets/$tweetId/quote_tweets',
-      queryParameters: {'pagination_token': paginationToken},
+      queryParameters: {
+        'max_results': maxResults,
+        'pagination_token': paginationToken,
+      },
     );
 
     return TwitterResponse(
       data: response['data']
           .map<TweetData>((tweet) => TweetData.fromJson(tweet))
           .toList(),
-      meta: TweetMeta.fromJson(response),
+      meta: TweetMeta.fromJson(response['meta']),
     );
   }
 
   @override
-  Future<TwitterResponse<List<TweetData>, TweetMeta>> searchRecent(
-      {required String query, String? nextToken}) async {
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> searchRecent({
+    required String query,
+    int? maxResults,
+    String? nextToken,
+  }) async {
     final response = await super.get(
       UserContext.oauth2,
       '/2/tweets/search/recent',
       queryParameters: {
         'query': query,
+        'max_results': maxResults,
         'next_token': nextToken,
       },
     );
@@ -728,13 +802,17 @@ class _TweetsService extends BaseService implements TweetsService {
   }
 
   @override
-  Future<TwitterResponse<List<TweetData>, TweetMeta>> searchAll(
-      {required String query, String? nextToken}) async {
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> searchAll({
+    required String query,
+    int? maxResults,
+    String? nextToken,
+  }) async {
     final response = await super.get(
       UserContext.oauth2AppOnly,
       '/2/tweets/search/all',
       queryParameters: {
         'query': query,
+        'max_results': maxResults,
         'next_token': nextToken,
       },
     );

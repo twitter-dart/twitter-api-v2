@@ -1,5 +1,30 @@
 # Release Note
 
+## v1.4.0
+
+- Fixed response handling.
+  - The HTTP status of a response was regarded as an exception for data other than 200, but the HTTP status in the 200s is now regarded as a normal completion.
+- Improved and added parameters for endpoints already implemented in this library. ([#66](https://github.com/twitter-dart/twitter-api-v2/issues/66))
+  - Added parameters to `tweetsService.createTweet`.
+    - `quoteTweetId`
+    - `forSuperFollowersOnly`
+  - Added a parameter to `tweetsService.linkingUsers`.
+    - `maxResults`
+  - Added a parameter to `tweetsService.linkingTweets`.
+    - `maxResults`
+  - Added a parameter to `tweetsService.retweetedBy`.
+    - `maxResults`
+  - Added a parameter to `tweetsService.quoteTweets`.
+    - `maxResults`
+  - Added a parameter to `tweetsService.searchRecent`.
+    - `maxResults`
+  - Added a parameter to `tweetsService.searchAll`.
+    - `maxResults`
+  - Added a parameter to `usersService.followers`.
+    - `maxResults`
+  - Added a parameter to `usersService.followings`.
+    - `maxResults`
+
 ## v1.3.0
 
 - Improved the error message from `TwitterException`. ([#48](https://github.com/twitter-dart/twitter-api-v2/issues/48))
