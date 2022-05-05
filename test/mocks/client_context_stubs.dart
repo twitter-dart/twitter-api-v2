@@ -2,12 +2,15 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+// Dart imports:
 import 'dart:io';
 
+// Package imports:
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
-import 'package:twitter_api_v2/src/client/user_context.dart';
 
+// Project imports:
+import 'package:twitter_api_v2/src/client/user_context.dart';
 import 'mock.mocks.dart';
 
 MockClientContext buildGetStub(
