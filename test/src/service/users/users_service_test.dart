@@ -2,29 +2,49 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+// Package imports:
 import 'package:test/test.dart';
+
+// Project imports:
+import 'package:twitter_api_v2/src/client/client_context.dart';
 import 'package:twitter_api_v2/src/client/user_context.dart';
 import 'package:twitter_api_v2/src/service/users/users_service.dart';
 import 'package:twitter_api_v2/twitter_api_v2.dart';
-
 import '../../../mocks//client_context_stubs.dart' as context;
 
 void main() {
-  test('.createFollow', () async {
-    final usersService = UsersService(
-      context: context.buildPostStub(
-        '/2/users/0000/following',
-        'test/src/service/users/data/create_follow.json',
-      ),
-    );
+  group('.createFollow', () {
+    test('normal case', () async {
+      final usersService = UsersService(
+        context: context.buildPostStub(
+          '/2/users/0000/following',
+          'test/src/service/users/data/create_follow.json',
+        ),
+      );
 
-    final response = await usersService.createFollow(
-      userId: '0000',
-      targetUserId: '1111',
-    );
+      final response = await usersService.createFollow(
+        userId: '0000',
+        targetUserId: '1111',
+      );
 
-    expect(response, isA<bool>());
-    expect(response, isTrue);
+      expect(response, isA<bool>());
+      expect(response, isTrue);
+    });
+
+    test('throws TwitterException', () async {
+      final usersService = UsersService(
+        context: ClientContext(bearerToken: ''),
+      );
+
+      expect(
+        () async =>
+            await usersService.createFollow(userId: '', targetUserId: ''),
+        throwsA(
+          allOf(isA<TwitterException>(),
+              predicate((e) => e.toString().isNotEmpty)),
+        ),
+      );
+    });
   });
 
   test('.destroyFollow', () async {
