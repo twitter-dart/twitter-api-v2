@@ -44,6 +44,24 @@ void main() {
         ),
       );
     });
+
+    test('throws TwitterException due to no data', () async {
+      final tweetsService = TweetsService(
+        context: context.buildPostStub(
+          '/2/tweets',
+          'test/src/service/tweets/data/no_data.json',
+        ),
+      );
+
+      expect(
+        () async =>
+            await tweetsService.createTweet(text: 'Throw TwitterException'),
+        throwsA(
+          allOf(isA<TwitterException>(),
+              predicate((e) => e.toString().isNotEmpty)),
+        ),
+      );
+    });
   });
 
   test('.destroyTweet', () async {
