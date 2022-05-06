@@ -21,16 +21,4 @@ class TwitterResponse<D, M> {
 
   @override
   String toString() => 'TwitterResponse(data: $data, meta: $meta)';
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is TwitterResponse<D, M> &&
-        other.data == data &&
-        other.meta == meta;
-  }
-
-  @override
-  int get hashCode => data.hashCode ^ meta.hashCode;
 }
