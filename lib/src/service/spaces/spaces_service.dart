@@ -178,7 +178,7 @@ class _SpacesService extends BaseService implements SpacesService {
   Future<TwitterResponse<List<SpaceData>, SpaceMeta>> search(
       {required String query}) async {
     final response = await super.get(
-      UserContext.oauth2AppOnly,
+      UserContext.oauth2Only,
       '/2/spaces/search',
       queryParameters: {'query': query},
     );
@@ -195,7 +195,7 @@ class _SpacesService extends BaseService implements SpacesService {
   Future<TwitterResponse<SpaceData, void>> lookupById(
       {required String spaceId}) async {
     final response = await super.get(
-      UserContext.oauth2AppOnly,
+      UserContext.oauth2Only,
       '/2/spaces/$spaceId',
     );
 
@@ -208,7 +208,7 @@ class _SpacesService extends BaseService implements SpacesService {
   Future<TwitterResponse<List<SpaceData>, void>> lookupByIds(
       {required List<String> spaceIds}) async {
     final response = await super.get(
-      UserContext.oauth2AppOnly,
+      UserContext.oauth2Only,
       '/2/spaces',
       queryParameters: {'ids': spaceIds.join(',')},
     );
@@ -224,7 +224,7 @@ class _SpacesService extends BaseService implements SpacesService {
   Future<TwitterResponse<List<UserData>, void>> lookupBuyers(
       {required String spaceId}) async {
     final response = await super.get(
-      UserContext.oauth2AppOnly,
+      UserContext.oauth2Only,
       '/2/spaces/$spaceId/buyers',
     );
 
@@ -239,7 +239,7 @@ class _SpacesService extends BaseService implements SpacesService {
   Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupTweets(
       {required String spaceId}) async {
     final response = await super.get(
-      UserContext.oauth2AppOnly,
+      UserContext.oauth2Only,
       '/2/spaces/$spaceId/tweets',
     );
 
@@ -255,7 +255,7 @@ class _SpacesService extends BaseService implements SpacesService {
   Future<TwitterResponse<List<SpaceData>, SpaceMeta>> lookupByCreatorIds(
       {required List<String> userIds}) async {
     final response = await super.get(
-      UserContext.oauth2AppOnly,
+      UserContext.oauth2Only,
       '/2/spaces/by/creator_ids',
       queryParameters: {'user_ids': userIds.join(',')},
     );

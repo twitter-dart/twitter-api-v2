@@ -266,7 +266,7 @@ class _UsersService extends BaseService implements UsersService {
     required String targetUserId,
   }) async {
     final response = await super.post(
-      UserContext.oauth2,
+      UserContext.oauth2OrOAuth1,
       '/2/users/$userId/following',
       body: {'target_user_id': targetUserId},
     );
@@ -280,7 +280,7 @@ class _UsersService extends BaseService implements UsersService {
     required String targetUserId,
   }) async {
     final response = await super.delete(
-      UserContext.oauth2,
+      UserContext.oauth2OrOAuth1,
       '/2/users/$userId/following/$targetUserId',
     );
 
@@ -294,7 +294,7 @@ class _UsersService extends BaseService implements UsersService {
     String? paginationToken,
   }) async {
     final response = await super.get(
-      UserContext.oauth2,
+      UserContext.oauth2OrOAuth1,
       '/2/users/$userId/followers',
       queryParameters: {
         'max_results': maxResults,
@@ -317,7 +317,7 @@ class _UsersService extends BaseService implements UsersService {
     String? paginationToken,
   }) async {
     final response = await super.get(
-      UserContext.oauth2,
+      UserContext.oauth2OrOAuth1,
       '/2/users/$userId/following',
       queryParameters: {
         'max_results': maxResults,
@@ -337,7 +337,7 @@ class _UsersService extends BaseService implements UsersService {
   Future<TwitterResponse<UserData, void>> lookupById(
       {required String userId}) async {
     final response = await super.get(
-      UserContext.oauth2,
+      UserContext.oauth2OrOAuth1,
       '/2/users/$userId',
     );
 
@@ -348,7 +348,7 @@ class _UsersService extends BaseService implements UsersService {
   Future<TwitterResponse<List<UserData>, void>> lookupByIds(
       {required List<String> userIds}) async {
     final response = await super.get(
-      UserContext.oauth2,
+      UserContext.oauth2OrOAuth1,
       '/2/users',
       queryParameters: {'ids': userIds.join(',')},
     );
@@ -364,7 +364,7 @@ class _UsersService extends BaseService implements UsersService {
   Future<TwitterResponse<UserData, void>> lookupByName(
       {required String username}) async {
     final response = await super.get(
-      UserContext.oauth2,
+      UserContext.oauth2OrOAuth1,
       '/2/users/by/username/$username',
     );
 
@@ -375,7 +375,7 @@ class _UsersService extends BaseService implements UsersService {
   Future<TwitterResponse<List<UserData>, void>> lookupByNames(
       {required List<String> usernames}) async {
     final response = await super.get(
-      UserContext.oauth2,
+      UserContext.oauth2OrOAuth1,
       '/2/users/by',
       queryParameters: {'usernames': usernames.join(',')},
     );
@@ -390,7 +390,7 @@ class _UsersService extends BaseService implements UsersService {
   @override
   Future<TwitterResponse<UserData, void>> lookupMe() async {
     final response = await super.get(
-      UserContext.oauth2,
+      UserContext.oauth2OrOAuth1,
       '/2/users/me',
     );
 

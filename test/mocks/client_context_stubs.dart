@@ -46,7 +46,7 @@ MockClientContext buildPostStub(
   final mockClientContext = MockClientContext();
 
   when(mockClientContext.post(
-    UserContext.oauth2,
+    UserContext.oauth2OrOAuth1,
     Uri.https('api.twitter.com', unencodedPath),
     headers: anyNamed('headers'),
     body: anyNamed('body'),
@@ -72,7 +72,7 @@ MockClientContext buildDeleteStub(
   final mockClientContext = MockClientContext();
 
   when(mockClientContext.delete(
-    UserContext.oauth2,
+    UserContext.oauth2OrOAuth1,
     Uri.https('api.twitter.com', unencodedPath),
   )).thenAnswer(
     (_) async => http.Response(
