@@ -17,6 +17,7 @@ void main() {
     test('normal case', () async {
       final usersService = UsersService(
         context: context.buildPostStub(
+          UserContext.oauth2OrOAuth1,
           '/2/users/0000/following',
           'test/src/service/users/data/create_follow.json',
         ),
@@ -49,6 +50,7 @@ void main() {
     test('throws TwitterException due to no data', () async {
       final usersService = UsersService(
         context: context.buildPostStub(
+          UserContext.oauth2OrOAuth1,
           '/2/users/0000/following',
           'test/src/service/users/data/no_data.json',
         ),

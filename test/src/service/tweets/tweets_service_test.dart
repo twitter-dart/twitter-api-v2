@@ -18,6 +18,7 @@ void main() {
     test('normal case', () async {
       final tweetsService = TweetsService(
         context: context.buildPostStub(
+          UserContext.oauth2OrOAuth1,
           '/2/tweets',
           'test/src/service/tweets/data/create_tweet.json',
         ),
@@ -49,6 +50,7 @@ void main() {
     test('throws TwitterException due to no data', () async {
       final tweetsService = TweetsService(
         context: context.buildPostStub(
+          UserContext.oauth2OrOAuth1,
           '/2/tweets',
           'test/src/service/tweets/data/no_data.json',
         ),
@@ -66,6 +68,7 @@ void main() {
 
     test('with OAuth1.0a', () async {
       final clientContext = context.buildPostStub(
+        UserContext.oauth2OrOAuth1,
         '/2/tweets',
         'test/src/service/tweets/data/create_tweet.json',
       );
@@ -116,6 +119,7 @@ void main() {
   test('.createLike', () async {
     final tweetsService = TweetsService(
       context: context.buildPostStub(
+        UserContext.oauth2OrOAuth1,
         '/2/users/0000/likes',
         'test/src/service/tweets/data/create_like.json',
       ),
@@ -150,6 +154,7 @@ void main() {
   test('.createRetweet', () async {
     final tweetsService = TweetsService(
       context: context.buildPostStub(
+        UserContext.oauth2OrOAuth1,
         '/2/users/0000/retweets',
         'test/src/service/tweets/data/create_retweet.json',
       ),
@@ -394,6 +399,7 @@ void main() {
   test('.createBookmark', () async {
     final tweetsService = TweetsService(
       context: context.buildPostStub(
+        UserContext.oauth2OrOAuth1,
         '/2/users/0000/bookmarks',
         'test/src/service/tweets/data/create_bookmark.json',
       ),

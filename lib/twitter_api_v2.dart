@@ -19,3 +19,6 @@ export 'package:twitter_api_v2/src/service/spaces/space_meta.dart';
 export 'package:twitter_api_v2/src/service/spaces/space_state.dart';
 export 'package:twitter_api_v2/src/service/lists/list_data.dart';
 export 'package:twitter_api_v2/src/service/lists/list_meta.dart';
+export 'package:twitter_api_v2/src/service/compliance/compliance_data.dart';
+export 'package:twitter_api_v2/src/service/compliance/job_type.dart';
+export 'package:twitter_api_v2/src/service/compliance/job_status.dart';

@@ -40,13 +40,14 @@ MockClientContext buildGetStub(
 }
 
 MockClientContext buildPostStub(
+  final UserContext userContext,
   final String unencodedPath,
   final String resourcePath,
 ) {
   final mockClientContext = MockClientContext();
 
   when(mockClientContext.post(
-    UserContext.oauth2OrOAuth1,
+    userContext,
     Uri.https('api.twitter.com', unencodedPath),
     headers: anyNamed('headers'),
     body: anyNamed('body'),

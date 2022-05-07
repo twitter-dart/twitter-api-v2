@@ -1,5 +1,12 @@
 # Release Note
 
+## v1.6.0
+
+- Added **Batch Compliance** endpoints. ([#32](https://github.com/twitter-dart/twitter-api-v2/issues/32))
+  - GET /2/compliance/jobs
+  - GET /2/compliance/jobs/:id
+  - POST /2/compliance/jobs
+
 ## v1.5.0
 
 - Renamed method name in **TweetsService**. ([#79](https://github.com/twitter-dart/twitter-api-v2/issues/79))
