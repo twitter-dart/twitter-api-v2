@@ -9,7 +9,7 @@ import 'dart:async';
 import 'package:http/http.dart' as http;
 
 // Project imports:
-import 'package:twitter_api_v2/src/twitter_exception.dart';
+import '../twitter_exception.dart';
 
 abstract class Client {
   Future<http.Response> get(

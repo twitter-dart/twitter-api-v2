@@ -3,12 +3,12 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
-import 'package:twitter_api_v2/src/client/client_context.dart';
-import 'package:twitter_api_v2/src/client/user_context.dart';
-import 'package:twitter_api_v2/src/service/base_service.dart';
-import 'package:twitter_api_v2/src/service/lists/list_data.dart';
-import 'package:twitter_api_v2/src/service/lists/list_meta.dart';
-import 'package:twitter_api_v2/src/service/twitter_response.dart';
+import '../../client/client_context.dart';
+import '../../client/user_context.dart';
+import '../base_service.dart';
+import '../twitter_response.dart';
+import 'list_data.dart';
+import 'list_meta.dart';
 
 abstract class ListsService {
   /// Returns the new instance of [ListsService].
@@ -48,12 +48,12 @@ abstract class ListsService {
   ///                 This can be a number between 1 and 100. By default,
   ///                 each page will return 100 results.
   ///
-  /// - [paginationToken]: Used to request the next page of results if all results
-  ///                      weren't returned with the latest request, or to go back to
-  ///                      the previous page of results. To return the next page,
-  ///                      pass the next_token returned in your previous response.
-  ///                      To go back one page, pass the previous_token returned
-  ///                      in your previous response.
+  /// - [paginationToken]: Used to request the next page of results if all
+  ///                      results weren't returned with the latest request, or
+  ///                      to go back to the previous page of results. To return
+  ///                      the next page, pass the `next_token` returned in your
+  ///                      previous response. To go back one page, pass the
+  ///                      `previous_token` returned in your previous response.
   ///
   /// ## Endpoint Url
   ///

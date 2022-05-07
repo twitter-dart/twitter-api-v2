@@ -6,7 +6,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import 'package:twitter_api_v2/src/service/spaces/space_state.dart';
+import 'space_state.dart';
 
 part 'space_data.freezed.dart';
 part 'space_data.g.dart';

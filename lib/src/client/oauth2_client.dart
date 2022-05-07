@@ -9,7 +9,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 // Project imports:
-import 'package:twitter_api_v2/src/client/client.dart';
+import 'client.dart';
 
 class OAuth2Client extends Client {
   /// Returns the new instance of [OAuth2Client].

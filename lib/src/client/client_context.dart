@@ -6,10 +6,10 @@
 import 'package:http/http.dart' as http;
 
 // Project imports:
-import 'package:twitter_api_v2/src/client/oauth1_client.dart';
-import 'package:twitter_api_v2/src/client/oauth2_client.dart';
-import 'package:twitter_api_v2/src/client/oauth_tokens.dart';
-import 'package:twitter_api_v2/src/client/user_context.dart';
+import 'oauth1_client.dart';
+import 'oauth2_client.dart';
+import 'oauth_tokens.dart';
+import 'user_context.dart';
 
 abstract class ClientContext {
   /// Returns the new instance of [ClientContext].
@@ -75,7 +75,8 @@ class _ClientContext implements ClientContext {
     Duration timeout = const Duration(seconds: 10),
   }) {
     if (userContext == UserContext.oauth2OrOAuth1 && hasOAuth1Client) {
-      //! If an authentication token is set, the OAuth 1.0a method is given priority.
+      //! If an authentication token is set, the OAuth 1.0a method is given
+      //! priority.
       return _oauth1Client!.get(uri, timeout: timeout);
     }
 
@@ -91,7 +92,8 @@ class _ClientContext implements ClientContext {
     Duration timeout = const Duration(seconds: 10),
   }) {
     if (userContext == UserContext.oauth2OrOAuth1 && hasOAuth1Client) {
-      //! If an authentication token is set, the OAuth 1.0a method is given priority.
+      //! If an authentication token is set, the OAuth 1.0a method is given
+      //! priority.
       return _oauth1Client!.post(
         uri,
         headers: headers,
@@ -117,7 +119,8 @@ class _ClientContext implements ClientContext {
     Duration timeout = const Duration(seconds: 10),
   }) {
     if (userContext == UserContext.oauth2OrOAuth1 && hasOAuth1Client) {
-      //! If an authentication token is set, the OAuth 1.0a method is given priority.
+      //! If an authentication token is set, the OAuth 1.0a method is given
+      //! priority.
       return _oauth1Client!.get(uri, timeout: timeout);
     }
 

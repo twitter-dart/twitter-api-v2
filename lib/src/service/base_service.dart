@@ -9,9 +9,9 @@ import 'dart:convert';
 import 'package:http/http.dart';
 
 // Project imports:
-import 'package:twitter_api_v2/src/client/client_context.dart';
-import 'package:twitter_api_v2/src/client/user_context.dart';
-import 'package:twitter_api_v2/twitter_api_v2.dart';
+import '../../twitter_api_v2.dart';
+import '../client/client_context.dart';
+import '../client/user_context.dart';
 
 abstract class Service {
   Future<dynamic> get(UserContext userContext, String unencodedPath);
@@ -47,9 +47,9 @@ abstract class BaseService implements Service {
         _authority,
         unencodedPath,
         _removeNullParameters(queryParameters).map(
-          //! Uri.https(...) needs iterable in the value for query params by which
-          //! it means a String in the value of the Map too. So you need to convert it
-          //! from Map<String, dynamic> to Map<String, String>
+          //! Uri.https(...) needs iterable in the value for query params by
+          //! which it means a String in the value of the Map too. So you need
+          //! to convert it from Map<String, dynamic> to Map<String, String>
           (key, value) => MapEntry(key, value.toString()),
         ),
       ),

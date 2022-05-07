@@ -3,15 +3,15 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
-import 'package:twitter_api_v2/src/client/client_context.dart';
-import 'package:twitter_api_v2/src/client/user_context.dart';
-import 'package:twitter_api_v2/src/service/base_service.dart';
-import 'package:twitter_api_v2/src/service/spaces/space_data.dart';
-import 'package:twitter_api_v2/src/service/spaces/space_meta.dart';
-import 'package:twitter_api_v2/src/service/tweets/tweet_data.dart';
-import 'package:twitter_api_v2/src/service/tweets/tweet_meta.dart';
-import 'package:twitter_api_v2/src/service/twitter_response.dart';
-import 'package:twitter_api_v2/src/service/users/user_data.dart';
+import '../../client/client_context.dart';
+import '../../client/user_context.dart';
+import '../base_service.dart';
+import '../tweets/tweet_data.dart';
+import '../tweets/tweet_meta.dart';
+import '../twitter_response.dart';
+import '../users/user_data.dart';
+import 'space_data.dart';
+import 'space_meta.dart';
 
 abstract class SpacesService {
   /// Returns the new instance of [SpacesService].
@@ -20,15 +20,16 @@ abstract class SpacesService {
 
   /// Return live or scheduled Spaces matching your specified search terms.
   ///
-  /// This endpoint performs a keyword search, meaning that it will return Spaces
-  /// that are an exact case-insensitive match of the specified search term.
+  /// This endpoint performs a keyword search, meaning that it will return
+  /// Spaces that are an exact case-insensitive match of the specified search
+  /// term.
   ///
   /// The search term will match the original title of the Space.
   ///
   /// ## Parameters
   ///
-  /// - [query]: Your search term. This can be any text (including mentions and Hashtags)
-  ///           present in the title of the Space.
+  /// - [query]: Your search term. This can be any text (including mentions and
+  ///            Hashtags) present in the title of the Space.
   ///
   /// ## Endpoint Url
   ///
@@ -48,7 +49,8 @@ abstract class SpacesService {
   Future<TwitterResponse<List<SpaceData>, SpaceMeta>> search(
       {required String query});
 
-  /// Returns a variety of information about a single Space specified by the requested ID.
+  /// Returns a variety of information about a single Space specified by the
+  /// requested ID.
   ///
   /// ## Parameters
   ///
@@ -72,8 +74,8 @@ abstract class SpacesService {
   Future<TwitterResponse<SpaceData, void>> lookupById(
       {required String spaceId});
 
-  /// Returns details about multiple Spaces. Up to 100 comma-separated Spaces IDs
-  /// can be looked up using this endpoint.
+  /// Returns details about multiple Spaces. Up to 100 comma-separated Spaces
+  /// IDs can be looked up using this endpoint.
   ///
   /// ## Parameters
   ///
@@ -103,7 +105,8 @@ abstract class SpacesService {
   ///
   /// ## Parameters
   ///
-  /// - [spaceId]: Unique identifier of the Space for which you want to request Tweets.
+  /// - [spaceId]: Unique identifier of the Space for which you want to request
+  ///              Tweets.
   ///
   /// ## Endpoint Url
   ///
@@ -124,7 +127,8 @@ abstract class SpacesService {
   ///
   /// ## Parameters
   ///
-  /// - [spaceId]: Unique identifier of the Space containing the Tweets you'd like to access.
+  /// - [spaceId]: Unique identifier of the Space containing the Tweets you'd
+  ///              like to access.
   ///
   /// ## Endpoint Url
   ///
@@ -171,7 +175,7 @@ abstract class SpacesService {
 }
 
 class _SpacesService extends BaseService implements SpacesService {
-  /// Returns the new instance of [_TweetsService].
+  /// Returns the new instance of [_SpacesService].
   _SpacesService({required ClientContext context}) : super(context: context);
 
   @override

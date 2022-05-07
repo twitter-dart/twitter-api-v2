@@ -3,13 +3,13 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
-import 'package:twitter_api_v2/src/client/client_context.dart';
-import 'package:twitter_api_v2/src/client/user_context.dart';
-import 'package:twitter_api_v2/src/service/base_service.dart';
-import 'package:twitter_api_v2/src/service/compliance/compliance_data.dart';
-import 'package:twitter_api_v2/src/service/compliance/job_status.dart';
-import 'package:twitter_api_v2/src/service/compliance/job_type.dart';
-import 'package:twitter_api_v2/src/service/twitter_response.dart';
+import '../../client/client_context.dart';
+import '../../client/user_context.dart';
+import '../base_service.dart';
+import '../twitter_response.dart';
+import 'compliance_data.dart';
+import 'job_status.dart';
+import 'job_type.dart';
 
 abstract class ComplianceService {
   /// Returns the new instance of [ComplianceService].
@@ -20,7 +20,8 @@ abstract class ComplianceService {
   ///
   /// ## Parameters
   ///
-  /// - [jobId]: The unique identifier for the compliance job you want to retrieve.
+  /// - [jobId]: The unique identifier for the compliance job you want to
+  ///            retrieve.
   ///
   /// ## Endpoint Url
   ///
@@ -42,7 +43,8 @@ abstract class ComplianceService {
   /// ## Parameters
   ///
   /// - [jobType]: Allows to filter by job type - either by tweets or user ID.
-  ///              Only one filter (tweets or users) can be specified per request.
+  ///              Only one filter (tweets or users) can be specified per
+  ///              request.
   ///
   /// - [jobStatus]: Allows to filter by job status. Only one filter can be
   ///                specified per request. Default: `all`.

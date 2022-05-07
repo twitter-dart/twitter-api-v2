@@ -10,7 +10,7 @@ import 'package:http/http.dart' as http;
 import 'package:oauth1/oauth1.dart' as oauth1;
 
 // Project imports:
-import 'package:twitter_api_v2/src/client/client.dart';
+import 'client.dart';
 
 class OAuth1Client extends Client {
   OAuth1Client({
