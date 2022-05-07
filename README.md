@@ -175,8 +175,8 @@ void main() async {
       4. [GET /2/spaces/:id/tweets](https://developer.twitter.com/en/docs/twitter-api/spaces/lookup/api-reference/get-spaces-id-tweets)
       5. [GET /2/spaces/by/creator_ids](https://developer.twitter.com/en/docs/twitter-api/spaces/lookup/api-reference/get-spaces-by-creator-ids)
 
-> Note:
-> Not all additional fields listed in the official documentation are supported. We intend to support them step by step.
+> Note:</br>
+> Not all additional fields listed in the official documentation are supported. We intend to support them step by step.</br>
 > Also you can create an Issue or Pull Request if you wish to suggest or contribute!
 
 ## 1.3. Contribution
