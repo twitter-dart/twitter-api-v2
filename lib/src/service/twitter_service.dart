@@ -4,6 +4,7 @@
 
 // Project imports:
 import 'package:twitter_api_v2/src/client/client_context.dart';
+import 'package:twitter_api_v2/src/service/compliance/compliance_service.dart';
 import 'package:twitter_api_v2/src/service/lists/lists_service.dart';
 import 'package:twitter_api_v2/src/service/spaces/spaces_service.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweets_service.dart';
@@ -25,6 +26,9 @@ abstract class TwitterService {
 
   /// Returns the lists service.
   ListsService get listsService;
+
+  /// Returns the compliance service.
+  ComplianceService get complianceService;
 }
 
 class _TwitterService implements TwitterService {
@@ -33,7 +37,8 @@ class _TwitterService implements TwitterService {
       : tweetsService = TweetsService(context: context),
         usersService = UsersService(context: context),
         spacesService = SpacesService(context: context),
-        listsService = ListsService(context: context);
+        listsService = ListsService(context: context),
+        complianceService = ComplianceService(context: context);
 
   @override
   final TweetsService tweetsService;
@@ -46,4 +51,7 @@ class _TwitterService implements TwitterService {
 
   @override
   final ListsService listsService;
+
+  @override
+  final ComplianceService complianceService;
 }
