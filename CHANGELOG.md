@@ -2,6 +2,9 @@
 
 ## v1.5.0
 
+- Renamed method name in **TweetsService**. ([#79](https://github.com/twitter-dart/twitter-api-v2/issues/79))
+  - Renamed method from `tweetsService.lookupTweet` to `tweetsService.lookupById.`
+  - Renamed method from `tweetsService.lookupTweets` to `tweetsService.lookupByIds.`
 - Added **Spaces Lookup** endpoints. ([#25](https://github.com/twitter-dart/twitter-api-v2/issues/25))
   - GET /2/spaces
   - GET /2/spaces/:id

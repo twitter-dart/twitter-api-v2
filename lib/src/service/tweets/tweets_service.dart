@@ -422,7 +422,7 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference/get-tweets-id
-  Future<TwitterResponse<TweetData, void>> lookupTweet(
+  Future<TwitterResponse<TweetData, void>> lookupById(
       {required String tweetId});
 
   /// Returns a variety of information about the Tweet specified by the requested ID or list of IDs.
@@ -447,7 +447,7 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference/get-tweets
-  Future<TwitterResponse<List<TweetData>, void>> lookupTweets(
+  Future<TwitterResponse<List<TweetData>, void>> lookupByIds(
       {required List<String> tweetIds});
 
   /// The recent Tweet counts endpoint returns count of Tweets from the last seven days that match a query.
@@ -827,7 +827,7 @@ class _TweetsService extends BaseService implements TweetsService {
   }
 
   @override
-  Future<TwitterResponse<TweetData, void>> lookupTweet(
+  Future<TwitterResponse<TweetData, void>> lookupById(
       {required String tweetId}) async {
     final response = await super.get(
       UserContext.oauth2,
@@ -840,7 +840,7 @@ class _TweetsService extends BaseService implements TweetsService {
   }
 
   @override
-  Future<TwitterResponse<List<TweetData>, void>> lookupTweets(
+  Future<TwitterResponse<List<TweetData>, void>> lookupByIds(
       {required List<String> tweetIds}) async {
     final response = await super.get(
       UserContext.oauth2,

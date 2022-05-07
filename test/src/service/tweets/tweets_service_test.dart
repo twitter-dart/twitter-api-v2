@@ -313,17 +313,17 @@ void main() {
     expect(response.meta!.resultCount, 6);
   });
 
-  test('.lookupTweet', () async {
+  test('.lookupById', () async {
     final tweetsService = TweetsService(
       context: context.buildGetStub(
         UserContext.oauth2,
         '/2/tweets/1111',
-        'test/src/service/tweets/data/lookup_tweet.json',
+        'test/src/service/tweets/data/lookup_by_id.json',
         {},
       ),
     );
 
-    final response = await tweetsService.lookupTweet(
+    final response = await tweetsService.lookupById(
       tweetId: '1111',
     );
 
@@ -332,17 +332,17 @@ void main() {
     expect(response.data.id, '1067094924124872705');
   });
 
-  test('.lookupTweets', () async {
+  test('.lookupByIds', () async {
     final tweetsService = TweetsService(
       context: context.buildGetStub(
         UserContext.oauth2,
         '/2/tweets',
-        'test/src/service/tweets/data/lookup_tweets.json',
+        'test/src/service/tweets/data/lookup_by_ids.json',
         {'ids': '1261326399320715264,1278347468690915330'},
       ),
     );
 
-    final response = await tweetsService.lookupTweets(
+    final response = await tweetsService.lookupByIds(
       tweetIds: ['1261326399320715264', '1278347468690915330'],
     );
 
