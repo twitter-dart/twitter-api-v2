@@ -610,7 +610,7 @@ class _TweetsService extends BaseService implements TweetsService {
     bool? forSuperFollowersOnly,
   }) async {
     final response = await super.post(
-      UserContext.oauth2,
+      UserContext.oauth2OrOAuth1,
       '/2/tweets',
       body: {
         'text': text,
@@ -625,7 +625,7 @@ class _TweetsService extends BaseService implements TweetsService {
   @override
   Future<bool> destroyTweet({required String tweetId}) async {
     final response = await super.delete(
-      UserContext.oauth2,
+      UserContext.oauth2OrOAuth1,
       '/2/tweets/$tweetId',
     );
 
@@ -638,7 +638,7 @@ class _TweetsService extends BaseService implements TweetsService {
     required String tweetId,
   }) async {
     final response = await super.post(
-      UserContext.oauth2,
+      UserContext.oauth2OrOAuth1,
       '/2/users/$userId/likes',
       body: {'tweet_id': tweetId},
     );
@@ -652,7 +652,7 @@ class _TweetsService extends BaseService implements TweetsService {
     required String tweetId,
   }) async {
     final response = await super.delete(
-      UserContext.oauth2,
+      UserContext.oauth2OrOAuth1,
       '/2/users/$userId/likes/$tweetId',
     );
 
@@ -665,7 +665,7 @@ class _TweetsService extends BaseService implements TweetsService {
     required String tweetId,
   }) async {
     final response = await super.post(
-      UserContext.oauth2,
+      UserContext.oauth2OrOAuth1,
       '/2/users/$userId/retweets',
       body: {'tweet_id': tweetId},
     );
@@ -679,7 +679,7 @@ class _TweetsService extends BaseService implements TweetsService {
     required String tweetId,
   }) async {
     final response = await super.delete(
-      UserContext.oauth2,
+      UserContext.oauth2OrOAuth1,
       '/2/users/$userId/retweets/$tweetId',
     );
 
@@ -693,7 +693,7 @@ class _TweetsService extends BaseService implements TweetsService {
     String? paginationToken,
   }) async {
     final response = await super.get(
-      UserContext.oauth2,
+      UserContext.oauth2OrOAuth1,
       '/2/tweets/$tweetId/liking_users',
       queryParameters: {
         'max_results': maxResults,
@@ -716,7 +716,7 @@ class _TweetsService extends BaseService implements TweetsService {
     String? paginationToken,
   }) async {
     final response = await super.get(
-      UserContext.oauth2,
+      UserContext.oauth2OrOAuth1,
       '/2/users/$userId/liked_tweets',
       queryParameters: {
         'max_results': maxResults,
@@ -739,7 +739,7 @@ class _TweetsService extends BaseService implements TweetsService {
     String? paginationToken,
   }) async {
     final response = await super.get(
-      UserContext.oauth2,
+      UserContext.oauth2OrOAuth1,
       '/2/tweets/$tweetId/retweeted_by',
       queryParameters: {
         'max_results': maxResults,
@@ -762,7 +762,7 @@ class _TweetsService extends BaseService implements TweetsService {
     String? paginationToken,
   }) async {
     final response = await super.get(
-      UserContext.oauth2,
+      UserContext.oauth2OrOAuth1,
       '/2/tweets/$tweetId/quote_tweets',
       queryParameters: {
         'max_results': maxResults,
@@ -785,7 +785,7 @@ class _TweetsService extends BaseService implements TweetsService {
     String? nextToken,
   }) async {
     final response = await super.get(
-      UserContext.oauth2,
+      UserContext.oauth2OrOAuth1,
       '/2/tweets/search/recent',
       queryParameters: {
         'query': query,
@@ -809,7 +809,7 @@ class _TweetsService extends BaseService implements TweetsService {
     String? nextToken,
   }) async {
     final response = await super.get(
-      UserContext.oauth2AppOnly,
+      UserContext.oauth2Only,
       '/2/tweets/search/all',
       queryParameters: {
         'query': query,
@@ -830,7 +830,7 @@ class _TweetsService extends BaseService implements TweetsService {
   Future<TwitterResponse<TweetData, void>> lookupById(
       {required String tweetId}) async {
     final response = await super.get(
-      UserContext.oauth2,
+      UserContext.oauth2OrOAuth1,
       '/2/tweets/$tweetId',
     );
 
@@ -843,7 +843,7 @@ class _TweetsService extends BaseService implements TweetsService {
   Future<TwitterResponse<List<TweetData>, void>> lookupByIds(
       {required List<String> tweetIds}) async {
     final response = await super.get(
-      UserContext.oauth2,
+      UserContext.oauth2OrOAuth1,
       '/2/tweets',
       queryParameters: {'ids': tweetIds.join(',')},
     );
@@ -859,7 +859,7 @@ class _TweetsService extends BaseService implements TweetsService {
   Future<TwitterResponse<List<TweetCountData>, TweetCountMeta>> countRecent(
       {required String query, String? nextToken}) async {
     final response = await super.get(
-      UserContext.oauth2AppOnly,
+      UserContext.oauth2Only,
       '/2/tweets/counts/recent',
       queryParameters: {
         'query': query,
@@ -880,7 +880,7 @@ class _TweetsService extends BaseService implements TweetsService {
   Future<TwitterResponse<List<TweetCountData>, TweetCountMeta>> countAll(
       {required String query, String? nextToken}) async {
     final response = await super.get(
-      UserContext.oauth2AppOnly,
+      UserContext.oauth2Only,
       '/2/tweets/counts/all',
       queryParameters: {
         'query': query,
@@ -903,7 +903,7 @@ class _TweetsService extends BaseService implements TweetsService {
     required String tweetId,
   }) async {
     final response = await super.post(
-      UserContext.oauth2,
+      UserContext.oauth2OrOAuth1,
       '/2/users/$userId/bookmarks',
       body: {'tweet_id': tweetId},
     );
@@ -917,7 +917,7 @@ class _TweetsService extends BaseService implements TweetsService {
     required String tweetId,
   }) async {
     final response = await super.delete(
-      UserContext.oauth2,
+      UserContext.oauth2OrOAuth1,
       '/2/users/$userId/bookmarks/$tweetId',
     );
 
@@ -928,7 +928,7 @@ class _TweetsService extends BaseService implements TweetsService {
   Future<TwitterResponse<List<TweetData>, TweetMeta>> bookmarks(
       {required String userId}) async {
     final response = await super.get(
-      UserContext.oauth2,
+      UserContext.oauth2OrOAuth1,
       '/2/users/$userId/bookmarks',
     );
 

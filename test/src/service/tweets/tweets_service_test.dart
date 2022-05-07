@@ -184,7 +184,7 @@ void main() {
   test('.likingUsers', () async {
     final tweetsService = TweetsService(
       context: context.buildGetStub(
-        UserContext.oauth2,
+        UserContext.oauth2OrOAuth1,
         '/2/tweets/1111/liking_users',
         'test/src/service/tweets/data/liking_users.json',
         {},
@@ -206,7 +206,7 @@ void main() {
   test('.likedTweets', () async {
     final tweetsService = TweetsService(
       context: context.buildGetStub(
-        UserContext.oauth2,
+        UserContext.oauth2OrOAuth1,
         '/2/users/0000/liked_tweets',
         'test/src/service/tweets/data/liked_tweets.json',
         {},
@@ -228,7 +228,7 @@ void main() {
   test('.retweetedBy', () async {
     final tweetsService = TweetsService(
       context: context.buildGetStub(
-        UserContext.oauth2,
+        UserContext.oauth2OrOAuth1,
         '/2/tweets/1111/retweeted_by',
         'test/src/service/tweets/data/retweeted_by.json',
         {},
@@ -250,7 +250,7 @@ void main() {
   test('.quoteTweets', () async {
     final tweetsService = TweetsService(
       context: context.buildGetStub(
-        UserContext.oauth2,
+        UserContext.oauth2OrOAuth1,
         '/2/tweets/1111/quote_tweets',
         'test/src/service/tweets/data/quote_tweets.json',
         {},
@@ -272,7 +272,7 @@ void main() {
   test('.searchRecent', () async {
     final tweetsService = TweetsService(
       context: context.buildGetStub(
-        UserContext.oauth2,
+        UserContext.oauth2OrOAuth1,
         '/2/tweets/search/recent',
         'test/src/service/tweets/data/search_recent.json',
         {'query': 'hello'},
@@ -294,7 +294,7 @@ void main() {
   test('.searchAll', () async {
     final tweetsService = TweetsService(
       context: context.buildGetStub(
-        UserContext.oauth2AppOnly,
+        UserContext.oauth2Only,
         '/2/tweets/search/all',
         'test/src/service/tweets/data/search_all.json',
         {'query': 'hello'},
@@ -316,7 +316,7 @@ void main() {
   test('.lookupById', () async {
     final tweetsService = TweetsService(
       context: context.buildGetStub(
-        UserContext.oauth2,
+        UserContext.oauth2OrOAuth1,
         '/2/tweets/1111',
         'test/src/service/tweets/data/lookup_by_id.json',
         {},
@@ -335,7 +335,7 @@ void main() {
   test('.lookupByIds', () async {
     final tweetsService = TweetsService(
       context: context.buildGetStub(
-        UserContext.oauth2,
+        UserContext.oauth2OrOAuth1,
         '/2/tweets',
         'test/src/service/tweets/data/lookup_by_ids.json',
         {'ids': '1261326399320715264,1278347468690915330'},
@@ -354,7 +354,7 @@ void main() {
   test('.countRecent', () async {
     final tweetsService = TweetsService(
       context: context.buildGetStub(
-        UserContext.oauth2AppOnly,
+        UserContext.oauth2Only,
         '/2/tweets/counts/recent',
         'test/src/service/tweets/data/counts_recent.json',
         {'query': 'hello'},
@@ -374,7 +374,7 @@ void main() {
   test('.countAll', () async {
     final tweetsService = TweetsService(
       context: context.buildGetStub(
-        UserContext.oauth2AppOnly,
+        UserContext.oauth2Only,
         '/2/tweets/counts/all',
         'test/src/service/tweets/data/counts_all.json',
         {'query': 'hello'},
@@ -428,7 +428,7 @@ void main() {
   test('.bookmarks', () async {
     final tweetsService = TweetsService(
       context: context.buildGetStub(
-        UserContext.oauth2,
+        UserContext.oauth2OrOAuth1,
         '/2/users/0000/bookmarks',
         'test/src/service/tweets/data/bookmarks.json',
         {},

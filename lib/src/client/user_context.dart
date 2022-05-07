@@ -3,9 +3,9 @@
 // modification, are permitted provided the conditions.
 
 enum UserContext {
-  /// OAuth 2.0 User Context
-  oauth2,
+  /// OAuth 2.0 only.
+  oauth2Only,
 
-  /// OAuth 2.0 Application-Only
-  oauth2AppOnly,
+  /// OAuth 2.0 or OAuth 1.0a.
+  oauth2OrOAuth1,
 }

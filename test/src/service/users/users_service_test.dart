@@ -87,7 +87,7 @@ void main() {
   test('.followers', () async {
     final usersService = UsersService(
       context: context.buildGetStub(
-        UserContext.oauth2,
+        UserContext.oauth2OrOAuth1,
         '/2/users/0000/followers',
         'test/src/service/users/data/followers.json',
         {},
@@ -106,7 +106,7 @@ void main() {
   test('.followings', () async {
     final usersService = UsersService(
       context: context.buildGetStub(
-        UserContext.oauth2,
+        UserContext.oauth2OrOAuth1,
         '/2/users/0000/following',
         'test/src/service/users/data/followings.json',
         {},
@@ -125,7 +125,7 @@ void main() {
   test('.lookupById', () async {
     final usersService = UsersService(
       context: context.buildGetStub(
-        UserContext.oauth2,
+        UserContext.oauth2OrOAuth1,
         '/2/users/0000',
         'test/src/service/users/data/lookup_by_id.json',
         {},
@@ -144,7 +144,7 @@ void main() {
   test('.lookupByIds', () async {
     final usersService = UsersService(
       context: context.buildGetStub(
-        UserContext.oauth2,
+        UserContext.oauth2OrOAuth1,
         '/2/users',
         'test/src/service/users/data/lookup_by_ids.json',
         {'ids': '2244994945,783214'},
@@ -163,7 +163,7 @@ void main() {
   test('.lookupByName', () async {
     final usersService = UsersService(
       context: context.buildGetStub(
-        UserContext.oauth2,
+        UserContext.oauth2OrOAuth1,
         '/2/users/by/username/TwitterDev',
         'test/src/service/users/data/lookup_by_name.json',
         {},
@@ -181,7 +181,7 @@ void main() {
   test('.lookupByNames', () async {
     final usersService = UsersService(
       context: context.buildGetStub(
-        UserContext.oauth2,
+        UserContext.oauth2OrOAuth1,
         '/2/users/by',
         'test/src/service/users/data/lookup_by_names.json',
         {'usernames': 'TwitterDev,Twitter'},
@@ -200,7 +200,7 @@ void main() {
   test('.lookupMe', () async {
     final usersService = UsersService(
       context: context.buildGetStub(
-        UserContext.oauth2,
+        UserContext.oauth2OrOAuth1,
         '/2/users/me',
         'test/src/service/users/data/lookup_me.json',
         {},
