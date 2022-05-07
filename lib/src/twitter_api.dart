@@ -5,6 +5,7 @@
 // Project imports:
 import 'package:twitter_api_v2/src/client/client_context.dart';
 import 'package:twitter_api_v2/src/client/oauth_tokens.dart';
+import 'package:twitter_api_v2/src/service/lists/lists_service.dart';
 import 'package:twitter_api_v2/src/service/spaces/spaces_service.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweets_service.dart';
 import 'package:twitter_api_v2/src/service/twitter_service.dart';
@@ -26,6 +27,9 @@ abstract class TwitterApi {
 
   /// Returns the spaces service.
   SpacesService get spacesService;
+
+  /// Returns the lists service.
+  ListsService get listsService;
 }
 
 class _TwitterApi implements TwitterApi {
@@ -50,4 +54,7 @@ class _TwitterApi implements TwitterApi {
 
   @override
   SpacesService get spacesService => _twitterService.spacesService;
+
+  @override
+  ListsService get listsService => _twitterService.listsService;
 }

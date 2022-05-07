@@ -58,28 +58,29 @@ class _$SpaceMetaCopyWithImpl<$Res> implements $SpaceMetaCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$SpaceMetaCopyWith<$Res> implements $SpaceMetaCopyWith<$Res> {
-  factory _$SpaceMetaCopyWith(
-          _SpaceMeta value, $Res Function(_SpaceMeta) then) =
-      __$SpaceMetaCopyWithImpl<$Res>;
+abstract class _$$_SpaceMetaCopyWith<$Res> implements $SpaceMetaCopyWith<$Res> {
+  factory _$$_SpaceMetaCopyWith(
+          _$_SpaceMeta value, $Res Function(_$_SpaceMeta) then) =
+      __$$_SpaceMetaCopyWithImpl<$Res>;
   @override
   $Res call({@JsonKey(name: 'result_count') int? resultCount});
 }
 
 /// @nodoc
-class __$SpaceMetaCopyWithImpl<$Res> extends _$SpaceMetaCopyWithImpl<$Res>
-    implements _$SpaceMetaCopyWith<$Res> {
-  __$SpaceMetaCopyWithImpl(_SpaceMeta _value, $Res Function(_SpaceMeta) _then)
-      : super(_value, (v) => _then(v as _SpaceMeta));
+class __$$_SpaceMetaCopyWithImpl<$Res> extends _$SpaceMetaCopyWithImpl<$Res>
+    implements _$$_SpaceMetaCopyWith<$Res> {
+  __$$_SpaceMetaCopyWithImpl(
+      _$_SpaceMeta _value, $Res Function(_$_SpaceMeta) _then)
+      : super(_value, (v) => _then(v as _$_SpaceMeta));
 
   @override
-  _SpaceMeta get _value => super._value as _SpaceMeta;
+  _$_SpaceMeta get _value => super._value as _$_SpaceMeta;
 
   @override
   $Res call({
     Object? resultCount = freezed,
   }) {
-    return _then(_SpaceMeta(
+    return _then(_$_SpaceMeta(
       resultCount: resultCount == freezed
           ? _value.resultCount
           : resultCount // ignore: cast_nullable_to_non_nullable
@@ -110,7 +111,7 @@ class _$_SpaceMeta implements _SpaceMeta {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SpaceMeta &&
+            other is _$_SpaceMeta &&
             const DeepCollectionEquality()
                 .equals(other.resultCount, resultCount));
   }
@@ -122,8 +123,8 @@ class _$_SpaceMeta implements _SpaceMeta {
 
   @JsonKey(ignore: true)
   @override
-  _$SpaceMetaCopyWith<_SpaceMeta> get copyWith =>
-      __$SpaceMetaCopyWithImpl<_SpaceMeta>(this, _$identity);
+  _$$_SpaceMetaCopyWith<_$_SpaceMeta> get copyWith =>
+      __$$_SpaceMetaCopyWithImpl<_$_SpaceMeta>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -144,6 +145,6 @@ abstract class _SpaceMeta implements SpaceMeta {
   int? get resultCount => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SpaceMetaCopyWith<_SpaceMeta> get copyWith =>
+  _$$_SpaceMetaCopyWith<_$_SpaceMeta> get copyWith =>
       throw _privateConstructorUsedError;
 }

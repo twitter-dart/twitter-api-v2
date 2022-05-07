@@ -91,10 +91,10 @@ class _$TweetMetaCopyWithImpl<$Res> implements $TweetMetaCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$TweetMetaCopyWith<$Res> implements $TweetMetaCopyWith<$Res> {
-  factory _$TweetMetaCopyWith(
-          _TweetMeta value, $Res Function(_TweetMeta) then) =
-      __$TweetMetaCopyWithImpl<$Res>;
+abstract class _$$_TweetMetaCopyWith<$Res> implements $TweetMetaCopyWith<$Res> {
+  factory _$$_TweetMetaCopyWith(
+          _$_TweetMeta value, $Res Function(_$_TweetMeta) then) =
+      __$$_TweetMetaCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'newest_id') String? newestId,
@@ -105,13 +105,14 @@ abstract class _$TweetMetaCopyWith<$Res> implements $TweetMetaCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$TweetMetaCopyWithImpl<$Res> extends _$TweetMetaCopyWithImpl<$Res>
-    implements _$TweetMetaCopyWith<$Res> {
-  __$TweetMetaCopyWithImpl(_TweetMeta _value, $Res Function(_TweetMeta) _then)
-      : super(_value, (v) => _then(v as _TweetMeta));
+class __$$_TweetMetaCopyWithImpl<$Res> extends _$TweetMetaCopyWithImpl<$Res>
+    implements _$$_TweetMetaCopyWith<$Res> {
+  __$$_TweetMetaCopyWithImpl(
+      _$_TweetMeta _value, $Res Function(_$_TweetMeta) _then)
+      : super(_value, (v) => _then(v as _$_TweetMeta));
 
   @override
-  _TweetMeta get _value => super._value as _TweetMeta;
+  _$_TweetMeta get _value => super._value as _$_TweetMeta;
 
   @override
   $Res call({
@@ -121,7 +122,7 @@ class __$TweetMetaCopyWithImpl<$Res> extends _$TweetMetaCopyWithImpl<$Res>
     Object? nextToken = freezed,
     Object? previousToken = freezed,
   }) {
-    return _then(_TweetMeta(
+    return _then(_$_TweetMeta(
       newestId: newestId == freezed
           ? _value.newestId
           : newestId // ignore: cast_nullable_to_non_nullable
@@ -184,7 +185,7 @@ class _$_TweetMeta implements _TweetMeta {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _TweetMeta &&
+            other is _$_TweetMeta &&
             const DeepCollectionEquality().equals(other.newestId, newestId) &&
             const DeepCollectionEquality().equals(other.oldestId, oldestId) &&
             const DeepCollectionEquality()
@@ -206,8 +207,8 @@ class _$_TweetMeta implements _TweetMeta {
 
   @JsonKey(ignore: true)
   @override
-  _$TweetMetaCopyWith<_TweetMeta> get copyWith =>
-      __$TweetMetaCopyWithImpl<_TweetMeta>(this, _$identity);
+  _$$_TweetMetaCopyWith<_$_TweetMeta> get copyWith =>
+      __$$_TweetMetaCopyWithImpl<_$_TweetMeta>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -244,6 +245,6 @@ abstract class _TweetMeta implements TweetMeta {
   String? get previousToken => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$TweetMetaCopyWith<_TweetMeta> get copyWith =>
+  _$$_TweetMetaCopyWith<_$_TweetMeta> get copyWith =>
       throw _privateConstructorUsedError;
 }

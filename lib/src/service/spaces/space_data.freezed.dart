@@ -63,29 +63,30 @@ class _$SpaceDataCopyWithImpl<$Res> implements $SpaceDataCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$SpaceDataCopyWith<$Res> implements $SpaceDataCopyWith<$Res> {
-  factory _$SpaceDataCopyWith(
-          _SpaceData value, $Res Function(_SpaceData) then) =
-      __$SpaceDataCopyWithImpl<$Res>;
+abstract class _$$_SpaceDataCopyWith<$Res> implements $SpaceDataCopyWith<$Res> {
+  factory _$$_SpaceDataCopyWith(
+          _$_SpaceData value, $Res Function(_$_SpaceData) then) =
+      __$$_SpaceDataCopyWithImpl<$Res>;
   @override
   $Res call({String id, SpaceState? state});
 }
 
 /// @nodoc
-class __$SpaceDataCopyWithImpl<$Res> extends _$SpaceDataCopyWithImpl<$Res>
-    implements _$SpaceDataCopyWith<$Res> {
-  __$SpaceDataCopyWithImpl(_SpaceData _value, $Res Function(_SpaceData) _then)
-      : super(_value, (v) => _then(v as _SpaceData));
+class __$$_SpaceDataCopyWithImpl<$Res> extends _$SpaceDataCopyWithImpl<$Res>
+    implements _$$_SpaceDataCopyWith<$Res> {
+  __$$_SpaceDataCopyWithImpl(
+      _$_SpaceData _value, $Res Function(_$_SpaceData) _then)
+      : super(_value, (v) => _then(v as _$_SpaceData));
 
   @override
-  _SpaceData get _value => super._value as _SpaceData;
+  _$_SpaceData get _value => super._value as _$_SpaceData;
 
   @override
   $Res call({
     Object? id = freezed,
     Object? state = freezed,
   }) {
-    return _then(_SpaceData(
+    return _then(_$_SpaceData(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -120,7 +121,7 @@ class _$_SpaceData implements _SpaceData {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SpaceData &&
+            other is _$_SpaceData &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.state, state));
   }
@@ -134,8 +135,8 @@ class _$_SpaceData implements _SpaceData {
 
   @JsonKey(ignore: true)
   @override
-  _$SpaceDataCopyWith<_SpaceData> get copyWith =>
-      __$SpaceDataCopyWithImpl<_SpaceData>(this, _$identity);
+  _$$_SpaceDataCopyWith<_$_SpaceData> get copyWith =>
+      __$$_SpaceDataCopyWithImpl<_$_SpaceData>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -156,6 +157,6 @@ abstract class _SpaceData implements SpaceData {
   SpaceState? get state => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SpaceDataCopyWith<_SpaceData> get copyWith =>
+  _$$_SpaceDataCopyWith<_$_SpaceData> get copyWith =>
       throw _privateConstructorUsedError;
 }
