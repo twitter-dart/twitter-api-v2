@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'space_meta.dart';
+part of 'list_meta.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,35 +14,35 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-SpaceMeta _$SpaceMetaFromJson(Map<String, dynamic> json) {
-  return _SpaceMeta.fromJson(json);
+ListMeta _$ListMetaFromJson(Map<String, dynamic> json) {
+  return _ListMeta.fromJson(json);
 }
 
 /// @nodoc
-mixin _$SpaceMeta {
+mixin _$ListMeta {
   @JsonKey(name: 'result_count')
   int? get resultCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SpaceMetaCopyWith<SpaceMeta> get copyWith =>
+  $ListMetaCopyWith<ListMeta> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SpaceMetaCopyWith<$Res> {
-  factory $SpaceMetaCopyWith(SpaceMeta value, $Res Function(SpaceMeta) then) =
-      _$SpaceMetaCopyWithImpl<$Res>;
+abstract class $ListMetaCopyWith<$Res> {
+  factory $ListMetaCopyWith(ListMeta value, $Res Function(ListMeta) then) =
+      _$ListMetaCopyWithImpl<$Res>;
   $Res call({@JsonKey(name: 'result_count') int? resultCount});
 }
 
 /// @nodoc
-class _$SpaceMetaCopyWithImpl<$Res> implements $SpaceMetaCopyWith<$Res> {
-  _$SpaceMetaCopyWithImpl(this._value, this._then);
+class _$ListMetaCopyWithImpl<$Res> implements $ListMetaCopyWith<$Res> {
+  _$ListMetaCopyWithImpl(this._value, this._then);
 
-  final SpaceMeta _value;
+  final ListMeta _value;
   // ignore: unused_field
-  final $Res Function(SpaceMeta) _then;
+  final $Res Function(ListMeta) _then;
 
   @override
   $Res call({
@@ -58,29 +58,29 @@ class _$SpaceMetaCopyWithImpl<$Res> implements $SpaceMetaCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_SpaceMetaCopyWith<$Res> implements $SpaceMetaCopyWith<$Res> {
-  factory _$$_SpaceMetaCopyWith(
-          _$_SpaceMeta value, $Res Function(_$_SpaceMeta) then) =
-      __$$_SpaceMetaCopyWithImpl<$Res>;
+abstract class _$$_ListMetaCopyWith<$Res> implements $ListMetaCopyWith<$Res> {
+  factory _$$_ListMetaCopyWith(
+          _$_ListMeta value, $Res Function(_$_ListMeta) then) =
+      __$$_ListMetaCopyWithImpl<$Res>;
   @override
   $Res call({@JsonKey(name: 'result_count') int? resultCount});
 }
 
 /// @nodoc
-class __$$_SpaceMetaCopyWithImpl<$Res> extends _$SpaceMetaCopyWithImpl<$Res>
-    implements _$$_SpaceMetaCopyWith<$Res> {
-  __$$_SpaceMetaCopyWithImpl(
-      _$_SpaceMeta _value, $Res Function(_$_SpaceMeta) _then)
-      : super(_value, (v) => _then(v as _$_SpaceMeta));
+class __$$_ListMetaCopyWithImpl<$Res> extends _$ListMetaCopyWithImpl<$Res>
+    implements _$$_ListMetaCopyWith<$Res> {
+  __$$_ListMetaCopyWithImpl(
+      _$_ListMeta _value, $Res Function(_$_ListMeta) _then)
+      : super(_value, (v) => _then(v as _$_ListMeta));
 
   @override
-  _$_SpaceMeta get _value => super._value as _$_SpaceMeta;
+  _$_ListMeta get _value => super._value as _$_ListMeta;
 
   @override
   $Res call({
     Object? resultCount = freezed,
   }) {
-    return _then(_$_SpaceMeta(
+    return _then(_$_ListMeta(
       resultCount: resultCount == freezed
           ? _value.resultCount
           : resultCount // ignore: cast_nullable_to_non_nullable
@@ -91,12 +91,11 @@ class __$$_SpaceMetaCopyWithImpl<$Res> extends _$SpaceMetaCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_SpaceMeta implements _SpaceMeta {
-  const _$_SpaceMeta(
-      {@JsonKey(name: 'result_count') required this.resultCount});
+class _$_ListMeta implements _ListMeta {
+  const _$_ListMeta({@JsonKey(name: 'result_count') this.resultCount});
 
-  factory _$_SpaceMeta.fromJson(Map<String, dynamic> json) =>
-      _$$_SpaceMetaFromJson(json);
+  factory _$_ListMeta.fromJson(Map<String, dynamic> json) =>
+      _$$_ListMetaFromJson(json);
 
   @override
   @JsonKey(name: 'result_count')
@@ -104,14 +103,14 @@ class _$_SpaceMeta implements _SpaceMeta {
 
   @override
   String toString() {
-    return 'SpaceMeta(resultCount: $resultCount)';
+    return 'ListMeta(resultCount: $resultCount)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SpaceMeta &&
+            other is _$_ListMeta &&
             const DeepCollectionEquality()
                 .equals(other.resultCount, resultCount));
   }
@@ -123,28 +122,26 @@ class _$_SpaceMeta implements _SpaceMeta {
 
   @JsonKey(ignore: true)
   @override
-  _$$_SpaceMetaCopyWith<_$_SpaceMeta> get copyWith =>
-      __$$_SpaceMetaCopyWithImpl<_$_SpaceMeta>(this, _$identity);
+  _$$_ListMetaCopyWith<_$_ListMeta> get copyWith =>
+      __$$_ListMetaCopyWithImpl<_$_ListMeta>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SpaceMetaToJson(this);
+    return _$$_ListMetaToJson(this);
   }
 }
 
-abstract class _SpaceMeta implements SpaceMeta {
-  const factory _SpaceMeta(
-          {@JsonKey(name: 'result_count') required final int? resultCount}) =
-      _$_SpaceMeta;
+abstract class _ListMeta implements ListMeta {
+  const factory _ListMeta(
+      {@JsonKey(name: 'result_count') final int? resultCount}) = _$_ListMeta;
 
-  factory _SpaceMeta.fromJson(Map<String, dynamic> json) =
-      _$_SpaceMeta.fromJson;
+  factory _ListMeta.fromJson(Map<String, dynamic> json) = _$_ListMeta.fromJson;
 
   @override
   @JsonKey(name: 'result_count')
   int? get resultCount => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$$_SpaceMetaCopyWith<_$_SpaceMeta> get copyWith =>
+  _$$_ListMetaCopyWith<_$_ListMeta> get copyWith =>
       throw _privateConstructorUsedError;
 }

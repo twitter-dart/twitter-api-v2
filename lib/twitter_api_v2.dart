@@ -16,5 +16,6 @@ export 'package:twitter_api_v2/src/service/users/user_data.dart';
 export 'package:twitter_api_v2/src/service/users/user_meta.dart';
 export 'package:twitter_api_v2/src/service/spaces/space_data.dart';
 export 'package:twitter_api_v2/src/service/spaces/space_meta.dart';
-
 export 'package:twitter_api_v2/src/service/spaces/space_state.dart';
+export 'package:twitter_api_v2/src/service/lists/list_data.dart';
+export 'package:twitter_api_v2/src/service/lists/list_meta.dart';

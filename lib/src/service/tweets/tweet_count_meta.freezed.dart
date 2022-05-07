@@ -69,11 +69,11 @@ class _$TweetCountMetaCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$TweetCountMetaCopyWith<$Res>
+abstract class _$$_TweetCountMetaCopyWith<$Res>
     implements $TweetCountMetaCopyWith<$Res> {
-  factory _$TweetCountMetaCopyWith(
-          _TweetCountMeta value, $Res Function(_TweetCountMeta) then) =
-      __$TweetCountMetaCopyWithImpl<$Res>;
+  factory _$$_TweetCountMetaCopyWith(
+          _$_TweetCountMeta value, $Res Function(_$_TweetCountMeta) then) =
+      __$$_TweetCountMetaCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'total_tweet_count') int total,
@@ -81,22 +81,22 @@ abstract class _$TweetCountMetaCopyWith<$Res>
 }
 
 /// @nodoc
-class __$TweetCountMetaCopyWithImpl<$Res>
+class __$$_TweetCountMetaCopyWithImpl<$Res>
     extends _$TweetCountMetaCopyWithImpl<$Res>
-    implements _$TweetCountMetaCopyWith<$Res> {
-  __$TweetCountMetaCopyWithImpl(
-      _TweetCountMeta _value, $Res Function(_TweetCountMeta) _then)
-      : super(_value, (v) => _then(v as _TweetCountMeta));
+    implements _$$_TweetCountMetaCopyWith<$Res> {
+  __$$_TweetCountMetaCopyWithImpl(
+      _$_TweetCountMeta _value, $Res Function(_$_TweetCountMeta) _then)
+      : super(_value, (v) => _then(v as _$_TweetCountMeta));
 
   @override
-  _TweetCountMeta get _value => super._value as _TweetCountMeta;
+  _$_TweetCountMeta get _value => super._value as _$_TweetCountMeta;
 
   @override
   $Res call({
     Object? total = freezed,
     Object? nextToken = freezed,
   }) {
-    return _then(_TweetCountMeta(
+    return _then(_$_TweetCountMeta(
       total: total == freezed
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
@@ -135,7 +135,7 @@ class _$_TweetCountMeta implements _TweetCountMeta {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _TweetCountMeta &&
+            other is _$_TweetCountMeta &&
             const DeepCollectionEquality().equals(other.total, total) &&
             const DeepCollectionEquality().equals(other.nextToken, nextToken));
   }
@@ -149,8 +149,8 @@ class _$_TweetCountMeta implements _TweetCountMeta {
 
   @JsonKey(ignore: true)
   @override
-  _$TweetCountMetaCopyWith<_TweetCountMeta> get copyWith =>
-      __$TweetCountMetaCopyWithImpl<_TweetCountMeta>(this, _$identity);
+  _$$_TweetCountMetaCopyWith<_$_TweetCountMeta> get copyWith =>
+      __$$_TweetCountMetaCopyWithImpl<_$_TweetCountMeta>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -175,6 +175,6 @@ abstract class _TweetCountMeta implements TweetCountMeta {
   String? get nextToken => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$TweetCountMetaCopyWith<_TweetCountMeta> get copyWith =>
+  _$$_TweetCountMetaCopyWith<_$_TweetCountMeta> get copyWith =>
       throw _privateConstructorUsedError;
 }

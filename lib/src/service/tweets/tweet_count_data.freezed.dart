@@ -73,26 +73,26 @@ class _$TweetCountDataCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$TweetCountDataCopyWith<$Res>
+abstract class _$$_TweetCountDataCopyWith<$Res>
     implements $TweetCountDataCopyWith<$Res> {
-  factory _$TweetCountDataCopyWith(
-          _TweetCountData value, $Res Function(_TweetCountData) then) =
-      __$TweetCountDataCopyWithImpl<$Res>;
+  factory _$$_TweetCountDataCopyWith(
+          _$_TweetCountData value, $Res Function(_$_TweetCountData) then) =
+      __$$_TweetCountDataCopyWithImpl<$Res>;
   @override
   $Res call(
       {DateTime start, DateTime end, @JsonKey(name: 'tweet_count') int count});
 }
 
 /// @nodoc
-class __$TweetCountDataCopyWithImpl<$Res>
+class __$$_TweetCountDataCopyWithImpl<$Res>
     extends _$TweetCountDataCopyWithImpl<$Res>
-    implements _$TweetCountDataCopyWith<$Res> {
-  __$TweetCountDataCopyWithImpl(
-      _TweetCountData _value, $Res Function(_TweetCountData) _then)
-      : super(_value, (v) => _then(v as _TweetCountData));
+    implements _$$_TweetCountDataCopyWith<$Res> {
+  __$$_TweetCountDataCopyWithImpl(
+      _$_TweetCountData _value, $Res Function(_$_TweetCountData) _then)
+      : super(_value, (v) => _then(v as _$_TweetCountData));
 
   @override
-  _TweetCountData get _value => super._value as _TweetCountData;
+  _$_TweetCountData get _value => super._value as _$_TweetCountData;
 
   @override
   $Res call({
@@ -100,7 +100,7 @@ class __$TweetCountDataCopyWithImpl<$Res>
     Object? end = freezed,
     Object? count = freezed,
   }) {
-    return _then(_TweetCountData(
+    return _then(_$_TweetCountData(
       start: start == freezed
           ? _value.start
           : start // ignore: cast_nullable_to_non_nullable
@@ -145,7 +145,7 @@ class _$_TweetCountData implements _TweetCountData {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _TweetCountData &&
+            other is _$_TweetCountData &&
             const DeepCollectionEquality().equals(other.start, start) &&
             const DeepCollectionEquality().equals(other.end, end) &&
             const DeepCollectionEquality().equals(other.count, count));
@@ -161,8 +161,8 @@ class _$_TweetCountData implements _TweetCountData {
 
   @JsonKey(ignore: true)
   @override
-  _$TweetCountDataCopyWith<_TweetCountData> get copyWith =>
-      __$TweetCountDataCopyWithImpl<_TweetCountData>(this, _$identity);
+  _$$_TweetCountDataCopyWith<_$_TweetCountData> get copyWith =>
+      __$$_TweetCountDataCopyWithImpl<_$_TweetCountData>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -189,6 +189,6 @@ abstract class _TweetCountData implements TweetCountData {
   int get count => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$TweetCountDataCopyWith<_TweetCountData> get copyWith =>
+  _$$_TweetCountDataCopyWith<_$_TweetCountData> get copyWith =>
       throw _privateConstructorUsedError;
 }

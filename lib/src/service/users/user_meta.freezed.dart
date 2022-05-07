@@ -75,9 +75,10 @@ class _$UserMetaCopyWithImpl<$Res> implements $UserMetaCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$UserMetaCopyWith<$Res> implements $UserMetaCopyWith<$Res> {
-  factory _$UserMetaCopyWith(_UserMeta value, $Res Function(_UserMeta) then) =
-      __$UserMetaCopyWithImpl<$Res>;
+abstract class _$$_UserMetaCopyWith<$Res> implements $UserMetaCopyWith<$Res> {
+  factory _$$_UserMetaCopyWith(
+          _$_UserMeta value, $Res Function(_$_UserMeta) then) =
+      __$$_UserMetaCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'result_count') int resultCount,
@@ -86,13 +87,14 @@ abstract class _$UserMetaCopyWith<$Res> implements $UserMetaCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$UserMetaCopyWithImpl<$Res> extends _$UserMetaCopyWithImpl<$Res>
-    implements _$UserMetaCopyWith<$Res> {
-  __$UserMetaCopyWithImpl(_UserMeta _value, $Res Function(_UserMeta) _then)
-      : super(_value, (v) => _then(v as _UserMeta));
+class __$$_UserMetaCopyWithImpl<$Res> extends _$UserMetaCopyWithImpl<$Res>
+    implements _$$_UserMetaCopyWith<$Res> {
+  __$$_UserMetaCopyWithImpl(
+      _$_UserMeta _value, $Res Function(_$_UserMeta) _then)
+      : super(_value, (v) => _then(v as _$_UserMeta));
 
   @override
-  _UserMeta get _value => super._value as _UserMeta;
+  _$_UserMeta get _value => super._value as _$_UserMeta;
 
   @override
   $Res call({
@@ -100,7 +102,7 @@ class __$UserMetaCopyWithImpl<$Res> extends _$UserMetaCopyWithImpl<$Res>
     Object? nextToken = freezed,
     Object? previousToken = freezed,
   }) {
-    return _then(_UserMeta(
+    return _then(_$_UserMeta(
       resultCount: resultCount == freezed
           ? _value.resultCount
           : resultCount // ignore: cast_nullable_to_non_nullable
@@ -147,7 +149,7 @@ class _$_UserMeta implements _UserMeta {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _UserMeta &&
+            other is _$_UserMeta &&
             const DeepCollectionEquality()
                 .equals(other.resultCount, resultCount) &&
             const DeepCollectionEquality().equals(other.nextToken, nextToken) &&
@@ -165,8 +167,8 @@ class _$_UserMeta implements _UserMeta {
 
   @JsonKey(ignore: true)
   @override
-  _$UserMetaCopyWith<_UserMeta> get copyWith =>
-      __$UserMetaCopyWithImpl<_UserMeta>(this, _$identity);
+  _$$_UserMetaCopyWith<_$_UserMeta> get copyWith =>
+      __$$_UserMetaCopyWithImpl<_$_UserMeta>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -194,6 +196,6 @@ abstract class _UserMeta implements UserMeta {
   String? get previousToken => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$UserMetaCopyWith<_UserMeta> get copyWith =>
+  _$$_UserMetaCopyWith<_$_UserMeta> get copyWith =>
       throw _privateConstructorUsedError;
 }

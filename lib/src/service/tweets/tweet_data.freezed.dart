@@ -63,29 +63,30 @@ class _$TweetDataCopyWithImpl<$Res> implements $TweetDataCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$TweetDataCopyWith<$Res> implements $TweetDataCopyWith<$Res> {
-  factory _$TweetDataCopyWith(
-          _TweetData value, $Res Function(_TweetData) then) =
-      __$TweetDataCopyWithImpl<$Res>;
+abstract class _$$_TweetDataCopyWith<$Res> implements $TweetDataCopyWith<$Res> {
+  factory _$$_TweetDataCopyWith(
+          _$_TweetData value, $Res Function(_$_TweetData) then) =
+      __$$_TweetDataCopyWithImpl<$Res>;
   @override
   $Res call({String id, String text});
 }
 
 /// @nodoc
-class __$TweetDataCopyWithImpl<$Res> extends _$TweetDataCopyWithImpl<$Res>
-    implements _$TweetDataCopyWith<$Res> {
-  __$TweetDataCopyWithImpl(_TweetData _value, $Res Function(_TweetData) _then)
-      : super(_value, (v) => _then(v as _TweetData));
+class __$$_TweetDataCopyWithImpl<$Res> extends _$TweetDataCopyWithImpl<$Res>
+    implements _$$_TweetDataCopyWith<$Res> {
+  __$$_TweetDataCopyWithImpl(
+      _$_TweetData _value, $Res Function(_$_TweetData) _then)
+      : super(_value, (v) => _then(v as _$_TweetData));
 
   @override
-  _TweetData get _value => super._value as _TweetData;
+  _$_TweetData get _value => super._value as _$_TweetData;
 
   @override
   $Res call({
     Object? id = freezed,
     Object? text = freezed,
   }) {
-    return _then(_TweetData(
+    return _then(_$_TweetData(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -120,7 +121,7 @@ class _$_TweetData implements _TweetData {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _TweetData &&
+            other is _$_TweetData &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.text, text));
   }
@@ -134,8 +135,8 @@ class _$_TweetData implements _TweetData {
 
   @JsonKey(ignore: true)
   @override
-  _$TweetDataCopyWith<_TweetData> get copyWith =>
-      __$TweetDataCopyWithImpl<_TweetData>(this, _$identity);
+  _$$_TweetDataCopyWith<_$_TweetData> get copyWith =>
+      __$$_TweetDataCopyWithImpl<_$_TweetData>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -156,6 +157,6 @@ abstract class _TweetData implements TweetData {
   String get text => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$TweetDataCopyWith<_TweetData> get copyWith =>
+  _$$_TweetDataCopyWith<_$_TweetData> get copyWith =>
       throw _privateConstructorUsedError;
 }
