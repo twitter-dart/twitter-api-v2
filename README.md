@@ -168,6 +168,16 @@ void main() async {
 3. **Spaces**
    1. **Search Spaces**
       1. [GET /2/spaces/search](https://developer.twitter.com/en/docs/twitter-api/spaces/search/api-reference/get-spaces-search)
+   2. **Lookup Spaces**
+      1. [GET /2/spaces](https://developer.twitter.com/en/docs/twitter-api/spaces/lookup/api-reference/get-spaces)
+      2. [GET /2/spaces/:id](https://developer.twitter.com/en/docs/twitter-api/spaces/lookup/api-reference/get-spaces-id)
+      3. [GET /2/spaces/:id/buyers](https://developer.twitter.com/en/docs/twitter-api/spaces/lookup/api-reference/get-spaces-id-buyers)
+      4. [GET /2/spaces/:id/tweets](https://developer.twitter.com/en/docs/twitter-api/spaces/lookup/api-reference/get-spaces-id-tweets)
+      5. [GET /2/spaces/by/creator_ids](https://developer.twitter.com/en/docs/twitter-api/spaces/lookup/api-reference/get-spaces-by-creator-ids)
+
+> Note:
+> Not all additional fields listed in the official documentation are supported. We intend to support them step by step.
+> Also you can create an Issue or Pull Request if you wish to suggest or contribute!
 
 ## 1.3. Contribution
 
