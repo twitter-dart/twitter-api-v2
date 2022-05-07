@@ -9,9 +9,9 @@ import 'dart:convert';
 import 'package:http/http.dart';
 
 // Project imports:
-import 'package:twitter_api_v2/src/client/client_context.dart';
-import 'package:twitter_api_v2/src/client/user_context.dart';
-import 'package:twitter_api_v2/twitter_api_v2.dart';
+import '../../twitter_api_v2.dart';
+import '../client/client_context.dart';
+import '../client/user_context.dart';
 
 abstract class Service {
   Future<dynamic> get(UserContext userContext, String unencodedPath);

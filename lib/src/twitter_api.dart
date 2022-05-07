@@ -3,14 +3,14 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
-import 'package:twitter_api_v2/src/client/client_context.dart';
-import 'package:twitter_api_v2/src/client/oauth_tokens.dart';
-import 'package:twitter_api_v2/src/service/compliance/compliance_service.dart';
-import 'package:twitter_api_v2/src/service/lists/lists_service.dart';
-import 'package:twitter_api_v2/src/service/spaces/spaces_service.dart';
-import 'package:twitter_api_v2/src/service/tweets/tweets_service.dart';
-import 'package:twitter_api_v2/src/service/twitter_service.dart';
-import 'package:twitter_api_v2/src/service/users/users_service.dart';
+import 'client/client_context.dart';
+import 'client/oauth_tokens.dart';
+import 'service/compliance/compliance_service.dart';
+import 'service/lists/lists_service.dart';
+import 'service/spaces/spaces_service.dart';
+import 'service/tweets/tweets_service.dart';
+import 'service/twitter_service.dart';
+import 'service/users/users_service.dart';
 
 abstract class TwitterApi {
   /// Returns the new instance of [TwitterApi].

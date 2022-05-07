@@ -6,8 +6,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import 'package:twitter_api_v2/src/service/compliance/job_status.dart';
-import 'package:twitter_api_v2/src/service/compliance/job_type.dart';
+import 'job_status.dart';
+import 'job_type.dart';
 
 part 'compliance_data.freezed.dart';
 part 'compliance_data.g.dart';

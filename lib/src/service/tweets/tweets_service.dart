@@ -3,16 +3,16 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
-import 'package:twitter_api_v2/src/client/client_context.dart';
-import 'package:twitter_api_v2/src/client/user_context.dart';
-import 'package:twitter_api_v2/src/service/base_service.dart';
-import 'package:twitter_api_v2/src/service/tweets/tweet_count_data.dart';
-import 'package:twitter_api_v2/src/service/tweets/tweet_count_meta.dart';
-import 'package:twitter_api_v2/src/service/tweets/tweet_data.dart';
-import 'package:twitter_api_v2/src/service/tweets/tweet_meta.dart';
-import 'package:twitter_api_v2/src/service/twitter_response.dart';
-import 'package:twitter_api_v2/src/service/users/user_data.dart';
-import 'package:twitter_api_v2/src/service/users/user_meta.dart';
+import '../../client/client_context.dart';
+import '../../client/user_context.dart';
+import '../base_service.dart';
+import '../twitter_response.dart';
+import '../users/user_data.dart';
+import '../users/user_meta.dart';
+import 'tweet_count_data.dart';
+import 'tweet_count_meta.dart';
+import 'tweet_data.dart';
+import 'tweet_meta.dart';
 
 abstract class TweetsService {
   /// Returns the new instance of [TweetsService].

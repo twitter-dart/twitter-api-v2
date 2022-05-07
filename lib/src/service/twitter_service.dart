@@ -3,12 +3,12 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
-import 'package:twitter_api_v2/src/client/client_context.dart';
-import 'package:twitter_api_v2/src/service/compliance/compliance_service.dart';
-import 'package:twitter_api_v2/src/service/lists/lists_service.dart';
-import 'package:twitter_api_v2/src/service/spaces/spaces_service.dart';
-import 'package:twitter_api_v2/src/service/tweets/tweets_service.dart';
-import 'package:twitter_api_v2/src/service/users/users_service.dart';
+import '../client/client_context.dart';
+import 'compliance/compliance_service.dart';
+import 'lists/lists_service.dart';
+import 'spaces/spaces_service.dart';
+import 'tweets/tweets_service.dart';
+import 'users/users_service.dart';
 
 /// The class represents the twitter services.
 abstract class TwitterService {
