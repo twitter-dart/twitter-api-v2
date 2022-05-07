@@ -94,16 +94,25 @@ void main() {
         UserContext.oauth2OrOAuth1,
         '/2/users/5555/owned_lists',
         'test/src/service/lists/data/lookup_owned_by.json',
-        {},
+        {
+          'max_results': '50',
+          'pagination_token': 'PAGINATION_TOKEN',
+        },
       ),
     );
 
-    final response = await listsService.lookupOwnedBy(userId: '5555');
+    final response = await listsService.lookupOwnedBy(
+      userId: '5555',
+      maxResults: 50,
+      paginationToken: 'PAGINATION_TOKEN',
+    );
 
     expect(response, isA<TwitterResponse>());
     expect(response.data, isA<List<ListData>>());
     expect(response.meta, isA<ListMeta>());
     expect(response.data.length, 1);
     expect(response.meta!.resultCount, 1);
+    expect(response.meta!.nextToken, 'NEXT_TOKEN');
+    expect(response.meta!.previousToken, 'PREVIOUS_TOKEN');
   });
 }

@@ -12,6 +12,8 @@ part 'list_meta.g.dart';
 class ListMeta with _$ListMeta {
   const factory ListMeta({
     @JsonKey(name: 'result_count') int? resultCount,
+    @JsonKey(name: 'next_token') String? nextToken,
+    @JsonKey(name: 'previous_token') String? previousToken,
   }) = _ListMeta;
 
   factory ListMeta.fromJson(Map<String, Object?> json) =>

@@ -44,6 +44,17 @@ abstract class ListsService {
   ///
   /// - [userId]: The user ID whose owned Lists you would like to retrieve.
   ///
+  /// - [maxResults]: The maximum number of results to be returned per page.
+  ///                 This can be a number between 1 and 100. By default,
+  ///                 each page will return 100 results.
+  ///
+  /// - [paginationToken]: Used to request the next page of results if all results
+  ///                      weren't returned with the latest request, or to go back to
+  ///                      the previous page of results. To return the next page,
+  ///                      pass the next_token returned in your previous response.
+  ///                      To go back one page, pass the previous_token returned
+  ///                      in your previous response.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/owned_lists
@@ -60,7 +71,7 @@ abstract class ListsService {
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/lists/list-lookup/api-reference/get-users-id-owned_lists
   Future<TwitterResponse<List<ListData>, ListMeta>> lookupOwnedBy(
-      {required String userId});
+      {required String userId, int? maxResults, String? paginationToken});
 }
 
 class _ListsService extends BaseService implements ListsService {
@@ -79,11 +90,18 @@ class _ListsService extends BaseService implements ListsService {
   }
 
   @override
-  Future<TwitterResponse<List<ListData>, ListMeta>> lookupOwnedBy(
-      {required String userId}) async {
+  Future<TwitterResponse<List<ListData>, ListMeta>> lookupOwnedBy({
+    required String userId,
+    int? maxResults,
+    String? paginationToken,
+  }) async {
     final response = await super.get(
       UserContext.oauth2OrOAuth1,
       '/2/users/$userId/owned_lists',
+      queryParameters: {
+        'max_results': maxResults,
+        'pagination_token': paginationToken,
+      },
     );
 
     return TwitterResponse(
