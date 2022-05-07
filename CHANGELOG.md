@@ -1,5 +1,14 @@
 # Release Note
 
+## v1.5.0
+
+- Added **Spaces Lookup** endpoints. ([#25](https://github.com/twitter-dart/twitter-api-v2/issues/25))
+  - GET /2/spaces
+  - GET /2/spaces/:id
+  - GET /2/spaces/:id/buyers
+  - GET /2/spaces/:id/tweets
+  - GET /2/spaces/by/creator_ids
+
 ## v1.4.0
 
 - Fixed response handling.

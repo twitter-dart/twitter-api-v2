@@ -8,7 +8,10 @@ import 'package:twitter_api_v2/src/client/user_context.dart';
 import 'package:twitter_api_v2/src/service/base_service.dart';
 import 'package:twitter_api_v2/src/service/spaces/space_data.dart';
 import 'package:twitter_api_v2/src/service/spaces/space_meta.dart';
+import 'package:twitter_api_v2/src/service/tweets/tweet_data.dart';
+import 'package:twitter_api_v2/src/service/tweets/tweet_meta.dart';
 import 'package:twitter_api_v2/src/service/twitter_response.dart';
+import 'package:twitter_api_v2/src/service/users/user_data.dart';
 
 abstract class SpacesService {
   /// Returns the new instance of [SpacesService].
@@ -44,6 +47,127 @@ abstract class SpacesService {
   /// - https://developer.twitter.com/en/docs/twitter-api/spaces/search/api-reference/get-spaces-search
   Future<TwitterResponse<List<SpaceData>, SpaceMeta>> search(
       {required String query});
+
+  /// Returns a variety of information about a single Space specified by the requested ID.
+  ///
+  /// ## Parameters
+  ///
+  /// - [spaceId]: Unique identifier of the Space to request.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/spaces/:id
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    300 requests per 15-minute window per each authenticated user
+  ///
+  /// - **App rate limit (OAuth 2.0 App Access Token)**:
+  ///    300 requests per 15-minute window shared among all users of your app
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/spaces/lookup/api-reference/get-spaces-id
+  Future<TwitterResponse<SpaceData, void>> lookupById(
+      {required String spaceId});
+
+  /// Returns details about multiple Spaces. Up to 100 comma-separated Spaces IDs
+  /// can be looked up using this endpoint.
+  ///
+  /// ## Parameters
+  ///
+  /// - [spaceIds]: Unique identifiers of the Space to request.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/spaces
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    300 requests per 15-minute window per each authenticated user
+  ///
+  /// - **App rate limit (OAuth 2.0 App Access Token)**:
+  ///    300 requests per 15-minute window shared among all users of your app
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/spaces/lookup/api-reference/get-spaces
+  Future<TwitterResponse<List<SpaceData>, void>> lookupByIds(
+      {required List<String> spaceIds});
+
+  /// Returns a list of user who purchased a ticket to the requested Space.
+  /// You must authenticate the request using the Access Token of the creator
+  /// of the requested Space.
+  ///
+  /// ## Parameters
+  ///
+  /// - [spaceId]: Unique identifier of the Space for which you want to request Tweets.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/spaces/:id/buyers
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    300 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/spaces/lookup/api-reference/get-spaces-id-buyers
+  Future<TwitterResponse<List<UserData>, void>> lookupBuyers(
+      {required String spaceId});
+
+  /// Returns Tweets shared in the requested Spaces.
+  ///
+  /// ## Parameters
+  ///
+  /// - [spaceId]: Unique identifier of the Space containing the Tweets you'd like to access.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/spaces/:id/tweets
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    300 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/spaces/lookup/api-reference/get-spaces-id-tweets
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupTweets(
+      {required String spaceId});
+
+  /// Returns live or scheduled Spaces created by the specified user IDs.
+  /// Up to 100 comma-separated IDs can be looked up using this endpoint.
+  ///
+  /// ## Parameters
+  ///
+  /// - [userIds]: Unique identifiers of the User.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/spaces/by/creator_ids
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    300 requests per 15-minute window per each authenticated user
+  ///
+  /// - **App rate limit (OAuth 2.0 App Access Token)**:
+  ///    300 requests per 15-minute window shared among all users of your app
+  ///
+  /// - **Shared rate limit**:
+  ///    1 request per second among all users of your app
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/spaces/lookup/api-reference/get-spaces-by-creator-ids
+  Future<TwitterResponse<List<SpaceData>, SpaceMeta>> lookupByCreatorIds(
+      {required List<String> userIds});
 }
 
 class _SpacesService extends BaseService implements SpacesService {
@@ -57,6 +181,83 @@ class _SpacesService extends BaseService implements SpacesService {
       UserContext.oauth2AppOnly,
       '/2/spaces/search',
       queryParameters: {'query': query},
+    );
+
+    return TwitterResponse(
+      data: response['data']
+          .map<SpaceData>((space) => SpaceData.fromJson(space))
+          .toList(),
+      meta: SpaceMeta.fromJson(response['meta']),
+    );
+  }
+
+  @override
+  Future<TwitterResponse<SpaceData, void>> lookupById(
+      {required String spaceId}) async {
+    final response = await super.get(
+      UserContext.oauth2AppOnly,
+      '/2/spaces/$spaceId',
+    );
+
+    return TwitterResponse(
+      data: SpaceData.fromJson(response['data']),
+    );
+  }
+
+  @override
+  Future<TwitterResponse<List<SpaceData>, void>> lookupByIds(
+      {required List<String> spaceIds}) async {
+    final response = await super.get(
+      UserContext.oauth2AppOnly,
+      '/2/spaces',
+      queryParameters: {'ids': spaceIds.join(',')},
+    );
+
+    return TwitterResponse(
+      data: response['data']
+          .map<SpaceData>((space) => SpaceData.fromJson(space))
+          .toList(),
+    );
+  }
+
+  @override
+  Future<TwitterResponse<List<UserData>, void>> lookupBuyers(
+      {required String spaceId}) async {
+    final response = await super.get(
+      UserContext.oauth2AppOnly,
+      '/2/spaces/$spaceId/buyers',
+    );
+
+    return TwitterResponse(
+      data: response['data']
+          .map<UserData>((user) => UserData.fromJson(user))
+          .toList(),
+    );
+  }
+
+  @override
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupTweets(
+      {required String spaceId}) async {
+    final response = await super.get(
+      UserContext.oauth2AppOnly,
+      '/2/spaces/$spaceId/tweets',
+    );
+
+    return TwitterResponse(
+      data: response['data']
+          .map<TweetData>((tweet) => TweetData.fromJson(tweet))
+          .toList(),
+      meta: TweetMeta.fromJson(response['meta']),
+    );
+  }
+
+  @override
+  Future<TwitterResponse<List<SpaceData>, SpaceMeta>> lookupByCreatorIds(
+      {required List<String> userIds}) async {
+    final response = await super.get(
+      UserContext.oauth2AppOnly,
+      '/2/spaces/by/creator_ids',
+      queryParameters: {'user_ids': userIds.join(',')},
     );
 
     return TwitterResponse(
