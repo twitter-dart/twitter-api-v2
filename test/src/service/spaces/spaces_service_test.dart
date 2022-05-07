@@ -93,4 +93,99 @@ void main() {
       expect(response.meta!.resultCount, 2);
     });
   });
+
+  test('.lookupById', () async {
+    final spacesService = SpacesService(
+      context: context.buildGetStub(
+        UserContext.oauth2,
+        '/2/spaces/2222',
+        'test/src/service/spaces/data/lookup_by_id.json',
+        {},
+      ),
+    );
+
+    final response = await spacesService.lookupById(spaceId: '2222');
+
+    expect(response, isA<TwitterResponse>());
+    expect(response.data, isA<SpaceData>());
+    expect(response.data.id, '1DXxyRYNejbKM');
+    expect(response.data.state, SpaceState.live);
+  });
+
+  test('.lookupByIds', () async {
+    final spacesService = SpacesService(
+      context: context.buildGetStub(
+        UserContext.oauth2,
+        '/2/spaces',
+        'test/src/service/spaces/data/lookup_by_ids.json',
+        {'ids': '1DXxyRYNejbKM,2DXxyRYNejbKM'},
+      ),
+    );
+
+    final response = await spacesService.lookupByIds(
+      spaceIds: ['1DXxyRYNejbKM', '2DXxyRYNejbKM'],
+    );
+
+    expect(response, isA<TwitterResponse>());
+    expect(response.data, isA<List<SpaceData>>());
+    expect(response.data.first.id, '1DXxyRYNejbKM');
+    expect(response.data.first.state, SpaceState.live);
+  });
+
+  test('.lookupBuyers', () async {
+    final spacesService = SpacesService(
+      context: context.buildGetStub(
+        UserContext.oauth2,
+        '/2/spaces/2222/buyers',
+        'test/src/service/spaces/data/lookup_buyers.json',
+        {},
+      ),
+    );
+
+    final response = await spacesService.lookupBuyers(spaceId: '2222');
+
+    expect(response, isA<TwitterResponse>());
+    expect(response.data, isA<List<UserData>>());
+    expect(response.data.length, 2);
+  });
+
+  test('.lookupTweets', () async {
+    final spacesService = SpacesService(
+      context: context.buildGetStub(
+        UserContext.oauth2,
+        '/2/spaces/2222/tweets',
+        'test/src/service/spaces/data/lookup_tweets.json',
+        {},
+      ),
+    );
+
+    final response = await spacesService.lookupTweets(spaceId: '2222');
+
+    expect(response, isA<TwitterResponse>());
+    expect(response.data, isA<List<TweetData>>());
+    expect(response.meta, isA<TweetMeta>());
+    expect(response.data.length, 3);
+    expect(response.meta!.resultCount, 3);
+  });
+
+  test('.lookupByCreatorIds', () async {
+    final spacesService = SpacesService(
+      context: context.buildGetStub(
+        UserContext.oauth2,
+        '/2/spaces',
+        'test/src/service/spaces/data/lookup_by_creator_ids.json',
+        {'user_ids': '1DXxyRYNejbKM,2DXxyRYNejbKM'},
+      ),
+    );
+
+    final response = await spacesService.lookupByCreatorIds(
+      userIds: ['1DXxyRYNejbKM', '2DXxyRYNejbKM'],
+    );
+
+    expect(response, isA<TwitterResponse>());
+    expect(response.data, isA<List<SpaceData>>());
+    expect(response.meta, isA<SpaceMeta>());
+    expect(response.data.length, 2);
+    expect(response.meta!.resultCount, 2);
+  });
 }
