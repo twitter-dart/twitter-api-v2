@@ -11,6 +11,9 @@
   - GET /2/spaces/:id/buyers
   - GET /2/spaces/:id/tweets
   - GET /2/spaces/by/creator_ids
+- Added **Lists Lookup** endpoints. ([#28](https://github.com/twitter-dart/twitter-api-v2/issues/28))
+  - GET /2/lists/:id
+  - GET /2/users/:id/owned_lists
 
 ## v1.4.0
 
