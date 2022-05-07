@@ -3,6 +3,7 @@
 // modification, are permitted provided the conditions.
 
 // Package imports:
+import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
 // Project imports:
@@ -67,6 +68,29 @@ void main() {
               predicate((e) => e.toString().isNotEmpty)),
         ),
       );
+    });
+
+    test('with OAuth1.0a', () async {
+      final clientContext = context.buildGetStub(
+        UserContext.oauth2AppOnly,
+        '/2/spaces/search',
+        'test/src/service/spaces/data/search.json',
+        {'query': 'Hello, World!'},
+      );
+
+      when(clientContext.hasOAuth1Client).thenReturn(true);
+
+      final spacesService = SpacesService(context: clientContext);
+      final response = await spacesService.search(query: 'Hello, World!');
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<SpaceData>>());
+      expect(response.meta, isA<SpaceMeta>());
+      expect(response.data.length, 2);
+      expect(response.data.first.id, '1DXxyRYNejbKM');
+      expect(response.data.first.state, SpaceState.live);
+      expect(response.data[1].state, SpaceState.scheduled);
+      expect(response.meta!.resultCount, 2);
     });
   });
 }

@@ -3,6 +3,7 @@
 // modification, are permitted provided the conditions.
 
 // Package imports:
+import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
 // Project imports:
@@ -62,20 +63,54 @@ void main() {
         ),
       );
     });
+
+    test('with OAuth1.0a', () async {
+      final clientContext = context.buildPostStub(
+        '/2/tweets',
+        'test/src/service/tweets/data/create_tweet.json',
+      );
+
+      when(clientContext.hasOAuth1Client).thenReturn(true);
+
+      final tweetsService = TweetsService(context: clientContext);
+      final response = await tweetsService.createTweet(text: 'Hello, World!');
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<TweetData>());
+      expect(response.data.id, '1445880548472328192');
+      expect(response.data.text, 'Hello, World!');
+    });
   });
 
-  test('.destroyTweet', () async {
-    final tweetsService = TweetsService(
-      context: context.buildDeleteStub(
+  group('.destroyTweet', () {
+    test('normal case', () async {
+      final tweetsService = TweetsService(
+        context: context.buildDeleteStub(
+          '/2/tweets/1111',
+          'test/src/service/tweets/data/destroy_tweet.json',
+        ),
+      );
+
+      final response = await tweetsService.destroyTweet(tweetId: '1111');
+
+      expect(response, isA<bool>());
+      expect(response, isTrue);
+    });
+
+    test('with OAuth1.0a', () async {
+      final clientContext = context.buildDeleteStub(
         '/2/tweets/1111',
         'test/src/service/tweets/data/destroy_tweet.json',
-      ),
-    );
+      );
 
-    final response = await tweetsService.destroyTweet(tweetId: '1111');
+      when(clientContext.hasOAuth1Client).thenReturn(true);
 
-    expect(response, isA<bool>());
-    expect(response, isTrue);
+      final tweetsService = TweetsService(context: clientContext);
+      final response = await tweetsService.destroyTweet(tweetId: '1111');
+
+      expect(response, isA<bool>());
+      expect(response, isTrue);
+    });
   });
 
   test('.createLike', () async {
