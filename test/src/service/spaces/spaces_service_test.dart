@@ -97,7 +97,7 @@ void main() {
   test('.lookupById', () async {
     final spacesService = SpacesService(
       context: context.buildGetStub(
-        UserContext.oauth2,
+        UserContext.oauth2AppOnly,
         '/2/spaces/2222',
         'test/src/service/spaces/data/lookup_by_id.json',
         {},
@@ -115,7 +115,7 @@ void main() {
   test('.lookupByIds', () async {
     final spacesService = SpacesService(
       context: context.buildGetStub(
-        UserContext.oauth2,
+        UserContext.oauth2AppOnly,
         '/2/spaces',
         'test/src/service/spaces/data/lookup_by_ids.json',
         {'ids': '1DXxyRYNejbKM,2DXxyRYNejbKM'},
@@ -135,7 +135,7 @@ void main() {
   test('.lookupBuyers', () async {
     final spacesService = SpacesService(
       context: context.buildGetStub(
-        UserContext.oauth2,
+        UserContext.oauth2AppOnly,
         '/2/spaces/2222/buyers',
         'test/src/service/spaces/data/lookup_buyers.json',
         {},
@@ -152,7 +152,7 @@ void main() {
   test('.lookupTweets', () async {
     final spacesService = SpacesService(
       context: context.buildGetStub(
-        UserContext.oauth2,
+        UserContext.oauth2AppOnly,
         '/2/spaces/2222/tweets',
         'test/src/service/spaces/data/lookup_tweets.json',
         {},
@@ -171,8 +171,8 @@ void main() {
   test('.lookupByCreatorIds', () async {
     final spacesService = SpacesService(
       context: context.buildGetStub(
-        UserContext.oauth2,
-        '/2/spaces',
+        UserContext.oauth2AppOnly,
+        '/2/spaces/by/creator_ids',
         'test/src/service/spaces/data/lookup_by_creator_ids.json',
         {'user_ids': '1DXxyRYNejbKM,2DXxyRYNejbKM'},
       ),
