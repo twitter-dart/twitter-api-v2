@@ -318,7 +318,7 @@ void main() {
       context: context.buildGetStub(
         UserContext.oauth2,
         '/2/tweets/1111',
-        'test/src/service/tweets/data/lookup_tweet.json',
+        'test/src/service/tweets/data/lookup_by_id.json',
         {},
       ),
     );
@@ -337,7 +337,7 @@ void main() {
       context: context.buildGetStub(
         UserContext.oauth2,
         '/2/tweets',
-        'test/src/service/tweets/data/lookup_tweets.json',
+        'test/src/service/tweets/data/lookup_by_ids.json',
         {'ids': '1261326399320715264,1278347468690915330'},
       ),
     );
