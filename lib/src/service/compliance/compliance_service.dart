@@ -20,7 +20,8 @@ abstract class ComplianceService {
   ///
   /// ## Parameters
   ///
-  /// - [jobId]: The unique identifier for the compliance job you want to retrieve.
+  /// - [jobId]: The unique identifier for the compliance job you want to
+  ///            retrieve.
   ///
   /// ## Endpoint Url
   ///
@@ -42,7 +43,8 @@ abstract class ComplianceService {
   /// ## Parameters
   ///
   /// - [jobType]: Allows to filter by job type - either by tweets or user ID.
-  ///              Only one filter (tweets or users) can be specified per request.
+  ///              Only one filter (tweets or users) can be specified per
+  ///              request.
   ///
   /// - [jobStatus]: Allows to filter by job status. Only one filter can be
   ///                specified per request. Default: `all`.

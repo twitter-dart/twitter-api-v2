@@ -75,7 +75,8 @@ class _ClientContext implements ClientContext {
     Duration timeout = const Duration(seconds: 10),
   }) {
     if (userContext == UserContext.oauth2OrOAuth1 && hasOAuth1Client) {
-      //! If an authentication token is set, the OAuth 1.0a method is given priority.
+      //! If an authentication token is set, the OAuth 1.0a method is given
+      //! priority.
       return _oauth1Client!.get(uri, timeout: timeout);
     }
 
@@ -91,7 +92,8 @@ class _ClientContext implements ClientContext {
     Duration timeout = const Duration(seconds: 10),
   }) {
     if (userContext == UserContext.oauth2OrOAuth1 && hasOAuth1Client) {
-      //! If an authentication token is set, the OAuth 1.0a method is given priority.
+      //! If an authentication token is set, the OAuth 1.0a method is given
+      //! priority.
       return _oauth1Client!.post(
         uri,
         headers: headers,
@@ -117,7 +119,8 @@ class _ClientContext implements ClientContext {
     Duration timeout = const Duration(seconds: 10),
   }) {
     if (userContext == UserContext.oauth2OrOAuth1 && hasOAuth1Client) {
-      //! If an authentication token is set, the OAuth 1.0a method is given priority.
+      //! If an authentication token is set, the OAuth 1.0a method is given
+      //! priority.
       return _oauth1Client!.get(uri, timeout: timeout);
     }
 

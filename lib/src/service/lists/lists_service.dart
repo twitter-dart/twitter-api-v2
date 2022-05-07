@@ -48,12 +48,12 @@ abstract class ListsService {
   ///                 This can be a number between 1 and 100. By default,
   ///                 each page will return 100 results.
   ///
-  /// - [paginationToken]: Used to request the next page of results if all results
-  ///                      weren't returned with the latest request, or to go back to
-  ///                      the previous page of results. To return the next page,
-  ///                      pass the next_token returned in your previous response.
-  ///                      To go back one page, pass the previous_token returned
-  ///                      in your previous response.
+  /// - [paginationToken]: Used to request the next page of results if all
+  ///                      results weren't returned with the latest request, or
+  ///                      to go back to the previous page of results. To return
+  ///                      the next page, pass the `next_token` returned in your
+  ///                      previous response. To go back one page, pass the
+  ///                      `previous_token` returned in your previous response.
   ///
   /// ## Endpoint Url
   ///

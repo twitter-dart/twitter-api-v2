@@ -47,9 +47,9 @@ abstract class BaseService implements Service {
         _authority,
         unencodedPath,
         _removeNullParameters(queryParameters).map(
-          //! Uri.https(...) needs iterable in the value for query params by which
-          //! it means a String in the value of the Map too. So you need to convert it
-          //! from Map<String, dynamic> to Map<String, String>
+          //! Uri.https(...) needs iterable in the value for query params by
+          //! which it means a String in the value of the Map too. So you need
+          //! to convert it from Map<String, dynamic> to Map<String, String>
           (key, value) => MapEntry(key, value.toString()),
         ),
       ),

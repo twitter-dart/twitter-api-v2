@@ -68,14 +68,15 @@ abstract class TweetsService {
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/manage-tweets/api-reference/delete-tweets-id
   Future<bool> destroyTweet({required String tweetId});
 
-  /// Causes the user ID identified in the path parameter to Like the target Tweet.
+  /// Causes the user ID identified in the path parameter to Like the target
+  /// Tweet.
   ///
   /// ## Parameters
   ///
   /// - [userId]: The user ID who you are liking a Tweet on behalf of.
-  ///             It must match your own user ID or that of an authenticating user,
-  ///             meaning that you must pass the Access Tokens associated with
-  ///             the user ID when authenticating your request.
+  ///             It must match your own user ID or that of an authenticating
+  ///             user, meaning that you must pass the Access Tokens associated
+  ///             with the user ID when authenticating your request.
   ///
   /// - [tweetId]: The ID of the Tweet that you would like the user id to Like.
   ///
@@ -100,10 +101,11 @@ abstract class TweetsService {
   ///
   /// ## Parameters
   ///
-  /// - [userId]: The user ID who you are removing a Like of a Tweet on behalf of.
-  ///             It must match your own user ID or that of an authenticating user,
-  ///             meaning that you must pass the Access Tokens associated with
-  ///             the user ID when authenticating your request.
+  /// - [userId]: The user ID who you are removing a Like of a Tweet on behalf
+  ///             of. It must match your own user ID or that of an
+  ///             authenticating user, meaning that you must pass the Access
+  ///             Tokens associated with the user ID when authenticating your
+  ///             request.
   ///
   /// - [tweetId]: The ID of the Tweet that you would like the id to unlike.
   ///
@@ -121,16 +123,18 @@ abstract class TweetsService {
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/likes/api-reference/delete-users-id-likes-tweet_id
   Future<bool> destroyLike({required String userId, required String tweetId});
 
-  /// Causes the user ID identified in the path parameter to Retweet the target Tweet.
+  /// Causes the user ID identified in the path parameter to Retweet the target
+  /// Tweet.
   ///
   /// ## Parameters
   ///
   /// - [userId]: The user ID who you are Retweeting a Tweet on behalf of.
-  ///             It must match your own user ID or that of an authenticating user,
-  ///             meaning that you must pass the Access Tokens associated with
-  ///             the user ID when authenticating your request.
+  ///             It must match your own user ID or that of an authenticating
+  ///             user, meaning that you must pass the Access Tokens associated
+  ///             with the user ID when authenticating your request.
   ///
-  /// - [tweetId]: The ID of the Tweet that you would like the user id to Retweet.
+  /// - [tweetId]: The ID of the Tweet that you would like the user id to
+  ///              Retweet.
   ///
   /// ## Endpoint Url
   ///
@@ -149,15 +153,19 @@ abstract class TweetsService {
   /// Allows a user or authenticated user ID to remove the Retweet of a Tweet.
   ///
   /// The request succeeds with no action when the user sends a request to
-  /// a user they're not Retweeting the Tweet or have already removed the Retweet of.
+  /// a user they're not Retweeting the Tweet or have already removed the
+  /// Retweet of.
+  ///
   /// ## Parameters
   ///
-  /// - [userId]: The user ID who you are removing a the Retweet of a Tweet on behalf of.
-  ///             It must match your own user ID or that of an authenticating user,
-  ///             meaning that you must pass the Access Tokens associated with
-  ///             the user ID when authenticating your request.
+  /// - [userId]: The user ID who you are removing a the Retweet of a Tweet on
+  ///             behalf of. It must match your own user ID or that of an
+  ///             authenticating user, meaning that you must pass the Access
+  ///             Tokens associated with the user ID when authenticating your
+  ///             request.
   ///
-  /// - [tweetId]: The ID of the Tweet that you would like the id to remove the Retweet of.
+  /// - [tweetId]: The ID of the Tweet that you would like the id to remove the
+  ///              Retweet of.
   ///
   /// ## Endpoint Url
   ///
@@ -184,10 +192,12 @@ abstract class TweetsService {
   ///                 This can be a number between 1 and 100. By default,
   ///                 each page will return 100 results.
   ///
-  /// - [paginationToken]: Used to request the next page of results if all results weren't
-  ///                      returned with the latest request, or to go back to the previous page of results.
-  ///                      To return the next page, pass the `next_token` returned in your previous response.
-  ///                      To go back one page, pass the `previous_token` returned in your previous response.
+  /// - [paginationToken]: Used to request the next page of results if all
+  ///                      results weren't returned with the latest request, or
+  ///                      to go back to the previous page of results. To return
+  ///                      the next page, pass the `next_token` returned in your
+  ///                      previous response. To go back one page, pass the
+  ///                      `previous_token` returned in your previous response.
   ///
   /// ## Endpoint Url
   ///
@@ -217,10 +227,12 @@ abstract class TweetsService {
   ///                 This can be a number between 10 and 100. By default,
   ///                 each page will return 100 results.
   ///
-  /// - [paginationToken]: Used to request the next page of results if all results weren't
-  ///                      returned with the latest request, or to go back to the previous page of results.
-  ///                      To return the next page, pass the `next_token` returned in your previous response.
-  ///                      To go back one page, pass the `previous_token` returned in your previous response.
+  /// - [paginationToken]: Used to request the next page of results if all
+  ///                      results weren't returned with the latest request, or
+  ///                      to go back to the previous page of results. To return
+  ///                      the next page, pass the `next_token` returned in your
+  ///                      previous response. To go back one page, pass the
+  ///                      `previous_token` returned in your previous response.
   ///
   /// ## Endpoint Url
   ///
@@ -250,10 +262,12 @@ abstract class TweetsService {
   ///                 This can be a number between 1 and 100. By default,
   ///                 each page will return 100 results.
   ///
-  /// - [paginationToken]: Used to request the next page of results if all results weren't
-  ///                      returned with the latest request, or to go back to the previous page of results.
-  ///                      To return the next page, pass the `next_token` returned in your previous response.
-  ///                      To go back one page, pass the `previous_token` returned in your previous response.
+  /// - [paginationToken]: Used to request the next page of results if all
+  ///                      results weren't returned with the latest request, or
+  ///                      to go back to the previous page of results.
+  ///                      To return the next page, pass the `next_token`
+  ///                      returned in your previous response. page, pass the
+  ///                      `previous_token` returned in your previous response.
   ///
   /// ## Endpoint Url
   ///
@@ -275,7 +289,8 @@ abstract class TweetsService {
 
   /// Returns Quote Tweets for a Tweet specified by the requested Tweet ID.
   ///
-  /// The Tweets returned by this endpoint count towards the Project-level Tweet cap.
+  /// The Tweets returned by this endpoint count towards the Project-level Tweet
+  /// cap.
   ///
   /// ## Parameters
   ///
@@ -284,14 +299,15 @@ abstract class TweetsService {
   /// - [maxResults]: Specifies the number of Tweets to try and retrieve,
   ///                 up to a maximum of 100 per distinct request. By default,
   ///                 10 results are returned if this parameter is not supplied.
-  ///                 The minimum permitted value is 10. It is possible to receive
-  ///                 less than the max_results per request throughout the
-  ///                 pagination process.
+  ///                 The minimum permitted value is 10. It is possible to
+  ///                 receive less than the max_results per request throughout
+  ///                 the pagination process.
   ///
-  /// - [paginationToken]: This parameter is used to move forwards through 'pages' of results,
-  ///                      based on the value of the `next_token`. The value used with
-  ///                      the parameter is pulled directly from the response provided
-  ///                      by the API, and should not be modified.
+  /// - [paginationToken]: This parameter is used to move forwards through
+  ///                      'pages' of results, based on the value of the
+  ///                      `next_token`. The value used with the parameter is
+  ///                      pulled directly from the response provided by the
+  ///                      API, and should not be modified.
   ///
   /// ## Endpoint Url
   ///
@@ -311,29 +327,29 @@ abstract class TweetsService {
   Future<TwitterResponse<List<TweetData>, TweetMeta>> quoteTweets(
       {required String tweetId, int? maxResults, String? paginationToken});
 
-  /// The recent search endpoint returns Tweets from the last seven days that match a search query.
+  /// The recent search endpoint returns Tweets from the last seven days that
+  /// match a search query.
   ///
-  /// The Tweets returned by this endpoint count towards the Project-level Tweet cap.
+  /// The Tweets returned by this endpoint count towards the Project-level Tweet
+  /// cap.
   ///
   /// ## Parameters
   ///
   /// - [query]: One query for matching Tweets. You can learn how to build
   ///            this query by reading our [build a query guide](https://developer.twitter.com/en/docs/twitter-api/tweets/search/integrate/build-a-query).
-  ///
   ///            If you have Essential or Elevated access, you can use the Basic
   ///            operators when building your query and can make queries up to
-  ///            512 characters long.
+  ///            512 characters long. Learn more about our access levels on the
+  ///            `about Twitter API page`.
   ///
-  ///            Learn more about our access levels on the `about Twitter API page`.
-  ///
-  /// - [maxResults]: The maximum number of search results to be returned by a request.
-  ///                 A number between 10 and 100. By default, a request response
-  ///                 will return 10 results.
+  /// - [maxResults]: The maximum number of search results to be returned by a
+  ///                 request. A number between 10 and 100. By default, a
+  ///                 request response will return 10 results.
   ///
   /// - [nextToken]: This parameter is used to get the next 'page' of results.
   ///                The value used with the parameter is pulled directly from
-  ///                the response provided by the API, and should not be modified.
-  ///                You can learn more by visiting our page on [pagination](https://developer.twitter.com/en/docs/twitter-api/tweets/search/integrate/paginate).
+  ///                the response provided by the API, and should not be
+  ///                modified. You can learn more by visiting our page on [pagination](https://developer.twitter.com/en/docs/twitter-api/tweets/search/integrate/paginate).
   ///
   /// ## Endpoint Url
   ///
@@ -359,10 +375,12 @@ abstract class TweetsService {
   /// This endpoint is only available to those users who have been approved for
   /// Academic Research access.
   ///
-  /// The full-archive search endpoint returns the complete history of public Tweets
-  /// matching a search query; since the first Tweet was created March 26, 2006.
+  /// The full-archive search endpoint returns the complete history of public
+  /// Tweets matching a search query; since the first Tweet was created March
+  /// 26, 2006.
   ///
-  /// The Tweets returned by this endpoint count towards the Project-level Tweet cap.
+  /// The Tweets returned by this endpoint count towards the Project-level Tweet
+  /// cap.
   ///
   /// ## Parameters
   ///
@@ -371,14 +389,15 @@ abstract class TweetsService {
   ///            query guide. You can use all available operators and can make
   ///            queries up to 1,024 characters long.
   ///
-  /// - [maxResults]: The maximum number of search results to be returned by a request.
-  ///                 A number between 10 and the system limit (currently 500).
-  ///                 By default, a request response will return 10 results.
+  /// - [maxResults]: The maximum number of search results to be returned by a
+  ///                 request. A number between 10 and the system limit
+  ///                 (currently 500). By default, a request response will
+  ///                 return 10 results.
   ///
   /// - [nextToken]: This parameter is used to get the next 'page' of results.
   ///                The value used with the parameter is pulled directly from
-  ///                the response provided by the API, and should not be modified.
-  ///                You can learn more by visiting our page on [pagination](https://developer.twitter.com/en/docs/twitter-api/tweets/search/integrate/paginate).
+  ///                the response provided by the API, and should not be
+  ///                modified. You can learn more by visiting our page on [pagination](https://developer.twitter.com/en/docs/twitter-api/tweets/search/integrate/paginate).
   ///
   /// ## Endpoint Url
   ///
@@ -401,7 +420,8 @@ abstract class TweetsService {
     String? nextToken,
   });
 
-  /// Returns a variety of information about a single Tweet specified by the requested ID.
+  /// Returns a variety of information about a single Tweet specified by the
+  /// requested ID.
   ///
   /// ## Parameters
   ///
@@ -425,7 +445,8 @@ abstract class TweetsService {
   Future<TwitterResponse<TweetData, void>> lookupById(
       {required String tweetId});
 
-  /// Returns a variety of information about the Tweet specified by the requested ID or list of IDs.
+  /// Returns a variety of information about the Tweet specified by the
+  /// requested ID or list of IDs.
   ///
   /// ## Parameters
   ///
@@ -450,28 +471,26 @@ abstract class TweetsService {
   Future<TwitterResponse<List<TweetData>, void>> lookupByIds(
       {required List<String> tweetIds});
 
-  /// The recent Tweet counts endpoint returns count of Tweets from the last seven days that match a query.
+  /// The recent Tweet counts endpoint returns count of Tweets from the last
+  /// seven days that match a query.
   ///
   /// ## Parameters
   ///
   /// - [query]: One query for matching Tweets. You can learn how to build
   ///            this query by reading a [build a query guide](https://developer.twitter.com/en/docs/twitter-api/tweets/counts/integrate/build-a-query).
-  ///
   ///            If you have Essential or Elevated access, you can use
-  ///            the Basic operators when building your query and can make queries
-  ///            up to 512 characters long.
-  ///
+  ///            the Basic operators when building your query and can make
+  ///            queries up to 512 characters long.
   ///            If you have been approved for Academic Research access,
   ///            you can use all available operators and can make queries
-  ///            up to 1,024 characters long.
-  ///
-  ///            Learn more about our access levels on the `about Twitter API page`.
+  ///            up to 1,024 characters long. Learn more about our access levels
+  ///            on the `about Twitter API page`.
   ///
   /// - [nextToken]: This parameter is used to get the next 'page' of results.
   ///                The value used with the parameter is pulled directly from
-  ///                the response provided by the API, assuming that your request
-  ///                contains more than 31 days-worth of results, and should not be modified.
-  ///                You can learn more by visiting our page on [pagination](https://developer.twitter.com/en/docs/twitter-api/pagination).
+  ///                the response provided by the API, assuming that your
+  ///                request contains more than 31 days-worth of results, and
+  ///                should not be modified. You can learn more by visiting our page on [pagination](https://developer.twitter.com/en/docs/twitter-api/pagination).
   ///
   /// ## Endpoint Url
   ///
@@ -504,9 +523,9 @@ abstract class TweetsService {
   ///
   /// - [nextToken]: This parameter is used to get the next 'page' of results.
   ///                The value used with the parameter is pulled directly from
-  ///                the response provided by the API, assuming that your request
-  ///                contains more than 31 days-worth of results, and should not be modified.
-  ///                You can learn more by visiting our page on [pagination](https://developer.twitter.com/en/docs/twitter-api/pagination).
+  ///                the response provided by the API, assuming that your
+  ///                request contains more than 31 days-worth of results, and
+  ///                should not be modified. You can learn more by visiting our page on [pagination](https://developer.twitter.com/en/docs/twitter-api/pagination).
   ///
   /// ## Endpoint Url
   ///
@@ -523,18 +542,19 @@ abstract class TweetsService {
   Future<TwitterResponse<List<TweetCountData>, TweetCountMeta>> countAll(
       {required String query, String? nextToken});
 
-  /// Causes the user ID of an authenticated user identified in the path parameter
-  /// to Bookmark the target Tweet provided in the request body.
+  /// Causes the user ID of an authenticated user identified in the path
+  /// parameter to Bookmark the target Tweet provided in the request body.
   ///
   /// ## Parameters
   ///
   /// - [userId]: The user ID of an authenticated user who you are bookmarking
   ///             a Tweet on behalf of. It must match your own user ID or
   ///             that of an authenticating user, meaning that you must pass
-  ///             the Access Token associated with the user ID when authenticating
-  ///             your request.
+  ///             the Access Token associated with the user ID when
+  ///             authenticating your request.
   ///
-  /// - [tweetId]: The ID of the Tweet that you would like the user id to Bookmark.
+  /// - [tweetId]: The ID of the Tweet that you would like the user id to
+  ///              Bookmark.
   ///
   /// ## Endpoint Url
   ///
@@ -555,12 +575,14 @@ abstract class TweetsService {
   ///
   /// ## Parameters
   ///
-  /// - [userId]: The user ID who you are removing a Bookmark of a Tweet on behalf of.
-  ///             It must match your own user ID or that of an authenticating user,
-  ///             meaning that you must pass the Access Token associated with
-  ///             the user ID when authenticating your request.
+  /// - [userId]: The user ID who you are removing a Bookmark of a Tweet on
+  ///             behalf of. It must match your own user ID or that of an
+  ///             authenticating user, meaning that you must pass the Access
+  ///             Token associated with the user ID when authenticating your
+  ///             request.
   ///
-  /// - [tweetId]: The ID of the Tweet that you would like the id to remove a Bookmark of.
+  /// - [tweetId]: The ID of the Tweet that you would like the id to remove a
+  ///              Bookmark of.
   ///
   /// ## Endpoint Url
   ///
@@ -577,11 +599,13 @@ abstract class TweetsService {
   Future<bool> destroyBookmark(
       {required String userId, required String tweetId});
 
-  /// Allows you to get information about a authenticated user’s 800 most recent bookmarked Tweets.
+  /// Allows you to get information about a authenticated user’s 800 most recent
+  /// bookmarked Tweets.
   ///
   /// ## Parameters
   ///
-  /// - [userId]: User ID of an authenticated user to request bookmarked Tweets for.
+  /// - [userId]: User ID of an authenticated user to request bookmarked Tweets
+  ///             for.
   ///
   /// ## Endpoint Url
   ///

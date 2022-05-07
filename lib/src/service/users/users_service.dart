@@ -17,7 +17,8 @@ abstract class UsersService {
 
   /// Allows a user ID to follow another user.
   ///
-  /// If the target user does not have public Tweets, this endpoint will send a follow request.
+  /// If the target user does not have public Tweets, this endpoint will send a
+  /// follow request.
   ///
   /// The request succeeds with no action when the authenticated user sends
   /// a request to a user they're already following, or if they're sending
@@ -29,7 +30,8 @@ abstract class UsersService {
   ///             follow on behalf of. You must pass the Access Tokens that
   ///             relate to this user when authenticating the request.
   ///
-  /// - [targetUserId]: The user ID of the user that you would like the id to follow.
+  /// - [targetUserId]: The user ID of the user that you would like the id to
+  ///                   follow.
   ///
   /// ## Endpoint Url
   ///
@@ -48,16 +50,17 @@ abstract class UsersService {
 
   /// Allows a user ID to unfollow another user.
   ///
-  /// The request succeeds with no action when the authenticated user
-  /// sends a request to a user they're not following or have already unfollowed.
+  /// The request succeeds with no action when the authenticated user ends a
+  /// request to a user they're not following or have already unfollowed.
   ///
   /// ## Parameters
   ///
-  /// - [userId]: The user ID who you would like to initiate the unfollow on behalf of.
-  ///             You must pass the Access Tokens that relate to this user when
-  ///             authenticating the request.
+  /// - [userId]: The user ID who you would like to initiate the unfollow on
+  ///             behalf of. You must pass the Access Tokens that relate to this
+  ///             user when authenticating the request.
   ///
-  /// - [targetUserId]: The user ID of the user that you would like the user id to unfollow.
+  /// - [targetUserId]: The user ID of the user that you would like the user id
+  ///                   to unfollow.
   ///
   /// ## Endpoint Url
   ///
@@ -84,11 +87,13 @@ abstract class UsersService {
   ///                 This can be a number between 1 and the 1000. By default,
   ///                 each page will return 100 results.
   ///
-  /// - [paginationToken]: Used to request the next page of results if all results weren't
-  ///                      returned with the latest request, or to go back to the previous page
-  ///                      of results. To return the next page, pass the `next_token` returned
+  /// - [paginationToken]: Used to request the next page of results if all
+  ///                      results weren't returned with the latest request, or
+  ///                      to go back to the previous page of results. To return
+  ///                      the next page, pass the `next_token` returned
   ///                      in your previous response. To go back one page, pass
-  ///                      the `previous_token` returned in your previous response.
+  ///                      the `previous_token` returned in your previous
+  ///                      response.
   ///
   /// ## Endpoint Url
   ///
@@ -118,11 +123,13 @@ abstract class UsersService {
   ///                 This can be a number between 1 and the 1000. By default,
   ///                 each page will return 100 results.
   ///
-  /// - [paginationToken]: Used to request the next page of results if all results weren't
-  ///                      returned with the latest request, or to go back to the previous page
-  ///                      of results. To return the next page, pass the `next_token` returned
+  /// - [paginationToken]: Used to request the next page of results if all
+  ///                      results weren't returned with the latest request, or
+  ///                      to go back to the previous page of results. To return
+  ///                      the next page, pass the `next_token` returned
   ///                      in your previous response. To go back one page, pass
-  ///                      the `previous_token` returned in your previous response.
+  ///                      the `previous_token` returned in your previous
+  ///                      response.
   ///
   /// ## Endpoint Url
   ///
@@ -142,7 +149,8 @@ abstract class UsersService {
   Future<TwitterResponse<List<UserData>, UserMeta>> followings(
       {required String userId, int? maxResults, String? paginationToken});
 
-  /// Returns a variety of information about a single user specified by the requested ID.
+  /// Returns a variety of information about a single user specified by the
+  /// requested ID.
   ///
   /// ## Parameters
   ///
@@ -165,7 +173,8 @@ abstract class UsersService {
   /// - https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users-id
   Future<TwitterResponse<UserData, void>> lookupById({required String userId});
 
-  /// Returns a variety of information about one or more users specified by the requested IDs.
+  /// Returns a variety of information about one or more users specified by the
+  /// requested IDs.
   ///
   /// ## Parameters
   ///
@@ -190,7 +199,8 @@ abstract class UsersService {
   Future<TwitterResponse<List<UserData>, void>> lookupByIds(
       {required List<String> userIds});
 
-  /// Returns a variety of information about one or more users specified by their usernames.
+  /// Returns a variety of information about one or more users specified by
+  /// their usernames.
   ///
   /// ## Parameters
   ///
@@ -214,7 +224,8 @@ abstract class UsersService {
   Future<TwitterResponse<UserData, void>> lookupByName(
       {required String username});
 
-  /// Returns a variety of information about one or more users specified by their usernames.
+  /// Returns a variety of information about one or more users specified by
+  /// their usernames.
   ///
   /// ## Parameters
   ///
