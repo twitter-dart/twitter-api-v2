@@ -621,6 +621,50 @@ abstract class TweetsService {
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/bookmarks/api-reference/get-users-id-bookmarks
   Future<TwitterResponse<List<TweetData>, TweetMeta>> bookmarks(
       {required String userId});
+
+  /// Hides a reply to a Tweet.
+  ///
+  /// ## Parameters
+  ///
+  /// - [tweetId]: Unique identifier of the Tweet to hide.
+  ///              The Tweet must belong to a conversation initiated by the
+  ///              authenticating user.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/tweets/:id/hidden
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    50 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/tweets/hide-replies/api-reference/put-tweets-id-hidden
+  Future<bool> createHiddenReply({required String tweetId});
+
+  /// Unhides a reply to a Tweet.
+  ///
+  /// ## Parameters
+  ///
+  /// - [tweetId]: Unique identifier of the Tweet to unhide.
+  ///              The Tweet must belong to a conversation initiated by the
+  ///              authenticating user.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/tweets/:id/hidden
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    50 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/tweets/hide-replies/api-reference/put-tweets-id-hidden
+  Future<bool> destroyHiddenReply({required String tweetId});
 }
 
 class _TweetsService extends BaseService implements TweetsService {
@@ -962,5 +1006,27 @@ class _TweetsService extends BaseService implements TweetsService {
           .toList(),
       meta: TweetMeta.fromJson(response['meta']),
     );
+  }
+
+  @override
+  Future<bool> createHiddenReply({required String tweetId}) async {
+    final response = await super.put(
+      UserContext.oauth2OrOAuth1,
+      '/2/tweets/$tweetId/hidden',
+      body: {'hidden': true},
+    );
+
+    return response['data']['hidden'];
+  }
+
+  @override
+  Future<bool> destroyHiddenReply({required String tweetId}) async {
+    final response = await super.put(
+      UserContext.oauth2OrOAuth1,
+      '/2/tweets/$tweetId/hidden',
+      body: {'hidden': false},
+    );
+
+    return !response['data']['hidden'];
   }
 }

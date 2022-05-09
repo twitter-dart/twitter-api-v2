@@ -450,4 +450,32 @@ void main() {
     expect(response.meta, isNotNull);
     expect(response.meta!.resultCount, 5);
   });
+
+  test('.createHiddenReply', () async {
+    final tweetsService = TweetsService(
+      context: context.buildPutStub(
+        '/2/tweets/0000/hidden',
+        'test/src/service/tweets/data/create_hidden_reply.json',
+      ),
+    );
+
+    final response = await tweetsService.createHiddenReply(tweetId: '0000');
+
+    expect(response, isA<bool>());
+    expect(response, isTrue);
+  });
+
+  test('.destroyHiddenReply', () async {
+    final tweetsService = TweetsService(
+      context: context.buildPutStub(
+        '/2/tweets/0000/hidden',
+        'test/src/service/tweets/data/destroy_hidden_reply.json',
+      ),
+    );
+
+    final response = await tweetsService.destroyHiddenReply(tweetId: '0000');
+
+    expect(response, isA<bool>());
+    expect(response, isTrue);
+  });
 }

@@ -11,6 +11,8 @@
   - DELETE /2/users/:source_user_id/muting/:target_user_id
   - GET /2/users/:id/muting
   - POST /2/users/:id/muting
+- Added **Tweets Hide Replies** endpoints. ([#5](https://github.com/twitter-dart/twitter-api-v2/issues/5))
+  - PUT /2/tweets/:id/hidden
 
 ## v1.5.0
 

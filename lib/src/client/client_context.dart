@@ -39,6 +39,12 @@ abstract class ClientContext {
   Future<http.Response> delete(
     UserContext userContext,
     Uri uri, {
+    Duration timeout = const Duration(seconds: 10),
+  });
+
+  Future<http.Response> put(
+    UserContext userContext,
+    Uri uri, {
     Map<String, String> headers = const {},
     dynamic body,
     Duration timeout = const Duration(seconds: 10),
@@ -114,8 +120,6 @@ class _ClientContext implements ClientContext {
   Future<http.Response> delete(
     UserContext userContext,
     Uri uri, {
-    Map<String, String> headers = const {},
-    body,
     Duration timeout = const Duration(seconds: 10),
   }) {
     if (userContext == UserContext.oauth2OrOAuth1 && hasOAuth1Client) {
@@ -125,6 +129,33 @@ class _ClientContext implements ClientContext {
     }
 
     return _oauth2Client.delete(uri, timeout: timeout);
+  }
+
+  @override
+  Future<http.Response> put(
+    UserContext userContext,
+    Uri uri, {
+    Map<String, String> headers = const {},
+    dynamic body,
+    Duration timeout = const Duration(seconds: 10),
+  }) async {
+    if (userContext == UserContext.oauth2OrOAuth1 && hasOAuth1Client) {
+      //! If an authentication token is set, the OAuth 1.0a method is given
+      //! priority.
+      return _oauth1Client!.put(
+        uri,
+        headers: headers,
+        body: body,
+        timeout: timeout,
+      );
+    }
+
+    return _oauth2Client.put(
+      uri,
+      headers: headers,
+      body: body,
+      timeout: timeout,
+    );
   }
 
   @override

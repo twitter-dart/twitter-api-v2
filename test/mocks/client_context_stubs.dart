@@ -88,3 +88,29 @@ MockClientContext buildDeleteStub(
 
   return mockClientContext;
 }
+
+MockClientContext buildPutStub(
+  final String unencodedPath,
+  final String resourcePath,
+) {
+  final mockClientContext = MockClientContext();
+
+  when(mockClientContext.put(
+    UserContext.oauth2OrOAuth1,
+    Uri.https('api.twitter.com', unencodedPath),
+    headers: anyNamed('headers'),
+    body: anyNamed('body'),
+    timeout: anyNamed('timeout'),
+  )).thenAnswer(
+    (_) async => http.Response(
+      await File(resourcePath).readAsString(),
+      200,
+      headers: {'content-type': 'application/json; charset=utf-8'},
+    ),
+  );
+
+  //! Override if you want to test with OAuth 1.0a.
+  when(mockClientContext.hasOAuth1Client).thenReturn(false);
+
+  return mockClientContext;
+}
