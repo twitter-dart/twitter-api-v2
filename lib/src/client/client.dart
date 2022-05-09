@@ -44,6 +44,9 @@ abstract class Client {
       return response;
     }
 
-    throw TwitterException(response);
+    throw TwitterException(
+      'HTTP error detected. Please check your request.',
+      response,
+    );
   }
 }

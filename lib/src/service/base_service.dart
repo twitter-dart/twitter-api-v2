@@ -117,7 +117,10 @@ abstract class BaseService implements Service {
     if (!body.containsKey('data')) {
       //! This occurs when the tweet to be processed has been deleted or
       //! when the target data does not exist at the time of search.
-      throw TwitterException(response);
+      throw TwitterException(
+        'No response data exists for the request.',
+        response,
+      );
     }
 
     return body;

@@ -2,7 +2,8 @@
 
 ## v1.6.0
 
-- Fixed a bug in DELETE communication.
+- Fixed a bug in `DELETE` communication.
+- Improved error message from `TwitterException`. ([#93](https://github.com/twitter-dart/twitter-api-v2/issues/93))
 - Added **Batch Compliance** endpoints. ([#32](https://github.com/twitter-dart/twitter-api-v2/issues/32))
   - GET /2/compliance/jobs
   - GET /2/compliance/jobs/:id
