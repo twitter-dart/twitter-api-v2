@@ -9,14 +9,16 @@ import 'package:http/http.dart';
 /// with the Twitter API.
 class TwitterException implements Exception {
   /// Returns the new instance of [TwitterException].
-  TwitterException(this.response);
+  TwitterException(this.message, this.response);
+
+  /// The error message
+  final String message;
 
   /// The response from the Twitter API.
   final Response response;
 
   @override
-  String toString() =>
-      '''TwitterException: An exception occurred in communication with the Twitter API.
+  String toString() => '''TwitterException: $message
 
 ✅ Status Code:
    ${response.statusCode}
