@@ -31,6 +31,13 @@ abstract class Client {
     Duration timeout = const Duration(seconds: 10),
   });
 
+  Future<http.Response> put(
+    Uri uri, {
+    Map<String, String> headers = const {},
+    dynamic body,
+    Duration timeout = const Duration(seconds: 10),
+  });
+
   http.Response checkResponse(final http.Response response) {
     final statusCode = response.statusCode;
     if (200 <= statusCode && statusCode <= 299) {

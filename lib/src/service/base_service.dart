@@ -23,6 +23,12 @@ abstract class Service {
   });
 
   Future<dynamic> delete(UserContext userContext, String unencodedPath);
+
+  Future<dynamic> put(
+    UserContext userContext,
+    String unencodedPath, {
+    Map<String, String> body = const {},
+  });
 }
 
 abstract class BaseService implements Service {
@@ -66,7 +72,7 @@ abstract class BaseService implements Service {
   }) async {
     final response = await _context.post(
       userContext,
-      Uri.https('api.twitter.com', unencodedPath),
+      Uri.https(_authority, unencodedPath),
       headers: {'Content-type': 'application/json'},
       body: jsonEncode(_removeNullParameters(body)),
     );
@@ -81,7 +87,23 @@ abstract class BaseService implements Service {
   ) async {
     final response = await _context.delete(
       userContext,
-      Uri.https('api.twitter.com', unencodedPath),
+      Uri.https(_authority, unencodedPath),
+    );
+
+    return _checkResponseBody(response);
+  }
+
+  @override
+  Future<dynamic> put(
+    final UserContext userContext,
+    final String unencodedPath, {
+    dynamic body = const {},
+  }) async {
+    final response = await _context.put(
+      userContext,
+      Uri.https(_authority, unencodedPath),
+      headers: {'Content-type': 'application/json'},
+      body: jsonEncode(_removeNullParameters(body)),
     );
 
     return _checkResponseBody(response);

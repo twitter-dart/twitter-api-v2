@@ -97,4 +97,22 @@ class OAuth1Client extends Client {
             )
             .timeout(timeout),
       );
+
+  @override
+  Future<http.Response> put(
+    Uri uri, {
+    Map<String, String> headers = const {},
+    dynamic body,
+    Duration timeout = const Duration(seconds: 10),
+  }) async =>
+      checkResponse(
+        await oauthClient
+            .put(
+              uri,
+              headers: headers,
+              body: body,
+              encoding: utf8,
+            )
+            .timeout(timeout),
+      );
 }
