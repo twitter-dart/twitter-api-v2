@@ -8,6 +8,8 @@
     "PKCE",
     "unfollow",
     "unfollowed",
-    "unliked"
+    "unliked",
+    "unmute",
+    "unmuted"
   ]
 }

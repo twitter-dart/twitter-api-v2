@@ -2,10 +2,15 @@
 
 ## v1.6.0
 
+- Fixed a bug in DELETE communication.
 - Added **Batch Compliance** endpoints. ([#32](https://github.com/twitter-dart/twitter-api-v2/issues/32))
   - GET /2/compliance/jobs
   - GET /2/compliance/jobs/:id
   - POST /2/compliance/jobs
+- Added **Users Mutes** endpoints. ([#22](https://github.com/twitter-dart/twitter-api-v2/issues/22))
+  - DELETE /2/users/:source_user_id/muting/:target_user_id
+  - GET /2/users/:id/muting
+  - POST /2/users/:id/muting
 
 ## v1.5.0
 

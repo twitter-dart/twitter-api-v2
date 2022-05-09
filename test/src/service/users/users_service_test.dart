@@ -217,4 +217,63 @@ void main() {
     expect(response.data.name, 'TwitterDev');
     expect(response.data.username, 'Twitter Dev');
   });
+
+  test('.createMute', () async {
+    final usersService = UsersService(
+      context: context.buildPostStub(
+        UserContext.oauth2OrOAuth1,
+        '/2/users/1111/muting',
+        'test/src/service/users/data/create_mute.json',
+      ),
+    );
+
+    final response = await usersService.createMute(
+      userId: '1111',
+      targetUserId: '2222',
+    );
+
+    expect(response, isA<bool>());
+    expect(response, isTrue);
+  });
+
+  test('.destroyMute', () async {
+    final usersService = UsersService(
+      context: context.buildDeleteStub(
+        '/2/users/1111/muting/2222',
+        'test/src/service/users/data/destroy_mute.json',
+      ),
+    );
+
+    final response = await usersService.destroyMute(
+      userId: '1111',
+      targetUserId: '2222',
+    );
+
+    expect(response, isA<bool>());
+    expect(response, isTrue);
+  });
+
+  test('.mutingUsers', () async {
+    final usersService = UsersService(
+      context: context.buildGetStub(
+        UserContext.oauth2OrOAuth1,
+        '/2/users/1111/muting',
+        'test/src/service/users/data/muting_users.json',
+        {
+          'max_results': '10',
+          'pagination_token': 'TOKEN',
+        },
+      ),
+    );
+
+    final response = await usersService.mutingUsers(
+      userId: '1111',
+      maxResults: 10,
+      paginationToken: 'TOKEN',
+    );
+
+    expect(response, isA<TwitterResponse>());
+    expect(response.data, isA<List<UserData>>());
+    expect(response.meta, isA<UserMeta>());
+  });
 }

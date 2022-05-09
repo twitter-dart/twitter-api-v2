@@ -121,10 +121,10 @@ class _ClientContext implements ClientContext {
     if (userContext == UserContext.oauth2OrOAuth1 && hasOAuth1Client) {
       //! If an authentication token is set, the OAuth 1.0a method is given
       //! priority.
-      return _oauth1Client!.get(uri, timeout: timeout);
+      return _oauth1Client!.delete(uri, timeout: timeout);
     }
 
-    return _oauth2Client.get(uri, timeout: timeout);
+    return _oauth2Client.delete(uri, timeout: timeout);
   }
 
   @override
