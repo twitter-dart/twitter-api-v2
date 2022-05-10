@@ -276,4 +276,65 @@ void main() {
     expect(response.data, isA<List<UserData>>());
     expect(response.meta, isA<UserMeta>());
   });
+
+  test('.createBlock', () async {
+    final usersService = UsersService(
+      context: context.buildPostStub(
+        UserContext.oauth2OrOAuth1,
+        '/2/users/0000/blocking',
+        'test/src/service/users/data/create_block.json',
+      ),
+    );
+
+    final response = await usersService.createBlock(
+      userId: '0000',
+      targetUserId: '1111',
+    );
+
+    expect(response, isA<bool>());
+    expect(response, isTrue);
+  });
+
+  test('.destroyBlock', () async {
+    final usersService = UsersService(
+      context: context.buildDeleteStub(
+        '/2/users/0000/blocking/1111',
+        'test/src/service/users/data/destroy_block.json',
+      ),
+    );
+
+    final response = await usersService.destroyBlock(
+      userId: '0000',
+      targetUserId: '1111',
+    );
+
+    expect(response, isA<bool>());
+    expect(response, isTrue);
+  });
+
+  test('.blockingUsers', () async {
+    final usersService = UsersService(
+      context: context.buildGetStub(
+        UserContext.oauth2OrOAuth1,
+        '/2/users/1111/blocking',
+        'test/src/service/users/data/blocking_users.json',
+        {
+          'max_results': '10',
+          'pagination_token': 'TOKEN',
+        },
+      ),
+    );
+
+    final response = await usersService.blockingUsers(
+      userId: '1111',
+      maxResults: 10,
+      paginationToken: 'TOKEN',
+    );
+
+    expect(response, isA<TwitterResponse>());
+    expect(response.data, isA<List<UserData>>());
+    expect(response.meta, isA<UserMeta>());
+    expect(response.data.length, 5);
+    expect(response.meta!.resultCount, 5);
+  });
 }

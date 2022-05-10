@@ -358,6 +358,100 @@ abstract class UsersService {
   /// - https://developer.twitter.com/en/docs/twitter-api/users/mutes/api-reference/get-users-muting
   Future<TwitterResponse<List<UserData>, UserMeta>> mutingUsers(
       {required String userId, int? maxResults, String? paginationToken});
+
+  /// Causes the user (in the path) to block the target user.
+  /// The user (in the path) must match the user Access Tokens being used to
+  /// authorize the request.
+  ///
+  /// ## Parameters
+  ///
+  /// - [userId]: The user ID who you would like to initiate the block on behalf
+  ///             of. It must match your own user ID or that of an
+  ///             authenticating user, meaning that you must pass the Access
+  ///             Tokens associated with the user ID when authenticating your
+  ///             request.
+  ///
+  /// - [targetUserId]: The user ID of the user that you would like the id to
+  ///                   block. The body should contain a string of the user ID
+  ///                   inside of a JSON object.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/users/:id/blocking
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    50 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/users/blocks/api-reference/post-users-user_id-blocking
+  Future<bool> createBlock(
+      {required String userId, required String targetUserId});
+
+  /// Allows a user or authenticated user ID to unblock another user.
+  ///
+  /// The request succeeds with no action when the user sends a request to a
+  /// user they're not blocking or have already unblocked.
+  ///
+  /// ## Parameters
+  ///
+  /// - [userId]: The user ID who you would like to initiate an unblock on
+  ///             behalf of. The user’s ID must correspond to the user ID of the
+  ///             authenticating user, meaning that you must pass the Access
+  ///             Tokens associated with the user ID when authenticating your
+  ///             request.
+  ///
+  /// - [targetUserId]: The user ID of the user that you would like to unblock.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/users/:id/blocking
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    50 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/users/blocks/api-reference/delete-users-user_id-blocking
+  Future<bool> destroyBlock(
+      {required String userId, required String targetUserId});
+
+  /// Returns a list of users who are blocked by the specified user ID.
+  ///
+  /// ## Parameters
+  ///
+  /// - [userId]: The user ID whose blocked users you would like to retrieve.
+  ///             The user’s ID must correspond to the user ID of the
+  ///             authenticating user, meaning that you must pass the Access
+  ///             Tokens associated with the user ID when authenticating your
+  ///             request.
+  ///
+  /// - [maxResults]: The maximum number of results to be returned per page.
+  ///                 This can be a number between 1 and 1000. By default,
+  ///                 each page will return 100 results.
+  ///
+  /// - [paginationToken]: Used to request the next page of results if all
+  ///                      results weren't returned with the latest request,
+  ///                      or to go back to the previous page of results.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/users/:id/blocking
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    15 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/users/blocks/api-reference/get-users-blocking
+  Future<TwitterResponse<List<UserData>, UserMeta>> blockingUsers(
+      {required String userId, int? maxResults, String? paginationToken});
 }
 
 class _UsersService extends BaseService implements UsersService {
@@ -533,6 +627,52 @@ class _UsersService extends BaseService implements UsersService {
     final response = await super.get(
       UserContext.oauth2OrOAuth1,
       '/2/users/$userId/muting',
+      queryParameters: {
+        'max_results': maxResults,
+        'pagination_token': paginationToken,
+      },
+    );
+
+    return TwitterResponse(
+      data: response['data']
+          .map<UserData>((user) => UserData.fromJson(user))
+          .toList(),
+      meta: UserMeta.fromJson(response['meta']),
+    );
+  }
+
+  @override
+  Future<bool> createBlock(
+      {required String userId, required String targetUserId}) async {
+    final response = await super.post(
+      UserContext.oauth2OrOAuth1,
+      '/2/users/$userId/blocking',
+      body: {'target_user_id': targetUserId},
+    );
+
+    return response['data']['blocking'];
+  }
+
+  @override
+  Future<bool> destroyBlock(
+      {required String userId, required String targetUserId}) async {
+    final response = await super.delete(
+      UserContext.oauth2OrOAuth1,
+      '/2/users/$userId/blocking/$targetUserId',
+    );
+
+    return !response['data']['blocking'];
+  }
+
+  @override
+  Future<TwitterResponse<List<UserData>, UserMeta>> blockingUsers({
+    required String userId,
+    int? maxResults,
+    String? paginationToken,
+  }) async {
+    final response = await super.get(
+      UserContext.oauth2OrOAuth1,
+      '/2/users/$userId/blocking',
       queryParameters: {
         'max_results': maxResults,
         'pagination_token': paginationToken,
