@@ -72,6 +72,83 @@ abstract class ListsService {
   /// - https://developer.twitter.com/en/docs/twitter-api/lists/list-lookup/api-reference/get-users-id-owned_lists
   Future<TwitterResponse<List<ListData>, ListMeta>> lookupOwnedBy(
       {required String userId, int? maxResults, String? paginationToken});
+
+  /// Enables the authenticated user to pin a List.
+  ///
+  /// ## Parameters
+  ///
+  /// - [userId]: The user ID who you are pinning a List on behalf of.
+  ///             It must match your own user ID or that of an authenticating
+  ///             user, meaning that you must pass the Access Tokens associated
+  ///             with the user ID when authenticating your request.
+  ///
+  /// - [listId]: The ID of the List that you would like the user id to pin.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/users/:id/owned_lists
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    50 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/lists/pinned-lists/api-reference/post-users-id-pinned-lists
+  Future<bool> createPinnedList(
+      {required String userId, required String listId});
+
+  /// Enables the authenticated user to unpin a List.
+  ///
+  /// ## Parameters
+  ///
+  /// - [userId]: The user ID who you are unpin a List on behalf of. It must
+  ///             match your own user ID or that of an authenticating user,
+  ///             meaning that you must pass the Access Tokens associated with
+  ///             the user ID when authenticating your request.
+  ///
+  /// - [listId]: The ID of the List that you would like the user id to unpin.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/users/:id/pinned_lists/:list_id
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    50 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/lists/pinned-lists/api-reference/delete-users-id-pinned-lists-list_id
+  Future<bool> destroyPinnedList(
+      {required String userId, required String listId});
+
+  /// Returns the Lists pinned by a specified user.
+  ///
+  /// ## Parameters
+  ///
+  /// - [userId]: The user ID whose pinned Lists you would like to retrieve.
+  ///             The user’s ID must correspond to the user ID of the
+  ///             authenticating user, meaning that you must pass the Access
+  ///             Tokens associated with the user ID when authenticating your
+  ///             request.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/users/:id/pinned_lists
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    15 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/lists/pinned-lists/api-reference/get-users-id-pinned_lists
+  Future<TwitterResponse<List<ListData>, ListMeta>> pinnedLists(
+      {required String userId});
 }
 
 class _ListsService extends BaseService implements ListsService {
@@ -102,6 +179,45 @@ class _ListsService extends BaseService implements ListsService {
         'max_results': maxResults,
         'pagination_token': paginationToken,
       },
+    );
+
+    return TwitterResponse(
+      data: response['data']
+          .map<ListData>((list) => ListData.fromJson(list))
+          .toList(),
+      meta: ListMeta.fromJson(response['meta']),
+    );
+  }
+
+  @override
+  Future<bool> createPinnedList(
+      {required String userId, required String listId}) async {
+    final response = await super.post(
+      UserContext.oauth2OrOAuth1,
+      '/2/users/$userId/pinned_lists',
+      body: {'list_id': listId},
+    );
+
+    return response['data']['pinned'];
+  }
+
+  @override
+  Future<bool> destroyPinnedList(
+      {required String userId, required String listId}) async {
+    final response = await super.delete(
+      UserContext.oauth2OrOAuth1,
+      '/2/users/$userId/pinned_lists/$listId',
+    );
+
+    return !response['data']['pinned'];
+  }
+
+  @override
+  Future<TwitterResponse<List<ListData>, ListMeta>> pinnedLists(
+      {required String userId}) async {
+    final response = await super.get(
+      UserContext.oauth2OrOAuth1,
+      '/2/users/$userId/pinned_lists',
     );
 
     return TwitterResponse(
