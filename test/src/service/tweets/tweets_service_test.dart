@@ -479,12 +479,12 @@ void main() {
     expect(response, isTrue);
   });
 
-  test('.mentionsOf', () async {
+  test('.lookupMentions', () async {
     final tweetsService = TweetsService(
       context: context.buildGetStub(
         UserContext.oauth2OrOAuth1,
         '/2/users/0000/mentions',
-        'test/src/service/tweets/data/mentions_of.json',
+        'test/src/service/tweets/data/lookup_mentions.json',
         {
           'max_results': '10',
           'pagination_token': 'TOKEN',
@@ -492,7 +492,7 @@ void main() {
       ),
     );
 
-    final response = await tweetsService.mentionsOf(
+    final response = await tweetsService.lookupMentions(
       userId: '0000',
       maxResults: 10,
       paginationToken: 'TOKEN',
@@ -505,12 +505,12 @@ void main() {
     expect(response.meta!.resultCount, 5);
   });
 
-  test('.tweetsOf', () async {
+  test('.lookupTweets', () async {
     final tweetsService = TweetsService(
       context: context.buildGetStub(
         UserContext.oauth2OrOAuth1,
         '/2/users/0000/tweets',
-        'test/src/service/tweets/data/tweets_of.json',
+        'test/src/service/tweets/data/lookup_tweets.json',
         {
           'max_results': '10',
           'pagination_token': 'TOKEN',
@@ -518,7 +518,7 @@ void main() {
       ),
     );
 
-    final response = await tweetsService.tweetsOf(
+    final response = await tweetsService.lookupTweets(
       userId: '0000',
       maxResults: 10,
       paginationToken: 'TOKEN',

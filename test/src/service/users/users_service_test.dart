@@ -312,12 +312,12 @@ void main() {
     expect(response, isTrue);
   });
 
-  test('.blockingUsers', () async {
+  test('.lookupBlockingUsers', () async {
     final usersService = UsersService(
       context: context.buildGetStub(
         UserContext.oauth2OrOAuth1,
         '/2/users/1111/blocking',
-        'test/src/service/users/data/blocking_users.json',
+        'test/src/service/users/data/lookup_blocking_users.json',
         {
           'max_results': '10',
           'pagination_token': 'TOKEN',
@@ -325,7 +325,7 @@ void main() {
       ),
     );
 
-    final response = await usersService.blockingUsers(
+    final response = await usersService.lookupBlockingUsers(
       userId: '1111',
       maxResults: 10,
       paginationToken: 'TOKEN',

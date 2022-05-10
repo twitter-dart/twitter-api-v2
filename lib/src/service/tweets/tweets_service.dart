@@ -714,7 +714,7 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/timelines/api-reference/get-users-id-mentions
-  Future<TwitterResponse<List<TweetData>, TweetMeta>> mentionsOf(
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupMentions(
       {required String userId, int? maxResults, String? paginationToken});
 
   /// Returns Tweets composed by a single user, specified by the requested user
@@ -765,7 +765,7 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/timelines/api-reference/get-users-id-tweets
-  Future<TwitterResponse<List<TweetData>, TweetMeta>> tweetsOf(
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupTweets(
       {required String userId, int? maxResults, String? paginationToken});
 }
 
@@ -1133,7 +1133,7 @@ class _TweetsService extends BaseService implements TweetsService {
   }
 
   @override
-  Future<TwitterResponse<List<TweetData>, TweetMeta>> mentionsOf({
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupMentions({
     required String userId,
     int? maxResults,
     String? paginationToken,
@@ -1156,7 +1156,7 @@ class _TweetsService extends BaseService implements TweetsService {
   }
 
   @override
-  Future<TwitterResponse<List<TweetData>, TweetMeta>> tweetsOf({
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupTweets({
     required String userId,
     int? maxResults,
     String? paginationToken,

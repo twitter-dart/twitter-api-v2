@@ -450,7 +450,7 @@ abstract class UsersService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/users/blocks/api-reference/get-users-blocking
-  Future<TwitterResponse<List<UserData>, UserMeta>> blockingUsers(
+  Future<TwitterResponse<List<UserData>, UserMeta>> lookupBlockingUsers(
       {required String userId, int? maxResults, String? paginationToken});
 }
 
@@ -665,7 +665,7 @@ class _UsersService extends BaseService implements UsersService {
   }
 
   @override
-  Future<TwitterResponse<List<UserData>, UserMeta>> blockingUsers({
+  Future<TwitterResponse<List<UserData>, UserMeta>> lookupBlockingUsers({
     required String userId,
     int? maxResults,
     String? paginationToken,
