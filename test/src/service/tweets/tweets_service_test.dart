@@ -186,17 +186,17 @@ void main() {
     expect(response, isTrue);
   });
 
-  test('.likingUsers', () async {
+  test('.lookupLikingUsers', () async {
     final tweetsService = TweetsService(
       context: context.buildGetStub(
         UserContext.oauth2OrOAuth1,
         '/2/tweets/1111/liking_users',
-        'test/src/service/tweets/data/liking_users.json',
+        'test/src/service/tweets/data/lookup_liking_users.json',
         {},
       ),
     );
 
-    final response = await tweetsService.likingUsers(
+    final response = await tweetsService.lookupLikingUsers(
       tweetId: '1111',
     );
 
@@ -208,17 +208,17 @@ void main() {
     expect(response.meta!.resultCount, 5);
   });
 
-  test('.likedTweets', () async {
+  test('.lookupLikedTweets', () async {
     final tweetsService = TweetsService(
       context: context.buildGetStub(
         UserContext.oauth2OrOAuth1,
         '/2/users/0000/liked_tweets',
-        'test/src/service/tweets/data/liked_tweets.json',
+        'test/src/service/tweets/data/lookup_liked_tweets.json',
         {},
       ),
     );
 
-    final response = await tweetsService.likingTweets(
+    final response = await tweetsService.lookupLikedTweets(
       userId: '0000',
     );
 

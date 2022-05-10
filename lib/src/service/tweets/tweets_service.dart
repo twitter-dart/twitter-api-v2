@@ -214,7 +214,7 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/likes/api-reference/get-tweets-id-liking_users
-  Future<TwitterResponse<List<UserData>, UserMeta>> likingUsers(
+  Future<TwitterResponse<List<UserData>, UserMeta>> lookupLikingUsers(
       {required String tweetId, int? maxResults, String? paginationToken});
 
   /// Allows you to get information about a user’s liked Tweets.
@@ -249,7 +249,7 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/likes/api-reference/get-users-id-liked_tweets
-  Future<TwitterResponse<List<TweetData>, TweetMeta>> likingTweets(
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupLikedTweets(
       {required String userId, int? maxResults, String? paginationToken});
 
   /// Allows you to get information about who has Retweeted a Tweet.
@@ -857,7 +857,7 @@ class _TweetsService extends BaseService implements TweetsService {
   }
 
   @override
-  Future<TwitterResponse<List<UserData>, UserMeta>> likingUsers({
+  Future<TwitterResponse<List<UserData>, UserMeta>> lookupLikingUsers({
     required String tweetId,
     int? maxResults,
     String? paginationToken,
@@ -880,7 +880,7 @@ class _TweetsService extends BaseService implements TweetsService {
   }
 
   @override
-  Future<TwitterResponse<List<TweetData>, TweetMeta>> likingTweets({
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupLikedTweets({
     required String userId,
     int? maxResults,
     String? paginationToken,
