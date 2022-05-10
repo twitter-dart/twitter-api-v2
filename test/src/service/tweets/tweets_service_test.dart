@@ -478,4 +478,56 @@ void main() {
     expect(response, isA<bool>());
     expect(response, isTrue);
   });
+
+  test('.mentionsOf', () async {
+    final tweetsService = TweetsService(
+      context: context.buildGetStub(
+        UserContext.oauth2OrOAuth1,
+        '/2/users/0000/mentions',
+        'test/src/service/tweets/data/mentions_of.json',
+        {
+          'max_results': '10',
+          'pagination_token': 'TOKEN',
+        },
+      ),
+    );
+
+    final response = await tweetsService.mentionsOf(
+      userId: '0000',
+      maxResults: 10,
+      paginationToken: 'TOKEN',
+    );
+
+    expect(response, isA<TwitterResponse>());
+    expect(response.data, isA<List<TweetData>>());
+    expect(response.meta, isA<TweetMeta>());
+    expect(response.data.length, 5);
+    expect(response.meta!.resultCount, 5);
+  });
+
+  test('.tweetsOf', () async {
+    final tweetsService = TweetsService(
+      context: context.buildGetStub(
+        UserContext.oauth2OrOAuth1,
+        '/2/users/0000/tweets',
+        'test/src/service/tweets/data/tweets_of.json',
+        {
+          'max_results': '10',
+          'pagination_token': 'TOKEN',
+        },
+      ),
+    );
+
+    final response = await tweetsService.tweetsOf(
+      userId: '0000',
+      maxResults: 10,
+      paginationToken: 'TOKEN',
+    );
+
+    expect(response, isA<TwitterResponse>());
+    expect(response.data, isA<List<TweetData>>());
+    expect(response.meta, isA<TweetMeta>());
+    expect(response.data.length, 10);
+    expect(response.meta!.resultCount, 10);
+  });
 }
