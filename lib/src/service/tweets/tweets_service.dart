@@ -665,6 +665,108 @@ abstract class TweetsService {
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/hide-replies/api-reference/put-tweets-id-hidden
   Future<bool> destroyHiddenReply({required String tweetId});
+
+  /// Returns Tweets mentioning a single user specified by the requested user
+  /// ID.
+  ///
+  /// By default, the most recent ten Tweets are returned per request. Using
+  /// pagination, up to the most recent 800 Tweets can be retrieved.
+  ///
+  /// The Tweets returned by this endpoint count towards the Project-level
+  /// Tweet cap.
+  ///
+  /// ## Parameters
+  ///
+  /// - [userId]: Unique identifier of the user for whom to return Tweets
+  ///             mentioning the user. User ID can be referenced using
+  ///             the `user/lookup` endpoint. More information on Twitter IDs is
+  ///             [here](https://developer.twitter.com/en/docs/twitter-ids).
+  ///
+  /// - [maxResults]: Specifies the number of Tweets to try and retrieve, up to
+  ///                 a maximum of 100 per distinct request. By default, 10
+  ///                 results are returned if this parameter is not supplied.
+  ///                 The minimum permitted value is 5. It is possible to
+  ///                 receive less than the `max_results` per request throughout
+  ///                 the pagination process.
+  ///
+  /// - [paginationToken]: This parameter is used to move forwards or backwards
+  ///                      through 'pages' of results, based on the value of
+  ///                      the `next_token` or `previous_token` in the response.
+  ///                      The value used with the parameter is pulled directly
+  ///                      from the response provided by the API, and should not
+  ///                      be modified.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/users/:id/mentions
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **App rate limit (OAuth 2.0 App Access Token)**:
+  ///    450 requests per 15-minute window shared among all users of your app
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    180 requests per 15-minute window per each authenticated user
+  ///
+  /// - **User rate limit (OAuth 1.0a)**:
+  ///    180 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/tweets/timelines/api-reference/get-users-id-mentions
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> mentionsOf(
+      {required String userId, int? maxResults, String? paginationToken});
+
+  /// Returns Tweets composed by a single user, specified by the requested user
+  /// ID.
+  ///
+  /// By default, the most recent ten Tweets are returned per request. Using
+  /// pagination, the most recent 3,200 Tweets can be retrieved.
+  ///
+  /// The Tweets returned by this endpoint count towards the Project-level Tweet
+  /// cap.
+  ///
+  /// ## Parameters
+  ///
+  /// - [userId]: Unique identifier of the Twitter account (user ID) for whom
+  ///             to return results. User ID can be referenced using
+  ///             the `user/lookup` endpoint. More information on Twitter IDs is
+  ///             [here](https://developer.twitter.com/en/docs/twitter-ids).
+  ///
+  /// - [maxResults]: Specifies the number of Tweets to try and retrieve, up to
+  ///                 a maximum of 100 per distinct request. By default,
+  ///                 10 results are returned if this parameter is not supplied.
+  ///                 The minimum permitted value is 5. It is possible to
+  ///                 receive less than the `max_results` per request throughout
+  ///                 the pagination process.
+  ///
+  /// - [paginationToken]: This parameter is used to move forwards or backwards
+  ///                      through 'pages' of results, based on the value of
+  ///                      the `next_token` or `previous_token` in the response.
+  ///                      The value used with the parameter is pulled directly
+  ///                      from the response provided by the API, and should
+  ///                      not be modified.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/users/:id/tweets
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **App rate limit (OAuth 2.0 App Access Token)**:
+  ///    1500 requests per 15-minute window shared among all users of your app
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    900 requests per 15-minute window per each authenticated user
+  ///
+  /// - **User rate limit (OAuth 1.0a)**:
+  ///    900 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/tweets/timelines/api-reference/get-users-id-tweets
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> tweetsOf(
+      {required String userId, int? maxResults, String? paginationToken});
 }
 
 class _TweetsService extends BaseService implements TweetsService {
@@ -1028,5 +1130,51 @@ class _TweetsService extends BaseService implements TweetsService {
     );
 
     return !response['data']['hidden'];
+  }
+
+  @override
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> mentionsOf({
+    required String userId,
+    int? maxResults,
+    String? paginationToken,
+  }) async {
+    final response = await super.get(
+      UserContext.oauth2OrOAuth1,
+      '/2/users/$userId/mentions',
+      queryParameters: {
+        'max_results': maxResults,
+        'pagination_token': paginationToken,
+      },
+    );
+
+    return TwitterResponse(
+      data: response['data']
+          .map<TweetData>((tweet) => TweetData.fromJson(tweet))
+          .toList(),
+      meta: TweetMeta.fromJson(response['meta']),
+    );
+  }
+
+  @override
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> tweetsOf({
+    required String userId,
+    int? maxResults,
+    String? paginationToken,
+  }) async {
+    final response = await super.get(
+      UserContext.oauth2OrOAuth1,
+      '/2/users/$userId/tweets',
+      queryParameters: {
+        'max_results': maxResults,
+        'pagination_token': paginationToken,
+      },
+    );
+
+    return TwitterResponse(
+      data: response['data']
+          .map<TweetData>((tweet) => TweetData.fromJson(tweet))
+          .toList(),
+      meta: TweetMeta.fromJson(response['meta']),
+    );
   }
 }

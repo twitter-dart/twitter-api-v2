@@ -1,5 +1,11 @@
 # Release Note
 
+## v1.7.0
+
+- Added **Tweets Timelines** endpoints. ([#11](https://github.com/twitter-dart/twitter-api-v2/issues/11))
+  - GET /2/users/:id/mentions
+  - GET /2/users/:id/tweets
+
 ## v1.6.0
 
 - Fixed a bug in `DELETE` communication.
