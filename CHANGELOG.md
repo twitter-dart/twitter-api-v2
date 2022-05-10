@@ -9,6 +9,10 @@
   - DELETE /2/users/:source_user_id/blocking/:target_user_id
   - GET /2/users/:id/blocking
   - POST /2/users/:id/blocking
+- Added **Lists Pinnings** endpoints. ([#31](https://github.com/twitter-dart/twitter-api-v2/issues/31))
+  - DELETE /2/users/:id/pinned_lists/:list_id
+  - GET /2/users/:id/pinned_lists
+  - POST /2/users/:id/pinned_lists
 
 ## v1.6.0
 
