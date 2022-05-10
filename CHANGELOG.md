@@ -5,6 +5,10 @@
 - Added **Tweets Timelines** endpoints. ([#11](https://github.com/twitter-dart/twitter-api-v2/issues/11))
   - GET /2/users/:id/mentions
   - GET /2/users/:id/tweets
+- Added **Users Blocks** endpoints. ([#20](https://github.com/twitter-dart/twitter-api-v2/issues/20))
+  - DELETE /2/users/:source_user_id/blocking/:target_user_id
+  - GET /2/users/:id/blocking
+  - POST /2/users/:id/blocking
 
 ## v1.6.0
 
