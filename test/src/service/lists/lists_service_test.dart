@@ -115,4 +115,58 @@ void main() {
     expect(response.meta!.nextToken, 'NEXT_TOKEN');
     expect(response.meta!.previousToken, 'PREVIOUS_TOKEN');
   });
+
+  test('.createPinnedList', () async {
+    final listsService = ListsService(
+      context: context.buildPostStub(
+        UserContext.oauth2OrOAuth1,
+        '/2/users/5555/pinned_lists',
+        'test/src/service/lists/data/create_pinned_list.json',
+      ),
+    );
+
+    final response = await listsService.createPinnedList(
+      userId: '5555',
+      listId: '1111',
+    );
+
+    expect(response, isA<bool>());
+    expect(response, isTrue);
+  });
+
+  test('.destroyPinnedList', () async {
+    final listsService = ListsService(
+      context: context.buildDeleteStub(
+        '/2/users/5555/pinned_lists/1111',
+        'test/src/service/lists/data/destroy_pinned_list.json',
+      ),
+    );
+
+    final response = await listsService.destroyPinnedList(
+      userId: '5555',
+      listId: '1111',
+    );
+
+    expect(response, isA<bool>());
+    expect(response, isTrue);
+  });
+
+  test('.pinnedLists', () async {
+    final listsService = ListsService(
+      context: context.buildGetStub(
+        UserContext.oauth2OrOAuth1,
+        '/2/users/5555/pinned_lists',
+        'test/src/service/lists/data/pinned_lists.json',
+        {},
+      ),
+    );
+
+    final response = await listsService.pinnedLists(userId: '5555');
+
+    expect(response, isA<TwitterResponse>());
+    expect(response.data, isA<List<ListData>>());
+    expect(response.meta, isA<ListMeta>());
+    expect(response.data.length, 1);
+    expect(response.meta!.resultCount, 1);
+  });
 }
