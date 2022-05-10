@@ -12,6 +12,8 @@ import 'package:twitter_api_v2/src/client/user_context.dart';
 import 'package:twitter_api_v2/src/service/lists/list_data.dart';
 import 'package:twitter_api_v2/src/service/lists/list_meta.dart';
 import 'package:twitter_api_v2/src/service/lists/lists_service.dart';
+import 'package:twitter_api_v2/src/service/tweets/tweet_data.dart';
+import 'package:twitter_api_v2/src/service/tweets/tweet_meta.dart';
 import 'package:twitter_api_v2/src/service/twitter_response.dart';
 import 'package:twitter_api_v2/src/twitter_exception.dart';
 import '../../../mocks/client_context_stubs.dart' as context;
@@ -166,6 +168,32 @@ void main() {
     expect(response, isA<TwitterResponse>());
     expect(response.data, isA<List<ListData>>());
     expect(response.meta, isA<ListMeta>());
+    expect(response.data.length, 1);
+    expect(response.meta!.resultCount, 1);
+  });
+
+  test('.lookupTweets', () async {
+    final listsService = ListsService(
+      context: context.buildGetStub(
+        UserContext.oauth2OrOAuth1,
+        '/2/lists/1111/tweets',
+        'test/src/service/lists/data/lookup_tweets.json',
+        {
+          'max_results': '10',
+          'pagination_token': 'TOKEN',
+        },
+      ),
+    );
+
+    final response = await listsService.lookupTweets(
+      listId: '1111',
+      maxResults: 10,
+      paginationToken: 'TOKEN',
+    );
+
+    expect(response, isA<TwitterResponse>());
+    expect(response.data, isA<List<TweetData>>());
+    expect(response.meta, isA<TweetMeta>());
     expect(response.data.length, 1);
     expect(response.meta!.resultCount, 1);
   });

@@ -6,6 +6,8 @@
 import '../../client/client_context.dart';
 import '../../client/user_context.dart';
 import '../base_service.dart';
+import '../tweets/tweet_data.dart';
+import '../tweets/tweet_meta.dart';
 import '../twitter_response.dart';
 import 'list_data.dart';
 import 'list_meta.dart';
@@ -149,6 +151,41 @@ abstract class ListsService {
   /// - https://developer.twitter.com/en/docs/twitter-api/lists/pinned-lists/api-reference/get-users-id-pinned_lists
   Future<TwitterResponse<List<ListData>, ListMeta>> pinnedLists(
       {required String userId});
+
+  /// Returns a list of Tweets from the specified List.
+  ///
+  /// ## Parameters
+  ///
+  /// - [listId]: The ID of the List whose Tweets you would like to retrieve.
+  ///
+  /// - [maxResults]: The maximum number of results to be returned per page.
+  ///                 This can be a number between 1 and 100. By default,
+  ///                 each page will return 100 results.
+  ///
+  /// - [paginationToken]: Used to request the next page of results if all
+  ///                      results weren't returned with the latest request, or
+  ///                      to go back to the previous page of results. To return
+  ///                      the next page, pass the next_token returned in your
+  ///                      previous response. To go back one page, pass the
+  ///                      previous_token returned in your previous response.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/lists/:id/tweets
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **App rate limit (OAuth 2.0 App Access Token)**:
+  ///    900 requests per 15-minute window shared among all users of your app
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    900 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/lists/list-tweets/api-reference/get-lists-id-tweets
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupTweets(
+      {required String listId, int? maxResults, String? paginationToken});
 }
 
 class _ListsService extends BaseService implements ListsService {
@@ -225,6 +262,29 @@ class _ListsService extends BaseService implements ListsService {
           .map<ListData>((list) => ListData.fromJson(list))
           .toList(),
       meta: ListMeta.fromJson(response['meta']),
+    );
+  }
+
+  @override
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupTweets({
+    required String listId,
+    int? maxResults,
+    String? paginationToken,
+  }) async {
+    final response = await super.get(
+      UserContext.oauth2OrOAuth1,
+      '/2/lists/$listId/tweets',
+      queryParameters: {
+        'max_results': maxResults,
+        'pagination_token': paginationToken,
+      },
+    );
+
+    return TwitterResponse(
+      data: response['data']
+          .map<TweetData>((tweet) => TweetData.fromJson(tweet))
+          .toList(),
+      meta: TweetMeta.fromJson(response['meta']),
     );
   }
 }

@@ -13,6 +13,8 @@
   - DELETE /2/users/:id/pinned_lists/:list_id
   - GET /2/users/:id/pinned_lists
   - POST /2/users/:id/pinned_lists
+- Added **Lists Tweet Lookup** endpoint. ([#26](https://github.com/twitter-dart/twitter-api-v2/issues/26))
+  - GET /2/lists/:id/tweets
 
 ## v1.6.0
 
