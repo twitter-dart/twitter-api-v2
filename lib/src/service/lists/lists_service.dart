@@ -149,7 +149,7 @@ abstract class ListsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/lists/pinned-lists/api-reference/get-users-id-pinned_lists
-  Future<TwitterResponse<List<ListData>, ListMeta>> pinnedLists(
+  Future<TwitterResponse<List<ListData>, ListMeta>> lookupPinnedLists(
       {required String userId});
 
   /// Returns a list of Tweets from the specified List.
@@ -250,7 +250,7 @@ class _ListsService extends BaseService implements ListsService {
   }
 
   @override
-  Future<TwitterResponse<List<ListData>, ListMeta>> pinnedLists(
+  Future<TwitterResponse<List<ListData>, ListMeta>> lookupPinnedLists(
       {required String userId}) async {
     final response = await super.get(
       UserContext.oauth2OrOAuth1,

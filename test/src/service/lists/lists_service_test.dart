@@ -153,17 +153,17 @@ void main() {
     expect(response, isTrue);
   });
 
-  test('.pinnedLists', () async {
+  test('.lookupPinnedLists', () async {
     final listsService = ListsService(
       context: context.buildGetStub(
         UserContext.oauth2OrOAuth1,
         '/2/users/5555/pinned_lists',
-        'test/src/service/lists/data/pinned_lists.json',
+        'test/src/service/lists/data/lookup_pinned_lists.json',
         {},
       ),
     );
 
-    final response = await listsService.pinnedLists(userId: '5555');
+    final response = await listsService.lookupPinnedLists(userId: '5555');
 
     expect(response, isA<TwitterResponse>());
     expect(response.data, isA<List<ListData>>());

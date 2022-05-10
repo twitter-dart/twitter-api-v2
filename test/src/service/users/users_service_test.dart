@@ -86,17 +86,17 @@ void main() {
     expect(response, isTrue);
   });
 
-  test('.followers', () async {
+  test('.lookupFollowers', () async {
     final usersService = UsersService(
       context: context.buildGetStub(
         UserContext.oauth2OrOAuth1,
         '/2/users/0000/followers',
-        'test/src/service/users/data/followers.json',
+        'test/src/service/users/data/lookup_followers.json',
         {},
       ),
     );
 
-    final response = await usersService.followers(userId: '0000');
+    final response = await usersService.lookupFollowers(userId: '0000');
 
     expect(response, isA<TwitterResponse>());
     expect(response.data, isA<List<UserData>>());
@@ -105,17 +105,17 @@ void main() {
     expect(response.meta!.resultCount, 10);
   });
 
-  test('.followings', () async {
+  test('.lookupFollowings', () async {
     final usersService = UsersService(
       context: context.buildGetStub(
         UserContext.oauth2OrOAuth1,
         '/2/users/0000/following',
-        'test/src/service/users/data/followings.json',
+        'test/src/service/users/data/lookup_followings.json',
         {},
       ),
     );
 
-    final response = await usersService.followings(userId: '0000');
+    final response = await usersService.lookupFollowings(userId: '0000');
 
     expect(response, isA<TwitterResponse>());
     expect(response.data, isA<List<UserData>>());
@@ -253,12 +253,12 @@ void main() {
     expect(response, isTrue);
   });
 
-  test('.mutingUsers', () async {
+  test('.lookupMutingUsers', () async {
     final usersService = UsersService(
       context: context.buildGetStub(
         UserContext.oauth2OrOAuth1,
         '/2/users/1111/muting',
-        'test/src/service/users/data/muting_users.json',
+        'test/src/service/users/data/lookup_muting_users.json',
         {
           'max_results': '10',
           'pagination_token': 'TOKEN',
@@ -266,7 +266,7 @@ void main() {
       ),
     );
 
-    final response = await usersService.mutingUsers(
+    final response = await usersService.lookupMutingUsers(
       userId: '1111',
       maxResults: 10,
       paginationToken: 'TOKEN',
@@ -312,12 +312,12 @@ void main() {
     expect(response, isTrue);
   });
 
-  test('.blockingUsers', () async {
+  test('.lookupBlockingUsers', () async {
     final usersService = UsersService(
       context: context.buildGetStub(
         UserContext.oauth2OrOAuth1,
         '/2/users/1111/blocking',
-        'test/src/service/users/data/blocking_users.json',
+        'test/src/service/users/data/lookup_blocking_users.json',
         {
           'max_results': '10',
           'pagination_token': 'TOKEN',
@@ -325,7 +325,7 @@ void main() {
       ),
     );
 
-    final response = await usersService.blockingUsers(
+    final response = await usersService.lookupBlockingUsers(
       userId: '1111',
       maxResults: 10,
       paginationToken: 'TOKEN',

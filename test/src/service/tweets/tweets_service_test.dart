@@ -186,17 +186,17 @@ void main() {
     expect(response, isTrue);
   });
 
-  test('.likingUsers', () async {
+  test('.lookupLikingUsers', () async {
     final tweetsService = TweetsService(
       context: context.buildGetStub(
         UserContext.oauth2OrOAuth1,
         '/2/tweets/1111/liking_users',
-        'test/src/service/tweets/data/liking_users.json',
+        'test/src/service/tweets/data/lookup_liking_users.json',
         {},
       ),
     );
 
-    final response = await tweetsService.likingUsers(
+    final response = await tweetsService.lookupLikingUsers(
       tweetId: '1111',
     );
 
@@ -208,17 +208,17 @@ void main() {
     expect(response.meta!.resultCount, 5);
   });
 
-  test('.likedTweets', () async {
+  test('.lookupLikedTweets', () async {
     final tweetsService = TweetsService(
       context: context.buildGetStub(
         UserContext.oauth2OrOAuth1,
         '/2/users/0000/liked_tweets',
-        'test/src/service/tweets/data/liked_tweets.json',
+        'test/src/service/tweets/data/lookup_liked_tweets.json',
         {},
       ),
     );
 
-    final response = await tweetsService.likingTweets(
+    final response = await tweetsService.lookupLikedTweets(
       userId: '0000',
     );
 
@@ -230,17 +230,17 @@ void main() {
     expect(response.meta!.resultCount, 5);
   });
 
-  test('.retweetedBy', () async {
+  test('.lookupRetweetedUsers', () async {
     final tweetsService = TweetsService(
       context: context.buildGetStub(
         UserContext.oauth2OrOAuth1,
         '/2/tweets/1111/retweeted_by',
-        'test/src/service/tweets/data/retweeted_by.json',
+        'test/src/service/tweets/data/lookup_retweeted_users.json',
         {},
       ),
     );
 
-    final response = await tweetsService.retweetedBy(
+    final response = await tweetsService.lookupRetweetedUsers(
       tweetId: '1111',
     );
 
@@ -252,17 +252,17 @@ void main() {
     expect(response.meta!.resultCount, 3);
   });
 
-  test('.quoteTweets', () async {
+  test('.lookupQuoteTweets', () async {
     final tweetsService = TweetsService(
       context: context.buildGetStub(
         UserContext.oauth2OrOAuth1,
         '/2/tweets/1111/quote_tweets',
-        'test/src/service/tweets/data/quote_tweets.json',
+        'test/src/service/tweets/data/lookup_quote_tweets.json',
         {},
       ),
     );
 
-    final response = await tweetsService.quoteTweets(
+    final response = await tweetsService.lookupQuoteTweets(
       tweetId: '1111',
     );
 
@@ -431,17 +431,17 @@ void main() {
     expect(response, isTrue);
   });
 
-  test('.bookmarks', () async {
+  test('.lookupBookmarks', () async {
     final tweetsService = TweetsService(
       context: context.buildGetStub(
         UserContext.oauth2OrOAuth1,
         '/2/users/0000/bookmarks',
-        'test/src/service/tweets/data/bookmarks.json',
+        'test/src/service/tweets/data/lookup_bookmarks.json',
         {},
       ),
     );
 
-    final response = await tweetsService.bookmarks(userId: '0000');
+    final response = await tweetsService.lookupBookmarks(userId: '0000');
 
     expect(response, isA<TwitterResponse>());
     expect(response.data, isA<List<TweetData>>());
@@ -479,12 +479,12 @@ void main() {
     expect(response, isTrue);
   });
 
-  test('.mentionsOf', () async {
+  test('.lookupMentions', () async {
     final tweetsService = TweetsService(
       context: context.buildGetStub(
         UserContext.oauth2OrOAuth1,
         '/2/users/0000/mentions',
-        'test/src/service/tweets/data/mentions_of.json',
+        'test/src/service/tweets/data/lookup_mentions.json',
         {
           'max_results': '10',
           'pagination_token': 'TOKEN',
@@ -492,7 +492,7 @@ void main() {
       ),
     );
 
-    final response = await tweetsService.mentionsOf(
+    final response = await tweetsService.lookupMentions(
       userId: '0000',
       maxResults: 10,
       paginationToken: 'TOKEN',
@@ -505,12 +505,12 @@ void main() {
     expect(response.meta!.resultCount, 5);
   });
 
-  test('.tweetsOf', () async {
+  test('.lookupTweets', () async {
     final tweetsService = TweetsService(
       context: context.buildGetStub(
         UserContext.oauth2OrOAuth1,
         '/2/users/0000/tweets',
-        'test/src/service/tweets/data/tweets_of.json',
+        'test/src/service/tweets/data/lookup_tweets.json',
         {
           'max_results': '10',
           'pagination_token': 'TOKEN',
@@ -518,7 +518,7 @@ void main() {
       ),
     );
 
-    final response = await tweetsService.tweetsOf(
+    final response = await tweetsService.lookupTweets(
       userId: '0000',
       maxResults: 10,
       paginationToken: 'TOKEN',
