@@ -110,7 +110,7 @@ abstract class UsersService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/users/follows/api-reference/get-users-id-followers
-  Future<TwitterResponse<List<UserData>, UserMeta>> followers(
+  Future<TwitterResponse<List<UserData>, UserMeta>> lookupFollowers(
       {required String userId, int? maxResults, String? paginationToken});
 
   /// Returns a list of users the specified user ID is following.
@@ -146,7 +146,7 @@ abstract class UsersService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/users/follows/api-reference/get-users-id-following
-  Future<TwitterResponse<List<UserData>, UserMeta>> followings(
+  Future<TwitterResponse<List<UserData>, UserMeta>> lookupFollowings(
       {required String userId, int? maxResults, String? paginationToken});
 
   /// Returns a variety of information about a single user specified by the
@@ -356,7 +356,7 @@ abstract class UsersService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/users/mutes/api-reference/get-users-muting
-  Future<TwitterResponse<List<UserData>, UserMeta>> mutingUsers(
+  Future<TwitterResponse<List<UserData>, UserMeta>> lookupMutingUsers(
       {required String userId, int? maxResults, String? paginationToken});
 
   /// Causes the user (in the path) to block the target user.
@@ -486,7 +486,7 @@ class _UsersService extends BaseService implements UsersService {
   }
 
   @override
-  Future<TwitterResponse<List<UserData>, UserMeta>> followers({
+  Future<TwitterResponse<List<UserData>, UserMeta>> lookupFollowers({
     required String userId,
     int? maxResults,
     String? paginationToken,
@@ -509,7 +509,7 @@ class _UsersService extends BaseService implements UsersService {
   }
 
   @override
-  Future<TwitterResponse<List<UserData>, UserMeta>> followings({
+  Future<TwitterResponse<List<UserData>, UserMeta>> lookupFollowings({
     required String userId,
     int? maxResults,
     String? paginationToken,
@@ -619,7 +619,7 @@ class _UsersService extends BaseService implements UsersService {
   }
 
   @override
-  Future<TwitterResponse<List<UserData>, UserMeta>> mutingUsers({
+  Future<TwitterResponse<List<UserData>, UserMeta>> lookupMutingUsers({
     required String userId,
     int? maxResults,
     String? paginationToken,
