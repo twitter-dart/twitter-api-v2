@@ -15,6 +15,9 @@
   - POST /2/users/:id/pinned_lists
 - Added **Lists Tweet Lookup** endpoint. ([#26](https://github.com/twitter-dart/twitter-api-v2/issues/26))
   - GET /2/lists/:id/tweets
+
+---
+
 - Refactored method names. Prefixes for methods that perform `GET` communication other than the search endpoint have been unified with `lookup`. This makes it a destructive change, but please refer to the following correspondence table for details of the change.
   - **Tweets Service**
     - From `likingUsers` to `lookupLikingUsers`
@@ -26,6 +29,8 @@
     - From `followers` to `lookupFollowers`
     - From `followings` to `lookupFollowings`
     - From `mutingUsers` to `lookupMutingUsers`
+  - **Lists Service**
+    - From `pinnedLists` to `lookupPinnedLists`
 
 ## v1.6.0
 
