@@ -19,6 +19,9 @@
   - **TweetsService**
     - From `likingUsers` to `lookupLikingUsers`
     - From `likingTweets` to `lookupLikedTweets`
+    - From `retweetedBy` to `lookupRetweetedUsers`
+    - From `quoteTweets` to `lookupQuoteTweets`
+    - From `bookmarks` to `lookupBookmarks`
 
 ## v1.6.0
 

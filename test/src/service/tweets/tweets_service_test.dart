@@ -230,17 +230,17 @@ void main() {
     expect(response.meta!.resultCount, 5);
   });
 
-  test('.retweetedBy', () async {
+  test('.lookupRetweetedUsers', () async {
     final tweetsService = TweetsService(
       context: context.buildGetStub(
         UserContext.oauth2OrOAuth1,
         '/2/tweets/1111/retweeted_by',
-        'test/src/service/tweets/data/retweeted_by.json',
+        'test/src/service/tweets/data/lookup_retweeted_users.json',
         {},
       ),
     );
 
-    final response = await tweetsService.retweetedBy(
+    final response = await tweetsService.lookupRetweetedUsers(
       tweetId: '1111',
     );
 
@@ -252,17 +252,17 @@ void main() {
     expect(response.meta!.resultCount, 3);
   });
 
-  test('.quoteTweets', () async {
+  test('.lookupQuoteTweets', () async {
     final tweetsService = TweetsService(
       context: context.buildGetStub(
         UserContext.oauth2OrOAuth1,
         '/2/tweets/1111/quote_tweets',
-        'test/src/service/tweets/data/quote_tweets.json',
+        'test/src/service/tweets/data/lookup_quote_tweets.json',
         {},
       ),
     );
 
-    final response = await tweetsService.quoteTweets(
+    final response = await tweetsService.lookupQuoteTweets(
       tweetId: '1111',
     );
 
@@ -431,17 +431,17 @@ void main() {
     expect(response, isTrue);
   });
 
-  test('.bookmarks', () async {
+  test('.lookupBookmarks', () async {
     final tweetsService = TweetsService(
       context: context.buildGetStub(
         UserContext.oauth2OrOAuth1,
         '/2/users/0000/bookmarks',
-        'test/src/service/tweets/data/bookmarks.json',
+        'test/src/service/tweets/data/lookup_bookmarks.json',
         {},
       ),
     );
 
-    final response = await tweetsService.bookmarks(userId: '0000');
+    final response = await tweetsService.lookupBookmarks(userId: '0000');
 
     expect(response, isA<TwitterResponse>());
     expect(response.data, isA<List<TweetData>>());

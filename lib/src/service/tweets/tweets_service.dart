@@ -284,7 +284,7 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/retweets/api-reference/get-tweets-id-retweeted_by
-  Future<TwitterResponse<List<UserData>, UserMeta>> retweetedBy(
+  Future<TwitterResponse<List<UserData>, UserMeta>> lookupRetweetedUsers(
       {required String tweetId, int? maxResults, String? paginationToken});
 
   /// Returns Quote Tweets for a Tweet specified by the requested Tweet ID.
@@ -324,7 +324,7 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/quote-tweets/api-reference/get-tweets-id-quote_tweets
-  Future<TwitterResponse<List<TweetData>, TweetMeta>> quoteTweets(
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupQuoteTweets(
       {required String tweetId, int? maxResults, String? paginationToken});
 
   /// The recent search endpoint returns Tweets from the last seven days that
@@ -619,7 +619,7 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/bookmarks/api-reference/get-users-id-bookmarks
-  Future<TwitterResponse<List<TweetData>, TweetMeta>> bookmarks(
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupBookmarks(
       {required String userId});
 
   /// Hides a reply to a Tweet.
@@ -903,7 +903,7 @@ class _TweetsService extends BaseService implements TweetsService {
   }
 
   @override
-  Future<TwitterResponse<List<UserData>, UserMeta>> retweetedBy({
+  Future<TwitterResponse<List<UserData>, UserMeta>> lookupRetweetedUsers({
     required String tweetId,
     int? maxResults,
     String? paginationToken,
@@ -926,7 +926,7 @@ class _TweetsService extends BaseService implements TweetsService {
   }
 
   @override
-  Future<TwitterResponse<List<TweetData>, TweetMeta>> quoteTweets({
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupQuoteTweets({
     required String tweetId,
     int? maxResults,
     String? paginationToken,
@@ -1095,7 +1095,7 @@ class _TweetsService extends BaseService implements TweetsService {
   }
 
   @override
-  Future<TwitterResponse<List<TweetData>, TweetMeta>> bookmarks(
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupBookmarks(
       {required String userId}) async {
     final response = await super.get(
       UserContext.oauth2OrOAuth1,
