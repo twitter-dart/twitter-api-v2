@@ -197,4 +197,90 @@ void main() {
     expect(response.data.length, 1);
     expect(response.meta!.resultCount, 1);
   });
+
+  test('.createPublicList', () async {
+    final listsService = ListsService(
+      context: context.buildPostStub(
+        UserContext.oauth2OrOAuth1,
+        '/2/lists',
+        'test/src/service/lists/data/create_list.json',
+      ),
+    );
+
+    final response = await listsService.createPublicList(
+      name: 'test',
+      description: 'test description',
+    );
+
+    expect(response, isA<TwitterResponse>());
+    expect(response.data, isA<ListData>());
+  });
+
+  test('.createPrivateList', () async {
+    final listsService = ListsService(
+      context: context.buildPostStub(
+        UserContext.oauth2OrOAuth1,
+        '/2/lists',
+        'test/src/service/lists/data/create_list.json',
+      ),
+    );
+
+    final response = await listsService.createPrivateList(
+      name: 'test',
+      description: 'test description',
+    );
+
+    expect(response, isA<TwitterResponse>());
+    expect(response.data, isA<ListData>());
+  });
+
+  test('.destroyList', () async {
+    final listsService = ListsService(
+      context: context.buildDeleteStub(
+        '/2/lists/1111',
+        'test/src/service/lists/data/destroy_list.json',
+      ),
+    );
+
+    final response = await listsService.destroyList(listId: '1111');
+
+    expect(response, isA<bool>());
+    expect(response, isTrue);
+  });
+
+  test('.updateListAsPublic', () async {
+    final listsService = ListsService(
+      context: context.buildPutStub(
+        '/2/lists/1111',
+        'test/src/service/lists/data/update_list.json',
+      ),
+    );
+
+    final response = await listsService.updateListAsPublic(
+      listId: '1111',
+      name: 'test',
+      description: 'test description',
+    );
+
+    expect(response, isA<bool>());
+    expect(response, isTrue);
+  });
+
+  test('.updateListAsPrivate', () async {
+    final listsService = ListsService(
+      context: context.buildPutStub(
+        '/2/lists/1111',
+        'test/src/service/lists/data/update_list.json',
+      ),
+    );
+
+    final response = await listsService.updateListAsPrivate(
+      listId: '1111',
+      name: 'test',
+      description: 'test description',
+    );
+
+    expect(response, isA<bool>());
+    expect(response, isTrue);
+  });
 }
