@@ -1,5 +1,12 @@
 # Release Note
 
+## v1.8.0
+
+- Added **Lists Manage** endpoints. ([#30](https://github.com/twitter-dart/twitter-api-v2/issues/30))
+  - DELETE /2/lists/:id
+  - PUT /2/lists/:id
+  - POST /2/lists
+
 ## v1.7.0
 
 - Added **Tweets Timelines** endpoints. ([#11](https://github.com/twitter-dart/twitter-api-v2/issues/11))

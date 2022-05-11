@@ -186,6 +186,130 @@ abstract class ListsService {
   /// - https://developer.twitter.com/en/docs/twitter-api/lists/list-tweets/api-reference/get-lists-id-tweets
   Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupTweets(
       {required String listId, int? maxResults, String? paginationToken});
+
+  /// Enables the authenticated user to create a public List.
+  ///
+  /// ## Parameters
+  ///
+  /// - [name]: The name of the List you wish to create.
+  ///
+  /// - [description]: Description of the List.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/lists
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    300 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/lists/manage-lists/api-reference/post-lists
+  Future<TwitterResponse<ListData, void>> createPublicList(
+      {required String name, String? description});
+
+  /// Enables the authenticated user to create a private List.
+  ///
+  /// ## Parameters
+  ///
+  /// - [name]: The name of the List you wish to create.
+  ///
+  /// - [description]: Description of the List.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/lists
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    300 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/lists/manage-lists/api-reference/post-lists
+  Future<TwitterResponse<ListData, void>> createPrivateList(
+      {required String name, String? description});
+
+  /// Enables the authenticated user to delete a List that they own.
+  ///
+  /// ## Parameters
+  ///
+  /// - [listId]: The ID of the List to be deleted.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/lists/:id
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    300 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/lists/manage-lists/api-reference/delete-lists-id
+  Future<bool> destroyList({required String listId});
+
+  /// Enables the authenticated user to update the meta data of a specified List
+  /// that they own as a public scope.
+  ///
+  /// ## Parameters
+  ///
+  /// - [listId]: The ID of the List to be updated.
+  ///
+  /// - [name]: Updates the name of the List.
+  ///
+  /// - [description]: Updates the description of the List.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/lists/:id
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    300 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/lists/manage-lists/api-reference/delete-lists-id
+  Future<bool> updateListAsPublic({
+    required String listId,
+    String? name,
+    String? description,
+  });
+
+  /// Enables the authenticated user to update the meta data of a specified List
+  /// that they own as a private scope.
+  ///
+  /// ## Parameters
+  ///
+  /// - [listId]: The ID of the List to be updated.
+  ///
+  /// - [name]: Updates the name of the List.
+  ///
+  /// - [description]: Updates the description of the List.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/lists/:id
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    300 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/lists/manage-lists/api-reference/delete-lists-id
+  Future<bool> updateListAsPrivate({
+    required String listId,
+    String? name,
+    String? description,
+  });
 }
 
 class _ListsService extends BaseService implements ListsService {
@@ -286,5 +410,88 @@ class _ListsService extends BaseService implements ListsService {
           .toList(),
       meta: TweetMeta.fromJson(response['meta']),
     );
+  }
+
+  @override
+  Future<TwitterResponse<ListData, void>> createPublicList(
+          {required String name, String? description}) async =>
+      await _createList(name: name, description: description, private: false);
+
+  @override
+  Future<TwitterResponse<ListData, void>> createPrivateList(
+          {required String name, String? description}) async =>
+      await _createList(name: name, description: description, private: true);
+
+  @override
+  Future<bool> destroyList({required String listId}) async {
+    final response = await super.delete(
+      UserContext.oauth2OrOAuth1,
+      '/2/lists/$listId',
+    );
+
+    return response['data']['deleted'];
+  }
+
+  @override
+  Future<bool> updateListAsPublic({
+    required String listId,
+    String? name,
+    String? description,
+  }) async =>
+      await _updateList(
+        listId: listId,
+        name: name,
+        description: description,
+        private: false,
+      );
+
+  @override
+  Future<bool> updateListAsPrivate({
+    required String listId,
+    String? name,
+    String? description,
+  }) async =>
+      await _updateList(
+        listId: listId,
+        name: name,
+        description: description,
+        private: true,
+      );
+
+  Future<TwitterResponse<ListData, void>> _createList({
+    required String name,
+    String? description,
+    required bool private,
+  }) async {
+    final response = await super.post(
+      UserContext.oauth2OrOAuth1,
+      '/2/lists',
+      body: {
+        'name': name,
+        'description': description,
+        'private': private,
+      },
+    );
+
+    return TwitterResponse(data: ListData.fromJson(response['data']));
+  }
+
+  Future<bool> _updateList({
+    required String listId,
+    String? name,
+    String? description,
+    required bool private,
+  }) async {
+    final response = await super.put(
+      UserContext.oauth2OrOAuth1,
+      '/2/lists/$listId',
+      body: {
+        'name': name,
+        'description': description,
+        'private': private,
+      },
+    );
+
+    return response['data']['updated'];
   }
 }
