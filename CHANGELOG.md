@@ -11,6 +11,11 @@
   - GET /2/lists/:id/followers
   - GET /2/users/:id/followed_lists
   - POST /2/users/:id/followed_lists
+- Added **Lists Members** endpoints. ([#29](https://github.com/twitter-dart/twitter-api-v2/issues/29))
+  - DELETE /2/lists/:id/members/:user_id
+  - GET /2/lists/:id/members
+  - GET /2/users/:id/list_memberships
+  - POST /2/lists/:id/members
 
 ## v1.7.0
 
