@@ -11,11 +11,12 @@
     - [1.2.1. Global Variables](#121-global-variables)
     - [1.2.2. Asserts](#122-asserts)
   - [1.3. Comments](#13-comments)
-    - [1.3.1. TODO](#131-todo)
-    - [1.3.2. Dartdocs](#132-dartdocs)
-      - [1.3.2.1. Consider adding examples](#1321-consider-adding-examples)
-      - [1.3.2.2. Avoid useless code documentation](#1322-avoid-useless-code-documentation)
-      - [1.3.2.3. Consider adding linkage between docs](#1323-consider-adding-linkage-between-docs)
+    - [1.3.1. Better Comments](#131-better-comments)
+    - [1.3.2. TODO](#132-todo)
+    - [1.3.3. Dartdocs](#133-dartdocs)
+      - [1.3.3.1. Consider adding examples](#1331-consider-adding-examples)
+      - [1.3.3.2. Avoid useless code documentation](#1332-avoid-useless-code-documentation)
+      - [1.3.3.3. Consider adding linkage between docs](#1333-consider-adding-linkage-between-docs)
 
 <!-- /TOC -->
 
@@ -34,7 +35,7 @@ Note that this is not yet an exhaustive guide, and consider it a work in progres
 
 ### 1.1.1. Max line length
 
-For all files, including markdown, keep each line within a hundred or less characters.
+For all files, including markdown, keep each line within 80 characters.
 
 ### 1.1.2. Trailing Commas and Wrapping
 
@@ -76,7 +77,7 @@ foo(f1,
 ### 1.1.3. Imports
 
 - Never include unused or duplicated imports.
-- You must always use relative imports for imports within the batch.dart library (internal imports must
+- You must always use relative imports for imports within the `twitter_api_v2` (internal imports must
   be relative).
 - Omit `./` for relative imports from the same directory.
 - Avoid importing groups of APIs internally.
@@ -85,16 +86,17 @@ foo(f1,
 For example:
 
 ```dart
+// Dart imports:
+import 'dart:convert';
+
+// Package imports:
+import 'package:http/http.dart' as http;
+
 // Project imports:
-import 'package:batch/src/batch_instance.dart';
-import 'package:batch/src/job/branch/branch_status.dart';
-import 'package:batch/src/job/context/context_support.dart';
-import 'package:batch/src/job/context/execution_context.dart';
-import 'package:batch/src/job/event/event.dart';
-import 'package:batch/src/job/process_status.dart';
-import 'package:batch/src/log/logger_provider.dart';
-import 'package:batch/src/runner.dart';
+import 'client.dart';
 ```
+
+Also you can see the latest formatting rules on the [analysis_options.yaml](https://github.com/twitter-dart/twitter-api-v2/blob/main/analysis_options.yaml)!
 
 ## 1.2. Code Structure
 
@@ -120,7 +122,13 @@ void something(int smaller, int bigger) {
 - For any `//` comments, always add a space after the second slash and before the next character.
 - Use `//` (or block comments) for comments about the code; use `///` for dartdocs about APIs.
 
-### 1.3.1. TODO
+### 1.3.1. Better Comments
+
+**Better Comments** features were used throughout the development of this library.
+
+You can learn how to use this extension on [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments).
+
+### 1.3.2. TODO
 
 TODO comments should follow this template: `// TODO(username): Comment`
 
@@ -139,18 +147,18 @@ final thisThing = 13;
 const thisThing = 13;
 ```
 
-### 1.3.2. Dartdocs
+### 1.3.3. Dartdocs
 
-#### 1.3.2.1. Consider adding examples
+#### 1.3.3.1. Consider adding examples
 
 Some elements may benefit from a simple usage example.
 
-#### 1.3.2.2. Avoid useless code documentation
+#### 1.3.3.2. Avoid useless code documentation
 
 Avoid documentation that just repeats the obvious. For example, `void doStuff()` be documented as
 "Method that does stuff".
 
-#### 1.3.2.3. Consider adding linkage between docs
+#### 1.3.3.3. Consider adding linkage between docs
 
 You should use `[]` (brackets) to link dartdoc elements that can be referenced on the same file.
 Also, consider adding a "See also" section to element documentation.
