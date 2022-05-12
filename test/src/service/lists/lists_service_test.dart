@@ -372,4 +372,91 @@ void main() {
     expect(response.data.length, 1);
     expect(response.meta!.resultCount, 1);
   });
+
+  test('.createMember', () async {
+    final listsService = ListsService(
+      context: context.buildPostStub(
+        UserContext.oauth2OrOAuth1,
+        '/2/lists/0000/members',
+        'test/src/service/lists/data/create_member.json',
+      ),
+    );
+
+    final response = await listsService.createMember(
+      listId: '0000',
+      userId: '1111',
+    );
+
+    expect(response, isA<bool>());
+    expect(response, isTrue);
+  });
+
+  test('.destroyMember', () async {
+    final listsService = ListsService(
+      context: context.buildDeleteStub(
+        '/2/lists/0000/members/1111',
+        'test/src/service/lists/data/destroy_member.json',
+      ),
+    );
+
+    final response = await listsService.destroyMember(
+      listId: '0000',
+      userId: '1111',
+    );
+
+    expect(response, isA<bool>());
+    expect(response, isTrue);
+  });
+
+  test('.lookupMembers', () async {
+    final listsService = ListsService(
+      context: context.buildGetStub(
+        UserContext.oauth2OrOAuth1,
+        '/2/lists/0000/members',
+        'test/src/service/lists/data/lookup_members.json',
+        {
+          'max_results': '10',
+          'pagination_token': 'TOKEN',
+        },
+      ),
+    );
+
+    final response = await listsService.lookupMembers(
+      listId: '0000',
+      maxResults: 10,
+      paginationToken: 'TOKEN',
+    );
+
+    expect(response, isA<TwitterResponse>());
+    expect(response.data, isA<List<UserData>>());
+    expect(response.meta, isA<UserMeta>());
+    expect(response.data.length, 5);
+    expect(response.meta!.resultCount, 5);
+  });
+
+  test('.lookupMemberships', () async {
+    final listsService = ListsService(
+      context: context.buildGetStub(
+        UserContext.oauth2OrOAuth1,
+        '/2/users/0000/list_memberships',
+        'test/src/service/lists/data/lookup_memberships.json',
+        {
+          'max_results': '10',
+          'pagination_token': 'TOKEN',
+        },
+      ),
+    );
+
+    final response = await listsService.lookupMemberships(
+      userId: '0000',
+      maxResults: 10,
+      paginationToken: 'TOKEN',
+    );
+
+    expect(response, isA<TwitterResponse>());
+    expect(response.data, isA<List<ListData>>());
+    expect(response.meta, isA<ListMeta>());
+    expect(response.data.length, 3);
+    expect(response.meta!.resultCount, 3);
+  });
 }
