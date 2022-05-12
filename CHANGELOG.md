@@ -6,6 +6,11 @@
   - DELETE /2/lists/:id
   - PUT /2/lists/:id
   - POST /2/lists
+- Added **Lists Follows** endpoints. ([#27](https://github.com/twitter-dart/twitter-api-v2/issues/27))
+  - DELETE /2/users/:id/followed_lists/:list_id
+  - GET /2/lists/:id/followers
+  - GET /2/users/:id/followed_lists
+  - POST /2/users/:id/followed_lists
 
 ## v1.7.0
 
