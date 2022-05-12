@@ -15,6 +15,8 @@ import 'package:twitter_api_v2/src/service/lists/lists_service.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_data.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_meta.dart';
 import 'package:twitter_api_v2/src/service/twitter_response.dart';
+import 'package:twitter_api_v2/src/service/users/user_data.dart';
+import 'package:twitter_api_v2/src/service/users/user_meta.dart';
 import 'package:twitter_api_v2/src/twitter_exception.dart';
 import '../../../mocks/client_context_stubs.dart' as context;
 
@@ -282,5 +284,92 @@ void main() {
 
     expect(response, isA<bool>());
     expect(response, isTrue);
+  });
+
+  test('.createFollow', () async {
+    final listsService = ListsService(
+      context: context.buildPostStub(
+        UserContext.oauth2OrOAuth1,
+        '/2/users/1111/followed_lists',
+        'test/src/service/lists/data/create_follow.json',
+      ),
+    );
+
+    final response = await listsService.createFollow(
+      userId: '1111',
+      listId: '2222',
+    );
+
+    expect(response, isA<bool>());
+    expect(response, isTrue);
+  });
+
+  test('.destroyFollow', () async {
+    final listsService = ListsService(
+      context: context.buildDeleteStub(
+        '/2/users/1111/followed_lists/2222',
+        'test/src/service/lists/data/destroy_follow.json',
+      ),
+    );
+
+    final response = await listsService.destroyFollow(
+      userId: '1111',
+      listId: '2222',
+    );
+
+    expect(response, isA<bool>());
+    expect(response, isTrue);
+  });
+
+  test('.lookupFollowers', () async {
+    final listsService = ListsService(
+      context: context.buildGetStub(
+        UserContext.oauth2OrOAuth1,
+        '/2/lists/0000/followers',
+        'test/src/service/lists/data/lookup_followers.json',
+        {
+          'max_results': '10',
+          'pagination_token': 'TOKEN',
+        },
+      ),
+    );
+
+    final response = await listsService.lookupFollowers(
+      listId: '0000',
+      maxResults: 10,
+      paginationToken: 'TOKEN',
+    );
+
+    expect(response, isA<TwitterResponse>());
+    expect(response.data, isA<List<UserData>>());
+    expect(response.meta, isA<UserMeta>());
+    expect(response.data.length, 5);
+    expect(response.meta!.resultCount, 5);
+  });
+
+  test('.lookupFollowedLists', () async {
+    final listsService = ListsService(
+      context: context.buildGetStub(
+        UserContext.oauth2OrOAuth1,
+        '/2/users/1111/followed_lists',
+        'test/src/service/lists/data/lookup_followed_lists.json',
+        {
+          'max_results': '10',
+          'pagination_token': 'TOKEN',
+        },
+      ),
+    );
+
+    final response = await listsService.lookupFollowedLists(
+      userId: '1111',
+      maxResults: 10,
+      paginationToken: 'TOKEN',
+    );
+
+    expect(response, isA<TwitterResponse>());
+    expect(response.data, isA<List<ListData>>());
+    expect(response.meta, isA<ListMeta>());
+    expect(response.data.length, 1);
+    expect(response.meta!.resultCount, 1);
   });
 }
