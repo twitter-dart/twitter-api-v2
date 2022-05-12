@@ -19,11 +19,9 @@ jobs:
     - uses: dart-lang/setup-dart@v1
     - name: install dependencies
       run: dart pub get
-    - name: run test
-      run: dart run test . --coverage=coverage
-    - name: coverage
-      run: dart run coverage:format_coverage --lcov --packages=.packages --in coverage --out lcov.info
+    - name: run test with coverage
+      run: dart test --coverage
     - uses: codecov/codecov-action@v3
       with:
         token: ${{secrets.CODECOV_TOKEN}}
-        file: lcov.info
+        file: ./coverage/lcov.info
