@@ -429,6 +429,122 @@ abstract class ListsService {
   /// - https://developer.twitter.com/en/docs/twitter-api/lists/list-follows/api-reference/get-users-id-followed_lists
   Future<TwitterResponse<List<ListData>, ListMeta>> lookupFollowedLists(
       {required String userId, int? maxResults, String? paginationToken});
+
+  /// Enables the authenticated user to add a member to a List they own.
+  ///
+  /// ## Parameters
+  ///
+  /// - [listId]: The ID of the List you are adding a member to.
+  ///
+  /// - [userId]: The ID of the user you wish to add as a member of the List.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/lists/:id/members
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    300 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/lists/list-members/api-reference/post-lists-id-members
+  Future<bool> createMember({required String listId, required String userId});
+
+  /// Enables the authenticated user to remove a member from a List they own.
+  ///
+  /// ## Parameters
+  ///
+  /// - [listId]: The ID of the List you are removing a member from.
+  ///
+  /// - [userId]: The ID of the user you wish to remove as a member of the List.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/lists/:id/members/:user_id
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    300 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/lists/list-members/api-reference/delete-lists-id-members-user_id
+  Future<bool> destroyMember({required String listId, required String userId});
+
+  /// Returns a list of users who are members of the specified List.
+  ///
+  /// ## Parameters
+  ///
+  /// - [listId]: The ID of the List whose members you would like to retrieve.
+  ///
+  /// - [maxResults]: The maximum number of results to be returned per page.
+  ///                 This can be a number between 1 and 100. By default,
+  ///                 each page will return 100 results.
+  ///
+  /// - [paginationToken]: Used to request the next page of results if all
+  ///                      results weren't returned with the latest request,
+  ///                      or to go back to the previous page of results. To
+  ///                      return the next page, pass the next_token returned
+  ///                      in your previous response. To go back one page, pass
+  ///                      the previous_token returned in your previous
+  ///                      response.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/lists/:id/members
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **App rate limit (OAuth 2.0 App Access Token)**:
+  ///    900 requests per 15-minute window shared among all users of your app
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    900 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/lists/list-members/api-reference/get-lists-id-members
+  Future<TwitterResponse<List<UserData>, UserMeta>> lookupMembers(
+      {required String listId, int? maxResults, String? paginationToken});
+
+  /// Returns all Lists a specified user is a member of.
+  ///
+  /// ## Parameters
+  ///
+  /// - [userId]: The user ID whose List memberships you would like to retrieve.
+  ///
+  /// - [maxResults]: The maximum number of results to be returned per page.
+  ///                 This can be a number between 1 and 100. By default, each
+  ///                 page will return 100 results.
+  ///
+  /// - [paginationToken]: Used to request the next page of results if all
+  ///                      results weren't returned with the latest request,
+  ///                      or to go back to the previous page of results. To
+  ///                      return the next page, pass the next_token returned
+  ///                      in your previous response. To go back one page, pass
+  ///                      the previous_token returned in your previous
+  ///                      response.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/users/:id/list_memberships
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    75 requests per 15-minute window per each authenticated user
+  ///
+  /// - **App rate limit (OAuth 2.0 App Access Token)**:
+  ///    75 requests per 15-minute window shared among all users of your app
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/lists/list-members/api-reference/get-users-id-list_memberships
+  Future<TwitterResponse<List<ListData>, ListMeta>> lookupMemberships(
+      {required String userId, int? maxResults, String? paginationToken});
 }
 
 class _ListsService extends BaseService implements ListsService {
@@ -647,6 +763,81 @@ class _ListsService extends BaseService implements ListsService {
     return TwitterResponse(
       data: response['data']
           .map<ListData>((list) => ListData.fromJson(list))
+          .toList(),
+      meta: ListMeta.fromJson(response['meta']),
+    );
+  }
+
+  @override
+  Future<bool> createMember({
+    required String listId,
+    required String userId,
+  }) async {
+    final response = await super.post(
+      UserContext.oauth2OrOAuth1,
+      '/2/lists/$listId/members',
+      body: {
+        'user_id': userId,
+      },
+    );
+
+    return response['data']['is_member'];
+  }
+
+  @override
+  Future<bool> destroyMember({
+    required String listId,
+    required String userId,
+  }) async {
+    final response = await super.delete(
+      UserContext.oauth2OrOAuth1,
+      '/2/lists/$listId/members/$userId',
+    );
+
+    return !response['data']['is_member'];
+  }
+
+  @override
+  Future<TwitterResponse<List<UserData>, UserMeta>> lookupMembers({
+    required String listId,
+    int? maxResults,
+    String? paginationToken,
+  }) async {
+    final response = await super.get(
+      UserContext.oauth2OrOAuth1,
+      '/2/lists/$listId/members',
+      queryParameters: {
+        'max_results': maxResults,
+        'pagination_token': paginationToken,
+      },
+    );
+
+    return TwitterResponse(
+      data: response['data']
+          .map<UserData>((user) => UserData.fromJson(user))
+          .toList(),
+      meta: UserMeta.fromJson(response['meta']),
+    );
+  }
+
+  @override
+  Future<TwitterResponse<List<ListData>, ListMeta>> lookupMemberships({
+    required String userId,
+    int? maxResults,
+    String? paginationToken,
+  }) async {
+    final response = await super.get(
+      UserContext.oauth2OrOAuth1,
+      '/2/users/$userId/list_memberships',
+      queryParameters: {
+        'max_results': maxResults,
+        'pagination_token': paginationToken,
+      },
+    );
+
+    return TwitterResponse(
+      data: response['data']
+          .map<ListData>((user) => ListData.fromJson(user))
           .toList(),
       meta: ListMeta.fromJson(response['meta']),
     );
