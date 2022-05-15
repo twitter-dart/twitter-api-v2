@@ -11,7 +11,7 @@ import 'package:twitter_api_v2/src/service/lists/lists_service.dart';
 import 'package:twitter_api_v2/src/service/spaces/spaces_service.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweets_service.dart';
 import 'package:twitter_api_v2/src/service/users/users_service.dart';
-import 'package:twitter_api_v2/twitter_api_v2.dart';
+import 'package:twitter_api_v2/src/twitter_api.dart';
 
 void main() {
   test('.tweetsService', () {
