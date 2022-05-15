@@ -176,7 +176,7 @@ abstract class SpacesService {
 
 class _SpacesService extends BaseService implements SpacesService {
   /// Returns the new instance of [_SpacesService].
-  _SpacesService({required ClientContext context}) : super(context: context);
+  _SpacesService({required super.context});
 
   @override
   Future<TwitterResponse<List<SpaceData>, SpaceMeta>> search(

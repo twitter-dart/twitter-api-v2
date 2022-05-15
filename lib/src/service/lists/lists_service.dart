@@ -549,7 +549,7 @@ abstract class ListsService {
 
 class _ListsService extends BaseService implements ListsService {
   /// Returns the new instance of [_ListsService].
-  _ListsService({required ClientContext context}) : super(context: context);
+  _ListsService({required super.context});
 
   @override
   Future<TwitterResponse<ListData, void>> lookupById(

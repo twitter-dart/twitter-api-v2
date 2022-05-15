@@ -456,7 +456,7 @@ abstract class UsersService {
 
 class _UsersService extends BaseService implements UsersService {
   /// Returns the new instance of [_UsersService].
-  _UsersService({required ClientContext context}) : super(context: context);
+  _UsersService({required super.context});
 
   @override
   Future<bool> createFollow({
