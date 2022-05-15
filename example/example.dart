@@ -55,4 +55,15 @@ void main() async {
     print(e.response.body);
     print(e);
   }
+
+  // Only people you follow can reply to your Tweet
+  try {
+    await twitter.tweetsService.createTweet(
+        text: "Only people I follow can reply",
+        tweetReplySettings: v2.TweetReplySettings.following);
+  } on v2.TwitterException catch (e) {
+    print(e.response.headers);
+    print(e.response.body);
+    print(e);
+  }
 }
