@@ -788,12 +788,15 @@ class _TweetsService extends BaseService implements TweetsService {
     var body = {
       'text': text,
       'quote_tweet_id': quoteTweetId,
-      'for_super_followers_only': forSuperFollowersOnly,
-      'reply_settings': tweetReplySettings.name
+      'for_super_followers_only': forSuperFollowersOnly
     };
 
     if (inReplyToTweetId?.isNotEmpty == true) {
       body['reply'] = {'in_reply_to_tweet_id': inReplyToTweetId};
+    }
+
+    if (tweetReplySettings != TweetReplySettings.everyone) {
+      body['reply_settings'] = tweetReplySettings.name;
     }
 
     final response = await super.post(
