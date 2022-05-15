@@ -1,5 +1,14 @@
 # Release Note
 
+## v2.0.0
+
+- Exposed service classes.
+  - `TweetsService`
+  - `UsersService`
+  - `ListsService`
+  - `SpacesService`
+  - `ComplianceService`
+
 ## v1.8.0
 
 - Added **Lists Manage** endpoints. ([#30](https://github.com/twitter-dart/twitter-api-v2/issues/30))
