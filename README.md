@@ -235,11 +235,7 @@ And I'm always looking for sponsors to support this project.
 
 Sponsors can be individuals or corporations, and the amount is optional.
 
-<div align="center">
-  <p>
-    <b>👇 Click on the button below to see more details! 👇</b>
-  </p>
-
+<div align="left">
   <p>
     <a href="https://github.com/sponsors/myconsciousness">
       <img src="https://cdn.ko-fi.com/cdn/kofi3.png?v=3" height="50" width="210" alt="myconsciousness" />
