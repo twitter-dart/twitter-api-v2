@@ -13,6 +13,7 @@ import 'tweet_count_data.dart';
 import 'tweet_count_meta.dart';
 import 'tweet_data.dart';
 import 'tweet_meta.dart';
+import 'tweet_reply_settings.dart';
 
 abstract class TweetsService {
   /// Returns the new instance of [TweetsService].
@@ -30,6 +31,8 @@ abstract class TweetsService {
   ///
   /// - [forSuperFollowersOnly]: Allows you to Tweet exclusively for [Super Followers](https://help.twitter.com/en/using-twitter/super-follows).
   ///
+  /// - [inReplyToTweetId]: Link to Tweet ID to reply to
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets
@@ -42,11 +45,12 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/manage-tweets/api-reference/post-tweets
-  Future<TwitterResponse<TweetData, void>> createTweet({
-    required String text,
-    String? quoteTweetId,
-    bool? forSuperFollowersOnly,
-  });
+  Future<TwitterResponse<TweetData, void>> createTweet(
+      {required String text,
+      String? quoteTweetId,
+      bool? forSuperFollowersOnly,
+      String? inReplyToTweetId,
+      TweetReplySettings tweetReplySettings = TweetReplySettings.everyone});
 
   /// Allows a user or authenticated user ID to delete a Tweet.
   ///
@@ -774,19 +778,28 @@ class _TweetsService extends BaseService implements TweetsService {
   _TweetsService({required super.context});
 
   @override
-  Future<TwitterResponse<TweetData, void>> createTweet({
-    required String text,
-    String? quoteTweetId,
-    bool? forSuperFollowersOnly,
-  }) async {
+  Future<TwitterResponse<TweetData, void>> createTweet(
+      {required String text,
+      String? quoteTweetId,
+      bool? forSuperFollowersOnly,
+      String? inReplyToTweetId,
+      TweetReplySettings tweetReplySettings =
+          TweetReplySettings.everyone}) async {
+    var body = {
+      'text': text,
+      'quote_tweet_id': quoteTweetId,
+      'for_super_followers_only': forSuperFollowersOnly,
+      'reply_settings': tweetReplySettings.name
+    };
+
+    if (inReplyToTweetId?.isNotEmpty == true) {
+      body['reply'] = {'in_reply_to_tweet_id': inReplyToTweetId};
+    }
+
     final response = await super.post(
       UserContext.oauth2OrOAuth1,
       '/2/tweets',
-      body: {
-        'text': text,
-        'quote_tweet_id': quoteTweetId,
-        'for_super_followers_only': forSuperFollowersOnly,
-      },
+      body: body,
     );
 
     return TwitterResponse(data: TweetData.fromJson(response['data']));
