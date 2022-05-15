@@ -102,8 +102,7 @@ abstract class ComplianceService {
 
 class _ComplianceService extends BaseService implements ComplianceService {
   /// Returns the new instance of [_ComplianceService].
-  _ComplianceService({required ClientContext context})
-      : super(context: context);
+  _ComplianceService({required super.context});
 
   @override
   Future<TwitterResponse<ComplianceData, void>> lookupJob(

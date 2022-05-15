@@ -771,7 +771,7 @@ abstract class TweetsService {
 
 class _TweetsService extends BaseService implements TweetsService {
   /// Returns the new instance of [_TweetsService].
-  _TweetsService({required ClientContext context}) : super(context: context);
+  _TweetsService({required super.context});
 
   @override
   Future<TwitterResponse<TweetData, void>> createTweet({
