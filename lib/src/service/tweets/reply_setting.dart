@@ -9,7 +9,7 @@
 /// [mentionedUsers]: Only mentioned users can reply
 ///
 /// [following]: Only people you follow can reply
-enum ReplySettings {
+enum ReplySetting {
   /// Everyone can reply
   everyone,
 
