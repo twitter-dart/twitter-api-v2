@@ -6,12 +6,12 @@
 import 'package:test/test.dart';
 
 // Project imports:
-import 'package:twitter_api_v2/src/service/tweets/tweet_reply_settings.dart';
+import 'package:twitter_api_v2/src/service/tweets/reply_setting.dart';
 
 void main() {
   test('.name', () {
-    expect(TweetReplySettings.everyone.name == 'everyone', isTrue);
-    expect(TweetReplySettings.following.name == 'following', isTrue);
-    expect(TweetReplySettings.mentionedUsers.name == 'mentionedUsers', isTrue);
+    expect(ReplySetting.everyone.name == 'everyone', isTrue);
+    expect(ReplySetting.following.name == 'following', isTrue);
+    expect(ReplySetting.mentionedUsers.name == 'mentionedUsers', isTrue);
   });
 }
