@@ -9,11 +9,11 @@ import '../base_service.dart';
 import '../twitter_response.dart';
 import '../users/user_data.dart';
 import '../users/user_meta.dart';
+import 'reply_settings.dart';
 import 'tweet_count_data.dart';
 import 'tweet_count_meta.dart';
 import 'tweet_data.dart';
 import 'tweet_meta.dart';
-import 'tweet_reply_settings.dart';
 
 abstract class TweetsService {
   /// Returns the new instance of [TweetsService].
@@ -31,7 +31,13 @@ abstract class TweetsService {
   ///
   /// - [forSuperFollowersOnly]: Allows you to Tweet exclusively for [Super Followers](https://help.twitter.com/en/using-twitter/super-follows).
   ///
-  /// - [inReplyToTweetId]: Link to Tweet ID to reply to
+  /// - [inReplyToTweetId]: Tweet ID of the Tweet being replied to. Please note
+  ///                       that [inReplyToTweetId] needs to be in the request
+  ///                       if [excludeReplyUserIds] is present.
+  ///
+  /// - [replySettings]: Settings to indicate who can reply to the Tweet.
+  ///                    Options include `mentionedUsers` and `following`.
+  ///                    The default to `everyone`.
   ///
   /// ## Endpoint Url
   ///
@@ -45,12 +51,13 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/manage-tweets/api-reference/post-tweets
-  Future<TwitterResponse<TweetData, void>> createTweet(
-      {required String text,
-      String? quoteTweetId,
-      bool? forSuperFollowersOnly,
-      String? inReplyToTweetId,
-      TweetReplySettings tweetReplySettings = TweetReplySettings.everyone});
+  Future<TwitterResponse<TweetData, void>> createTweet({
+    required String text,
+    String? quoteTweetId,
+    bool? forSuperFollowersOnly,
+    String? inReplyToTweetId,
+    ReplySettings? replySettings,
+  });
 
   /// Allows a user or authenticated user ID to delete a Tweet.
   ///
@@ -778,25 +785,23 @@ class _TweetsService extends BaseService implements TweetsService {
   _TweetsService({required super.context});
 
   @override
-  Future<TwitterResponse<TweetData, void>> createTweet(
-      {required String text,
-      String? quoteTweetId,
-      bool? forSuperFollowersOnly,
-      String? inReplyToTweetId,
-      TweetReplySettings tweetReplySettings =
-          TweetReplySettings.everyone}) async {
-    var body = {
+  Future<TwitterResponse<TweetData, void>> createTweet({
+    required String text,
+    String? quoteTweetId,
+    bool? forSuperFollowersOnly,
+    String? inReplyToTweetId,
+    ReplySettings? replySettings,
+  }) async {
+    final body = {
       'text': text,
       'quote_tweet_id': quoteTweetId,
-      'for_super_followers_only': forSuperFollowersOnly
+      'for_super_followers_only': forSuperFollowersOnly,
+      'reply_settings': replySettings?.name,
     };
 
-    if (inReplyToTweetId?.isNotEmpty == true) {
+    if (inReplyToTweetId != null) {
+      // TODO(myConsciousness): Fix after implementing recursive null deletion.
       body['reply'] = {'in_reply_to_tweet_id': inReplyToTweetId};
-    }
-
-    if (tweetReplySettings != TweetReplySettings.everyone) {
-      body['reply_settings'] = tweetReplySettings.name;
     }
 
     final response = await super.post(
