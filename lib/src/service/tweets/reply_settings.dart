@@ -2,15 +2,14 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-/// This enum is used to control who can reply to Tweet
-///
+/// This enum is used to control who can reply to Tweet.
 ///
 /// [everyone]: Everyone can reply. This is default value
 ///
 /// [mentionedUsers]: Only mentioned users can reply
 ///
 /// [following]: Only people you follow can reply
-enum TweetReplySettings {
+enum ReplySettings {
   /// Everyone can reply
   everyone,
 
@@ -18,5 +17,5 @@ enum TweetReplySettings {
   mentionedUsers,
 
   /// Only people you follow can reply
-  following
+  following,
 }
