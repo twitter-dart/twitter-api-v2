@@ -792,29 +792,21 @@ class _TweetsService extends BaseService implements TweetsService {
     String? inReplyToTweetId,
     ReplySetting? replySetting,
   }) async {
-    final body = {
-      'text': text,
-      'quote_tweet_id': quoteTweetId,
-      'for_super_followers_only': forSuperFollowersOnly,
-    };
-
-    if (inReplyToTweetId != null) {
-      // TODO(myConsciousness): Fix after implementing recursive null deletion.
-      body['reply'] = {'in_reply_to_tweet_id': inReplyToTweetId};
-    }
-
-    // (XRayAdamo) It seems twitter does not accept reply_settings
-    // as empty string or "everyone" so it should  be included onyl if
-    // it is mentionedUsers or following (Twitter API bug?)
-    // or POST will fail
-    if (replySetting != null && replySetting != ReplySetting.everyone) {
-      body['reply_settings'] = replySetting.name;
-    }
-
     final response = await super.post(
       UserContext.oauth2OrOAuth1,
       '/2/tweets',
-      body: body,
+      body: {
+        'text': text,
+        'quote_tweet_id': quoteTweetId,
+        'for_super_followers_only': forSuperFollowersOnly,
+        'reply': {
+          'in_reply_to_tweet_id': inReplyToTweetId,
+        },
+        //! `ReplySetting.everyone` cannot be specified for this endpoint.
+        //! Convert to null and delete the field before sending a request.
+        'reply_settings':
+            replySetting == ReplySetting.everyone ? null : replySetting?.name,
+      },
     );
 
     return TwitterResponse(data: TweetData.fromJson(response['data']));
