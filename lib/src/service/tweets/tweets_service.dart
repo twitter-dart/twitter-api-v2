@@ -798,10 +798,7 @@ class _TweetsService extends BaseService implements TweetsService {
       'for_super_followers_only': forSuperFollowersOnly,
     };
 
-    // (XRayAdamo) It seems twitter does not accept empty reply entry
-    // if not provided - should not be included into body (Twitter API bug?)
-    // or POST will fail
-    if (inReplyToTweetId?.isNotEmpty == true) {
+    if (inReplyToTweetId != null) {
       // TODO(myConsciousness): Fix after implementing recursive null deletion.
       body['reply'] = {'in_reply_to_tweet_id': inReplyToTweetId};
     }
