@@ -42,28 +42,4 @@ void main() async {
     print(e.response.body);
     print(e);
   }
-
-  // Making reply to another tweet
-  // By replying to your own tweet, you can create long tweet
-  try {
-    var result = await twitter.tweetsService.createTweet(text: "Initial tweet");
-
-    await twitter.tweetsService.createTweet(
-        text: "Reply to initial tweet", inReplyToTweetId: result.data.id);
-  } on v2.TwitterException catch (e) {
-    print(e.response.headers);
-    print(e.response.body);
-    print(e);
-  }
-
-  // Only people you follow can reply to your Tweet
-  try {
-    await twitter.tweetsService.createTweet(
-        text: "Only people I follow can reply",
-        tweetReplySettings: v2.TweetReplySettings.following);
-  } on v2.TwitterException catch (e) {
-    print(e.response.headers);
-    print(e.response.body);
-    print(e);
-  }
 }
