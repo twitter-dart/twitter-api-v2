@@ -229,11 +229,9 @@ Owner will respond to issues and review pull requests as quickly as possible.
 
 ## 1.4. Support
 
-The simplest way to show us your support is by giving the project a star at [here](https://github.com/twitter-dart/twitter-api-v2).
+The simplest way to show us your support is by **giving the project a star** at [GitHub](https://github.com/twitter-dart/twitter-api-v2) and [Pub.dev](https://pub.dev/packages/twitter_api_v2).
 
-And I'm always looking for sponsors to support this project.
-
-Sponsors can be individuals or corporations, and the amount is optional.
+You can also support this project by **becoming a sponsor** on GitHub:
 
 <div align="left">
   <p>
@@ -242,6 +240,18 @@ Sponsors can be individuals or corporations, and the amount is optional.
     </a>
   </p>
 </div>
+
+You can also show on your repository that your app is made with `twitter_api_v2` by using one of the following badges:
+
+[![Powered by twitter_api_v2](https://img.shields.io/badge/Powered%20by-twitter_api_v2-00acee.svg)](https://github.com/twitter-dart/twitter-api-v2)
+[![Powered by twitter_api_v2](https://img.shields.io/badge/Powered%20by-twitter_api_v2-00acee.svg?style=flat-square)](https://github.com/twitter-dart/twitter-api-v2)
+[![Powered by twitter_api_v2](https://img.shields.io/badge/Powered%20by-twitter_api_v2-00acee.svg?style=for-the-badge)](https://github.com/twitter-dart/twitter-api-v2)
+
+```
+[![Powered by twitter_api_v2](https://img.shields.io/badge/Powered%20by-twitter_api_v2-00acee.svg)](https://github.com/twitter-dart/twitter-api-v2)
+[![Powered by twitter_api_v2](https://img.shields.io/badge/Powered%20by-twitter_api_v2-00acee.svg?style=flat-square)](https://github.com/twitter-dart/twitter-api-v2)
+[![Powered by twitter_api_v2](https://img.shields.io/badge/Powered%20by-twitter_api_v2-00acee.svg?style=for-the-badge)](https://github.com/twitter-dart/twitter-api-v2)
+```
 
 ## 1.5. License
 
