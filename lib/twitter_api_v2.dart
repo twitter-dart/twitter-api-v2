@@ -14,7 +14,7 @@ export 'package:twitter_api_v2/src/service/spaces/space_data.dart';
 export 'package:twitter_api_v2/src/service/spaces/space_meta.dart';
 export 'package:twitter_api_v2/src/service/spaces/space_state.dart';
 export 'package:twitter_api_v2/src/service/spaces/spaces_service.dart';
-export 'package:twitter_api_v2/src/service/tweets/reply_settings.dart';
+export 'package:twitter_api_v2/src/service/tweets/reply_setting.dart';
 export 'package:twitter_api_v2/src/service/tweets/tweet_count_data.dart';
 export 'package:twitter_api_v2/src/service/tweets/tweet_count_meta.dart';
 export 'package:twitter_api_v2/src/service/tweets/tweet_data.dart';
