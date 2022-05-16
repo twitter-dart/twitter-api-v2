@@ -796,12 +796,22 @@ class _TweetsService extends BaseService implements TweetsService {
       'text': text,
       'quote_tweet_id': quoteTweetId,
       'for_super_followers_only': forSuperFollowersOnly,
-      'reply_settings': replySetting?.name,
     };
 
-    if (inReplyToTweetId != null) {
+    // (XRayAdamo) It seems twitter does not accept empty reply entry
+    // if not provided - should not be included into body (Twitter API bug?)
+    // or POST will fail
+    if (inReplyToTweetId?.isNotEmpty == true) {
       // TODO(myConsciousness): Fix after implementing recursive null deletion.
       body['reply'] = {'in_reply_to_tweet_id': inReplyToTweetId};
+    }
+
+    // (XRayAdamo) It seems twitter does not accept reply_settings
+    // as empty string or "everyone" so it should  be included onyl if
+    // it is mentionedUsers or following (Twitter API bug?)
+    // or POST will fail
+    if (replySetting != null && replySetting != ReplySetting.everyone) {
+      body['reply_settings'] = replySetting.name;
     }
 
     final response = await super.post(
