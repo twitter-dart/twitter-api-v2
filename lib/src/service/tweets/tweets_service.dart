@@ -802,6 +802,8 @@ class _TweetsService extends BaseService implements TweetsService {
         'reply': {
           'in_reply_to_tweet_id': inReplyToTweetId,
         },
+        //! `ReplySetting.everyone` cannot be specified for this endpoint.
+        //! Convert to null and delete the field before sending a request.
         'reply_settings':
             replySetting == ReplySetting.everyone ? null : replySetting?.name,
       },
