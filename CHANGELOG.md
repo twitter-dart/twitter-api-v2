@@ -2,12 +2,15 @@
 
 ## v2.0.0
 
-- Exposed service classes.
+- Exposed service classes. ([#122](https://github.com/twitter-dart/twitter-api-v2/issues/122)
   - `TweetsService`
   - `UsersService`
   - `ListsService`
   - `SpacesService`
   - `ComplianceService`
+- Added arguments to `tweetsService.createTweet`. ([#130](https://github.com/twitter-dart/twitter-api-v2/issues/130)
+  - `inReplyToTweetId`
+  - `replySetting`
 
 ## v1.8.0
 

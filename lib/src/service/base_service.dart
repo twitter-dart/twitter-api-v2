@@ -52,7 +52,7 @@ abstract class BaseService implements Service {
       Uri.https(
         _authority,
         unencodedPath,
-        _removeNullParameters(queryParameters).map(
+        Map.from(_removeNullParameters(queryParameters) ?? {}).map(
           //! Uri.https(...) needs iterable in the value for query params by
           //! which it means a String in the value of the Map too. So you need
           //! to convert it from Map<String, dynamic> to Map<String, String>
@@ -109,8 +109,21 @@ abstract class BaseService implements Service {
     return _checkResponseBody(response);
   }
 
-  Map<String, dynamic> _removeNullParameters(Map<String, dynamic> parameters) =>
-      Map.from(parameters)..removeWhere((_, value) => value == null);
+  dynamic _removeNullParameters(final dynamic object) {
+    if (object is! Map) {
+      return object;
+    }
+
+    final parameters = <String, dynamic>{};
+    object.forEach((key, value) {
+      final newObject = _removeNullParameters(value);
+      if (newObject != null) {
+        parameters[key] = newObject;
+      }
+    });
+
+    return parameters.isNotEmpty ? parameters : null;
+  }
 
   Map<String, dynamic> _checkResponseBody(final Response response) {
     final body = jsonDecode(response.body);

@@ -792,22 +792,19 @@ class _TweetsService extends BaseService implements TweetsService {
     String? inReplyToTweetId,
     ReplySetting? replySetting,
   }) async {
-    final body = {
-      'text': text,
-      'quote_tweet_id': quoteTweetId,
-      'for_super_followers_only': forSuperFollowersOnly,
-      'reply_settings': replySetting?.name,
-    };
-
-    if (inReplyToTweetId != null) {
-      // TODO(myConsciousness): Fix after implementing recursive null deletion.
-      body['reply'] = {'in_reply_to_tweet_id': inReplyToTweetId};
-    }
-
     final response = await super.post(
       UserContext.oauth2OrOAuth1,
       '/2/tweets',
-      body: body,
+      body: {
+        'text': text,
+        'quote_tweet_id': quoteTweetId,
+        'for_super_followers_only': forSuperFollowersOnly,
+        'reply': {
+          'in_reply_to_tweet_id': inReplyToTweetId,
+        },
+        'reply_settings':
+            replySetting == ReplySetting.everyone ? null : replySetting?.name,
+      },
     );
 
     return TwitterResponse(data: TweetData.fromJson(response['data']));
