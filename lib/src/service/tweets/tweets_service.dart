@@ -9,7 +9,7 @@ import '../base_service.dart';
 import '../twitter_response.dart';
 import '../users/user_data.dart';
 import '../users/user_meta.dart';
-import 'reply_settings.dart';
+import 'reply_setting.dart';
 import 'tweet_count_data.dart';
 import 'tweet_count_meta.dart';
 import 'tweet_data.dart';
@@ -35,9 +35,9 @@ abstract class TweetsService {
   ///                       that [inReplyToTweetId] needs to be in the request
   ///                       if [excludeReplyUserIds] is present.
   ///
-  /// - [replySettings]: Settings to indicate who can reply to the Tweet.
-  ///                    Options include `mentionedUsers` and `following`.
-  ///                    The default to `everyone`.
+  /// - [replySetting]: Settings to indicate who can reply to the Tweet.
+  ///                   Options include `mentionedUsers` and `following`.
+  ///                   The default to `everyone`.
   ///
   /// ## Endpoint Url
   ///
@@ -56,7 +56,7 @@ abstract class TweetsService {
     String? quoteTweetId,
     bool? forSuperFollowersOnly,
     String? inReplyToTweetId,
-    ReplySettings? replySettings,
+    ReplySetting? replySetting,
   });
 
   /// Allows a user or authenticated user ID to delete a Tweet.
@@ -790,13 +790,13 @@ class _TweetsService extends BaseService implements TweetsService {
     String? quoteTweetId,
     bool? forSuperFollowersOnly,
     String? inReplyToTweetId,
-    ReplySettings? replySettings,
+    ReplySetting? replySetting,
   }) async {
     final body = {
       'text': text,
       'quote_tweet_id': quoteTweetId,
       'for_super_followers_only': forSuperFollowersOnly,
-      'reply_settings': replySettings?.name,
+      'reply_settings': replySetting?.name,
     };
 
     if (inReplyToTweetId != null) {
