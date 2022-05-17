@@ -86,7 +86,7 @@ void main() {
 
     expect(response, isA<TwitterResponse>());
     expect(response.data, isA<List<ComplianceData>>());
-    expect(response.data!.length, 2);
+    expect(response.data.length, 2);
   });
 
   test('.createJob', () async {

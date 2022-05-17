@@ -57,9 +57,6 @@ abstract class BaseService implements Service {
   /// The field name of meta
   static const _metaFieldName = 'meta';
 
-  /// The field name of error
-  static const _errorFieldName = 'errors';
-
   /// The twitter client
   final ClientContext _context;
 

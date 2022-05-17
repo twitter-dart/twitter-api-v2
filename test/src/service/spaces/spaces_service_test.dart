@@ -37,10 +37,10 @@ void main() {
       expect(response, isA<TwitterResponse>());
       expect(response.data, isA<List<SpaceData>>());
       expect(response.meta, isA<SpaceMeta>());
-      expect(response.data!.length, 2);
-      expect(response.data!.first.id, '1DXxyRYNejbKM');
-      expect(response.data!.first.state, SpaceState.live);
-      expect(response.data![1].state, SpaceState.scheduled);
+      expect(response.data.length, 2);
+      expect(response.data.first.id, '1DXxyRYNejbKM');
+      expect(response.data.first.state, SpaceState.live);
+      expect(response.data[1].state, SpaceState.scheduled);
       expect(response.meta!.resultCount, 2);
     });
 
@@ -93,10 +93,10 @@ void main() {
       expect(response, isA<TwitterResponse>());
       expect(response.data, isA<List<SpaceData>>());
       expect(response.meta, isA<SpaceMeta>());
-      expect(response.data!.length, 2);
-      expect(response.data!.first.id, '1DXxyRYNejbKM');
-      expect(response.data!.first.state, SpaceState.live);
-      expect(response.data![1].state, SpaceState.scheduled);
+      expect(response.data.length, 2);
+      expect(response.data.first.id, '1DXxyRYNejbKM');
+      expect(response.data.first.state, SpaceState.live);
+      expect(response.data[1].state, SpaceState.scheduled);
       expect(response.meta!.resultCount, 2);
     });
   });
@@ -115,8 +115,8 @@ void main() {
 
     expect(response, isA<TwitterResponse>());
     expect(response.data, isA<SpaceData>());
-    expect(response.data!.id, '1DXxyRYNejbKM');
-    expect(response.data!.state, SpaceState.live);
+    expect(response.data.id, '1DXxyRYNejbKM');
+    expect(response.data.state, SpaceState.live);
   });
 
   test('.lookupByIds', () async {
@@ -135,8 +135,8 @@ void main() {
 
     expect(response, isA<TwitterResponse>());
     expect(response.data, isA<List<SpaceData>>());
-    expect(response.data!.first.id, '1DXxyRYNejbKM');
-    expect(response.data!.first.state, SpaceState.live);
+    expect(response.data.first.id, '1DXxyRYNejbKM');
+    expect(response.data.first.state, SpaceState.live);
   });
 
   test('.lookupBuyers', () async {
@@ -153,7 +153,7 @@ void main() {
 
     expect(response, isA<TwitterResponse>());
     expect(response.data, isA<List<UserData>>());
-    expect(response.data!.length, 2);
+    expect(response.data.length, 2);
   });
 
   test('.lookupTweets', () async {
@@ -171,7 +171,7 @@ void main() {
     expect(response, isA<TwitterResponse>());
     expect(response.data, isA<List<TweetData>>());
     expect(response.meta, isA<TweetMeta>());
-    expect(response.data!.length, 3);
+    expect(response.data.length, 3);
     expect(response.meta!.resultCount, 3);
   });
 
@@ -192,7 +192,7 @@ void main() {
     expect(response, isA<TwitterResponse>());
     expect(response.data, isA<List<SpaceData>>());
     expect(response.meta, isA<SpaceMeta>());
-    expect(response.data!.length, 2);
+    expect(response.data.length, 2);
     expect(response.meta!.resultCount, 2);
   });
 }
