@@ -8,9 +8,11 @@
   - `ListsService`
   - `SpacesService`
   - `ComplianceService`
-- Added arguments to `tweetsService.createTweet`. ([#130](https://github.com/twitter-dart/twitter-api-v2/issues/130)
+- Added arguments to `tweetsService.createTweet`. ([#130](https://github.com/twitter-dart/twitter-api-v2/issues/130)) ([#90](https://github.com/twitter-dart/twitter-api-v2/issues/90))
   - `inReplyToTweetId`
   - `replySetting`
+  - `mediaIds`
+  - `taggedUserIds`
 - Improved processing when the data field does not exist in the response body returned from the Twitter API. ([#124](https://github.com/twitter-dart/twitter-api-v2/issues/124))
   - In previous versions, `POST` and `DELETE` communications for deleted content would raise a `TwitterException`, but this release has been modified to always return a boolean instead of an exception in this case.
 - Internal processing has been refactored to improve scalability and maintainability. There are no disruptive changes as a result of this refactoring.
