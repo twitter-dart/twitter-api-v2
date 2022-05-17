@@ -2,6 +2,7 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+export 'package:twitter_api_v2/src/auth/oauth_utils.dart';
 export 'package:twitter_api_v2/src/client/oauth_tokens.dart';
 export 'package:twitter_api_v2/src/service/compliance/compliance_data.dart';
 export 'package:twitter_api_v2/src/service/compliance/compliance_service.dart';
