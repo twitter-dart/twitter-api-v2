@@ -180,95 +180,73 @@ class _SpacesService extends BaseService implements SpacesService {
 
   @override
   Future<TwitterResponse<List<SpaceData>, SpaceMeta>> search(
-      {required String query}) async {
-    final response = await super.get(
-      UserContext.oauth2Only,
-      '/2/spaces/search',
-      queryParameters: {'query': query},
-    );
-
-    return TwitterResponse(
-      data: response['data']
-          .map<SpaceData>((space) => SpaceData.fromJson(space))
-          .toList(),
-      meta: SpaceMeta.fromJson(response['meta']),
-    );
-  }
+          {required String query}) async =>
+      super.buildMultiDataResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/2/spaces/search',
+          queryParameters: {'query': query},
+        ),
+        dataBuilder: SpaceData.fromJson,
+        metaBuilder: SpaceMeta.fromJson,
+      );
 
   @override
   Future<TwitterResponse<SpaceData, void>> lookupById(
-      {required String spaceId}) async {
-    final response = await super.get(
-      UserContext.oauth2Only,
-      '/2/spaces/$spaceId',
-    );
-
-    return TwitterResponse(
-      data: SpaceData.fromJson(response['data']),
-    );
-  }
+          {required String spaceId}) async =>
+      super.buildResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/2/spaces/$spaceId',
+        ),
+        dataBuilder: SpaceData.fromJson,
+      );
 
   @override
   Future<TwitterResponse<List<SpaceData>, void>> lookupByIds(
-      {required List<String> spaceIds}) async {
-    final response = await super.get(
-      UserContext.oauth2Only,
-      '/2/spaces',
-      queryParameters: {'ids': spaceIds.join(',')},
-    );
-
-    return TwitterResponse(
-      data: response['data']
-          .map<SpaceData>((space) => SpaceData.fromJson(space))
-          .toList(),
-    );
-  }
+          {required List<String> spaceIds}) async =>
+      super.buildMultiDataResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/2/spaces',
+          queryParameters: {'ids': spaceIds.join(',')},
+        ),
+        dataBuilder: SpaceData.fromJson,
+      );
 
   @override
   Future<TwitterResponse<List<UserData>, void>> lookupBuyers(
-      {required String spaceId}) async {
-    final response = await super.get(
-      UserContext.oauth2Only,
-      '/2/spaces/$spaceId/buyers',
-    );
-
-    return TwitterResponse(
-      data: response['data']
-          .map<UserData>((user) => UserData.fromJson(user))
-          .toList(),
-    );
-  }
+          {required String spaceId}) async =>
+      super.buildMultiDataResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/2/spaces/$spaceId/buyers',
+        ),
+        dataBuilder: UserData.fromJson,
+      );
 
   @override
   Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupTweets(
-      {required String spaceId}) async {
-    final response = await super.get(
-      UserContext.oauth2Only,
-      '/2/spaces/$spaceId/tweets',
-    );
-
-    return TwitterResponse(
-      data: response['data']
-          .map<TweetData>((tweet) => TweetData.fromJson(tweet))
-          .toList(),
-      meta: TweetMeta.fromJson(response['meta']),
-    );
-  }
+          {required String spaceId}) async =>
+      super.buildMultiDataResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/2/spaces/$spaceId/tweets',
+        ),
+        dataBuilder: TweetData.fromJson,
+        metaBuilder: TweetMeta.fromJson,
+      );
 
   @override
   Future<TwitterResponse<List<SpaceData>, SpaceMeta>> lookupByCreatorIds(
-      {required List<String> userIds}) async {
-    final response = await super.get(
-      UserContext.oauth2Only,
-      '/2/spaces/by/creator_ids',
-      queryParameters: {'user_ids': userIds.join(',')},
-    );
-
-    return TwitterResponse(
-      data: response['data']
-          .map<SpaceData>((space) => SpaceData.fromJson(space))
-          .toList(),
-      meta: SpaceMeta.fromJson(response['meta']),
-    );
-  }
+          {required List<String> userIds}) async =>
+      super.buildMultiDataResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/2/spaces/by/creator_ids',
+          queryParameters: {'user_ids': userIds.join(',')},
+        ),
+        dataBuilder: SpaceData.fromJson,
+        metaBuilder: SpaceMeta.fromJson,
+      );
 }

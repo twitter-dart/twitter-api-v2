@@ -6,28 +6,41 @@
 import 'dart:convert';
 
 // Package imports:
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 
 // Project imports:
-import '../../twitter_api_v2.dart';
 import '../client/client_context.dart';
 import '../client/user_context.dart';
+import '../twitter_exception.dart';
+import 'twitter_response.dart';
 
 abstract class Service {
-  Future<dynamic> get(UserContext userContext, String unencodedPath);
+  Future<http.Response> get(UserContext userContext, String unencodedPath);
 
-  Future<dynamic> post(
+  Future<http.Response> post(
     UserContext userContext,
     String unencodedPath, {
     Map<String, String> body = const {},
   });
 
-  Future<dynamic> delete(UserContext userContext, String unencodedPath);
+  Future<http.Response> delete(UserContext userContext, String unencodedPath);
 
-  Future<dynamic> put(
+  Future<http.Response> put(
     UserContext userContext,
     String unencodedPath, {
     Map<String, String> body = const {},
+  });
+
+  Future<TwitterResponse<D, M>> buildResponse<D, M>(
+    http.Response response, {
+    required D Function(Map<String, Object?> json) dataBuilder,
+    M Function(Map<String, Object?> json)? metaBuilder,
+  });
+
+  Future<TwitterResponse<List<D>, M>> buildMultiDataResponse<D, M>(
+    http.Response response, {
+    required D Function(Map<String, Object?> json) dataBuilder,
+    M Function(Map<String, Object?> json)? metaBuilder,
   });
 }
 
@@ -38,11 +51,20 @@ abstract class BaseService implements Service {
   /// The base url
   static const _authority = 'api.twitter.com';
 
+  /// The field name of data
+  static const _dataFieldName = 'data';
+
+  /// The field name of meta
+  static const _metaFieldName = 'meta';
+
+  /// The field name of error
+  static const _errorFieldName = 'errors';
+
   /// The twitter client
   final ClientContext _context;
 
   @override
-  Future<dynamic> get(
+  Future<http.Response> get(
     final UserContext userContext,
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
@@ -61,11 +83,11 @@ abstract class BaseService implements Service {
       ),
     );
 
-    return _checkResponseBody(response);
+    return response;
   }
 
   @override
-  Future<dynamic> post(
+  Future<http.Response> post(
     final UserContext userContext,
     final String unencodedPath, {
     dynamic body = const {},
@@ -77,11 +99,11 @@ abstract class BaseService implements Service {
       body: jsonEncode(_removeNullParameters(body)),
     );
 
-    return _checkResponseBody(response);
+    return response;
   }
 
   @override
-  Future<dynamic> delete(
+  Future<http.Response> delete(
     final UserContext userContext,
     final String unencodedPath,
   ) async {
@@ -90,11 +112,11 @@ abstract class BaseService implements Service {
       Uri.https(_authority, unencodedPath),
     );
 
-    return _checkResponseBody(response);
+    return response;
   }
 
   @override
-  Future<dynamic> put(
+  Future<http.Response> put(
     final UserContext userContext,
     final String unencodedPath, {
     dynamic body = const {},
@@ -106,7 +128,7 @@ abstract class BaseService implements Service {
       body: jsonEncode(_removeNullParameters(body)),
     );
 
-    return _checkResponseBody(response);
+    return response;
   }
 
   dynamic _removeNullParameters(final dynamic object) {
@@ -125,9 +147,41 @@ abstract class BaseService implements Service {
     return parameters.isNotEmpty ? parameters : null;
   }
 
-  Map<String, dynamic> _checkResponseBody(final Response response) {
-    final body = jsonDecode(response.body);
-    if (!body.containsKey('data')) {
+  @override
+  Future<TwitterResponse<D, M>> buildResponse<D, M>(
+    http.Response response, {
+    required D Function(Map<String, Object?> json) dataBuilder,
+    M Function(Map<String, Object?> json)? metaBuilder,
+  }) async {
+    final jsonBody = _checkResponseBody(response);
+    return TwitterResponse(
+      data: dataBuilder(jsonBody[_dataFieldName]),
+      meta: jsonBody.containsKey(_metaFieldName) && metaBuilder != null
+          ? metaBuilder(jsonBody[_metaFieldName])
+          : null,
+    );
+  }
+
+  @override
+  Future<TwitterResponse<List<D>, M>> buildMultiDataResponse<D, M>(
+    http.Response response, {
+    required D Function(Map<String, Object?> json) dataBuilder,
+    M Function(Map<String, Object?> json)? metaBuilder,
+  }) async {
+    final jsonBody = _checkResponseBody(response);
+    return TwitterResponse(
+      data: jsonBody[_dataFieldName]
+          .map<D>((tweet) => dataBuilder(tweet))
+          .toList(),
+      meta: jsonBody.containsKey(_metaFieldName) && metaBuilder != null
+          ? metaBuilder(jsonBody[_metaFieldName])
+          : null,
+    );
+  }
+
+  Map<String, dynamic> _checkResponseBody(final http.Response response) {
+    final jsonBody = jsonDecode(response.body);
+    if (!jsonBody.containsKey('data')) {
       //! This occurs when the tweet to be processed has been deleted or
       //! when the target data does not exist at the time of search.
       throw TwitterException(
@@ -136,6 +190,6 @@ abstract class BaseService implements Service {
       );
     }
 
-    return body;
+    return jsonBody;
   }
 }

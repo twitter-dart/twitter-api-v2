@@ -35,8 +35,8 @@ void main() {
 
       expect(response, isA<TwitterResponse>());
       expect(response.data, isA<TweetData>());
-      expect(response.data.id, '1445880548472328192');
-      expect(response.data.text, 'Hello, World!');
+      expect(response.data!.id, '1445880548472328192');
+      expect(response.data!.text, 'Hello, World!');
     });
 
     test('throws TwitterException', () async {
@@ -87,8 +87,8 @@ void main() {
 
       expect(response, isA<TwitterResponse>());
       expect(response.data, isA<TweetData>());
-      expect(response.data.id, '1445880548472328192');
-      expect(response.data.text, 'Hello, World!');
+      expect(response.data!.id, '1445880548472328192');
+      expect(response.data!.text, 'Hello, World!');
     });
   });
 
@@ -210,7 +210,7 @@ void main() {
     expect(response, isA<TwitterResponse>());
     expect(response.data, isA<List<UserData>>());
     expect(response.meta, isA<UserMeta>());
-    expect(response.data.length, 5);
+    expect(response.data!.length, 5);
     expect(response.meta, isNotNull);
     expect(response.meta!.resultCount, 5);
   });
@@ -232,7 +232,7 @@ void main() {
     expect(response, isA<TwitterResponse>());
     expect(response.data, isA<List<TweetData>>());
     expect(response.meta, isA<TweetMeta>());
-    expect(response.data.length, 5);
+    expect(response.data!.length, 5);
     expect(response.meta, isNotNull);
     expect(response.meta!.resultCount, 5);
   });
@@ -254,7 +254,7 @@ void main() {
     expect(response, isA<TwitterResponse>());
     expect(response.data, isA<List<UserData>>());
     expect(response.meta, isA<UserMeta>());
-    expect(response.data.length, 3);
+    expect(response.data!.length, 3);
     expect(response.meta, isNotNull);
     expect(response.meta!.resultCount, 3);
   });
@@ -276,7 +276,7 @@ void main() {
     expect(response, isA<TwitterResponse>());
     expect(response.data, isA<List<TweetData>>());
     expect(response.meta, isA<TweetMeta>());
-    expect(response.data.length, 10);
+    expect(response.data!.length, 10);
     expect(response.meta, isNotNull);
     expect(response.meta!.resultCount, 10);
   });
@@ -298,7 +298,7 @@ void main() {
     expect(response, isA<TwitterResponse>());
     expect(response.data, isA<List<TweetData>>());
     expect(response.meta, isA<TweetMeta>());
-    expect(response.data.length, 6);
+    expect(response.data!.length, 6);
     expect(response.meta, isNotNull);
     expect(response.meta!.resultCount, 6);
   });
@@ -320,7 +320,7 @@ void main() {
     expect(response, isA<TwitterResponse>());
     expect(response.data, isA<List<TweetData>>());
     expect(response.meta, isA<TweetMeta>());
-    expect(response.data.length, 6);
+    expect(response.data!.length, 6);
     expect(response.meta, isNotNull);
     expect(response.meta!.resultCount, 6);
   });
@@ -341,7 +341,7 @@ void main() {
 
     expect(response, isA<TwitterResponse>());
     expect(response.data, isA<TweetData>());
-    expect(response.data.id, '1067094924124872705');
+    expect(response.data!.id, '1067094924124872705');
   });
 
   test('.lookupByIds', () async {
@@ -360,7 +360,7 @@ void main() {
 
     expect(response, isA<TwitterResponse>());
     expect(response.data, isA<List<TweetData>>());
-    expect(response.data.length, 2);
+    expect(response.data!.length, 2);
   });
 
   test('.countRecent', () async {
@@ -453,7 +453,7 @@ void main() {
     expect(response, isA<TwitterResponse>());
     expect(response.data, isA<List<TweetData>>());
     expect(response.meta, isA<TweetMeta>());
-    expect(response.data.length, 5);
+    expect(response.data!.length, 5);
     expect(response.meta, isNotNull);
     expect(response.meta!.resultCount, 5);
   });
@@ -508,7 +508,7 @@ void main() {
     expect(response, isA<TwitterResponse>());
     expect(response.data, isA<List<TweetData>>());
     expect(response.meta, isA<TweetMeta>());
-    expect(response.data.length, 5);
+    expect(response.data!.length, 5);
     expect(response.meta!.resultCount, 5);
   });
 
@@ -534,7 +534,7 @@ void main() {
     expect(response, isA<TwitterResponse>());
     expect(response.data, isA<List<TweetData>>());
     expect(response.meta, isA<TweetMeta>());
-    expect(response.data.length, 10);
+    expect(response.data!.length, 10);
     expect(response.meta!.resultCount, 10);
   });
 }
