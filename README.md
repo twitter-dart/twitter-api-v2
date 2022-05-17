@@ -39,10 +39,13 @@
     - [1.1.2. Import](#112-import)
     - [1.1.3. Implementation](#113-implementation)
   - [1.2. Supported Endpoints](#12-supported-endpoints)
-  - [1.3. Contribution](#13-contribution)
-  - [1.4. Support](#14-support)
-  - [1.5. License](#15-license)
-  - [1.6. More Information](#16-more-information)
+  - [1.3. Tips](#13-tips)
+    - [1.3.1. Method Names](#131-method-names)
+    - [1.3.2. Generate App-Only Bearer Token](#132-generate-app-only-bearer-token)
+  - [1.4. Contribution](#14-contribution)
+  - [1.5. Support](#15-support)
+  - [1.6. License](#16-license)
+  - [1.7. More Information](#17-more-information)
 
 <!-- /TOC -->
 
@@ -222,13 +225,50 @@ void main() async {
 > Not all additional fields listed in the official documentation are supported. We intend to support them step by step.</br>
 > Also you can create an Issue or Pull Request if you wish to suggest or contribute!
 
-## 1.3. Contribution
+## 1.3. Tips
+
+### 1.3.1. Method Names
+
+`twitter_api_v2` uses the following standard prefixes depending on endpoint characteristics. It's very easy to use `twitter_api_v2` to find the method corresponding to the endpoint you want to use!
+
+- **lookup**
+  - This prefix is attached to the endpoint performing the search.
+  - However, it's distinguished from the higher-performance Search endpoint.
+- **create**
+  - This prefix is attached to the endpoint performing the create state such as `Tweet` and `Follow`.
+- **destroy**
+  - This prefix is attached to the endpoint performing the destroy state such as `Tweet` and `Follow`.
+- **search**
+  - This prefix is attached to high-performance Search endpoints.
+- **count**
+  - This prefix is attached to the endpoint that counts tweets, etc.
+- **update**
+  - This prefix is attached to the endpoint performing the update state.
+
+### 1.3.2. Generate App-Only Bearer Token
+
+`twitter_api_v2` provides utility to generate/find your app-only bearer token.
+
+```dart
+import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
+
+void main() async {
+  final bearerToken = await v2.OAuthUtils.generateAppOnlyBearerToken(
+    consumerKey: 'YOUR_CONSUMER_KEY',
+    consumerSecret: 'YOUR_CONSUMER_SECRET',
+  );
+
+  print(bearerToken);
+}
+```
+
+## 1.4. Contribution
 
 If you would like to contribute to `twitter_api_v2`, please create an [issue](https://github.com/twitter-dart/twitter-api-v2/issues) or create a Pull Request.
 
 Owner will respond to issues and review pull requests as quickly as possible.
 
-## 1.4. Support
+## 1.5. Support
 
 The simplest way to show us your support is by **giving the project a star** at [GitHub](https://github.com/twitter-dart/twitter-api-v2) and [Pub.dev](https://pub.dev/packages/twitter_api_v2).
 
@@ -254,7 +294,7 @@ You can also show on your repository that your app is made with `twitter_api_v2`
 [![Powered by twitter_api_v2](https://img.shields.io/badge/Powered%20by-twitter_api_v2-00acee.svg?style=for-the-badge)](https://github.com/twitter-dart/twitter-api-v2)
 ```
 
-## 1.5. License
+## 1.6. License
 
 All resources of `twitter_api_v2` is provided under the `BSD-3` license.
 
@@ -263,7 +303,7 @@ All resources of `twitter_api_v2` is provided under the `BSD-3` license.
 > Note:
 > License notices in the source are strictly validated based on `.github/header-checker-lint.yml`. Please check [header-checker-lint.yml](https://github.com/twitter-dart/twitter-api-v2/tree/main/.github/header-checker-lint.yml) for the permitted standards.
 
-## 1.6. More Information
+## 1.7. More Information
 
 `twitter_api_v2` was designed and implemented by **_Kato Shinya_**.
 
