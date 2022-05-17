@@ -31,6 +31,16 @@ abstract class TweetsService {
   ///
   /// - [forSuperFollowersOnly]: Allows you to Tweet exclusively for [Super Followers](https://help.twitter.com/en/using-twitter/super-follows).
   ///
+  /// - [mediaIds]: A list of Media IDs being attached to the Tweet.
+  ///               This is only required if the request includes
+  ///               the [taggedUserIds].
+  ///
+  /// - [taggedUserIds]: A list of User IDs being tagged in the Tweet with
+  ///                    Media. If the user you're tagging doesn't have
+  ///                    photo-tagging enabled, their names won't show up in
+  ///                    the list of tagged users even though the Tweet is
+  ///                    successfully created.
+  ///
   /// - [inReplyToTweetId]: Tweet ID of the Tweet being replied to. Please note
   ///                       that [inReplyToTweetId] needs to be in the request
   ///                       if [excludeReplyUserIds] is present.
@@ -55,6 +65,8 @@ abstract class TweetsService {
     required String text,
     String? quoteTweetId,
     bool? forSuperFollowersOnly,
+    List<String>? mediaIds,
+    List<String>? taggedUserIds,
     String? inReplyToTweetId,
     ReplySetting? replySetting,
   });
@@ -789,6 +801,8 @@ class _TweetsService extends BaseService implements TweetsService {
     required String text,
     String? quoteTweetId,
     bool? forSuperFollowersOnly,
+    List<String>? mediaIds,
+    List<String>? taggedUserIds,
     String? inReplyToTweetId,
     ReplySetting? replySetting,
   }) async =>
@@ -800,6 +814,10 @@ class _TweetsService extends BaseService implements TweetsService {
             'text': text,
             'quote_tweet_id': quoteTweetId,
             'for_super_followers_only': forSuperFollowersOnly,
+            'media': {
+              'media_ids': mediaIds,
+              'tagged_user_ids': taggedUserIds,
+            },
             'reply': {
               'in_reply_to_tweet_id': inReplyToTweetId,
             },
