@@ -463,13 +463,13 @@ class _UsersService extends BaseService implements UsersService {
     required String userId,
     required String targetUserId,
   }) async {
-    final response = await super.post(
+    await super.post(
       UserContext.oauth2OrOAuth1,
       '/2/users/$userId/following',
       body: {'target_user_id': targetUserId},
     );
 
-    return response['data']['following'];
+    return true;
   }
 
   @override
@@ -477,12 +477,12 @@ class _UsersService extends BaseService implements UsersService {
     required String userId,
     required String targetUserId,
   }) async {
-    final response = await super.delete(
+    await super.delete(
       UserContext.oauth2OrOAuth1,
       '/2/users/$userId/following/$targetUserId',
     );
 
-    return !response['data']['following'];
+    return true;
   }
 
   @override
@@ -490,132 +490,116 @@ class _UsersService extends BaseService implements UsersService {
     required String userId,
     int? maxResults,
     String? paginationToken,
-  }) async {
-    final response = await super.get(
-      UserContext.oauth2OrOAuth1,
-      '/2/users/$userId/followers',
-      queryParameters: {
-        'max_results': maxResults,
-        'pagination_token': paginationToken,
-      },
-    );
-
-    return TwitterResponse(
-      data: response['data']
-          .map<UserData>((user) => UserData.fromJson(user))
-          .toList(),
-      meta: UserMeta.fromJson(response['meta']),
-    );
-  }
+  }) async =>
+      super.buildMultiDataResponse(
+        await super.get(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/$userId/followers',
+          queryParameters: {
+            'max_results': maxResults,
+            'pagination_token': paginationToken,
+          },
+        ),
+        dataBuilder: UserData.fromJson,
+        metaBuilder: UserMeta.fromJson,
+      );
 
   @override
   Future<TwitterResponse<List<UserData>, UserMeta>> lookupFollowings({
     required String userId,
     int? maxResults,
     String? paginationToken,
-  }) async {
-    final response = await super.get(
-      UserContext.oauth2OrOAuth1,
-      '/2/users/$userId/following',
-      queryParameters: {
-        'max_results': maxResults,
-        'pagination_token': paginationToken,
-      },
-    );
-
-    return TwitterResponse(
-      data: response['data']
-          .map<UserData>((user) => UserData.fromJson(user))
-          .toList(),
-      meta: UserMeta.fromJson(response['meta']),
-    );
-  }
+  }) async =>
+      super.buildMultiDataResponse(
+        await super.get(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/$userId/following',
+          queryParameters: {
+            'max_results': maxResults,
+            'pagination_token': paginationToken,
+          },
+        ),
+        dataBuilder: UserData.fromJson,
+        metaBuilder: UserMeta.fromJson,
+      );
 
   @override
   Future<TwitterResponse<UserData, void>> lookupById(
-      {required String userId}) async {
-    final response = await super.get(
-      UserContext.oauth2OrOAuth1,
-      '/2/users/$userId',
-    );
-
-    return TwitterResponse(data: UserData.fromJson(response['data']));
-  }
+          {required String userId}) async =>
+      super.buildResponse(
+        await super.get(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/$userId',
+        ),
+        dataBuilder: UserData.fromJson,
+      );
 
   @override
   Future<TwitterResponse<List<UserData>, void>> lookupByIds(
-      {required List<String> userIds}) async {
-    final response = await super.get(
-      UserContext.oauth2OrOAuth1,
-      '/2/users',
-      queryParameters: {'ids': userIds.join(',')},
-    );
-
-    return TwitterResponse(
-      data: response['data']
-          .map<UserData>((user) => UserData.fromJson(user))
-          .toList(),
-    );
-  }
+          {required List<String> userIds}) async =>
+      super.buildMultiDataResponse(
+        await super.get(
+          UserContext.oauth2OrOAuth1,
+          '/2/users',
+          queryParameters: {'ids': userIds.join(',')},
+        ),
+        dataBuilder: UserData.fromJson,
+      );
 
   @override
   Future<TwitterResponse<UserData, void>> lookupByName(
-      {required String username}) async {
-    final response = await super.get(
-      UserContext.oauth2OrOAuth1,
-      '/2/users/by/username/$username',
-    );
-
-    return TwitterResponse(data: UserData.fromJson(response['data']));
-  }
+          {required String username}) async =>
+      super.buildResponse(
+        await super.get(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/by/username/$username',
+        ),
+        dataBuilder: UserData.fromJson,
+      );
 
   @override
   Future<TwitterResponse<List<UserData>, void>> lookupByNames(
-      {required List<String> usernames}) async {
-    final response = await super.get(
-      UserContext.oauth2OrOAuth1,
-      '/2/users/by',
-      queryParameters: {'usernames': usernames.join(',')},
-    );
-
-    return TwitterResponse(
-      data: response['data']
-          .map<UserData>((user) => UserData.fromJson(user))
-          .toList(),
-    );
-  }
+          {required List<String> usernames}) async =>
+      super.buildMultiDataResponse(
+        await super.get(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/by',
+          queryParameters: {'usernames': usernames.join(',')},
+        ),
+        dataBuilder: UserData.fromJson,
+      );
 
   @override
-  Future<TwitterResponse<UserData, void>> lookupMe() async {
-    final response = await super.get(
-      UserContext.oauth2OrOAuth1,
-      '/2/users/me',
-    );
-
-    return TwitterResponse(data: UserData.fromJson(response['data']));
-  }
+  Future<TwitterResponse<UserData, void>> lookupMe() async =>
+      super.buildResponse(
+        await super.get(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/me',
+        ),
+        dataBuilder: UserData.fromJson,
+      );
 
   @override
   Future<bool> createMute(
       {required String userId, required String targetUserId}) async {
-    final response = await super.post(
+    await super.post(
       UserContext.oauth2OrOAuth1,
       '/2/users/$userId/muting',
       body: {'target_user_id': targetUserId},
     );
 
-    return response['data']['muting'];
+    return true;
   }
 
   @override
   Future<bool> destroyMute(
       {required String userId, required String targetUserId}) async {
-    final response = await super.delete(
+    await super.delete(
       UserContext.oauth2OrOAuth1,
       '/2/users/$userId/muting/$targetUserId',
     );
 
-    return !response['data']['muting'];
+    return true;
   }
 
   @override
@@ -623,45 +607,41 @@ class _UsersService extends BaseService implements UsersService {
     required String userId,
     int? maxResults,
     String? paginationToken,
-  }) async {
-    final response = await super.get(
-      UserContext.oauth2OrOAuth1,
-      '/2/users/$userId/muting',
-      queryParameters: {
-        'max_results': maxResults,
-        'pagination_token': paginationToken,
-      },
-    );
-
-    return TwitterResponse(
-      data: response['data']
-          .map<UserData>((user) => UserData.fromJson(user))
-          .toList(),
-      meta: UserMeta.fromJson(response['meta']),
-    );
-  }
+  }) async =>
+      super.buildMultiDataResponse(
+        await super.get(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/$userId/muting',
+          queryParameters: {
+            'max_results': maxResults,
+            'pagination_token': paginationToken,
+          },
+        ),
+        dataBuilder: UserData.fromJson,
+        metaBuilder: UserMeta.fromJson,
+      );
 
   @override
   Future<bool> createBlock(
       {required String userId, required String targetUserId}) async {
-    final response = await super.post(
+    await super.post(
       UserContext.oauth2OrOAuth1,
       '/2/users/$userId/blocking',
       body: {'target_user_id': targetUserId},
     );
 
-    return response['data']['blocking'];
+    return true;
   }
 
   @override
   Future<bool> destroyBlock(
       {required String userId, required String targetUserId}) async {
-    final response = await super.delete(
+    await super.delete(
       UserContext.oauth2OrOAuth1,
       '/2/users/$userId/blocking/$targetUserId',
     );
 
-    return !response['data']['blocking'];
+    return true;
   }
 
   @override
@@ -669,21 +649,17 @@ class _UsersService extends BaseService implements UsersService {
     required String userId,
     int? maxResults,
     String? paginationToken,
-  }) async {
-    final response = await super.get(
-      UserContext.oauth2OrOAuth1,
-      '/2/users/$userId/blocking',
-      queryParameters: {
-        'max_results': maxResults,
-        'pagination_token': paginationToken,
-      },
-    );
-
-    return TwitterResponse(
-      data: response['data']
-          .map<UserData>((user) => UserData.fromJson(user))
-          .toList(),
-      meta: UserMeta.fromJson(response['meta']),
-    );
-  }
+  }) async =>
+      super.buildMultiDataResponse(
+        await super.get(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/$userId/blocking',
+          queryParameters: {
+            'max_results': maxResults,
+            'pagination_token': paginationToken,
+          },
+        ),
+        dataBuilder: UserData.fromJson,
+        metaBuilder: UserMeta.fromJson,
+      );
 }

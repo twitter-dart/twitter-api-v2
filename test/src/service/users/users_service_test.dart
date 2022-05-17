@@ -49,27 +49,6 @@ void main() {
         ),
       );
     });
-
-    test('throws TwitterException due to no data', () async {
-      final usersService = UsersService(
-        context: context.buildPostStub(
-          UserContext.oauth2OrOAuth1,
-          '/2/users/0000/following',
-          'test/src/service/users/data/no_data.json',
-        ),
-      );
-
-      expect(
-        () async => await usersService.createFollow(
-          userId: '0000',
-          targetUserId: '1111',
-        ),
-        throwsA(
-          allOf(isA<TwitterException>(),
-              predicate((e) => e.toString().isNotEmpty)),
-        ),
-      );
-    });
   });
 
   test('.destroyFollow', () async {
