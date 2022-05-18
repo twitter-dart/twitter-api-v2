@@ -19,4 +19,4 @@ dev_dependencies:
   json_serializable: ^6.2.0
   freezed: ^2.0.3+1
   import_sorter: ^4.6.0
-  mockito: ^5.1.0
+  mockito: ^5.2.0
