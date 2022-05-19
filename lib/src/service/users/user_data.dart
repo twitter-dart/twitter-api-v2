@@ -14,6 +14,7 @@ class UserData with _$UserData {
     required String id,
     required String name,
     required String username,
+    @JsonKey(name: 'pinned_tweet_id') String? pinnedTweetId,
   }) = _UserData;
 
   factory UserData.fromJson(Map<String, Object?> json) =>

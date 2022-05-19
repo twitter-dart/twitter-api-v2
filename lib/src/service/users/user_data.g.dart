@@ -16,9 +16,12 @@ _$_UserData _$$_UserDataFromJson(Map json) => $checkedCreate(
           id: $checkedConvert('id', (v) => v as String),
           name: $checkedConvert('name', (v) => v as String),
           username: $checkedConvert('username', (v) => v as String),
+          pinnedTweetId:
+              $checkedConvert('pinned_tweet_id', (v) => v as String?),
         );
         return val;
       },
+      fieldKeyMap: const {'pinnedTweetId': 'pinned_tweet_id'},
     );
 
 Map<String, dynamic> _$$_UserDataToJson(_$_UserData instance) =>
@@ -26,4 +29,5 @@ Map<String, dynamic> _$$_UserDataToJson(_$_UserData instance) =>
       'id': instance.id,
       'name': instance.name,
       'username': instance.username,
+      'pinned_tweet_id': instance.pinnedTweetId,
     };
