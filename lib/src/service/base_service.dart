@@ -12,6 +12,7 @@ import 'package:http/http.dart' as http;
 import '../client/client_context.dart';
 import '../client/user_context.dart';
 import '../twitter_exception.dart';
+import 'expansion.dart';
 import 'twitter_response.dart';
 
 abstract class Service {
@@ -42,6 +43,8 @@ abstract class Service {
     required D Function(Map<String, Object?> json) dataBuilder,
     M Function(Map<String, Object?> json)? metaBuilder,
   });
+
+  String? formatExpansions(Set<Expansion>? expansions);
 }
 
 abstract class BaseService implements Service {
@@ -189,4 +192,8 @@ abstract class BaseService implements Service {
 
     return jsonBody;
   }
+
+  @override
+  String? formatExpansions(Set<Expansion>? expansions) =>
+      expansions?.map((value) => value.fieldName).toList().join(',');
 }

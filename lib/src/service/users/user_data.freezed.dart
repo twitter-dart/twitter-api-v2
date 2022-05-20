@@ -23,6 +23,8 @@ mixin _$UserData {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
+  @JsonKey(name: 'pinned_tweet_id')
+  String? get pinnedTweetId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +36,11 @@ mixin _$UserData {
 abstract class $UserDataCopyWith<$Res> {
   factory $UserDataCopyWith(UserData value, $Res Function(UserData) then) =
       _$UserDataCopyWithImpl<$Res>;
-  $Res call({String id, String name, String username});
+  $Res call(
+      {String id,
+      String name,
+      String username,
+      @JsonKey(name: 'pinned_tweet_id') String? pinnedTweetId});
 }
 
 /// @nodoc
@@ -50,6 +56,7 @@ class _$UserDataCopyWithImpl<$Res> implements $UserDataCopyWith<$Res> {
     Object? id = freezed,
     Object? name = freezed,
     Object? username = freezed,
+    Object? pinnedTweetId = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -64,6 +71,10 @@ class _$UserDataCopyWithImpl<$Res> implements $UserDataCopyWith<$Res> {
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
+      pinnedTweetId: pinnedTweetId == freezed
+          ? _value.pinnedTweetId
+          : pinnedTweetId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -74,7 +85,11 @@ abstract class _$$_UserDataCopyWith<$Res> implements $UserDataCopyWith<$Res> {
           _$_UserData value, $Res Function(_$_UserData) then) =
       __$$_UserDataCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String name, String username});
+  $Res call(
+      {String id,
+      String name,
+      String username,
+      @JsonKey(name: 'pinned_tweet_id') String? pinnedTweetId});
 }
 
 /// @nodoc
@@ -92,6 +107,7 @@ class __$$_UserDataCopyWithImpl<$Res> extends _$UserDataCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? username = freezed,
+    Object? pinnedTweetId = freezed,
   }) {
     return _then(_$_UserData(
       id: id == freezed
@@ -106,6 +122,10 @@ class __$$_UserDataCopyWithImpl<$Res> extends _$UserDataCopyWithImpl<$Res>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
+      pinnedTweetId: pinnedTweetId == freezed
+          ? _value.pinnedTweetId
+          : pinnedTweetId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -114,7 +134,10 @@ class __$$_UserDataCopyWithImpl<$Res> extends _$UserDataCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_UserData implements _UserData {
   const _$_UserData(
-      {required this.id, required this.name, required this.username});
+      {required this.id,
+      required this.name,
+      required this.username,
+      @JsonKey(name: 'pinned_tweet_id') this.pinnedTweetId});
 
   factory _$_UserData.fromJson(Map<String, dynamic> json) =>
       _$$_UserDataFromJson(json);
@@ -125,10 +148,13 @@ class _$_UserData implements _UserData {
   final String name;
   @override
   final String username;
+  @override
+  @JsonKey(name: 'pinned_tweet_id')
+  final String? pinnedTweetId;
 
   @override
   String toString() {
-    return 'UserData(id: $id, name: $name, username: $username)';
+    return 'UserData(id: $id, name: $name, username: $username, pinnedTweetId: $pinnedTweetId)';
   }
 
   @override
@@ -138,7 +164,9 @@ class _$_UserData implements _UserData {
             other is _$_UserData &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.username, username));
+            const DeepCollectionEquality().equals(other.username, username) &&
+            const DeepCollectionEquality()
+                .equals(other.pinnedTweetId, pinnedTweetId));
   }
 
   @JsonKey(ignore: true)
@@ -147,7 +175,8 @@ class _$_UserData implements _UserData {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(username));
+      const DeepCollectionEquality().hash(username),
+      const DeepCollectionEquality().hash(pinnedTweetId));
 
   @JsonKey(ignore: true)
   @override
@@ -162,9 +191,11 @@ class _$_UserData implements _UserData {
 
 abstract class _UserData implements UserData {
   const factory _UserData(
-      {required final String id,
-      required final String name,
-      required final String username}) = _$_UserData;
+          {required final String id,
+          required final String name,
+          required final String username,
+          @JsonKey(name: 'pinned_tweet_id') final String? pinnedTweetId}) =
+      _$_UserData;
 
   factory _UserData.fromJson(Map<String, dynamic> json) = _$_UserData.fromJson;
 
@@ -174,6 +205,9 @@ abstract class _UserData implements UserData {
   String get name => throw _privateConstructorUsedError;
   @override
   String get username => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'pinned_tweet_id')
+  String? get pinnedTweetId => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_UserDataCopyWith<_$_UserData> get copyWith =>

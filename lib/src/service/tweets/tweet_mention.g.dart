@@ -2,32 +2,30 @@
 
 // ignore_for_file: non_constant_identifier_names
 
-part of 'user_data.dart';
+part of 'tweet_mention.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_UserData _$$_UserDataFromJson(Map json) => $checkedCreate(
-      r'_$_UserData',
+_$_TweetMention _$$_TweetMentionFromJson(Map json) => $checkedCreate(
+      r'_$_TweetMention',
       json,
       ($checkedConvert) {
-        final val = _$_UserData(
+        final val = _$_TweetMention(
           id: $checkedConvert('id', (v) => v as String),
-          name: $checkedConvert('name', (v) => v as String),
           username: $checkedConvert('username', (v) => v as String),
-          pinnedTweetId:
-              $checkedConvert('pinned_tweet_id', (v) => v as String?),
+          start: $checkedConvert('start', (v) => v as int),
+          end: $checkedConvert('end', (v) => v as int),
         );
         return val;
       },
-      fieldKeyMap: const {'pinnedTweetId': 'pinned_tweet_id'},
     );
 
-Map<String, dynamic> _$$_UserDataToJson(_$_UserData instance) =>
+Map<String, dynamic> _$$_TweetMentionToJson(_$_TweetMention instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'name': instance.name,
       'username': instance.username,
-      'pinned_tweet_id': instance.pinnedTweetId,
+      'start': instance.start,
+      'end': instance.end,
     };

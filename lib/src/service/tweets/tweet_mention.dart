@@ -5,18 +5,18 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'user_data.freezed.dart';
-part 'user_data.g.dart';
+part 'tweet_mention.freezed.dart';
+part 'tweet_mention.g.dart';
 
 @freezed
-class UserData with _$UserData {
-  const factory UserData({
+class TweetMention with _$TweetMention {
+  const factory TweetMention({
     required String id,
-    required String name,
     required String username,
-    @JsonKey(name: 'pinned_tweet_id') String? pinnedTweetId,
-  }) = _UserData;
+    required int start,
+    required int end,
+  }) = _TweetMention;
 
-  factory UserData.fromJson(Map<String, Object?> json) =>
-      _$UserDataFromJson(json);
+  factory TweetMention.fromJson(Map<String, Object?> json) =>
+      _$TweetMentionFromJson(json);
 }
