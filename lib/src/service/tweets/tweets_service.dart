@@ -956,6 +956,16 @@ abstract class TweetsService {
   ///                      To learn more about this access level, please visit
   ///                      our section on [Academic Research](https://developer.twitter.com/en/products/twitter-api/academic-research).
   ///
+  /// - [expansions]: Expansions enable you to request additional data objects
+  ///                 that relate to the originally returned Tweets. Submit a
+  ///                 list of desired expansions in a comma-separated list
+  ///                 without spaces. The ID that represents the expanded data
+  ///                 object will be included directly in the Tweet data object,
+  ///                 but the expanded object metadata will be returned within
+  ///                 the includes response object, and will also include the
+  ///                 ID so that you can match this data object to the original
+  ///                 Tweet object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/sample/stream
@@ -1375,6 +1385,7 @@ class _TweetsService extends BaseService implements TweetsService {
   @override
   Future<Stream<TweetData>> volumeStream({
     int? backfillMinutes,
+    List<TweetExpansion>? expansions,
   }) async {
     final stream = await super.send(
       UserContext.oauth2Only,
@@ -1382,6 +1393,7 @@ class _TweetsService extends BaseService implements TweetsService {
       '/2/tweets/sample/stream',
       queryParameters: {
         'backfill_minutes': backfillMinutes,
+        'expansions': super.formatExpansions(expansions),
       },
     );
 
