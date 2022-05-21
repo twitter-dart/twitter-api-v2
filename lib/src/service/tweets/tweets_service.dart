@@ -81,7 +81,7 @@ abstract class TweetsService {
     List<String>? taggedUserIds,
     String? inReplyToTweetId,
     ReplySetting? replySetting,
-    Set<TweetExpansion>? expansions,
+    List<TweetExpansion>? expansions,
   });
 
   /// Allows a user or authenticated user ID to delete a Tweet.
@@ -262,7 +262,7 @@ abstract class TweetsService {
     required String tweetId,
     int? maxResults,
     String? paginationToken,
-    Set<UserExpansion>? expansions,
+    List<UserExpansion>? expansions,
   });
 
   /// Allows you to get information about a user’s liked Tweets.
@@ -311,7 +311,7 @@ abstract class TweetsService {
     required String userId,
     int? maxResults,
     String? paginationToken,
-    Set<TweetExpansion>? expansions,
+    List<TweetExpansion>? expansions,
   });
 
   /// Allows you to get information about who has Retweeted a Tweet.
@@ -358,7 +358,7 @@ abstract class TweetsService {
     required String tweetId,
     int? maxResults,
     String? paginationToken,
-    Set<UserExpansion>? expansions,
+    List<UserExpansion>? expansions,
   });
 
   /// Returns Quote Tweets for a Tweet specified by the requested Tweet ID.
@@ -412,7 +412,7 @@ abstract class TweetsService {
     required String tweetId,
     int? maxResults,
     String? paginationToken,
-    Set<TweetExpansion>? expansions,
+    List<TweetExpansion>? expansions,
   });
 
   /// The recent search endpoint returns Tweets from the last seven days that
@@ -468,7 +468,7 @@ abstract class TweetsService {
     required String query,
     int? maxResults,
     String? nextToken,
-    Set<TweetExpansion>? expansions,
+    List<TweetExpansion>? expansions,
   });
 
   /// This endpoint is only available to those users who have been approved for
@@ -527,7 +527,7 @@ abstract class TweetsService {
     required String query,
     int? maxResults,
     String? nextToken,
-    Set<TweetExpansion>? expansions,
+    List<TweetExpansion>? expansions,
   });
 
   /// Returns a variety of information about a single Tweet specified by the
@@ -563,7 +563,7 @@ abstract class TweetsService {
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference/get-tweets-id
   Future<TwitterResponse<TweetData, void>> lookupById(
-      {required String tweetId, Set<TweetExpansion>? expansions});
+      {required String tweetId, List<TweetExpansion>? expansions});
 
   /// Returns a variety of information about the Tweet specified by the
   /// requested ID or list of IDs.
@@ -750,7 +750,7 @@ abstract class TweetsService {
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/bookmarks/api-reference/get-users-id-bookmarks
   Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupBookmarks(
-      {required String userId, Set<TweetExpansion>? expansions});
+      {required String userId, List<TweetExpansion>? expansions});
 
   /// Hides a reply to a Tweet.
   ///
@@ -858,7 +858,7 @@ abstract class TweetsService {
     required String userId,
     int? maxResults,
     String? paginationToken,
-    Set<TweetExpansion>? expansions,
+    List<TweetExpansion>? expansions,
   });
 
   /// Returns Tweets composed by a single user, specified by the requested user
@@ -923,7 +923,7 @@ abstract class TweetsService {
     required String userId,
     int? maxResults,
     String? paginationToken,
-    Set<TweetExpansion>? expansions,
+    List<TweetExpansion>? expansions,
   });
 }
 
@@ -940,7 +940,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<String>? taggedUserIds,
     String? inReplyToTweetId,
     ReplySetting? replySetting,
-    Set<TweetExpansion>? expansions,
+    List<TweetExpansion>? expansions,
   }) async =>
       super.buildResponse(
         await super.post(
@@ -1037,7 +1037,7 @@ class _TweetsService extends BaseService implements TweetsService {
     required String tweetId,
     int? maxResults,
     String? paginationToken,
-    Set<UserExpansion>? expansions,
+    List<UserExpansion>? expansions,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -1058,7 +1058,7 @@ class _TweetsService extends BaseService implements TweetsService {
     required String userId,
     int? maxResults,
     String? paginationToken,
-    Set<TweetExpansion>? expansions,
+    List<TweetExpansion>? expansions,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -1079,7 +1079,7 @@ class _TweetsService extends BaseService implements TweetsService {
     required String tweetId,
     int? maxResults,
     String? paginationToken,
-    Set<UserExpansion>? expansions,
+    List<UserExpansion>? expansions,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -1100,7 +1100,7 @@ class _TweetsService extends BaseService implements TweetsService {
     required String tweetId,
     int? maxResults,
     String? paginationToken,
-    Set<TweetExpansion>? expansions,
+    List<TweetExpansion>? expansions,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -1121,7 +1121,7 @@ class _TweetsService extends BaseService implements TweetsService {
     required String query,
     int? maxResults,
     String? nextToken,
-    Set<TweetExpansion>? expansions,
+    List<TweetExpansion>? expansions,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -1143,7 +1143,7 @@ class _TweetsService extends BaseService implements TweetsService {
     required String query,
     int? maxResults,
     String? nextToken,
-    Set<TweetExpansion>? expansions,
+    List<TweetExpansion>? expansions,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -1162,7 +1162,7 @@ class _TweetsService extends BaseService implements TweetsService {
 
   @override
   Future<TwitterResponse<TweetData, void>> lookupById(
-          {required String tweetId, Set<TweetExpansion>? expansions}) async =>
+          {required String tweetId, List<TweetExpansion>? expansions}) async =>
       super.buildResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
@@ -1251,7 +1251,7 @@ class _TweetsService extends BaseService implements TweetsService {
 
   @override
   Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupBookmarks(
-          {required String userId, Set<TweetExpansion>? expansions}) async =>
+          {required String userId, List<TweetExpansion>? expansions}) async =>
       super.buildMultiDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
@@ -1291,7 +1291,7 @@ class _TweetsService extends BaseService implements TweetsService {
     required String userId,
     int? maxResults,
     String? paginationToken,
-    Set<TweetExpansion>? expansions,
+    List<TweetExpansion>? expansions,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -1312,7 +1312,7 @@ class _TweetsService extends BaseService implements TweetsService {
     required String userId,
     int? maxResults,
     String? paginationToken,
-    Set<TweetExpansion>? expansions,
+    List<TweetExpansion>? expansions,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
