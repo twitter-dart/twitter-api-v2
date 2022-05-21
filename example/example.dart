@@ -39,7 +39,7 @@ void main() async {
     print(response);
   } on v2.TwitterException catch (e) {
     print(e.response.headers);
-    print(e.response.body);
+    print(e.body);
     print(e);
   }
 }
