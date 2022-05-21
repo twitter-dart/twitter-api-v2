@@ -767,6 +767,50 @@ abstract class TweetsService {
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/timelines/api-reference/get-users-id-tweets
   Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupTweets(
       {required String userId, int? maxResults, String? paginationToken});
+
+  /// Streams about 1% of all Tweets in real-time.
+  ///
+  /// If you have [Academic Research access](https://developer.twitter.com/en/products/twitter-api/academic-research),
+  /// you can connect up to two [redundant connections](https://developer.twitter.com/en/docs/twitter-api/tweets/sampled-stream/integrate/recovery-and-redundancy-features)
+  /// to maximize your streaming up-time.
+  ///
+  /// ## Parameters
+  ///
+  /// - [backfillMinutes]: By passing this parameter, you can request up to five
+  ///                      (5) minutes worth of streaming data that you might
+  ///                      have missed during a disconnection to be delivered to
+  ///                      you upon reconnection. The backfilled Tweets will
+  ///                      automatically flow through the reconnected stream,
+  ///                      with older Tweets generally being delivered before
+  ///                      any newly matching Tweets. You must include a whole
+  ///                      number between 1 and 5 as the value to this
+  ///                      parameter.
+  ///
+  ///                      This feature will deliver duplicate Tweets, meaning
+  ///                      that if you were disconnected for 90 seconds, and you
+  ///                      requested two minutes of backfill, you will receive
+  ///                      30 seconds worth of duplicate Tweets. Due to this,
+  ///                      you should make sure your system is tolerant of
+  ///                      duplicate data.
+  ///
+  ///                      This feature is currently only available to those
+  ///                      that have been approved for Academic Research access.
+  ///                      To learn more about this access level, please visit
+  ///                      our section on [Academic Research](https://developer.twitter.com/en/products/twitter-api/academic-research).
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/tweets/sample/stream
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **App rate limit (OAuth 2.0 App Access Token)**:
+  ///   50 requests per 15-minute window shared among all users of your app
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/tweets/volume-streams/api-reference/get-tweets-sample-stream
+  Future<Stream<TweetData>> volumeStream({int? backfillMinutes});
 }
 
 class _TweetsService extends BaseService implements TweetsService {
@@ -1175,6 +1219,24 @@ class _TweetsService extends BaseService implements TweetsService {
           .map<TweetData>((tweet) => TweetData.fromJson(tweet))
           .toList(),
       meta: TweetMeta.fromJson(response['meta']),
+    );
+  }
+
+  @override
+  Future<Stream<TweetData>> volumeStream({
+    int? backfillMinutes,
+  }) async {
+    final stream = await super.send(
+      UserContext.oauth2Only,
+      'GET',
+      '/2/tweets/sample/stream',
+      queryParameters: {
+        'backfill_minutes': backfillMinutes,
+      },
+    );
+
+    return stream.map(
+      (event) => TweetData.fromJson(event['data']),
     );
   }
 }
