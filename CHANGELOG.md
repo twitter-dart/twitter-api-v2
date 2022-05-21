@@ -1,5 +1,50 @@
 # Release Note
 
+## v2.1.0
+
+- Added `expansions` argument to `TweetsService`. ([#141](https://github.com/twitter-dart/twitter-api-v2/issues/141))
+  - [GET /2/users/:id/bookmarks](https://developer.twitter.com/en/docs/twitter-api/tweets/bookmarks/api-reference/get-users-id-bookmarks)
+  - [GET /2/tweets/:id/liking_users](https://developer.twitter.com/en/docs/twitter-api/tweets/likes/api-reference/get-tweets-id-liking_users)
+  - [GET /2/users/:id/liked_tweets](https://developer.twitter.com/en/docs/twitter-api/tweets/likes/api-reference/get-users-id-liked_tweets)
+  - [GET /2/tweets/:id/quote_tweets](https://developer.twitter.com/en/docs/twitter-api/tweets/quote-tweets/api-reference/get-tweets-id-quote_tweets)
+  - [GET /2/tweets/:id](https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference/get-tweets-id)
+  - [GET /2/tweets/:id/retweeted_by](https://developer.twitter.com/en/docs/twitter-api/tweets/retweets/api-reference/get-tweets-id-retweeted_by)
+  - [GET /2/tweets/search/all](https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-all)
+  - [GET /2/tweets/search/recent](https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-recent)
+  - [GET /2/users/:id/mentions](https://developer.twitter.com/en/docs/twitter-api/tweets/timelines/api-reference/get-users-id-mentions)
+  - [GET /2/users/:id/tweets](https://developer.twitter.com/en/docs/twitter-api/tweets/timelines/api-reference/get-users-id-tweets)
+  - [GET /2/tweets](https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference/get-tweets)
+- Added expanded fields to `TweetData`. ([#141](https://github.com/twitter-dart/twitter-api-v2/issues/141))
+  - `authorId`
+  - `inReplyToUserId`
+  - `referencedTweets`
+  - `entities`
+  - `attachments`
+  - `geo`
+- Added `includes` field to `TwitterResponse`. ([#144](https://github.com/twitter-dart/twitter-api-v2/issues/144))
+- With the addition of the `includes` field to `TwitterResponse`, the following objects have been added. ([#144](https://github.com/twitter-dart/twitter-api-v2/issues/144))
+  - `Media`
+  - `Poll`
+
+## v2.0.0
+
+- Exposed service classes. ([#122](https://github.com/twitter-dart/twitter-api-v2/issues/122)
+  - `TweetsService`
+  - `UsersService`
+  - `ListsService`
+  - `SpacesService`
+  - `ComplianceService`
+- Added arguments to `tweetsService.createTweet`. ([#130](https://github.com/twitter-dart/twitter-api-v2/issues/130)) ([#90](https://github.com/twitter-dart/twitter-api-v2/issues/90))
+  - `inReplyToTweetId`
+  - `replySetting`
+  - `mediaIds`
+  - `taggedUserIds`
+- Improved processing when the data field does not exist in the response body returned from the Twitter API. ([#124](https://github.com/twitter-dart/twitter-api-v2/issues/124))
+  - In previous versions, `POST` and `DELETE` communications for deleted content would raise a `TwitterException`, but this release has been modified to always return a boolean instead of an exception in this case.
+- Internal processing has been refactored to improve scalability and maintainability. There are no disruptive changes as a result of this refactoring.
+- Added convenience utility for OAuth. ([#102](https://github.com/twitter-dart/twitter-api-v2/issues/102))
+  - `OAuthUtils.generateAppOnlyBearerToken`
+
 ## v1.8.0
 
 - Added **Lists Manage** endpoints. ([#30](https://github.com/twitter-dart/twitter-api-v2/issues/30))

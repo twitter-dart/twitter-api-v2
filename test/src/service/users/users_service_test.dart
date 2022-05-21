@@ -8,8 +8,11 @@ import 'package:test/test.dart';
 // Project imports:
 import 'package:twitter_api_v2/src/client/client_context.dart';
 import 'package:twitter_api_v2/src/client/user_context.dart';
+import 'package:twitter_api_v2/src/service/twitter_response.dart';
+import 'package:twitter_api_v2/src/service/users/user_data.dart';
+import 'package:twitter_api_v2/src/service/users/user_meta.dart';
 import 'package:twitter_api_v2/src/service/users/users_service.dart';
-import 'package:twitter_api_v2/twitter_api_v2.dart';
+import 'package:twitter_api_v2/src/twitter_exception.dart';
 import '../../../mocks//client_context_stubs.dart' as context;
 
 void main() {
@@ -40,27 +43,6 @@ void main() {
       expect(
         () async =>
             await usersService.createFollow(userId: '', targetUserId: ''),
-        throwsA(
-          allOf(isA<TwitterException>(),
-              predicate((e) => e.toString().isNotEmpty)),
-        ),
-      );
-    });
-
-    test('throws TwitterException due to no data', () async {
-      final usersService = UsersService(
-        context: context.buildPostStub(
-          UserContext.oauth2OrOAuth1,
-          '/2/users/0000/following',
-          'test/src/service/users/data/no_data.json',
-        ),
-      );
-
-      expect(
-        () async => await usersService.createFollow(
-          userId: '0000',
-          targetUserId: '1111',
-        ),
         throwsA(
           allOf(isA<TwitterException>(),
               predicate((e) => e.toString().isNotEmpty)),

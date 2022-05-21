@@ -549,103 +549,91 @@ abstract class ListsService {
 
 class _ListsService extends BaseService implements ListsService {
   /// Returns the new instance of [_ListsService].
-  _ListsService({required ClientContext context}) : super(context: context);
+  _ListsService({required super.context});
 
   @override
   Future<TwitterResponse<ListData, void>> lookupById(
-      {required String listId}) async {
-    final response = await super.get(
-      UserContext.oauth2OrOAuth1,
-      '/2/lists/$listId',
-    );
-
-    return TwitterResponse(data: ListData.fromJson(response['data']));
-  }
+          {required String listId}) async =>
+      super.buildResponse(
+        await super.get(
+          UserContext.oauth2OrOAuth1,
+          '/2/lists/$listId',
+        ),
+        dataBuilder: ListData.fromJson,
+      );
 
   @override
   Future<TwitterResponse<List<ListData>, ListMeta>> lookupOwnedBy({
     required String userId,
     int? maxResults,
     String? paginationToken,
-  }) async {
-    final response = await super.get(
-      UserContext.oauth2OrOAuth1,
-      '/2/users/$userId/owned_lists',
-      queryParameters: {
-        'max_results': maxResults,
-        'pagination_token': paginationToken,
-      },
-    );
-
-    return TwitterResponse(
-      data: response['data']
-          .map<ListData>((list) => ListData.fromJson(list))
-          .toList(),
-      meta: ListMeta.fromJson(response['meta']),
-    );
-  }
+  }) async =>
+      super.buildMultiDataResponse(
+        await super.get(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/$userId/owned_lists',
+          queryParameters: {
+            'max_results': maxResults,
+            'pagination_token': paginationToken,
+          },
+        ),
+        dataBuilder: ListData.fromJson,
+        metaBuilder: ListMeta.fromJson,
+      );
 
   @override
   Future<bool> createPinnedList(
       {required String userId, required String listId}) async {
-    final response = await super.post(
+    await super.post(
       UserContext.oauth2OrOAuth1,
       '/2/users/$userId/pinned_lists',
       body: {'list_id': listId},
     );
 
-    return response['data']['pinned'];
+    return true;
   }
 
   @override
   Future<bool> destroyPinnedList(
       {required String userId, required String listId}) async {
-    final response = await super.delete(
+    await super.delete(
       UserContext.oauth2OrOAuth1,
       '/2/users/$userId/pinned_lists/$listId',
     );
 
-    return !response['data']['pinned'];
+    return true;
   }
 
   @override
   Future<TwitterResponse<List<ListData>, ListMeta>> lookupPinnedLists(
-      {required String userId}) async {
-    final response = await super.get(
-      UserContext.oauth2OrOAuth1,
-      '/2/users/$userId/pinned_lists',
-    );
-
-    return TwitterResponse(
-      data: response['data']
-          .map<ListData>((list) => ListData.fromJson(list))
-          .toList(),
-      meta: ListMeta.fromJson(response['meta']),
-    );
-  }
+          {required String userId}) async =>
+      super.buildMultiDataResponse(
+        await super.get(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/$userId/pinned_lists',
+        ),
+        dataBuilder: ListData.fromJson,
+        metaBuilder: ListMeta.fromJson,
+      );
 
   @override
   Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupTweets({
     required String listId,
     int? maxResults,
     String? paginationToken,
-  }) async {
-    final response = await super.get(
-      UserContext.oauth2OrOAuth1,
-      '/2/lists/$listId/tweets',
-      queryParameters: {
-        'max_results': maxResults,
-        'pagination_token': paginationToken,
-      },
-    );
-
-    return TwitterResponse(
-      data: response['data']
-          .map<TweetData>((tweet) => TweetData.fromJson(tweet))
-          .toList(),
-      meta: TweetMeta.fromJson(response['meta']),
-    );
-  }
+  }) async =>
+      super.buildMultiDataResponse(
+        await super.get(
+          UserContext.oauth2OrOAuth1,
+          '/2/lists/$listId/tweets',
+          queryParameters: {
+            'max_results': maxResults,
+            'pagination_token': paginationToken,
+          },
+        ),
+        dataBuilder: TweetData.fromJson,
+        metaBuilder: TweetMeta.fromJson,
+      );
 
   @override
   Future<TwitterResponse<ListData, void>> createPublicList(
@@ -659,12 +647,12 @@ class _ListsService extends BaseService implements ListsService {
 
   @override
   Future<bool> destroyList({required String listId}) async {
-    final response = await super.delete(
+    await super.delete(
       UserContext.oauth2OrOAuth1,
       '/2/lists/$listId',
     );
 
-    return response['data']['deleted'];
+    return true;
   }
 
   @override
@@ -698,7 +686,7 @@ class _ListsService extends BaseService implements ListsService {
     required String userId,
     required String listId,
   }) async {
-    final response = await super.post(
+    await super.post(
       UserContext.oauth2OrOAuth1,
       '/2/users/$userId/followed_lists',
       body: {
@@ -706,7 +694,7 @@ class _ListsService extends BaseService implements ListsService {
       },
     );
 
-    return response['data']['following'];
+    return true;
   }
 
   @override
@@ -714,12 +702,12 @@ class _ListsService extends BaseService implements ListsService {
     required String userId,
     required String listId,
   }) async {
-    final response = await super.delete(
+    await super.delete(
       UserContext.oauth2OrOAuth1,
       '/2/users/$userId/followed_lists/$listId',
     );
 
-    return !response['data']['following'];
+    return true;
   }
 
   @override
@@ -727,53 +715,45 @@ class _ListsService extends BaseService implements ListsService {
     required String listId,
     int? maxResults,
     String? paginationToken,
-  }) async {
-    final response = await super.get(
-      UserContext.oauth2OrOAuth1,
-      '/2/lists/$listId/followers',
-      queryParameters: {
-        'max_results': maxResults,
-        'pagination_token': paginationToken,
-      },
-    );
-
-    return TwitterResponse(
-      data: response['data']
-          .map<UserData>((user) => UserData.fromJson(user))
-          .toList(),
-      meta: UserMeta.fromJson(response['meta']),
-    );
-  }
+  }) async =>
+      super.buildMultiDataResponse(
+        await super.get(
+          UserContext.oauth2OrOAuth1,
+          '/2/lists/$listId/followers',
+          queryParameters: {
+            'max_results': maxResults,
+            'pagination_token': paginationToken,
+          },
+        ),
+        dataBuilder: UserData.fromJson,
+        metaBuilder: UserMeta.fromJson,
+      );
 
   @override
   Future<TwitterResponse<List<ListData>, ListMeta>> lookupFollowedLists({
     required String userId,
     int? maxResults,
     String? paginationToken,
-  }) async {
-    final response = await super.get(
-      UserContext.oauth2OrOAuth1,
-      '/2/users/$userId/followed_lists',
-      queryParameters: {
-        'max_results': maxResults,
-        'pagination_token': paginationToken,
-      },
-    );
-
-    return TwitterResponse(
-      data: response['data']
-          .map<ListData>((list) => ListData.fromJson(list))
-          .toList(),
-      meta: ListMeta.fromJson(response['meta']),
-    );
-  }
+  }) async =>
+      super.buildMultiDataResponse(
+        await super.get(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/$userId/followed_lists',
+          queryParameters: {
+            'max_results': maxResults,
+            'pagination_token': paginationToken,
+          },
+        ),
+        dataBuilder: ListData.fromJson,
+        metaBuilder: ListMeta.fromJson,
+      );
 
   @override
   Future<bool> createMember({
     required String listId,
     required String userId,
   }) async {
-    final response = await super.post(
+    await super.post(
       UserContext.oauth2OrOAuth1,
       '/2/lists/$listId/members',
       body: {
@@ -781,7 +761,7 @@ class _ListsService extends BaseService implements ListsService {
       },
     );
 
-    return response['data']['is_member'];
+    return true;
   }
 
   @override
@@ -789,12 +769,12 @@ class _ListsService extends BaseService implements ListsService {
     required String listId,
     required String userId,
   }) async {
-    final response = await super.delete(
+    await super.delete(
       UserContext.oauth2OrOAuth1,
       '/2/lists/$listId/members/$userId',
     );
 
-    return !response['data']['is_member'];
+    return true;
   }
 
   @override
@@ -802,64 +782,56 @@ class _ListsService extends BaseService implements ListsService {
     required String listId,
     int? maxResults,
     String? paginationToken,
-  }) async {
-    final response = await super.get(
-      UserContext.oauth2OrOAuth1,
-      '/2/lists/$listId/members',
-      queryParameters: {
-        'max_results': maxResults,
-        'pagination_token': paginationToken,
-      },
-    );
-
-    return TwitterResponse(
-      data: response['data']
-          .map<UserData>((user) => UserData.fromJson(user))
-          .toList(),
-      meta: UserMeta.fromJson(response['meta']),
-    );
-  }
+  }) async =>
+      super.buildMultiDataResponse(
+        await super.get(
+          UserContext.oauth2OrOAuth1,
+          '/2/lists/$listId/members',
+          queryParameters: {
+            'max_results': maxResults,
+            'pagination_token': paginationToken,
+          },
+        ),
+        dataBuilder: UserData.fromJson,
+        metaBuilder: UserMeta.fromJson,
+      );
 
   @override
   Future<TwitterResponse<List<ListData>, ListMeta>> lookupMemberships({
     required String userId,
     int? maxResults,
     String? paginationToken,
-  }) async {
-    final response = await super.get(
-      UserContext.oauth2OrOAuth1,
-      '/2/users/$userId/list_memberships',
-      queryParameters: {
-        'max_results': maxResults,
-        'pagination_token': paginationToken,
-      },
-    );
-
-    return TwitterResponse(
-      data: response['data']
-          .map<ListData>((user) => ListData.fromJson(user))
-          .toList(),
-      meta: ListMeta.fromJson(response['meta']),
-    );
-  }
+  }) async =>
+      super.buildMultiDataResponse(
+        await super.get(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/$userId/list_memberships',
+          queryParameters: {
+            'max_results': maxResults,
+            'pagination_token': paginationToken,
+          },
+        ),
+        dataBuilder: ListData.fromJson,
+        metaBuilder: ListMeta.fromJson,
+      );
 
   Future<TwitterResponse<ListData, void>> _createList({
     required String name,
     String? description,
     required bool private,
-  }) async {
-    final response = await super.post(
-      UserContext.oauth2OrOAuth1,
-      '/2/lists',
-      body: {
-        'name': name,
-        'description': description,
-        'private': private,
-      },
-    );
-
-    return TwitterResponse(data: ListData.fromJson(response['data']));
-  }
+  }) async =>
+      super.buildResponse(
+        await super.post(
+          UserContext.oauth2OrOAuth1,
+          '/2/lists',
+          body: {
+            'name': name,
+            'description': description,
+            'private': private,
+          },
+        ),
+        dataBuilder: ListData.fromJson,
+      );
 
   Future<bool> _updateList({
     required String listId,
@@ -867,7 +839,7 @@ class _ListsService extends BaseService implements ListsService {
     String? description,
     required bool private,
   }) async {
-    final response = await super.put(
+    await super.put(
       UserContext.oauth2OrOAuth1,
       '/2/lists/$listId',
       body: {
@@ -877,6 +849,6 @@ class _ListsService extends BaseService implements ListsService {
       },
     );
 
-    return response['data']['updated'];
+    return true;
   }
 }

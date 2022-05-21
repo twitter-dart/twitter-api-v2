@@ -102,53 +102,49 @@ abstract class ComplianceService {
 
 class _ComplianceService extends BaseService implements ComplianceService {
   /// Returns the new instance of [_ComplianceService].
-  _ComplianceService({required ClientContext context})
-      : super(context: context);
+  _ComplianceService({required super.context});
 
   @override
   Future<TwitterResponse<ComplianceData, void>> lookupJob(
-      {required String jobId}) async {
-    final response = await super.get(
-      UserContext.oauth2Only,
-      '/2/compliance/jobs/$jobId',
-    );
-
-    return TwitterResponse(data: ComplianceData.fromJson(response['data']));
-  }
+          {required String jobId}) async =>
+      super.buildResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/2/compliance/jobs/$jobId',
+        ),
+        dataBuilder: ComplianceData.fromJson,
+      );
 
   @override
-  Future<TwitterResponse<List<ComplianceData>, void>> lookupJobs(
-      {required JobType jobType, JobStatus? jobStatus}) async {
-    final response = await super.get(
-      UserContext.oauth2Only,
-      '/2/compliance/jobs',
-      queryParameters: {
-        'type': jobType.name,
-        'status': jobStatus?.name,
-      },
-    );
-
-    return TwitterResponse(
-      data: response['data']
-          .map<ComplianceData>(
-              (compliance) => ComplianceData.fromJson(compliance))
-          .toList(),
-    );
-  }
+  Future<TwitterResponse<List<ComplianceData>, void>> lookupJobs({
+    required JobType jobType,
+    JobStatus? jobStatus,
+  }) async =>
+      super.buildMultiDataResponse(
+        await super.get(
+          UserContext.oauth2Only,
+          '/2/compliance/jobs',
+          queryParameters: {
+            'type': jobType.name,
+            'status': jobStatus?.name,
+          },
+        ),
+        dataBuilder: ComplianceData.fromJson,
+      );
 
   @override
   Future<TwitterResponse<ComplianceData, void>> createJob(
-      {required JobType jobType, String? jobName, bool? resumable}) async {
-    final response = await super.post(
-      UserContext.oauth2Only,
-      '/2/compliance/jobs',
-      body: {
-        'type': jobType.name,
-        'name': jobName,
-        'resumable': resumable,
-      },
-    );
-
-    return TwitterResponse(data: ComplianceData.fromJson(response['data']));
-  }
+          {required JobType jobType, String? jobName, bool? resumable}) async =>
+      super.buildResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/2/compliance/jobs',
+          body: {
+            'type': jobType.name,
+            'name': jobName,
+            'resumable': resumable,
+          },
+        ),
+        dataBuilder: ComplianceData.fromJson,
+      );
 }
