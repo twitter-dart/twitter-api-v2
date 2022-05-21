@@ -22,7 +22,7 @@ TweetGeo _$TweetGeoFromJson(Map<String, dynamic> json) {
 mixin _$TweetGeo {
   @JsonKey(name: 'place_id')
   String get placeId => throw _privateConstructorUsedError;
-  TweetGeoCoordinates get coordinates => throw _privateConstructorUsedError;
+  TweetGeoCoordinates? get coordinates => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,9 +36,9 @@ abstract class $TweetGeoCopyWith<$Res> {
       _$TweetGeoCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'place_id') String placeId,
-      TweetGeoCoordinates coordinates});
+      TweetGeoCoordinates? coordinates});
 
-  $TweetGeoCoordinatesCopyWith<$Res> get coordinates;
+  $TweetGeoCoordinatesCopyWith<$Res>? get coordinates;
 }
 
 /// @nodoc
@@ -62,13 +62,17 @@ class _$TweetGeoCopyWithImpl<$Res> implements $TweetGeoCopyWith<$Res> {
       coordinates: coordinates == freezed
           ? _value.coordinates
           : coordinates // ignore: cast_nullable_to_non_nullable
-              as TweetGeoCoordinates,
+              as TweetGeoCoordinates?,
     ));
   }
 
   @override
-  $TweetGeoCoordinatesCopyWith<$Res> get coordinates {
-    return $TweetGeoCoordinatesCopyWith<$Res>(_value.coordinates, (value) {
+  $TweetGeoCoordinatesCopyWith<$Res>? get coordinates {
+    if (_value.coordinates == null) {
+      return null;
+    }
+
+    return $TweetGeoCoordinatesCopyWith<$Res>(_value.coordinates!, (value) {
       return _then(_value.copyWith(coordinates: value));
     });
   }
@@ -82,10 +86,10 @@ abstract class _$$_TweetGeoCopyWith<$Res> implements $TweetGeoCopyWith<$Res> {
   @override
   $Res call(
       {@JsonKey(name: 'place_id') String placeId,
-      TweetGeoCoordinates coordinates});
+      TweetGeoCoordinates? coordinates});
 
   @override
-  $TweetGeoCoordinatesCopyWith<$Res> get coordinates;
+  $TweetGeoCoordinatesCopyWith<$Res>? get coordinates;
 }
 
 /// @nodoc
@@ -111,7 +115,7 @@ class __$$_TweetGeoCopyWithImpl<$Res> extends _$TweetGeoCopyWithImpl<$Res>
       coordinates: coordinates == freezed
           ? _value.coordinates
           : coordinates // ignore: cast_nullable_to_non_nullable
-              as TweetGeoCoordinates,
+              as TweetGeoCoordinates?,
     ));
   }
 }
@@ -130,7 +134,7 @@ class _$_TweetGeo implements _TweetGeo {
   @JsonKey(name: 'place_id')
   final String placeId;
   @override
-  final TweetGeoCoordinates coordinates;
+  final TweetGeoCoordinates? coordinates;
 
   @override
   String toString() {
@@ -168,7 +172,7 @@ class _$_TweetGeo implements _TweetGeo {
 abstract class _TweetGeo implements TweetGeo {
   const factory _TweetGeo(
       {@JsonKey(name: 'place_id') required final String placeId,
-      required final TweetGeoCoordinates coordinates}) = _$_TweetGeo;
+      required final TweetGeoCoordinates? coordinates}) = _$_TweetGeo;
 
   factory _TweetGeo.fromJson(Map<String, dynamic> json) = _$_TweetGeo.fromJson;
 
@@ -176,7 +180,7 @@ abstract class _TweetGeo implements TweetGeo {
   @JsonKey(name: 'place_id')
   String get placeId => throw _privateConstructorUsedError;
   @override
-  TweetGeoCoordinates get coordinates => throw _privateConstructorUsedError;
+  TweetGeoCoordinates? get coordinates => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_TweetGeoCopyWith<_$_TweetGeo> get copyWith =>

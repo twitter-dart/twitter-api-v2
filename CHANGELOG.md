@@ -21,6 +21,10 @@
   - `entities`
   - `attachments`
   - `geo`
+- Added `includes` field to `TwitterResponse`. ([#144](https://github.com/twitter-dart/twitter-api-v2/issues/144))
+- With the addition of the `includes` field to `TwitterResponse`, the following objects have been added. ([#144](https://github.com/twitter-dart/twitter-api-v2/issues/144))
+  - `Media`
+  - `Poll`
 
 ## v2.0.0
 
