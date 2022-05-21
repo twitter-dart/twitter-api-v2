@@ -148,7 +148,7 @@ abstract class BaseService implements Service {
         Uri.https(
           _authority,
           unencodedPath,
-          _removeNullParameters(queryParameters).map(
+          Map.from(_removeNullParameters(queryParameters) ?? {}).map(
             (key, value) => MapEntry(key, value.toString()),
           ),
         ),
