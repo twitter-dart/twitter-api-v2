@@ -6,9 +6,28 @@
 import 'package:test/test.dart';
 
 // Project imports:
+import 'package:twitter_api_v2/src/service/includes.dart';
 import 'package:twitter_api_v2/src/service/twitter_response.dart';
 
 void main() {
+  test('.hasIncludes', () {
+    final response = TwitterResponse<bool, bool>(
+      data: true,
+      includes: Includes(),
+      meta: false,
+    );
+
+    expect(response.hasIncludes, isTrue);
+    expect(response.hasNotIncludes, isFalse);
+  });
+
+  test('.hasNotIncludes', () {
+    final response = TwitterResponse<bool, bool>(data: true, meta: null);
+
+    expect(response.hasNotIncludes, isTrue);
+    expect(response.hasIncludes, isFalse);
+  });
+
   test('.hasMeta', () {
     final response = TwitterResponse<bool, bool>(data: true, meta: false);
 
@@ -24,8 +43,17 @@ void main() {
   });
 
   test('.toString', () {
-    final response = TwitterResponse<bool, bool>(data: true, meta: false);
+    final response = TwitterResponse<bool, bool>(
+      data: true,
+      includes: Includes(),
+      meta: false,
+    );
 
-    expect(response.toString(), 'TwitterResponse(data: true, meta: false)');
+    expect(
+        response.toString(),
+        'TwitterResponse(data: true, '
+        'includes: Includes(tweets: null, users: null, '
+        'media: null, polls: null), '
+        'meta: false)');
   });
 }

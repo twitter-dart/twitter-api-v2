@@ -16,8 +16,10 @@ _$_TweetGeo _$$_TweetGeoFromJson(Map json) => $checkedCreate(
           placeId: $checkedConvert('place_id', (v) => v as String),
           coordinates: $checkedConvert(
               'coordinates',
-              (v) => TweetGeoCoordinates.fromJson(
-                  Map<String, Object?>.from(v as Map))),
+              (v) => v == null
+                  ? null
+                  : TweetGeoCoordinates.fromJson(
+                      Map<String, Object?>.from(v as Map))),
         );
         return val;
       },

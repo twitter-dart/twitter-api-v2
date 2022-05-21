@@ -13,6 +13,7 @@ import '../client/client_context.dart';
 import '../client/user_context.dart';
 import '../twitter_exception.dart';
 import 'expansion.dart';
+import 'includes.dart';
 import 'twitter_response.dart';
 
 abstract class Service {
@@ -56,6 +57,9 @@ abstract class BaseService implements Service {
 
   /// The field name of data
   static const _dataFieldName = 'data';
+
+  /// The field name of includes
+  static const _includesFieldName = 'includes';
 
   /// The field name of meta
   static const _metaFieldName = 'meta';
@@ -156,6 +160,9 @@ abstract class BaseService implements Service {
     final jsonBody = _checkResponseBody(response);
     return TwitterResponse(
       data: dataBuilder(jsonBody[_dataFieldName]),
+      includes: jsonBody.containsKey(_includesFieldName)
+          ? Includes.fromJson(jsonBody[_includesFieldName])
+          : null,
       meta: jsonBody.containsKey(_metaFieldName) && metaBuilder != null
           ? metaBuilder(jsonBody[_metaFieldName])
           : null,
@@ -173,6 +180,9 @@ abstract class BaseService implements Service {
       data: jsonBody[_dataFieldName]
           .map<D>((tweet) => dataBuilder(tweet))
           .toList(),
+      includes: jsonBody.containsKey(_includesFieldName)
+          ? Includes.fromJson(jsonBody[_includesFieldName])
+          : null,
       meta: jsonBody.containsKey(_metaFieldName) && metaBuilder != null
           ? metaBuilder(jsonBody[_metaFieldName])
           : null,

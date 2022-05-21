@@ -230,7 +230,7 @@ void main() async {
    2. [GET /2/compliance/jobs/:id](https://developer.twitter.com/en/docs/twitter-api/compliance/batch-compliance/api-reference/get-compliance-jobs-id)
    3. [POST /2/compliance/jobs](https://developer.twitter.com/en/docs/twitter-api/compliance/batch-compliance/api-reference/post-compliance-jobs)
 
-> Note:</br>
+> **Note**</br>
 > Not all additional fields listed in the official documentation are supported. We intend to support them step by step.</br>
 > Also you can create an Issue or Pull Request if you wish to suggest or contribute!
 

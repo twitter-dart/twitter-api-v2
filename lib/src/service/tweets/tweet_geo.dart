@@ -15,7 +15,7 @@ part 'tweet_geo.g.dart';
 class TweetGeo with _$TweetGeo {
   const factory TweetGeo({
     @JsonKey(name: 'place_id') required String placeId,
-    required TweetGeoCoordinates coordinates,
+    required TweetGeoCoordinates? coordinates,
   }) = _TweetGeo;
 
   factory TweetGeo.fromJson(Map<String, Object?> json) =>
