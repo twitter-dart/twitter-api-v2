@@ -538,23 +538,50 @@ void main() {
     expect(response.meta!.resultCount, 10);
   });
 
-  test('.volumeStreams', () async {
-    final tweetsService = TweetsService(
-      context: context.buildSendStub(
-        UserContext.oauth2Only,
-        'test/src/service/tweets/data/volume_streams.json',
-        const {'backfill_minutes': '5'},
-      ),
-    );
+  group('.volumeStreams', () {
+    test('normal case', () async {
+      final tweetsService = TweetsService(
+        context: context.buildSendStub(
+          UserContext.oauth2Only,
+          'test/src/service/tweets/data/volume_streams.json',
+          const {'backfill_minutes': '5'},
+        ),
+      );
 
-    final response = await tweetsService.volumeStreams(
-      backfillMinutes: 5,
-    );
+      final response = await tweetsService.volumeStreams(
+        backfillMinutes: 5,
+      );
 
-    final data = await response.toList();
+      final data = await response.toList();
 
-    expect(response, isA<Stream<TweetData>>());
-    expect(data, isA<List<TweetData>>());
-    expect(data.length, 70);
+      expect(response, isA<Stream<TweetData>>());
+      expect(data, isA<List<TweetData>>());
+      expect(data.length, 70);
+    });
+
+    test('with error', () async {
+      final tweetsService = TweetsService(
+        context: context.buildSendStub(
+          UserContext.oauth2Only,
+          'test/src/service/tweets/data/volume_streams_with_error.json',
+          const {'backfill_minutes': '5'},
+        ),
+      );
+
+      final response = await tweetsService.volumeStreams(
+        backfillMinutes: 5,
+      );
+
+      final data = <TweetData>[];
+      final errors = <dynamic>[];
+
+      await for (final event in response.handleError(errors.add)) {
+        data.add(event);
+      }
+
+      expect(data.length, 5);
+      expect(errors.length, 1);
+      expect(errors.single, isA<TwitterException>());
+    });
   });
 }
