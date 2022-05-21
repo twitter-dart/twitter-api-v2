@@ -9,7 +9,8 @@ import 'package:http/http.dart';
 /// with the Twitter API.
 class TwitterException implements Exception {
   /// Returns the new instance of [TwitterException].
-  TwitterException(this.message, this.response, [this.lastStreamedBody]);
+  TwitterException(this.message, this.response, [String? body])
+      : body = response is Response ? response.body : body;
 
   /// The error message
   final String message;
@@ -17,15 +18,12 @@ class TwitterException implements Exception {
   /// The response from the Twitter API.
   final BaseResponse response;
 
-  /// The body of the last received streamed request that caused this exception.
+  /// The body of the response.
   ///
-  /// `null` when the exception was caused by a non-streaming response.
-  final String? lastStreamedBody;
-
-  /// Returns the body of the [response] for non-streaming responses. Otherwise
-  /// returns the [lastStreamedBody].
-  String? get body =>
-      response is Response ? (response as Response).body : lastStreamedBody;
+  /// Equal to [Response.body] if [response] is a [Response]. Otherwise set to
+  /// the event of a [StreamedResponse] that caused this exception (if
+  /// available).
+  final String? body;
 
   @override
   String toString() {
