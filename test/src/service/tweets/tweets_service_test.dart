@@ -5,7 +5,6 @@
 // Package imports:
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
-
 // Project imports:
 import 'package:twitter_api_v2/src/client/client_context.dart';
 import 'package:twitter_api_v2/src/client/user_context.dart';
@@ -18,6 +17,7 @@ import 'package:twitter_api_v2/src/service/twitter_response.dart';
 import 'package:twitter_api_v2/src/service/users/user_data.dart';
 import 'package:twitter_api_v2/src/service/users/user_meta.dart';
 import 'package:twitter_api_v2/src/twitter_exception.dart';
+
 import '../../../mocks/client_context_stubs.dart' as context;
 
 void main() {
@@ -536,5 +536,25 @@ void main() {
     expect(response.meta, isA<TweetMeta>());
     expect(response.data.length, 10);
     expect(response.meta!.resultCount, 10);
+  });
+
+  test('.volumeStreams', () async {
+    final tweetsService = TweetsService(
+      context: context.buildSendStub(
+        UserContext.oauth2Only,
+        'test/src/service/tweets/data/volume_streams.json',
+        const {'backfill_minutes': '5'},
+      ),
+    );
+
+    final response = await tweetsService.volumeStreams(
+      backfillMinutes: 5,
+    );
+
+    final data = await response.toList();
+
+    expect(response, isA<Stream<TweetData>>());
+    expect(data, isA<List<TweetData>>());
+    expect(data.length, 70);
   });
 }
