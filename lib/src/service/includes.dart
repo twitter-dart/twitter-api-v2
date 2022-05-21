@@ -6,8 +6,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import 'tweets/media.dart';
-import 'tweets/poll.dart';
+import 'media.dart';
+import 'poll.dart';
 import 'tweets/tweet_data.dart';
 import 'users/user_data.dart';
 
