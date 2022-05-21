@@ -5,6 +5,7 @@
 // Package imports:
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
+
 // Project imports:
 import 'package:twitter_api_v2/src/client/client_context.dart';
 import 'package:twitter_api_v2/src/client/user_context.dart';
@@ -17,7 +18,6 @@ import 'package:twitter_api_v2/src/service/twitter_response.dart';
 import 'package:twitter_api_v2/src/service/users/user_data.dart';
 import 'package:twitter_api_v2/src/service/users/user_meta.dart';
 import 'package:twitter_api_v2/src/twitter_exception.dart';
-
 import '../../../mocks/client_context_stubs.dart' as context;
 
 void main() {
