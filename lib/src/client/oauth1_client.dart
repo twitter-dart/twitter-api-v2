@@ -115,4 +115,17 @@ class OAuth1Client extends Client {
             )
             .timeout(timeout),
       );
+
+  @override
+  Future<http.StreamedResponse> send(
+    http.BaseRequest request, {
+    Map<String, String> headers = const {},
+    Duration timeout = const Duration(seconds: 10),
+  }) async {
+    request.headers.addAll(headers);
+
+    return checkResponse(
+      await oauthClient.send(request).timeout(timeout),
+    );
+  }
 }

@@ -86,4 +86,19 @@ class OAuth2Client extends Client {
             )
             .timeout(timeout),
       );
+
+  @override
+  Future<http.StreamedResponse> send(
+    http.BaseRequest request, {
+    Map<String, String> headers = const {},
+    Duration timeout = const Duration(seconds: 10),
+  }) async {
+    request.headers.addAll(
+      {'Authorization': 'Bearer $_bearerToken', ...headers},
+    );
+
+    return checkResponse(
+      await request.send().timeout(timeout),
+    );
+  }
 }
