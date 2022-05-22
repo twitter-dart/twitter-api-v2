@@ -1,10 +1,5 @@
 # Release Note
 
-## Unreleased
-
-- Added **Volume streams** endpoint. ([#14](https://github.com/twitter-dart/twitter-api-v2/issues/14))
-  - GET /2/tweets/sample/stream
-
 ## v2.1.0
 
 - Added `expansions` argument to `TweetsService`. ([#141](https://github.com/twitter-dart/twitter-api-v2/issues/141))
@@ -30,6 +25,8 @@
 - With the addition of the `includes` field to `TwitterResponse`, the following objects have been added. ([#144](https://github.com/twitter-dart/twitter-api-v2/issues/144))
   - `Media`
   - `Poll`
+- Added **Volume streams** endpoint. ([#14](https://github.com/twitter-dart/twitter-api-v2/issues/14))
+  - GET /2/tweets/sample/stream
 
 ## v2.0.0
 
