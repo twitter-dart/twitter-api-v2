@@ -38,7 +38,13 @@ abstract class Client {
     Duration timeout = const Duration(seconds: 10),
   });
 
-  http.Response checkResponse(final http.Response response) {
+  Future<http.StreamedResponse> send(
+    http.BaseRequest request, {
+    Map<String, String> headers = const {},
+    Duration timeout = const Duration(seconds: 10),
+  });
+
+  T checkResponse<T extends http.BaseResponse>(final T response) {
     final statusCode = response.statusCode;
     if (200 <= statusCode && statusCode <= 299) {
       return response;

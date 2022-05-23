@@ -537,4 +537,51 @@ void main() {
     expect(response.data.length, 10);
     expect(response.meta!.resultCount, 10);
   });
+
+  group('.connectVolumeStreams', () {
+    test('normal case', () async {
+      final tweetsService = TweetsService(
+        context: context.buildSendStub(
+          UserContext.oauth2Only,
+          'test/src/service/tweets/data/volume_streams.json',
+          const {'backfill_minutes': '5'},
+        ),
+      );
+
+      final response = await tweetsService.connectVolumeStreams(
+        backfillMinutes: 5,
+      );
+
+      final data = await response.toList();
+
+      expect(response, isA<Stream<TweetData>>());
+      expect(data, isA<List<TweetData>>());
+      expect(data.length, 70);
+    });
+
+    test('with error', () async {
+      final tweetsService = TweetsService(
+        context: context.buildSendStub(
+          UserContext.oauth2Only,
+          'test/src/service/tweets/data/volume_streams_with_error.json',
+          const {'backfill_minutes': '5'},
+        ),
+      );
+
+      final response = await tweetsService.connectVolumeStreams(
+        backfillMinutes: 5,
+      );
+
+      final data = <TweetData>[];
+      final errors = <dynamic>[];
+
+      await for (final event in response.handleError(errors.add)) {
+        data.add(event);
+      }
+
+      expect(data.length, 5);
+      expect(errors.length, 1);
+      expect(errors.single, isA<TwitterException>());
+    });
+  });
 }

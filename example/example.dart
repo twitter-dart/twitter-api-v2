@@ -37,9 +37,15 @@ void main() async {
     );
 
     print(response);
+
+    final stream = await twitter.tweetsService.connectVolumeStreams();
+
+    await for (final tweet in stream.handleError(print)) {
+      print(tweet);
+    }
   } on v2.TwitterException catch (e) {
     print(e.response.headers);
-    print(e.response.body);
+    print(e.body);
     print(e);
   }
 }

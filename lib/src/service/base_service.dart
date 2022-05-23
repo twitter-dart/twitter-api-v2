@@ -135,6 +135,31 @@ abstract class BaseService implements Service {
     return response;
   }
 
+  Future<Stream<Map<String, dynamic>>> send(
+    final UserContext userContext,
+    final String method,
+    final String unencodedPath, {
+    Map<String, dynamic> queryParameters = const {},
+  }) async {
+    final streamedResponse = await _context.send(
+      userContext,
+      http.Request(
+        method,
+        Uri.https(
+          _authority,
+          unencodedPath,
+          Map.from(_removeNullParameters(queryParameters) ?? {}).map(
+            (key, value) => MapEntry(key, value.toString()),
+          ),
+        ),
+      ),
+    );
+
+    return streamedResponse.stream
+        .transform(utf8.decoder)
+        .map((event) => _checkStreamedResponse(streamedResponse, event));
+  }
+
   dynamic _removeNullParameters(final dynamic object) {
     if (object is! Map) {
       return object;
@@ -201,6 +226,23 @@ abstract class BaseService implements Service {
     }
 
     return jsonBody;
+  }
+
+  Map<String, dynamic> _checkStreamedResponse(
+    final http.StreamedResponse response,
+    final String event,
+  ) {
+    final body = jsonDecode(event);
+
+    if (!body.containsKey('data')) {
+      throw TwitterException(
+        'No response data exists for the request.',
+        response,
+        event,
+      );
+    }
+
+    return body;
   }
 
   @override
