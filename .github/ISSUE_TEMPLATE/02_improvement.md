@@ -2,7 +2,7 @@
 name: Improvement suggestion.
 about: Something in twitter_api_v2 can be improved.
 title: ""
-labels: "Feedback: improvement"
+labels: "enhancement"
 assignees: "myConsciousness"
 ---
 
