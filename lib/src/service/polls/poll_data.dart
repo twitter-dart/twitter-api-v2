@@ -8,15 +8,16 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 // Project imports:
 import 'poll_option.dart';
 
-part 'poll.freezed.dart';
-part 'poll.g.dart';
+part 'poll_data.freezed.dart';
+part 'poll_data.g.dart';
 
 @freezed
-class Poll with _$Poll {
-  const factory Poll({
+class PollData with _$PollData {
+  const factory PollData({
     required String id,
     required List<PollOption> options,
-  }) = _Poll;
+  }) = _PollData;
 
-  factory Poll.fromJson(Map<String, Object?> json) => _$PollFromJson(json);
+  factory PollData.fromJson(Map<String, Object?> json) =>
+      _$PollDataFromJson(json);
 }

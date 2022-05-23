@@ -2,17 +2,17 @@
 
 // ignore_for_file: non_constant_identifier_names
 
-part of 'media.dart';
+part of 'media_data.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Media _$$_MediaFromJson(Map json) => $checkedCreate(
-      r'_$_Media',
+_$_MediaData _$$_MediaDataFromJson(Map json) => $checkedCreate(
+      r'_$_MediaData',
       json,
       ($checkedConvert) {
-        final val = _$_Media(
+        final val = _$_MediaData(
           type: $checkedConvert('type', (v) => v as String),
           mediaKeys: $checkedConvert('media_keys',
               (v) => (v as List<dynamic>).map((e) => e as String).toList()),
@@ -22,7 +22,8 @@ _$_Media _$$_MediaFromJson(Map json) => $checkedCreate(
       fieldKeyMap: const {'mediaKeys': 'media_keys'},
     );
 
-Map<String, dynamic> _$$_MediaToJson(_$_Media instance) => <String, dynamic>{
+Map<String, dynamic> _$$_MediaDataToJson(_$_MediaData instance) =>
+    <String, dynamic>{
       'type': instance.type,
       'media_keys': instance.mediaKeys,
     };

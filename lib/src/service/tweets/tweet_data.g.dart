@@ -40,7 +40,7 @@ _$_TweetData _$$_TweetDataFromJson(Map json) => $checkedCreate(
               'geo',
               (v) => v == null
                   ? null
-                  : TweetGeo.fromJson(Map<String, Object?>.from(v as Map))),
+                  : PlaceData.fromJson(Map<String, Object?>.from(v as Map))),
         );
         return val;
       },

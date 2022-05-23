@@ -7,15 +7,16 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'media.freezed.dart';
-part 'media.g.dart';
+part 'media_data.freezed.dart';
+part 'media_data.g.dart';
 
 @freezed
-class Media with _$Media {
-  const factory Media({
+class MediaData with _$MediaData {
+  const factory MediaData({
     required String type,
     @JsonKey(name: 'media_keys') required List<String> mediaKeys,
-  }) = _Media;
+  }) = _MediaData;
 
-  factory Media.fromJson(Map<String, Object?> json) => _$MediaFromJson(json);
+  factory MediaData.fromJson(Map<String, Object?> json) =>
+      _$MediaDataFromJson(json);
 }

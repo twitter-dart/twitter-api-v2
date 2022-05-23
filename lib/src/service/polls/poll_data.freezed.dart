@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'poll.dart';
+part of 'poll_data.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,34 +14,35 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Poll _$PollFromJson(Map<String, dynamic> json) {
-  return _Poll.fromJson(json);
+PollData _$PollDataFromJson(Map<String, dynamic> json) {
+  return _PollData.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Poll {
+mixin _$PollData {
   String get id => throw _privateConstructorUsedError;
   List<PollOption> get options => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PollCopyWith<Poll> get copyWith => throw _privateConstructorUsedError;
+  $PollDataCopyWith<PollData> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PollCopyWith<$Res> {
-  factory $PollCopyWith(Poll value, $Res Function(Poll) then) =
-      _$PollCopyWithImpl<$Res>;
+abstract class $PollDataCopyWith<$Res> {
+  factory $PollDataCopyWith(PollData value, $Res Function(PollData) then) =
+      _$PollDataCopyWithImpl<$Res>;
   $Res call({String id, List<PollOption> options});
 }
 
 /// @nodoc
-class _$PollCopyWithImpl<$Res> implements $PollCopyWith<$Res> {
-  _$PollCopyWithImpl(this._value, this._then);
+class _$PollDataCopyWithImpl<$Res> implements $PollDataCopyWith<$Res> {
+  _$PollDataCopyWithImpl(this._value, this._then);
 
-  final Poll _value;
+  final PollData _value;
   // ignore: unused_field
-  final $Res Function(Poll) _then;
+  final $Res Function(PollData) _then;
 
   @override
   $Res call({
@@ -62,28 +63,30 @@ class _$PollCopyWithImpl<$Res> implements $PollCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_PollCopyWith<$Res> implements $PollCopyWith<$Res> {
-  factory _$$_PollCopyWith(_$_Poll value, $Res Function(_$_Poll) then) =
-      __$$_PollCopyWithImpl<$Res>;
+abstract class _$$_PollDataCopyWith<$Res> implements $PollDataCopyWith<$Res> {
+  factory _$$_PollDataCopyWith(
+          _$_PollData value, $Res Function(_$_PollData) then) =
+      __$$_PollDataCopyWithImpl<$Res>;
   @override
   $Res call({String id, List<PollOption> options});
 }
 
 /// @nodoc
-class __$$_PollCopyWithImpl<$Res> extends _$PollCopyWithImpl<$Res>
-    implements _$$_PollCopyWith<$Res> {
-  __$$_PollCopyWithImpl(_$_Poll _value, $Res Function(_$_Poll) _then)
-      : super(_value, (v) => _then(v as _$_Poll));
+class __$$_PollDataCopyWithImpl<$Res> extends _$PollDataCopyWithImpl<$Res>
+    implements _$$_PollDataCopyWith<$Res> {
+  __$$_PollDataCopyWithImpl(
+      _$_PollData _value, $Res Function(_$_PollData) _then)
+      : super(_value, (v) => _then(v as _$_PollData));
 
   @override
-  _$_Poll get _value => super._value as _$_Poll;
+  _$_PollData get _value => super._value as _$_PollData;
 
   @override
   $Res call({
     Object? id = freezed,
     Object? options = freezed,
   }) {
-    return _then(_$_Poll(
+    return _then(_$_PollData(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -98,11 +101,12 @@ class __$$_PollCopyWithImpl<$Res> extends _$PollCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Poll implements _Poll {
-  const _$_Poll({required this.id, required final List<PollOption> options})
+class _$_PollData implements _PollData {
+  const _$_PollData({required this.id, required final List<PollOption> options})
       : _options = options;
 
-  factory _$_Poll.fromJson(Map<String, dynamic> json) => _$$_PollFromJson(json);
+  factory _$_PollData.fromJson(Map<String, dynamic> json) =>
+      _$$_PollDataFromJson(json);
 
   @override
   final String id;
@@ -115,14 +119,14 @@ class _$_Poll implements _Poll {
 
   @override
   String toString() {
-    return 'Poll(id: $id, options: $options)';
+    return 'PollData(id: $id, options: $options)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Poll &&
+            other is _$_PollData &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other._options, _options));
   }
@@ -136,21 +140,21 @@ class _$_Poll implements _Poll {
 
   @JsonKey(ignore: true)
   @override
-  _$$_PollCopyWith<_$_Poll> get copyWith =>
-      __$$_PollCopyWithImpl<_$_Poll>(this, _$identity);
+  _$$_PollDataCopyWith<_$_PollData> get copyWith =>
+      __$$_PollDataCopyWithImpl<_$_PollData>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PollToJson(this);
+    return _$$_PollDataToJson(this);
   }
 }
 
-abstract class _Poll implements Poll {
-  const factory _Poll(
+abstract class _PollData implements PollData {
+  const factory _PollData(
       {required final String id,
-      required final List<PollOption> options}) = _$_Poll;
+      required final List<PollOption> options}) = _$_PollData;
 
-  factory _Poll.fromJson(Map<String, dynamic> json) = _$_Poll.fromJson;
+  factory _PollData.fromJson(Map<String, dynamic> json) = _$_PollData.fromJson;
 
   @override
   String get id => throw _privateConstructorUsedError;
@@ -158,5 +162,6 @@ abstract class _Poll implements Poll {
   List<PollOption> get options => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$$_PollCopyWith<_$_Poll> get copyWith => throw _privateConstructorUsedError;
+  _$$_PollDataCopyWith<_$_PollData> get copyWith =>
+      throw _privateConstructorUsedError;
 }

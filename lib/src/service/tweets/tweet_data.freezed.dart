@@ -31,7 +31,7 @@ mixin _$TweetData {
       throw _privateConstructorUsedError;
   TweetEntities? get entities => throw _privateConstructorUsedError;
   TweetAttachments? get attachments => throw _privateConstructorUsedError;
-  TweetGeo? get geo => throw _privateConstructorUsedError;
+  PlaceData? get geo => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -54,11 +54,11 @@ abstract class $TweetDataCopyWith<$Res> {
           List<ReferencedTweetData>? referencedTweets,
       TweetEntities? entities,
       TweetAttachments? attachments,
-      TweetGeo? geo});
+      PlaceData? geo});
 
   $TweetEntitiesCopyWith<$Res>? get entities;
   $TweetAttachmentsCopyWith<$Res>? get attachments;
-  $TweetGeoCopyWith<$Res>? get geo;
+  $PlaceDataCopyWith<$Res>? get geo;
 }
 
 /// @nodoc
@@ -112,7 +112,7 @@ class _$TweetDataCopyWithImpl<$Res> implements $TweetDataCopyWith<$Res> {
       geo: geo == freezed
           ? _value.geo
           : geo // ignore: cast_nullable_to_non_nullable
-              as TweetGeo?,
+              as PlaceData?,
     ));
   }
 
@@ -139,12 +139,12 @@ class _$TweetDataCopyWithImpl<$Res> implements $TweetDataCopyWith<$Res> {
   }
 
   @override
-  $TweetGeoCopyWith<$Res>? get geo {
+  $PlaceDataCopyWith<$Res>? get geo {
     if (_value.geo == null) {
       return null;
     }
 
-    return $TweetGeoCopyWith<$Res>(_value.geo!, (value) {
+    return $PlaceDataCopyWith<$Res>(_value.geo!, (value) {
       return _then(_value.copyWith(geo: value));
     });
   }
@@ -167,14 +167,14 @@ abstract class _$$_TweetDataCopyWith<$Res> implements $TweetDataCopyWith<$Res> {
           List<ReferencedTweetData>? referencedTweets,
       TweetEntities? entities,
       TweetAttachments? attachments,
-      TweetGeo? geo});
+      PlaceData? geo});
 
   @override
   $TweetEntitiesCopyWith<$Res>? get entities;
   @override
   $TweetAttachmentsCopyWith<$Res>? get attachments;
   @override
-  $TweetGeoCopyWith<$Res>? get geo;
+  $PlaceDataCopyWith<$Res>? get geo;
 }
 
 /// @nodoc
@@ -230,7 +230,7 @@ class __$$_TweetDataCopyWithImpl<$Res> extends _$TweetDataCopyWithImpl<$Res>
       geo: geo == freezed
           ? _value.geo
           : geo // ignore: cast_nullable_to_non_nullable
-              as TweetGeo?,
+              as PlaceData?,
     ));
   }
 }
@@ -280,7 +280,7 @@ class _$_TweetData implements _TweetData {
   @override
   final TweetAttachments? attachments;
   @override
-  final TweetGeo? geo;
+  final PlaceData? geo;
 
   @override
   String toString() {
@@ -341,7 +341,7 @@ abstract class _TweetData implements TweetData {
           final List<ReferencedTweetData>? referencedTweets,
       final TweetEntities? entities,
       final TweetAttachments? attachments,
-      final TweetGeo? geo}) = _$_TweetData;
+      final PlaceData? geo}) = _$_TweetData;
 
   factory _TweetData.fromJson(Map<String, dynamic> json) =
       _$_TweetData.fromJson;
@@ -365,7 +365,7 @@ abstract class _TweetData implements TweetData {
   @override
   TweetAttachments? get attachments => throw _privateConstructorUsedError;
   @override
-  TweetGeo? get geo => throw _privateConstructorUsedError;
+  PlaceData? get geo => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_TweetDataCopyWith<_$_TweetData> get copyWith =>
