@@ -1,8 +1,8 @@
 ---
 name: Bug report.
 about: You are creating an application with this library but you are noticing some strange behavior, that it throws an unexpected exception, or that it is not working according to the specifications.
-title: ""
-labels: "Problem: bug"
+title: "bug:"
+labels: "bug"
 assignees: "myConsciousness"
 ---
 
