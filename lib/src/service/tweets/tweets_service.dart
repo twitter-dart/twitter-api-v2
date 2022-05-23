@@ -978,7 +978,10 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/volume-streams/api-reference/get-tweets-sample-stream
-  Future<Stream<TweetData>> connectVolumeStreams({int? backfillMinutes, List<TweetExpansion>? expansions});
+  Future<Stream<TweetData>> connectVolumeStreams({
+    int? backfillMinutes,
+    List<TweetExpansion>? expansions,
+  });
 }
 
 class _TweetsService extends BaseService implements TweetsService {
