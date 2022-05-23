@@ -2,17 +2,17 @@
 
 // ignore_for_file: non_constant_identifier_names
 
-part of 'poll.dart';
+part of 'poll_data.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Poll _$$_PollFromJson(Map json) => $checkedCreate(
-      r'_$_Poll',
+_$_PollData _$$_PollDataFromJson(Map json) => $checkedCreate(
+      r'_$_PollData',
       json,
       ($checkedConvert) {
-        final val = _$_Poll(
+        final val = _$_PollData(
           id: $checkedConvert('id', (v) => v as String),
           options: $checkedConvert(
               'options',
@@ -25,7 +25,8 @@ _$_Poll _$$_PollFromJson(Map json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$$_PollToJson(_$_Poll instance) => <String, dynamic>{
+Map<String, dynamic> _$$_PollDataToJson(_$_PollData instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'options': instance.options,
     };

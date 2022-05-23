@@ -29,13 +29,13 @@ _$_Includes _$$_IncludesFromJson(Map json) => $checkedCreate(
               'media',
               (v) => (v as List<dynamic>?)
                   ?.map((e) =>
-                      Media.fromJson(Map<String, Object?>.from(e as Map)))
+                      MediaData.fromJson(Map<String, Object?>.from(e as Map)))
                   .toList()),
           polls: $checkedConvert(
               'polls',
               (v) => (v as List<dynamic>?)
-                  ?.map(
-                      (e) => Poll.fromJson(Map<String, Object?>.from(e as Map)))
+                  ?.map((e) =>
+                      PollData.fromJson(Map<String, Object?>.from(e as Map)))
                   .toList()),
         );
         return val;

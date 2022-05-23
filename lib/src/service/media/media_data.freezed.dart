@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'media.dart';
+part of 'media_data.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,35 +14,36 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Media _$MediaFromJson(Map<String, dynamic> json) {
-  return _Media.fromJson(json);
+MediaData _$MediaDataFromJson(Map<String, dynamic> json) {
+  return _MediaData.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Media {
+mixin _$MediaData {
   String get type => throw _privateConstructorUsedError;
   @JsonKey(name: 'media_keys')
   List<String> get mediaKeys => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $MediaCopyWith<Media> get copyWith => throw _privateConstructorUsedError;
+  $MediaDataCopyWith<MediaData> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MediaCopyWith<$Res> {
-  factory $MediaCopyWith(Media value, $Res Function(Media) then) =
-      _$MediaCopyWithImpl<$Res>;
+abstract class $MediaDataCopyWith<$Res> {
+  factory $MediaDataCopyWith(MediaData value, $Res Function(MediaData) then) =
+      _$MediaDataCopyWithImpl<$Res>;
   $Res call({String type, @JsonKey(name: 'media_keys') List<String> mediaKeys});
 }
 
 /// @nodoc
-class _$MediaCopyWithImpl<$Res> implements $MediaCopyWith<$Res> {
-  _$MediaCopyWithImpl(this._value, this._then);
+class _$MediaDataCopyWithImpl<$Res> implements $MediaDataCopyWith<$Res> {
+  _$MediaDataCopyWithImpl(this._value, this._then);
 
-  final Media _value;
+  final MediaData _value;
   // ignore: unused_field
-  final $Res Function(Media) _then;
+  final $Res Function(MediaData) _then;
 
   @override
   $Res call({
@@ -63,28 +64,30 @@ class _$MediaCopyWithImpl<$Res> implements $MediaCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_MediaCopyWith<$Res> implements $MediaCopyWith<$Res> {
-  factory _$$_MediaCopyWith(_$_Media value, $Res Function(_$_Media) then) =
-      __$$_MediaCopyWithImpl<$Res>;
+abstract class _$$_MediaDataCopyWith<$Res> implements $MediaDataCopyWith<$Res> {
+  factory _$$_MediaDataCopyWith(
+          _$_MediaData value, $Res Function(_$_MediaData) then) =
+      __$$_MediaDataCopyWithImpl<$Res>;
   @override
   $Res call({String type, @JsonKey(name: 'media_keys') List<String> mediaKeys});
 }
 
 /// @nodoc
-class __$$_MediaCopyWithImpl<$Res> extends _$MediaCopyWithImpl<$Res>
-    implements _$$_MediaCopyWith<$Res> {
-  __$$_MediaCopyWithImpl(_$_Media _value, $Res Function(_$_Media) _then)
-      : super(_value, (v) => _then(v as _$_Media));
+class __$$_MediaDataCopyWithImpl<$Res> extends _$MediaDataCopyWithImpl<$Res>
+    implements _$$_MediaDataCopyWith<$Res> {
+  __$$_MediaDataCopyWithImpl(
+      _$_MediaData _value, $Res Function(_$_MediaData) _then)
+      : super(_value, (v) => _then(v as _$_MediaData));
 
   @override
-  _$_Media get _value => super._value as _$_Media;
+  _$_MediaData get _value => super._value as _$_MediaData;
 
   @override
   $Res call({
     Object? type = freezed,
     Object? mediaKeys = freezed,
   }) {
-    return _then(_$_Media(
+    return _then(_$_MediaData(
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -99,14 +102,14 @@ class __$$_MediaCopyWithImpl<$Res> extends _$MediaCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Media implements _Media {
-  const _$_Media(
+class _$_MediaData implements _MediaData {
+  const _$_MediaData(
       {required this.type,
       @JsonKey(name: 'media_keys') required final List<String> mediaKeys})
       : _mediaKeys = mediaKeys;
 
-  factory _$_Media.fromJson(Map<String, dynamic> json) =>
-      _$$_MediaFromJson(json);
+  factory _$_MediaData.fromJson(Map<String, dynamic> json) =>
+      _$$_MediaDataFromJson(json);
 
   @override
   final String type;
@@ -120,14 +123,14 @@ class _$_Media implements _Media {
 
   @override
   String toString() {
-    return 'Media(type: $type, mediaKeys: $mediaKeys)';
+    return 'MediaData(type: $type, mediaKeys: $mediaKeys)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Media &&
+            other is _$_MediaData &&
             const DeepCollectionEquality().equals(other.type, type) &&
             const DeepCollectionEquality()
                 .equals(other._mediaKeys, _mediaKeys));
@@ -142,22 +145,23 @@ class _$_Media implements _Media {
 
   @JsonKey(ignore: true)
   @override
-  _$$_MediaCopyWith<_$_Media> get copyWith =>
-      __$$_MediaCopyWithImpl<_$_Media>(this, _$identity);
+  _$$_MediaDataCopyWith<_$_MediaData> get copyWith =>
+      __$$_MediaDataCopyWithImpl<_$_MediaData>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MediaToJson(this);
+    return _$$_MediaDataToJson(this);
   }
 }
 
-abstract class _Media implements Media {
-  const factory _Media(
+abstract class _MediaData implements MediaData {
+  const factory _MediaData(
           {required final String type,
           @JsonKey(name: 'media_keys') required final List<String> mediaKeys}) =
-      _$_Media;
+      _$_MediaData;
 
-  factory _Media.fromJson(Map<String, dynamic> json) = _$_Media.fromJson;
+  factory _MediaData.fromJson(Map<String, dynamic> json) =
+      _$_MediaData.fromJson;
 
   @override
   String get type => throw _privateConstructorUsedError;
@@ -166,6 +170,6 @@ abstract class _Media implements Media {
   List<String> get mediaKeys => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$$_MediaCopyWith<_$_Media> get copyWith =>
+  _$$_MediaDataCopyWith<_$_MediaData> get copyWith =>
       throw _privateConstructorUsedError;
 }

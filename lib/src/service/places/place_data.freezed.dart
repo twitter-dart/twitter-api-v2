@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'tweet_geo.dart';
+part of 'place_data.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,40 +14,40 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-TweetGeo _$TweetGeoFromJson(Map<String, dynamic> json) {
-  return _TweetGeo.fromJson(json);
+PlaceData _$PlaceDataFromJson(Map<String, dynamic> json) {
+  return _PlaceData.fromJson(json);
 }
 
 /// @nodoc
-mixin _$TweetGeo {
+mixin _$PlaceData {
   @JsonKey(name: 'place_id')
   String get placeId => throw _privateConstructorUsedError;
-  TweetGeoCoordinates? get coordinates => throw _privateConstructorUsedError;
+  PlaceCoordinates? get coordinates => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TweetGeoCopyWith<TweetGeo> get copyWith =>
+  $PlaceDataCopyWith<PlaceData> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TweetGeoCopyWith<$Res> {
-  factory $TweetGeoCopyWith(TweetGeo value, $Res Function(TweetGeo) then) =
-      _$TweetGeoCopyWithImpl<$Res>;
+abstract class $PlaceDataCopyWith<$Res> {
+  factory $PlaceDataCopyWith(PlaceData value, $Res Function(PlaceData) then) =
+      _$PlaceDataCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'place_id') String placeId,
-      TweetGeoCoordinates? coordinates});
+      PlaceCoordinates? coordinates});
 
-  $TweetGeoCoordinatesCopyWith<$Res>? get coordinates;
+  $PlaceCoordinatesCopyWith<$Res>? get coordinates;
 }
 
 /// @nodoc
-class _$TweetGeoCopyWithImpl<$Res> implements $TweetGeoCopyWith<$Res> {
-  _$TweetGeoCopyWithImpl(this._value, this._then);
+class _$PlaceDataCopyWithImpl<$Res> implements $PlaceDataCopyWith<$Res> {
+  _$PlaceDataCopyWithImpl(this._value, this._then);
 
-  final TweetGeo _value;
+  final PlaceData _value;
   // ignore: unused_field
-  final $Res Function(TweetGeo) _then;
+  final $Res Function(PlaceData) _then;
 
   @override
   $Res call({
@@ -62,52 +62,52 @@ class _$TweetGeoCopyWithImpl<$Res> implements $TweetGeoCopyWith<$Res> {
       coordinates: coordinates == freezed
           ? _value.coordinates
           : coordinates // ignore: cast_nullable_to_non_nullable
-              as TweetGeoCoordinates?,
+              as PlaceCoordinates?,
     ));
   }
 
   @override
-  $TweetGeoCoordinatesCopyWith<$Res>? get coordinates {
+  $PlaceCoordinatesCopyWith<$Res>? get coordinates {
     if (_value.coordinates == null) {
       return null;
     }
 
-    return $TweetGeoCoordinatesCopyWith<$Res>(_value.coordinates!, (value) {
+    return $PlaceCoordinatesCopyWith<$Res>(_value.coordinates!, (value) {
       return _then(_value.copyWith(coordinates: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$_TweetGeoCopyWith<$Res> implements $TweetGeoCopyWith<$Res> {
-  factory _$$_TweetGeoCopyWith(
-          _$_TweetGeo value, $Res Function(_$_TweetGeo) then) =
-      __$$_TweetGeoCopyWithImpl<$Res>;
+abstract class _$$_PlaceDataCopyWith<$Res> implements $PlaceDataCopyWith<$Res> {
+  factory _$$_PlaceDataCopyWith(
+          _$_PlaceData value, $Res Function(_$_PlaceData) then) =
+      __$$_PlaceDataCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'place_id') String placeId,
-      TweetGeoCoordinates? coordinates});
+      PlaceCoordinates? coordinates});
 
   @override
-  $TweetGeoCoordinatesCopyWith<$Res>? get coordinates;
+  $PlaceCoordinatesCopyWith<$Res>? get coordinates;
 }
 
 /// @nodoc
-class __$$_TweetGeoCopyWithImpl<$Res> extends _$TweetGeoCopyWithImpl<$Res>
-    implements _$$_TweetGeoCopyWith<$Res> {
-  __$$_TweetGeoCopyWithImpl(
-      _$_TweetGeo _value, $Res Function(_$_TweetGeo) _then)
-      : super(_value, (v) => _then(v as _$_TweetGeo));
+class __$$_PlaceDataCopyWithImpl<$Res> extends _$PlaceDataCopyWithImpl<$Res>
+    implements _$$_PlaceDataCopyWith<$Res> {
+  __$$_PlaceDataCopyWithImpl(
+      _$_PlaceData _value, $Res Function(_$_PlaceData) _then)
+      : super(_value, (v) => _then(v as _$_PlaceData));
 
   @override
-  _$_TweetGeo get _value => super._value as _$_TweetGeo;
+  _$_PlaceData get _value => super._value as _$_PlaceData;
 
   @override
   $Res call({
     Object? placeId = freezed,
     Object? coordinates = freezed,
   }) {
-    return _then(_$_TweetGeo(
+    return _then(_$_PlaceData(
       placeId: placeId == freezed
           ? _value.placeId
           : placeId // ignore: cast_nullable_to_non_nullable
@@ -115,37 +115,37 @@ class __$$_TweetGeoCopyWithImpl<$Res> extends _$TweetGeoCopyWithImpl<$Res>
       coordinates: coordinates == freezed
           ? _value.coordinates
           : coordinates // ignore: cast_nullable_to_non_nullable
-              as TweetGeoCoordinates?,
+              as PlaceCoordinates?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_TweetGeo implements _TweetGeo {
-  const _$_TweetGeo(
+class _$_PlaceData implements _PlaceData {
+  const _$_PlaceData(
       {@JsonKey(name: 'place_id') required this.placeId,
       required this.coordinates});
 
-  factory _$_TweetGeo.fromJson(Map<String, dynamic> json) =>
-      _$$_TweetGeoFromJson(json);
+  factory _$_PlaceData.fromJson(Map<String, dynamic> json) =>
+      _$$_PlaceDataFromJson(json);
 
   @override
   @JsonKey(name: 'place_id')
   final String placeId;
   @override
-  final TweetGeoCoordinates? coordinates;
+  final PlaceCoordinates? coordinates;
 
   @override
   String toString() {
-    return 'TweetGeo(placeId: $placeId, coordinates: $coordinates)';
+    return 'PlaceData(placeId: $placeId, coordinates: $coordinates)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TweetGeo &&
+            other is _$_PlaceData &&
             const DeepCollectionEquality().equals(other.placeId, placeId) &&
             const DeepCollectionEquality()
                 .equals(other.coordinates, coordinates));
@@ -160,29 +160,30 @@ class _$_TweetGeo implements _TweetGeo {
 
   @JsonKey(ignore: true)
   @override
-  _$$_TweetGeoCopyWith<_$_TweetGeo> get copyWith =>
-      __$$_TweetGeoCopyWithImpl<_$_TweetGeo>(this, _$identity);
+  _$$_PlaceDataCopyWith<_$_PlaceData> get copyWith =>
+      __$$_PlaceDataCopyWithImpl<_$_PlaceData>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TweetGeoToJson(this);
+    return _$$_PlaceDataToJson(this);
   }
 }
 
-abstract class _TweetGeo implements TweetGeo {
-  const factory _TweetGeo(
+abstract class _PlaceData implements PlaceData {
+  const factory _PlaceData(
       {@JsonKey(name: 'place_id') required final String placeId,
-      required final TweetGeoCoordinates? coordinates}) = _$_TweetGeo;
+      required final PlaceCoordinates? coordinates}) = _$_PlaceData;
 
-  factory _TweetGeo.fromJson(Map<String, dynamic> json) = _$_TweetGeo.fromJson;
+  factory _PlaceData.fromJson(Map<String, dynamic> json) =
+      _$_PlaceData.fromJson;
 
   @override
   @JsonKey(name: 'place_id')
   String get placeId => throw _privateConstructorUsedError;
   @override
-  TweetGeoCoordinates? get coordinates => throw _privateConstructorUsedError;
+  PlaceCoordinates? get coordinates => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$$_TweetGeoCopyWith<_$_TweetGeo> get copyWith =>
+  _$$_PlaceDataCopyWith<_$_PlaceData> get copyWith =>
       throw _privateConstructorUsedError;
 }

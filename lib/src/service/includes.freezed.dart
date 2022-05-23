@@ -22,8 +22,8 @@ Includes _$IncludesFromJson(Map<String, dynamic> json) {
 mixin _$Includes {
   List<TweetData>? get tweets => throw _privateConstructorUsedError;
   List<UserData>? get users => throw _privateConstructorUsedError;
-  List<Media>? get media => throw _privateConstructorUsedError;
-  List<Poll>? get polls => throw _privateConstructorUsedError;
+  List<MediaData>? get media => throw _privateConstructorUsedError;
+  List<PollData>? get polls => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,8 +38,8 @@ abstract class $IncludesCopyWith<$Res> {
   $Res call(
       {List<TweetData>? tweets,
       List<UserData>? users,
-      List<Media>? media,
-      List<Poll>? polls});
+      List<MediaData>? media,
+      List<PollData>? polls});
 }
 
 /// @nodoc
@@ -69,11 +69,11 @@ class _$IncludesCopyWithImpl<$Res> implements $IncludesCopyWith<$Res> {
       media: media == freezed
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
-              as List<Media>?,
+              as List<MediaData>?,
       polls: polls == freezed
           ? _value.polls
           : polls // ignore: cast_nullable_to_non_nullable
-              as List<Poll>?,
+              as List<PollData>?,
     ));
   }
 }
@@ -87,8 +87,8 @@ abstract class _$$_IncludesCopyWith<$Res> implements $IncludesCopyWith<$Res> {
   $Res call(
       {List<TweetData>? tweets,
       List<UserData>? users,
-      List<Media>? media,
-      List<Poll>? polls});
+      List<MediaData>? media,
+      List<PollData>? polls});
 }
 
 /// @nodoc
@@ -120,11 +120,11 @@ class __$$_IncludesCopyWithImpl<$Res> extends _$IncludesCopyWithImpl<$Res>
       media: media == freezed
           ? _value._media
           : media // ignore: cast_nullable_to_non_nullable
-              as List<Media>?,
+              as List<MediaData>?,
       polls: polls == freezed
           ? _value._polls
           : polls // ignore: cast_nullable_to_non_nullable
-              as List<Poll>?,
+              as List<PollData>?,
     ));
   }
 }
@@ -135,8 +135,8 @@ class _$_Includes implements _Includes {
   const _$_Includes(
       {final List<TweetData>? tweets,
       final List<UserData>? users,
-      final List<Media>? media,
-      final List<Poll>? polls})
+      final List<MediaData>? media,
+      final List<PollData>? polls})
       : _tweets = tweets,
         _users = users,
         _media = media,
@@ -163,18 +163,18 @@ class _$_Includes implements _Includes {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<Media>? _media;
+  final List<MediaData>? _media;
   @override
-  List<Media>? get media {
+  List<MediaData>? get media {
     final value = _media;
     if (value == null) return null;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
-  final List<Poll>? _polls;
+  final List<PollData>? _polls;
   @override
-  List<Poll>? get polls {
+  List<PollData>? get polls {
     final value = _polls;
     if (value == null) return null;
     // ignore: implicit_dynamic_type
@@ -221,8 +221,8 @@ abstract class _Includes implements Includes {
   const factory _Includes(
       {final List<TweetData>? tweets,
       final List<UserData>? users,
-      final List<Media>? media,
-      final List<Poll>? polls}) = _$_Includes;
+      final List<MediaData>? media,
+      final List<PollData>? polls}) = _$_Includes;
 
   factory _Includes.fromJson(Map<String, dynamic> json) = _$_Includes.fromJson;
 
@@ -231,9 +231,9 @@ abstract class _Includes implements Includes {
   @override
   List<UserData>? get users => throw _privateConstructorUsedError;
   @override
-  List<Media>? get media => throw _privateConstructorUsedError;
+  List<MediaData>? get media => throw _privateConstructorUsedError;
   @override
-  List<Poll>? get polls => throw _privateConstructorUsedError;
+  List<PollData>? get polls => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_IncludesCopyWith<_$_Includes> get copyWith =>
