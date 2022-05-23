@@ -538,7 +538,7 @@ void main() {
     expect(response.meta!.resultCount, 10);
   });
 
-  group('.volumeStreams', () {
+  group('.connectVolumeStreams', () {
     test('normal case', () async {
       final tweetsService = TweetsService(
         context: context.buildSendStub(
@@ -548,7 +548,7 @@ void main() {
         ),
       );
 
-      final response = await tweetsService.volumeStreams(
+      final response = await tweetsService.connectVolumeStreams(
         backfillMinutes: 5,
       );
 
@@ -568,7 +568,7 @@ void main() {
         ),
       );
 
-      final response = await tweetsService.volumeStreams(
+      final response = await tweetsService.connectVolumeStreams(
         backfillMinutes: 5,
       );
 
