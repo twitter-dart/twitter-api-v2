@@ -316,6 +316,8 @@ You can see more details from resources below:
 - [Contribution Guidelines](https://github.com/twitter-dart/twitter-api-v2/blob/main/CONTRIBUTING.md)
 - [Style Guide](https://github.com/twitter-dart/twitter-api-v2/blob/main/STYLEGUIDE.md)
 
+Or you can create a [discussion](https://github.com/twitter-dart/twitter-api-v2/discussions) if you like.
+
 **Feel free to join this development, diverse opinions make software better!**
 
 ## 1.5. Support
