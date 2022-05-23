@@ -28,18 +28,26 @@ void main() async {
   );
 
   try {
+    // Get the authenticated user's profile.
     final me = await twitter.usersService.lookupMe();
-    final tweets = await twitter.tweetsService.searchRecent(query: '#ElonMusk');
+    // Get the tweets associated with the search query.
+    final tweets = await twitter.tweetsService.searchRecent(
+      query: '#ElonMusk',
+      maxResults: 20,
+      // You can expand the search result.
+      expansions: [
+        v2.TweetExpansion.authorId,
+        v2.TweetExpansion.inReplyToUserId,
+      ],
+    );
 
-    final response = await twitter.tweetsService.createLike(
+    await twitter.tweetsService.createLike(
       userId: me.data.id,
       tweetId: tweets.data.first.id,
     );
 
-    print(response);
-
+    // High-performance Stream endpoints are available.
     final stream = await twitter.tweetsService.connectVolumeStreams();
-
     await for (final tweet in stream.handleError(print)) {
       print(tweet);
     }
