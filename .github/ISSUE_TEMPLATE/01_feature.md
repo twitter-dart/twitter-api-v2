@@ -2,7 +2,7 @@
 name: Feature request.
 about: Suggest a new feature for twitter_api_v2.
 title: ""
-labels: "Feedback: feature request"
+labels: ""
 assignees: "myConsciousness"
 ---
 
