@@ -47,6 +47,7 @@
   - [1.3. Tips](#13-tips)
     - [1.3.1. Method Names](#131-method-names)
     - [1.3.2. Generate App-Only Bearer Token](#132-generate-app-only-bearer-token)
+    - [1.3.3. Null Parameter at Request](#133-null-parameter-at-request)
   - [1.4. Contribution](#14-contribution)
   - [1.5. Support](#15-support)
   - [1.6. License](#16-license)
@@ -253,6 +254,8 @@ void main() async {
   - This prefix is attached to the endpoint that counts tweets, etc.
 - **update**
   - This prefix is attached to the endpoint performing the update state.
+- **connect**
+  - This prefix is attached to the endpoint performing the high-performance streaming.
 
 ### 1.3.2. Generate App-Only Bearer Token
 
@@ -271,11 +274,48 @@ void main() async {
 }
 ```
 
+### 1.3.3. Null Parameter at Request
+
+In this library, parameters that are not required at request time, i.e., optional parameters, are defined as nullable.
+However, developers do not need to be aware of the null parameter when sending requests when using this library.
+
+It means the parameters specified with a null value are safely removed and ignored before the request is sent.
+
+For example, arguments specified with null are ignored in the following request.
+
+```dart
+import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
+
+void main() async {
+  final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
+
+  await twitter.tweetsService.createTweet(
+    text: 'Hello, World!',
+    // These parameters are ignored at request because they are null.
+    mediaIds: null,
+    expansions: null,
+  );
+}
+```
+
 ## 1.4. Contribution
 
 If you would like to contribute to `twitter_api_v2`, please create an [issue](https://github.com/twitter-dart/twitter-api-v2/issues) or create a Pull Request.
 
-Owner will respond to issues and review pull requests as quickly as possible.
+There are many ways to contribute to the OSS. For example, the following subjects can be considered:
+
+- There are request parameters or response fields that are not implemented.
+- Documentation is outdated or incomplete.
+- Have a better way or idea to achieve the functionality.
+- etc...
+
+You can see more details from resources below:
+
+- [Contributor Covenant Code of Conduct](https://github.com/twitter-dart/twitter-api-v2/blob/main/CODE_OF_CONDUCT.md)
+- [Contribution Guidelines](https://github.com/twitter-dart/twitter-api-v2/blob/main/CONTRIBUTING.md)
+- [Style Guide](https://github.com/twitter-dart/twitter-api-v2/blob/main/STYLEGUIDE.md)
+
+**Feel free to join this development, diverse opinions make software better!**
 
 ## 1.5. Support
 
