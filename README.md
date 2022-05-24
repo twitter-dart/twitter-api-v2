@@ -57,7 +57,7 @@
 
 # 1. Guide
 
-This library provides the easiest way to use [Twitter API v2.0](https://developer.twitter.com/en/docs/twitter-api/data-dictionary/introduction).
+This library provides the easiest way to use [Twitter API v2.0](https://developer.twitter.com/en/docs/twitter-api/data-dictionary/introduction) in **Dart** and **Flutter** apps.　
 
 **Show some ❤️ and star the repo to support the project.**
 
