@@ -8,6 +8,7 @@ import '../../client/user_context.dart';
 import '../base_service.dart';
 import '../twitter_response.dart';
 import 'user_data.dart';
+import 'user_expansion.dart';
 import 'user_meta.dart';
 
 abstract class UsersService {
@@ -95,6 +96,14 @@ abstract class UsersService {
   ///                      the `previous_token` returned in your previous
   ///                      response.
   ///
+  /// - [expansions]: Expansions enable you to request additional data objects
+  ///                 that relate to the originally returned users. The ID that
+  ///                 represents the expanded data object will be included
+  ///                 directly in the user data object, but the expanded object
+  ///                 metadata will be returned within the includes response
+  ///                 object, and will also include the ID so that you can match
+  ///                 this data object to the original Tweet object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/followers
@@ -110,8 +119,12 @@ abstract class UsersService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/users/follows/api-reference/get-users-id-followers
-  Future<TwitterResponse<List<UserData>, UserMeta>> lookupFollowers(
-      {required String userId, int? maxResults, String? paginationToken});
+  Future<TwitterResponse<List<UserData>, UserMeta>> lookupFollowers({
+    required String userId,
+    int? maxResults,
+    String? paginationToken,
+    List<UserExpansion>? expansions,
+  });
 
   /// Returns a list of users the specified user ID is following.
   ///
@@ -131,6 +144,9 @@ abstract class UsersService {
   ///                      the `previous_token` returned in your previous
   ///                      response.
   ///
+  /// - [expansions]: Expansions enable you to request additional data objects
+  ///                 that relate to the originally returned users.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/following
@@ -146,8 +162,12 @@ abstract class UsersService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/users/follows/api-reference/get-users-id-following
-  Future<TwitterResponse<List<UserData>, UserMeta>> lookupFollowings(
-      {required String userId, int? maxResults, String? paginationToken});
+  Future<TwitterResponse<List<UserData>, UserMeta>> lookupFollowings({
+    required String userId,
+    int? maxResults,
+    String? paginationToken,
+    List<UserExpansion>? expansions,
+  });
 
   /// Returns a variety of information about a single user specified by the
   /// requested ID.
@@ -155,6 +175,14 @@ abstract class UsersService {
   /// ## Parameters
   ///
   /// - [userId]: The ID of the user to lookup.
+  ///
+  /// - [expansions]: Expansions enable you to request additional data objects
+  ///                 that relate to the originally returned users. The ID that
+  ///                 represents the expanded data object will be included
+  ///                 directly in the user data object, but the expanded object
+  ///                 metadata will be returned within the includes response
+  ///                 object, and will also include the ID so that you can match
+  ///                 this data object to the original Tweet object.
   ///
   /// ## Endpoint Url
   ///
@@ -171,7 +199,8 @@ abstract class UsersService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users-id
-  Future<TwitterResponse<UserData, void>> lookupById({required String userId});
+  Future<TwitterResponse<UserData, void>> lookupById(
+      {required String userId, List<UserExpansion>? expansions});
 
   /// Returns a variety of information about one or more users specified by the
   /// requested IDs.
@@ -180,6 +209,14 @@ abstract class UsersService {
   ///
   /// - [userIds]: 	A list of user IDs.
   ///               Up to 100 are allowed in a single request.
+  ///
+  /// - [expansions]: Expansions enable you to request additional data objects
+  ///                 that relate to the originally returned users. The ID that
+  ///                 represents the expanded data object will be included
+  ///                 directly in the user data object, but the expanded object
+  ///                 metadata will be returned within the includes response
+  ///                 object, and will also include the ID so that you can match
+  ///                 this data object to the original Tweet object.
   ///
   /// ## Endpoint Url
   ///
@@ -197,7 +234,7 @@ abstract class UsersService {
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users
   Future<TwitterResponse<List<UserData>, void>> lookupByIds(
-      {required List<String> userIds});
+      {required List<String> userIds, List<UserExpansion>? expansions});
 
   /// Returns a variety of information about one or more users specified by
   /// their usernames.
@@ -205,6 +242,14 @@ abstract class UsersService {
   /// ## Parameters
   ///
   /// - [username]: The Twitter username (handle) of the user.
+  ///
+  /// - [expansions]: Expansions enable you to request additional data objects
+  ///                 that relate to the originally returned users. The ID that
+  ///                 represents the expanded data object will be included
+  ///                 directly in the user data object, but the expanded object
+  ///                 metadata will be returned within the includes response
+  ///                 object, and will also include the ID so that you can match
+  ///                 this data object to the original Tweet object.
   ///
   /// ## Endpoint Url
   ///
@@ -222,7 +267,7 @@ abstract class UsersService {
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users-by-username-username
   Future<TwitterResponse<UserData, void>> lookupByName(
-      {required String username});
+      {required String username, List<UserExpansion>? expansions});
 
   /// Returns a variety of information about one or more users specified by
   /// their usernames.
@@ -231,6 +276,14 @@ abstract class UsersService {
   ///
   /// - [usernames]: A list of Twitter usernames (handles).
   ///                Up to 100 are allowed in a single request.
+  ///
+  /// - [expansions]: Expansions enable you to request additional data objects
+  ///                 that relate to the originally returned users. The ID that
+  ///                 represents the expanded data object will be included
+  ///                 directly in the user data object, but the expanded object
+  ///                 metadata will be returned within the includes response
+  ///                 object, and will also include the ID so that you can match
+  ///                 this data object to the original Tweet object.
   ///
   /// ## Endpoint Url
   ///
@@ -248,9 +301,19 @@ abstract class UsersService {
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users-by
   Future<TwitterResponse<List<UserData>, void>> lookupByNames(
-      {required List<String> usernames});
+      {required List<String> usernames, List<UserExpansion>? expansions});
 
   /// Returns information about an authorized user.
+  ///
+  /// ## Parameters
+  ///
+  /// - [expansions]: Expansions enable you to request additional data objects
+  ///                 that relate to the originally returned users. The ID that
+  ///                 represents the expanded data object will be included
+  ///                 directly in the user data object, but the expanded object
+  ///                 metadata will be returned within the includes response
+  ///                 object, and will also include the ID so that you can match
+  ///                 this data object to the original Tweet object.
   ///
   /// ## Endpoint Url
   ///
@@ -264,7 +327,8 @@ abstract class UsersService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users-me
-  Future<TwitterResponse<UserData, void>> lookupMe();
+  Future<TwitterResponse<UserData, void>> lookupMe(
+      {List<UserExpansion>? expansions});
 
   /// Allows an authenticated user ID to mute the target user.
   ///
@@ -344,6 +408,14 @@ abstract class UsersService {
   ///                      results weren't returned with the latest request,
   ///                      or to go back to the previous page of results.
   ///
+  /// - [expansions]: Expansions enable you to request additional data objects
+  ///                 that relate to the originally returned users. The ID that
+  ///                 represents the expanded data object will be included
+  ///                 directly in the user data object, but the expanded object
+  ///                 metadata will be returned within the includes response
+  ///                 object, and will also include the ID so that you can match
+  ///                this data object to the original Tweet object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/muting
@@ -356,8 +428,12 @@ abstract class UsersService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/users/mutes/api-reference/get-users-muting
-  Future<TwitterResponse<List<UserData>, UserMeta>> lookupMutingUsers(
-      {required String userId, int? maxResults, String? paginationToken});
+  Future<TwitterResponse<List<UserData>, UserMeta>> lookupMutingUsers({
+    required String userId,
+    int? maxResults,
+    String? paginationToken,
+    List<UserExpansion>? expansions,
+  });
 
   /// Causes the user (in the path) to block the target user.
   /// The user (in the path) must match the user Access Tokens being used to
@@ -438,6 +514,14 @@ abstract class UsersService {
   ///                      results weren't returned with the latest request,
   ///                      or to go back to the previous page of results.
   ///
+  /// - [expansions]: Expansions enable you to request additional data objects
+  ///                 that relate to the originally returned users. The ID that
+  ///                 represents the expanded data object will be included
+  ///                 directly in the user data object, but the expanded object
+  ///                 metadata will be returned within the includes response
+  ///                 object, and will also include the ID so that you can match
+  ///                 this data object to the original Tweet object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/blocking
@@ -450,8 +534,12 @@ abstract class UsersService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/users/blocks/api-reference/get-users-blocking
-  Future<TwitterResponse<List<UserData>, UserMeta>> lookupBlockingUsers(
-      {required String userId, int? maxResults, String? paginationToken});
+  Future<TwitterResponse<List<UserData>, UserMeta>> lookupBlockingUsers({
+    required String userId,
+    int? maxResults,
+    String? paginationToken,
+    List<UserExpansion>? expansions,
+  });
 }
 
 class _UsersService extends BaseService implements UsersService {
@@ -490,6 +578,7 @@ class _UsersService extends BaseService implements UsersService {
     required String userId,
     int? maxResults,
     String? paginationToken,
+    List<UserExpansion>? expansions,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -498,6 +587,7 @@ class _UsersService extends BaseService implements UsersService {
           queryParameters: {
             'max_results': maxResults,
             'pagination_token': paginationToken,
+            'expansions': super.serializeExpansions(expansions),
           },
         ),
         dataBuilder: UserData.fromJson,
@@ -509,6 +599,7 @@ class _UsersService extends BaseService implements UsersService {
     required String userId,
     int? maxResults,
     String? paginationToken,
+    List<UserExpansion>? expansions,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -517,6 +608,7 @@ class _UsersService extends BaseService implements UsersService {
           queryParameters: {
             'max_results': maxResults,
             'pagination_token': paginationToken,
+            'expansions': super.serializeExpansions(expansions),
           },
         ),
         dataBuilder: UserData.fromJson,
@@ -524,42 +616,59 @@ class _UsersService extends BaseService implements UsersService {
       );
 
   @override
-  Future<TwitterResponse<UserData, void>> lookupById(
-          {required String userId}) async =>
+  Future<TwitterResponse<UserData, void>> lookupById({
+    required String userId,
+    List<UserExpansion>? expansions,
+  }) async =>
       super.buildResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/users/$userId',
+          queryParameters: {
+            'expansions': super.serializeExpansions(expansions),
+          },
         ),
         dataBuilder: UserData.fromJson,
       );
 
   @override
-  Future<TwitterResponse<List<UserData>, void>> lookupByIds(
-          {required List<String> userIds}) async =>
+  Future<TwitterResponse<List<UserData>, void>> lookupByIds({
+    required List<String> userIds,
+    List<UserExpansion>? expansions,
+  }) async =>
       super.buildMultiDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/users',
-          queryParameters: {'ids': userIds.join(',')},
+          queryParameters: {
+            'ids': userIds.join(','),
+            'expansions': super.serializeExpansions(expansions),
+          },
         ),
         dataBuilder: UserData.fromJson,
       );
 
   @override
-  Future<TwitterResponse<UserData, void>> lookupByName(
-          {required String username}) async =>
+  Future<TwitterResponse<UserData, void>> lookupByName({
+    required String username,
+    List<UserExpansion>? expansions,
+  }) async =>
       super.buildResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/users/by/username/$username',
+          queryParameters: {
+            'expansions': serializeExpansions(expansions),
+          },
         ),
         dataBuilder: UserData.fromJson,
       );
 
   @override
-  Future<TwitterResponse<List<UserData>, void>> lookupByNames(
-          {required List<String> usernames}) async =>
+  Future<TwitterResponse<List<UserData>, void>> lookupByNames({
+    required List<String> usernames,
+    List<UserExpansion>? expansions,
+  }) async =>
       super.buildMultiDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
@@ -570,11 +679,16 @@ class _UsersService extends BaseService implements UsersService {
       );
 
   @override
-  Future<TwitterResponse<UserData, void>> lookupMe() async =>
+  Future<TwitterResponse<UserData, void>> lookupMe({
+    List<UserExpansion>? expansions,
+  }) async =>
       super.buildResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/users/me',
+          queryParameters: {
+            'expansions': super.serializeExpansions(expansions),
+          },
         ),
         dataBuilder: UserData.fromJson,
       );
@@ -607,6 +721,7 @@ class _UsersService extends BaseService implements UsersService {
     required String userId,
     int? maxResults,
     String? paginationToken,
+    List<UserExpansion>? expansions,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -615,6 +730,7 @@ class _UsersService extends BaseService implements UsersService {
           queryParameters: {
             'max_results': maxResults,
             'pagination_token': paginationToken,
+            'expansions': super.serializeExpansions(expansions),
           },
         ),
         dataBuilder: UserData.fromJson,
@@ -649,6 +765,7 @@ class _UsersService extends BaseService implements UsersService {
     required String userId,
     int? maxResults,
     String? paginationToken,
+    List<UserExpansion>? expansions,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -657,6 +774,7 @@ class _UsersService extends BaseService implements UsersService {
           queryParameters: {
             'max_results': maxResults,
             'pagination_token': paginationToken,
+            'expansions': super.serializeExpansions(expansions),
           },
         ),
         dataBuilder: UserData.fromJson,

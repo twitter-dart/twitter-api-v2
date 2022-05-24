@@ -1073,7 +1073,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'reply_settings': replySetting == ReplySetting.everyone
                 ? null
                 : replySetting?.name,
-            'expansions': super.formatExpansions(expansions),
+            'expansions': super.serializeExpansions(expansions),
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -1157,7 +1157,7 @@ class _TweetsService extends BaseService implements TweetsService {
           queryParameters: {
             'max_results': maxResults,
             'pagination_token': paginationToken,
-            'expansions': super.formatExpansions(expansions),
+            'expansions': super.serializeExpansions(expansions),
           },
         ),
         dataBuilder: UserData.fromJson,
@@ -1178,7 +1178,7 @@ class _TweetsService extends BaseService implements TweetsService {
           queryParameters: {
             'max_results': maxResults,
             'pagination_token': paginationToken,
-            'expansions': super.formatExpansions(expansions),
+            'expansions': super.serializeExpansions(expansions),
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -1199,7 +1199,7 @@ class _TweetsService extends BaseService implements TweetsService {
           queryParameters: {
             'max_results': maxResults,
             'pagination_token': paginationToken,
-            'expansions': super.formatExpansions(expansions),
+            'expansions': super.serializeExpansions(expansions),
           },
         ),
         dataBuilder: UserData.fromJson,
@@ -1220,7 +1220,7 @@ class _TweetsService extends BaseService implements TweetsService {
           queryParameters: {
             'max_results': maxResults,
             'pagination_token': paginationToken,
-            'expansions': super.formatExpansions(expansions),
+            'expansions': super.serializeExpansions(expansions),
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -1242,7 +1242,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'query': query,
             'max_results': maxResults,
             'next_token': nextToken,
-            'expansions': super.formatExpansions(expansions),
+            'expansions': super.serializeExpansions(expansions),
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -1264,7 +1264,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'query': query,
             'max_results': maxResults,
             'next_token': nextToken,
-            'expansions': super.formatExpansions(expansions),
+            'expansions': super.serializeExpansions(expansions),
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -1279,7 +1279,7 @@ class _TweetsService extends BaseService implements TweetsService {
           UserContext.oauth2OrOAuth1,
           '/2/tweets/$tweetId',
           queryParameters: {
-            'expansions': super.formatExpansions(expansions),
+            'expansions': super.serializeExpansions(expansions),
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -1368,7 +1368,7 @@ class _TweetsService extends BaseService implements TweetsService {
           UserContext.oauth2OrOAuth1,
           '/2/users/$userId/bookmarks',
           queryParameters: {
-            'expansions': super.formatExpansions(expansions),
+            'expansions': super.serializeExpansions(expansions),
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -1411,7 +1411,7 @@ class _TweetsService extends BaseService implements TweetsService {
           queryParameters: {
             'max_results': maxResults,
             'pagination_token': paginationToken,
-            'expansions': super.formatExpansions(expansions),
+            'expansions': super.serializeExpansions(expansions),
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -1432,7 +1432,7 @@ class _TweetsService extends BaseService implements TweetsService {
           queryParameters: {
             'max_results': maxResults,
             'pagination_token': paginationToken,
-            'expansions': super.formatExpansions(expansions),
+            'expansions': super.serializeExpansions(expansions),
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -1453,7 +1453,7 @@ class _TweetsService extends BaseService implements TweetsService {
           queryParameters: {
             'max_results': maxResults,
             'pagination_token': paginationToken,
-            'expansions': super.formatExpansions(expansions),
+            'expansions': super.serializeExpansions(expansions),
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -1471,7 +1471,7 @@ class _TweetsService extends BaseService implements TweetsService {
       '/2/tweets/sample/stream',
       queryParameters: {
         'backfill_minutes': backfillMinutes,
-        'expansions': super.formatExpansions(expansions),
+        'expansions': super.serializeExpansions(expansions),
       },
     );
 

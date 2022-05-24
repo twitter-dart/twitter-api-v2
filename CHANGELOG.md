@@ -4,6 +4,16 @@
 
 - Added `Reverse Chronological Timelines` endpoint. ([#164](https://github.com/twitter-dart/twitter-api-v2/issues/164))
   - GET /2/users/:id/timelines/reverse_chronological
+- Added `expansions` argument to `UsersService`. ([#142](https://github.com/twitter-dart/twitter-api-v2/issues/142))
+  - GET /2/users/:id/blocking
+  - GET /2/users/:id/followers
+  - GET /2/users/:id/following
+  - GET /2/users/:id/muting
+  - GET /2/users
+  - GET /2/users/:id
+  - GET /2/users/by
+  - GET /2/users/by/username/:username
+  - GET /2/users/me
 
 ## v2.1.0
 
