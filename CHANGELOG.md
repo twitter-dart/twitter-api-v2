@@ -1,5 +1,10 @@
 # Release Note
 
+## v2.2.0
+
+- Added `Reverse Chronological Timelines` endpoint. ([#164](https://github.com/twitter-dart/twitter-api-v2/issues/164))
+  - GET /2/users/:id/timelines/reverse_chronological
+
 ## v2.1.0
 
 - Added `expansions` argument to `TweetsService`. ([#141](https://github.com/twitter-dart/twitter-api-v2/issues/141))
