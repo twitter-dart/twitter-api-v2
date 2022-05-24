@@ -538,6 +538,32 @@ void main() {
     expect(response.meta!.resultCount, 10);
   });
 
+  test('.lookupHomeTimeline', () async {
+    final tweetsService = TweetsService(
+      context: context.buildGetStub(
+        UserContext.oauth2OrOAuth1,
+        '/2/users/0000/timelines/reverse_chronological',
+        'test/src/service/tweets/data/lookup_home_timeline.json',
+        {
+          'max_results': '5',
+          'pagination_token': 'TOKEN',
+        },
+      ),
+    );
+
+    final response = await tweetsService.lookupHomeTimeline(
+      userId: '0000',
+      maxResults: 5,
+      paginationToken: 'TOKEN',
+    );
+
+    expect(response, isA<TwitterResponse>());
+    expect(response.data, isA<List<TweetData>>());
+    expect(response.meta, isA<TweetMeta>());
+    expect(response.data.length, 5);
+    expect(response.meta!.resultCount, 5);
+  });
+
   group('.connectVolumeStreams', () {
     test('normal case', () async {
       final tweetsService = TweetsService(

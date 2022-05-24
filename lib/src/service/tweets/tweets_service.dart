@@ -926,6 +926,60 @@ abstract class TweetsService {
     List<TweetExpansion>? expansions,
   });
 
+  /// Allows you to retrieve a collection of the most recent Tweets and Retweets
+  /// posted by you and users you follow. This endpoint returns up to the last
+  /// 3200 Tweets.
+  ///
+  /// ## Parameters
+  ///
+  /// - [userId]: Unique identifier of the user that is requesting their
+  ///             chronological home timeline. User ID can be referenced using
+  ///             the user/lookup endpoint. More information on Twitter IDs is
+  ///             [here](https://developer.twitter.com/en/docs/twitter-ids).
+  ///
+  /// - [maxResults]: Specifies the number of Tweets to try and retrieve, up to
+  ///                 a maximum of 100 per distinct request. By default,
+  ///                100 results are returned if this parameter is not supplied.
+  ///                The minimum permitted value is 1. It is possible to receive
+  ///                less than the `max_results` per request throughout the
+  ///                pagination process.
+  ///
+  /// - [paginationToken]: This parameter is used to move forwards or backwards
+  ///                      through 'pages' of results, based on the value of the
+  ///                      next_token or previous_token in the response. The
+  ///                      value used with the parameter is pulled directly from
+  ///                      the response provided by the API, and should not be
+  ///                      modified.
+  ///
+  /// - [expansions]: Expansions enable you to request additional data objects
+  ///                 that relate to the originally returned Tweets. Submit a
+  ///                 list of desired expansions in a comma-separated list
+  ///                 without spaces. The ID that represents the expanded data
+  ///                 object will be included directly in the Tweet data object,
+  ///                 but the expanded object metadata will be returned within
+  ///                 the includes response object, and will also include the ID
+  ///                 so that you can match this data object to the original
+  ///                 Tweet object.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/users/:id/timelines/reverse_chronological
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (OAuth 2.0 user Access Token)**:
+  ///    180 requests per 15-minute window per each authenticated user
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/tweets/timelines/api-reference/get-users-id-reverse-chronological
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupHomeTimeline({
+    required String userId,
+    int? maxResults,
+    String? paginationToken,
+    List<TweetExpansion>? expansions,
+  });
+
   /// Streams about 1% of all Tweets in real-time.
   ///
   /// If you have [Academic Research access](https://developer.twitter.com/en/products/twitter-api/academic-research),
@@ -1375,6 +1429,27 @@ class _TweetsService extends BaseService implements TweetsService {
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/users/$userId/tweets',
+          queryParameters: {
+            'max_results': maxResults,
+            'pagination_token': paginationToken,
+            'expansions': super.formatExpansions(expansions),
+          },
+        ),
+        dataBuilder: TweetData.fromJson,
+        metaBuilder: TweetMeta.fromJson,
+      );
+
+  @override
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupHomeTimeline({
+    required String userId,
+    int? maxResults,
+    String? paginationToken,
+    List<TweetExpansion>? expansions,
+  }) async =>
+      super.buildMultiDataResponse(
+        await super.get(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/$userId/timelines/reverse_chronological',
           queryParameters: {
             'max_results': maxResults,
             'pagination_token': paginationToken,
