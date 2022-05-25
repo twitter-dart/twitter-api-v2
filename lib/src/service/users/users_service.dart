@@ -641,7 +641,7 @@ class _UsersService extends BaseService implements UsersService {
           UserContext.oauth2OrOAuth1,
           '/2/users',
           queryParameters: {
-            'ids': userIds.join(','),
+            'ids': super.serialize(userIds),
             'expansions': super.serializeExpansions(expansions),
           },
         ),
@@ -673,7 +673,9 @@ class _UsersService extends BaseService implements UsersService {
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/users/by',
-          queryParameters: {'usernames': usernames.join(',')},
+          queryParameters: {
+            'usernames': super.serialize(usernames),
+          },
         ),
         dataBuilder: UserData.fromJson,
       );

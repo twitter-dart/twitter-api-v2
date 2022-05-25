@@ -1292,7 +1292,9 @@ class _TweetsService extends BaseService implements TweetsService {
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/tweets',
-          queryParameters: {'ids': tweetIds.join(',')},
+          queryParameters: {
+            'ids': super.serialize(tweetIds),
+          },
         ),
         dataBuilder: TweetData.fromJson,
       );

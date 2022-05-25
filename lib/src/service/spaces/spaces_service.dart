@@ -209,7 +209,9 @@ class _SpacesService extends BaseService implements SpacesService {
         await super.get(
           UserContext.oauth2Only,
           '/2/spaces',
-          queryParameters: {'ids': spaceIds.join(',')},
+          queryParameters: {
+            'ids': super.serialize(spaceIds),
+          },
         ),
         dataBuilder: SpaceData.fromJson,
       );
@@ -244,7 +246,9 @@ class _SpacesService extends BaseService implements SpacesService {
         await super.get(
           UserContext.oauth2Only,
           '/2/spaces/by/creator_ids',
-          queryParameters: {'user_ids': userIds.join(',')},
+          queryParameters: {
+            'user_ids': super.serialize(userIds),
+          },
         ),
         dataBuilder: SpaceData.fromJson,
         metaBuilder: SpaceMeta.fromJson,
