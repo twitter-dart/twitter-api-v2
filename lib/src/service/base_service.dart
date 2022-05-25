@@ -45,6 +45,8 @@ abstract class Service {
     M Function(Map<String, Object?> json)? metaBuilder,
   });
 
+  String? serialize(List<String>? strings);
+
   String? serializeExpansions(List<Expansion>? expansions);
 }
 
@@ -244,6 +246,9 @@ abstract class BaseService implements Service {
 
     return body;
   }
+
+  @override
+  String? serialize(List<String>? strings) => strings?.toSet().join(',');
 
   @override
   String? serializeExpansions(List<Expansion>? expansions) =>
