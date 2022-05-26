@@ -14,6 +14,13 @@
   - GET /2/users/by
   - GET /2/users/by/username/:username
   - GET /2/users/me
+- Added `expansions` argument to `SpacesService`. ([#171](https://github.com/twitter-dart/twitter-api-v2/issues/171))
+  - GET /2/spaces/search
+  - GET /2/spaces
+  - GET /2/spaces/:id
+  - GET /2/spaces/:id/buyers
+  - GET /2/spaces/:id/tweets
+  - GET /2/spaces/by/creator_ids
 
 ## v2.1.0
 
