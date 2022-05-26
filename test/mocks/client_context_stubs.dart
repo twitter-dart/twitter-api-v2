@@ -133,7 +133,7 @@ MockClientContext buildSendStub(
     }
   }
 
-  when(mockClientContext.send(
+  when(mockClientContext.getStream(
     userContext,
     any,
     timeout: anyNamed('timeout'),

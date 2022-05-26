@@ -19,9 +19,16 @@ import 'twitter_response.dart';
 abstract class Service {
   Future<http.Response> get(UserContext userContext, String unencodedPath);
 
+  Future<Stream<Map<String, dynamic>>> getStream(
+    final UserContext userContext,
+    final String unencodedPath, {
+    Map<String, dynamic> queryParameters = const {},
+  });
+
   Future<http.Response> post(
     UserContext userContext,
     String unencodedPath, {
+    Map<String, dynamic> queryParameters = const {},
     Map<String, String> body = const {},
   });
 
@@ -93,14 +100,52 @@ abstract class BaseService implements Service {
   }
 
   @override
+  Future<Stream<Map<String, dynamic>>> getStream(
+    final UserContext userContext,
+    final String unencodedPath, {
+    Map<String, dynamic> queryParameters = const {},
+  }) async {
+    final streamedResponse = await _context.getStream(
+      userContext,
+      http.Request(
+        'GET',
+        Uri.https(
+          _authority,
+          unencodedPath,
+          Map.from(_removeNullParameters(queryParameters) ?? {}).map(
+            //! Uri.https(...) needs iterable in the value for query params by
+            //! which it means a String in the value of the Map too. So you need
+            //! to convert it from Map<String, dynamic> to Map<String, String>
+            (key, value) => MapEntry(key, value.toString()),
+          ),
+        ),
+      ),
+    );
+
+    return streamedResponse.stream
+        .transform(utf8.decoder)
+        .map((event) => _checkStreamedResponse(streamedResponse, event));
+  }
+
+  @override
   Future<http.Response> post(
     final UserContext userContext,
     final String unencodedPath, {
+    Map<String, dynamic> queryParameters = const {},
     dynamic body = const {},
   }) async {
     final response = await _context.post(
       userContext,
-      Uri.https(_authority, unencodedPath),
+      Uri.https(
+        _authority,
+        unencodedPath,
+        Map.from(_removeNullParameters(queryParameters) ?? {}).map(
+          //! Uri.https(...) needs iterable in the value for query params by
+          //! which it means a String in the value of the Map too. So you need
+          //! to convert it from Map<String, dynamic> to Map<String, String>
+          (key, value) => MapEntry(key, value.toString()),
+        ),
+      ),
       headers: {'Content-type': 'application/json'},
       body: jsonEncode(_removeNullParameters(body)),
     );
@@ -135,31 +180,6 @@ abstract class BaseService implements Service {
     );
 
     return response;
-  }
-
-  Future<Stream<Map<String, dynamic>>> send(
-    final UserContext userContext,
-    final String method,
-    final String unencodedPath, {
-    Map<String, dynamic> queryParameters = const {},
-  }) async {
-    final streamedResponse = await _context.send(
-      userContext,
-      http.Request(
-        method,
-        Uri.https(
-          _authority,
-          unencodedPath,
-          Map.from(_removeNullParameters(queryParameters) ?? {}).map(
-            (key, value) => MapEntry(key, value.toString()),
-          ),
-        ),
-      ),
-    );
-
-    return streamedResponse.stream
-        .transform(utf8.decoder)
-        .map((event) => _checkStreamedResponse(streamedResponse, event));
   }
 
   dynamic _removeNullParameters(final dynamic object) {

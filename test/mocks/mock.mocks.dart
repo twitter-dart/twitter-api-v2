@@ -2,14 +2,10 @@
 // in twitter_api_v2/test/mocks/mock.dart.
 // Do not manually edit this file.
 
-// Dart imports:
 import 'dart:async' as _i4;
 
-// Package imports:
 import 'package:http/http.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
-
-// Project imports:
 import 'package:twitter_api_v2/src/client/client_context.dart' as _i3;
 import 'package:twitter_api_v2/src/client/user_context.dart' as _i5;
 
@@ -76,11 +72,13 @@ class MockClientContext extends _i1.Mock implements _i3.ClientContext {
               returnValue: Future<_i2.Response>.value(_FakeResponse_0()))
           as _i4.Future<_i2.Response>);
   @override
-  _i4.Future<_i2.StreamedResponse> send(
+  _i4.Future<_i2.StreamedResponse> getStream(
           _i5.UserContext? userContext, _i2.BaseRequest? request,
           {Duration? timeout = const Duration(seconds: 10)}) =>
       (super.noSuchMethod(
-          Invocation.method(#send, [userContext, request], {#timeout: timeout}),
-          returnValue: Future<_i2.StreamedResponse>.value(
-              _FakeStreamedResponse_1())) as _i4.Future<_i2.StreamedResponse>);
+              Invocation.method(
+                  #getStream, [userContext, request], {#timeout: timeout}),
+              returnValue:
+                  Future<_i2.StreamedResponse>.value(_FakeStreamedResponse_1()))
+          as _i4.Future<_i2.StreamedResponse>);
 }

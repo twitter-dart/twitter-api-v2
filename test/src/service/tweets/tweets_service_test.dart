@@ -564,17 +564,17 @@ void main() {
     expect(response.meta!.resultCount, 5);
   });
 
-  group('.connectVolumeStreams', () {
+  group('.connectVolumeStream', () {
     test('normal case', () async {
       final tweetsService = TweetsService(
         context: context.buildSendStub(
           UserContext.oauth2Only,
-          'test/src/service/tweets/data/volume_streams.json',
+          'test/src/service/tweets/data/volume_stream.json',
           const {'backfill_minutes': '5'},
         ),
       );
 
-      final response = await tweetsService.connectVolumeStreams(
+      final response = await tweetsService.connectVolumeStream(
         backfillMinutes: 5,
       );
 
@@ -589,12 +589,12 @@ void main() {
       final tweetsService = TweetsService(
         context: context.buildSendStub(
           UserContext.oauth2Only,
-          'test/src/service/tweets/data/volume_streams_with_error.json',
+          'test/src/service/tweets/data/volume_stream_with_error.json',
           const {'backfill_minutes': '5'},
         ),
       );
 
-      final response = await tweetsService.connectVolumeStreams(
+      final response = await tweetsService.connectVolumeStream(
         backfillMinutes: 5,
       );
 
