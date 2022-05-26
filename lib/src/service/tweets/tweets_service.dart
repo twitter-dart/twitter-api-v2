@@ -1668,7 +1668,7 @@ class _TweetsService extends BaseService implements TweetsService {
               UserContext.oauth2Only,
               '/2/tweets/search/stream/rules',
               queryParameters: {
-                'rule_ids': super.serialize(ruleIds),
+                'ids': super.serialize(ruleIds),
               },
             ),
             dataBuilder: FilteringRuleData.fromJson,

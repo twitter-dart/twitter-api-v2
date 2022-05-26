@@ -18,6 +18,7 @@ import 'package:twitter_api_v2/src/service/twitter_response.dart';
 import 'package:twitter_api_v2/src/service/users/user_data.dart';
 import 'package:twitter_api_v2/src/service/users/user_meta.dart';
 import 'package:twitter_api_v2/src/twitter_exception.dart';
+import 'package:twitter_api_v2/twitter_api_v2.dart';
 import '../../../mocks/client_context_stubs.dart' as context;
 
 void main() {
@@ -609,5 +610,91 @@ void main() {
       expect(errors.length, 1);
       expect(errors.single, isA<TwitterException>());
     });
+  });
+
+  test('.connectFilteredStream', () async {
+    final tweetsService = TweetsService(
+      context: context.buildSendStub(
+        UserContext.oauth2Only,
+        'test/src/service/tweets/data/connect_filtered_stream.json',
+        const {'backfill_minutes': '5'},
+      ),
+    );
+
+    final response = await tweetsService.connectFilteredStream(
+      backfillMinutes: 5,
+    );
+
+    final data = await response.toList();
+
+    expect(response, isA<Stream<TwitterResponse<TweetData, void>>>());
+    expect(data, isA<List<TwitterResponse<TweetData, void>>>());
+    expect(data.length, 1);
+  });
+
+  test('.createFilteringRules', () async {
+    final tweetsService = TweetsService(
+      context: context.buildPostStub(
+        UserContext.oauth2Only,
+        '/2/tweets/search/stream/rules',
+        'test/src/service/tweets/data/create_filtering_rules.json',
+      ),
+    );
+
+    final response = await tweetsService.createFilteringRules(rules: [
+      FilteringRuleData(value: 'test'),
+      FilteringRuleData(value: 'hello'),
+    ]);
+
+    expect(
+      response,
+      isA<TwitterResponse<List<FilteringRuleData>, FilteringRuleMeta>>(),
+    );
+    expect(response.data, isA<List<FilteringRuleData>>());
+    expect(response.meta, isA<FilteringRuleMeta>());
+    expect(response.meta!.summary!.createdCount, 4);
+    expect(response.meta!.summary!.notCreatedCount, 0);
+  });
+
+  test('.destroyFilteringRules', () async {
+    final tweetsService = TweetsService(
+      context: context.buildPostStub(
+        UserContext.oauth2Only,
+        '/2/tweets/search/stream/rules',
+        'test/src/service/tweets/data/destroy_filtering_rules.json',
+      ),
+    );
+
+    final response = await tweetsService.destroyFilteringRules(
+      ruleIds: ['XXXX', 'YYYY'],
+    );
+
+    expect(response, isA<FilteringRuleMeta>());
+    expect(response.summary!.deletedCount, 1);
+    expect(response.summary!.notDeletedCount, 0);
+  });
+
+  test('.lookupFilteringRules', () async {
+    final tweetsService = TweetsService(
+      context: context.buildGetStub(
+        UserContext.oauth2Only,
+        '/2/tweets/search/stream/rules',
+        'test/src/service/tweets/data/lookup_filtering_rules.json',
+        {
+          'ids': 'XXXX,YYYY',
+        },
+      ),
+    );
+
+    final response = await tweetsService.lookupFilteringRules(
+      ruleIds: ['XXXX', 'YYYY'],
+    );
+
+    expect(
+      response,
+      isA<TwitterResponse<List<FilteringRuleData>, FilteringRuleMeta>>(),
+    );
+    expect(response.data, isA<List<FilteringRuleData>>());
+    expect(response.meta, isA<FilteringRuleMeta>());
   });
 }
