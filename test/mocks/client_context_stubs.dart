@@ -43,13 +43,14 @@ MockClientContext buildGetStub(
 MockClientContext buildPostStub(
   final UserContext userContext,
   final String unencodedPath,
-  final String resourcePath,
-) {
+  final String resourcePath, {
+  Map<String, String> queryParameters = const {},
+}) {
   final mockClientContext = MockClientContext();
 
   when(mockClientContext.post(
     userContext,
-    Uri.https('api.twitter.com', unencodedPath),
+    Uri.https('api.twitter.com', unencodedPath, queryParameters),
     headers: anyNamed('headers'),
     body: anyNamed('body'),
     timeout: anyNamed('timeout'),
@@ -133,7 +134,7 @@ MockClientContext buildSendStub(
     }
   }
 
-  when(mockClientContext.send(
+  when(mockClientContext.getStream(
     userContext,
     any,
     timeout: anyNamed('timeout'),

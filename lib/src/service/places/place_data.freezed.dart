@@ -21,7 +21,7 @@ PlaceData _$PlaceDataFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$PlaceData {
   @JsonKey(name: 'place_id')
-  String get placeId => throw _privateConstructorUsedError;
+  String? get placeId => throw _privateConstructorUsedError;
   PlaceCoordinates? get coordinates => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +35,7 @@ abstract class $PlaceDataCopyWith<$Res> {
   factory $PlaceDataCopyWith(PlaceData value, $Res Function(PlaceData) then) =
       _$PlaceDataCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'place_id') String placeId,
+      {@JsonKey(name: 'place_id') String? placeId,
       PlaceCoordinates? coordinates});
 
   $PlaceCoordinatesCopyWith<$Res>? get coordinates;
@@ -58,7 +58,7 @@ class _$PlaceDataCopyWithImpl<$Res> implements $PlaceDataCopyWith<$Res> {
       placeId: placeId == freezed
           ? _value.placeId
           : placeId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       coordinates: coordinates == freezed
           ? _value.coordinates
           : coordinates // ignore: cast_nullable_to_non_nullable
@@ -85,7 +85,7 @@ abstract class _$$_PlaceDataCopyWith<$Res> implements $PlaceDataCopyWith<$Res> {
       __$$_PlaceDataCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'place_id') String placeId,
+      {@JsonKey(name: 'place_id') String? placeId,
       PlaceCoordinates? coordinates});
 
   @override
@@ -111,7 +111,7 @@ class __$$_PlaceDataCopyWithImpl<$Res> extends _$PlaceDataCopyWithImpl<$Res>
       placeId: placeId == freezed
           ? _value.placeId
           : placeId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       coordinates: coordinates == freezed
           ? _value.coordinates
           : coordinates // ignore: cast_nullable_to_non_nullable
@@ -124,15 +124,14 @@ class __$$_PlaceDataCopyWithImpl<$Res> extends _$PlaceDataCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_PlaceData implements _PlaceData {
   const _$_PlaceData(
-      {@JsonKey(name: 'place_id') required this.placeId,
-      required this.coordinates});
+      {@JsonKey(name: 'place_id') this.placeId, required this.coordinates});
 
   factory _$_PlaceData.fromJson(Map<String, dynamic> json) =>
       _$$_PlaceDataFromJson(json);
 
   @override
   @JsonKey(name: 'place_id')
-  final String placeId;
+  final String? placeId;
   @override
   final PlaceCoordinates? coordinates;
 
@@ -171,7 +170,7 @@ class _$_PlaceData implements _PlaceData {
 
 abstract class _PlaceData implements PlaceData {
   const factory _PlaceData(
-      {@JsonKey(name: 'place_id') required final String placeId,
+      {@JsonKey(name: 'place_id') final String? placeId,
       required final PlaceCoordinates? coordinates}) = _$_PlaceData;
 
   factory _PlaceData.fromJson(Map<String, dynamic> json) =
@@ -179,7 +178,7 @@ abstract class _PlaceData implements PlaceData {
 
   @override
   @JsonKey(name: 'place_id')
-  String get placeId => throw _privateConstructorUsedError;
+  String? get placeId => throw _privateConstructorUsedError;
   @override
   PlaceCoordinates? get coordinates => throw _privateConstructorUsedError;
   @override

@@ -76,11 +76,13 @@ class MockClientContext extends _i1.Mock implements _i3.ClientContext {
               returnValue: Future<_i2.Response>.value(_FakeResponse_0()))
           as _i4.Future<_i2.Response>);
   @override
-  _i4.Future<_i2.StreamedResponse> send(
+  _i4.Future<_i2.StreamedResponse> getStream(
           _i5.UserContext? userContext, _i2.BaseRequest? request,
           {Duration? timeout = const Duration(seconds: 10)}) =>
       (super.noSuchMethod(
-          Invocation.method(#send, [userContext, request], {#timeout: timeout}),
-          returnValue: Future<_i2.StreamedResponse>.value(
-              _FakeStreamedResponse_1())) as _i4.Future<_i2.StreamedResponse>);
+              Invocation.method(
+                  #getStream, [userContext, request], {#timeout: timeout}),
+              returnValue:
+                  Future<_i2.StreamedResponse>.value(_FakeStreamedResponse_1()))
+          as _i4.Future<_i2.StreamedResponse>);
 }

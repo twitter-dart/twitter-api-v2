@@ -19,9 +19,16 @@ import 'twitter_response.dart';
 abstract class Service {
   Future<http.Response> get(UserContext userContext, String unencodedPath);
 
+  Future<Stream<Map<String, dynamic>>> getStream(
+    final UserContext userContext,
+    final String unencodedPath, {
+    Map<String, dynamic> queryParameters = const {},
+  });
+
   Future<http.Response> post(
     UserContext userContext,
     String unencodedPath, {
+    Map<String, dynamic> queryParameters = const {},
     Map<String, String> body = const {},
   });
 
@@ -80,12 +87,7 @@ abstract class BaseService implements Service {
       Uri.https(
         _authority,
         unencodedPath,
-        Map.from(_removeNullParameters(queryParameters) ?? {}).map(
-          //! Uri.https(...) needs iterable in the value for query params by
-          //! which it means a String in the value of the Map too. So you need
-          //! to convert it from Map<String, dynamic> to Map<String, String>
-          (key, value) => MapEntry(key, value.toString()),
-        ),
+        _convertQueryParameters(queryParameters),
       ),
     );
 
@@ -93,14 +95,42 @@ abstract class BaseService implements Service {
   }
 
   @override
+  Future<Stream<Map<String, dynamic>>> getStream(
+    final UserContext userContext,
+    final String unencodedPath, {
+    Map<String, dynamic> queryParameters = const {},
+  }) async {
+    final streamedResponse = await _context.getStream(
+      userContext,
+      http.Request(
+        'GET',
+        Uri.https(
+          _authority,
+          unencodedPath,
+          _convertQueryParameters(queryParameters),
+        ),
+      ),
+    );
+
+    return streamedResponse.stream
+        .transform(utf8.decoder)
+        .map((event) => _checkStreamedResponse(streamedResponse, event));
+  }
+
+  @override
   Future<http.Response> post(
     final UserContext userContext,
     final String unencodedPath, {
+    Map<String, dynamic> queryParameters = const {},
     dynamic body = const {},
   }) async {
     final response = await _context.post(
       userContext,
-      Uri.https(_authority, unencodedPath),
+      Uri.https(
+        _authority,
+        unencodedPath,
+        _convertQueryParameters(queryParameters),
+      ),
       headers: {'Content-type': 'application/json'},
       body: jsonEncode(_removeNullParameters(body)),
     );
@@ -135,31 +165,6 @@ abstract class BaseService implements Service {
     );
 
     return response;
-  }
-
-  Future<Stream<Map<String, dynamic>>> send(
-    final UserContext userContext,
-    final String method,
-    final String unencodedPath, {
-    Map<String, dynamic> queryParameters = const {},
-  }) async {
-    final streamedResponse = await _context.send(
-      userContext,
-      http.Request(
-        method,
-        Uri.https(
-          _authority,
-          unencodedPath,
-          Map.from(_removeNullParameters(queryParameters) ?? {}).map(
-            (key, value) => MapEntry(key, value.toString()),
-          ),
-        ),
-      ),
-    );
-
-    return streamedResponse.stream
-        .transform(utf8.decoder)
-        .map((event) => _checkStreamedResponse(streamedResponse, event));
   }
 
   dynamic _removeNullParameters(final dynamic object) {
@@ -216,6 +221,13 @@ abstract class BaseService implements Service {
     );
   }
 
+  @override
+  String? serialize(List<String>? strings) => strings?.toSet().join(',');
+
+  @override
+  String? serializeExpansions(List<Expansion>? expansions) =>
+      expansions?.toSet().map((value) => value.fieldName).toList().join(',');
+
   Map<String, dynamic> _checkResponseBody(final http.Response response) {
     final jsonBody = jsonDecode(response.body);
     if (!jsonBody.containsKey('data')) {
@@ -247,10 +259,13 @@ abstract class BaseService implements Service {
     return body;
   }
 
-  @override
-  String? serialize(List<String>? strings) => strings?.toSet().join(',');
-
-  @override
-  String? serializeExpansions(List<Expansion>? expansions) =>
-      expansions?.toSet().map((value) => value.fieldName).toList().join(',');
+  Map<String, String> _convertQueryParameters(
+    final Map<String, dynamic> queryParameters,
+  ) =>
+      Map.from(_removeNullParameters(queryParameters) ?? {}).map(
+        //! Uri.https(...) needs iterable in the value for query params by
+        //! which it means a String in the value of the Map too. So you need
+        //! to convert it from Map<String, dynamic> to Map<String, String>
+        (key, value) => MapEntry(key, value.toString()),
+      );
 }

@@ -2,14 +2,20 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+// Dart imports:
+import 'dart:convert';
+
 // Project imports:
 import '../../client/client_context.dart';
 import '../../client/user_context.dart';
 import '../base_service.dart';
+import '../includes.dart';
 import '../twitter_response.dart';
 import '../users/user_data.dart';
 import '../users/user_expansion.dart';
 import '../users/user_meta.dart';
+import 'filtering_rule_data.dart';
+import 'filtering_rule_meta.dart';
 import 'reply_setting.dart';
 import 'tweet_count_data.dart';
 import 'tweet_count_meta.dart';
@@ -1032,9 +1038,153 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/volume-streams/api-reference/get-tweets-sample-stream
-  Future<Stream<TweetData>> connectVolumeStreams({
+  Future<Stream<TwitterResponse<TweetData, void>>> connectVolumeStream({
     int? backfillMinutes,
     List<TweetExpansion>? expansions,
+  });
+
+  /// Streams Tweets in real-time that match the rules that you added to the
+  /// stream using the POST /tweets/search/stream/rules endpoint. **If you
+  /// haven't added any rules to your stream, you will not receive any Tweets**.
+  ///
+  /// If you have been approved for Academic Research access, you can take
+  /// advantage of the redundant connections functionality, which allows you to
+  /// connect to a stream up to two times, which will help maximize your
+  /// streaming up-time.
+  ///
+  /// The Tweets returned by this endpoint count towards the Project-level
+  /// Tweet cap.
+  ///
+  /// ## Parameters
+  ///
+  /// - [backfillMinutes]: By passing this parameter, you can recover up to
+  ///                      five minutes worth of data that you might have missed
+  ///                      during a disconnection. The backfilled Tweets will
+  ///                      automatically flow through a reconnected stream,
+  ///                      with older Tweets generally being delivered before
+  ///                      any newly matching Tweets. You must include a whole
+  ///                      number between 1 and 5 as the value to this
+  ///                      parameter.
+  ///
+  ///                      This feature will deliver all Tweets that matched
+  ///                      your rules and were published during the time frame
+  ///                      selected, meaning that if you were disconnected for
+  ///                      90 seconds, and you requested two minutes of
+  ///                      backfill, you will receive 30 seconds worth of
+  ///                      duplicate Tweets. Due to this, you should make sure
+  ///                      your system is tolerant of duplicate data.
+  ///
+  ///                      This feature is currently only available to users
+  ///                      who have been approved for Academic Research access.
+  ///
+  /// - [expansions]: Expansions enable you to request additional data objects
+  ///                 that relate to the originally returned Tweets. Submit a
+  ///                 list of desired expansions in a comma-separated list
+  ///                 without spaces. The ID that represents the expanded data
+  ///                 object will be included directly in the Tweet data object,
+  ///                 but the expanded object metadata will be returned within
+  ///                 the includes response object, and will also include the
+  ///                 ID so that you can match this data object to the original
+  ///                 Tweet object.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/tweets/search/stream
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **App rate limit (OAuth 2.0 App Access Token)**:
+  ///    50 requests per 15-minute window shared among all users of your app
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/api-reference/get-tweets-search-stream
+  Future<Stream<TwitterResponse<TweetData, void>>> connectFilteredStream({
+    int? backfillMinutes,
+    List<TweetExpansion>? expansions,
+  });
+
+  /// Returns either a single rule, or a list of rules that have been added to
+  /// the stream.
+  ///
+  /// If you would like to initiate the stream to receive all Tweets that match
+  /// these rules in real-time, you will need to use the [connectFilteredStream]
+  /// endpoint.
+  ///
+  /// ## Parameters
+  ///
+  /// - [ruleIds]: The list of unique rule IDs.
+  ///              If omitted, all rules are returned.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/tweets/search/stream/rules
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **App rate limit (OAuth 2.0 App Access Token)**:
+  ///    450 requests per 15-minute window shared among all users of your app
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/api-reference/get-tweets-search-stream-rules
+  Future<TwitterResponse<List<FilteringRuleData>, FilteringRuleMeta>>
+      lookupFilteringRules({List<String>? ruleIds});
+
+  /// Add rules to your stream.
+  ///
+  /// Once you've added a rule or rules to your stream, you can retrieve all
+  /// of the Tweets that match these rules by using the [connectFilteredStream]
+  /// endpoint.
+  ///
+  /// To learn how to build a rule, please read our guide on [building a rule](https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/integrate/build-a-rule).
+  ///
+  /// ## Parameters
+  ///
+  /// - [rules]: Specifies the rules you want to add.
+  ///
+  /// - [dryRun]: Set to true to test a the syntax of your rule without
+  ///             submitting it. This is useful if you want to check the syntax
+  ///             of a rule before removing one or more of your existing rules.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/tweets/search/stream/rules
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **App rate limit (OAuth 2.0 App Access Token)**:
+  ///    450 requests per 15-minute window shared among all users of your app
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/api-reference/post-tweets-search-stream-rules
+  Future<TwitterResponse<List<FilteringRuleData>, FilteringRuleMeta>>
+      createFilteringRules({
+    required List<FilteringRuleData> rules,
+    bool? dryRun,
+  });
+
+  /// Delete rules from your stream.
+  ///
+  /// ## Parameters
+  ///
+  /// - [ruleIds]: Specifies the rule ids you want to delete.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/tweets/search/stream/rules
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **App rate limit (OAuth 2.0 App Access Token)**:
+  ///    450 requests per 15-minute window shared among all users of your app
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/api-reference/post-tweets-search-stream-rules
+  Future<FilteringRuleMeta> destroyFilteringRules({
+    required List<String> ruleIds,
   });
 }
 
@@ -1463,13 +1613,12 @@ class _TweetsService extends BaseService implements TweetsService {
       );
 
   @override
-  Future<Stream<TweetData>> connectVolumeStreams({
+  Future<Stream<TwitterResponse<TweetData, void>>> connectVolumeStream({
     int? backfillMinutes,
     List<TweetExpansion>? expansions,
   }) async {
-    final stream = await super.send(
+    final stream = await super.getStream(
       UserContext.oauth2Only,
-      'GET',
       '/2/tweets/sample/stream',
       queryParameters: {
         'backfill_minutes': backfillMinutes,
@@ -1478,7 +1627,91 @@ class _TweetsService extends BaseService implements TweetsService {
     );
 
     return stream.map(
-      (event) => TweetData.fromJson(event['data']),
+      (event) => TwitterResponse(
+        data: TweetData.fromJson(event['data']),
+        includes: event.containsKey('includes')
+            ? Includes.fromJson(event['includes'])
+            : null,
+      ),
+    );
+  }
+
+  @override
+  Future<Stream<TwitterResponse<TweetData, void>>> connectFilteredStream({
+    int? backfillMinutes,
+    List<TweetExpansion>? expansions,
+  }) async {
+    final stream = await super.getStream(
+      UserContext.oauth2Only,
+      '/2/tweets/search/stream',
+      queryParameters: {
+        'backfill_minutes': backfillMinutes,
+        'expansions': super.serializeExpansions(expansions),
+      },
+    );
+
+    return stream.map(
+      (event) => TwitterResponse(
+        data: TweetData.fromJson(event['data']),
+        includes: event.containsKey('includes')
+            ? Includes.fromJson(event['includes'])
+            : null,
+      ),
+    );
+  }
+
+  @override
+  Future<TwitterResponse<List<FilteringRuleData>, FilteringRuleMeta>>
+      lookupFilteringRules({List<String>? ruleIds}) async =>
+          super.buildMultiDataResponse(
+            await super.get(
+              UserContext.oauth2Only,
+              '/2/tweets/search/stream/rules',
+              queryParameters: {
+                'ids': super.serialize(ruleIds),
+              },
+            ),
+            dataBuilder: FilteringRuleData.fromJson,
+            metaBuilder: FilteringRuleMeta.fromJson,
+          );
+
+  @override
+  Future<TwitterResponse<List<FilteringRuleData>, FilteringRuleMeta>>
+      createFilteringRules({
+    required List<FilteringRuleData> rules,
+    bool? dryRun,
+  }) async =>
+          super.buildMultiDataResponse(
+            await super.post(
+              UserContext.oauth2Only,
+              '/2/tweets/search/stream/rules',
+              queryParameters: {
+                'dry_run': dryRun,
+              },
+              body: {
+                'add': rules
+                    .map((rule) => {'value': rule.value, 'tag': rule.tag})
+                    .toList(),
+              },
+            ),
+            dataBuilder: FilteringRuleData.fromJson,
+            metaBuilder: FilteringRuleMeta.fromJson,
+          );
+
+  @override
+  Future<FilteringRuleMeta> destroyFilteringRules({
+    required List<String> ruleIds,
+  }) async {
+    final response = await super.post(
+      UserContext.oauth2Only,
+      '/2/tweets/search/stream/rules',
+      body: {
+        'delete': {'ids': super.serialize(ruleIds)},
+      },
+    );
+
+    return FilteringRuleMeta.fromJson(
+      jsonDecode(response.body)['meta'],
     );
   }
 }

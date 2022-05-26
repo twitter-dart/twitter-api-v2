@@ -9,6 +9,8 @@ import 'package:test/test.dart';
 // Project imports:
 import 'package:twitter_api_v2/src/client/client_context.dart';
 import 'package:twitter_api_v2/src/client/user_context.dart';
+import 'package:twitter_api_v2/src/service/tweets/filtering_rule_data.dart';
+import 'package:twitter_api_v2/src/service/tweets/filtering_rule_meta.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_count_data.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_count_meta.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_data.dart';
@@ -564,24 +566,24 @@ void main() {
     expect(response.meta!.resultCount, 5);
   });
 
-  group('.connectVolumeStreams', () {
+  group('.connectVolumeStream', () {
     test('normal case', () async {
       final tweetsService = TweetsService(
         context: context.buildSendStub(
           UserContext.oauth2Only,
-          'test/src/service/tweets/data/volume_streams.json',
+          'test/src/service/tweets/data/connect_volume_stream.json',
           const {'backfill_minutes': '5'},
         ),
       );
 
-      final response = await tweetsService.connectVolumeStreams(
+      final response = await tweetsService.connectVolumeStream(
         backfillMinutes: 5,
       );
 
       final data = await response.toList();
 
-      expect(response, isA<Stream<TweetData>>());
-      expect(data, isA<List<TweetData>>());
+      expect(response, isA<Stream<TwitterResponse<TweetData, void>>>());
+      expect(data, isA<List<TwitterResponse<TweetData, void>>>());
       expect(data.length, 70);
     });
 
@@ -589,16 +591,16 @@ void main() {
       final tweetsService = TweetsService(
         context: context.buildSendStub(
           UserContext.oauth2Only,
-          'test/src/service/tweets/data/volume_streams_with_error.json',
+          'test/src/service/tweets/data/connect_volume_stream_with_error.json',
           const {'backfill_minutes': '5'},
         ),
       );
 
-      final response = await tweetsService.connectVolumeStreams(
+      final response = await tweetsService.connectVolumeStream(
         backfillMinutes: 5,
       );
 
-      final data = <TweetData>[];
+      final data = <TwitterResponse<TweetData, void>>[];
       final errors = <dynamic>[];
 
       await for (final event in response.handleError(errors.add)) {
@@ -609,5 +611,91 @@ void main() {
       expect(errors.length, 1);
       expect(errors.single, isA<TwitterException>());
     });
+  });
+
+  test('.connectFilteredStream', () async {
+    final tweetsService = TweetsService(
+      context: context.buildSendStub(
+        UserContext.oauth2Only,
+        'test/src/service/tweets/data/connect_filtered_stream.json',
+        const {'backfill_minutes': '5'},
+      ),
+    );
+
+    final response = await tweetsService.connectFilteredStream(
+      backfillMinutes: 5,
+    );
+
+    final data = await response.toList();
+
+    expect(response, isA<Stream<TwitterResponse<TweetData, void>>>());
+    expect(data, isA<List<TwitterResponse<TweetData, void>>>());
+    expect(data.length, 1);
+  });
+
+  test('.createFilteringRules', () async {
+    final tweetsService = TweetsService(
+      context: context.buildPostStub(
+        UserContext.oauth2Only,
+        '/2/tweets/search/stream/rules',
+        'test/src/service/tweets/data/create_filtering_rules.json',
+      ),
+    );
+
+    final response = await tweetsService.createFilteringRules(rules: [
+      FilteringRuleData(value: 'test'),
+      FilteringRuleData(value: 'hello'),
+    ]);
+
+    expect(
+      response,
+      isA<TwitterResponse<List<FilteringRuleData>, FilteringRuleMeta>>(),
+    );
+    expect(response.data, isA<List<FilteringRuleData>>());
+    expect(response.meta, isA<FilteringRuleMeta>());
+    expect(response.meta!.summary!.createdCount, 4);
+    expect(response.meta!.summary!.notCreatedCount, 0);
+  });
+
+  test('.destroyFilteringRules', () async {
+    final tweetsService = TweetsService(
+      context: context.buildPostStub(
+        UserContext.oauth2Only,
+        '/2/tweets/search/stream/rules',
+        'test/src/service/tweets/data/destroy_filtering_rules.json',
+      ),
+    );
+
+    final response = await tweetsService.destroyFilteringRules(
+      ruleIds: ['XXXX', 'YYYY'],
+    );
+
+    expect(response, isA<FilteringRuleMeta>());
+    expect(response.summary!.deletedCount, 1);
+    expect(response.summary!.notDeletedCount, 0);
+  });
+
+  test('.lookupFilteringRules', () async {
+    final tweetsService = TweetsService(
+      context: context.buildGetStub(
+        UserContext.oauth2Only,
+        '/2/tweets/search/stream/rules',
+        'test/src/service/tweets/data/lookup_filtering_rules.json',
+        {
+          'ids': 'XXXX,YYYY',
+        },
+      ),
+    );
+
+    final response = await tweetsService.lookupFilteringRules(
+      ruleIds: ['XXXX', 'YYYY'],
+    );
+
+    expect(
+      response,
+      isA<TwitterResponse<List<FilteringRuleData>, FilteringRuleMeta>>(),
+    );
+    expect(response.data, isA<List<FilteringRuleData>>());
+    expect(response.meta, isA<FilteringRuleMeta>());
   });
 }

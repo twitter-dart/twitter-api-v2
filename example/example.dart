@@ -46,10 +46,24 @@ void main() async {
       tweetId: tweets.data.first.id,
     );
 
-    // High-performance Stream endpoints are available.
-    final stream = await twitter.tweetsService.connectVolumeStreams();
-    await for (final tweet in stream.handleError(print)) {
-      print(tweet);
+    // High-performance Volume Stream endpoint is available.
+    final volumeStream = await twitter.tweetsService.connectVolumeStream();
+    await for (final response in volumeStream.handleError(print)) {
+      print(response);
+    }
+
+    // Also high-performance Filtered Stream endpoint is available.
+    await twitter.tweetsService.createFilteringRules(
+      rules: [
+        v2.FilteringRuleData(value: '#ElonMusk'),
+        v2.FilteringRuleData(value: '#Tesla'),
+        v2.FilteringRuleData(value: '#SpaceX'),
+      ],
+    );
+
+    final filteredStream = await twitter.tweetsService.connectFilteredStream();
+    await for (final response in filteredStream.handleError(print)) {
+      print(response);
     }
   } on v2.TwitterException catch (e) {
     print(e.response.headers);

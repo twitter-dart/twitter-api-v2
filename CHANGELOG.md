@@ -30,6 +30,12 @@
   - GET /2/lists/:id/members
   - GET /2/users/:id/list_memberships
   - GET /2/users/:id/pinned_lists
+- Fixed method name from `tweetsService.connectVolumeStreams` to `tweetsService.connectVolumeStream`.
+- Fixed return type of `tweetsService.connectVolumeStream` from `Future<Stream<TweetData>>` to `Future<Stream<TwitterResponse<TweetData, void>>>`.
+- Added `Filtered Stream` endpoint. ([#4](https://github.com/twitter-dart/twitter-api-v2/issues/4))
+  - GET /2/tweets/search/stream
+  - GET /2/tweets/search/stream/rules
+  - POST /2/tweets/search/stream/rules
 
 ## v2.1.0
 
@@ -56,7 +62,7 @@
 - With the addition of the `includes` field to `TwitterResponse`, the following objects have been added. ([#144](https://github.com/twitter-dart/twitter-api-v2/issues/144))
   - `MediaData`
   - `PollData`
-- Added **Volume streams** endpoint. ([#14](https://github.com/twitter-dart/twitter-api-v2/issues/14))
+- Added **Volume Stream** endpoint. ([#14](https://github.com/twitter-dart/twitter-api-v2/issues/14))
   - GET /2/tweets/sample/stream
 
 ## v2.0.0

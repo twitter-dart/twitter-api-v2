@@ -50,7 +50,7 @@ abstract class ClientContext {
     Duration timeout = const Duration(seconds: 10),
   });
 
-  Future<http.StreamedResponse> send(
+  Future<http.StreamedResponse> getStream(
     UserContext userContext,
     http.BaseRequest request, {
     Duration timeout = const Duration(seconds: 10),
@@ -165,7 +165,7 @@ class _ClientContext implements ClientContext {
   }
 
   @override
-  Future<http.StreamedResponse> send(
+  Future<http.StreamedResponse> getStream(
     UserContext userContext,
     http.BaseRequest request, {
     Duration timeout = const Duration(seconds: 10),

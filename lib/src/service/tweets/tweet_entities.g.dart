@@ -15,8 +15,8 @@ _$_TweetEntities _$$_TweetEntitiesFromJson(Map json) => $checkedCreate(
         final val = _$_TweetEntities(
           mentions: $checkedConvert(
               'mentions',
-              (v) => (v as List<dynamic>)
-                  .map((e) => TweetMention.fromJson(
+              (v) => (v as List<dynamic>?)
+                  ?.map((e) => TweetMention.fromJson(
                       Map<String, Object?>.from(e as Map)))
                   .toList()),
         );

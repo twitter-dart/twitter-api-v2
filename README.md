@@ -58,7 +58,7 @@
 
 # 1. Guide
 
-This library provides the easiest way to use [Twitter API v2.0](https://developer.twitter.com/en/docs/twitter-api/data-dictionary/introduction) in **Dart** and **Flutter** apps.　
+This library provides the easiest way to use [Twitter API v2.0](https://developer.twitter.com/en/docs/twitter-api/data-dictionary/introduction) in **Dart** and **Flutter** apps.
 
 **Show some ❤️ and star the repo to support the project.**
 
@@ -87,8 +87,6 @@ import 'package:twitter_api_v2/twitter_api_v2';
 ### 1.1.3. Implementation
 
 ```dart
-import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
-
 void main() async {
   //! You need to get keys and tokens at https://developer.twitter.com
   final twitter = v2.TwitterApi(
@@ -131,10 +129,24 @@ void main() async {
       tweetId: tweets.data.first.id,
     );
 
-    // High-performance Stream endpoints are available.
-    final stream = await twitter.tweetsService.connectVolumeStreams();
-    await for (final tweet in stream.handleError(print)) {
-      print(tweet);
+    // High-performance Volume Stream endpoint is available.
+    final volumeStream = await twitter.tweetsService.connectVolumeStream();
+    await for (final response in volumeStream.handleError(print)) {
+      print(response);
+    }
+
+    // Also high-performance Filtered Stream endpoint is available.
+    await twitter.tweetsService.createFilteringRules(
+      rules: [
+        v2.FilteringRuleData(value: '#ElonMusk'),
+        v2.FilteringRuleData(value: '#Tesla'),
+        v2.FilteringRuleData(value: '#SpaceX'),
+      ],
+    );
+
+    final filteredStream = await twitter.tweetsService.connectFilteredStream();
+    await for (final response in filteredStream.handleError(print)) {
+      print(response);
     }
   } on v2.TwitterException catch (e) {
     print(e.response.headers);
@@ -178,8 +190,12 @@ void main() async {
    1. [GET /2/users/:id/mentions](https://developer.twitter.com/en/docs/twitter-api/tweets/timelines/api-reference/get-users-id-mentions)
    2. [GET /2/users/:id/tweets](https://developer.twitter.com/en/docs/twitter-api/tweets/timelines/api-reference/get-users-id-tweets)
    3. [GET /2/users/:id/timelines/reverse_chronological](https://developer.twitter.com/en/docs/twitter-api/tweets/timelines/api-reference/get-users-id-reverse-chronological)
-10. **Volume Streams**
+10. **Volume Stream**
     1. [GET /2/tweets/sample/stream](https://developer.twitter.com/en/docs/twitter-api/tweets/volume-streams/api-reference/get-tweets-sample-stream)
+11. **Filtered Stream**
+    1. [GET /2/tweets/search/stream](https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/api-reference/get-tweets-search-stream)
+    2. [GET /2/tweets/search/stream/rules](https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/api-reference/get-tweets-search-stream-rules)
+    3. [POST /2/tweets/search/stream/rules](https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/api-reference/post-tweets-search-stream-rules)
 
 ### 1.2.2. Users Service
 
