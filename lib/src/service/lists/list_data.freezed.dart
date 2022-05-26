@@ -22,6 +22,8 @@ ListData _$ListDataFromJson(Map<String, dynamic> json) {
 mixin _$ListData {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'owner_id')
+  String? get ownerId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,7 +35,8 @@ mixin _$ListData {
 abstract class $ListDataCopyWith<$Res> {
   factory $ListDataCopyWith(ListData value, $Res Function(ListData) then) =
       _$ListDataCopyWithImpl<$Res>;
-  $Res call({String id, String name});
+  $Res call(
+      {String id, String name, @JsonKey(name: 'owner_id') String? ownerId});
 }
 
 /// @nodoc
@@ -48,6 +51,7 @@ class _$ListDataCopyWithImpl<$Res> implements $ListDataCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? ownerId = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -58,6 +62,10 @@ class _$ListDataCopyWithImpl<$Res> implements $ListDataCopyWith<$Res> {
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      ownerId: ownerId == freezed
+          ? _value.ownerId
+          : ownerId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -68,7 +76,8 @@ abstract class _$$_ListDataCopyWith<$Res> implements $ListDataCopyWith<$Res> {
           _$_ListData value, $Res Function(_$_ListData) then) =
       __$$_ListDataCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String name});
+  $Res call(
+      {String id, String name, @JsonKey(name: 'owner_id') String? ownerId});
 }
 
 /// @nodoc
@@ -85,6 +94,7 @@ class __$$_ListDataCopyWithImpl<$Res> extends _$ListDataCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? ownerId = freezed,
   }) {
     return _then(_$_ListData(
       id: id == freezed
@@ -95,6 +105,10 @@ class __$$_ListDataCopyWithImpl<$Res> extends _$ListDataCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      ownerId: ownerId == freezed
+          ? _value.ownerId
+          : ownerId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -102,7 +116,10 @@ class __$$_ListDataCopyWithImpl<$Res> extends _$ListDataCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ListData implements _ListData {
-  const _$_ListData({required this.id, required this.name});
+  const _$_ListData(
+      {required this.id,
+      required this.name,
+      @JsonKey(name: 'owner_id') this.ownerId});
 
   factory _$_ListData.fromJson(Map<String, dynamic> json) =>
       _$$_ListDataFromJson(json);
@@ -111,10 +128,13 @@ class _$_ListData implements _ListData {
   final String id;
   @override
   final String name;
+  @override
+  @JsonKey(name: 'owner_id')
+  final String? ownerId;
 
   @override
   String toString() {
-    return 'ListData(id: $id, name: $name)';
+    return 'ListData(id: $id, name: $name, ownerId: $ownerId)';
   }
 
   @override
@@ -123,7 +143,8 @@ class _$_ListData implements _ListData {
         (other.runtimeType == runtimeType &&
             other is _$_ListData &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.name, name));
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.ownerId, ownerId));
   }
 
   @JsonKey(ignore: true)
@@ -131,7 +152,8 @@ class _$_ListData implements _ListData {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(name));
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(ownerId));
 
   @JsonKey(ignore: true)
   @override
@@ -146,7 +168,9 @@ class _$_ListData implements _ListData {
 
 abstract class _ListData implements ListData {
   const factory _ListData(
-      {required final String id, required final String name}) = _$_ListData;
+      {required final String id,
+      required final String name,
+      @JsonKey(name: 'owner_id') final String? ownerId}) = _$_ListData;
 
   factory _ListData.fromJson(Map<String, dynamic> json) = _$_ListData.fromJson;
 
@@ -154,6 +178,9 @@ abstract class _ListData implements ListData {
   String get id => throw _privateConstructorUsedError;
   @override
   String get name => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'owner_id')
+  String? get ownerId => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_ListDataCopyWith<_$_ListData> get copyWith =>

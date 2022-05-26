@@ -21,6 +21,15 @@
   - GET /2/spaces/:id/buyers
   - GET /2/spaces/:id/tweets
   - GET /2/spaces/by/creator_ids
+- Added `expansions` argument to `ListsService`. ([#172](https://github.com/twitter-dart/twitter-api-v2/issues/172))
+  - GET /2/lists/:id/tweets
+  - GET /2/lists/:id/followers
+  - GET /2/users/:id/followed_lists
+  - GET /2/lists/:id
+  - GET /2/users/:id/owned_lists
+  - GET /2/lists/:id/members
+  - GET /2/users/:id/list_memberships
+  - GET /2/users/:id/pinned_lists
 
 ## v2.1.0
 

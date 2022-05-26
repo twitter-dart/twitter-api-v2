@@ -15,7 +15,7 @@ _$_MediaData _$$_MediaDataFromJson(Map json) => $checkedCreate(
         final val = _$_MediaData(
           type: $checkedConvert('type', (v) => v as String),
           mediaKeys: $checkedConvert('media_keys',
-              (v) => (v as List<dynamic>).map((e) => e as String).toList()),
+              (v) => (v as List<dynamic>?)?.map((e) => e as String).toList()),
         );
         return val;
       },
