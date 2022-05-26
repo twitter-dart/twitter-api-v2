@@ -373,7 +373,7 @@ All resources of `twitter_api_v2` is provided under the `BSD-3` license.
 
 ## 1.7. More Information
 
-`twitter_api_v2` was designed and implemented by **_Kato Shinya_**.
+`twitter_api_v2` was designed and implemented by **_Kato Shinya ([@myConsciousness](https://github.com/myConsciousness))_**.
 
 - [Creator Profile](https://github.com/myConsciousness)
 - [License](https://github.com/twitter-dart/twitter-api-v2/blob/main/LICENSE)
