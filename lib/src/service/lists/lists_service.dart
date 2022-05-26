@@ -7,11 +7,14 @@ import '../../client/client_context.dart';
 import '../../client/user_context.dart';
 import '../base_service.dart';
 import '../tweets/tweet_data.dart';
+import '../tweets/tweet_expansion.dart';
 import '../tweets/tweet_meta.dart';
 import '../twitter_response.dart';
 import '../users/user_data.dart';
+import '../users/user_expansion.dart';
 import '../users/user_meta.dart';
 import 'list_data.dart';
+import 'list_expansion.dart';
 import 'list_meta.dart';
 
 abstract class ListsService {
@@ -24,6 +27,14 @@ abstract class ListsService {
   /// ## Parameters
   ///
   /// - [listId]: The ID of the List to lookup.
+  ///
+  /// - [expansions]: Expansions enable you to request additional data objects
+  ///                 that relate to the originally returned List. The ID that
+  ///                 represents the expanded data object will be included
+  ///                 directly in the List data object, but the expanded object
+  ///                 metadata will be returned within the includes response
+  ///                 object, and will also include the ID so that you can match
+  ///                 this data object to the original user object.
   ///
   /// ## Endpoint Url
   ///
@@ -40,7 +51,10 @@ abstract class ListsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/lists/list-lookup/api-reference/get-lists-id
-  Future<TwitterResponse<ListData, void>> lookupById({required String listId});
+  Future<TwitterResponse<ListData, void>> lookupById({
+    required String listId,
+    List<ListExpansion>? expansions,
+  });
 
   /// Returns all Lists owned by the specified user.
   ///
@@ -59,6 +73,14 @@ abstract class ListsService {
   ///                      previous response. To go back one page, pass the
   ///                      `previous_token` returned in your previous response.
   ///
+  /// - [expansions]: Expansions enable you to request additional data objects
+  ///                 that relate to the originally returned List. The ID that
+  ///                 represents the expanded data object will be included
+  ///                 directly in the List data object, but the expanded object
+  ///                 metadata will be returned within the includes response
+  ///                 object, and will also include the ID so that you can match
+  ///                 this data object to the original user object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/owned_lists
@@ -74,8 +96,12 @@ abstract class ListsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/lists/list-lookup/api-reference/get-users-id-owned_lists
-  Future<TwitterResponse<List<ListData>, ListMeta>> lookupOwnedBy(
-      {required String userId, int? maxResults, String? paginationToken});
+  Future<TwitterResponse<List<ListData>, ListMeta>> lookupOwnedBy({
+    required String userId,
+    int? maxResults,
+    String? paginationToken,
+    List<ListExpansion>? expansions,
+  });
 
   /// Enables the authenticated user to pin a List.
   ///
@@ -139,6 +165,14 @@ abstract class ListsService {
   ///             Tokens associated with the user ID when authenticating your
   ///             request.
   ///
+  /// - [expansions]: Expansions enable you to request additional data objects
+  ///                 that relate to the originally returned List. The ID that
+  ///                 represents the expanded data object will be included
+  ///                 directly in the List data object, but the expanded object
+  ///                 metadata will be returned within the includes response
+  ///                 object, and will also include the ID so that you can match
+  ///                 this data object to the original user object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/pinned_lists
@@ -152,7 +186,7 @@ abstract class ListsService {
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/lists/pinned-lists/api-reference/get-users-id-pinned_lists
   Future<TwitterResponse<List<ListData>, ListMeta>> lookupPinnedLists(
-      {required String userId});
+      {required String userId, List<ListExpansion>? expansions});
 
   /// Returns a list of Tweets from the specified List.
   ///
@@ -171,6 +205,14 @@ abstract class ListsService {
   ///                      previous response. To go back one page, pass the
   ///                      previous_token returned in your previous response.
   ///
+  /// - [expansions]: Expansions enable you to request additional data objects
+  ///                 that relate to the originally returned users. The ID that
+  ///                 represents the expanded data object will be included
+  ///                 directly in the user data object, but the expanded object
+  ///                 metadata will be returned within the includes response
+  ///                 object, and will also include the ID so that you can match
+  ///                 this data object to the original Tweet object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/lists/:id/tweets
@@ -186,8 +228,12 @@ abstract class ListsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/lists/list-tweets/api-reference/get-lists-id-tweets
-  Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupTweets(
-      {required String listId, int? maxResults, String? paginationToken});
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupTweets({
+    required String listId,
+    int? maxResults,
+    String? paginationToken,
+    List<TweetExpansion> expansions,
+  });
 
   /// Enables the authenticated user to create a public List.
   ///
@@ -376,6 +422,14 @@ abstract class ListsService {
   ///                      the previous_token returned in your previous
   ///                      response.
   ///
+  /// - [expansions]: Expansions enable you to request additional data objects
+  ///                 that relate to the originally returned users. The ID that
+  ///                 represents the expanded data object will be included
+  ///                 directly in the user data object, but the expanded object
+  ///                 metadata will be returned within the includes response
+  ///                 object, and will also include the ID so that you can match
+  ///                 this data object to the original Tweet object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/lists/:id/followers
@@ -391,8 +445,12 @@ abstract class ListsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/lists/list-follows/api-reference/get-lists-id-followers
-  Future<TwitterResponse<List<UserData>, UserMeta>> lookupFollowers(
-      {required String listId, int? maxResults, String? paginationToken});
+  Future<TwitterResponse<List<UserData>, UserMeta>> lookupFollowers({
+    required String listId,
+    int? maxResults,
+    String? paginationToken,
+    List<UserExpansion> expansions,
+  });
 
   /// Returns all Lists a specified user follows.
   ///
@@ -412,6 +470,14 @@ abstract class ListsService {
   ///                      the previous_token returned in your previous
   ///                      response.
   ///
+  /// - [expansions]: Expansions enable you to request additional data objects
+  ///                 that relate to the originally returned List. The ID that
+  ///                 represents the expanded data object will be included
+  ///                 directly in the List data object, but the expanded object
+  ///                 metadata will be returned within the includes response
+  ///                 object, and will also include the ID so that you can match
+  ///                 this data object to the original user object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/followed_lists
@@ -427,8 +493,12 @@ abstract class ListsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/lists/list-follows/api-reference/get-users-id-followed_lists
-  Future<TwitterResponse<List<ListData>, ListMeta>> lookupFollowedLists(
-      {required String userId, int? maxResults, String? paginationToken});
+  Future<TwitterResponse<List<ListData>, ListMeta>> lookupFollowedLists({
+    required String userId,
+    int? maxResults,
+    String? paginationToken,
+    List<ListExpansion>? expansions,
+  });
 
   /// Enables the authenticated user to add a member to a List they own.
   ///
@@ -492,6 +562,14 @@ abstract class ListsService {
   ///                      the previous_token returned in your previous
   ///                      response.
   ///
+  /// - [expansions]: Expansions enable you to request additional data objects
+  ///                 that relate to the originally returned users. The ID that
+  ///                 represents the expanded data object will be included
+  ///                 directly in the user data object, but the expanded object
+  ///                 metadata will be returned within the includes response
+  ///                 object, and will also include the ID so that you can match
+  ///                 this data object to the original Tweet object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/lists/:id/members
@@ -507,8 +585,12 @@ abstract class ListsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/lists/list-members/api-reference/get-lists-id-members
-  Future<TwitterResponse<List<UserData>, UserMeta>> lookupMembers(
-      {required String listId, int? maxResults, String? paginationToken});
+  Future<TwitterResponse<List<UserData>, UserMeta>> lookupMembers({
+    required String listId,
+    int? maxResults,
+    String? paginationToken,
+    List<UserExpansion> expansions,
+  });
 
   /// Returns all Lists a specified user is a member of.
   ///
@@ -528,6 +610,14 @@ abstract class ListsService {
   ///                      the previous_token returned in your previous
   ///                      response.
   ///
+  /// - [expansions]: Expansions enable you to request additional data objects
+  ///                 that relate to the originally returned List. The ID that
+  ///                 represents the expanded data object will be included
+  ///                 directly in the List data object, but the expanded object
+  ///                 metadata will be returned within the includes response
+  ///                 object, and will also include the ID so that you can match
+  ///                 this data object to the original user object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/list_memberships
@@ -543,8 +633,12 @@ abstract class ListsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/lists/list-members/api-reference/get-users-id-list_memberships
-  Future<TwitterResponse<List<ListData>, ListMeta>> lookupMemberships(
-      {required String userId, int? maxResults, String? paginationToken});
+  Future<TwitterResponse<List<ListData>, ListMeta>> lookupMemberships({
+    required String userId,
+    int? maxResults,
+    String? paginationToken,
+    List<ListExpansion>? expansions,
+  });
 }
 
 class _ListsService extends BaseService implements ListsService {
@@ -552,12 +646,17 @@ class _ListsService extends BaseService implements ListsService {
   _ListsService({required super.context});
 
   @override
-  Future<TwitterResponse<ListData, void>> lookupById(
-          {required String listId}) async =>
+  Future<TwitterResponse<ListData, void>> lookupById({
+    required String listId,
+    List<ListExpansion>? expansions,
+  }) async =>
       super.buildResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/lists/$listId',
+          queryParameters: {
+            'expansions': super.serializeExpansions(expansions),
+          },
         ),
         dataBuilder: ListData.fromJson,
       );
@@ -567,6 +666,7 @@ class _ListsService extends BaseService implements ListsService {
     required String userId,
     int? maxResults,
     String? paginationToken,
+    List<ListExpansion>? expansions,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -575,6 +675,7 @@ class _ListsService extends BaseService implements ListsService {
           queryParameters: {
             'max_results': maxResults,
             'pagination_token': paginationToken,
+            'expansions': super.serializeExpansions(expansions),
           },
         ),
         dataBuilder: ListData.fromJson,
@@ -605,12 +706,17 @@ class _ListsService extends BaseService implements ListsService {
   }
 
   @override
-  Future<TwitterResponse<List<ListData>, ListMeta>> lookupPinnedLists(
-          {required String userId}) async =>
+  Future<TwitterResponse<List<ListData>, ListMeta>> lookupPinnedLists({
+    required String userId,
+    List<ListExpansion>? expansions,
+  }) async =>
       super.buildMultiDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/users/$userId/pinned_lists',
+          queryParameters: {
+            'expansions': super.serializeExpansions(expansions),
+          },
         ),
         dataBuilder: ListData.fromJson,
         metaBuilder: ListMeta.fromJson,
@@ -621,6 +727,7 @@ class _ListsService extends BaseService implements ListsService {
     required String listId,
     int? maxResults,
     String? paginationToken,
+    List<TweetExpansion>? expansions,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -629,6 +736,7 @@ class _ListsService extends BaseService implements ListsService {
           queryParameters: {
             'max_results': maxResults,
             'pagination_token': paginationToken,
+            'expansions': super.serializeExpansions(expansions),
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -715,6 +823,7 @@ class _ListsService extends BaseService implements ListsService {
     required String listId,
     int? maxResults,
     String? paginationToken,
+    List<UserExpansion>? expansions,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -723,6 +832,7 @@ class _ListsService extends BaseService implements ListsService {
           queryParameters: {
             'max_results': maxResults,
             'pagination_token': paginationToken,
+            'expansions': super.serializeExpansions(expansions),
           },
         ),
         dataBuilder: UserData.fromJson,
@@ -734,6 +844,7 @@ class _ListsService extends BaseService implements ListsService {
     required String userId,
     int? maxResults,
     String? paginationToken,
+    List<ListExpansion>? expansions,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -742,6 +853,7 @@ class _ListsService extends BaseService implements ListsService {
           queryParameters: {
             'max_results': maxResults,
             'pagination_token': paginationToken,
+            'expansions': super.serializeExpansions(expansions),
           },
         ),
         dataBuilder: ListData.fromJson,
@@ -782,6 +894,7 @@ class _ListsService extends BaseService implements ListsService {
     required String listId,
     int? maxResults,
     String? paginationToken,
+    List<UserExpansion>? expansions,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -790,6 +903,7 @@ class _ListsService extends BaseService implements ListsService {
           queryParameters: {
             'max_results': maxResults,
             'pagination_token': paginationToken,
+            'expansions': super.serializeExpansions(expansions),
           },
         ),
         dataBuilder: UserData.fromJson,
@@ -801,6 +915,7 @@ class _ListsService extends BaseService implements ListsService {
     required String userId,
     int? maxResults,
     String? paginationToken,
+    List<ListExpansion>? expansions,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -809,6 +924,7 @@ class _ListsService extends BaseService implements ListsService {
           queryParameters: {
             'max_results': maxResults,
             'pagination_token': paginationToken,
+            'expansions': super.serializeExpansions(expansions),
           },
         ),
         dataBuilder: ListData.fromJson,

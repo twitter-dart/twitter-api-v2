@@ -22,7 +22,7 @@ MediaData _$MediaDataFromJson(Map<String, dynamic> json) {
 mixin _$MediaData {
   String get type => throw _privateConstructorUsedError;
   @JsonKey(name: 'media_keys')
-  List<String> get mediaKeys => throw _privateConstructorUsedError;
+  List<String>? get mediaKeys => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +34,8 @@ mixin _$MediaData {
 abstract class $MediaDataCopyWith<$Res> {
   factory $MediaDataCopyWith(MediaData value, $Res Function(MediaData) then) =
       _$MediaDataCopyWithImpl<$Res>;
-  $Res call({String type, @JsonKey(name: 'media_keys') List<String> mediaKeys});
+  $Res call(
+      {String type, @JsonKey(name: 'media_keys') List<String>? mediaKeys});
 }
 
 /// @nodoc
@@ -58,7 +59,7 @@ class _$MediaDataCopyWithImpl<$Res> implements $MediaDataCopyWith<$Res> {
       mediaKeys: mediaKeys == freezed
           ? _value.mediaKeys
           : mediaKeys // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
     ));
   }
 }
@@ -69,7 +70,8 @@ abstract class _$$_MediaDataCopyWith<$Res> implements $MediaDataCopyWith<$Res> {
           _$_MediaData value, $Res Function(_$_MediaData) then) =
       __$$_MediaDataCopyWithImpl<$Res>;
   @override
-  $Res call({String type, @JsonKey(name: 'media_keys') List<String> mediaKeys});
+  $Res call(
+      {String type, @JsonKey(name: 'media_keys') List<String>? mediaKeys});
 }
 
 /// @nodoc
@@ -95,7 +97,7 @@ class __$$_MediaDataCopyWithImpl<$Res> extends _$MediaDataCopyWithImpl<$Res>
       mediaKeys: mediaKeys == freezed
           ? _value._mediaKeys
           : mediaKeys // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
     ));
   }
 }
@@ -105,7 +107,7 @@ class __$$_MediaDataCopyWithImpl<$Res> extends _$MediaDataCopyWithImpl<$Res>
 class _$_MediaData implements _MediaData {
   const _$_MediaData(
       {required this.type,
-      @JsonKey(name: 'media_keys') required final List<String> mediaKeys})
+      @JsonKey(name: 'media_keys') final List<String>? mediaKeys})
       : _mediaKeys = mediaKeys;
 
   factory _$_MediaData.fromJson(Map<String, dynamic> json) =>
@@ -113,12 +115,14 @@ class _$_MediaData implements _MediaData {
 
   @override
   final String type;
-  final List<String> _mediaKeys;
+  final List<String>? _mediaKeys;
   @override
   @JsonKey(name: 'media_keys')
-  List<String> get mediaKeys {
+  List<String>? get mediaKeys {
+    final value = _mediaKeys;
+    if (value == null) return null;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_mediaKeys);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -157,7 +161,7 @@ class _$_MediaData implements _MediaData {
 abstract class _MediaData implements MediaData {
   const factory _MediaData(
           {required final String type,
-          @JsonKey(name: 'media_keys') required final List<String> mediaKeys}) =
+          @JsonKey(name: 'media_keys') final List<String>? mediaKeys}) =
       _$_MediaData;
 
   factory _MediaData.fromJson(Map<String, dynamic> json) =
@@ -167,7 +171,7 @@ abstract class _MediaData implements MediaData {
   String get type => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'media_keys')
-  List<String> get mediaKeys => throw _privateConstructorUsedError;
+  List<String>? get mediaKeys => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_MediaDataCopyWith<_$_MediaData> get copyWith =>

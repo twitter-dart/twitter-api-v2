@@ -15,13 +15,16 @@ _$_ListData _$$_ListDataFromJson(Map json) => $checkedCreate(
         final val = _$_ListData(
           id: $checkedConvert('id', (v) => v as String),
           name: $checkedConvert('name', (v) => v as String),
+          ownerId: $checkedConvert('owner_id', (v) => v as String?),
         );
         return val;
       },
+      fieldKeyMap: const {'ownerId': 'owner_id'},
     );
 
 Map<String, dynamic> _$$_ListDataToJson(_$_ListData instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
+      'owner_id': instance.ownerId,
     };

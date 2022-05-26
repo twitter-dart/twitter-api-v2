@@ -10,6 +10,7 @@ export 'package:twitter_api_v2/src/service/compliance/job_status.dart';
 export 'package:twitter_api_v2/src/service/compliance/job_type.dart';
 export 'package:twitter_api_v2/src/service/includes.dart';
 export 'package:twitter_api_v2/src/service/lists/list_data.dart';
+export 'package:twitter_api_v2/src/service/lists/list_expansion.dart';
 export 'package:twitter_api_v2/src/service/lists/list_meta.dart';
 export 'package:twitter_api_v2/src/service/lists/lists_service.dart';
 export 'package:twitter_api_v2/src/service/media/media_data.dart';

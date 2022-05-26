@@ -14,7 +14,7 @@ part 'media_data.g.dart';
 class MediaData with _$MediaData {
   const factory MediaData({
     required String type,
-    @JsonKey(name: 'media_keys') required List<String> mediaKeys,
+    @JsonKey(name: 'media_keys') List<String>? mediaKeys,
   }) = _MediaData;
 
   factory MediaData.fromJson(Map<String, Object?> json) =>
