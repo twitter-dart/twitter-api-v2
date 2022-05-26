@@ -87,12 +87,7 @@ abstract class BaseService implements Service {
       Uri.https(
         _authority,
         unencodedPath,
-        Map.from(_removeNullParameters(queryParameters) ?? {}).map(
-          //! Uri.https(...) needs iterable in the value for query params by
-          //! which it means a String in the value of the Map too. So you need
-          //! to convert it from Map<String, dynamic> to Map<String, String>
-          (key, value) => MapEntry(key, value.toString()),
-        ),
+        _convertQueryParameters(queryParameters),
       ),
     );
 
@@ -112,12 +107,7 @@ abstract class BaseService implements Service {
         Uri.https(
           _authority,
           unencodedPath,
-          Map.from(_removeNullParameters(queryParameters) ?? {}).map(
-            //! Uri.https(...) needs iterable in the value for query params by
-            //! which it means a String in the value of the Map too. So you need
-            //! to convert it from Map<String, dynamic> to Map<String, String>
-            (key, value) => MapEntry(key, value.toString()),
-          ),
+          _convertQueryParameters(queryParameters),
         ),
       ),
     );
@@ -139,12 +129,7 @@ abstract class BaseService implements Service {
       Uri.https(
         _authority,
         unencodedPath,
-        Map.from(_removeNullParameters(queryParameters) ?? {}).map(
-          //! Uri.https(...) needs iterable in the value for query params by
-          //! which it means a String in the value of the Map too. So you need
-          //! to convert it from Map<String, dynamic> to Map<String, String>
-          (key, value) => MapEntry(key, value.toString()),
-        ),
+        _convertQueryParameters(queryParameters),
       ),
       headers: {'Content-type': 'application/json'},
       body: jsonEncode(_removeNullParameters(body)),
@@ -236,6 +221,13 @@ abstract class BaseService implements Service {
     );
   }
 
+  @override
+  String? serialize(List<String>? strings) => strings?.toSet().join(',');
+
+  @override
+  String? serializeExpansions(List<Expansion>? expansions) =>
+      expansions?.toSet().map((value) => value.fieldName).toList().join(',');
+
   Map<String, dynamic> _checkResponseBody(final http.Response response) {
     final jsonBody = jsonDecode(response.body);
     if (!jsonBody.containsKey('data')) {
@@ -267,10 +259,13 @@ abstract class BaseService implements Service {
     return body;
   }
 
-  @override
-  String? serialize(List<String>? strings) => strings?.toSet().join(',');
-
-  @override
-  String? serializeExpansions(List<Expansion>? expansions) =>
-      expansions?.toSet().map((value) => value.fieldName).toList().join(',');
+  Map<String, String> _convertQueryParameters(
+    final Map<String, dynamic> queryParameters,
+  ) =>
+      Map.from(_removeNullParameters(queryParameters) ?? {}).map(
+        //! Uri.https(...) needs iterable in the value for query params by
+        //! which it means a String in the value of the Map too. So you need
+        //! to convert it from Map<String, dynamic> to Map<String, String>
+        (key, value) => MapEntry(key, value.toString()),
+      );
 }

@@ -569,7 +569,7 @@ void main() {
       final tweetsService = TweetsService(
         context: context.buildSendStub(
           UserContext.oauth2Only,
-          'test/src/service/tweets/data/volume_stream.json',
+          'test/src/service/tweets/data/connect_volume_stream.json',
           const {'backfill_minutes': '5'},
         ),
       );
@@ -589,7 +589,7 @@ void main() {
       final tweetsService = TweetsService(
         context: context.buildSendStub(
           UserContext.oauth2Only,
-          'test/src/service/tweets/data/volume_stream_with_error.json',
+          'test/src/service/tweets/data/connect_volume_stream_with_error.json',
           const {'backfill_minutes': '5'},
         ),
       );
