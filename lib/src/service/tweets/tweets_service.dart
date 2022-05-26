@@ -2,12 +2,14 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Project imports:
+// Dart imports:
 import 'dart:convert';
 
+// Project imports:
 import '../../client/client_context.dart';
 import '../../client/user_context.dart';
 import '../base_service.dart';
+import '../includes.dart';
 import '../twitter_response.dart';
 import '../users/user_data.dart';
 import '../users/user_expansion.dart';
@@ -1036,7 +1038,7 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/volume-streams/api-reference/get-tweets-sample-stream
-  Future<Stream<TweetData>> connectVolumeStream({
+  Future<Stream<TwitterResponse<TweetData, void>>> connectVolumeStream({
     int? backfillMinutes,
     List<TweetExpansion>? expansions,
   });
@@ -1097,7 +1099,7 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/api-reference/get-tweets-search-stream
-  Future<Stream<TweetData>> connectFilteredStream({
+  Future<Stream<TwitterResponse<TweetData, void>>> connectFilteredStream({
     int? backfillMinutes,
     List<TweetExpansion>? expansions,
   });
@@ -1611,7 +1613,7 @@ class _TweetsService extends BaseService implements TweetsService {
       );
 
   @override
-  Future<Stream<TweetData>> connectVolumeStream({
+  Future<Stream<TwitterResponse<TweetData, void>>> connectVolumeStream({
     int? backfillMinutes,
     List<TweetExpansion>? expansions,
   }) async {
@@ -1625,12 +1627,17 @@ class _TweetsService extends BaseService implements TweetsService {
     );
 
     return stream.map(
-      (event) => TweetData.fromJson(event['data']),
+      (event) => TwitterResponse(
+        data: TweetData.fromJson(event['data']),
+        includes: event.containsKey('includes')
+            ? Includes.fromJson(event['includes'])
+            : null,
+      ),
     );
   }
 
   @override
-  Future<Stream<TweetData>> connectFilteredStream({
+  Future<Stream<TwitterResponse<TweetData, void>>> connectFilteredStream({
     int? backfillMinutes,
     List<TweetExpansion>? expansions,
   }) async {
@@ -1644,7 +1651,12 @@ class _TweetsService extends BaseService implements TweetsService {
     );
 
     return stream.map(
-      (event) => TweetData.fromJson(event['data']),
+      (event) => TwitterResponse(
+        data: TweetData.fromJson(event['data']),
+        includes: event.containsKey('includes')
+            ? Includes.fromJson(event['includes'])
+            : null,
+      ),
     );
   }
 

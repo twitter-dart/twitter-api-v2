@@ -14,7 +14,7 @@ part 'tweet_entities.g.dart';
 @freezed
 class TweetEntities with _$TweetEntities {
   const factory TweetEntities({
-    required List<TweetMention> mentions,
+    List<TweetMention>? mentions,
   }) = _TweetEntities;
 
   factory TweetEntities.fromJson(Map<String, Object?> json) =>

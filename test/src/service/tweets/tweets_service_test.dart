@@ -580,8 +580,8 @@ void main() {
 
       final data = await response.toList();
 
-      expect(response, isA<Stream<TweetData>>());
-      expect(data, isA<List<TweetData>>());
+      expect(response, isA<Stream<TwitterResponse<TweetData, void>>>());
+      expect(data, isA<List<TwitterResponse<TweetData, void>>>());
       expect(data.length, 70);
     });
 
@@ -598,7 +598,7 @@ void main() {
         backfillMinutes: 5,
       );
 
-      final data = <TweetData>[];
+      final data = <TwitterResponse<TweetData, void>>[];
       final errors = <dynamic>[];
 
       await for (final event in response.handleError(errors.add)) {

@@ -31,6 +31,7 @@
   - GET /2/users/:id/list_memberships
   - GET /2/users/:id/pinned_lists
 - Fixed method name from `tweetsService.connectVolumeStreams` to `tweetsService.connectVolumeStream`.
+- Fixed return type of `tweetsService.connectVolumeStream` from `Future<Stream<TweetData>>` to `Future<Stream<TwitterResponse<TweetData, void>>>`.
 - Added `Filtered Stream` endpoint. ([#4](https://github.com/twitter-dart/twitter-api-v2/issues/4))
   - GET /2/tweets/search/stream
   - GET /2/tweets/search/stream/rules

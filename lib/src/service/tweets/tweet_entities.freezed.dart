@@ -20,7 +20,7 @@ TweetEntities _$TweetEntitiesFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TweetEntities {
-  List<TweetMention> get mentions => throw _privateConstructorUsedError;
+  List<TweetMention>? get mentions => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,7 +33,7 @@ abstract class $TweetEntitiesCopyWith<$Res> {
   factory $TweetEntitiesCopyWith(
           TweetEntities value, $Res Function(TweetEntities) then) =
       _$TweetEntitiesCopyWithImpl<$Res>;
-  $Res call({List<TweetMention> mentions});
+  $Res call({List<TweetMention>? mentions});
 }
 
 /// @nodoc
@@ -53,7 +53,7 @@ class _$TweetEntitiesCopyWithImpl<$Res>
       mentions: mentions == freezed
           ? _value.mentions
           : mentions // ignore: cast_nullable_to_non_nullable
-              as List<TweetMention>,
+              as List<TweetMention>?,
     ));
   }
 }
@@ -65,7 +65,7 @@ abstract class _$$_TweetEntitiesCopyWith<$Res>
           _$_TweetEntities value, $Res Function(_$_TweetEntities) then) =
       __$$_TweetEntitiesCopyWithImpl<$Res>;
   @override
-  $Res call({List<TweetMention> mentions});
+  $Res call({List<TweetMention>? mentions});
 }
 
 /// @nodoc
@@ -87,7 +87,7 @@ class __$$_TweetEntitiesCopyWithImpl<$Res>
       mentions: mentions == freezed
           ? _value._mentions
           : mentions // ignore: cast_nullable_to_non_nullable
-              as List<TweetMention>,
+              as List<TweetMention>?,
     ));
   }
 }
@@ -95,17 +95,19 @@ class __$$_TweetEntitiesCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_TweetEntities implements _TweetEntities {
-  const _$_TweetEntities({required final List<TweetMention> mentions})
+  const _$_TweetEntities({final List<TweetMention>? mentions})
       : _mentions = mentions;
 
   factory _$_TweetEntities.fromJson(Map<String, dynamic> json) =>
       _$$_TweetEntitiesFromJson(json);
 
-  final List<TweetMention> _mentions;
+  final List<TweetMention>? _mentions;
   @override
-  List<TweetMention> get mentions {
+  List<TweetMention>? get mentions {
+    final value = _mentions;
+    if (value == null) return null;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_mentions);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -138,14 +140,14 @@ class _$_TweetEntities implements _TweetEntities {
 }
 
 abstract class _TweetEntities implements TweetEntities {
-  const factory _TweetEntities({required final List<TweetMention> mentions}) =
+  const factory _TweetEntities({final List<TweetMention>? mentions}) =
       _$_TweetEntities;
 
   factory _TweetEntities.fromJson(Map<String, dynamic> json) =
       _$_TweetEntities.fromJson;
 
   @override
-  List<TweetMention> get mentions => throw _privateConstructorUsedError;
+  List<TweetMention>? get mentions => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_TweetEntitiesCopyWith<_$_TweetEntities> get copyWith =>

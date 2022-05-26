@@ -13,7 +13,7 @@ _$_PlaceData _$$_PlaceDataFromJson(Map json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = _$_PlaceData(
-          placeId: $checkedConvert('place_id', (v) => v as String),
+          placeId: $checkedConvert('place_id', (v) => v as String?),
           coordinates: $checkedConvert(
               'coordinates',
               (v) => v == null

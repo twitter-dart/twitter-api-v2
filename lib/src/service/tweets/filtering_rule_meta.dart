@@ -7,6 +7,7 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+// Project imports:
 import 'filtering_rule_summary.dart';
 
 part 'filtering_rule_meta.freezed.dart';

@@ -131,8 +131,8 @@ void main() async {
 
     // High-performance Volume Stream endpoint is available.
     final volumeStream = await twitter.tweetsService.connectVolumeStream();
-    await for (final tweet in volumeStream.handleError(print)) {
-      print(tweet);
+    await for (final response in volumeStream.handleError(print)) {
+      print(response);
     }
 
     // Also high-performance Filtered Stream endpoint is available.
@@ -145,8 +145,8 @@ void main() async {
     );
 
     final filteredStream = await twitter.tweetsService.connectFilteredStream();
-    await for (final tweet in filteredStream.handleError(print)) {
-      print(tweet);
+    await for (final response in filteredStream.handleError(print)) {
+      print(response);
     }
   } on v2.TwitterException catch (e) {
     print(e.response.headers);

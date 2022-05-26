@@ -16,7 +16,7 @@ part 'place_data.g.dart';
 @freezed
 class PlaceData with _$PlaceData {
   const factory PlaceData({
-    @JsonKey(name: 'place_id') required String placeId,
+    @JsonKey(name: 'place_id') String? placeId,
     required PlaceCoordinates? coordinates,
   }) = _PlaceData;
 
