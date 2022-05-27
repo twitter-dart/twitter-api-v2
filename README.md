@@ -273,23 +273,17 @@ void main() async {
 
 ### 1.3.1. Method Names
 
-`twitter_api_v2` uses the following standard prefixes depending on endpoint characteristics. It's very easy to use `twitter_api_v2` to find the method corresponding to the endpoint you want to use!
+`twitter_api_v2` uses the following standard prefixes depending on endpoint characteristics. It's very easy to find the method corresponding to the endpoint you want to use!
 
-- **lookup**
-  - This prefix is attached to the endpoint performing the search.
-  - However, it's distinguished from the higher-performance Search endpoint.
-- **create**
-  - This prefix is attached to the endpoint performing the create state such as `Tweet` and `Follow`.
-- **destroy**
-  - This prefix is attached to the endpoint performing the destroy state such as `Tweet` and `Follow`.
-- **search**
-  - This prefix is attached to high-performance Search endpoints.
-- **count**
-  - This prefix is attached to the endpoint that counts tweets, etc.
-- **update**
-  - This prefix is attached to the endpoint performing the update state.
-- **connect**
-  - This prefix is attached to the endpoint performing the high-performance streaming.
+| Prefix      | Description                                                                                                                                  |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| **lookup**  | This prefix is attached to the endpoint performing the search.</br> However, it's distinguished from the higher-performance Search endpoint. |
+| **create**  | This prefix is attached to the endpoint performing the create state such as `Tweet` and `Follow`.                                            |
+| **destroy** | This prefix is attached to the endpoint performing the destroy state such as `Tweet` and `Follow`.                                           |
+| **search**  | This prefix is attached to high-performance Search endpoints.                                                                                |
+| **count**   | This prefix is attached to the endpoint that counts tweets, etc.                                                                             |
+| **update**  | This prefix is attached to the endpoint performing the update state.                                                                         |
+| **connect** | This prefix is attached to the endpoint performing the high-performance streaming.                                                           |
 
 ### 1.3.2. Generate App-Only Bearer Token
 
