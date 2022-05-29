@@ -2,7 +2,7 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-abstract class Expansion {
+abstract class Field {
   /// Returns the value.
   String get value;
 }

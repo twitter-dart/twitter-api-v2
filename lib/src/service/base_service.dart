@@ -13,6 +13,7 @@ import '../client/client_context.dart';
 import '../client/user_context.dart';
 import '../twitter_exception.dart';
 import 'expansion.dart';
+import 'field.dart';
 import 'includes.dart';
 import 'twitter_response.dart';
 
@@ -55,6 +56,8 @@ abstract class Service {
   String? serialize(List<String>? strings);
 
   String? serializeExpansions(List<Expansion>? expansions);
+
+  String? serializeFields(List<Field>? fields);
 }
 
 abstract class BaseService implements Service {
@@ -226,7 +229,11 @@ abstract class BaseService implements Service {
 
   @override
   String? serializeExpansions(List<Expansion>? expansions) =>
-      expansions?.toSet().map((value) => value.fieldName).toList().join(',');
+      expansions?.toSet().map((e) => e.value).toList().join(',');
+
+  @override
+  String? serializeFields(List<Field>? fields) =>
+      fields?.toSet().map((e) => e.value).toList().join(',');
 
   Map<String, dynamic> _checkResponseBody(final http.Response response) {
     final jsonBody = jsonDecode(response.body);

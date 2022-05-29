@@ -23,16 +23,15 @@ void main() {
   });
 
   test('.fieldName', () {
-    expect(TweetExpansion.authorId.fieldName, 'author_id');
-    expect(TweetExpansion.inReplyToUserId.fieldName, 'in_reply_to_user_id');
-    expect(TweetExpansion.attachmentsPollIds.fieldName, 'attachments.poll_ids');
-    expect(TweetExpansion.attachmentsMediaKeys.fieldName,
-        'attachments.media_keys');
-    expect(TweetExpansion.entitiesMentionsUsername.fieldName,
+    expect(TweetExpansion.authorId.value, 'author_id');
+    expect(TweetExpansion.inReplyToUserId.value, 'in_reply_to_user_id');
+    expect(TweetExpansion.attachmentsPollIds.value, 'attachments.poll_ids');
+    expect(TweetExpansion.attachmentsMediaKeys.value, 'attachments.media_keys');
+    expect(TweetExpansion.entitiesMentionsUsername.value,
         'entities.mentions.username');
-    expect(TweetExpansion.geoPlaceId.fieldName, 'geo.place_id');
-    expect(TweetExpansion.referencedTweetsId.fieldName, 'referenced_tweets.id');
-    expect(TweetExpansion.referencedTweetsIdAuthorId.fieldName,
+    expect(TweetExpansion.geoPlaceId.value, 'geo.place_id');
+    expect(TweetExpansion.referencedTweetsId.value, 'referenced_tweets.id');
+    expect(TweetExpansion.referencedTweetsIdAuthorId.value,
         'referenced_tweets.id.author_id');
   });
 }

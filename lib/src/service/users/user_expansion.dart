@@ -11,7 +11,7 @@ enum UserExpansion implements Expansion {
   pinnedTweetId('pinned_tweet_id');
 
   @override
-  final String fieldName;
+  final String value;
 
-  const UserExpansion(this.fieldName);
+  const UserExpansion(this.value);
 }

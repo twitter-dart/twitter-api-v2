@@ -122,6 +122,10 @@ void main() async {
         v2.TweetExpansion.authorId,
         v2.TweetExpansion.inReplyToUserId,
       ],
+      tweetFields: [
+        v2.TweetField.conversationId,
+        v2.TweetField.publicMetrics,
+      ],
     );
 
     await twitter.tweetsService.createLike(

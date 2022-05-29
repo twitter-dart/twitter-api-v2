@@ -14,6 +14,6 @@ void main() {
   });
 
   test('.fieldName', () {
-    expect(UserExpansion.pinnedTweetId.fieldName, 'pinned_tweet_id');
+    expect(UserExpansion.pinnedTweetId.value, 'pinned_tweet_id');
   });
 }

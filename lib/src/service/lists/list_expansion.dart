@@ -11,7 +11,7 @@ enum ListExpansion implements Expansion {
   ownerId('owner_id');
 
   @override
-  final String fieldName;
+  final String value;
 
-  const ListExpansion(this.fieldName);
+  const ListExpansion(this.value);
 }

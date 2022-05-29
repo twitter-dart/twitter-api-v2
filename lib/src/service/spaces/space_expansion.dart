@@ -20,7 +20,7 @@ enum SpaceExpansion implements Expansion {
   hostIds('host_ids');
 
   @override
-  final String fieldName;
+  final String value;
 
-  const SpaceExpansion(this.fieldName);
+  const SpaceExpansion(this.value);
 }
