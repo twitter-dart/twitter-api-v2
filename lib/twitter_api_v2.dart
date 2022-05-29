@@ -26,7 +26,7 @@ export 'package:twitter_api_v2/src/service/spaces/spaces_service.dart';
 export 'package:twitter_api_v2/src/service/tweets/filtering_rule_data.dart';
 export 'package:twitter_api_v2/src/service/tweets/filtering_rule_meta.dart';
 export 'package:twitter_api_v2/src/service/tweets/public_tweet_metrics.dart';
-export 'package:twitter_api_v2/src/service/tweets/referenced_tweet_data.dart';
+export 'package:twitter_api_v2/src/service/tweets/referenced_tweet.dart';
 export 'package:twitter_api_v2/src/service/tweets/reply_setting.dart';
 export 'package:twitter_api_v2/src/service/tweets/tweet_attachments.dart';
 export 'package:twitter_api_v2/src/service/tweets/tweet_context_annotation.dart';

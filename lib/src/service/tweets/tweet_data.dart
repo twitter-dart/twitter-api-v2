@@ -10,7 +10,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 // Project imports:
 import '../places/place_data.dart';
 import 'public_tweet_metrics.dart';
-import 'referenced_tweet_data.dart';
+import 'referenced_tweet.dart';
 import 'reply_setting.dart';
 import 'tweet_attachments.dart';
 import 'tweet_context_annotation_group.dart';
@@ -28,8 +28,7 @@ class TweetData with _$TweetData {
     @JsonKey(name: 'author_id') String? authorId,
     @JsonKey(name: 'in_reply_to_user_id') String? inReplyToUserId,
     @JsonKey(name: 'conversation_id') String? conversationId,
-    @JsonKey(name: 'referenced_tweets')
-        List<ReferencedTweetData>? referencedTweets,
+    @JsonKey(name: 'referenced_tweets') List<ReferencedTweet>? referencedTweets,
     @JsonKey(name: 'context_annotations')
         List<TweetContextAnnotationGroup>? contextAnnotations,
     TweetEntities? entities,

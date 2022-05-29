@@ -29,7 +29,7 @@ mixin _$TweetData {
   @JsonKey(name: 'conversation_id')
   String? get conversationId => throw _privateConstructorUsedError;
   @JsonKey(name: 'referenced_tweets')
-  List<ReferencedTweetData>? get referencedTweets =>
+  List<ReferencedTweet>? get referencedTweets =>
       throw _privateConstructorUsedError;
   @JsonKey(name: 'context_annotations')
   List<TweetContextAnnotationGroup>? get contextAnnotations =>
@@ -69,7 +69,7 @@ abstract class $TweetDataCopyWith<$Res> {
       @JsonKey(name: 'conversation_id')
           String? conversationId,
       @JsonKey(name: 'referenced_tweets')
-          List<ReferencedTweetData>? referencedTweets,
+          List<ReferencedTweet>? referencedTweets,
       @JsonKey(name: 'context_annotations')
           List<TweetContextAnnotationGroup>? contextAnnotations,
       TweetEntities? entities,
@@ -146,7 +146,7 @@ class _$TweetDataCopyWithImpl<$Res> implements $TweetDataCopyWith<$Res> {
       referencedTweets: referencedTweets == freezed
           ? _value.referencedTweets
           : referencedTweets // ignore: cast_nullable_to_non_nullable
-              as List<ReferencedTweetData>?,
+              as List<ReferencedTweet>?,
       contextAnnotations: contextAnnotations == freezed
           ? _value.contextAnnotations
           : contextAnnotations // ignore: cast_nullable_to_non_nullable
@@ -266,7 +266,7 @@ abstract class _$$_TweetDataCopyWith<$Res> implements $TweetDataCopyWith<$Res> {
       @JsonKey(name: 'conversation_id')
           String? conversationId,
       @JsonKey(name: 'referenced_tweets')
-          List<ReferencedTweetData>? referencedTweets,
+          List<ReferencedTweet>? referencedTweets,
       @JsonKey(name: 'context_annotations')
           List<TweetContextAnnotationGroup>? contextAnnotations,
       TweetEntities? entities,
@@ -350,7 +350,7 @@ class __$$_TweetDataCopyWithImpl<$Res> extends _$TweetDataCopyWithImpl<$Res>
       referencedTweets: referencedTweets == freezed
           ? _value._referencedTweets
           : referencedTweets // ignore: cast_nullable_to_non_nullable
-              as List<ReferencedTweetData>?,
+              as List<ReferencedTweet>?,
       contextAnnotations: contextAnnotations == freezed
           ? _value._contextAnnotations
           : contextAnnotations // ignore: cast_nullable_to_non_nullable
@@ -412,7 +412,7 @@ class _$_TweetData implements _TweetData {
       @JsonKey(name: 'conversation_id')
           this.conversationId,
       @JsonKey(name: 'referenced_tweets')
-          final List<ReferencedTweetData>? referencedTweets,
+          final List<ReferencedTweet>? referencedTweets,
       @JsonKey(name: 'context_annotations')
           final List<TweetContextAnnotationGroup>? contextAnnotations,
       this.entities,
@@ -448,10 +448,10 @@ class _$_TweetData implements _TweetData {
   @override
   @JsonKey(name: 'conversation_id')
   final String? conversationId;
-  final List<ReferencedTweetData>? _referencedTweets;
+  final List<ReferencedTweet>? _referencedTweets;
   @override
   @JsonKey(name: 'referenced_tweets')
-  List<ReferencedTweetData>? get referencedTweets {
+  List<ReferencedTweet>? get referencedTweets {
     final value = _referencedTweets;
     if (value == null) return null;
     // ignore: implicit_dynamic_type
@@ -574,7 +574,7 @@ abstract class _TweetData implements TweetData {
       @JsonKey(name: 'conversation_id')
           final String? conversationId,
       @JsonKey(name: 'referenced_tweets')
-          final List<ReferencedTweetData>? referencedTweets,
+          final List<ReferencedTweet>? referencedTweets,
       @JsonKey(name: 'context_annotations')
           final List<TweetContextAnnotationGroup>? contextAnnotations,
       final TweetEntities? entities,
@@ -610,7 +610,7 @@ abstract class _TweetData implements TweetData {
   String? get conversationId => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'referenced_tweets')
-  List<ReferencedTweetData>? get referencedTweets =>
+  List<ReferencedTweet>? get referencedTweets =>
       throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'context_annotations')

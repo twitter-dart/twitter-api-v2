@@ -23,7 +23,7 @@ _$_TweetData _$$_TweetDataFromJson(Map json) => $checkedCreate(
           referencedTweets: $checkedConvert(
               'referenced_tweets',
               (v) => (v as List<dynamic>?)
-                  ?.map((e) => ReferencedTweetData.fromJson(
+                  ?.map((e) => ReferencedTweet.fromJson(
                       Map<String, Object?>.from(e as Map)))
                   .toList()),
           contextAnnotations: $checkedConvert(
