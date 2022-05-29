@@ -1,5 +1,36 @@
 # Release Note
 
+## v2.3.0
+
+- Added `tweetFields` argument. ([#179](https://github.com/twitter-dart/twitter-api-v2/issues/179))
+  - GET /2/users/:id/bookmarks
+  - GET /2/tweets/search/stream
+  - GET /2/tweets/:id/liking_users
+  - GET /2/users/:id/liked_tweets
+  - GET /2/tweets/:id/quote_tweets
+  - GET /2/tweets/:id/retweeted_by
+  - GET /2/tweets/search/all
+  - GET /2/tweets/search/recent
+  - GET /2/users/:id/mentions
+  - GET /2/users/:id/timelines/reverse_chronological
+  - GET /2/users/:id/tweets
+  - GET /2/tweets
+  - GET /2/tweets/:id
+  - GET /2/tweets/sample/stream
+  - GET /2/users/:id/blocking
+  - GET /2/users/:id/followers
+  - GET /2/users/:id/following
+  - GET /2/users/:id/muting
+  - GET /2/users
+  - GET /2/users/:id
+  - GET /2/users/by
+  - GET /2/users/by/username/:username
+  - GET /2/users/me
+  - GET /2/spaces/:id/buyers
+  - GET /2/spaces/:id/tweets
+  - GET /2/lists/:id/tweets
+  - GET /2/lists/:id/members
+
 ## v2.2.0
 
 - Added `Reverse Chronological Timelines` endpoint. ([#164](https://github.com/twitter-dart/twitter-api-v2/issues/164))
