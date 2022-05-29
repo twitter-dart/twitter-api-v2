@@ -2,18 +2,18 @@
 
 // ignore_for_file: non_constant_identifier_names
 
-part of 'tweet_public_metrics.dart';
+part of 'public_tweet_metrics.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_TweetPublicMetrics _$$_TweetPublicMetricsFromJson(Map json) =>
+_$_PublicTweetMetrics _$$_PublicTweetMetricsFromJson(Map json) =>
     $checkedCreate(
-      r'_$_TweetPublicMetrics',
+      r'_$_PublicTweetMetrics',
       json,
       ($checkedConvert) {
-        final val = _$_TweetPublicMetrics(
+        final val = _$_PublicTweetMetrics(
           likeCount: $checkedConvert('like_count', (v) => v as int),
           retweetCount: $checkedConvert('retweet_count', (v) => v as int),
           replyCount: $checkedConvert('reply_count', (v) => v as int),
@@ -29,8 +29,8 @@ _$_TweetPublicMetrics _$$_TweetPublicMetricsFromJson(Map json) =>
       },
     );
 
-Map<String, dynamic> _$$_TweetPublicMetricsToJson(
-        _$_TweetPublicMetrics instance) =>
+Map<String, dynamic> _$$_PublicTweetMetricsToJson(
+        _$_PublicTweetMetrics instance) =>
     <String, dynamic>{
       'like_count': instance.likeCount,
       'retweet_count': instance.retweetCount,

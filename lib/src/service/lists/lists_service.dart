@@ -8,6 +8,7 @@ import '../../client/user_context.dart';
 import '../base_service.dart';
 import '../tweets/tweet_data.dart';
 import '../tweets/tweet_expansion.dart';
+import '../tweets/tweet_field.dart';
 import '../tweets/tweet_meta.dart';
 import '../twitter_response.dart';
 import '../users/user_data.dart';
@@ -213,6 +214,16 @@ abstract class ListsService {
   ///                 object, and will also include the ID so that you can match
   ///                 this data object to the original Tweet object.
   ///
+  /// - [tweetFields]: Expansions enable you to request additional data objects
+  ///                  that relate to the originally returned Tweets. Submit a
+  ///                  list of desired expansions in a comma-separated list
+  ///                  without spaces. The ID that represents the expanded data
+  ///                  object will be included directly in the Tweet data
+  ///                  object, but the expanded object metadata will be returned
+  ///                  within the includes response object, and will also
+  ///                  include the ID so that you can match this data object to
+  ///                  the original Tweet object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/lists/:id/tweets
@@ -233,6 +244,7 @@ abstract class ListsService {
     int? maxResults,
     String? paginationToken,
     List<TweetExpansion> expansions,
+    List<TweetField>? tweetFields,
   });
 
   /// Enables the authenticated user to create a public List.
@@ -570,6 +582,15 @@ abstract class ListsService {
   ///                 object, and will also include the ID so that you can match
   ///                 this data object to the original Tweet object.
   ///
+  /// - [tweetFields]: This fields parameter enables you to select which
+  ///                  specific Tweet fields will deliver in each returned
+  ///                  pinned Tweet. The Tweet fields will only return if the
+  ///                  user has a pinned Tweet and if you've also included the
+  ///                  `expansions=pinned_tweet_id` query parameter in your
+  ///                  request. While the referenced Tweet ID will be located
+  ///                  in the original Tweet object, you will find this ID and
+  ///                  all additional Tweet fields in the includes data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/lists/:id/members
@@ -590,6 +611,7 @@ abstract class ListsService {
     int? maxResults,
     String? paginationToken,
     List<UserExpansion> expansions,
+    List<TweetField>? tweetFields,
   });
 
   /// Returns all Lists a specified user is a member of.
@@ -728,6 +750,7 @@ class _ListsService extends BaseService implements ListsService {
     int? maxResults,
     String? paginationToken,
     List<TweetExpansion>? expansions,
+    List<TweetField>? tweetFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -737,6 +760,7 @@ class _ListsService extends BaseService implements ListsService {
             'max_results': maxResults,
             'pagination_token': paginationToken,
             'expansions': super.serializeExpansions(expansions),
+            'tweet.fields': super.serializeFields(tweetFields),
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -895,6 +919,7 @@ class _ListsService extends BaseService implements ListsService {
     int? maxResults,
     String? paginationToken,
     List<UserExpansion>? expansions,
+    List<TweetField>? tweetFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -904,6 +929,7 @@ class _ListsService extends BaseService implements ListsService {
             'max_results': maxResults,
             'pagination_token': paginationToken,
             'expansions': super.serializeExpansions(expansions),
+            'tweet.fields': super.serializeFields(tweetFields),
           },
         ),
         dataBuilder: UserData.fromJson,

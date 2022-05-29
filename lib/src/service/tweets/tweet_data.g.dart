@@ -48,7 +48,7 @@ _$_TweetData _$$_TweetDataFromJson(Map json) => $checkedCreate(
               'public_metrics',
               (v) => v == null
                   ? null
-                  : TweetPublicMetrics.fromJson(
+                  : PublicTweetMetrics.fromJson(
                       Map<String, Object?>.from(v as Map))),
           geo: $checkedConvert(
               'geo',

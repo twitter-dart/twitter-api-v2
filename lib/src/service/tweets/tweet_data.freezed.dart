@@ -37,7 +37,7 @@ mixin _$TweetData {
   TweetEntities? get entities => throw _privateConstructorUsedError;
   TweetAttachments? get attachments => throw _privateConstructorUsedError;
   @JsonKey(name: 'public_metrics')
-  TweetPublicMetrics? get publicMetrics => throw _privateConstructorUsedError;
+  PublicTweetMetrics? get publicMetrics => throw _privateConstructorUsedError;
   PlaceData? get geo => throw _privateConstructorUsedError;
   String? get lang => throw _privateConstructorUsedError;
   @JsonKey(name: 'possibly_sensitive')
@@ -74,7 +74,7 @@ abstract class $TweetDataCopyWith<$Res> {
       TweetEntities? entities,
       TweetAttachments? attachments,
       @JsonKey(name: 'public_metrics')
-          TweetPublicMetrics? publicMetrics,
+          PublicTweetMetrics? publicMetrics,
       PlaceData? geo,
       String? lang,
       @JsonKey(name: 'possibly_sensitive')
@@ -87,7 +87,7 @@ abstract class $TweetDataCopyWith<$Res> {
 
   $TweetEntitiesCopyWith<$Res>? get entities;
   $TweetAttachmentsCopyWith<$Res>? get attachments;
-  $TweetPublicMetricsCopyWith<$Res>? get publicMetrics;
+  $PublicTweetMetricsCopyWith<$Res>? get publicMetrics;
   $PlaceDataCopyWith<$Res>? get geo;
 }
 
@@ -158,7 +158,7 @@ class _$TweetDataCopyWithImpl<$Res> implements $TweetDataCopyWith<$Res> {
       publicMetrics: publicMetrics == freezed
           ? _value.publicMetrics
           : publicMetrics // ignore: cast_nullable_to_non_nullable
-              as TweetPublicMetrics?,
+              as PublicTweetMetrics?,
       geo: geo == freezed
           ? _value.geo
           : geo // ignore: cast_nullable_to_non_nullable
@@ -209,12 +209,12 @@ class _$TweetDataCopyWithImpl<$Res> implements $TweetDataCopyWith<$Res> {
   }
 
   @override
-  $TweetPublicMetricsCopyWith<$Res>? get publicMetrics {
+  $PublicTweetMetricsCopyWith<$Res>? get publicMetrics {
     if (_value.publicMetrics == null) {
       return null;
     }
 
-    return $TweetPublicMetricsCopyWith<$Res>(_value.publicMetrics!, (value) {
+    return $PublicTweetMetricsCopyWith<$Res>(_value.publicMetrics!, (value) {
       return _then(_value.copyWith(publicMetrics: value));
     });
   }
@@ -253,7 +253,7 @@ abstract class _$$_TweetDataCopyWith<$Res> implements $TweetDataCopyWith<$Res> {
       TweetEntities? entities,
       TweetAttachments? attachments,
       @JsonKey(name: 'public_metrics')
-          TweetPublicMetrics? publicMetrics,
+          PublicTweetMetrics? publicMetrics,
       PlaceData? geo,
       String? lang,
       @JsonKey(name: 'possibly_sensitive')
@@ -269,7 +269,7 @@ abstract class _$$_TweetDataCopyWith<$Res> implements $TweetDataCopyWith<$Res> {
   @override
   $TweetAttachmentsCopyWith<$Res>? get attachments;
   @override
-  $TweetPublicMetricsCopyWith<$Res>? get publicMetrics;
+  $PublicTweetMetricsCopyWith<$Res>? get publicMetrics;
   @override
   $PlaceDataCopyWith<$Res>? get geo;
 }
@@ -343,7 +343,7 @@ class __$$_TweetDataCopyWithImpl<$Res> extends _$TweetDataCopyWithImpl<$Res>
       publicMetrics: publicMetrics == freezed
           ? _value.publicMetrics
           : publicMetrics // ignore: cast_nullable_to_non_nullable
-              as TweetPublicMetrics?,
+              as PublicTweetMetrics?,
       geo: geo == freezed
           ? _value.geo
           : geo // ignore: cast_nullable_to_non_nullable
@@ -446,7 +446,7 @@ class _$_TweetData implements _TweetData {
   final TweetAttachments? attachments;
   @override
   @JsonKey(name: 'public_metrics')
-  final TweetPublicMetrics? publicMetrics;
+  final PublicTweetMetrics? publicMetrics;
   @override
   final PlaceData? geo;
   @override
@@ -548,7 +548,7 @@ abstract class _TweetData implements TweetData {
       final TweetEntities? entities,
       final TweetAttachments? attachments,
       @JsonKey(name: 'public_metrics')
-          final TweetPublicMetrics? publicMetrics,
+          final PublicTweetMetrics? publicMetrics,
       final PlaceData? geo,
       final String? lang,
       @JsonKey(name: 'possibly_sensitive')
@@ -589,7 +589,7 @@ abstract class _TweetData implements TweetData {
   TweetAttachments? get attachments => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'public_metrics')
-  TweetPublicMetrics? get publicMetrics => throw _privateConstructorUsedError;
+  PublicTweetMetrics? get publicMetrics => throw _privateConstructorUsedError;
   @override
   PlaceData? get geo => throw _privateConstructorUsedError;
   @override

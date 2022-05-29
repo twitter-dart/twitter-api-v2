@@ -7,18 +7,18 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'tweet_public_metrics.freezed.dart';
-part 'tweet_public_metrics.g.dart';
+part 'public_tweet_metrics.freezed.dart';
+part 'public_tweet_metrics.g.dart';
 
 @freezed
-class TweetPublicMetrics with _$TweetPublicMetrics {
-  const factory TweetPublicMetrics({
+class PublicTweetMetrics with _$PublicTweetMetrics {
+  const factory PublicTweetMetrics({
     @JsonKey(name: 'like_count') required int likeCount,
     @JsonKey(name: 'retweet_count') required int retweetCount,
     @JsonKey(name: 'reply_count') required int replyCount,
     @JsonKey(name: 'quote_count') required int quoteCount,
-  }) = _TweetPublicMetrics;
+  }) = _PublicTweetMetrics;
 
-  factory TweetPublicMetrics.fromJson(Map<String, Object?> json) =>
-      _$TweetPublicMetricsFromJson(json);
+  factory PublicTweetMetrics.fromJson(Map<String, Object?> json) =>
+      _$PublicTweetMetricsFromJson(json);
 }

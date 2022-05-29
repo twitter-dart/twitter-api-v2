@@ -7,9 +7,12 @@ import '../../client/client_context.dart';
 import '../../client/user_context.dart';
 import '../base_service.dart';
 import '../tweets/tweet_data.dart';
+import '../tweets/tweet_expansion.dart';
+import '../tweets/tweet_field.dart';
 import '../tweets/tweet_meta.dart';
 import '../twitter_response.dart';
 import '../users/user_data.dart';
+import '../users/user_expansion.dart';
 import 'space_data.dart';
 import 'space_expansion.dart';
 import 'space_meta.dart';
@@ -149,6 +152,15 @@ abstract class SpacesService {
   ///                 that you can match this data object to the original Space
   ///                 object.
   ///
+  /// - [tweetFields]: This fields parameter enables you to select which
+  ///                  specific Tweet fields will deliver in each returned
+  ///                  pinned Tweet. The Tweet fields will only return if the
+  ///                  user has a pinned Tweet and if you've also included the
+  ///                  `expansions=pinned_tweet_id` query parameter in your
+  ///                  request. While the referenced Tweet ID will be located
+  ///                  in the original Tweet object, you will find this ID and
+  ///                  all additional Tweet fields in the includes data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/spaces/:id/buyers
@@ -161,8 +173,11 @@ abstract class SpacesService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/spaces/lookup/api-reference/get-spaces-id-buyers
-  Future<TwitterResponse<List<UserData>, void>> lookupBuyers(
-      {required String spaceId, List<SpaceExpansion>? expansions});
+  Future<TwitterResponse<List<UserData>, void>> lookupBuyers({
+    required String spaceId,
+    List<UserExpansion>? expansions,
+    List<TweetField>? tweetFields,
+  });
 
   /// Returns Tweets shared in the requested Spaces.
   ///
@@ -181,6 +196,16 @@ abstract class SpacesService {
   ///                 that you can match this data object to the original Space
   ///                 object.
   ///
+  /// - [tweetFields]: Expansions enable you to request additional data objects
+  ///                  that relate to the originally returned Tweets. Submit a
+  ///                  list of desired expansions in a comma-separated list
+  ///                  without spaces. The ID that represents the expanded data
+  ///                  object will be included directly in the Tweet data
+  ///                  object, but the expanded object metadata will be returned
+  ///                  within the includes response object, and will also
+  ///                  include the ID so that you can match this data object to
+  ///                  the original Tweet object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/spaces/:id/tweets
@@ -193,8 +218,11 @@ abstract class SpacesService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/spaces/lookup/api-reference/get-spaces-id-tweets
-  Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupTweets(
-      {required String spaceId, List<SpaceExpansion>? expansions});
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupTweets({
+    required String spaceId,
+    List<TweetExpansion>? expansions,
+    List<TweetField>? tweetFields,
+  });
 
   /// Returns live or scheduled Spaces created by the specified user IDs.
   /// Up to 100 comma-separated IDs can be looked up using this endpoint.
@@ -287,28 +315,36 @@ class _SpacesService extends BaseService implements SpacesService {
       );
 
   @override
-  Future<TwitterResponse<List<UserData>, void>> lookupBuyers(
-          {required String spaceId, List<SpaceExpansion>? expansions}) async =>
+  Future<TwitterResponse<List<UserData>, void>> lookupBuyers({
+    required String spaceId,
+    List<UserExpansion>? expansions,
+    List<TweetField>? tweetFields,
+  }) async =>
       super.buildMultiDataResponse(
         await super.get(
           UserContext.oauth2Only,
           '/2/spaces/$spaceId/buyers',
           queryParameters: {
             'expansions': super.serializeExpansions(expansions),
+            'tweet.fields': super.serializeFields(tweetFields),
           },
         ),
         dataBuilder: UserData.fromJson,
       );
 
   @override
-  Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupTweets(
-          {required String spaceId, List<SpaceExpansion>? expansions}) async =>
+  Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupTweets({
+    required String spaceId,
+    List<TweetExpansion>? expansions,
+    List<TweetField>? tweetFields,
+  }) async =>
       super.buildMultiDataResponse(
         await super.get(
           UserContext.oauth2Only,
           '/2/spaces/$spaceId/tweets',
           queryParameters: {
             'expansions': super.serializeExpansions(expansions),
+            'tweet.fields': super.serializeFields(tweetFields),
           },
         ),
         dataBuilder: TweetData.fromJson,

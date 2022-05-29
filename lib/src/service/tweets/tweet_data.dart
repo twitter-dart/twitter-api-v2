@@ -9,12 +9,12 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
 import '../places/place_data.dart';
+import 'public_tweet_metrics.dart';
 import 'referenced_tweet_data.dart';
 import 'reply_setting.dart';
 import 'tweet_attachments.dart';
 import 'tweet_context_annotation_group.dart';
 import 'tweet_entities.dart';
-import 'tweet_public_metrics.dart';
 
 part 'tweet_data.freezed.dart';
 part 'tweet_data.g.dart';
@@ -33,7 +33,7 @@ class TweetData with _$TweetData {
         List<TweetContextAnnotationGroup>? contextAnnotations,
     TweetEntities? entities,
     TweetAttachments? attachments,
-    @JsonKey(name: 'public_metrics') TweetPublicMetrics? publicMetrics,
+    @JsonKey(name: 'public_metrics') PublicTweetMetrics? publicMetrics,
     PlaceData? geo,
     String? lang,
     @JsonKey(name: 'possibly_sensitive') bool? isPossiblySensitive,
