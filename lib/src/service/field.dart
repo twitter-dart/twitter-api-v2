@@ -3,6 +3,6 @@
 // modification, are permitted provided the conditions.
 
 abstract class Field {
-  /// Returns the field name.
+  /// Returns the value.
   String get value;
 }
