@@ -26,12 +26,27 @@ mixin _$TweetData {
   String? get authorId => throw _privateConstructorUsedError;
   @JsonKey(name: 'in_reply_to_user_id')
   String? get inReplyToUserId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'conversation_id')
+  String? get conversationId => throw _privateConstructorUsedError;
   @JsonKey(name: 'referenced_tweets')
   List<ReferencedTweetData>? get referencedTweets =>
       throw _privateConstructorUsedError;
+  @JsonKey(name: 'context_annotations')
+  List<TweetContextAnnotationGroup>? get contextAnnotations =>
+      throw _privateConstructorUsedError;
   TweetEntities? get entities => throw _privateConstructorUsedError;
   TweetAttachments? get attachments => throw _privateConstructorUsedError;
+  @JsonKey(name: 'public_metrics')
+  TweetPublicMetrics? get publicMetrics => throw _privateConstructorUsedError;
   PlaceData? get geo => throw _privateConstructorUsedError;
+  String? get lang => throw _privateConstructorUsedError;
+  @JsonKey(name: 'possibly_sensitive')
+  bool? get isPossiblySensitive => throw _privateConstructorUsedError;
+  @JsonKey(name: 'reply_settings')
+  ReplySetting? get replySetting => throw _privateConstructorUsedError;
+  String? get source => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_at')
+  DateTime? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -50,14 +65,29 @@ abstract class $TweetDataCopyWith<$Res> {
           String? authorId,
       @JsonKey(name: 'in_reply_to_user_id')
           String? inReplyToUserId,
+      @JsonKey(name: 'conversation_id')
+          String? conversationId,
       @JsonKey(name: 'referenced_tweets')
           List<ReferencedTweetData>? referencedTweets,
+      @JsonKey(name: 'context_annotations')
+          List<TweetContextAnnotationGroup>? contextAnnotations,
       TweetEntities? entities,
       TweetAttachments? attachments,
-      PlaceData? geo});
+      @JsonKey(name: 'public_metrics')
+          TweetPublicMetrics? publicMetrics,
+      PlaceData? geo,
+      String? lang,
+      @JsonKey(name: 'possibly_sensitive')
+          bool? isPossiblySensitive,
+      @JsonKey(name: 'reply_settings')
+          ReplySetting? replySetting,
+      String? source,
+      @JsonKey(name: 'created_at')
+          DateTime? createdAt});
 
   $TweetEntitiesCopyWith<$Res>? get entities;
   $TweetAttachmentsCopyWith<$Res>? get attachments;
+  $TweetPublicMetricsCopyWith<$Res>? get publicMetrics;
   $PlaceDataCopyWith<$Res>? get geo;
 }
 
@@ -75,10 +105,18 @@ class _$TweetDataCopyWithImpl<$Res> implements $TweetDataCopyWith<$Res> {
     Object? text = freezed,
     Object? authorId = freezed,
     Object? inReplyToUserId = freezed,
+    Object? conversationId = freezed,
     Object? referencedTweets = freezed,
+    Object? contextAnnotations = freezed,
     Object? entities = freezed,
     Object? attachments = freezed,
+    Object? publicMetrics = freezed,
     Object? geo = freezed,
+    Object? lang = freezed,
+    Object? isPossiblySensitive = freezed,
+    Object? replySetting = freezed,
+    Object? source = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -97,10 +135,18 @@ class _$TweetDataCopyWithImpl<$Res> implements $TweetDataCopyWith<$Res> {
           ? _value.inReplyToUserId
           : inReplyToUserId // ignore: cast_nullable_to_non_nullable
               as String?,
+      conversationId: conversationId == freezed
+          ? _value.conversationId
+          : conversationId // ignore: cast_nullable_to_non_nullable
+              as String?,
       referencedTweets: referencedTweets == freezed
           ? _value.referencedTweets
           : referencedTweets // ignore: cast_nullable_to_non_nullable
               as List<ReferencedTweetData>?,
+      contextAnnotations: contextAnnotations == freezed
+          ? _value.contextAnnotations
+          : contextAnnotations // ignore: cast_nullable_to_non_nullable
+              as List<TweetContextAnnotationGroup>?,
       entities: entities == freezed
           ? _value.entities
           : entities // ignore: cast_nullable_to_non_nullable
@@ -109,10 +155,34 @@ class _$TweetDataCopyWithImpl<$Res> implements $TweetDataCopyWith<$Res> {
           ? _value.attachments
           : attachments // ignore: cast_nullable_to_non_nullable
               as TweetAttachments?,
+      publicMetrics: publicMetrics == freezed
+          ? _value.publicMetrics
+          : publicMetrics // ignore: cast_nullable_to_non_nullable
+              as TweetPublicMetrics?,
       geo: geo == freezed
           ? _value.geo
           : geo // ignore: cast_nullable_to_non_nullable
               as PlaceData?,
+      lang: lang == freezed
+          ? _value.lang
+          : lang // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isPossiblySensitive: isPossiblySensitive == freezed
+          ? _value.isPossiblySensitive
+          : isPossiblySensitive // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      replySetting: replySetting == freezed
+          ? _value.replySetting
+          : replySetting // ignore: cast_nullable_to_non_nullable
+              as ReplySetting?,
+      source: source == freezed
+          ? _value.source
+          : source // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 
@@ -135,6 +205,17 @@ class _$TweetDataCopyWithImpl<$Res> implements $TweetDataCopyWith<$Res> {
 
     return $TweetAttachmentsCopyWith<$Res>(_value.attachments!, (value) {
       return _then(_value.copyWith(attachments: value));
+    });
+  }
+
+  @override
+  $TweetPublicMetricsCopyWith<$Res>? get publicMetrics {
+    if (_value.publicMetrics == null) {
+      return null;
+    }
+
+    return $TweetPublicMetricsCopyWith<$Res>(_value.publicMetrics!, (value) {
+      return _then(_value.copyWith(publicMetrics: value));
     });
   }
 
@@ -163,16 +244,32 @@ abstract class _$$_TweetDataCopyWith<$Res> implements $TweetDataCopyWith<$Res> {
           String? authorId,
       @JsonKey(name: 'in_reply_to_user_id')
           String? inReplyToUserId,
+      @JsonKey(name: 'conversation_id')
+          String? conversationId,
       @JsonKey(name: 'referenced_tweets')
           List<ReferencedTweetData>? referencedTweets,
+      @JsonKey(name: 'context_annotations')
+          List<TweetContextAnnotationGroup>? contextAnnotations,
       TweetEntities? entities,
       TweetAttachments? attachments,
-      PlaceData? geo});
+      @JsonKey(name: 'public_metrics')
+          TweetPublicMetrics? publicMetrics,
+      PlaceData? geo,
+      String? lang,
+      @JsonKey(name: 'possibly_sensitive')
+          bool? isPossiblySensitive,
+      @JsonKey(name: 'reply_settings')
+          ReplySetting? replySetting,
+      String? source,
+      @JsonKey(name: 'created_at')
+          DateTime? createdAt});
 
   @override
   $TweetEntitiesCopyWith<$Res>? get entities;
   @override
   $TweetAttachmentsCopyWith<$Res>? get attachments;
+  @override
+  $TweetPublicMetricsCopyWith<$Res>? get publicMetrics;
   @override
   $PlaceDataCopyWith<$Res>? get geo;
 }
@@ -193,10 +290,18 @@ class __$$_TweetDataCopyWithImpl<$Res> extends _$TweetDataCopyWithImpl<$Res>
     Object? text = freezed,
     Object? authorId = freezed,
     Object? inReplyToUserId = freezed,
+    Object? conversationId = freezed,
     Object? referencedTweets = freezed,
+    Object? contextAnnotations = freezed,
     Object? entities = freezed,
     Object? attachments = freezed,
+    Object? publicMetrics = freezed,
     Object? geo = freezed,
+    Object? lang = freezed,
+    Object? isPossiblySensitive = freezed,
+    Object? replySetting = freezed,
+    Object? source = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_$_TweetData(
       id: id == freezed
@@ -215,10 +320,18 @@ class __$$_TweetDataCopyWithImpl<$Res> extends _$TweetDataCopyWithImpl<$Res>
           ? _value.inReplyToUserId
           : inReplyToUserId // ignore: cast_nullable_to_non_nullable
               as String?,
+      conversationId: conversationId == freezed
+          ? _value.conversationId
+          : conversationId // ignore: cast_nullable_to_non_nullable
+              as String?,
       referencedTweets: referencedTweets == freezed
           ? _value._referencedTweets
           : referencedTweets // ignore: cast_nullable_to_non_nullable
               as List<ReferencedTweetData>?,
+      contextAnnotations: contextAnnotations == freezed
+          ? _value._contextAnnotations
+          : contextAnnotations // ignore: cast_nullable_to_non_nullable
+              as List<TweetContextAnnotationGroup>?,
       entities: entities == freezed
           ? _value.entities
           : entities // ignore: cast_nullable_to_non_nullable
@@ -227,10 +340,34 @@ class __$$_TweetDataCopyWithImpl<$Res> extends _$TweetDataCopyWithImpl<$Res>
           ? _value.attachments
           : attachments // ignore: cast_nullable_to_non_nullable
               as TweetAttachments?,
+      publicMetrics: publicMetrics == freezed
+          ? _value.publicMetrics
+          : publicMetrics // ignore: cast_nullable_to_non_nullable
+              as TweetPublicMetrics?,
       geo: geo == freezed
           ? _value.geo
           : geo // ignore: cast_nullable_to_non_nullable
               as PlaceData?,
+      lang: lang == freezed
+          ? _value.lang
+          : lang // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isPossiblySensitive: isPossiblySensitive == freezed
+          ? _value.isPossiblySensitive
+          : isPossiblySensitive // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      replySetting: replySetting == freezed
+          ? _value.replySetting
+          : replySetting // ignore: cast_nullable_to_non_nullable
+              as ReplySetting?,
+      source: source == freezed
+          ? _value.source
+          : source // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -245,12 +382,27 @@ class _$_TweetData implements _TweetData {
           this.authorId,
       @JsonKey(name: 'in_reply_to_user_id')
           this.inReplyToUserId,
+      @JsonKey(name: 'conversation_id')
+          this.conversationId,
       @JsonKey(name: 'referenced_tweets')
           final List<ReferencedTweetData>? referencedTweets,
+      @JsonKey(name: 'context_annotations')
+          final List<TweetContextAnnotationGroup>? contextAnnotations,
       this.entities,
       this.attachments,
-      this.geo})
-      : _referencedTweets = referencedTweets;
+      @JsonKey(name: 'public_metrics')
+          this.publicMetrics,
+      this.geo,
+      this.lang,
+      @JsonKey(name: 'possibly_sensitive')
+          this.isPossiblySensitive,
+      @JsonKey(name: 'reply_settings')
+          this.replySetting,
+      this.source,
+      @JsonKey(name: 'created_at')
+          this.createdAt})
+      : _referencedTweets = referencedTweets,
+        _contextAnnotations = contextAnnotations;
 
   factory _$_TweetData.fromJson(Map<String, dynamic> json) =>
       _$$_TweetDataFromJson(json);
@@ -265,6 +417,9 @@ class _$_TweetData implements _TweetData {
   @override
   @JsonKey(name: 'in_reply_to_user_id')
   final String? inReplyToUserId;
+  @override
+  @JsonKey(name: 'conversation_id')
+  final String? conversationId;
   final List<ReferencedTweetData>? _referencedTweets;
   @override
   @JsonKey(name: 'referenced_tweets')
@@ -275,16 +430,42 @@ class _$_TweetData implements _TweetData {
     return EqualUnmodifiableListView(value);
   }
 
+  final List<TweetContextAnnotationGroup>? _contextAnnotations;
+  @override
+  @JsonKey(name: 'context_annotations')
+  List<TweetContextAnnotationGroup>? get contextAnnotations {
+    final value = _contextAnnotations;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final TweetEntities? entities;
   @override
   final TweetAttachments? attachments;
   @override
+  @JsonKey(name: 'public_metrics')
+  final TweetPublicMetrics? publicMetrics;
+  @override
   final PlaceData? geo;
+  @override
+  final String? lang;
+  @override
+  @JsonKey(name: 'possibly_sensitive')
+  final bool? isPossiblySensitive;
+  @override
+  @JsonKey(name: 'reply_settings')
+  final ReplySetting? replySetting;
+  @override
+  final String? source;
+  @override
+  @JsonKey(name: 'created_at')
+  final DateTime? createdAt;
 
   @override
   String toString() {
-    return 'TweetData(id: $id, text: $text, authorId: $authorId, inReplyToUserId: $inReplyToUserId, referencedTweets: $referencedTweets, entities: $entities, attachments: $attachments, geo: $geo)';
+    return 'TweetData(id: $id, text: $text, authorId: $authorId, inReplyToUserId: $inReplyToUserId, conversationId: $conversationId, referencedTweets: $referencedTweets, contextAnnotations: $contextAnnotations, entities: $entities, attachments: $attachments, publicMetrics: $publicMetrics, geo: $geo, lang: $lang, isPossiblySensitive: $isPossiblySensitive, replySetting: $replySetting, source: $source, createdAt: $createdAt)';
   }
 
   @override
@@ -298,11 +479,24 @@ class _$_TweetData implements _TweetData {
             const DeepCollectionEquality()
                 .equals(other.inReplyToUserId, inReplyToUserId) &&
             const DeepCollectionEquality()
+                .equals(other.conversationId, conversationId) &&
+            const DeepCollectionEquality()
                 .equals(other._referencedTweets, _referencedTweets) &&
+            const DeepCollectionEquality()
+                .equals(other._contextAnnotations, _contextAnnotations) &&
             const DeepCollectionEquality().equals(other.entities, entities) &&
             const DeepCollectionEquality()
                 .equals(other.attachments, attachments) &&
-            const DeepCollectionEquality().equals(other.geo, geo));
+            const DeepCollectionEquality()
+                .equals(other.publicMetrics, publicMetrics) &&
+            const DeepCollectionEquality().equals(other.geo, geo) &&
+            const DeepCollectionEquality().equals(other.lang, lang) &&
+            const DeepCollectionEquality()
+                .equals(other.isPossiblySensitive, isPossiblySensitive) &&
+            const DeepCollectionEquality()
+                .equals(other.replySetting, replySetting) &&
+            const DeepCollectionEquality().equals(other.source, source) &&
+            const DeepCollectionEquality().equals(other.createdAt, createdAt));
   }
 
   @JsonKey(ignore: true)
@@ -313,10 +507,18 @@ class _$_TweetData implements _TweetData {
       const DeepCollectionEquality().hash(text),
       const DeepCollectionEquality().hash(authorId),
       const DeepCollectionEquality().hash(inReplyToUserId),
+      const DeepCollectionEquality().hash(conversationId),
       const DeepCollectionEquality().hash(_referencedTweets),
+      const DeepCollectionEquality().hash(_contextAnnotations),
       const DeepCollectionEquality().hash(entities),
       const DeepCollectionEquality().hash(attachments),
-      const DeepCollectionEquality().hash(geo));
+      const DeepCollectionEquality().hash(publicMetrics),
+      const DeepCollectionEquality().hash(geo),
+      const DeepCollectionEquality().hash(lang),
+      const DeepCollectionEquality().hash(isPossiblySensitive),
+      const DeepCollectionEquality().hash(replySetting),
+      const DeepCollectionEquality().hash(source),
+      const DeepCollectionEquality().hash(createdAt));
 
   @JsonKey(ignore: true)
   @override
@@ -337,11 +539,25 @@ abstract class _TweetData implements TweetData {
           final String? authorId,
       @JsonKey(name: 'in_reply_to_user_id')
           final String? inReplyToUserId,
+      @JsonKey(name: 'conversation_id')
+          final String? conversationId,
       @JsonKey(name: 'referenced_tweets')
           final List<ReferencedTweetData>? referencedTweets,
+      @JsonKey(name: 'context_annotations')
+          final List<TweetContextAnnotationGroup>? contextAnnotations,
       final TweetEntities? entities,
       final TweetAttachments? attachments,
-      final PlaceData? geo}) = _$_TweetData;
+      @JsonKey(name: 'public_metrics')
+          final TweetPublicMetrics? publicMetrics,
+      final PlaceData? geo,
+      final String? lang,
+      @JsonKey(name: 'possibly_sensitive')
+          final bool? isPossiblySensitive,
+      @JsonKey(name: 'reply_settings')
+          final ReplySetting? replySetting,
+      final String? source,
+      @JsonKey(name: 'created_at')
+          final DateTime? createdAt}) = _$_TweetData;
 
   factory _TweetData.fromJson(Map<String, dynamic> json) =
       _$_TweetData.fromJson;
@@ -357,15 +573,38 @@ abstract class _TweetData implements TweetData {
   @JsonKey(name: 'in_reply_to_user_id')
   String? get inReplyToUserId => throw _privateConstructorUsedError;
   @override
+  @JsonKey(name: 'conversation_id')
+  String? get conversationId => throw _privateConstructorUsedError;
+  @override
   @JsonKey(name: 'referenced_tweets')
   List<ReferencedTweetData>? get referencedTweets =>
+      throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'context_annotations')
+  List<TweetContextAnnotationGroup>? get contextAnnotations =>
       throw _privateConstructorUsedError;
   @override
   TweetEntities? get entities => throw _privateConstructorUsedError;
   @override
   TweetAttachments? get attachments => throw _privateConstructorUsedError;
   @override
+  @JsonKey(name: 'public_metrics')
+  TweetPublicMetrics? get publicMetrics => throw _privateConstructorUsedError;
+  @override
   PlaceData? get geo => throw _privateConstructorUsedError;
+  @override
+  String? get lang => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'possibly_sensitive')
+  bool? get isPossiblySensitive => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'reply_settings')
+  ReplySetting? get replySetting => throw _privateConstructorUsedError;
+  @override
+  String? get source => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'created_at')
+  DateTime? get createdAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_TweetDataCopyWith<_$_TweetData> get copyWith =>

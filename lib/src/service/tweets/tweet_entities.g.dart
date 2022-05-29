@@ -19,6 +19,12 @@ _$_TweetEntities _$$_TweetEntitiesFromJson(Map json) => $checkedCreate(
                   ?.map((e) => TweetMention.fromJson(
                       Map<String, Object?>.from(e as Map)))
                   .toList()),
+          urls: $checkedConvert(
+              'urls',
+              (v) => (v as List<dynamic>?)
+                  ?.map((e) =>
+                      TweetUrl.fromJson(Map<String, Object?>.from(e as Map)))
+                  .toList()),
         );
         return val;
       },
@@ -27,4 +33,5 @@ _$_TweetEntities _$$_TweetEntitiesFromJson(Map json) => $checkedCreate(
 Map<String, dynamic> _$$_TweetEntitiesToJson(_$_TweetEntities instance) =>
     <String, dynamic>{
       'mentions': instance.mentions,
+      'urls': instance.urls,
     };

@@ -7,6 +7,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
 import 'tweet_mention.dart';
+import 'tweet_url.dart';
 
 part 'tweet_entities.freezed.dart';
 part 'tweet_entities.g.dart';
@@ -15,6 +16,7 @@ part 'tweet_entities.g.dart';
 class TweetEntities with _$TweetEntities {
   const factory TweetEntities({
     List<TweetMention>? mentions,
+    List<TweetUrl>? urls,
   }) = _TweetEntities;
 
   factory TweetEntities.fromJson(Map<String, Object?> json) =>
