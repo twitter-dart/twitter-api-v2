@@ -30,6 +30,8 @@
   - GET /2/spaces/:id/tweets
   - GET /2/lists/:id/tweets
   - GET /2/lists/:id/members
+- Changed object name from `ReferencedTweetData` to `ReferencedTweet`.
+- Changed field type of `type` in `ReferencedTweet` to `TweetType` from `String`.
 
 ## v2.2.0
 
