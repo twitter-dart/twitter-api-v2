@@ -45,6 +45,7 @@ mixin _$TweetData {
   @JsonKey(name: 'reply_settings')
   ReplySetting? get replySetting => throw _privateConstructorUsedError;
   String? get source => throw _privateConstructorUsedError;
+  TweetWithheld? get withheld => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
   DateTime? get createdAt => throw _privateConstructorUsedError;
 
@@ -82,6 +83,7 @@ abstract class $TweetDataCopyWith<$Res> {
       @JsonKey(name: 'reply_settings')
           ReplySetting? replySetting,
       String? source,
+      TweetWithheld? withheld,
       @JsonKey(name: 'created_at')
           DateTime? createdAt});
 
@@ -89,6 +91,7 @@ abstract class $TweetDataCopyWith<$Res> {
   $TweetAttachmentsCopyWith<$Res>? get attachments;
   $PublicTweetMetricsCopyWith<$Res>? get publicMetrics;
   $PlaceDataCopyWith<$Res>? get geo;
+  $TweetWithheldCopyWith<$Res>? get withheld;
 }
 
 /// @nodoc
@@ -116,6 +119,7 @@ class _$TweetDataCopyWithImpl<$Res> implements $TweetDataCopyWith<$Res> {
     Object? isPossiblySensitive = freezed,
     Object? replySetting = freezed,
     Object? source = freezed,
+    Object? withheld = freezed,
     Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
@@ -179,6 +183,10 @@ class _$TweetDataCopyWithImpl<$Res> implements $TweetDataCopyWith<$Res> {
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
               as String?,
+      withheld: withheld == freezed
+          ? _value.withheld
+          : withheld // ignore: cast_nullable_to_non_nullable
+              as TweetWithheld?,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -229,6 +237,17 @@ class _$TweetDataCopyWithImpl<$Res> implements $TweetDataCopyWith<$Res> {
       return _then(_value.copyWith(geo: value));
     });
   }
+
+  @override
+  $TweetWithheldCopyWith<$Res>? get withheld {
+    if (_value.withheld == null) {
+      return null;
+    }
+
+    return $TweetWithheldCopyWith<$Res>(_value.withheld!, (value) {
+      return _then(_value.copyWith(withheld: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -261,6 +280,7 @@ abstract class _$$_TweetDataCopyWith<$Res> implements $TweetDataCopyWith<$Res> {
       @JsonKey(name: 'reply_settings')
           ReplySetting? replySetting,
       String? source,
+      TweetWithheld? withheld,
       @JsonKey(name: 'created_at')
           DateTime? createdAt});
 
@@ -272,6 +292,8 @@ abstract class _$$_TweetDataCopyWith<$Res> implements $TweetDataCopyWith<$Res> {
   $PublicTweetMetricsCopyWith<$Res>? get publicMetrics;
   @override
   $PlaceDataCopyWith<$Res>? get geo;
+  @override
+  $TweetWithheldCopyWith<$Res>? get withheld;
 }
 
 /// @nodoc
@@ -301,6 +323,7 @@ class __$$_TweetDataCopyWithImpl<$Res> extends _$TweetDataCopyWithImpl<$Res>
     Object? isPossiblySensitive = freezed,
     Object? replySetting = freezed,
     Object? source = freezed,
+    Object? withheld = freezed,
     Object? createdAt = freezed,
   }) {
     return _then(_$_TweetData(
@@ -364,6 +387,10 @@ class __$$_TweetDataCopyWithImpl<$Res> extends _$TweetDataCopyWithImpl<$Res>
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
               as String?,
+      withheld: withheld == freezed
+          ? _value.withheld
+          : withheld // ignore: cast_nullable_to_non_nullable
+              as TweetWithheld?,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -399,6 +426,7 @@ class _$_TweetData implements _TweetData {
       @JsonKey(name: 'reply_settings')
           this.replySetting,
       this.source,
+      this.withheld,
       @JsonKey(name: 'created_at')
           this.createdAt})
       : _referencedTweets = referencedTweets,
@@ -460,12 +488,14 @@ class _$_TweetData implements _TweetData {
   @override
   final String? source;
   @override
+  final TweetWithheld? withheld;
+  @override
   @JsonKey(name: 'created_at')
   final DateTime? createdAt;
 
   @override
   String toString() {
-    return 'TweetData(id: $id, text: $text, authorId: $authorId, inReplyToUserId: $inReplyToUserId, conversationId: $conversationId, referencedTweets: $referencedTweets, contextAnnotations: $contextAnnotations, entities: $entities, attachments: $attachments, publicMetrics: $publicMetrics, geo: $geo, lang: $lang, isPossiblySensitive: $isPossiblySensitive, replySetting: $replySetting, source: $source, createdAt: $createdAt)';
+    return 'TweetData(id: $id, text: $text, authorId: $authorId, inReplyToUserId: $inReplyToUserId, conversationId: $conversationId, referencedTweets: $referencedTweets, contextAnnotations: $contextAnnotations, entities: $entities, attachments: $attachments, publicMetrics: $publicMetrics, geo: $geo, lang: $lang, isPossiblySensitive: $isPossiblySensitive, replySetting: $replySetting, source: $source, withheld: $withheld, createdAt: $createdAt)';
   }
 
   @override
@@ -496,6 +526,7 @@ class _$_TweetData implements _TweetData {
             const DeepCollectionEquality()
                 .equals(other.replySetting, replySetting) &&
             const DeepCollectionEquality().equals(other.source, source) &&
+            const DeepCollectionEquality().equals(other.withheld, withheld) &&
             const DeepCollectionEquality().equals(other.createdAt, createdAt));
   }
 
@@ -518,6 +549,7 @@ class _$_TweetData implements _TweetData {
       const DeepCollectionEquality().hash(isPossiblySensitive),
       const DeepCollectionEquality().hash(replySetting),
       const DeepCollectionEquality().hash(source),
+      const DeepCollectionEquality().hash(withheld),
       const DeepCollectionEquality().hash(createdAt));
 
   @JsonKey(ignore: true)
@@ -556,6 +588,7 @@ abstract class _TweetData implements TweetData {
       @JsonKey(name: 'reply_settings')
           final ReplySetting? replySetting,
       final String? source,
+      final TweetWithheld? withheld,
       @JsonKey(name: 'created_at')
           final DateTime? createdAt}) = _$_TweetData;
 
@@ -602,6 +635,8 @@ abstract class _TweetData implements TweetData {
   ReplySetting? get replySetting => throw _privateConstructorUsedError;
   @override
   String? get source => throw _privateConstructorUsedError;
+  @override
+  TweetWithheld? get withheld => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'created_at')
   DateTime? get createdAt => throw _privateConstructorUsedError;

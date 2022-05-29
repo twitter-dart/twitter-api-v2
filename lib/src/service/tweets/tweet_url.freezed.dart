@@ -27,6 +27,8 @@ mixin _$TweetUrl {
   String get expandedUrl => throw _privateConstructorUsedError;
   @JsonKey(name: 'display_url')
   String get displayUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'unwound_url')
+  String? get unwoundUrl => throw _privateConstructorUsedError;
   @JsonKey(name: 'media_key')
   String? get mediaKey => throw _privateConstructorUsedError;
 
@@ -46,6 +48,7 @@ abstract class $TweetUrlCopyWith<$Res> {
       String url,
       @JsonKey(name: 'expanded_url') String expandedUrl,
       @JsonKey(name: 'display_url') String displayUrl,
+      @JsonKey(name: 'unwound_url') String? unwoundUrl,
       @JsonKey(name: 'media_key') String? mediaKey});
 }
 
@@ -64,6 +67,7 @@ class _$TweetUrlCopyWithImpl<$Res> implements $TweetUrlCopyWith<$Res> {
     Object? url = freezed,
     Object? expandedUrl = freezed,
     Object? displayUrl = freezed,
+    Object? unwoundUrl = freezed,
     Object? mediaKey = freezed,
   }) {
     return _then(_value.copyWith(
@@ -87,6 +91,10 @@ class _$TweetUrlCopyWithImpl<$Res> implements $TweetUrlCopyWith<$Res> {
           ? _value.displayUrl
           : displayUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      unwoundUrl: unwoundUrl == freezed
+          ? _value.unwoundUrl
+          : unwoundUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       mediaKey: mediaKey == freezed
           ? _value.mediaKey
           : mediaKey // ignore: cast_nullable_to_non_nullable
@@ -107,6 +115,7 @@ abstract class _$$_TweetUrlCopyWith<$Res> implements $TweetUrlCopyWith<$Res> {
       String url,
       @JsonKey(name: 'expanded_url') String expandedUrl,
       @JsonKey(name: 'display_url') String displayUrl,
+      @JsonKey(name: 'unwound_url') String? unwoundUrl,
       @JsonKey(name: 'media_key') String? mediaKey});
 }
 
@@ -127,6 +136,7 @@ class __$$_TweetUrlCopyWithImpl<$Res> extends _$TweetUrlCopyWithImpl<$Res>
     Object? url = freezed,
     Object? expandedUrl = freezed,
     Object? displayUrl = freezed,
+    Object? unwoundUrl = freezed,
     Object? mediaKey = freezed,
   }) {
     return _then(_$_TweetUrl(
@@ -150,6 +160,10 @@ class __$$_TweetUrlCopyWithImpl<$Res> extends _$TweetUrlCopyWithImpl<$Res>
           ? _value.displayUrl
           : displayUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      unwoundUrl: unwoundUrl == freezed
+          ? _value.unwoundUrl
+          : unwoundUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       mediaKey: mediaKey == freezed
           ? _value.mediaKey
           : mediaKey // ignore: cast_nullable_to_non_nullable
@@ -167,6 +181,7 @@ class _$_TweetUrl implements _TweetUrl {
       required this.url,
       @JsonKey(name: 'expanded_url') required this.expandedUrl,
       @JsonKey(name: 'display_url') required this.displayUrl,
+      @JsonKey(name: 'unwound_url') this.unwoundUrl,
       @JsonKey(name: 'media_key') this.mediaKey});
 
   factory _$_TweetUrl.fromJson(Map<String, dynamic> json) =>
@@ -185,12 +200,15 @@ class _$_TweetUrl implements _TweetUrl {
   @JsonKey(name: 'display_url')
   final String displayUrl;
   @override
+  @JsonKey(name: 'unwound_url')
+  final String? unwoundUrl;
+  @override
   @JsonKey(name: 'media_key')
   final String? mediaKey;
 
   @override
   String toString() {
-    return 'TweetUrl(start: $start, end: $end, url: $url, expandedUrl: $expandedUrl, displayUrl: $displayUrl, mediaKey: $mediaKey)';
+    return 'TweetUrl(start: $start, end: $end, url: $url, expandedUrl: $expandedUrl, displayUrl: $displayUrl, unwoundUrl: $unwoundUrl, mediaKey: $mediaKey)';
   }
 
   @override
@@ -205,6 +223,8 @@ class _$_TweetUrl implements _TweetUrl {
                 .equals(other.expandedUrl, expandedUrl) &&
             const DeepCollectionEquality()
                 .equals(other.displayUrl, displayUrl) &&
+            const DeepCollectionEquality()
+                .equals(other.unwoundUrl, unwoundUrl) &&
             const DeepCollectionEquality().equals(other.mediaKey, mediaKey));
   }
 
@@ -217,6 +237,7 @@ class _$_TweetUrl implements _TweetUrl {
       const DeepCollectionEquality().hash(url),
       const DeepCollectionEquality().hash(expandedUrl),
       const DeepCollectionEquality().hash(displayUrl),
+      const DeepCollectionEquality().hash(unwoundUrl),
       const DeepCollectionEquality().hash(mediaKey));
 
   @JsonKey(ignore: true)
@@ -237,6 +258,7 @@ abstract class _TweetUrl implements TweetUrl {
       required final String url,
       @JsonKey(name: 'expanded_url') required final String expandedUrl,
       @JsonKey(name: 'display_url') required final String displayUrl,
+      @JsonKey(name: 'unwound_url') final String? unwoundUrl,
       @JsonKey(name: 'media_key') final String? mediaKey}) = _$_TweetUrl;
 
   factory _TweetUrl.fromJson(Map<String, dynamic> json) = _$_TweetUrl.fromJson;
@@ -253,6 +275,9 @@ abstract class _TweetUrl implements TweetUrl {
   @override
   @JsonKey(name: 'display_url')
   String get displayUrl => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'unwound_url')
+  String? get unwoundUrl => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'media_key')
   String? get mediaKey => throw _privateConstructorUsedError;

@@ -18,6 +18,7 @@ class TweetUrl with _$TweetUrl {
     required String url,
     @JsonKey(name: 'expanded_url') required String expandedUrl,
     @JsonKey(name: 'display_url') required String displayUrl,
+    @JsonKey(name: 'unwound_url') String? unwoundUrl,
     @JsonKey(name: 'media_key') String? mediaKey,
   }) = _TweetUrl;
 

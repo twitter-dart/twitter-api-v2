@@ -20,6 +20,9 @@ TweetEntities _$TweetEntitiesFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TweetEntities {
+  List<TweetAnnotation>? get annotations => throw _privateConstructorUsedError;
+  List<TweetTag>? get hashtags => throw _privateConstructorUsedError;
+  List<TweetTag>? get cashtags => throw _privateConstructorUsedError;
   List<TweetMention>? get mentions => throw _privateConstructorUsedError;
   List<TweetUrl>? get urls => throw _privateConstructorUsedError;
 
@@ -34,7 +37,12 @@ abstract class $TweetEntitiesCopyWith<$Res> {
   factory $TweetEntitiesCopyWith(
           TweetEntities value, $Res Function(TweetEntities) then) =
       _$TweetEntitiesCopyWithImpl<$Res>;
-  $Res call({List<TweetMention>? mentions, List<TweetUrl>? urls});
+  $Res call(
+      {List<TweetAnnotation>? annotations,
+      List<TweetTag>? hashtags,
+      List<TweetTag>? cashtags,
+      List<TweetMention>? mentions,
+      List<TweetUrl>? urls});
 }
 
 /// @nodoc
@@ -48,10 +56,25 @@ class _$TweetEntitiesCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? annotations = freezed,
+    Object? hashtags = freezed,
+    Object? cashtags = freezed,
     Object? mentions = freezed,
     Object? urls = freezed,
   }) {
     return _then(_value.copyWith(
+      annotations: annotations == freezed
+          ? _value.annotations
+          : annotations // ignore: cast_nullable_to_non_nullable
+              as List<TweetAnnotation>?,
+      hashtags: hashtags == freezed
+          ? _value.hashtags
+          : hashtags // ignore: cast_nullable_to_non_nullable
+              as List<TweetTag>?,
+      cashtags: cashtags == freezed
+          ? _value.cashtags
+          : cashtags // ignore: cast_nullable_to_non_nullable
+              as List<TweetTag>?,
       mentions: mentions == freezed
           ? _value.mentions
           : mentions // ignore: cast_nullable_to_non_nullable
@@ -71,7 +94,12 @@ abstract class _$$_TweetEntitiesCopyWith<$Res>
           _$_TweetEntities value, $Res Function(_$_TweetEntities) then) =
       __$$_TweetEntitiesCopyWithImpl<$Res>;
   @override
-  $Res call({List<TweetMention>? mentions, List<TweetUrl>? urls});
+  $Res call(
+      {List<TweetAnnotation>? annotations,
+      List<TweetTag>? hashtags,
+      List<TweetTag>? cashtags,
+      List<TweetMention>? mentions,
+      List<TweetUrl>? urls});
 }
 
 /// @nodoc
@@ -87,10 +115,25 @@ class __$$_TweetEntitiesCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? annotations = freezed,
+    Object? hashtags = freezed,
+    Object? cashtags = freezed,
     Object? mentions = freezed,
     Object? urls = freezed,
   }) {
     return _then(_$_TweetEntities(
+      annotations: annotations == freezed
+          ? _value._annotations
+          : annotations // ignore: cast_nullable_to_non_nullable
+              as List<TweetAnnotation>?,
+      hashtags: hashtags == freezed
+          ? _value._hashtags
+          : hashtags // ignore: cast_nullable_to_non_nullable
+              as List<TweetTag>?,
+      cashtags: cashtags == freezed
+          ? _value._cashtags
+          : cashtags // ignore: cast_nullable_to_non_nullable
+              as List<TweetTag>?,
       mentions: mentions == freezed
           ? _value._mentions
           : mentions // ignore: cast_nullable_to_non_nullable
@@ -107,12 +150,46 @@ class __$$_TweetEntitiesCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_TweetEntities implements _TweetEntities {
   const _$_TweetEntities(
-      {final List<TweetMention>? mentions, final List<TweetUrl>? urls})
-      : _mentions = mentions,
+      {final List<TweetAnnotation>? annotations,
+      final List<TweetTag>? hashtags,
+      final List<TweetTag>? cashtags,
+      final List<TweetMention>? mentions,
+      final List<TweetUrl>? urls})
+      : _annotations = annotations,
+        _hashtags = hashtags,
+        _cashtags = cashtags,
+        _mentions = mentions,
         _urls = urls;
 
   factory _$_TweetEntities.fromJson(Map<String, dynamic> json) =>
       _$$_TweetEntitiesFromJson(json);
+
+  final List<TweetAnnotation>? _annotations;
+  @override
+  List<TweetAnnotation>? get annotations {
+    final value = _annotations;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<TweetTag>? _hashtags;
+  @override
+  List<TweetTag>? get hashtags {
+    final value = _hashtags;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<TweetTag>? _cashtags;
+  @override
+  List<TweetTag>? get cashtags {
+    final value = _cashtags;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   final List<TweetMention>? _mentions;
   @override
@@ -134,7 +211,7 @@ class _$_TweetEntities implements _TweetEntities {
 
   @override
   String toString() {
-    return 'TweetEntities(mentions: $mentions, urls: $urls)';
+    return 'TweetEntities(annotations: $annotations, hashtags: $hashtags, cashtags: $cashtags, mentions: $mentions, urls: $urls)';
   }
 
   @override
@@ -142,6 +219,10 @@ class _$_TweetEntities implements _TweetEntities {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TweetEntities &&
+            const DeepCollectionEquality()
+                .equals(other._annotations, _annotations) &&
+            const DeepCollectionEquality().equals(other._hashtags, _hashtags) &&
+            const DeepCollectionEquality().equals(other._cashtags, _cashtags) &&
             const DeepCollectionEquality().equals(other._mentions, _mentions) &&
             const DeepCollectionEquality().equals(other._urls, _urls));
   }
@@ -150,6 +231,9 @@ class _$_TweetEntities implements _TweetEntities {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(_annotations),
+      const DeepCollectionEquality().hash(_hashtags),
+      const DeepCollectionEquality().hash(_cashtags),
       const DeepCollectionEquality().hash(_mentions),
       const DeepCollectionEquality().hash(_urls));
 
@@ -166,12 +250,21 @@ class _$_TweetEntities implements _TweetEntities {
 
 abstract class _TweetEntities implements TweetEntities {
   const factory _TweetEntities(
-      {final List<TweetMention>? mentions,
+      {final List<TweetAnnotation>? annotations,
+      final List<TweetTag>? hashtags,
+      final List<TweetTag>? cashtags,
+      final List<TweetMention>? mentions,
       final List<TweetUrl>? urls}) = _$_TweetEntities;
 
   factory _TweetEntities.fromJson(Map<String, dynamic> json) =
       _$_TweetEntities.fromJson;
 
+  @override
+  List<TweetAnnotation>? get annotations => throw _privateConstructorUsedError;
+  @override
+  List<TweetTag>? get hashtags => throw _privateConstructorUsedError;
+  @override
+  List<TweetTag>? get cashtags => throw _privateConstructorUsedError;
   @override
   List<TweetMention>? get mentions => throw _privateConstructorUsedError;
   @override

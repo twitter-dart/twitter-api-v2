@@ -15,6 +15,7 @@ import 'reply_setting.dart';
 import 'tweet_attachments.dart';
 import 'tweet_context_annotation_group.dart';
 import 'tweet_entities.dart';
+import 'tweet_withheld.dart';
 
 part 'tweet_data.freezed.dart';
 part 'tweet_data.g.dart';
@@ -39,6 +40,7 @@ class TweetData with _$TweetData {
     @JsonKey(name: 'possibly_sensitive') bool? isPossiblySensitive,
     @JsonKey(name: 'reply_settings') ReplySetting? replySetting,
     String? source,
+    TweetWithheld? withheld,
     @JsonKey(name: 'created_at') DateTime? createdAt,
   }) = _TweetData;
 

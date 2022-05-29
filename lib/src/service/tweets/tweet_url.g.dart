@@ -18,6 +18,7 @@ _$_TweetUrl _$$_TweetUrlFromJson(Map json) => $checkedCreate(
           url: $checkedConvert('url', (v) => v as String),
           expandedUrl: $checkedConvert('expanded_url', (v) => v as String),
           displayUrl: $checkedConvert('display_url', (v) => v as String),
+          unwoundUrl: $checkedConvert('unwound_url', (v) => v as String?),
           mediaKey: $checkedConvert('media_key', (v) => v as String?),
         );
         return val;
@@ -25,6 +26,7 @@ _$_TweetUrl _$$_TweetUrlFromJson(Map json) => $checkedCreate(
       fieldKeyMap: const {
         'expandedUrl': 'expanded_url',
         'displayUrl': 'display_url',
+        'unwoundUrl': 'unwound_url',
         'mediaKey': 'media_key'
       },
     );
@@ -36,5 +38,6 @@ Map<String, dynamic> _$$_TweetUrlToJson(_$_TweetUrl instance) =>
       'url': instance.url,
       'expanded_url': instance.expandedUrl,
       'display_url': instance.displayUrl,
+      'unwound_url': instance.unwoundUrl,
       'media_key': instance.mediaKey,
     };
