@@ -6,6 +6,7 @@
 import '../../client/client_context.dart';
 import '../../client/user_context.dart';
 import '../base_service.dart';
+import '../tweets/tweet_field.dart';
 import '../twitter_response.dart';
 import 'user_data.dart';
 import 'user_expansion.dart';
@@ -104,6 +105,15 @@ abstract class UsersService {
   ///                 object, and will also include the ID so that you can match
   ///                 this data object to the original Tweet object.
   ///
+  /// - [tweetFields]: This fields parameter enables you to select which
+  ///                  specific Tweet fields will deliver in each returned
+  ///                  pinned Tweet. The Tweet fields will only return if the
+  ///                  user has a pinned Tweet and if you've also included the
+  ///                  `expansions=pinned_tweet_id` query parameter in your
+  ///                  request. While the referenced Tweet ID will be located
+  ///                  in the original Tweet object, you will find this ID and
+  ///                  all additional Tweet fields in the includes data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/followers
@@ -124,6 +134,7 @@ abstract class UsersService {
     int? maxResults,
     String? paginationToken,
     List<UserExpansion>? expansions,
+    List<TweetField>? tweetFields,
   });
 
   /// Returns a list of users the specified user ID is following.
@@ -147,6 +158,15 @@ abstract class UsersService {
   /// - [expansions]: Expansions enable you to request additional data objects
   ///                 that relate to the originally returned users.
   ///
+  /// - [tweetFields]: This fields parameter enables you to select which
+  ///                  specific Tweet fields will deliver in each returned
+  ///                  pinned Tweet. The Tweet fields will only return if the
+  ///                  user has a pinned Tweet and if you've also included the
+  ///                  `expansions=pinned_tweet_id` query parameter in your
+  ///                  request. While the referenced Tweet ID will be located
+  ///                  in the original Tweet object, you will find this ID and
+  ///                  all additional Tweet fields in the includes data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/following
@@ -167,6 +187,7 @@ abstract class UsersService {
     int? maxResults,
     String? paginationToken,
     List<UserExpansion>? expansions,
+    List<TweetField>? tweetFields,
   });
 
   /// Returns a variety of information about a single user specified by the
@@ -184,6 +205,15 @@ abstract class UsersService {
   ///                 object, and will also include the ID so that you can match
   ///                 this data object to the original Tweet object.
   ///
+  /// - [tweetFields]: This fields parameter enables you to select which
+  ///                  specific Tweet fields will deliver in each returned
+  ///                  pinned Tweet. The Tweet fields will only return if the
+  ///                  user has a pinned Tweet and if you've also included the
+  ///                  `expansions=pinned_tweet_id` query parameter in your
+  ///                  request. While the referenced Tweet ID will be located
+  ///                  in the original Tweet object, you will find this ID and
+  ///                  all additional Tweet fields in the includes data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id
@@ -199,8 +229,11 @@ abstract class UsersService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users-id
-  Future<TwitterResponse<UserData, void>> lookupById(
-      {required String userId, List<UserExpansion>? expansions});
+  Future<TwitterResponse<UserData, void>> lookupById({
+    required String userId,
+    List<UserExpansion>? expansions,
+    List<TweetField>? tweetFields,
+  });
 
   /// Returns a variety of information about one or more users specified by the
   /// requested IDs.
@@ -218,6 +251,15 @@ abstract class UsersService {
   ///                 object, and will also include the ID so that you can match
   ///                 this data object to the original Tweet object.
   ///
+  /// - [tweetFields]: This fields parameter enables you to select which
+  ///                  specific Tweet fields will deliver in each returned
+  ///                  pinned Tweet. The Tweet fields will only return if the
+  ///                  user has a pinned Tweet and if you've also included the
+  ///                  `expansions=pinned_tweet_id` query parameter in your
+  ///                  request. While the referenced Tweet ID will be located
+  ///                  in the original Tweet object, you will find this ID and
+  ///                  all additional Tweet fields in the includes data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users
@@ -233,8 +275,11 @@ abstract class UsersService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users
-  Future<TwitterResponse<List<UserData>, void>> lookupByIds(
-      {required List<String> userIds, List<UserExpansion>? expansions});
+  Future<TwitterResponse<List<UserData>, void>> lookupByIds({
+    required List<String> userIds,
+    List<UserExpansion>? expansions,
+    List<TweetField>? tweetFields,
+  });
 
   /// Returns a variety of information about one or more users specified by
   /// their usernames.
@@ -251,6 +296,15 @@ abstract class UsersService {
   ///                 object, and will also include the ID so that you can match
   ///                 this data object to the original Tweet object.
   ///
+  /// - [tweetFields]: This fields parameter enables you to select which
+  ///                  specific Tweet fields will deliver in each returned
+  ///                  pinned Tweet. The Tweet fields will only return if the
+  ///                  user has a pinned Tweet and if you've also included the
+  ///                  `expansions=pinned_tweet_id` query parameter in your
+  ///                  request. While the referenced Tweet ID will be located
+  ///                  in the original Tweet object, you will find this ID and
+  ///                  all additional Tweet fields in the includes data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/by/username/:username
@@ -266,8 +320,11 @@ abstract class UsersService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users-by-username-username
-  Future<TwitterResponse<UserData, void>> lookupByName(
-      {required String username, List<UserExpansion>? expansions});
+  Future<TwitterResponse<UserData, void>> lookupByName({
+    required String username,
+    List<UserExpansion>? expansions,
+    List<TweetField>? tweetFields,
+  });
 
   /// Returns a variety of information about one or more users specified by
   /// their usernames.
@@ -285,6 +342,15 @@ abstract class UsersService {
   ///                 object, and will also include the ID so that you can match
   ///                 this data object to the original Tweet object.
   ///
+  /// - [tweetFields]: This fields parameter enables you to select which
+  ///                  specific Tweet fields will deliver in each returned
+  ///                  pinned Tweet. The Tweet fields will only return if the
+  ///                  user has a pinned Tweet and if you've also included the
+  ///                  `expansions=pinned_tweet_id` query parameter in your
+  ///                  request. While the referenced Tweet ID will be located
+  ///                  in the original Tweet object, you will find this ID and
+  ///                  all additional Tweet fields in the includes data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/by
@@ -300,8 +366,11 @@ abstract class UsersService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users-by
-  Future<TwitterResponse<List<UserData>, void>> lookupByNames(
-      {required List<String> usernames, List<UserExpansion>? expansions});
+  Future<TwitterResponse<List<UserData>, void>> lookupByNames({
+    required List<String> usernames,
+    List<UserExpansion>? expansions,
+    List<TweetField>? tweetFields,
+  });
 
   /// Returns information about an authorized user.
   ///
@@ -315,6 +384,15 @@ abstract class UsersService {
   ///                 object, and will also include the ID so that you can match
   ///                 this data object to the original Tweet object.
   ///
+  /// - [tweetFields]: This fields parameter enables you to select which
+  ///                  specific Tweet fields will deliver in each returned
+  ///                  pinned Tweet. The Tweet fields will only return if the
+  ///                  user has a pinned Tweet and if you've also included the
+  ///                  `expansions=pinned_tweet_id` query parameter in your
+  ///                  request. While the referenced Tweet ID will be located
+  ///                  in the original Tweet object, you will find this ID and
+  ///                  all additional Tweet fields in the includes data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/me
@@ -327,8 +405,10 @@ abstract class UsersService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users-me
-  Future<TwitterResponse<UserData, void>> lookupMe(
-      {List<UserExpansion>? expansions});
+  Future<TwitterResponse<UserData, void>> lookupMe({
+    List<UserExpansion>? expansions,
+    List<TweetField>? tweetFields,
+  });
 
   /// Allows an authenticated user ID to mute the target user.
   ///
@@ -416,6 +496,15 @@ abstract class UsersService {
   ///                 object, and will also include the ID so that you can match
   ///                this data object to the original Tweet object.
   ///
+  /// - [tweetFields]: This fields parameter enables you to select which
+  ///                  specific Tweet fields will deliver in each returned
+  ///                  pinned Tweet. The Tweet fields will only return if the
+  ///                  user has a pinned Tweet and if you've also included the
+  ///                  `expansions=pinned_tweet_id` query parameter in your
+  ///                  request. While the referenced Tweet ID will be located
+  ///                  in the original Tweet object, you will find this ID and
+  ///                  all additional Tweet fields in the includes data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/muting
@@ -433,6 +522,7 @@ abstract class UsersService {
     int? maxResults,
     String? paginationToken,
     List<UserExpansion>? expansions,
+    List<TweetField>? tweetFields,
   });
 
   /// Causes the user (in the path) to block the target user.
@@ -522,6 +612,15 @@ abstract class UsersService {
   ///                 object, and will also include the ID so that you can match
   ///                 this data object to the original Tweet object.
   ///
+  /// - [tweetFields]: This fields parameter enables you to select which
+  ///                  specific Tweet fields will deliver in each returned
+  ///                  pinned Tweet. The Tweet fields will only return if the
+  ///                  user has a pinned Tweet and if you've also included the
+  ///                  `expansions=pinned_tweet_id` query parameter in your
+  ///                  request. While the referenced Tweet ID will be located
+  ///                  in the original Tweet object, you will find this ID and
+  ///                  all additional Tweet fields in the includes data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/blocking
@@ -539,6 +638,7 @@ abstract class UsersService {
     int? maxResults,
     String? paginationToken,
     List<UserExpansion>? expansions,
+    List<TweetField>? tweetFields,
   });
 }
 
@@ -579,6 +679,7 @@ class _UsersService extends BaseService implements UsersService {
     int? maxResults,
     String? paginationToken,
     List<UserExpansion>? expansions,
+    List<TweetField>? tweetFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -588,6 +689,7 @@ class _UsersService extends BaseService implements UsersService {
             'max_results': maxResults,
             'pagination_token': paginationToken,
             'expansions': super.serializeExpansions(expansions),
+            'tweet.fields': super.serializeFields(tweetFields),
           },
         ),
         dataBuilder: UserData.fromJson,
@@ -600,6 +702,7 @@ class _UsersService extends BaseService implements UsersService {
     int? maxResults,
     String? paginationToken,
     List<UserExpansion>? expansions,
+    List<TweetField>? tweetFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -609,6 +712,7 @@ class _UsersService extends BaseService implements UsersService {
             'max_results': maxResults,
             'pagination_token': paginationToken,
             'expansions': super.serializeExpansions(expansions),
+            'tweet.fields': super.serializeFields(tweetFields),
           },
         ),
         dataBuilder: UserData.fromJson,
@@ -619,6 +723,7 @@ class _UsersService extends BaseService implements UsersService {
   Future<TwitterResponse<UserData, void>> lookupById({
     required String userId,
     List<UserExpansion>? expansions,
+    List<TweetField>? tweetFields,
   }) async =>
       super.buildResponse(
         await super.get(
@@ -626,6 +731,7 @@ class _UsersService extends BaseService implements UsersService {
           '/2/users/$userId',
           queryParameters: {
             'expansions': super.serializeExpansions(expansions),
+            'tweet.fields': super.serializeFields(tweetFields),
           },
         ),
         dataBuilder: UserData.fromJson,
@@ -635,6 +741,7 @@ class _UsersService extends BaseService implements UsersService {
   Future<TwitterResponse<List<UserData>, void>> lookupByIds({
     required List<String> userIds,
     List<UserExpansion>? expansions,
+    List<TweetField>? tweetFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -643,6 +750,7 @@ class _UsersService extends BaseService implements UsersService {
           queryParameters: {
             'ids': super.serialize(userIds),
             'expansions': super.serializeExpansions(expansions),
+            'tweet.fields': super.serializeFields(tweetFields),
           },
         ),
         dataBuilder: UserData.fromJson,
@@ -652,6 +760,7 @@ class _UsersService extends BaseService implements UsersService {
   Future<TwitterResponse<UserData, void>> lookupByName({
     required String username,
     List<UserExpansion>? expansions,
+    List<TweetField>? tweetFields,
   }) async =>
       super.buildResponse(
         await super.get(
@@ -659,6 +768,7 @@ class _UsersService extends BaseService implements UsersService {
           '/2/users/by/username/$username',
           queryParameters: {
             'expansions': serializeExpansions(expansions),
+            'tweet.fields': super.serializeFields(tweetFields),
           },
         ),
         dataBuilder: UserData.fromJson,
@@ -668,6 +778,7 @@ class _UsersService extends BaseService implements UsersService {
   Future<TwitterResponse<List<UserData>, void>> lookupByNames({
     required List<String> usernames,
     List<UserExpansion>? expansions,
+    List<TweetField>? tweetFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -675,6 +786,7 @@ class _UsersService extends BaseService implements UsersService {
           '/2/users/by',
           queryParameters: {
             'usernames': super.serialize(usernames),
+            'tweet.fields': super.serializeFields(tweetFields),
           },
         ),
         dataBuilder: UserData.fromJson,
@@ -683,6 +795,7 @@ class _UsersService extends BaseService implements UsersService {
   @override
   Future<TwitterResponse<UserData, void>> lookupMe({
     List<UserExpansion>? expansions,
+    List<TweetField>? tweetFields,
   }) async =>
       super.buildResponse(
         await super.get(
@@ -690,6 +803,7 @@ class _UsersService extends BaseService implements UsersService {
           '/2/users/me',
           queryParameters: {
             'expansions': super.serializeExpansions(expansions),
+            'tweet.fields': super.serializeFields(tweetFields),
           },
         ),
         dataBuilder: UserData.fromJson,
@@ -724,6 +838,7 @@ class _UsersService extends BaseService implements UsersService {
     int? maxResults,
     String? paginationToken,
     List<UserExpansion>? expansions,
+    List<TweetField>? tweetFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -733,6 +848,7 @@ class _UsersService extends BaseService implements UsersService {
             'max_results': maxResults,
             'pagination_token': paginationToken,
             'expansions': super.serializeExpansions(expansions),
+            'tweet.fields': super.serializeFields(tweetFields),
           },
         ),
         dataBuilder: UserData.fromJson,
@@ -768,6 +884,7 @@ class _UsersService extends BaseService implements UsersService {
     int? maxResults,
     String? paginationToken,
     List<UserExpansion>? expansions,
+    List<TweetField>? tweetFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -777,6 +894,7 @@ class _UsersService extends BaseService implements UsersService {
             'max_results': maxResults,
             'pagination_token': paginationToken,
             'expansions': super.serializeExpansions(expansions),
+            'tweet.fields': super.serializeFields(tweetFields),
           },
         ),
         dataBuilder: UserData.fromJson,
