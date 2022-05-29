@@ -226,7 +226,7 @@ abstract class BaseService implements Service {
 
   @override
   String? serializeExpansions(List<Expansion>? expansions) =>
-      expansions?.toSet().map((value) => value.fieldName).toList().join(',');
+      expansions?.toSet().map((e) => e.value).toList().join(',');
 
   Map<String, dynamic> _checkResponseBody(final http.Response response) {
     final jsonBody = jsonDecode(response.body);

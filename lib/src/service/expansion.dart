@@ -3,6 +3,6 @@
 // modification, are permitted provided the conditions.
 
 abstract class Expansion {
-  /// Returns the field name.
-  String get fieldName;
+  /// Returns the value.
+  String get value;
 }

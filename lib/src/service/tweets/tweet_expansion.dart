@@ -32,7 +32,7 @@ enum TweetExpansion implements Expansion {
   referencedTweetsIdAuthorId('referenced_tweets.id.author_id');
 
   @override
-  final String fieldName;
+  final String value;
 
-  const TweetExpansion(this.fieldName);
+  const TweetExpansion(this.value);
 }
