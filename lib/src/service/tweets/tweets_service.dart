@@ -1698,7 +1698,7 @@ class _TweetsService extends BaseService implements TweetsService {
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
-          UserContext.oauth2OrOAuth1,
+          UserContext.oauth2Only,
           '/2/users/$userId/bookmarks',
           queryParameters: {
             'expansions': super.serializeExpansions(expansions),
