@@ -443,7 +443,7 @@ void main() {
   test('.lookupBookmarks', () async {
     final tweetsService = TweetsService(
       context: context.buildGetStub(
-        UserContext.oauth2OrOAuth1,
+        UserContext.oauth2Only,
         '/2/users/0000/bookmarks',
         'test/src/service/tweets/data/lookup_bookmarks.json',
         {},

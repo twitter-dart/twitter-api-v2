@@ -13,18 +13,18 @@ _$_MediaData _$$_MediaDataFromJson(Map json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = _$_MediaData(
-          id: $checkedConvert('media_key', (v) => v as String),
+          key: $checkedConvert('media_key', (v) => v as String),
           type: $checkedConvert(
               'type', (v) => $enumDecode(_$MediaTypeEnumMap, v)),
         );
         return val;
       },
-      fieldKeyMap: const {'id': 'media_key'},
+      fieldKeyMap: const {'key': 'media_key'},
     );
 
 Map<String, dynamic> _$$_MediaDataToJson(_$_MediaData instance) =>
     <String, dynamic>{
-      'media_key': instance.id,
+      'media_key': instance.key,
       'type': _$MediaTypeEnumMap[instance.type],
     };
 

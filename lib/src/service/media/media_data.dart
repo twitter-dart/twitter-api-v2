@@ -16,7 +16,7 @@ part 'media_data.g.dart';
 @freezed
 class MediaData with _$MediaData {
   const factory MediaData({
-    @JsonKey(name: 'media_key') required String id,
+    @JsonKey(name: 'media_key') required String key,
     required MediaType type,
   }) = _MediaData;
 

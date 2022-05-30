@@ -33,7 +33,7 @@
 - Changed object name from `ReferencedTweetData` to `ReferencedTweet`.
 - Changed field type of `type` in `ReferencedTweet` to `TweetType` from `String`.
 - Changed field type of `type` in `MediaData` to `MediaType` from `String.`
-- Added `id` field to `MediaData`. It represents a unique identifier of the media.
+- Added `key` field to `MediaData`. It represents a unique identifier of the media.
 
 ## v2.2.0
 

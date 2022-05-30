@@ -21,7 +21,7 @@ MediaData _$MediaDataFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$MediaData {
   @JsonKey(name: 'media_key')
-  String get id => throw _privateConstructorUsedError;
+  String get key => throw _privateConstructorUsedError;
   MediaType get type => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,7 +34,7 @@ mixin _$MediaData {
 abstract class $MediaDataCopyWith<$Res> {
   factory $MediaDataCopyWith(MediaData value, $Res Function(MediaData) then) =
       _$MediaDataCopyWithImpl<$Res>;
-  $Res call({@JsonKey(name: 'media_key') String id, MediaType type});
+  $Res call({@JsonKey(name: 'media_key') String key, MediaType type});
 }
 
 /// @nodoc
@@ -47,13 +47,13 @@ class _$MediaDataCopyWithImpl<$Res> implements $MediaDataCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? id = freezed,
+    Object? key = freezed,
     Object? type = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      key: key == freezed
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
               as String,
       type: type == freezed
           ? _value.type
@@ -69,7 +69,7 @@ abstract class _$$_MediaDataCopyWith<$Res> implements $MediaDataCopyWith<$Res> {
           _$_MediaData value, $Res Function(_$_MediaData) then) =
       __$$_MediaDataCopyWithImpl<$Res>;
   @override
-  $Res call({@JsonKey(name: 'media_key') String id, MediaType type});
+  $Res call({@JsonKey(name: 'media_key') String key, MediaType type});
 }
 
 /// @nodoc
@@ -84,13 +84,13 @@ class __$$_MediaDataCopyWithImpl<$Res> extends _$MediaDataCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? id = freezed,
+    Object? key = freezed,
     Object? type = freezed,
   }) {
     return _then(_$_MediaData(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      key: key == freezed
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
               as String,
       type: type == freezed
           ? _value.type
@@ -104,20 +104,20 @@ class __$$_MediaDataCopyWithImpl<$Res> extends _$MediaDataCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_MediaData implements _MediaData {
   const _$_MediaData(
-      {@JsonKey(name: 'media_key') required this.id, required this.type});
+      {@JsonKey(name: 'media_key') required this.key, required this.type});
 
   factory _$_MediaData.fromJson(Map<String, dynamic> json) =>
       _$$_MediaDataFromJson(json);
 
   @override
   @JsonKey(name: 'media_key')
-  final String id;
+  final String key;
   @override
   final MediaType type;
 
   @override
   String toString() {
-    return 'MediaData(id: $id, type: $type)';
+    return 'MediaData(key: $key, type: $type)';
   }
 
   @override
@@ -125,7 +125,7 @@ class _$_MediaData implements _MediaData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MediaData &&
-            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.key, key) &&
             const DeepCollectionEquality().equals(other.type, type));
   }
 
@@ -133,7 +133,7 @@ class _$_MediaData implements _MediaData {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(key),
       const DeepCollectionEquality().hash(type));
 
   @JsonKey(ignore: true)
@@ -149,7 +149,7 @@ class _$_MediaData implements _MediaData {
 
 abstract class _MediaData implements MediaData {
   const factory _MediaData(
-      {@JsonKey(name: 'media_key') required final String id,
+      {@JsonKey(name: 'media_key') required final String key,
       required final MediaType type}) = _$_MediaData;
 
   factory _MediaData.fromJson(Map<String, dynamic> json) =
@@ -157,7 +157,7 @@ abstract class _MediaData implements MediaData {
 
   @override
   @JsonKey(name: 'media_key')
-  String get id => throw _privateConstructorUsedError;
+  String get key => throw _privateConstructorUsedError;
   @override
   MediaType get type => throw _privateConstructorUsedError;
   @override
