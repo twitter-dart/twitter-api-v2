@@ -5,6 +5,7 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+// Project imports:
 import 'tweet_type.dart';
 
 part 'referenced_tweet.freezed.dart';

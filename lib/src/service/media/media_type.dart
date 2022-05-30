@@ -5,11 +5,11 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-enum TweetType {
-  retweeted,
+enum MediaType {
+  photo,
 
-  quoted,
+  video,
 
-  @JsonValue('replied_to')
-  repliedTo,
+  @JsonValue('animated_gif')
+  animatedGif,
 }
