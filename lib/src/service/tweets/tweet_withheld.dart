@@ -5,6 +5,7 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+// Project imports:
 import 'withheld_scope.dart';
 
 part 'tweet_withheld.freezed.dart';
