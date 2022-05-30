@@ -19,7 +19,7 @@ jobs:
           status: |
             Hey what's up? 🍿 New version of #twitter_api_v2 was released! 🐦🐦🐦
             Release note: https://github.com/twitter-dart/twitter-api-v2/blob/main/CHANGELOG.md
-            #dart #twitter #flutter #twitter #FlutterDev #programming #100DaysOfCode #OSS #coding
+            #dart #twitter #flutter #FlutterDev #programming #100DaysOfCode #OSS #coding
             via #GitHub Actions https://github.com/twitter-dart/twitter-api-v2
         env:
           CONSUMER_API_KEY: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
