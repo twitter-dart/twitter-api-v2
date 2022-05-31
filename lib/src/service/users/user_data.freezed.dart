@@ -23,8 +23,21 @@ mixin _$UserData {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  String? get url => throw _privateConstructorUsedError;
+  @JsonKey(name: 'profile_image_url')
+  String? get profileImageUrl => throw _privateConstructorUsedError;
+  String? get location => throw _privateConstructorUsedError;
+  bool? get protected => throw _privateConstructorUsedError;
+  bool? get verified => throw _privateConstructorUsedError;
   @JsonKey(name: 'pinned_tweet_id')
   String? get pinnedTweetId => throw _privateConstructorUsedError;
+  UserEntities? get entities => throw _privateConstructorUsedError;
+  @JsonKey(name: 'public_metrics')
+  PublicUserMetrics? get publicMetrics => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_at')
+  DateTime? get createdAt => throw _privateConstructorUsedError;
+  UserWithheld? get withheld => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,7 +53,21 @@ abstract class $UserDataCopyWith<$Res> {
       {String id,
       String name,
       String username,
-      @JsonKey(name: 'pinned_tweet_id') String? pinnedTweetId});
+      String? description,
+      String? url,
+      @JsonKey(name: 'profile_image_url') String? profileImageUrl,
+      String? location,
+      bool? protected,
+      bool? verified,
+      @JsonKey(name: 'pinned_tweet_id') String? pinnedTweetId,
+      UserEntities? entities,
+      @JsonKey(name: 'public_metrics') PublicUserMetrics? publicMetrics,
+      @JsonKey(name: 'created_at') DateTime? createdAt,
+      UserWithheld? withheld});
+
+  $UserEntitiesCopyWith<$Res>? get entities;
+  $PublicUserMetricsCopyWith<$Res>? get publicMetrics;
+  $UserWithheldCopyWith<$Res>? get withheld;
 }
 
 /// @nodoc
@@ -56,7 +83,17 @@ class _$UserDataCopyWithImpl<$Res> implements $UserDataCopyWith<$Res> {
     Object? id = freezed,
     Object? name = freezed,
     Object? username = freezed,
+    Object? description = freezed,
+    Object? url = freezed,
+    Object? profileImageUrl = freezed,
+    Object? location = freezed,
+    Object? protected = freezed,
+    Object? verified = freezed,
     Object? pinnedTweetId = freezed,
+    Object? entities = freezed,
+    Object? publicMetrics = freezed,
+    Object? createdAt = freezed,
+    Object? withheld = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -71,11 +108,84 @@ class _$UserDataCopyWithImpl<$Res> implements $UserDataCopyWith<$Res> {
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      url: url == freezed
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+      profileImageUrl: profileImageUrl == freezed
+          ? _value.profileImageUrl
+          : profileImageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      location: location == freezed
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as String?,
+      protected: protected == freezed
+          ? _value.protected
+          : protected // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      verified: verified == freezed
+          ? _value.verified
+          : verified // ignore: cast_nullable_to_non_nullable
+              as bool?,
       pinnedTweetId: pinnedTweetId == freezed
           ? _value.pinnedTweetId
           : pinnedTweetId // ignore: cast_nullable_to_non_nullable
               as String?,
+      entities: entities == freezed
+          ? _value.entities
+          : entities // ignore: cast_nullable_to_non_nullable
+              as UserEntities?,
+      publicMetrics: publicMetrics == freezed
+          ? _value.publicMetrics
+          : publicMetrics // ignore: cast_nullable_to_non_nullable
+              as PublicUserMetrics?,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      withheld: withheld == freezed
+          ? _value.withheld
+          : withheld // ignore: cast_nullable_to_non_nullable
+              as UserWithheld?,
     ));
+  }
+
+  @override
+  $UserEntitiesCopyWith<$Res>? get entities {
+    if (_value.entities == null) {
+      return null;
+    }
+
+    return $UserEntitiesCopyWith<$Res>(_value.entities!, (value) {
+      return _then(_value.copyWith(entities: value));
+    });
+  }
+
+  @override
+  $PublicUserMetricsCopyWith<$Res>? get publicMetrics {
+    if (_value.publicMetrics == null) {
+      return null;
+    }
+
+    return $PublicUserMetricsCopyWith<$Res>(_value.publicMetrics!, (value) {
+      return _then(_value.copyWith(publicMetrics: value));
+    });
+  }
+
+  @override
+  $UserWithheldCopyWith<$Res>? get withheld {
+    if (_value.withheld == null) {
+      return null;
+    }
+
+    return $UserWithheldCopyWith<$Res>(_value.withheld!, (value) {
+      return _then(_value.copyWith(withheld: value));
+    });
   }
 }
 
@@ -89,7 +199,24 @@ abstract class _$$_UserDataCopyWith<$Res> implements $UserDataCopyWith<$Res> {
       {String id,
       String name,
       String username,
-      @JsonKey(name: 'pinned_tweet_id') String? pinnedTweetId});
+      String? description,
+      String? url,
+      @JsonKey(name: 'profile_image_url') String? profileImageUrl,
+      String? location,
+      bool? protected,
+      bool? verified,
+      @JsonKey(name: 'pinned_tweet_id') String? pinnedTweetId,
+      UserEntities? entities,
+      @JsonKey(name: 'public_metrics') PublicUserMetrics? publicMetrics,
+      @JsonKey(name: 'created_at') DateTime? createdAt,
+      UserWithheld? withheld});
+
+  @override
+  $UserEntitiesCopyWith<$Res>? get entities;
+  @override
+  $PublicUserMetricsCopyWith<$Res>? get publicMetrics;
+  @override
+  $UserWithheldCopyWith<$Res>? get withheld;
 }
 
 /// @nodoc
@@ -107,7 +234,17 @@ class __$$_UserDataCopyWithImpl<$Res> extends _$UserDataCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? username = freezed,
+    Object? description = freezed,
+    Object? url = freezed,
+    Object? profileImageUrl = freezed,
+    Object? location = freezed,
+    Object? protected = freezed,
+    Object? verified = freezed,
     Object? pinnedTweetId = freezed,
+    Object? entities = freezed,
+    Object? publicMetrics = freezed,
+    Object? createdAt = freezed,
+    Object? withheld = freezed,
   }) {
     return _then(_$_UserData(
       id: id == freezed
@@ -122,10 +259,50 @@ class __$$_UserDataCopyWithImpl<$Res> extends _$UserDataCopyWithImpl<$Res>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      url: url == freezed
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+      profileImageUrl: profileImageUrl == freezed
+          ? _value.profileImageUrl
+          : profileImageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      location: location == freezed
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as String?,
+      protected: protected == freezed
+          ? _value.protected
+          : protected // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      verified: verified == freezed
+          ? _value.verified
+          : verified // ignore: cast_nullable_to_non_nullable
+              as bool?,
       pinnedTweetId: pinnedTweetId == freezed
           ? _value.pinnedTweetId
           : pinnedTweetId // ignore: cast_nullable_to_non_nullable
               as String?,
+      entities: entities == freezed
+          ? _value.entities
+          : entities // ignore: cast_nullable_to_non_nullable
+              as UserEntities?,
+      publicMetrics: publicMetrics == freezed
+          ? _value.publicMetrics
+          : publicMetrics // ignore: cast_nullable_to_non_nullable
+              as PublicUserMetrics?,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      withheld: withheld == freezed
+          ? _value.withheld
+          : withheld // ignore: cast_nullable_to_non_nullable
+              as UserWithheld?,
     ));
   }
 }
@@ -137,7 +314,17 @@ class _$_UserData implements _UserData {
       {required this.id,
       required this.name,
       required this.username,
-      @JsonKey(name: 'pinned_tweet_id') this.pinnedTweetId});
+      this.description,
+      this.url,
+      @JsonKey(name: 'profile_image_url') this.profileImageUrl,
+      this.location,
+      this.protected,
+      this.verified,
+      @JsonKey(name: 'pinned_tweet_id') this.pinnedTweetId,
+      this.entities,
+      @JsonKey(name: 'public_metrics') this.publicMetrics,
+      @JsonKey(name: 'created_at') this.createdAt,
+      this.withheld});
 
   factory _$_UserData.fromJson(Map<String, dynamic> json) =>
       _$$_UserDataFromJson(json);
@@ -149,12 +336,35 @@ class _$_UserData implements _UserData {
   @override
   final String username;
   @override
+  final String? description;
+  @override
+  final String? url;
+  @override
+  @JsonKey(name: 'profile_image_url')
+  final String? profileImageUrl;
+  @override
+  final String? location;
+  @override
+  final bool? protected;
+  @override
+  final bool? verified;
+  @override
   @JsonKey(name: 'pinned_tweet_id')
   final String? pinnedTweetId;
+  @override
+  final UserEntities? entities;
+  @override
+  @JsonKey(name: 'public_metrics')
+  final PublicUserMetrics? publicMetrics;
+  @override
+  @JsonKey(name: 'created_at')
+  final DateTime? createdAt;
+  @override
+  final UserWithheld? withheld;
 
   @override
   String toString() {
-    return 'UserData(id: $id, name: $name, username: $username, pinnedTweetId: $pinnedTweetId)';
+    return 'UserData(id: $id, name: $name, username: $username, description: $description, url: $url, profileImageUrl: $profileImageUrl, location: $location, protected: $protected, verified: $verified, pinnedTweetId: $pinnedTweetId, entities: $entities, publicMetrics: $publicMetrics, createdAt: $createdAt, withheld: $withheld)';
   }
 
   @override
@@ -166,7 +376,20 @@ class _$_UserData implements _UserData {
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.username, username) &&
             const DeepCollectionEquality()
-                .equals(other.pinnedTweetId, pinnedTweetId));
+                .equals(other.description, description) &&
+            const DeepCollectionEquality().equals(other.url, url) &&
+            const DeepCollectionEquality()
+                .equals(other.profileImageUrl, profileImageUrl) &&
+            const DeepCollectionEquality().equals(other.location, location) &&
+            const DeepCollectionEquality().equals(other.protected, protected) &&
+            const DeepCollectionEquality().equals(other.verified, verified) &&
+            const DeepCollectionEquality()
+                .equals(other.pinnedTweetId, pinnedTweetId) &&
+            const DeepCollectionEquality().equals(other.entities, entities) &&
+            const DeepCollectionEquality()
+                .equals(other.publicMetrics, publicMetrics) &&
+            const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
+            const DeepCollectionEquality().equals(other.withheld, withheld));
   }
 
   @JsonKey(ignore: true)
@@ -176,7 +399,17 @@ class _$_UserData implements _UserData {
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(username),
-      const DeepCollectionEquality().hash(pinnedTweetId));
+      const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(url),
+      const DeepCollectionEquality().hash(profileImageUrl),
+      const DeepCollectionEquality().hash(location),
+      const DeepCollectionEquality().hash(protected),
+      const DeepCollectionEquality().hash(verified),
+      const DeepCollectionEquality().hash(pinnedTweetId),
+      const DeepCollectionEquality().hash(entities),
+      const DeepCollectionEquality().hash(publicMetrics),
+      const DeepCollectionEquality().hash(createdAt),
+      const DeepCollectionEquality().hash(withheld));
 
   @JsonKey(ignore: true)
   @override
@@ -191,11 +424,20 @@ class _$_UserData implements _UserData {
 
 abstract class _UserData implements UserData {
   const factory _UserData(
-          {required final String id,
-          required final String name,
-          required final String username,
-          @JsonKey(name: 'pinned_tweet_id') final String? pinnedTweetId}) =
-      _$_UserData;
+      {required final String id,
+      required final String name,
+      required final String username,
+      final String? description,
+      final String? url,
+      @JsonKey(name: 'profile_image_url') final String? profileImageUrl,
+      final String? location,
+      final bool? protected,
+      final bool? verified,
+      @JsonKey(name: 'pinned_tweet_id') final String? pinnedTweetId,
+      final UserEntities? entities,
+      @JsonKey(name: 'public_metrics') final PublicUserMetrics? publicMetrics,
+      @JsonKey(name: 'created_at') final DateTime? createdAt,
+      final UserWithheld? withheld}) = _$_UserData;
 
   factory _UserData.fromJson(Map<String, dynamic> json) = _$_UserData.fromJson;
 
@@ -206,8 +448,31 @@ abstract class _UserData implements UserData {
   @override
   String get username => throw _privateConstructorUsedError;
   @override
+  String? get description => throw _privateConstructorUsedError;
+  @override
+  String? get url => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'profile_image_url')
+  String? get profileImageUrl => throw _privateConstructorUsedError;
+  @override
+  String? get location => throw _privateConstructorUsedError;
+  @override
+  bool? get protected => throw _privateConstructorUsedError;
+  @override
+  bool? get verified => throw _privateConstructorUsedError;
+  @override
   @JsonKey(name: 'pinned_tweet_id')
   String? get pinnedTweetId => throw _privateConstructorUsedError;
+  @override
+  UserEntities? get entities => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'public_metrics')
+  PublicUserMetrics? get publicMetrics => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'created_at')
+  DateTime? get createdAt => throw _privateConstructorUsedError;
+  @override
+  UserWithheld? get withheld => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_UserDataCopyWith<_$_UserData> get copyWith =>

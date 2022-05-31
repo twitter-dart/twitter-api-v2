@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'tweet_mention.dart';
+part of 'mention.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,38 +14,36 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-TweetMention _$TweetMentionFromJson(Map<String, dynamic> json) {
-  return _TweetMention.fromJson(json);
+Mention _$MentionFromJson(Map<String, dynamic> json) {
+  return _Mention.fromJson(json);
 }
 
 /// @nodoc
-mixin _$TweetMention {
-  String get id => throw _privateConstructorUsedError;
+mixin _$Mention {
+  String? get id => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
   int get start => throw _privateConstructorUsedError;
   int get end => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TweetMentionCopyWith<TweetMention> get copyWith =>
-      throw _privateConstructorUsedError;
+  $MentionCopyWith<Mention> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TweetMentionCopyWith<$Res> {
-  factory $TweetMentionCopyWith(
-          TweetMention value, $Res Function(TweetMention) then) =
-      _$TweetMentionCopyWithImpl<$Res>;
-  $Res call({String id, String username, int start, int end});
+abstract class $MentionCopyWith<$Res> {
+  factory $MentionCopyWith(Mention value, $Res Function(Mention) then) =
+      _$MentionCopyWithImpl<$Res>;
+  $Res call({String? id, String username, int start, int end});
 }
 
 /// @nodoc
-class _$TweetMentionCopyWithImpl<$Res> implements $TweetMentionCopyWith<$Res> {
-  _$TweetMentionCopyWithImpl(this._value, this._then);
+class _$MentionCopyWithImpl<$Res> implements $MentionCopyWith<$Res> {
+  _$MentionCopyWithImpl(this._value, this._then);
 
-  final TweetMention _value;
+  final Mention _value;
   // ignore: unused_field
-  final $Res Function(TweetMention) _then;
+  final $Res Function(Mention) _then;
 
   @override
   $Res call({
@@ -58,7 +56,7 @@ class _$TweetMentionCopyWithImpl<$Res> implements $TweetMentionCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       username: username == freezed
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
@@ -76,25 +74,22 @@ class _$TweetMentionCopyWithImpl<$Res> implements $TweetMentionCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_TweetMentionCopyWith<$Res>
-    implements $TweetMentionCopyWith<$Res> {
-  factory _$$_TweetMentionCopyWith(
-          _$_TweetMention value, $Res Function(_$_TweetMention) then) =
-      __$$_TweetMentionCopyWithImpl<$Res>;
+abstract class _$$_MentionCopyWith<$Res> implements $MentionCopyWith<$Res> {
+  factory _$$_MentionCopyWith(
+          _$_Mention value, $Res Function(_$_Mention) then) =
+      __$$_MentionCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String username, int start, int end});
+  $Res call({String? id, String username, int start, int end});
 }
 
 /// @nodoc
-class __$$_TweetMentionCopyWithImpl<$Res>
-    extends _$TweetMentionCopyWithImpl<$Res>
-    implements _$$_TweetMentionCopyWith<$Res> {
-  __$$_TweetMentionCopyWithImpl(
-      _$_TweetMention _value, $Res Function(_$_TweetMention) _then)
-      : super(_value, (v) => _then(v as _$_TweetMention));
+class __$$_MentionCopyWithImpl<$Res> extends _$MentionCopyWithImpl<$Res>
+    implements _$$_MentionCopyWith<$Res> {
+  __$$_MentionCopyWithImpl(_$_Mention _value, $Res Function(_$_Mention) _then)
+      : super(_value, (v) => _then(v as _$_Mention));
 
   @override
-  _$_TweetMention get _value => super._value as _$_TweetMention;
+  _$_Mention get _value => super._value as _$_Mention;
 
   @override
   $Res call({
@@ -103,11 +98,11 @@ class __$$_TweetMentionCopyWithImpl<$Res>
     Object? start = freezed,
     Object? end = freezed,
   }) {
-    return _then(_$_TweetMention(
+    return _then(_$_Mention(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       username: username == freezed
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
@@ -126,18 +121,18 @@ class __$$_TweetMentionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TweetMention implements _TweetMention {
-  const _$_TweetMention(
-      {required this.id,
+class _$_Mention implements _Mention {
+  const _$_Mention(
+      {this.id,
       required this.username,
       required this.start,
       required this.end});
 
-  factory _$_TweetMention.fromJson(Map<String, dynamic> json) =>
-      _$$_TweetMentionFromJson(json);
+  factory _$_Mention.fromJson(Map<String, dynamic> json) =>
+      _$$_MentionFromJson(json);
 
   @override
-  final String id;
+  final String? id;
   @override
   final String username;
   @override
@@ -147,14 +142,14 @@ class _$_TweetMention implements _TweetMention {
 
   @override
   String toString() {
-    return 'TweetMention(id: $id, username: $username, start: $start, end: $end)';
+    return 'Mention(id: $id, username: $username, start: $start, end: $end)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TweetMention &&
+            other is _$_Mention &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.username, username) &&
             const DeepCollectionEquality().equals(other.start, start) &&
@@ -172,27 +167,26 @@ class _$_TweetMention implements _TweetMention {
 
   @JsonKey(ignore: true)
   @override
-  _$$_TweetMentionCopyWith<_$_TweetMention> get copyWith =>
-      __$$_TweetMentionCopyWithImpl<_$_TweetMention>(this, _$identity);
+  _$$_MentionCopyWith<_$_Mention> get copyWith =>
+      __$$_MentionCopyWithImpl<_$_Mention>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TweetMentionToJson(this);
+    return _$$_MentionToJson(this);
   }
 }
 
-abstract class _TweetMention implements TweetMention {
-  const factory _TweetMention(
-      {required final String id,
+abstract class _Mention implements Mention {
+  const factory _Mention(
+      {final String? id,
       required final String username,
       required final int start,
-      required final int end}) = _$_TweetMention;
+      required final int end}) = _$_Mention;
 
-  factory _TweetMention.fromJson(Map<String, dynamic> json) =
-      _$_TweetMention.fromJson;
+  factory _Mention.fromJson(Map<String, dynamic> json) = _$_Mention.fromJson;
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @override
   String get username => throw _privateConstructorUsedError;
   @override
@@ -201,6 +195,6 @@ abstract class _TweetMention implements TweetMention {
   int get end => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$$_TweetMentionCopyWith<_$_TweetMention> get copyWith =>
+  _$$_MentionCopyWith<_$_Mention> get copyWith =>
       throw _privateConstructorUsedError;
 }

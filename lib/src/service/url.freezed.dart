@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'tweet_url.dart';
+part of 'url.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-TweetUrl _$TweetUrlFromJson(Map<String, dynamic> json) {
-  return _TweetUrl.fromJson(json);
+Url _$UrlFromJson(Map<String, dynamic> json) {
+  return _Url.fromJson(json);
 }
 
 /// @nodoc
-mixin _$TweetUrl {
+mixin _$Url {
   int get start => throw _privateConstructorUsedError;
   int get end => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
@@ -34,14 +34,13 @@ mixin _$TweetUrl {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TweetUrlCopyWith<TweetUrl> get copyWith =>
-      throw _privateConstructorUsedError;
+  $UrlCopyWith<Url> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TweetUrlCopyWith<$Res> {
-  factory $TweetUrlCopyWith(TweetUrl value, $Res Function(TweetUrl) then) =
-      _$TweetUrlCopyWithImpl<$Res>;
+abstract class $UrlCopyWith<$Res> {
+  factory $UrlCopyWith(Url value, $Res Function(Url) then) =
+      _$UrlCopyWithImpl<$Res>;
   $Res call(
       {int start,
       int end,
@@ -53,12 +52,12 @@ abstract class $TweetUrlCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TweetUrlCopyWithImpl<$Res> implements $TweetUrlCopyWith<$Res> {
-  _$TweetUrlCopyWithImpl(this._value, this._then);
+class _$UrlCopyWithImpl<$Res> implements $UrlCopyWith<$Res> {
+  _$UrlCopyWithImpl(this._value, this._then);
 
-  final TweetUrl _value;
+  final Url _value;
   // ignore: unused_field
-  final $Res Function(TweetUrl) _then;
+  final $Res Function(Url) _then;
 
   @override
   $Res call({
@@ -104,10 +103,9 @@ class _$TweetUrlCopyWithImpl<$Res> implements $TweetUrlCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_TweetUrlCopyWith<$Res> implements $TweetUrlCopyWith<$Res> {
-  factory _$$_TweetUrlCopyWith(
-          _$_TweetUrl value, $Res Function(_$_TweetUrl) then) =
-      __$$_TweetUrlCopyWithImpl<$Res>;
+abstract class _$$_UrlCopyWith<$Res> implements $UrlCopyWith<$Res> {
+  factory _$$_UrlCopyWith(_$_Url value, $Res Function(_$_Url) then) =
+      __$$_UrlCopyWithImpl<$Res>;
   @override
   $Res call(
       {int start,
@@ -120,14 +118,13 @@ abstract class _$$_TweetUrlCopyWith<$Res> implements $TweetUrlCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_TweetUrlCopyWithImpl<$Res> extends _$TweetUrlCopyWithImpl<$Res>
-    implements _$$_TweetUrlCopyWith<$Res> {
-  __$$_TweetUrlCopyWithImpl(
-      _$_TweetUrl _value, $Res Function(_$_TweetUrl) _then)
-      : super(_value, (v) => _then(v as _$_TweetUrl));
+class __$$_UrlCopyWithImpl<$Res> extends _$UrlCopyWithImpl<$Res>
+    implements _$$_UrlCopyWith<$Res> {
+  __$$_UrlCopyWithImpl(_$_Url _value, $Res Function(_$_Url) _then)
+      : super(_value, (v) => _then(v as _$_Url));
 
   @override
-  _$_TweetUrl get _value => super._value as _$_TweetUrl;
+  _$_Url get _value => super._value as _$_Url;
 
   @override
   $Res call({
@@ -139,7 +136,7 @@ class __$$_TweetUrlCopyWithImpl<$Res> extends _$TweetUrlCopyWithImpl<$Res>
     Object? unwoundUrl = freezed,
     Object? mediaKey = freezed,
   }) {
-    return _then(_$_TweetUrl(
+    return _then(_$_Url(
       start: start == freezed
           ? _value.start
           : start // ignore: cast_nullable_to_non_nullable
@@ -174,8 +171,8 @@ class __$$_TweetUrlCopyWithImpl<$Res> extends _$TweetUrlCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TweetUrl implements _TweetUrl {
-  const _$_TweetUrl(
+class _$_Url implements _Url {
+  const _$_Url(
       {required this.start,
       required this.end,
       required this.url,
@@ -184,8 +181,7 @@ class _$_TweetUrl implements _TweetUrl {
       @JsonKey(name: 'unwound_url') this.unwoundUrl,
       @JsonKey(name: 'media_key') this.mediaKey});
 
-  factory _$_TweetUrl.fromJson(Map<String, dynamic> json) =>
-      _$$_TweetUrlFromJson(json);
+  factory _$_Url.fromJson(Map<String, dynamic> json) => _$$_UrlFromJson(json);
 
   @override
   final int start;
@@ -208,14 +204,14 @@ class _$_TweetUrl implements _TweetUrl {
 
   @override
   String toString() {
-    return 'TweetUrl(start: $start, end: $end, url: $url, expandedUrl: $expandedUrl, displayUrl: $displayUrl, unwoundUrl: $unwoundUrl, mediaKey: $mediaKey)';
+    return 'Url(start: $start, end: $end, url: $url, expandedUrl: $expandedUrl, displayUrl: $displayUrl, unwoundUrl: $unwoundUrl, mediaKey: $mediaKey)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TweetUrl &&
+            other is _$_Url &&
             const DeepCollectionEquality().equals(other.start, start) &&
             const DeepCollectionEquality().equals(other.end, end) &&
             const DeepCollectionEquality().equals(other.url, url) &&
@@ -242,26 +238,26 @@ class _$_TweetUrl implements _TweetUrl {
 
   @JsonKey(ignore: true)
   @override
-  _$$_TweetUrlCopyWith<_$_TweetUrl> get copyWith =>
-      __$$_TweetUrlCopyWithImpl<_$_TweetUrl>(this, _$identity);
+  _$$_UrlCopyWith<_$_Url> get copyWith =>
+      __$$_UrlCopyWithImpl<_$_Url>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TweetUrlToJson(this);
+    return _$$_UrlToJson(this);
   }
 }
 
-abstract class _TweetUrl implements TweetUrl {
-  const factory _TweetUrl(
+abstract class _Url implements Url {
+  const factory _Url(
       {required final int start,
       required final int end,
       required final String url,
       @JsonKey(name: 'expanded_url') required final String expandedUrl,
       @JsonKey(name: 'display_url') required final String displayUrl,
       @JsonKey(name: 'unwound_url') final String? unwoundUrl,
-      @JsonKey(name: 'media_key') final String? mediaKey}) = _$_TweetUrl;
+      @JsonKey(name: 'media_key') final String? mediaKey}) = _$_Url;
 
-  factory _TweetUrl.fromJson(Map<String, dynamic> json) = _$_TweetUrl.fromJson;
+  factory _Url.fromJson(Map<String, dynamic> json) = _$_Url.fromJson;
 
   @override
   int get start => throw _privateConstructorUsedError;
@@ -283,6 +279,5 @@ abstract class _TweetUrl implements TweetUrl {
   String? get mediaKey => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$$_TweetUrlCopyWith<_$_TweetUrl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_UrlCopyWith<_$_Url> get copyWith => throw _privateConstructorUsedError;
 }

@@ -94,6 +94,8 @@ abstract class BaseService implements Service {
       ),
     );
 
+    print(response.body);
+
     return response;
   }
 
