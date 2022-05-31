@@ -13,6 +13,7 @@ import '../includes.dart';
 import '../twitter_response.dart';
 import '../users/user_data.dart';
 import '../users/user_expansion.dart';
+import '../users/user_field.dart';
 import '../users/user_meta.dart';
 import 'filtering_rule_data.dart';
 import 'filtering_rule_meta.dart';
@@ -259,6 +260,12 @@ abstract class TweetsService {
   ///                  well as in the referenced Tweet expanded data object that
   ///                  will be located in the `includes` data object.
   ///
+  /// - [userFields]: This fields parameter enables you to select which specific
+  ///                 user fields will deliver in each returned Tweet. While the
+  ///                 user ID will be located in the original Tweet object, you
+  ///                 will find this ID and all additional user fields in the
+  ///                 `includes` data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/:id/liking_users
@@ -280,6 +287,7 @@ abstract class TweetsService {
     String? paginationToken,
     List<UserExpansion>? expansions,
     List<TweetField>? tweetFields,
+    List<UserField>? userFields,
   });
 
   /// Allows you to get information about a user’s liked Tweets.
@@ -318,6 +326,12 @@ abstract class TweetsService {
   ///                  well as in the referenced Tweet expanded data object that
   ///                  will be located in the `includes` data object.
   ///
+  /// - [userFields]: This fields parameter enables you to select which specific
+  ///                 user fields will deliver in each returned Tweet. While the
+  ///                 user ID will be located in the original Tweet object, you
+  ///                 will find this ID and all additional user fields in the
+  ///                 `includes` data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/liked_tweets
@@ -339,6 +353,7 @@ abstract class TweetsService {
     String? paginationToken,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
+    List<UserField>? userFields,
   });
 
   /// Allows you to get information about who has Retweeted a Tweet.
@@ -375,6 +390,11 @@ abstract class TweetsService {
   ///                  well as in the referenced Tweet expanded data object that
   ///                  will be located in the `includes` data object.
   ///
+  /// - [userFields]: This fields parameter enables you to select which specific
+  ///                 user fields will deliver with each returned users objects.
+  ///                 These specified user fields will display directly in the
+  ///                 user data objects.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/:id/retweeted_by
@@ -396,6 +416,7 @@ abstract class TweetsService {
     String? paginationToken,
     List<UserExpansion>? expansions,
     List<TweetField>? tweetFields,
+    List<UserField>? userFields,
   });
 
   /// Returns Quote Tweets for a Tweet specified by the requested Tweet ID.
@@ -439,6 +460,12 @@ abstract class TweetsService {
   ///                  well as in the referenced Tweet expanded data object that
   ///                  will be located in the `includes` data object.
   ///
+  /// - [userFields]: This fields parameter enables you to select which specific
+  ///                 user fields will deliver in each returned Tweet. While the
+  ///                 user ID will be located in the original Tweet object, you
+  ///                 will find this ID and all additional user fields in the
+  ///                 `includes` data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/:id/quote_tweets
@@ -460,6 +487,7 @@ abstract class TweetsService {
     String? paginationToken,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
+    List<UserField>? userFields,
   });
 
   /// The recent search endpoint returns Tweets from the last seven days that
@@ -505,6 +533,12 @@ abstract class TweetsService {
   ///                  well as in the referenced Tweet expanded data object that
   ///                  will be located in the `includes` data object.
   ///
+  /// - [userFields]: This fields parameter enables you to select which specific
+  ///                 user fields will deliver in each returned Tweet. While the
+  ///                 user ID will be located in the original Tweet object, you
+  ///                 will find this ID and all additional user fields in the
+  ///                 `includes` data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/search/recent
@@ -526,6 +560,7 @@ abstract class TweetsService {
     String? nextToken,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
+    List<UserField>? userFields,
   });
 
   /// This endpoint is only available to those users who have been approved for
@@ -574,6 +609,12 @@ abstract class TweetsService {
   ///                  well as in the referenced Tweet expanded data object that
   ///                  will be located in the `includes` data object.
   ///
+  /// - [userFields]: This fields parameter enables you to select which specific
+  ///                 user fields will deliver in each returned Tweet. While the
+  ///                 user ID will be located in the original Tweet object, you
+  ///                 will find this ID and all additional user fields in the
+  ///                 `includes` data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/search/all
@@ -595,6 +636,7 @@ abstract class TweetsService {
     String? nextToken,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
+    List<UserField>? userFields,
   });
 
   /// Returns a variety of information about a single Tweet specified by the
@@ -623,6 +665,12 @@ abstract class TweetsService {
   ///                  well as in the referenced Tweet expanded data object that
   ///                  will be located in the `includes` data object.
   ///
+  /// - [userFields]: This fields parameter enables you to select which specific
+  ///                 user fields will deliver in each returned Tweet. While the
+  ///                 user ID will be located in the original Tweet object, you
+  ///                 will find this ID and all additional user fields in the
+  ///                 `includes` data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/:id
@@ -642,6 +690,7 @@ abstract class TweetsService {
     required String tweetId,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
+    List<UserField>? userFields,
   });
 
   /// Returns a variety of information about the Tweet specified by the
@@ -671,6 +720,12 @@ abstract class TweetsService {
   ///                  well as in the referenced Tweet expanded data object that
   ///                  will be located in the `includes` data object.
   ///
+  /// - [userFields]: This fields parameter enables you to select which specific
+  ///                 user fields will deliver in each returned Tweet. While the
+  ///                 user ID will be located in the original Tweet object, you
+  ///                 will find this ID and all additional user fields in the
+  ///                 `includes` data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets
@@ -690,6 +745,7 @@ abstract class TweetsService {
     required List<String> tweetIds,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
+    List<UserField>? userFields,
   });
 
   /// The recent Tweet counts endpoint returns count of Tweets from the last
@@ -847,6 +903,12 @@ abstract class TweetsService {
   ///                  well as in the referenced Tweet expanded data object that
   ///                  will be located in the `includes` data object.
   ///
+  /// - [userFields]: This fields parameter enables you to select which specific
+  ///                 user fields will deliver in each returned Tweet. While the
+  ///                 user ID will be located in the original Tweet object, you
+  ///                 will find this ID and all additional user fields in the
+  ///                 `includes` data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/bookmarks/:tweet_id
@@ -863,6 +925,7 @@ abstract class TweetsService {
     required String userId,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
+    List<UserField>? userFields,
   });
 
   /// Hides a reply to a Tweet.
@@ -958,6 +1021,12 @@ abstract class TweetsService {
   ///                  well as in the referenced Tweet expanded data object that
   ///                  will be located in the `includes` data object.
   ///
+  /// - [userFields]: This fields parameter enables you to select which specific
+  ///                 user fields will deliver in each returned Tweet. While the
+  ///                 user ID will be located in the original Tweet object, you
+  ///                 will find this ID and all additional user fields in the
+  ///                 `includes` data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/mentions
@@ -982,6 +1051,7 @@ abstract class TweetsService {
     String? paginationToken,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
+    List<UserField>? userFields,
   });
 
   /// Returns Tweets composed by a single user, specified by the requested user
@@ -1033,6 +1103,12 @@ abstract class TweetsService {
   ///                  well as in the referenced Tweet expanded data object that
   ///                  will be located in the `includes` data object.
   ///
+  /// - [userFields]: This fields parameter enables you to select which specific
+  ///                 user fields will deliver in each returned Tweet. While the
+  ///                 user ID will be located in the original Tweet object, you
+  ///                 will find this ID and all additional user fields in the
+  ///                 `includes` data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/tweets
@@ -1057,6 +1133,7 @@ abstract class TweetsService {
     String? paginationToken,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
+    List<UserField>? userFields,
   });
 
   /// Allows you to retrieve a collection of the most recent Tweets and Retweets
@@ -1103,6 +1180,12 @@ abstract class TweetsService {
   ///                  well as in the referenced Tweet expanded data object that
   ///                  will be located in the `includes` data object.
   ///
+  /// - [userFields]: This fields parameter enables you to select which specific
+  ///                 user fields will deliver in each returned Tweet. While the
+  ///                 user ID will be located in the original Tweet object, you
+  ///                 will find this ID and all additional user fields in the
+  ///                 `includes` data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/timelines/reverse_chronological
@@ -1121,6 +1204,7 @@ abstract class TweetsService {
     String? paginationToken,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
+    List<UserField>? userFields,
   });
 
   /// Streams about 1% of all Tweets in real-time.
@@ -1172,6 +1256,12 @@ abstract class TweetsService {
   ///                  well as in the referenced Tweet expanded data object that
   ///                  will be located in the `includes` data object.
   ///
+  /// - [userFields]: This fields parameter enables you to select which specific
+  ///                 user fields will deliver in each returned Tweet. While the
+  ///                 user ID will be located in the original Tweet object, you
+  ///                 will find this ID and all additional user fields in the
+  ///                 `includes` data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/sample/stream
@@ -1188,6 +1278,7 @@ abstract class TweetsService {
     int? backfillMinutes,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
+    List<UserField>? userFields,
   });
 
   /// Streams Tweets in real-time that match the rules that you added to the
@@ -1243,6 +1334,12 @@ abstract class TweetsService {
   ///                  well as in the referenced Tweet expanded data object that
   ///                  will be located in the `includes` data object.
   ///
+  /// - [userFields]: This fields parameter enables you to select which specific
+  ///                 user fields will deliver in each returned Tweet. While the
+  ///                 user ID will be located in the original Tweet object, you
+  ///                 will find this ID and all additional user fields in the
+  ///                 includes data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/search/stream
@@ -1259,6 +1356,7 @@ abstract class TweetsService {
     int? backfillMinutes,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
+    List<UserField>? userFields,
   });
 
   /// Returns either a single rule, or a list of rules that have been added to
@@ -1457,6 +1555,7 @@ class _TweetsService extends BaseService implements TweetsService {
     String? paginationToken,
     List<UserExpansion>? expansions,
     List<TweetField>? tweetFields,
+    List<UserField>? userFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -1467,6 +1566,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'pagination_token': paginationToken,
             'expansions': super.serializeExpansions(expansions),
             'tweet.fields': super.serializeFields(tweetFields),
+            'user.fields': super.serializeFields(userFields),
           },
         ),
         dataBuilder: UserData.fromJson,
@@ -1480,6 +1580,7 @@ class _TweetsService extends BaseService implements TweetsService {
     String? paginationToken,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
+    List<UserField>? userFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -1490,6 +1591,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'pagination_token': paginationToken,
             'expansions': super.serializeExpansions(expansions),
             'tweet.fields': super.serializeFields(tweetFields),
+            'user.fields': super.serializeFields(userFields),
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -1503,6 +1605,7 @@ class _TweetsService extends BaseService implements TweetsService {
     String? paginationToken,
     List<UserExpansion>? expansions,
     List<TweetField>? tweetFields,
+    List<UserField>? userFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -1513,6 +1616,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'pagination_token': paginationToken,
             'expansions': super.serializeExpansions(expansions),
             'tweet.fields': super.serializeFields(tweetFields),
+            'user.fields': super.serializeFields(userFields),
           },
         ),
         dataBuilder: UserData.fromJson,
@@ -1526,6 +1630,7 @@ class _TweetsService extends BaseService implements TweetsService {
     String? paginationToken,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
+    List<UserField>? userFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -1536,6 +1641,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'pagination_token': paginationToken,
             'expansions': super.serializeExpansions(expansions),
             'tweet.fields': super.serializeFields(tweetFields),
+            'user.fields': super.serializeFields(userFields),
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -1549,6 +1655,7 @@ class _TweetsService extends BaseService implements TweetsService {
     String? nextToken,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
+    List<UserField>? userFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -1560,6 +1667,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'next_token': nextToken,
             'expansions': super.serializeExpansions(expansions),
             'tweet.fields': super.serializeFields(tweetFields),
+            'user.fields': super.serializeFields(userFields),
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -1573,6 +1681,7 @@ class _TweetsService extends BaseService implements TweetsService {
     String? nextToken,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
+    List<UserField>? userFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -1584,6 +1693,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'next_token': nextToken,
             'expansions': super.serializeExpansions(expansions),
             'tweet.fields': super.serializeFields(tweetFields),
+            'user.fields': super.serializeFields(userFields),
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -1595,6 +1705,7 @@ class _TweetsService extends BaseService implements TweetsService {
     required String tweetId,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
+    List<UserField>? userFields,
   }) async =>
       super.buildResponse(
         await super.get(
@@ -1603,6 +1714,7 @@ class _TweetsService extends BaseService implements TweetsService {
           queryParameters: {
             'expansions': super.serializeExpansions(expansions),
             'tweet.fields': super.serializeFields(tweetFields),
+            'user.fields': super.serializeFields(userFields),
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -1613,6 +1725,7 @@ class _TweetsService extends BaseService implements TweetsService {
     required List<String> tweetIds,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
+    List<UserField>? userFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -1622,6 +1735,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'ids': super.serialize(tweetIds),
             'expansions': super.serializeExpansions(expansions),
             'tweet.fields': super.serializeFields(tweetFields),
+            'user.fields': super.serializeFields(userFields),
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -1695,6 +1809,7 @@ class _TweetsService extends BaseService implements TweetsService {
     required String userId,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
+    List<UserField>? userFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -1703,6 +1818,7 @@ class _TweetsService extends BaseService implements TweetsService {
           queryParameters: {
             'expansions': super.serializeExpansions(expansions),
             'tweet.fields': super.serializeFields(tweetFields),
+            'user.fields': super.serializeFields(userFields),
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -1738,6 +1854,7 @@ class _TweetsService extends BaseService implements TweetsService {
     String? paginationToken,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
+    List<UserField>? userFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -1748,6 +1865,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'pagination_token': paginationToken,
             'expansions': super.serializeExpansions(expansions),
             'tweet.fields': super.serializeFields(tweetFields),
+            'user.fields': super.serializeFields(userFields),
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -1761,6 +1879,7 @@ class _TweetsService extends BaseService implements TweetsService {
     String? paginationToken,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
+    List<UserField>? userFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -1771,6 +1890,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'pagination_token': paginationToken,
             'expansions': super.serializeExpansions(expansions),
             'tweet.fields': super.serializeFields(tweetFields),
+            'user.fields': super.serializeFields(userFields),
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -1784,6 +1904,7 @@ class _TweetsService extends BaseService implements TweetsService {
     String? paginationToken,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
+    List<UserField>? userFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -1794,6 +1915,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'pagination_token': paginationToken,
             'expansions': super.serializeExpansions(expansions),
             'tweet.fields': super.serializeFields(tweetFields),
+            'user.fields': super.serializeFields(userFields),
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -1805,6 +1927,7 @@ class _TweetsService extends BaseService implements TweetsService {
     int? backfillMinutes,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
+    List<UserField>? userFields,
   }) async {
     final stream = await super.getStream(
       UserContext.oauth2Only,
@@ -1813,6 +1936,7 @@ class _TweetsService extends BaseService implements TweetsService {
         'backfill_minutes': backfillMinutes,
         'expansions': super.serializeExpansions(expansions),
         'tweet.fields': super.serializeFields(tweetFields),
+        'user.fields': super.serializeFields(userFields),
       },
     );
 
@@ -1831,6 +1955,7 @@ class _TweetsService extends BaseService implements TweetsService {
     int? backfillMinutes,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
+    List<UserField>? userFields,
   }) async {
     final stream = await super.getStream(
       UserContext.oauth2Only,
@@ -1839,6 +1964,7 @@ class _TweetsService extends BaseService implements TweetsService {
         'backfill_minutes': backfillMinutes,
         'expansions': super.serializeExpansions(expansions),
         'tweet.fields': super.serializeFields(tweetFields),
+        'user.fields': super.serializeFields(userFields),
       },
     );
 
