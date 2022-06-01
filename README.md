@@ -49,6 +49,8 @@
     - [1.3.1. Method Names](#131-method-names)
     - [1.3.2. Generate App-Only Bearer Token](#132-generate-app-only-bearer-token)
     - [1.3.3. Null Parameter at Request](#133-null-parameter-at-request)
+    - [1.3.4. Expand Object Fields with `expansions`](#134-expand-object-fields-with-expansions)
+    - [1.3.5. Expand Object Fields with `fields`](#135-expand-object-fields-with-fields)
   - [1.4. Contribution](#14-contribution)
   - [1.5. Support](#15-support)
   - [1.6. License](#16-license)
@@ -361,12 +363,12 @@ void main() async {
 | Prefix      | Description                                                                                                                                  |
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | **lookup**  | This prefix is attached to the endpoint performing the search.</br> However, it's distinguished from the higher-performance Search endpoint. |
+| **search**  | This prefix is attached to high-performance Search endpoints.                                                                                |
+| **connect** | This prefix is attached to the endpoint performing the high-performance streaming.                                                           |
+| **count**   | This prefix is attached to the endpoint that counts tweets, etc.                                                                             |
 | **create**  | This prefix is attached to the endpoint performing the create state such as `Tweet` and `Follow`.                                            |
 | **destroy** | This prefix is attached to the endpoint performing the destroy state such as `Tweet` and `Follow`.                                           |
-| **search**  | This prefix is attached to high-performance Search endpoints.                                                                                |
-| **count**   | This prefix is attached to the endpoint that counts tweets, etc.                                                                             |
 | **update**  | This prefix is attached to the endpoint performing the update state.                                                                         |
-| **connect** | This prefix is attached to the endpoint performing the high-performance streaming.                                                           |
 
 ### 1.3.2. Generate App-Only Bearer Token
 
@@ -408,6 +410,80 @@ void main() async {
   );
 }
 ```
+
+### 1.3.4. Expand Object Fields with `expansions`
+
+For example, there may be a situation where data contains only an ID, and you want to retrieve the data object associated with that ID as well. In such cases, the `Twitter API v2.0` specification called `expansions` is useful, and this library supports that specification.
+
+Basically it can be used in endpoints that perform GET communication such as `lookup` and `search` processing. Some fields may also be included in the `includes` property of [TwitterResponse](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TwitterResponse-class.html).
+
+You can use `expansions` like below:
+
+```dart
+import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
+
+void main() async {
+  final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
+
+  try {
+    final tweets = await twitter.tweetsService.searchRecent(
+      query: '#ElonMusk',
+      // Specify fields you need!
+      expansions: [
+        v2.TweetExpansion.authorId,
+        v2.TweetExpansion.inReplyToUserId,
+      ],
+    );
+
+    print(tweets);
+  } on v2.TwitterException catch (e) {
+    print(e);
+  }
+}
+```
+
+You can see more details about `expansions` from [Official Documentation](https://developer.twitter.com/en/docs/twitter-api/expansions).
+
+### 1.3.5. Expand Object Fields with `fields`
+
+`Twitter API v2.0` supports a very interesting specification, allowing users to control the amount of data contained in the response object for each endpoint depending on the situation. It's called `fields`, and this library supports this specification.
+
+Basically it can be used in endpoints that perform GET communication such as `lookup` and `search` processing. Some fields may also be included in the `includes` property of [TwitterResponse](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TwitterResponse-class.html).
+
+You can use `fields` like below:
+
+```dart
+import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
+
+void main() async {
+  final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
+
+  try {
+    final tweets = await twitter.tweetsService.searchRecent(
+      query: '#ElonMusk',
+      maxResults: 20,
+      expansions: v2.TweetExpansion.values,
+      tweetFields: [
+        v2.TweetField.conversationId,
+        v2.TweetField.publicMetrics,
+      ],
+      userFields: [
+        v2.UserField.location,
+        v2.UserField.publicMetrics,
+      ],
+    );
+
+    print(tweets);
+  } on v2.TwitterException catch (e) {
+    print(e);
+  }
+}
+```
+
+> **Note**</br>
+> Some fields must be combined with `expansions`.
+
+You can see more details about `fields` from [Official Documentation](https://developer.twitter.com/en/docs/twitter-api/fields).
 
 ## 1.4. Contribution
 
