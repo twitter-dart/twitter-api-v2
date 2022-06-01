@@ -1,5 +1,44 @@
 # Release Note
 
+## v2.4.0
+
+- Added `userFields` argument. ([#180](https://github.com/twitter-dart/twitter-api-v2/issues/180))
+  - GET /2/users/:id/bookmarks
+  - GET /2/tweets/search/stream
+  - GET /2/tweets/:id/liking_users
+  - GET /2/users/:id/liked_tweets
+  - GET /2/tweets/:id/quote_tweets
+  - GET /2/tweets/search/all
+  - GET /2/tweets/search/recent
+  - GET /2/users/:id/mentions
+  - GET /2/users/:id/timelines/reverse_chronological
+  - GET /2/users/:id/tweetsGET /2/tweets
+  - GET /2/tweets/:id
+  - GET /2/tweets/sample/stream
+  - GET /2/users/:id/blocking
+  - GET /2/users/:id/followers
+  - GET /2/users/:id/following
+  - GET /2/users/:id/muting
+  - GET /2/users
+  - GET /2/users/:id
+  - GET /2/users/by
+  - GET /2/users/by/username/:username
+  - GET /2/users/me
+  - GET /2/spaces/search
+  - GET /2/spaces
+  - GET /2/spaces/:id
+  - GET /2/spaces/:id/buyers
+  - GET /2/spaces/:id/tweets
+  - GET /2/spaces/by/creator_ids
+  - GET /2/lists/:id/tweets
+  - GET /2/lists/:id/followers
+  - GET /2/users/:id/followed_lists
+  - GET /2/lists/:id
+  - GET /2/users/:id/owned_lists
+  - GET /2/lists/:id/members
+  - GET /2/users/:id/list_memberships
+  - GET /2/users/:id/pinned_lists
+
 ## v2.3.0
 
 - Added `tweetFields` argument. ([#179](https://github.com/twitter-dart/twitter-api-v2/issues/179))
