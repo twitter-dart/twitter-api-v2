@@ -28,8 +28,10 @@ mixin _$UserData {
   @JsonKey(name: 'profile_image_url')
   String? get profileImageUrl => throw _privateConstructorUsedError;
   String? get location => throw _privateConstructorUsedError;
-  bool? get protected => throw _privateConstructorUsedError;
-  bool? get verified => throw _privateConstructorUsedError;
+  @JsonKey(name: 'protected')
+  bool? get isProtected => throw _privateConstructorUsedError;
+  @JsonKey(name: 'verified')
+  bool? get isVerified => throw _privateConstructorUsedError;
   @JsonKey(name: 'pinned_tweet_id')
   String? get pinnedTweetId => throw _privateConstructorUsedError;
   UserEntities? get entities => throw _privateConstructorUsedError;
@@ -57,8 +59,8 @@ abstract class $UserDataCopyWith<$Res> {
       String? url,
       @JsonKey(name: 'profile_image_url') String? profileImageUrl,
       String? location,
-      bool? protected,
-      bool? verified,
+      @JsonKey(name: 'protected') bool? isProtected,
+      @JsonKey(name: 'verified') bool? isVerified,
       @JsonKey(name: 'pinned_tweet_id') String? pinnedTweetId,
       UserEntities? entities,
       @JsonKey(name: 'public_metrics') PublicUserMetrics? publicMetrics,
@@ -87,8 +89,8 @@ class _$UserDataCopyWithImpl<$Res> implements $UserDataCopyWith<$Res> {
     Object? url = freezed,
     Object? profileImageUrl = freezed,
     Object? location = freezed,
-    Object? protected = freezed,
-    Object? verified = freezed,
+    Object? isProtected = freezed,
+    Object? isVerified = freezed,
     Object? pinnedTweetId = freezed,
     Object? entities = freezed,
     Object? publicMetrics = freezed,
@@ -124,13 +126,13 @@ class _$UserDataCopyWithImpl<$Res> implements $UserDataCopyWith<$Res> {
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as String?,
-      protected: protected == freezed
-          ? _value.protected
-          : protected // ignore: cast_nullable_to_non_nullable
+      isProtected: isProtected == freezed
+          ? _value.isProtected
+          : isProtected // ignore: cast_nullable_to_non_nullable
               as bool?,
-      verified: verified == freezed
-          ? _value.verified
-          : verified // ignore: cast_nullable_to_non_nullable
+      isVerified: isVerified == freezed
+          ? _value.isVerified
+          : isVerified // ignore: cast_nullable_to_non_nullable
               as bool?,
       pinnedTweetId: pinnedTweetId == freezed
           ? _value.pinnedTweetId
@@ -203,8 +205,8 @@ abstract class _$$_UserDataCopyWith<$Res> implements $UserDataCopyWith<$Res> {
       String? url,
       @JsonKey(name: 'profile_image_url') String? profileImageUrl,
       String? location,
-      bool? protected,
-      bool? verified,
+      @JsonKey(name: 'protected') bool? isProtected,
+      @JsonKey(name: 'verified') bool? isVerified,
       @JsonKey(name: 'pinned_tweet_id') String? pinnedTweetId,
       UserEntities? entities,
       @JsonKey(name: 'public_metrics') PublicUserMetrics? publicMetrics,
@@ -238,8 +240,8 @@ class __$$_UserDataCopyWithImpl<$Res> extends _$UserDataCopyWithImpl<$Res>
     Object? url = freezed,
     Object? profileImageUrl = freezed,
     Object? location = freezed,
-    Object? protected = freezed,
-    Object? verified = freezed,
+    Object? isProtected = freezed,
+    Object? isVerified = freezed,
     Object? pinnedTweetId = freezed,
     Object? entities = freezed,
     Object? publicMetrics = freezed,
@@ -275,13 +277,13 @@ class __$$_UserDataCopyWithImpl<$Res> extends _$UserDataCopyWithImpl<$Res>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as String?,
-      protected: protected == freezed
-          ? _value.protected
-          : protected // ignore: cast_nullable_to_non_nullable
+      isProtected: isProtected == freezed
+          ? _value.isProtected
+          : isProtected // ignore: cast_nullable_to_non_nullable
               as bool?,
-      verified: verified == freezed
-          ? _value.verified
-          : verified // ignore: cast_nullable_to_non_nullable
+      isVerified: isVerified == freezed
+          ? _value.isVerified
+          : isVerified // ignore: cast_nullable_to_non_nullable
               as bool?,
       pinnedTweetId: pinnedTweetId == freezed
           ? _value.pinnedTweetId
@@ -318,8 +320,8 @@ class _$_UserData implements _UserData {
       this.url,
       @JsonKey(name: 'profile_image_url') this.profileImageUrl,
       this.location,
-      this.protected,
-      this.verified,
+      @JsonKey(name: 'protected') this.isProtected,
+      @JsonKey(name: 'verified') this.isVerified,
       @JsonKey(name: 'pinned_tweet_id') this.pinnedTweetId,
       this.entities,
       @JsonKey(name: 'public_metrics') this.publicMetrics,
@@ -345,9 +347,11 @@ class _$_UserData implements _UserData {
   @override
   final String? location;
   @override
-  final bool? protected;
+  @JsonKey(name: 'protected')
+  final bool? isProtected;
   @override
-  final bool? verified;
+  @JsonKey(name: 'verified')
+  final bool? isVerified;
   @override
   @JsonKey(name: 'pinned_tweet_id')
   final String? pinnedTweetId;
@@ -364,7 +368,7 @@ class _$_UserData implements _UserData {
 
   @override
   String toString() {
-    return 'UserData(id: $id, name: $name, username: $username, description: $description, url: $url, profileImageUrl: $profileImageUrl, location: $location, protected: $protected, verified: $verified, pinnedTweetId: $pinnedTweetId, entities: $entities, publicMetrics: $publicMetrics, createdAt: $createdAt, withheld: $withheld)';
+    return 'UserData(id: $id, name: $name, username: $username, description: $description, url: $url, profileImageUrl: $profileImageUrl, location: $location, isProtected: $isProtected, isVerified: $isVerified, pinnedTweetId: $pinnedTweetId, entities: $entities, publicMetrics: $publicMetrics, createdAt: $createdAt, withheld: $withheld)';
   }
 
   @override
@@ -381,8 +385,10 @@ class _$_UserData implements _UserData {
             const DeepCollectionEquality()
                 .equals(other.profileImageUrl, profileImageUrl) &&
             const DeepCollectionEquality().equals(other.location, location) &&
-            const DeepCollectionEquality().equals(other.protected, protected) &&
-            const DeepCollectionEquality().equals(other.verified, verified) &&
+            const DeepCollectionEquality()
+                .equals(other.isProtected, isProtected) &&
+            const DeepCollectionEquality()
+                .equals(other.isVerified, isVerified) &&
             const DeepCollectionEquality()
                 .equals(other.pinnedTweetId, pinnedTweetId) &&
             const DeepCollectionEquality().equals(other.entities, entities) &&
@@ -403,8 +409,8 @@ class _$_UserData implements _UserData {
       const DeepCollectionEquality().hash(url),
       const DeepCollectionEquality().hash(profileImageUrl),
       const DeepCollectionEquality().hash(location),
-      const DeepCollectionEquality().hash(protected),
-      const DeepCollectionEquality().hash(verified),
+      const DeepCollectionEquality().hash(isProtected),
+      const DeepCollectionEquality().hash(isVerified),
       const DeepCollectionEquality().hash(pinnedTweetId),
       const DeepCollectionEquality().hash(entities),
       const DeepCollectionEquality().hash(publicMetrics),
@@ -431,8 +437,8 @@ abstract class _UserData implements UserData {
       final String? url,
       @JsonKey(name: 'profile_image_url') final String? profileImageUrl,
       final String? location,
-      final bool? protected,
-      final bool? verified,
+      @JsonKey(name: 'protected') final bool? isProtected,
+      @JsonKey(name: 'verified') final bool? isVerified,
       @JsonKey(name: 'pinned_tweet_id') final String? pinnedTweetId,
       final UserEntities? entities,
       @JsonKey(name: 'public_metrics') final PublicUserMetrics? publicMetrics,
@@ -457,9 +463,11 @@ abstract class _UserData implements UserData {
   @override
   String? get location => throw _privateConstructorUsedError;
   @override
-  bool? get protected => throw _privateConstructorUsedError;
+  @JsonKey(name: 'protected')
+  bool? get isProtected => throw _privateConstructorUsedError;
   @override
-  bool? get verified => throw _privateConstructorUsedError;
+  @JsonKey(name: 'verified')
+  bool? get isVerified => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'pinned_tweet_id')
   String? get pinnedTweetId => throw _privateConstructorUsedError;
