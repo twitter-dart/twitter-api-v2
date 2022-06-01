@@ -21,8 +21,8 @@ _$_UserData _$$_UserDataFromJson(Map json) => $checkedCreate(
           profileImageUrl:
               $checkedConvert('profile_image_url', (v) => v as String?),
           location: $checkedConvert('location', (v) => v as String?),
-          protected: $checkedConvert('protected', (v) => v as bool?),
-          verified: $checkedConvert('verified', (v) => v as bool?),
+          isProtected: $checkedConvert('protected', (v) => v as bool?),
+          isVerified: $checkedConvert('verified', (v) => v as bool?),
           pinnedTweetId:
               $checkedConvert('pinned_tweet_id', (v) => v as String?),
           entities: $checkedConvert(
@@ -48,6 +48,8 @@ _$_UserData _$$_UserDataFromJson(Map json) => $checkedCreate(
       },
       fieldKeyMap: const {
         'profileImageUrl': 'profile_image_url',
+        'isProtected': 'protected',
+        'isVerified': 'verified',
         'pinnedTweetId': 'pinned_tweet_id',
         'publicMetrics': 'public_metrics',
         'createdAt': 'created_at'
@@ -63,8 +65,8 @@ Map<String, dynamic> _$$_UserDataToJson(_$_UserData instance) =>
       'url': instance.url,
       'profile_image_url': instance.profileImageUrl,
       'location': instance.location,
-      'protected': instance.protected,
-      'verified': instance.verified,
+      'protected': instance.isProtected,
+      'verified': instance.isVerified,
       'pinned_tweet_id': instance.pinnedTweetId,
       'entities': instance.entities,
       'public_metrics': instance.publicMetrics,

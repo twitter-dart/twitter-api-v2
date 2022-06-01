@@ -1,5 +1,11 @@
 # Release Note
 
+## v2.4.2
+
+- Fixed field names in `UserData`. ([#202](https://github.com/twitter-dart/twitter-api-v2/issues/202))
+  - From `protected` to `isProtected`.
+  - From `verified` to `isVerified`.
+
 ## v2.4.1
 
 - Fixed `README.md`. ([#200](https://github.com/twitter-dart/twitter-api-v2/issues/200))
