@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'tweet_tag.dart';
+part of 'tag.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,36 +14,35 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-TweetTag _$TweetTagFromJson(Map<String, dynamic> json) {
-  return _TweetTag.fromJson(json);
+Tag _$TagFromJson(Map<String, dynamic> json) {
+  return _Tag.fromJson(json);
 }
 
 /// @nodoc
-mixin _$TweetTag {
+mixin _$Tag {
   int get start => throw _privateConstructorUsedError;
   int get end => throw _privateConstructorUsedError;
   String get tag => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TweetTagCopyWith<TweetTag> get copyWith =>
-      throw _privateConstructorUsedError;
+  $TagCopyWith<Tag> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TweetTagCopyWith<$Res> {
-  factory $TweetTagCopyWith(TweetTag value, $Res Function(TweetTag) then) =
-      _$TweetTagCopyWithImpl<$Res>;
+abstract class $TagCopyWith<$Res> {
+  factory $TagCopyWith(Tag value, $Res Function(Tag) then) =
+      _$TagCopyWithImpl<$Res>;
   $Res call({int start, int end, String tag});
 }
 
 /// @nodoc
-class _$TweetTagCopyWithImpl<$Res> implements $TweetTagCopyWith<$Res> {
-  _$TweetTagCopyWithImpl(this._value, this._then);
+class _$TagCopyWithImpl<$Res> implements $TagCopyWith<$Res> {
+  _$TagCopyWithImpl(this._value, this._then);
 
-  final TweetTag _value;
+  final Tag _value;
   // ignore: unused_field
-  final $Res Function(TweetTag) _then;
+  final $Res Function(Tag) _then;
 
   @override
   $Res call({
@@ -69,23 +68,21 @@ class _$TweetTagCopyWithImpl<$Res> implements $TweetTagCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_TweetTagCopyWith<$Res> implements $TweetTagCopyWith<$Res> {
-  factory _$$_TweetTagCopyWith(
-          _$_TweetTag value, $Res Function(_$_TweetTag) then) =
-      __$$_TweetTagCopyWithImpl<$Res>;
+abstract class _$$_TagCopyWith<$Res> implements $TagCopyWith<$Res> {
+  factory _$$_TagCopyWith(_$_Tag value, $Res Function(_$_Tag) then) =
+      __$$_TagCopyWithImpl<$Res>;
   @override
   $Res call({int start, int end, String tag});
 }
 
 /// @nodoc
-class __$$_TweetTagCopyWithImpl<$Res> extends _$TweetTagCopyWithImpl<$Res>
-    implements _$$_TweetTagCopyWith<$Res> {
-  __$$_TweetTagCopyWithImpl(
-      _$_TweetTag _value, $Res Function(_$_TweetTag) _then)
-      : super(_value, (v) => _then(v as _$_TweetTag));
+class __$$_TagCopyWithImpl<$Res> extends _$TagCopyWithImpl<$Res>
+    implements _$$_TagCopyWith<$Res> {
+  __$$_TagCopyWithImpl(_$_Tag _value, $Res Function(_$_Tag) _then)
+      : super(_value, (v) => _then(v as _$_Tag));
 
   @override
-  _$_TweetTag get _value => super._value as _$_TweetTag;
+  _$_Tag get _value => super._value as _$_Tag;
 
   @override
   $Res call({
@@ -93,7 +90,7 @@ class __$$_TweetTagCopyWithImpl<$Res> extends _$TweetTagCopyWithImpl<$Res>
     Object? end = freezed,
     Object? tag = freezed,
   }) {
-    return _then(_$_TweetTag(
+    return _then(_$_Tag(
       start: start == freezed
           ? _value.start
           : start // ignore: cast_nullable_to_non_nullable
@@ -112,12 +109,10 @@ class __$$_TweetTagCopyWithImpl<$Res> extends _$TweetTagCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TweetTag implements _TweetTag {
-  const _$_TweetTag(
-      {required this.start, required this.end, required this.tag});
+class _$_Tag implements _Tag {
+  const _$_Tag({required this.start, required this.end, required this.tag});
 
-  factory _$_TweetTag.fromJson(Map<String, dynamic> json) =>
-      _$$_TweetTagFromJson(json);
+  factory _$_Tag.fromJson(Map<String, dynamic> json) => _$$_TagFromJson(json);
 
   @override
   final int start;
@@ -128,14 +123,14 @@ class _$_TweetTag implements _TweetTag {
 
   @override
   String toString() {
-    return 'TweetTag(start: $start, end: $end, tag: $tag)';
+    return 'Tag(start: $start, end: $end, tag: $tag)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TweetTag &&
+            other is _$_Tag &&
             const DeepCollectionEquality().equals(other.start, start) &&
             const DeepCollectionEquality().equals(other.end, end) &&
             const DeepCollectionEquality().equals(other.tag, tag));
@@ -151,22 +146,22 @@ class _$_TweetTag implements _TweetTag {
 
   @JsonKey(ignore: true)
   @override
-  _$$_TweetTagCopyWith<_$_TweetTag> get copyWith =>
-      __$$_TweetTagCopyWithImpl<_$_TweetTag>(this, _$identity);
+  _$$_TagCopyWith<_$_Tag> get copyWith =>
+      __$$_TagCopyWithImpl<_$_Tag>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TweetTagToJson(this);
+    return _$$_TagToJson(this);
   }
 }
 
-abstract class _TweetTag implements TweetTag {
-  const factory _TweetTag(
+abstract class _Tag implements Tag {
+  const factory _Tag(
       {required final int start,
       required final int end,
-      required final String tag}) = _$_TweetTag;
+      required final String tag}) = _$_Tag;
 
-  factory _TweetTag.fromJson(Map<String, dynamic> json) = _$_TweetTag.fromJson;
+  factory _Tag.fromJson(Map<String, dynamic> json) = _$_Tag.fromJson;
 
   @override
   int get start => throw _privateConstructorUsedError;
@@ -176,6 +171,5 @@ abstract class _TweetTag implements TweetTag {
   String get tag => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$$_TweetTagCopyWith<_$_TweetTag> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_TagCopyWith<_$_Tag> get copyWith => throw _privateConstructorUsedError;
 }

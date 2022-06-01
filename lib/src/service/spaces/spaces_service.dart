@@ -13,6 +13,7 @@ import '../tweets/tweet_meta.dart';
 import '../twitter_response.dart';
 import '../users/user_data.dart';
 import '../users/user_expansion.dart';
+import '../users/user_field.dart';
 import 'space_data.dart';
 import 'space_expansion.dart';
 import 'space_meta.dart';
@@ -45,6 +46,12 @@ abstract class SpacesService {
   ///                 that you can match this data object to the original Space
   ///                 object.
   ///
+  /// - [userFields]: This fields parameter enables you to select which specific
+  ///                 user fields will deliver in each returned Space. While the
+  ///                 user ID will be located in the original Space object,
+  ///                 you will find this ID and all additional user fields in
+  ///                 the includes data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/spaces/search
@@ -60,8 +67,11 @@ abstract class SpacesService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/spaces/search/api-reference/get-spaces-search
-  Future<TwitterResponse<List<SpaceData>, SpaceMeta>> search(
-      {required String query, List<SpaceExpansion>? expansions});
+  Future<TwitterResponse<List<SpaceData>, SpaceMeta>> search({
+    required String query,
+    List<SpaceExpansion>? expansions,
+    List<UserField>? userFields,
+  });
 
   /// Returns a variety of information about a single Space specified by the
   /// requested ID.
@@ -80,6 +90,12 @@ abstract class SpacesService {
   ///                 that you can match this data object to the original Space
   ///                 object.
   ///
+  /// - [userFields]: This fields parameter enables you to select which specific
+  ///                 user fields will deliver in each returned Space. While the
+  ///                 user ID will be located in the original Space object,
+  ///                 you will find this ID and all additional user fields in
+  ///                 the includes data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/spaces/:id
@@ -95,8 +111,11 @@ abstract class SpacesService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/spaces/lookup/api-reference/get-spaces-id
-  Future<TwitterResponse<SpaceData, void>> lookupById(
-      {required String spaceId, List<SpaceExpansion>? expansions});
+  Future<TwitterResponse<SpaceData, void>> lookupById({
+    required String spaceId,
+    List<SpaceExpansion>? expansions,
+    List<UserField>? userFields,
+  });
 
   /// Returns details about multiple Spaces. Up to 100 comma-separated Spaces
   /// IDs can be looked up using this endpoint.
@@ -115,6 +134,12 @@ abstract class SpacesService {
   ///                 that you can match this data object to the original Space
   ///                 object.
   ///
+  /// - [userFields]: This fields parameter enables you to select which specific
+  ///                 user fields will deliver in each returned Space. While the
+  ///                 user ID will be located in the original Space object,
+  ///                 you will find this ID and all additional user fields in
+  ///                 the includes data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/spaces
@@ -130,8 +155,11 @@ abstract class SpacesService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/spaces/lookup/api-reference/get-spaces
-  Future<TwitterResponse<List<SpaceData>, void>> lookupByIds(
-      {required List<String> spaceIds, List<SpaceExpansion>? expansions});
+  Future<TwitterResponse<List<SpaceData>, void>> lookupByIds({
+    required List<String> spaceIds,
+    List<SpaceExpansion>? expansions,
+    List<UserField>? userFields,
+  });
 
   /// Returns a list of user who purchased a ticket to the requested Space.
   /// You must authenticate the request using the Access Token of the creator
@@ -161,6 +189,12 @@ abstract class SpacesService {
   ///                  in the original Tweet object, you will find this ID and
   ///                  all additional Tweet fields in the includes data object.
   ///
+  /// - [userFields]: This fields parameter enables you to select which specific
+  ///                 user fields will deliver in each returned Space. While the
+  ///                 user ID will be located in the original Space object,
+  ///                 you will find this ID and all additional user fields in
+  ///                 the includes data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/spaces/:id/buyers
@@ -177,6 +211,7 @@ abstract class SpacesService {
     required String spaceId,
     List<UserExpansion>? expansions,
     List<TweetField>? tweetFields,
+    List<UserField>? userFields,
   });
 
   /// Returns Tweets shared in the requested Spaces.
@@ -206,6 +241,12 @@ abstract class SpacesService {
   ///                  include the ID so that you can match this data object to
   ///                  the original Tweet object.
   ///
+  /// - [userFields]: This fields parameter enables you to select which specific
+  ///                 user fields will deliver in each returned Space. While the
+  ///                 user ID will be located in the original Space object,
+  ///                 you will find this ID and all additional user fields in
+  ///                 the includes data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/spaces/:id/tweets
@@ -222,6 +263,7 @@ abstract class SpacesService {
     required String spaceId,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
+    List<UserField>? userFields,
   });
 
   /// Returns live or scheduled Spaces created by the specified user IDs.
@@ -241,6 +283,12 @@ abstract class SpacesService {
   ///                 that you can match this data object to the original Space
   ///                 object.
   ///
+  /// - [userFields]: This fields parameter enables you to select which specific
+  ///                 user fields will deliver in each returned Space. While the
+  ///                 user ID will be located in the original Space object,
+  ///                 you will find this ID and all additional user fields in
+  ///                 the includes data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/spaces/by/creator_ids
@@ -259,8 +307,11 @@ abstract class SpacesService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/spaces/lookup/api-reference/get-spaces-by-creator-ids
-  Future<TwitterResponse<List<SpaceData>, SpaceMeta>> lookupByCreatorIds(
-      {required List<String> userIds, List<SpaceExpansion>? expansions});
+  Future<TwitterResponse<List<SpaceData>, SpaceMeta>> lookupByCreatorIds({
+    required List<String> userIds,
+    List<SpaceExpansion>? expansions,
+    List<UserField>? userFields,
+  });
 }
 
 class _SpacesService extends BaseService implements SpacesService {
@@ -268,8 +319,11 @@ class _SpacesService extends BaseService implements SpacesService {
   _SpacesService({required super.context});
 
   @override
-  Future<TwitterResponse<List<SpaceData>, SpaceMeta>> search(
-          {required String query, List<SpaceExpansion>? expansions}) async =>
+  Future<TwitterResponse<List<SpaceData>, SpaceMeta>> search({
+    required String query,
+    List<SpaceExpansion>? expansions,
+    List<UserField>? userFields,
+  }) async =>
       super.buildMultiDataResponse(
         await super.get(
           UserContext.oauth2Only,
@@ -277,6 +331,7 @@ class _SpacesService extends BaseService implements SpacesService {
           queryParameters: {
             'query': query,
             'expansions': super.serializeExpansions(expansions),
+            'user.fields': super.serializeFields(userFields),
           },
         ),
         dataBuilder: SpaceData.fromJson,
@@ -284,14 +339,18 @@ class _SpacesService extends BaseService implements SpacesService {
       );
 
   @override
-  Future<TwitterResponse<SpaceData, void>> lookupById(
-          {required String spaceId, List<SpaceExpansion>? expansions}) async =>
+  Future<TwitterResponse<SpaceData, void>> lookupById({
+    required String spaceId,
+    List<SpaceExpansion>? expansions,
+    List<UserField>? userFields,
+  }) async =>
       super.buildResponse(
         await super.get(
           UserContext.oauth2Only,
           '/2/spaces/$spaceId',
           queryParameters: {
             'expansions': super.serializeExpansions(expansions),
+            'user.fields': super.serializeFields(userFields),
           },
         ),
         dataBuilder: SpaceData.fromJson,
@@ -301,6 +360,7 @@ class _SpacesService extends BaseService implements SpacesService {
   Future<TwitterResponse<List<SpaceData>, void>> lookupByIds({
     required List<String> spaceIds,
     List<SpaceExpansion>? expansions,
+    List<UserField>? userFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -309,6 +369,7 @@ class _SpacesService extends BaseService implements SpacesService {
           queryParameters: {
             'ids': super.serialize(spaceIds),
             'expansions': super.serializeExpansions(expansions),
+            'user.fields': super.serializeFields(userFields),
           },
         ),
         dataBuilder: SpaceData.fromJson,
@@ -319,6 +380,7 @@ class _SpacesService extends BaseService implements SpacesService {
     required String spaceId,
     List<UserExpansion>? expansions,
     List<TweetField>? tweetFields,
+    List<UserField>? userFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -327,6 +389,7 @@ class _SpacesService extends BaseService implements SpacesService {
           queryParameters: {
             'expansions': super.serializeExpansions(expansions),
             'tweet.fields': super.serializeFields(tweetFields),
+            'user.fields': super.serializeFields(userFields),
           },
         ),
         dataBuilder: UserData.fromJson,
@@ -337,6 +400,7 @@ class _SpacesService extends BaseService implements SpacesService {
     required String spaceId,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
+    List<UserField>? userFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -345,6 +409,7 @@ class _SpacesService extends BaseService implements SpacesService {
           queryParameters: {
             'expansions': super.serializeExpansions(expansions),
             'tweet.fields': super.serializeFields(tweetFields),
+            'user.fields': super.serializeFields(userFields),
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -355,6 +420,7 @@ class _SpacesService extends BaseService implements SpacesService {
   Future<TwitterResponse<List<SpaceData>, SpaceMeta>> lookupByCreatorIds({
     required List<String> userIds,
     List<SpaceExpansion>? expansions,
+    List<UserField>? userFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -363,6 +429,7 @@ class _SpacesService extends BaseService implements SpacesService {
           queryParameters: {
             'user_ids': super.serialize(userIds),
             'expansions': super.serializeExpansions(expansions),
+            'user.fields': super.serializeFields(userFields),
           },
         ),
         dataBuilder: SpaceData.fromJson,

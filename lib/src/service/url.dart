@@ -7,12 +7,12 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'tweet_url.freezed.dart';
-part 'tweet_url.g.dart';
+part 'url.freezed.dart';
+part 'url.g.dart';
 
 @freezed
-class TweetUrl with _$TweetUrl {
-  const factory TweetUrl({
+class Url with _$Url {
+  const factory Url({
     required int start,
     required int end,
     required String url,
@@ -20,8 +20,7 @@ class TweetUrl with _$TweetUrl {
     @JsonKey(name: 'display_url') required String displayUrl,
     @JsonKey(name: 'unwound_url') String? unwoundUrl,
     @JsonKey(name: 'media_key') String? mediaKey,
-  }) = _TweetUrl;
+  }) = _Url;
 
-  factory TweetUrl.fromJson(Map<String, Object?> json) =>
-      _$TweetUrlFromJson(json);
+  factory Url.fromJson(Map<String, Object?> json) => _$UrlFromJson(json);
 }

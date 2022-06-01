@@ -7,6 +7,11 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+// Project imports:
+import 'public_user_metrics.dart';
+import 'user_entities.dart';
+import 'user_withheld.dart';
+
 part 'user_data.freezed.dart';
 part 'user_data.g.dart';
 
@@ -16,7 +21,17 @@ class UserData with _$UserData {
     required String id,
     required String name,
     required String username,
+    String? description,
+    String? url,
+    @JsonKey(name: 'profile_image_url') String? profileImageUrl,
+    String? location,
+    bool? protected,
+    bool? verified,
     @JsonKey(name: 'pinned_tweet_id') String? pinnedTweetId,
+    UserEntities? entities,
+    @JsonKey(name: 'public_metrics') PublicUserMetrics? publicMetrics,
+    @JsonKey(name: 'created_at') DateTime? createdAt,
+    UserWithheld? withheld,
   }) = _UserData;
 
   factory UserData.fromJson(Map<String, Object?> json) =>

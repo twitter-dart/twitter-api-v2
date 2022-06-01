@@ -23,8 +23,7 @@ mixin _$TweetWithheld {
   @JsonKey(name: 'copyright')
   bool get isCopyright => throw _privateConstructorUsedError;
   @JsonKey(name: 'country_codes')
-  List<String>? get countryCodes => throw _privateConstructorUsedError;
-  WithheldScope get scope => throw _privateConstructorUsedError;
+  List<String> get countryCodes => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,8 +38,7 @@ abstract class $TweetWithheldCopyWith<$Res> {
       _$TweetWithheldCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'copyright') bool isCopyright,
-      @JsonKey(name: 'country_codes') List<String>? countryCodes,
-      WithheldScope scope});
+      @JsonKey(name: 'country_codes') List<String> countryCodes});
 }
 
 /// @nodoc
@@ -56,7 +54,6 @@ class _$TweetWithheldCopyWithImpl<$Res>
   $Res call({
     Object? isCopyright = freezed,
     Object? countryCodes = freezed,
-    Object? scope = freezed,
   }) {
     return _then(_value.copyWith(
       isCopyright: isCopyright == freezed
@@ -66,11 +63,7 @@ class _$TweetWithheldCopyWithImpl<$Res>
       countryCodes: countryCodes == freezed
           ? _value.countryCodes
           : countryCodes // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      scope: scope == freezed
-          ? _value.scope
-          : scope // ignore: cast_nullable_to_non_nullable
-              as WithheldScope,
+              as List<String>,
     ));
   }
 }
@@ -84,8 +77,7 @@ abstract class _$$_TweetWithheldCopyWith<$Res>
   @override
   $Res call(
       {@JsonKey(name: 'copyright') bool isCopyright,
-      @JsonKey(name: 'country_codes') List<String>? countryCodes,
-      WithheldScope scope});
+      @JsonKey(name: 'country_codes') List<String> countryCodes});
 }
 
 /// @nodoc
@@ -103,7 +95,6 @@ class __$$_TweetWithheldCopyWithImpl<$Res>
   $Res call({
     Object? isCopyright = freezed,
     Object? countryCodes = freezed,
-    Object? scope = freezed,
   }) {
     return _then(_$_TweetWithheld(
       isCopyright: isCopyright == freezed
@@ -113,11 +104,7 @@ class __$$_TweetWithheldCopyWithImpl<$Res>
       countryCodes: countryCodes == freezed
           ? _value._countryCodes
           : countryCodes // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      scope: scope == freezed
-          ? _value.scope
-          : scope // ignore: cast_nullable_to_non_nullable
-              as WithheldScope,
+              as List<String>,
     ));
   }
 }
@@ -127,8 +114,7 @@ class __$$_TweetWithheldCopyWithImpl<$Res>
 class _$_TweetWithheld implements _TweetWithheld {
   const _$_TweetWithheld(
       {@JsonKey(name: 'copyright') required this.isCopyright,
-      @JsonKey(name: 'country_codes') final List<String>? countryCodes,
-      required this.scope})
+      @JsonKey(name: 'country_codes') required final List<String> countryCodes})
       : _countryCodes = countryCodes;
 
   factory _$_TweetWithheld.fromJson(Map<String, dynamic> json) =>
@@ -137,22 +123,17 @@ class _$_TweetWithheld implements _TweetWithheld {
   @override
   @JsonKey(name: 'copyright')
   final bool isCopyright;
-  final List<String>? _countryCodes;
+  final List<String> _countryCodes;
   @override
   @JsonKey(name: 'country_codes')
-  List<String>? get countryCodes {
-    final value = _countryCodes;
-    if (value == null) return null;
+  List<String> get countryCodes {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_countryCodes);
   }
 
   @override
-  final WithheldScope scope;
-
-  @override
   String toString() {
-    return 'TweetWithheld(isCopyright: $isCopyright, countryCodes: $countryCodes, scope: $scope)';
+    return 'TweetWithheld(isCopyright: $isCopyright, countryCodes: $countryCodes)';
   }
 
   @override
@@ -163,8 +144,7 @@ class _$_TweetWithheld implements _TweetWithheld {
             const DeepCollectionEquality()
                 .equals(other.isCopyright, isCopyright) &&
             const DeepCollectionEquality()
-                .equals(other._countryCodes, _countryCodes) &&
-            const DeepCollectionEquality().equals(other.scope, scope));
+                .equals(other._countryCodes, _countryCodes));
   }
 
   @JsonKey(ignore: true)
@@ -172,8 +152,7 @@ class _$_TweetWithheld implements _TweetWithheld {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(isCopyright),
-      const DeepCollectionEquality().hash(_countryCodes),
-      const DeepCollectionEquality().hash(scope));
+      const DeepCollectionEquality().hash(_countryCodes));
 
   @JsonKey(ignore: true)
   @override
@@ -188,9 +167,10 @@ class _$_TweetWithheld implements _TweetWithheld {
 
 abstract class _TweetWithheld implements TweetWithheld {
   const factory _TweetWithheld(
-      {@JsonKey(name: 'copyright') required final bool isCopyright,
-      @JsonKey(name: 'country_codes') final List<String>? countryCodes,
-      required final WithheldScope scope}) = _$_TweetWithheld;
+      {@JsonKey(name: 'copyright')
+          required final bool isCopyright,
+      @JsonKey(name: 'country_codes')
+          required final List<String> countryCodes}) = _$_TweetWithheld;
 
   factory _TweetWithheld.fromJson(Map<String, dynamic> json) =
       _$_TweetWithheld.fromJson;
@@ -200,9 +180,7 @@ abstract class _TweetWithheld implements TweetWithheld {
   bool get isCopyright => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'country_codes')
-  List<String>? get countryCodes => throw _privateConstructorUsedError;
-  @override
-  WithheldScope get scope => throw _privateConstructorUsedError;
+  List<String> get countryCodes => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_TweetWithheldCopyWith<_$_TweetWithheld> get copyWith =>

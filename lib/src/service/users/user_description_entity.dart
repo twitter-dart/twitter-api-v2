@@ -9,21 +9,19 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../mention.dart';
 import '../tag.dart';
 import '../url.dart';
-import 'tweet_annotation.dart';
 
-part 'tweet_entities.freezed.dart';
-part 'tweet_entities.g.dart';
+part 'user_description_entity.freezed.dart';
+part 'user_description_entity.g.dart';
 
 @freezed
-class TweetEntities with _$TweetEntities {
-  const factory TweetEntities({
-    List<TweetAnnotation>? annotations,
+class UserDescriptionEntity with _$UserDescriptionEntity {
+  const factory UserDescriptionEntity({
+    List<Url>? urls,
     List<Tag>? hashtags,
     List<Tag>? cashtags,
     List<Mention>? mentions,
-    List<Url>? urls,
-  }) = _TweetEntities;
+  }) = _UserDescriptionEntity;
 
-  factory TweetEntities.fromJson(Map<String, Object?> json) =>
-      _$TweetEntitiesFromJson(json);
+  factory UserDescriptionEntity.fromJson(Map<String, Object?> json) =>
+      _$UserDescriptionEntityFromJson(json);
 }

@@ -2,18 +2,18 @@
 
 // ignore_for_file: non_constant_identifier_names
 
-part of 'tweet_mention.dart';
+part of 'mention.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_TweetMention _$$_TweetMentionFromJson(Map json) => $checkedCreate(
-      r'_$_TweetMention',
+_$_Mention _$$_MentionFromJson(Map json) => $checkedCreate(
+      r'_$_Mention',
       json,
       ($checkedConvert) {
-        final val = _$_TweetMention(
-          id: $checkedConvert('id', (v) => v as String),
+        final val = _$_Mention(
+          id: $checkedConvert('id', (v) => v as String?),
           username: $checkedConvert('username', (v) => v as String),
           start: $checkedConvert('start', (v) => v as int),
           end: $checkedConvert('end', (v) => v as int),
@@ -22,7 +22,7 @@ _$_TweetMention _$$_TweetMentionFromJson(Map json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$$_TweetMentionToJson(_$_TweetMention instance) =>
+Map<String, dynamic> _$$_MentionToJson(_$_Mention instance) =>
     <String, dynamic>{
       'id': instance.id,
       'username': instance.username,

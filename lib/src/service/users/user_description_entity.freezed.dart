@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'tweet_entities.dart';
+part of 'user_description_entity.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,59 +14,57 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-TweetEntities _$TweetEntitiesFromJson(Map<String, dynamic> json) {
-  return _TweetEntities.fromJson(json);
+UserDescriptionEntity _$UserDescriptionEntityFromJson(
+    Map<String, dynamic> json) {
+  return _UserDescriptionEntity.fromJson(json);
 }
 
 /// @nodoc
-mixin _$TweetEntities {
-  List<TweetAnnotation>? get annotations => throw _privateConstructorUsedError;
+mixin _$UserDescriptionEntity {
+  List<Url>? get urls => throw _privateConstructorUsedError;
   List<Tag>? get hashtags => throw _privateConstructorUsedError;
   List<Tag>? get cashtags => throw _privateConstructorUsedError;
   List<Mention>? get mentions => throw _privateConstructorUsedError;
-  List<Url>? get urls => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TweetEntitiesCopyWith<TweetEntities> get copyWith =>
+  $UserDescriptionEntityCopyWith<UserDescriptionEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TweetEntitiesCopyWith<$Res> {
-  factory $TweetEntitiesCopyWith(
-          TweetEntities value, $Res Function(TweetEntities) then) =
-      _$TweetEntitiesCopyWithImpl<$Res>;
+abstract class $UserDescriptionEntityCopyWith<$Res> {
+  factory $UserDescriptionEntityCopyWith(UserDescriptionEntity value,
+          $Res Function(UserDescriptionEntity) then) =
+      _$UserDescriptionEntityCopyWithImpl<$Res>;
   $Res call(
-      {List<TweetAnnotation>? annotations,
+      {List<Url>? urls,
       List<Tag>? hashtags,
       List<Tag>? cashtags,
-      List<Mention>? mentions,
-      List<Url>? urls});
+      List<Mention>? mentions});
 }
 
 /// @nodoc
-class _$TweetEntitiesCopyWithImpl<$Res>
-    implements $TweetEntitiesCopyWith<$Res> {
-  _$TweetEntitiesCopyWithImpl(this._value, this._then);
+class _$UserDescriptionEntityCopyWithImpl<$Res>
+    implements $UserDescriptionEntityCopyWith<$Res> {
+  _$UserDescriptionEntityCopyWithImpl(this._value, this._then);
 
-  final TweetEntities _value;
+  final UserDescriptionEntity _value;
   // ignore: unused_field
-  final $Res Function(TweetEntities) _then;
+  final $Res Function(UserDescriptionEntity) _then;
 
   @override
   $Res call({
-    Object? annotations = freezed,
+    Object? urls = freezed,
     Object? hashtags = freezed,
     Object? cashtags = freezed,
     Object? mentions = freezed,
-    Object? urls = freezed,
   }) {
     return _then(_value.copyWith(
-      annotations: annotations == freezed
-          ? _value.annotations
-          : annotations // ignore: cast_nullable_to_non_nullable
-              as List<TweetAnnotation>?,
+      urls: urls == freezed
+          ? _value.urls
+          : urls // ignore: cast_nullable_to_non_nullable
+              as List<Url>?,
       hashtags: hashtags == freezed
           ? _value.hashtags
           : hashtags // ignore: cast_nullable_to_non_nullable
@@ -79,53 +77,48 @@ class _$TweetEntitiesCopyWithImpl<$Res>
           ? _value.mentions
           : mentions // ignore: cast_nullable_to_non_nullable
               as List<Mention>?,
-      urls: urls == freezed
-          ? _value.urls
-          : urls // ignore: cast_nullable_to_non_nullable
-              as List<Url>?,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$$_TweetEntitiesCopyWith<$Res>
-    implements $TweetEntitiesCopyWith<$Res> {
-  factory _$$_TweetEntitiesCopyWith(
-          _$_TweetEntities value, $Res Function(_$_TweetEntities) then) =
-      __$$_TweetEntitiesCopyWithImpl<$Res>;
+abstract class _$$_UserDescriptionEntityCopyWith<$Res>
+    implements $UserDescriptionEntityCopyWith<$Res> {
+  factory _$$_UserDescriptionEntityCopyWith(_$_UserDescriptionEntity value,
+          $Res Function(_$_UserDescriptionEntity) then) =
+      __$$_UserDescriptionEntityCopyWithImpl<$Res>;
   @override
   $Res call(
-      {List<TweetAnnotation>? annotations,
+      {List<Url>? urls,
       List<Tag>? hashtags,
       List<Tag>? cashtags,
-      List<Mention>? mentions,
-      List<Url>? urls});
+      List<Mention>? mentions});
 }
 
 /// @nodoc
-class __$$_TweetEntitiesCopyWithImpl<$Res>
-    extends _$TweetEntitiesCopyWithImpl<$Res>
-    implements _$$_TweetEntitiesCopyWith<$Res> {
-  __$$_TweetEntitiesCopyWithImpl(
-      _$_TweetEntities _value, $Res Function(_$_TweetEntities) _then)
-      : super(_value, (v) => _then(v as _$_TweetEntities));
+class __$$_UserDescriptionEntityCopyWithImpl<$Res>
+    extends _$UserDescriptionEntityCopyWithImpl<$Res>
+    implements _$$_UserDescriptionEntityCopyWith<$Res> {
+  __$$_UserDescriptionEntityCopyWithImpl(_$_UserDescriptionEntity _value,
+      $Res Function(_$_UserDescriptionEntity) _then)
+      : super(_value, (v) => _then(v as _$_UserDescriptionEntity));
 
   @override
-  _$_TweetEntities get _value => super._value as _$_TweetEntities;
+  _$_UserDescriptionEntity get _value =>
+      super._value as _$_UserDescriptionEntity;
 
   @override
   $Res call({
-    Object? annotations = freezed,
+    Object? urls = freezed,
     Object? hashtags = freezed,
     Object? cashtags = freezed,
     Object? mentions = freezed,
-    Object? urls = freezed,
   }) {
-    return _then(_$_TweetEntities(
-      annotations: annotations == freezed
-          ? _value._annotations
-          : annotations // ignore: cast_nullable_to_non_nullable
-              as List<TweetAnnotation>?,
+    return _then(_$_UserDescriptionEntity(
+      urls: urls == freezed
+          ? _value._urls
+          : urls // ignore: cast_nullable_to_non_nullable
+              as List<Url>?,
       hashtags: hashtags == freezed
           ? _value._hashtags
           : hashtags // ignore: cast_nullable_to_non_nullable
@@ -138,36 +131,30 @@ class __$$_TweetEntitiesCopyWithImpl<$Res>
           ? _value._mentions
           : mentions // ignore: cast_nullable_to_non_nullable
               as List<Mention>?,
-      urls: urls == freezed
-          ? _value._urls
-          : urls // ignore: cast_nullable_to_non_nullable
-              as List<Url>?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_TweetEntities implements _TweetEntities {
-  const _$_TweetEntities(
-      {final List<TweetAnnotation>? annotations,
+class _$_UserDescriptionEntity implements _UserDescriptionEntity {
+  const _$_UserDescriptionEntity(
+      {final List<Url>? urls,
       final List<Tag>? hashtags,
       final List<Tag>? cashtags,
-      final List<Mention>? mentions,
-      final List<Url>? urls})
-      : _annotations = annotations,
+      final List<Mention>? mentions})
+      : _urls = urls,
         _hashtags = hashtags,
         _cashtags = cashtags,
-        _mentions = mentions,
-        _urls = urls;
+        _mentions = mentions;
 
-  factory _$_TweetEntities.fromJson(Map<String, dynamic> json) =>
-      _$$_TweetEntitiesFromJson(json);
+  factory _$_UserDescriptionEntity.fromJson(Map<String, dynamic> json) =>
+      _$$_UserDescriptionEntityFromJson(json);
 
-  final List<TweetAnnotation>? _annotations;
+  final List<Url>? _urls;
   @override
-  List<TweetAnnotation>? get annotations {
-    final value = _annotations;
+  List<Url>? get urls {
+    final value = _urls;
     if (value == null) return null;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
@@ -200,67 +187,55 @@ class _$_TweetEntities implements _TweetEntities {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<Url>? _urls;
-  @override
-  List<Url>? get urls {
-    final value = _urls;
-    if (value == null) return null;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
   @override
   String toString() {
-    return 'TweetEntities(annotations: $annotations, hashtags: $hashtags, cashtags: $cashtags, mentions: $mentions, urls: $urls)';
+    return 'UserDescriptionEntity(urls: $urls, hashtags: $hashtags, cashtags: $cashtags, mentions: $mentions)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TweetEntities &&
-            const DeepCollectionEquality()
-                .equals(other._annotations, _annotations) &&
+            other is _$_UserDescriptionEntity &&
+            const DeepCollectionEquality().equals(other._urls, _urls) &&
             const DeepCollectionEquality().equals(other._hashtags, _hashtags) &&
             const DeepCollectionEquality().equals(other._cashtags, _cashtags) &&
-            const DeepCollectionEquality().equals(other._mentions, _mentions) &&
-            const DeepCollectionEquality().equals(other._urls, _urls));
+            const DeepCollectionEquality().equals(other._mentions, _mentions));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_annotations),
+      const DeepCollectionEquality().hash(_urls),
       const DeepCollectionEquality().hash(_hashtags),
       const DeepCollectionEquality().hash(_cashtags),
-      const DeepCollectionEquality().hash(_mentions),
-      const DeepCollectionEquality().hash(_urls));
+      const DeepCollectionEquality().hash(_mentions));
 
   @JsonKey(ignore: true)
   @override
-  _$$_TweetEntitiesCopyWith<_$_TweetEntities> get copyWith =>
-      __$$_TweetEntitiesCopyWithImpl<_$_TweetEntities>(this, _$identity);
+  _$$_UserDescriptionEntityCopyWith<_$_UserDescriptionEntity> get copyWith =>
+      __$$_UserDescriptionEntityCopyWithImpl<_$_UserDescriptionEntity>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TweetEntitiesToJson(this);
+    return _$$_UserDescriptionEntityToJson(this);
   }
 }
 
-abstract class _TweetEntities implements TweetEntities {
-  const factory _TweetEntities(
-      {final List<TweetAnnotation>? annotations,
+abstract class _UserDescriptionEntity implements UserDescriptionEntity {
+  const factory _UserDescriptionEntity(
+      {final List<Url>? urls,
       final List<Tag>? hashtags,
       final List<Tag>? cashtags,
-      final List<Mention>? mentions,
-      final List<Url>? urls}) = _$_TweetEntities;
+      final List<Mention>? mentions}) = _$_UserDescriptionEntity;
 
-  factory _TweetEntities.fromJson(Map<String, dynamic> json) =
-      _$_TweetEntities.fromJson;
+  factory _UserDescriptionEntity.fromJson(Map<String, dynamic> json) =
+      _$_UserDescriptionEntity.fromJson;
 
   @override
-  List<TweetAnnotation>? get annotations => throw _privateConstructorUsedError;
+  List<Url>? get urls => throw _privateConstructorUsedError;
   @override
   List<Tag>? get hashtags => throw _privateConstructorUsedError;
   @override
@@ -268,9 +243,7 @@ abstract class _TweetEntities implements TweetEntities {
   @override
   List<Mention>? get mentions => throw _privateConstructorUsedError;
   @override
-  List<Url>? get urls => throw _privateConstructorUsedError;
-  @override
   @JsonKey(ignore: true)
-  _$$_TweetEntitiesCopyWith<_$_TweetEntities> get copyWith =>
+  _$$_UserDescriptionEntityCopyWith<_$_UserDescriptionEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }

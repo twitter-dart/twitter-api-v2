@@ -2,17 +2,17 @@
 
 // ignore_for_file: non_constant_identifier_names
 
-part of 'tweet_tag.dart';
+part of 'tag.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_TweetTag _$$_TweetTagFromJson(Map json) => $checkedCreate(
-      r'_$_TweetTag',
+_$_Tag _$$_TagFromJson(Map json) => $checkedCreate(
+      r'_$_Tag',
       json,
       ($checkedConvert) {
-        final val = _$_TweetTag(
+        final val = _$_Tag(
           start: $checkedConvert('start', (v) => v as int),
           end: $checkedConvert('end', (v) => v as int),
           tag: $checkedConvert('tag', (v) => v as String),
@@ -21,8 +21,7 @@ _$_TweetTag _$$_TweetTagFromJson(Map json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$$_TweetTagToJson(_$_TweetTag instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$$_TagToJson(_$_Tag instance) => <String, dynamic>{
       'start': instance.start,
       'end': instance.end,
       'tag': instance.tag,

@@ -16,12 +16,42 @@ _$_UserData _$$_UserDataFromJson(Map json) => $checkedCreate(
           id: $checkedConvert('id', (v) => v as String),
           name: $checkedConvert('name', (v) => v as String),
           username: $checkedConvert('username', (v) => v as String),
+          description: $checkedConvert('description', (v) => v as String?),
+          url: $checkedConvert('url', (v) => v as String?),
+          profileImageUrl:
+              $checkedConvert('profile_image_url', (v) => v as String?),
+          location: $checkedConvert('location', (v) => v as String?),
+          protected: $checkedConvert('protected', (v) => v as bool?),
+          verified: $checkedConvert('verified', (v) => v as bool?),
           pinnedTweetId:
               $checkedConvert('pinned_tweet_id', (v) => v as String?),
+          entities: $checkedConvert(
+              'entities',
+              (v) => v == null
+                  ? null
+                  : UserEntities.fromJson(Map<String, Object?>.from(v as Map))),
+          publicMetrics: $checkedConvert(
+              'public_metrics',
+              (v) => v == null
+                  ? null
+                  : PublicUserMetrics.fromJson(
+                      Map<String, Object?>.from(v as Map))),
+          createdAt: $checkedConvert('created_at',
+              (v) => v == null ? null : DateTime.parse(v as String)),
+          withheld: $checkedConvert(
+              'withheld',
+              (v) => v == null
+                  ? null
+                  : UserWithheld.fromJson(Map<String, Object?>.from(v as Map))),
         );
         return val;
       },
-      fieldKeyMap: const {'pinnedTweetId': 'pinned_tweet_id'},
+      fieldKeyMap: const {
+        'profileImageUrl': 'profile_image_url',
+        'pinnedTweetId': 'pinned_tweet_id',
+        'publicMetrics': 'public_metrics',
+        'createdAt': 'created_at'
+      },
     );
 
 Map<String, dynamic> _$$_UserDataToJson(_$_UserData instance) =>
@@ -29,5 +59,15 @@ Map<String, dynamic> _$$_UserDataToJson(_$_UserData instance) =>
       'id': instance.id,
       'name': instance.name,
       'username': instance.username,
+      'description': instance.description,
+      'url': instance.url,
+      'profile_image_url': instance.profileImageUrl,
+      'location': instance.location,
+      'protected': instance.protected,
+      'verified': instance.verified,
       'pinned_tweet_id': instance.pinnedTweetId,
+      'entities': instance.entities,
+      'public_metrics': instance.publicMetrics,
+      'created_at': instance.createdAt?.toIso8601String(),
+      'withheld': instance.withheld,
     };

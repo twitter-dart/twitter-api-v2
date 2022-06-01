@@ -7,16 +7,15 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'tweet_withheld.freezed.dart';
-part 'tweet_withheld.g.dart';
+part 'user_withheld.freezed.dart';
+part 'user_withheld.g.dart';
 
 @freezed
-class TweetWithheld with _$TweetWithheld {
-  const factory TweetWithheld({
-    @JsonKey(name: 'copyright') required bool isCopyright,
+class UserWithheld with _$UserWithheld {
+  const factory UserWithheld({
     @JsonKey(name: 'country_codes') required List<String> countryCodes,
-  }) = _TweetWithheld;
+  }) = _UserWithheld;
 
-  factory TweetWithheld.fromJson(Map<String, Object?> json) =>
-      _$TweetWithheldFromJson(json);
+  factory UserWithheld.fromJson(Map<String, Object?> json) =>
+      _$UserWithheldFromJson(json);
 }

@@ -2,17 +2,17 @@
 
 // ignore_for_file: non_constant_identifier_names
 
-part of 'tweet_url.dart';
+part of 'url.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_TweetUrl _$$_TweetUrlFromJson(Map json) => $checkedCreate(
-      r'_$_TweetUrl',
+_$_Url _$$_UrlFromJson(Map json) => $checkedCreate(
+      r'_$_Url',
       json,
       ($checkedConvert) {
-        final val = _$_TweetUrl(
+        final val = _$_Url(
           start: $checkedConvert('start', (v) => v as int),
           end: $checkedConvert('end', (v) => v as int),
           url: $checkedConvert('url', (v) => v as String),
@@ -31,8 +31,7 @@ _$_TweetUrl _$$_TweetUrlFromJson(Map json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$$_TweetUrlToJson(_$_TweetUrl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$$_UrlToJson(_$_Url instance) => <String, dynamic>{
       'start': instance.start,
       'end': instance.end,
       'url': instance.url,

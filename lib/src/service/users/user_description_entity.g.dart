@@ -2,22 +2,23 @@
 
 // ignore_for_file: non_constant_identifier_names
 
-part of 'tweet_entities.dart';
+part of 'user_description_entity.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_TweetEntities _$$_TweetEntitiesFromJson(Map json) => $checkedCreate(
-      r'_$_TweetEntities',
+_$_UserDescriptionEntity _$$_UserDescriptionEntityFromJson(Map json) =>
+    $checkedCreate(
+      r'_$_UserDescriptionEntity',
       json,
       ($checkedConvert) {
-        final val = _$_TweetEntities(
-          annotations: $checkedConvert(
-              'annotations',
+        final val = _$_UserDescriptionEntity(
+          urls: $checkedConvert(
+              'urls',
               (v) => (v as List<dynamic>?)
-                  ?.map((e) => TweetAnnotation.fromJson(
-                      Map<String, Object?>.from(e as Map)))
+                  ?.map(
+                      (e) => Url.fromJson(Map<String, Object?>.from(e as Map)))
                   .toList()),
           hashtags: $checkedConvert(
               'hashtags',
@@ -37,22 +38,16 @@ _$_TweetEntities _$$_TweetEntitiesFromJson(Map json) => $checkedCreate(
                   ?.map((e) =>
                       Mention.fromJson(Map<String, Object?>.from(e as Map)))
                   .toList()),
-          urls: $checkedConvert(
-              'urls',
-              (v) => (v as List<dynamic>?)
-                  ?.map(
-                      (e) => Url.fromJson(Map<String, Object?>.from(e as Map)))
-                  .toList()),
         );
         return val;
       },
     );
 
-Map<String, dynamic> _$$_TweetEntitiesToJson(_$_TweetEntities instance) =>
+Map<String, dynamic> _$$_UserDescriptionEntityToJson(
+        _$_UserDescriptionEntity instance) =>
     <String, dynamic>{
-      'annotations': instance.annotations,
+      'urls': instance.urls,
       'hashtags': instance.hashtags,
       'cashtags': instance.cashtags,
       'mentions': instance.mentions,
-      'urls': instance.urls,
     };

@@ -5,17 +5,16 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'tweet_tag.freezed.dart';
-part 'tweet_tag.g.dart';
+part 'tag.freezed.dart';
+part 'tag.g.dart';
 
 @freezed
-class TweetTag with _$TweetTag {
-  const factory TweetTag({
+class Tag with _$Tag {
+  const factory Tag({
     required int start,
     required int end,
     required String tag,
-  }) = _TweetTag;
+  }) = _Tag;
 
-  factory TweetTag.fromJson(Map<String, Object?> json) =>
-      _$TweetTagFromJson(json);
+  factory Tag.fromJson(Map<String, Object?> json) => _$TagFromJson(json);
 }

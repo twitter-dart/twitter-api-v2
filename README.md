@@ -126,6 +126,12 @@ void main() async {
         v2.TweetField.conversationId,
         v2.TweetField.publicMetrics,
       ],
+      userFields: [
+        v2.UserField.location,
+        v2.UserField.verified,
+        v2.UserField.entities,
+        v2.UserField.publicMetrics,
+      ],
     );
 
     await twitter.tweetsService.createLike(
