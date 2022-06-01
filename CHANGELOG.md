@@ -1,5 +1,9 @@
 # Release Note
 
+## v2.4.1
+
+- Fixed `README.md`. ([#200](https://github.com/twitter-dart/twitter-api-v2/issues/200))
+
 ## v2.4.0
 
 - Added `userFields` argument. ([#180](https://github.com/twitter-dart/twitter-api-v2/issues/180))
