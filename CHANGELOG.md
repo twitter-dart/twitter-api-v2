@@ -1,5 +1,26 @@
 # Release Note
 
+## v2.5.0
+
+- Added `pollFields` argument. ([#181](https://github.com/twitter-dart/twitter-api-v2/issues/181))
+
+  - GET /2/users/:id/bookmarks
+  - GET /2/tweets/search/stream
+  - GET /2/tweets/:id/liking_users
+  - GET /2/users/:id/liked_tweets
+  - GET /2/tweets/:id/quote_tweets
+  - GET /2/tweets/:id/retweeted_by
+  - GET /2/tweets/search/all
+  - GET /2/tweets/search/recent
+  - GET /2/users/:id/mentions
+  - GET /2/users/:id/timelines/reverse_chronological
+  - GET /2/users/:id/tweets
+  - GET /2/tweets
+  - GET /2/tweets/:id
+  - GET /2/tweets/sample/stream
+  - GET /2/spaces/:id/buyers
+  - GET /2/spaces/:id/tweets
+
 ## v2.4.2
 
 - Fixed field names in `UserData`. ([#202](https://github.com/twitter-dart/twitter-api-v2/issues/202))
