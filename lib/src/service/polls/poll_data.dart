@@ -16,6 +16,9 @@ class PollData with _$PollData {
   const factory PollData({
     required String id,
     required List<PollOption> options,
+    int? durationMinutes,
+    DateTime? endDatetime,
+    String? votingStatus,
   }) = _PollData;
 
   factory PollData.fromJson(Map<String, Object?> json) =>
