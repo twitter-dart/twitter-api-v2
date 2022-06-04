@@ -16,6 +16,7 @@ import '../users/user_expansion.dart';
 import '../users/user_field.dart';
 import 'space_data.dart';
 import 'space_expansion.dart';
+import 'space_field.dart';
 import 'space_meta.dart';
 
 abstract class SpacesService {
@@ -52,6 +53,10 @@ abstract class SpacesService {
   ///                 you will find this ID and all additional user fields in
   ///                 the includes data object.
   ///
+  /// - [spaceFields]: This fields parameter enables you to select which
+  ///                  specific Space fields will deliver in each returned
+  ///                  Space.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/spaces/search
@@ -71,6 +76,7 @@ abstract class SpacesService {
     required String query,
     List<SpaceExpansion>? expansions,
     List<UserField>? userFields,
+    List<SpaceField>? spaceFields,
   });
 
   /// Returns a variety of information about a single Space specified by the
@@ -96,6 +102,10 @@ abstract class SpacesService {
   ///                 you will find this ID and all additional user fields in
   ///                 the includes data object.
   ///
+  /// - [spaceFields]: This fields parameter enables you to select which
+  ///                  specific Space fields will deliver in each returned
+  ///                  Space.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/spaces/:id
@@ -115,6 +125,7 @@ abstract class SpacesService {
     required String spaceId,
     List<SpaceExpansion>? expansions,
     List<UserField>? userFields,
+    List<SpaceField>? spaceFields,
   });
 
   /// Returns details about multiple Spaces. Up to 100 comma-separated Spaces
@@ -140,6 +151,10 @@ abstract class SpacesService {
   ///                 you will find this ID and all additional user fields in
   ///                 the includes data object.
   ///
+  /// - [spaceFields]: This fields parameter enables you to select which
+  ///                  specific Space fields will deliver in each returned
+  ///                  Space.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/spaces
@@ -159,6 +174,7 @@ abstract class SpacesService {
     required List<String> spaceIds,
     List<SpaceExpansion>? expansions,
     List<UserField>? userFields,
+    List<SpaceField>? spaceFields,
   });
 
   /// Returns a list of user who purchased a ticket to the requested Space.
@@ -289,6 +305,10 @@ abstract class SpacesService {
   ///                 you will find this ID and all additional user fields in
   ///                 the includes data object.
   ///
+  /// - [spaceFields]: This fields parameter enables you to select which
+  ///                  specific Space fields will deliver in each returned
+  ///                  Space.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/spaces/by/creator_ids
@@ -311,6 +331,7 @@ abstract class SpacesService {
     required List<String> userIds,
     List<SpaceExpansion>? expansions,
     List<UserField>? userFields,
+    List<SpaceField>? spaceFields,
   });
 }
 
@@ -323,6 +344,7 @@ class _SpacesService extends BaseService implements SpacesService {
     required String query,
     List<SpaceExpansion>? expansions,
     List<UserField>? userFields,
+    List<SpaceField>? spaceFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -332,6 +354,7 @@ class _SpacesService extends BaseService implements SpacesService {
             'query': query,
             'expansions': super.serializeExpansions(expansions),
             'user.fields': super.serializeFields(userFields),
+            'space.fields': super.serializeFields(spaceFields),
           },
         ),
         dataBuilder: SpaceData.fromJson,
@@ -343,6 +366,7 @@ class _SpacesService extends BaseService implements SpacesService {
     required String spaceId,
     List<SpaceExpansion>? expansions,
     List<UserField>? userFields,
+    List<SpaceField>? spaceFields,
   }) async =>
       super.buildResponse(
         await super.get(
@@ -351,6 +375,7 @@ class _SpacesService extends BaseService implements SpacesService {
           queryParameters: {
             'expansions': super.serializeExpansions(expansions),
             'user.fields': super.serializeFields(userFields),
+            'space.fields': super.serializeFields(spaceFields),
           },
         ),
         dataBuilder: SpaceData.fromJson,
@@ -361,6 +386,7 @@ class _SpacesService extends BaseService implements SpacesService {
     required List<String> spaceIds,
     List<SpaceExpansion>? expansions,
     List<UserField>? userFields,
+    List<SpaceField>? spaceFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -370,6 +396,7 @@ class _SpacesService extends BaseService implements SpacesService {
             'ids': super.serialize(spaceIds),
             'expansions': super.serializeExpansions(expansions),
             'user.fields': super.serializeFields(userFields),
+            'space.fields': super.serializeFields(spaceFields),
           },
         ),
         dataBuilder: SpaceData.fromJson,
@@ -421,6 +448,7 @@ class _SpacesService extends BaseService implements SpacesService {
     required List<String> userIds,
     List<SpaceExpansion>? expansions,
     List<UserField>? userFields,
+    List<SpaceField>? spaceFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -430,6 +458,7 @@ class _SpacesService extends BaseService implements SpacesService {
             'user_ids': super.serialize(userIds),
             'expansions': super.serializeExpansions(expansions),
             'user.fields': super.serializeFields(userFields),
+            'space.fields': super.serializeFields(spaceFields),
           },
         ),
         dataBuilder: SpaceData.fromJson,
