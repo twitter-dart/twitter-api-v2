@@ -23,6 +23,7 @@ export 'package:twitter_api_v2/src/service/polls/poll_field.dart';
 export 'package:twitter_api_v2/src/service/polls/poll_option.dart';
 export 'package:twitter_api_v2/src/service/spaces/space_data.dart';
 export 'package:twitter_api_v2/src/service/spaces/space_expansion.dart';
+export 'package:twitter_api_v2/src/service/spaces/space_field.dart';
 export 'package:twitter_api_v2/src/service/spaces/space_meta.dart';
 export 'package:twitter_api_v2/src/service/spaces/space_state.dart';
 export 'package:twitter_api_v2/src/service/spaces/spaces_service.dart';
