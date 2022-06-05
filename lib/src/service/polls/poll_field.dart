@@ -13,7 +13,7 @@ enum PollField implements Field {
   durationMinutes('duration_minutes'),
 
   /// `end_datetime`
-  endDatetime('end_datetime'),
+  endAt('end_datetime'),
 
   /// `options`
   options('options'),

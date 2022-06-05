@@ -11,7 +11,7 @@ import 'package:twitter_api_v2/src/service/polls/poll_field.dart';
 void main() {
   test('.value', () {
     expect(PollField.durationMinutes.value, 'duration_minutes');
-    expect(PollField.endDatetime.value, 'end_datetime');
+    expect(PollField.endAt.value, 'end_datetime');
     expect(PollField.id.value, 'id');
     expect(PollField.options.value, 'options');
     expect(PollField.votingStatus.value, 'voting_status');

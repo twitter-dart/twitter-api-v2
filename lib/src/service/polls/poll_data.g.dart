@@ -22,15 +22,16 @@ _$_PollData _$$_PollDataFromJson(Map json) => $checkedCreate(
                   .toList()),
           durationMinutes:
               $checkedConvert('duration_minutes', (v) => v as int?),
-          endDatetime: $checkedConvert('end_datetime',
+          endAt: $checkedConvert('end_datetime',
               (v) => v == null ? null : DateTime.parse(v as String)),
-          votingStatus: $checkedConvert('voting_status', (v) => v as String?),
+          votingStatus: $checkedConvert('voting_status',
+              (v) => $enumDecodeNullable(_$PollVotingStatusEnumMap, v)),
         );
         return val;
       },
       fieldKeyMap: const {
         'durationMinutes': 'duration_minutes',
-        'endDatetime': 'end_datetime',
+        'endAt': 'end_datetime',
         'votingStatus': 'voting_status'
       },
     );
@@ -40,6 +41,11 @@ Map<String, dynamic> _$$_PollDataToJson(_$_PollData instance) =>
       'id': instance.id,
       'options': instance.options,
       'duration_minutes': instance.durationMinutes,
-      'end_datetime': instance.endDatetime?.toIso8601String(),
-      'voting_status': instance.votingStatus,
+      'end_datetime': instance.endAt?.toIso8601String(),
+      'voting_status': _$PollVotingStatusEnumMap[instance.votingStatus],
     };
+
+const _$PollVotingStatusEnumMap = {
+  PollVotingStatus.open: 'open',
+  PollVotingStatus.closed: 'closed',
+};

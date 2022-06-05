@@ -7,6 +7,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
 import 'poll_option.dart';
+import 'poll_voting_status.dart';
 
 part 'poll_data.freezed.dart';
 part 'poll_data.g.dart';
@@ -17,8 +18,8 @@ class PollData with _$PollData {
     required String id,
     required List<PollOption> options,
     int? durationMinutes,
-    DateTime? endDatetime,
-    String? votingStatus,
+    @JsonKey(name: 'end_datetime') DateTime? endAt,
+    PollVotingStatus? votingStatus,
   }) = _PollData;
 
   factory PollData.fromJson(Map<String, Object?> json) =>
