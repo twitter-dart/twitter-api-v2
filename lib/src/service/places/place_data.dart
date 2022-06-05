@@ -24,7 +24,6 @@ class PlaceData with _$PlaceData {
     PlaceGeo? geo,
     String? name,
     String? placeType,
-
   }) = _PlaceData;
 
   factory PlaceData.fromJson(Map<String, Object?> json) =>
