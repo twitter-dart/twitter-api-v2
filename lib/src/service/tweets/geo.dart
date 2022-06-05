@@ -9,18 +9,18 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 
 // Project imports:
-import 'twitter_geo_coordinates.dart';
+import 'geo_coordinates.dart';
 
-part 'twitter_geo.freezed.dart';
-part 'twitter_geo.g.dart';
+part 'geo.freezed.dart';
+part 'geo.g.dart';
 
 @freezed
-class TwitterGeo with _$TwitterGeo {
-  const factory TwitterGeo({
+class Geo with _$Geo {
+  const factory Geo({
     String? placeId,
-    TwitterGeoCoordinates? coordinates,
-  }) = _TwitterGeo;
+    GeoCoordinates? coordinates,
+  }) = _Geo;
 
-  factory TwitterGeo.fromJson(Map<String, Object?> json) =>
-      _$TwitterGeoFromJson(json);
+  factory Geo.fromJson(Map<String, Object?> json) =>
+      _$GeoFromJson(json);
 }

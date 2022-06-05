@@ -2,18 +2,17 @@
 
 // ignore_for_file: non_constant_identifier_names
 
-part of 'twitter_geo_coordinates.dart';
+part of 'geo_coordinates.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_TwitterGeoCoordinates _$$_TwitterGeoCoordinatesFromJson(Map json) =>
-    $checkedCreate(
-      r'_$_TwitterGeoCoordinates',
+_$_GeoCoordinates _$$_GeoCoordinatesFromJson(Map json) => $checkedCreate(
+      r'_$_GeoCoordinates',
       json,
       ($checkedConvert) {
-        final val = _$_TwitterGeoCoordinates(
+        final val = _$_GeoCoordinates(
           type: $checkedConvert('type', (v) => v as String),
           coordinates: $checkedConvert(
               'coordinates',
@@ -25,8 +24,7 @@ _$_TwitterGeoCoordinates _$$_TwitterGeoCoordinatesFromJson(Map json) =>
       },
     );
 
-Map<String, dynamic> _$$_TwitterGeoCoordinatesToJson(
-        _$_TwitterGeoCoordinates instance) =>
+Map<String, dynamic> _$$_GeoCoordinatesToJson(_$_GeoCoordinates instance) =>
     <String, dynamic>{
       'type': instance.type,
       'coordinates': instance.coordinates,

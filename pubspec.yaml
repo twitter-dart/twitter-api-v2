@@ -1,6 +1,6 @@
 name: twitter_api_v2
 description: The lightweight and powerful wrapper library for Twitter API v2.0 written in Dart language. It works cross-platform.
-version: 2.5.0
+version: 2.6.0
 repository: https://github.com/myConsciousness/twitter-api-v2
 
 environment:

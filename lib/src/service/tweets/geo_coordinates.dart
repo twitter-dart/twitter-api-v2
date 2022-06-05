@@ -5,16 +5,16 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'twitter_geo_coordinates.freezed.dart';
-part 'twitter_geo_coordinates.g.dart';
+part 'geo_coordinates.freezed.dart';
+part 'geo_coordinates.g.dart';
 
 @freezed
-class TwitterGeoCoordinates with _$TwitterGeoCoordinates {
-  const factory TwitterGeoCoordinates({
+class GeoCoordinates with _$GeoCoordinates {
+  const factory GeoCoordinates({
     required String type,
     required List<double> coordinates,
-  }) = _TwitterGeoCoordinates;
+  }) = _GeoCoordinates;
 
-  factory TwitterGeoCoordinates.fromJson(Map<String, Object?> json) =>
-      _$TwitterGeoCoordinatesFromJson(json);
+  factory GeoCoordinates.fromJson(Map<String, Object?> json) =>
+      _$GeoCoordinatesFromJson(json);
 }

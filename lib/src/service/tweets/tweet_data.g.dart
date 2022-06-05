@@ -54,7 +54,7 @@ _$_TweetData _$$_TweetDataFromJson(Map json) => $checkedCreate(
               'geo',
               (v) => v == null
                   ? null
-                  : TwitterGeo.fromJson(Map<String, Object?>.from(v as Map))),
+                  : Geo.fromJson(Map<String, Object?>.from(v as Map))),
           lang: $checkedConvert('lang', (v) => v as String?),
           isPossiblySensitive:
               $checkedConvert('possibly_sensitive', (v) => v as bool?),
