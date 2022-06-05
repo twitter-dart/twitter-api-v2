@@ -22,6 +22,10 @@ PollData _$PollDataFromJson(Map<String, dynamic> json) {
 mixin _$PollData {
   String get id => throw _privateConstructorUsedError;
   List<PollOption> get options => throw _privateConstructorUsedError;
+  int? get durationMinutes => throw _privateConstructorUsedError;
+  @JsonKey(name: 'end_datetime')
+  DateTime? get endAt => throw _privateConstructorUsedError;
+  PollVotingStatus? get votingStatus => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,7 +37,12 @@ mixin _$PollData {
 abstract class $PollDataCopyWith<$Res> {
   factory $PollDataCopyWith(PollData value, $Res Function(PollData) then) =
       _$PollDataCopyWithImpl<$Res>;
-  $Res call({String id, List<PollOption> options});
+  $Res call(
+      {String id,
+      List<PollOption> options,
+      int? durationMinutes,
+      @JsonKey(name: 'end_datetime') DateTime? endAt,
+      PollVotingStatus? votingStatus});
 }
 
 /// @nodoc
@@ -48,6 +57,9 @@ class _$PollDataCopyWithImpl<$Res> implements $PollDataCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? options = freezed,
+    Object? durationMinutes = freezed,
+    Object? endAt = freezed,
+    Object? votingStatus = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -58,6 +70,18 @@ class _$PollDataCopyWithImpl<$Res> implements $PollDataCopyWith<$Res> {
           ? _value.options
           : options // ignore: cast_nullable_to_non_nullable
               as List<PollOption>,
+      durationMinutes: durationMinutes == freezed
+          ? _value.durationMinutes
+          : durationMinutes // ignore: cast_nullable_to_non_nullable
+              as int?,
+      endAt: endAt == freezed
+          ? _value.endAt
+          : endAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      votingStatus: votingStatus == freezed
+          ? _value.votingStatus
+          : votingStatus // ignore: cast_nullable_to_non_nullable
+              as PollVotingStatus?,
     ));
   }
 }
@@ -68,7 +92,12 @@ abstract class _$$_PollDataCopyWith<$Res> implements $PollDataCopyWith<$Res> {
           _$_PollData value, $Res Function(_$_PollData) then) =
       __$$_PollDataCopyWithImpl<$Res>;
   @override
-  $Res call({String id, List<PollOption> options});
+  $Res call(
+      {String id,
+      List<PollOption> options,
+      int? durationMinutes,
+      @JsonKey(name: 'end_datetime') DateTime? endAt,
+      PollVotingStatus? votingStatus});
 }
 
 /// @nodoc
@@ -85,6 +114,9 @@ class __$$_PollDataCopyWithImpl<$Res> extends _$PollDataCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? options = freezed,
+    Object? durationMinutes = freezed,
+    Object? endAt = freezed,
+    Object? votingStatus = freezed,
   }) {
     return _then(_$_PollData(
       id: id == freezed
@@ -95,6 +127,18 @@ class __$$_PollDataCopyWithImpl<$Res> extends _$PollDataCopyWithImpl<$Res>
           ? _value._options
           : options // ignore: cast_nullable_to_non_nullable
               as List<PollOption>,
+      durationMinutes: durationMinutes == freezed
+          ? _value.durationMinutes
+          : durationMinutes // ignore: cast_nullable_to_non_nullable
+              as int?,
+      endAt: endAt == freezed
+          ? _value.endAt
+          : endAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      votingStatus: votingStatus == freezed
+          ? _value.votingStatus
+          : votingStatus // ignore: cast_nullable_to_non_nullable
+              as PollVotingStatus?,
     ));
   }
 }
@@ -102,7 +146,12 @@ class __$$_PollDataCopyWithImpl<$Res> extends _$PollDataCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_PollData implements _PollData {
-  const _$_PollData({required this.id, required final List<PollOption> options})
+  const _$_PollData(
+      {required this.id,
+      required final List<PollOption> options,
+      this.durationMinutes,
+      @JsonKey(name: 'end_datetime') this.endAt,
+      this.votingStatus})
       : _options = options;
 
   factory _$_PollData.fromJson(Map<String, dynamic> json) =>
@@ -118,8 +167,16 @@ class _$_PollData implements _PollData {
   }
 
   @override
+  final int? durationMinutes;
+  @override
+  @JsonKey(name: 'end_datetime')
+  final DateTime? endAt;
+  @override
+  final PollVotingStatus? votingStatus;
+
+  @override
   String toString() {
-    return 'PollData(id: $id, options: $options)';
+    return 'PollData(id: $id, options: $options, durationMinutes: $durationMinutes, endAt: $endAt, votingStatus: $votingStatus)';
   }
 
   @override
@@ -128,7 +185,12 @@ class _$_PollData implements _PollData {
         (other.runtimeType == runtimeType &&
             other is _$_PollData &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other._options, _options));
+            const DeepCollectionEquality().equals(other._options, _options) &&
+            const DeepCollectionEquality()
+                .equals(other.durationMinutes, durationMinutes) &&
+            const DeepCollectionEquality().equals(other.endAt, endAt) &&
+            const DeepCollectionEquality()
+                .equals(other.votingStatus, votingStatus));
   }
 
   @JsonKey(ignore: true)
@@ -136,7 +198,10 @@ class _$_PollData implements _PollData {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(_options));
+      const DeepCollectionEquality().hash(_options),
+      const DeepCollectionEquality().hash(durationMinutes),
+      const DeepCollectionEquality().hash(endAt),
+      const DeepCollectionEquality().hash(votingStatus));
 
   @JsonKey(ignore: true)
   @override
@@ -152,7 +217,10 @@ class _$_PollData implements _PollData {
 abstract class _PollData implements PollData {
   const factory _PollData(
       {required final String id,
-      required final List<PollOption> options}) = _$_PollData;
+      required final List<PollOption> options,
+      final int? durationMinutes,
+      @JsonKey(name: 'end_datetime') final DateTime? endAt,
+      final PollVotingStatus? votingStatus}) = _$_PollData;
 
   factory _PollData.fromJson(Map<String, dynamic> json) = _$_PollData.fromJson;
 
@@ -160,6 +228,13 @@ abstract class _PollData implements PollData {
   String get id => throw _privateConstructorUsedError;
   @override
   List<PollOption> get options => throw _privateConstructorUsedError;
+  @override
+  int? get durationMinutes => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'end_datetime')
+  DateTime? get endAt => throw _privateConstructorUsedError;
+  @override
+  PollVotingStatus? get votingStatus => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_PollDataCopyWith<_$_PollData> get copyWith =>
