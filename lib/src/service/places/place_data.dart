@@ -16,14 +16,14 @@ part 'place_data.g.dart';
 @freezed
 class PlaceData with _$PlaceData {
   const factory PlaceData({
-    required String fullName,
     required String id,
-    List<String>? containedWithin,
+    required String fullName,
+    String? name,
+    String? placeType,
     String? country,
     String? countryCode,
     PlaceGeo? geo,
-    String? name,
-    String? placeType,
+    List<String>? containedWithin,
   }) = _PlaceData;
 
   factory PlaceData.fromJson(Map<String, Object?> json) =>
