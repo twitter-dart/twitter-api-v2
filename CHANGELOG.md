@@ -1,33 +1,8 @@
 # Release Note
 
-## v2.6.0
-
-- Added `placeFields` argument. ([#182](https://github.com/twitter-dart/twitter-api-v2/issues/182))
-
-  - GET /2/users/:id/bookmarks
-  - GET /2/tweets/search/stream
-  - GET /2/tweets/:id/liking_users
-  - GET /2/users/:id/liked_tweets
-  - GET /2/tweets/:id/quote_tweets
-  - GET /2/tweets/:id/retweeted_by
-  - GET /2/tweets/search/all
-  - GET /2/tweets/search/recent
-  - GET /2/users/:id/mentions
-  - GET /2/users/:id/timelines/reverse_chronological
-  - GET /2/users/:id/tweets
-  - GET /2/tweets
-  - GET /2/tweets/:id
-  - GET /2/tweets/sample/stream
-  - GET /2/spaces/:id/buyers
-  - GET /2/spaces/:id/tweets
-
-- `PlaceData` class is migrated to `Geo` class, and updated `PlaceData` parameters.
-- `PlaceCoordinates` class is migrated to `GeoCoordinates` class, and updated `PlaceCoordinates` paramters.
-
 ## v2.5.0
 
 - Added `pollFields` argument. ([#181](https://github.com/twitter-dart/twitter-api-v2/issues/181))
-
   - GET /2/users/:id/bookmarks
   - GET /2/tweets/search/stream
   - GET /2/tweets/:id/liking_users
@@ -44,6 +19,25 @@
   - GET /2/tweets/sample/stream
   - GET /2/spaces/:id/buyers
   - GET /2/spaces/:id/tweets
+- Added `placeFields` argument. ([#182](https://github.com/twitter-dart/twitter-api-v2/issues/182))
+  - GET /2/users/:id/bookmarks
+  - GET /2/tweets/search/stream
+  - GET /2/tweets/:id/liking_users
+  - GET /2/users/:id/liked_tweets
+  - GET /2/tweets/:id/quote_tweets
+  - GET /2/tweets/:id/retweeted_by
+  - GET /2/tweets/search/all
+  - GET /2/tweets/search/recent
+  - GET /2/users/:id/mentions
+  - GET /2/users/:id/timelines/reverse_chronological
+  - GET /2/users/:id/tweets
+  - GET /2/tweets
+  - GET /2/tweets/:id
+  - GET /2/tweets/sample/stream
+  - GET /2/spaces/:id/buyers
+  - GET /2/spaces/:id/tweets
+- `PlaceData` class is migrated to `Geo` class, and updated `PlaceData` parameters.
+- `PlaceCoordinates` class is migrated to `GeoCoordinates` class, and updated `PlaceCoordinates` paramters.
 
 ## v2.4.2
 
