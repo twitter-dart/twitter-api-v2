@@ -53,7 +53,7 @@ void main() {
         response.toString(),
         'TwitterResponse(data: true, '
         'includes: Includes(tweets: null, users: null, '
-        'media: null, polls: null), '
+        'media: null, polls: null, places: null), '
         'meta: false)');
   });
 }
