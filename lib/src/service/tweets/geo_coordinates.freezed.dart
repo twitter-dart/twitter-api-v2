@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'place_coordinates.dart';
+part of 'geo_coordinates.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,37 +14,37 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-PlaceCoordinates _$PlaceCoordinatesFromJson(Map<String, dynamic> json) {
-  return _PlaceCoordinates.fromJson(json);
+GeoCoordinates _$GeoCoordinatesFromJson(Map<String, dynamic> json) {
+  return _GeoCoordinates.fromJson(json);
 }
 
 /// @nodoc
-mixin _$PlaceCoordinates {
+mixin _$GeoCoordinates {
   String get type => throw _privateConstructorUsedError;
   List<double> get coordinates => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PlaceCoordinatesCopyWith<PlaceCoordinates> get copyWith =>
+  $GeoCoordinatesCopyWith<GeoCoordinates> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PlaceCoordinatesCopyWith<$Res> {
-  factory $PlaceCoordinatesCopyWith(
-          PlaceCoordinates value, $Res Function(PlaceCoordinates) then) =
-      _$PlaceCoordinatesCopyWithImpl<$Res>;
+abstract class $GeoCoordinatesCopyWith<$Res> {
+  factory $GeoCoordinatesCopyWith(
+          GeoCoordinates value, $Res Function(GeoCoordinates) then) =
+      _$GeoCoordinatesCopyWithImpl<$Res>;
   $Res call({String type, List<double> coordinates});
 }
 
 /// @nodoc
-class _$PlaceCoordinatesCopyWithImpl<$Res>
-    implements $PlaceCoordinatesCopyWith<$Res> {
-  _$PlaceCoordinatesCopyWithImpl(this._value, this._then);
+class _$GeoCoordinatesCopyWithImpl<$Res>
+    implements $GeoCoordinatesCopyWith<$Res> {
+  _$GeoCoordinatesCopyWithImpl(this._value, this._then);
 
-  final PlaceCoordinates _value;
+  final GeoCoordinates _value;
   // ignore: unused_field
-  final $Res Function(PlaceCoordinates) _then;
+  final $Res Function(GeoCoordinates) _then;
 
   @override
   $Res call({
@@ -65,32 +65,32 @@ class _$PlaceCoordinatesCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$$_PlaceCoordinatesCopyWith<$Res>
-    implements $PlaceCoordinatesCopyWith<$Res> {
-  factory _$$_PlaceCoordinatesCopyWith(
-          _$_PlaceCoordinates value, $Res Function(_$_PlaceCoordinates) then) =
-      __$$_PlaceCoordinatesCopyWithImpl<$Res>;
+abstract class _$$_GeoCoordinatesCopyWith<$Res>
+    implements $GeoCoordinatesCopyWith<$Res> {
+  factory _$$_GeoCoordinatesCopyWith(
+          _$_GeoCoordinates value, $Res Function(_$_GeoCoordinates) then) =
+      __$$_GeoCoordinatesCopyWithImpl<$Res>;
   @override
   $Res call({String type, List<double> coordinates});
 }
 
 /// @nodoc
-class __$$_PlaceCoordinatesCopyWithImpl<$Res>
-    extends _$PlaceCoordinatesCopyWithImpl<$Res>
-    implements _$$_PlaceCoordinatesCopyWith<$Res> {
-  __$$_PlaceCoordinatesCopyWithImpl(
-      _$_PlaceCoordinates _value, $Res Function(_$_PlaceCoordinates) _then)
-      : super(_value, (v) => _then(v as _$_PlaceCoordinates));
+class __$$_GeoCoordinatesCopyWithImpl<$Res>
+    extends _$GeoCoordinatesCopyWithImpl<$Res>
+    implements _$$_GeoCoordinatesCopyWith<$Res> {
+  __$$_GeoCoordinatesCopyWithImpl(
+      _$_GeoCoordinates _value, $Res Function(_$_GeoCoordinates) _then)
+      : super(_value, (v) => _then(v as _$_GeoCoordinates));
 
   @override
-  _$_PlaceCoordinates get _value => super._value as _$_PlaceCoordinates;
+  _$_GeoCoordinates get _value => super._value as _$_GeoCoordinates;
 
   @override
   $Res call({
     Object? type = freezed,
     Object? coordinates = freezed,
   }) {
-    return _then(_$_PlaceCoordinates(
+    return _then(_$_GeoCoordinates(
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -105,13 +105,13 @@ class __$$_PlaceCoordinatesCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_PlaceCoordinates implements _PlaceCoordinates {
-  const _$_PlaceCoordinates(
+class _$_GeoCoordinates implements _GeoCoordinates {
+  const _$_GeoCoordinates(
       {required this.type, required final List<double> coordinates})
       : _coordinates = coordinates;
 
-  factory _$_PlaceCoordinates.fromJson(Map<String, dynamic> json) =>
-      _$$_PlaceCoordinatesFromJson(json);
+  factory _$_GeoCoordinates.fromJson(Map<String, dynamic> json) =>
+      _$$_GeoCoordinatesFromJson(json);
 
   @override
   final String type;
@@ -124,14 +124,14 @@ class _$_PlaceCoordinates implements _PlaceCoordinates {
 
   @override
   String toString() {
-    return 'PlaceCoordinates(type: $type, coordinates: $coordinates)';
+    return 'GeoCoordinates(type: $type, coordinates: $coordinates)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PlaceCoordinates &&
+            other is _$_GeoCoordinates &&
             const DeepCollectionEquality().equals(other.type, type) &&
             const DeepCollectionEquality()
                 .equals(other._coordinates, _coordinates));
@@ -146,22 +146,22 @@ class _$_PlaceCoordinates implements _PlaceCoordinates {
 
   @JsonKey(ignore: true)
   @override
-  _$$_PlaceCoordinatesCopyWith<_$_PlaceCoordinates> get copyWith =>
-      __$$_PlaceCoordinatesCopyWithImpl<_$_PlaceCoordinates>(this, _$identity);
+  _$$_GeoCoordinatesCopyWith<_$_GeoCoordinates> get copyWith =>
+      __$$_GeoCoordinatesCopyWithImpl<_$_GeoCoordinates>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PlaceCoordinatesToJson(this);
+    return _$$_GeoCoordinatesToJson(this);
   }
 }
 
-abstract class _PlaceCoordinates implements PlaceCoordinates {
-  const factory _PlaceCoordinates(
+abstract class _GeoCoordinates implements GeoCoordinates {
+  const factory _GeoCoordinates(
       {required final String type,
-      required final List<double> coordinates}) = _$_PlaceCoordinates;
+      required final List<double> coordinates}) = _$_GeoCoordinates;
 
-  factory _PlaceCoordinates.fromJson(Map<String, dynamic> json) =
-      _$_PlaceCoordinates.fromJson;
+  factory _GeoCoordinates.fromJson(Map<String, dynamic> json) =
+      _$_GeoCoordinates.fromJson;
 
   @override
   String get type => throw _privateConstructorUsedError;
@@ -169,6 +169,6 @@ abstract class _PlaceCoordinates implements PlaceCoordinates {
   List<double> get coordinates => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$$_PlaceCoordinatesCopyWith<_$_PlaceCoordinates> get copyWith =>
+  _$$_GeoCoordinatesCopyWith<_$_GeoCoordinates> get copyWith =>
       throw _privateConstructorUsedError;
 }

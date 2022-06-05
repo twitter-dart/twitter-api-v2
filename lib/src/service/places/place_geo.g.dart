@@ -2,30 +2,33 @@
 
 // ignore_for_file: non_constant_identifier_names
 
-part of 'place_coordinates.dart';
+part of 'place_geo.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_PlaceCoordinates _$$_PlaceCoordinatesFromJson(Map json) => $checkedCreate(
-      r'_$_PlaceCoordinates',
+_$_PlaceGeo _$$_PlaceGeoFromJson(Map json) => $checkedCreate(
+      r'_$_PlaceGeo',
       json,
       ($checkedConvert) {
-        final val = _$_PlaceCoordinates(
+        final val = _$_PlaceGeo(
           type: $checkedConvert('type', (v) => v as String),
-          coordinates: $checkedConvert(
-              'coordinates',
+          bbox: $checkedConvert(
+              'bbox',
               (v) => (v as List<dynamic>)
                   .map((e) => (e as num).toDouble())
                   .toList()),
+          properties: $checkedConvert(
+              'properties', (v) => Map<String, dynamic>.from(v as Map)),
         );
         return val;
       },
     );
 
-Map<String, dynamic> _$$_PlaceCoordinatesToJson(_$_PlaceCoordinates instance) =>
+Map<String, dynamic> _$$_PlaceGeoToJson(_$_PlaceGeo instance) =>
     <String, dynamic>{
       'type': instance.type,
-      'coordinates': instance.coordinates,
+      'bbox': instance.bbox,
+      'properties': instance.properties,
     };
