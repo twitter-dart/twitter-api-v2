@@ -7,6 +7,7 @@ import '../../client/client_context.dart';
 import '../../client/user_context.dart';
 import '../base_service.dart';
 import '../places/place_field.dart';
+import '../polls/poll_field.dart';
 import '../tweets/tweet_data.dart';
 import '../tweets/tweet_expansion.dart';
 import '../tweets/tweet_field.dart';
@@ -234,6 +235,16 @@ abstract class SpacesService {
   ///                  object, you will find this ID and all additional place
   ///                  fields in the `includes` data object.
   ///
+  /// - [pollFields]: This fields parameter enables you to select which specific
+  ///                 poll fields will deliver in each returned Tweet. Specify
+  ///                 the desired fields in a comma-separated list without
+  ///                 spaces between commas and fields. The Tweet will only
+  ///                 return poll fields if the Tweet contains a poll and if
+  ///                 you've also included the `expansions=attachments.poll_ids`
+  ///                 query parameter in your request. While the poll ID will be
+  ///                 located in the Tweet object, you will find this ID and all
+  ///                 additional poll fields in the `includes` data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/spaces/:id/buyers
@@ -252,6 +263,7 @@ abstract class SpacesService {
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
     List<PlaceField>? placeFields,
+    List<PollField>? pollFields,
   });
 
   /// Returns Tweets shared in the requested Spaces.
@@ -297,6 +309,16 @@ abstract class SpacesService {
   ///                  request. While the place ID will be located in the Tweet
   ///                  object, you will find this ID and all additional place
   ///                  fields in the `includes` data object.
+  /// 
+  /// - [pollFields]: This fields parameter enables you to select which specific
+  ///                 poll fields will deliver in each returned Tweet. Specify
+  ///                 the desired fields in a comma-separated list without
+  ///                 spaces between commas and fields. The Tweet will only
+  ///                 return poll fields if the Tweet contains a poll and if
+  ///                 you've also included the `expansions=attachments.poll_ids`
+  ///                 query parameter in your request. While the poll ID will be
+  ///                 located in the Tweet object, you will find this ID and all
+  ///                 additional poll fields in the `includes` data object.
   ///
   /// ## Endpoint Url
   ///
@@ -316,6 +338,7 @@ abstract class SpacesService {
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
     List<PlaceField>? placeFields,
+    List<PollField>? pollFields,
   });
 
   /// Returns live or scheduled Spaces created by the specified user IDs.
@@ -445,6 +468,7 @@ class _SpacesService extends BaseService implements SpacesService {
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
     List<PlaceField>? placeFields,
+    List<PollField>? pollFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -455,6 +479,7 @@ class _SpacesService extends BaseService implements SpacesService {
             'tweet.fields': super.serializeFields(tweetFields),
             'user.fields': super.serializeFields(userFields),
             'place.fields': super.serializeFields(placeFields),
+            'poll.fields': super.serializeFields(pollFields),
           },
         ),
         dataBuilder: UserData.fromJson,
@@ -467,6 +492,7 @@ class _SpacesService extends BaseService implements SpacesService {
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
     List<PlaceField>? placeFields,
+    List<PollField>? pollFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -477,6 +503,7 @@ class _SpacesService extends BaseService implements SpacesService {
             'tweet.fields': super.serializeFields(tweetFields),
             'user.fields': super.serializeFields(userFields),
             'place.fields': super.serializeFields(placeFields),
+            'poll.fields': super.serializeFields(pollFields),
           },
         ),
         dataBuilder: TweetData.fromJson,

@@ -20,6 +20,7 @@ export 'package:twitter_api_v2/src/service/places/place_data.dart';
 export 'package:twitter_api_v2/src/service/places/place_field.dart';
 export 'package:twitter_api_v2/src/service/places/place_geo.dart';
 export 'package:twitter_api_v2/src/service/polls/poll_data.dart';
+export 'package:twitter_api_v2/src/service/polls/poll_field.dart';
 export 'package:twitter_api_v2/src/service/polls/poll_option.dart';
 export 'package:twitter_api_v2/src/service/spaces/space_data.dart';
 export 'package:twitter_api_v2/src/service/spaces/space_expansion.dart';
