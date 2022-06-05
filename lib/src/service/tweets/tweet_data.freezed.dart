@@ -38,7 +38,7 @@ mixin _$TweetData {
   TweetAttachments? get attachments => throw _privateConstructorUsedError;
   @JsonKey(name: 'public_metrics')
   PublicTweetMetrics? get publicMetrics => throw _privateConstructorUsedError;
-  PlaceData? get geo => throw _privateConstructorUsedError;
+  TwitterGeo? get geo => throw _privateConstructorUsedError;
   String? get lang => throw _privateConstructorUsedError;
   @JsonKey(name: 'possibly_sensitive')
   bool? get isPossiblySensitive => throw _privateConstructorUsedError;
@@ -76,7 +76,7 @@ abstract class $TweetDataCopyWith<$Res> {
       TweetAttachments? attachments,
       @JsonKey(name: 'public_metrics')
           PublicTweetMetrics? publicMetrics,
-      PlaceData? geo,
+      TwitterGeo? geo,
       String? lang,
       @JsonKey(name: 'possibly_sensitive')
           bool? isPossiblySensitive,
@@ -90,7 +90,7 @@ abstract class $TweetDataCopyWith<$Res> {
   $TweetEntitiesCopyWith<$Res>? get entities;
   $TweetAttachmentsCopyWith<$Res>? get attachments;
   $PublicTweetMetricsCopyWith<$Res>? get publicMetrics;
-  $PlaceDataCopyWith<$Res>? get geo;
+  $TwitterGeoCopyWith<$Res>? get geo;
   $TweetWithheldCopyWith<$Res>? get withheld;
 }
 
@@ -166,7 +166,7 @@ class _$TweetDataCopyWithImpl<$Res> implements $TweetDataCopyWith<$Res> {
       geo: geo == freezed
           ? _value.geo
           : geo // ignore: cast_nullable_to_non_nullable
-              as PlaceData?,
+              as TwitterGeo?,
       lang: lang == freezed
           ? _value.lang
           : lang // ignore: cast_nullable_to_non_nullable
@@ -228,12 +228,12 @@ class _$TweetDataCopyWithImpl<$Res> implements $TweetDataCopyWith<$Res> {
   }
 
   @override
-  $PlaceDataCopyWith<$Res>? get geo {
+  $TwitterGeoCopyWith<$Res>? get geo {
     if (_value.geo == null) {
       return null;
     }
 
-    return $PlaceDataCopyWith<$Res>(_value.geo!, (value) {
+    return $TwitterGeoCopyWith<$Res>(_value.geo!, (value) {
       return _then(_value.copyWith(geo: value));
     });
   }
@@ -273,7 +273,7 @@ abstract class _$$_TweetDataCopyWith<$Res> implements $TweetDataCopyWith<$Res> {
       TweetAttachments? attachments,
       @JsonKey(name: 'public_metrics')
           PublicTweetMetrics? publicMetrics,
-      PlaceData? geo,
+      TwitterGeo? geo,
       String? lang,
       @JsonKey(name: 'possibly_sensitive')
           bool? isPossiblySensitive,
@@ -291,7 +291,7 @@ abstract class _$$_TweetDataCopyWith<$Res> implements $TweetDataCopyWith<$Res> {
   @override
   $PublicTweetMetricsCopyWith<$Res>? get publicMetrics;
   @override
-  $PlaceDataCopyWith<$Res>? get geo;
+  $TwitterGeoCopyWith<$Res>? get geo;
   @override
   $TweetWithheldCopyWith<$Res>? get withheld;
 }
@@ -370,7 +370,7 @@ class __$$_TweetDataCopyWithImpl<$Res> extends _$TweetDataCopyWithImpl<$Res>
       geo: geo == freezed
           ? _value.geo
           : geo // ignore: cast_nullable_to_non_nullable
-              as PlaceData?,
+              as TwitterGeo?,
       lang: lang == freezed
           ? _value.lang
           : lang // ignore: cast_nullable_to_non_nullable
@@ -476,7 +476,7 @@ class _$_TweetData implements _TweetData {
   @JsonKey(name: 'public_metrics')
   final PublicTweetMetrics? publicMetrics;
   @override
-  final PlaceData? geo;
+  final TwitterGeo? geo;
   @override
   final String? lang;
   @override
@@ -581,7 +581,7 @@ abstract class _TweetData implements TweetData {
       final TweetAttachments? attachments,
       @JsonKey(name: 'public_metrics')
           final PublicTweetMetrics? publicMetrics,
-      final PlaceData? geo,
+      final TwitterGeo? geo,
       final String? lang,
       @JsonKey(name: 'possibly_sensitive')
           final bool? isPossiblySensitive,
@@ -624,7 +624,7 @@ abstract class _TweetData implements TweetData {
   @JsonKey(name: 'public_metrics')
   PublicTweetMetrics? get publicMetrics => throw _privateConstructorUsedError;
   @override
-  PlaceData? get geo => throw _privateConstructorUsedError;
+  TwitterGeo? get geo => throw _privateConstructorUsedError;
   @override
   String? get lang => throw _privateConstructorUsedError;
   @override

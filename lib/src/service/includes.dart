@@ -7,6 +7,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
 import 'media/media_data.dart';
+import 'places/place_data.dart';
 import 'polls/poll_data.dart';
 import 'tweets/tweet_data.dart';
 import 'users/user_data.dart';
@@ -21,6 +22,7 @@ class Includes with _$Includes {
     List<UserData>? users,
     List<MediaData>? media,
     List<PollData>? polls,
+    List<PlaceData>? places,
   }) = _Includes;
 
   factory Includes.fromJson(Map<String, Object?> json) =>

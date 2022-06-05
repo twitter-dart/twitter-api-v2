@@ -20,9 +20,14 @@ PlaceData _$PlaceDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PlaceData {
-  @JsonKey(name: 'place_id')
-  String? get placeId => throw _privateConstructorUsedError;
-  PlaceCoordinates? get coordinates => throw _privateConstructorUsedError;
+  String get fullName => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  List<String>? get containedWithin => throw _privateConstructorUsedError;
+  String? get country => throw _privateConstructorUsedError;
+  String? get countryCode => throw _privateConstructorUsedError;
+  PlaceGeo? get geo => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get placeType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,10 +40,16 @@ abstract class $PlaceDataCopyWith<$Res> {
   factory $PlaceDataCopyWith(PlaceData value, $Res Function(PlaceData) then) =
       _$PlaceDataCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'place_id') String? placeId,
-      PlaceCoordinates? coordinates});
+      {String fullName,
+      String id,
+      List<String>? containedWithin,
+      String? country,
+      String? countryCode,
+      PlaceGeo? geo,
+      String? name,
+      String? placeType});
 
-  $PlaceCoordinatesCopyWith<$Res>? get coordinates;
+  $PlaceGeoCopyWith<$Res>? get geo;
 }
 
 /// @nodoc
@@ -51,29 +62,59 @@ class _$PlaceDataCopyWithImpl<$Res> implements $PlaceDataCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? placeId = freezed,
-    Object? coordinates = freezed,
+    Object? fullName = freezed,
+    Object? id = freezed,
+    Object? containedWithin = freezed,
+    Object? country = freezed,
+    Object? countryCode = freezed,
+    Object? geo = freezed,
+    Object? name = freezed,
+    Object? placeType = freezed,
   }) {
     return _then(_value.copyWith(
-      placeId: placeId == freezed
-          ? _value.placeId
-          : placeId // ignore: cast_nullable_to_non_nullable
+      fullName: fullName == freezed
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      containedWithin: containedWithin == freezed
+          ? _value.containedWithin
+          : containedWithin // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      country: country == freezed
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
               as String?,
-      coordinates: coordinates == freezed
-          ? _value.coordinates
-          : coordinates // ignore: cast_nullable_to_non_nullable
-              as PlaceCoordinates?,
+      countryCode: countryCode == freezed
+          ? _value.countryCode
+          : countryCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      geo: geo == freezed
+          ? _value.geo
+          : geo // ignore: cast_nullable_to_non_nullable
+              as PlaceGeo?,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      placeType: placeType == freezed
+          ? _value.placeType
+          : placeType // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 
   @override
-  $PlaceCoordinatesCopyWith<$Res>? get coordinates {
-    if (_value.coordinates == null) {
+  $PlaceGeoCopyWith<$Res>? get geo {
+    if (_value.geo == null) {
       return null;
     }
 
-    return $PlaceCoordinatesCopyWith<$Res>(_value.coordinates!, (value) {
-      return _then(_value.copyWith(coordinates: value));
+    return $PlaceGeoCopyWith<$Res>(_value.geo!, (value) {
+      return _then(_value.copyWith(geo: value));
     });
   }
 }
@@ -85,11 +126,17 @@ abstract class _$$_PlaceDataCopyWith<$Res> implements $PlaceDataCopyWith<$Res> {
       __$$_PlaceDataCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'place_id') String? placeId,
-      PlaceCoordinates? coordinates});
+      {String fullName,
+      String id,
+      List<String>? containedWithin,
+      String? country,
+      String? countryCode,
+      PlaceGeo? geo,
+      String? name,
+      String? placeType});
 
   @override
-  $PlaceCoordinatesCopyWith<$Res>? get coordinates;
+  $PlaceGeoCopyWith<$Res>? get geo;
 }
 
 /// @nodoc
@@ -104,18 +151,48 @@ class __$$_PlaceDataCopyWithImpl<$Res> extends _$PlaceDataCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? placeId = freezed,
-    Object? coordinates = freezed,
+    Object? fullName = freezed,
+    Object? id = freezed,
+    Object? containedWithin = freezed,
+    Object? country = freezed,
+    Object? countryCode = freezed,
+    Object? geo = freezed,
+    Object? name = freezed,
+    Object? placeType = freezed,
   }) {
     return _then(_$_PlaceData(
-      placeId: placeId == freezed
-          ? _value.placeId
-          : placeId // ignore: cast_nullable_to_non_nullable
+      fullName: fullName == freezed
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      containedWithin: containedWithin == freezed
+          ? _value._containedWithin
+          : containedWithin // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      country: country == freezed
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
               as String?,
-      coordinates: coordinates == freezed
-          ? _value.coordinates
-          : coordinates // ignore: cast_nullable_to_non_nullable
-              as PlaceCoordinates?,
+      countryCode: countryCode == freezed
+          ? _value.countryCode
+          : countryCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      geo: geo == freezed
+          ? _value.geo
+          : geo // ignore: cast_nullable_to_non_nullable
+              as PlaceGeo?,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      placeType: placeType == freezed
+          ? _value.placeType
+          : placeType // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -124,20 +201,46 @@ class __$$_PlaceDataCopyWithImpl<$Res> extends _$PlaceDataCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_PlaceData implements _PlaceData {
   const _$_PlaceData(
-      {@JsonKey(name: 'place_id') this.placeId, required this.coordinates});
+      {required this.fullName,
+      required this.id,
+      final List<String>? containedWithin,
+      this.country,
+      this.countryCode,
+      this.geo,
+      this.name,
+      this.placeType})
+      : _containedWithin = containedWithin;
 
   factory _$_PlaceData.fromJson(Map<String, dynamic> json) =>
       _$$_PlaceDataFromJson(json);
 
   @override
-  @JsonKey(name: 'place_id')
-  final String? placeId;
+  final String fullName;
   @override
-  final PlaceCoordinates? coordinates;
+  final String id;
+  final List<String>? _containedWithin;
+  @override
+  List<String>? get containedWithin {
+    final value = _containedWithin;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  final String? country;
+  @override
+  final String? countryCode;
+  @override
+  final PlaceGeo? geo;
+  @override
+  final String? name;
+  @override
+  final String? placeType;
 
   @override
   String toString() {
-    return 'PlaceData(placeId: $placeId, coordinates: $coordinates)';
+    return 'PlaceData(fullName: $fullName, id: $id, containedWithin: $containedWithin, country: $country, countryCode: $countryCode, geo: $geo, name: $name, placeType: $placeType)';
   }
 
   @override
@@ -145,17 +248,30 @@ class _$_PlaceData implements _PlaceData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PlaceData &&
-            const DeepCollectionEquality().equals(other.placeId, placeId) &&
+            const DeepCollectionEquality().equals(other.fullName, fullName) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
-                .equals(other.coordinates, coordinates));
+                .equals(other._containedWithin, _containedWithin) &&
+            const DeepCollectionEquality().equals(other.country, country) &&
+            const DeepCollectionEquality()
+                .equals(other.countryCode, countryCode) &&
+            const DeepCollectionEquality().equals(other.geo, geo) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.placeType, placeType));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(placeId),
-      const DeepCollectionEquality().hash(coordinates));
+      const DeepCollectionEquality().hash(fullName),
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(_containedWithin),
+      const DeepCollectionEquality().hash(country),
+      const DeepCollectionEquality().hash(countryCode),
+      const DeepCollectionEquality().hash(geo),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(placeType));
 
   @JsonKey(ignore: true)
   @override
@@ -170,17 +286,34 @@ class _$_PlaceData implements _PlaceData {
 
 abstract class _PlaceData implements PlaceData {
   const factory _PlaceData(
-      {@JsonKey(name: 'place_id') final String? placeId,
-      required final PlaceCoordinates? coordinates}) = _$_PlaceData;
+      {required final String fullName,
+      required final String id,
+      final List<String>? containedWithin,
+      final String? country,
+      final String? countryCode,
+      final PlaceGeo? geo,
+      final String? name,
+      final String? placeType}) = _$_PlaceData;
 
   factory _PlaceData.fromJson(Map<String, dynamic> json) =
       _$_PlaceData.fromJson;
 
   @override
-  @JsonKey(name: 'place_id')
-  String? get placeId => throw _privateConstructorUsedError;
+  String get fullName => throw _privateConstructorUsedError;
   @override
-  PlaceCoordinates? get coordinates => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  @override
+  List<String>? get containedWithin => throw _privateConstructorUsedError;
+  @override
+  String? get country => throw _privateConstructorUsedError;
+  @override
+  String? get countryCode => throw _privateConstructorUsedError;
+  @override
+  PlaceGeo? get geo => throw _privateConstructorUsedError;
+  @override
+  String? get name => throw _privateConstructorUsedError;
+  @override
+  String? get placeType => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_PlaceDataCopyWith<_$_PlaceData> get copyWith =>

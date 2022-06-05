@@ -37,6 +37,12 @@ _$_Includes _$$_IncludesFromJson(Map json) => $checkedCreate(
                   ?.map((e) =>
                       PollData.fromJson(Map<String, Object?>.from(e as Map)))
                   .toList()),
+          places: $checkedConvert(
+              'places',
+              (v) => (v as List<dynamic>?)
+                  ?.map((e) =>
+                      PlaceData.fromJson(Map<String, Object?>.from(e as Map)))
+                  .toList()),
         );
         return val;
       },
@@ -48,4 +54,5 @@ Map<String, dynamic> _$$_IncludesToJson(_$_Includes instance) =>
       'users': instance.users,
       'media': instance.media,
       'polls': instance.polls,
+      'places': instance.places,
     };

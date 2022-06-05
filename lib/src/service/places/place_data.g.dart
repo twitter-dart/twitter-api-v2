@@ -13,21 +13,38 @@ _$_PlaceData _$$_PlaceDataFromJson(Map json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = _$_PlaceData(
-          placeId: $checkedConvert('place_id', (v) => v as String?),
-          coordinates: $checkedConvert(
-              'coordinates',
+          fullName: $checkedConvert('full_name', (v) => v as String),
+          id: $checkedConvert('id', (v) => v as String),
+          containedWithin: $checkedConvert('contained_within',
+              (v) => (v as List<dynamic>?)?.map((e) => e as String).toList()),
+          country: $checkedConvert('country', (v) => v as String?),
+          countryCode: $checkedConvert('country_code', (v) => v as String?),
+          geo: $checkedConvert(
+              'geo',
               (v) => v == null
                   ? null
-                  : PlaceCoordinates.fromJson(
-                      Map<String, Object?>.from(v as Map))),
+                  : PlaceGeo.fromJson(Map<String, Object?>.from(v as Map))),
+          name: $checkedConvert('name', (v) => v as String?),
+          placeType: $checkedConvert('place_type', (v) => v as String?),
         );
         return val;
       },
-      fieldKeyMap: const {'placeId': 'place_id'},
+      fieldKeyMap: const {
+        'fullName': 'full_name',
+        'containedWithin': 'contained_within',
+        'countryCode': 'country_code',
+        'placeType': 'place_type'
+      },
     );
 
 Map<String, dynamic> _$$_PlaceDataToJson(_$_PlaceData instance) =>
     <String, dynamic>{
-      'place_id': instance.placeId,
-      'coordinates': instance.coordinates,
+      'full_name': instance.fullName,
+      'id': instance.id,
+      'contained_within': instance.containedWithin,
+      'country': instance.country,
+      'country_code': instance.countryCode,
+      'geo': instance.geo,
+      'name': instance.name,
+      'place_type': instance.placeType,
     };

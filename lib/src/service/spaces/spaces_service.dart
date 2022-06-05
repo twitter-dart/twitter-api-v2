@@ -6,6 +6,7 @@
 import '../../client/client_context.dart';
 import '../../client/user_context.dart';
 import '../base_service.dart';
+import '../places/place_field.dart';
 import '../tweets/tweet_data.dart';
 import '../tweets/tweet_expansion.dart';
 import '../tweets/tweet_field.dart';
@@ -211,6 +212,28 @@ abstract class SpacesService {
   ///                 you will find this ID and all additional user fields in
   ///                 the includes data object.
   ///
+  /// - [placeFields]: This fields parameter enables you to select which
+  ///                  specific place fields will deliver in each returned
+  ///                  Tweet. Specify the desired fields in a comma-separated
+  ///                  list without spaces between commas and fields. The Tweet
+  ///                  will only return place fields if the Tweet contains a
+  ///                  place and if you’ve also included the
+  ///                  `expansions=geo.place_id` query parameter in your
+  ///                  request. While the place ID will be located in the Tweet
+  ///                  object, you will find this ID and all additional place
+  ///                  fields in the `includes` data object.
+  ///
+  /// - [placeFields]: This fields parameter enables you to select which
+  ///                  specific place fields will deliver in each returned
+  ///                  Tweet. Specify the desired fields in a comma-separated
+  ///                  list without spaces between commas and fields. The Tweet
+  ///                  will only return place fields if the Tweet contains a
+  ///                  place and if you’ve also included the
+  ///                  `expansions=geo.place_id` query parameter in your
+  ///                  request. While the place ID will be located in the Tweet
+  ///                  object, you will find this ID and all additional place
+  ///                  fields in the `includes` data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/spaces/:id/buyers
@@ -228,6 +251,7 @@ abstract class SpacesService {
     List<UserExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
+    List<PlaceField>? placeFields,
   });
 
   /// Returns Tweets shared in the requested Spaces.
@@ -263,6 +287,17 @@ abstract class SpacesService {
   ///                 you will find this ID and all additional user fields in
   ///                 the includes data object.
   ///
+  /// - [placeFields]: This fields parameter enables you to select which
+  ///                  specific place fields will deliver in each returned
+  ///                  Tweet. Specify the desired fields in a comma-separated
+  ///                  list without spaces between commas and fields. The Tweet
+  ///                  will only return place fields if the Tweet contains a
+  ///                  place and if you’ve also included the
+  ///                  `expansions=geo.place_id` query parameter in your
+  ///                  request. While the place ID will be located in the Tweet
+  ///                  object, you will find this ID and all additional place
+  ///                  fields in the `includes` data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/spaces/:id/tweets
@@ -280,6 +315,7 @@ abstract class SpacesService {
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
+    List<PlaceField>? placeFields,
   });
 
   /// Returns live or scheduled Spaces created by the specified user IDs.
@@ -408,6 +444,7 @@ class _SpacesService extends BaseService implements SpacesService {
     List<UserExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
+    List<PlaceField>? placeFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -417,6 +454,7 @@ class _SpacesService extends BaseService implements SpacesService {
             'expansions': super.serializeExpansions(expansions),
             'tweet.fields': super.serializeFields(tweetFields),
             'user.fields': super.serializeFields(userFields),
+            'place.fields': super.serializeFields(placeFields),
           },
         ),
         dataBuilder: UserData.fromJson,
@@ -428,6 +466,7 @@ class _SpacesService extends BaseService implements SpacesService {
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
+    List<PlaceField>? placeFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -437,6 +476,7 @@ class _SpacesService extends BaseService implements SpacesService {
             'expansions': super.serializeExpansions(expansions),
             'tweet.fields': super.serializeFields(tweetFields),
             'user.fields': super.serializeFields(userFields),
+            'place.fields': super.serializeFields(placeFields),
           },
         ),
         dataBuilder: TweetData.fromJson,

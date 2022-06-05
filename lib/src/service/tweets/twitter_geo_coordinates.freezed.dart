@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'place_coordinates.dart';
+part of 'twitter_geo_coordinates.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,37 +14,38 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-PlaceCoordinates _$PlaceCoordinatesFromJson(Map<String, dynamic> json) {
-  return _PlaceCoordinates.fromJson(json);
+TwitterGeoCoordinates _$TwitterGeoCoordinatesFromJson(
+    Map<String, dynamic> json) {
+  return _TwitterGeoCoordinates.fromJson(json);
 }
 
 /// @nodoc
-mixin _$PlaceCoordinates {
+mixin _$TwitterGeoCoordinates {
   String get type => throw _privateConstructorUsedError;
   List<double> get coordinates => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PlaceCoordinatesCopyWith<PlaceCoordinates> get copyWith =>
+  $TwitterGeoCoordinatesCopyWith<TwitterGeoCoordinates> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PlaceCoordinatesCopyWith<$Res> {
-  factory $PlaceCoordinatesCopyWith(
-          PlaceCoordinates value, $Res Function(PlaceCoordinates) then) =
-      _$PlaceCoordinatesCopyWithImpl<$Res>;
+abstract class $TwitterGeoCoordinatesCopyWith<$Res> {
+  factory $TwitterGeoCoordinatesCopyWith(TwitterGeoCoordinates value,
+          $Res Function(TwitterGeoCoordinates) then) =
+      _$TwitterGeoCoordinatesCopyWithImpl<$Res>;
   $Res call({String type, List<double> coordinates});
 }
 
 /// @nodoc
-class _$PlaceCoordinatesCopyWithImpl<$Res>
-    implements $PlaceCoordinatesCopyWith<$Res> {
-  _$PlaceCoordinatesCopyWithImpl(this._value, this._then);
+class _$TwitterGeoCoordinatesCopyWithImpl<$Res>
+    implements $TwitterGeoCoordinatesCopyWith<$Res> {
+  _$TwitterGeoCoordinatesCopyWithImpl(this._value, this._then);
 
-  final PlaceCoordinates _value;
+  final TwitterGeoCoordinates _value;
   // ignore: unused_field
-  final $Res Function(PlaceCoordinates) _then;
+  final $Res Function(TwitterGeoCoordinates) _then;
 
   @override
   $Res call({
@@ -65,32 +66,33 @@ class _$PlaceCoordinatesCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$$_PlaceCoordinatesCopyWith<$Res>
-    implements $PlaceCoordinatesCopyWith<$Res> {
-  factory _$$_PlaceCoordinatesCopyWith(
-          _$_PlaceCoordinates value, $Res Function(_$_PlaceCoordinates) then) =
-      __$$_PlaceCoordinatesCopyWithImpl<$Res>;
+abstract class _$$_TwitterGeoCoordinatesCopyWith<$Res>
+    implements $TwitterGeoCoordinatesCopyWith<$Res> {
+  factory _$$_TwitterGeoCoordinatesCopyWith(_$_TwitterGeoCoordinates value,
+          $Res Function(_$_TwitterGeoCoordinates) then) =
+      __$$_TwitterGeoCoordinatesCopyWithImpl<$Res>;
   @override
   $Res call({String type, List<double> coordinates});
 }
 
 /// @nodoc
-class __$$_PlaceCoordinatesCopyWithImpl<$Res>
-    extends _$PlaceCoordinatesCopyWithImpl<$Res>
-    implements _$$_PlaceCoordinatesCopyWith<$Res> {
-  __$$_PlaceCoordinatesCopyWithImpl(
-      _$_PlaceCoordinates _value, $Res Function(_$_PlaceCoordinates) _then)
-      : super(_value, (v) => _then(v as _$_PlaceCoordinates));
+class __$$_TwitterGeoCoordinatesCopyWithImpl<$Res>
+    extends _$TwitterGeoCoordinatesCopyWithImpl<$Res>
+    implements _$$_TwitterGeoCoordinatesCopyWith<$Res> {
+  __$$_TwitterGeoCoordinatesCopyWithImpl(_$_TwitterGeoCoordinates _value,
+      $Res Function(_$_TwitterGeoCoordinates) _then)
+      : super(_value, (v) => _then(v as _$_TwitterGeoCoordinates));
 
   @override
-  _$_PlaceCoordinates get _value => super._value as _$_PlaceCoordinates;
+  _$_TwitterGeoCoordinates get _value =>
+      super._value as _$_TwitterGeoCoordinates;
 
   @override
   $Res call({
     Object? type = freezed,
     Object? coordinates = freezed,
   }) {
-    return _then(_$_PlaceCoordinates(
+    return _then(_$_TwitterGeoCoordinates(
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -105,13 +107,13 @@ class __$$_PlaceCoordinatesCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_PlaceCoordinates implements _PlaceCoordinates {
-  const _$_PlaceCoordinates(
+class _$_TwitterGeoCoordinates implements _TwitterGeoCoordinates {
+  const _$_TwitterGeoCoordinates(
       {required this.type, required final List<double> coordinates})
       : _coordinates = coordinates;
 
-  factory _$_PlaceCoordinates.fromJson(Map<String, dynamic> json) =>
-      _$$_PlaceCoordinatesFromJson(json);
+  factory _$_TwitterGeoCoordinates.fromJson(Map<String, dynamic> json) =>
+      _$$_TwitterGeoCoordinatesFromJson(json);
 
   @override
   final String type;
@@ -124,14 +126,14 @@ class _$_PlaceCoordinates implements _PlaceCoordinates {
 
   @override
   String toString() {
-    return 'PlaceCoordinates(type: $type, coordinates: $coordinates)';
+    return 'TwitterGeoCoordinates(type: $type, coordinates: $coordinates)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PlaceCoordinates &&
+            other is _$_TwitterGeoCoordinates &&
             const DeepCollectionEquality().equals(other.type, type) &&
             const DeepCollectionEquality()
                 .equals(other._coordinates, _coordinates));
@@ -146,22 +148,23 @@ class _$_PlaceCoordinates implements _PlaceCoordinates {
 
   @JsonKey(ignore: true)
   @override
-  _$$_PlaceCoordinatesCopyWith<_$_PlaceCoordinates> get copyWith =>
-      __$$_PlaceCoordinatesCopyWithImpl<_$_PlaceCoordinates>(this, _$identity);
+  _$$_TwitterGeoCoordinatesCopyWith<_$_TwitterGeoCoordinates> get copyWith =>
+      __$$_TwitterGeoCoordinatesCopyWithImpl<_$_TwitterGeoCoordinates>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PlaceCoordinatesToJson(this);
+    return _$$_TwitterGeoCoordinatesToJson(this);
   }
 }
 
-abstract class _PlaceCoordinates implements PlaceCoordinates {
-  const factory _PlaceCoordinates(
+abstract class _TwitterGeoCoordinates implements TwitterGeoCoordinates {
+  const factory _TwitterGeoCoordinates(
       {required final String type,
-      required final List<double> coordinates}) = _$_PlaceCoordinates;
+      required final List<double> coordinates}) = _$_TwitterGeoCoordinates;
 
-  factory _PlaceCoordinates.fromJson(Map<String, dynamic> json) =
-      _$_PlaceCoordinates.fromJson;
+  factory _TwitterGeoCoordinates.fromJson(Map<String, dynamic> json) =
+      _$_TwitterGeoCoordinates.fromJson;
 
   @override
   String get type => throw _privateConstructorUsedError;
@@ -169,6 +172,6 @@ abstract class _PlaceCoordinates implements PlaceCoordinates {
   List<double> get coordinates => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$$_PlaceCoordinatesCopyWith<_$_PlaceCoordinates> get copyWith =>
+  _$$_TwitterGeoCoordinatesCopyWith<_$_TwitterGeoCoordinates> get copyWith =>
       throw _privateConstructorUsedError;
 }

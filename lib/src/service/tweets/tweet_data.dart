@@ -8,7 +8,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import '../places/place_data.dart';
 import 'public_tweet_metrics.dart';
 import 'referenced_tweet.dart';
 import 'reply_setting.dart';
@@ -16,6 +15,7 @@ import 'tweet_attachments.dart';
 import 'tweet_context_annotation_group.dart';
 import 'tweet_entities.dart';
 import 'tweet_withheld.dart';
+import 'twitter_geo.dart';
 
 part 'tweet_data.freezed.dart';
 part 'tweet_data.g.dart';
@@ -34,7 +34,7 @@ class TweetData with _$TweetData {
     TweetEntities? entities,
     TweetAttachments? attachments,
     @JsonKey(name: 'public_metrics') PublicTweetMetrics? publicMetrics,
-    PlaceData? geo,
+    TwitterGeo? geo,
     String? lang,
     @JsonKey(name: 'possibly_sensitive') bool? isPossiblySensitive,
     @JsonKey(name: 'reply_settings') ReplySetting? replySetting,
