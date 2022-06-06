@@ -15,6 +15,7 @@ import 'reply_setting.dart';
 import 'tweet_attachments.dart';
 import 'tweet_context_annotation_group.dart';
 import 'tweet_entities.dart';
+import 'tweet_language.dart';
 import 'tweet_withheld.dart';
 
 part 'tweet_data.freezed.dart';
@@ -34,7 +35,7 @@ class TweetData with _$TweetData {
     TweetAttachments? attachments,
     PublicTweetMetrics? publicMetrics,
     Geo? geo,
-    String? lang,
+    TweetLanguage? lang,
     @JsonKey(name: 'possibly_sensitive') bool? isPossiblySensitive,
     @JsonKey(name: 'reply_settings') ReplySetting? replySetting,
     String? source,

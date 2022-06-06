@@ -24,7 +24,7 @@ mixin _$SpaceData {
   String? get title => throw _privateConstructorUsedError;
   SpaceState? get state => throw _privateConstructorUsedError;
   String? get creatorId => throw _privateConstructorUsedError;
-  String? get lang => throw _privateConstructorUsedError;
+  SpaceLanguage? get lang => throw _privateConstructorUsedError;
   List<String>? get hostIds => throw _privateConstructorUsedError;
   List<String>? get topicIds => throw _privateConstructorUsedError;
   List<String>? get speakerIds => throw _privateConstructorUsedError;
@@ -53,7 +53,7 @@ abstract class $SpaceDataCopyWith<$Res> {
       String? title,
       SpaceState? state,
       String? creatorId,
-      String? lang,
+      SpaceLanguage? lang,
       List<String>? hostIds,
       List<String>? topicIds,
       List<String>? speakerIds,
@@ -116,7 +116,7 @@ class _$SpaceDataCopyWithImpl<$Res> implements $SpaceDataCopyWith<$Res> {
       lang: lang == freezed
           ? _value.lang
           : lang // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as SpaceLanguage?,
       hostIds: hostIds == freezed
           ? _value.hostIds
           : hostIds // ignore: cast_nullable_to_non_nullable
@@ -180,7 +180,7 @@ abstract class _$$_SpaceDataCopyWith<$Res> implements $SpaceDataCopyWith<$Res> {
       String? title,
       SpaceState? state,
       String? creatorId,
-      String? lang,
+      SpaceLanguage? lang,
       List<String>? hostIds,
       List<String>? topicIds,
       List<String>? speakerIds,
@@ -245,7 +245,7 @@ class __$$_SpaceDataCopyWithImpl<$Res> extends _$SpaceDataCopyWithImpl<$Res>
       lang: lang == freezed
           ? _value.lang
           : lang // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as SpaceLanguage?,
       hostIds: hostIds == freezed
           ? _value._hostIds
           : hostIds // ignore: cast_nullable_to_non_nullable
@@ -336,7 +336,7 @@ class _$_SpaceData implements _SpaceData {
   @override
   final String? creatorId;
   @override
-  final String? lang;
+  final SpaceLanguage? lang;
   final List<String>? _hostIds;
   @override
   List<String>? get hostIds {
@@ -464,7 +464,7 @@ abstract class _SpaceData implements SpaceData {
       final String? title,
       final SpaceState? state,
       final String? creatorId,
-      final String? lang,
+      final SpaceLanguage? lang,
       final List<String>? hostIds,
       final List<String>? topicIds,
       final List<String>? speakerIds,
@@ -490,7 +490,7 @@ abstract class _SpaceData implements SpaceData {
   @override
   String? get creatorId => throw _privateConstructorUsedError;
   @override
-  String? get lang => throw _privateConstructorUsedError;
+  SpaceLanguage? get lang => throw _privateConstructorUsedError;
   @override
   List<String>? get hostIds => throw _privateConstructorUsedError;
   @override
