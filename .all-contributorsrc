@@ -1,0 +1,41 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "myConsciousness",
+      "name": "Kato Shinya / 加藤 真也",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13072231?v=4",
+      "profile": "https://github.com/myConsciousness",
+      "contributions": [
+        "code",
+        "content",
+        "data",
+        "doc",
+        "design",
+        "example",
+        "fundingFinding",
+        "ideas",
+        "infra",
+        "maintenance",
+        "mentoring",
+        "projectManagement",
+        "question",
+        "review",
+        "security",
+        "translation",
+        "test",
+        "tutorial"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "twitter-api-v2",
+  "projectOwner": "twitter-dart",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
