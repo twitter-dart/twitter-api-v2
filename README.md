@@ -83,6 +83,7 @@
   - [1.5. Support](#15-support)
   - [1.6. License](#16-license)
   - [1.7. More Information](#17-more-information)
+  - [1.8. Contributors ✨](#18-contributors-)
 
 <!-- /TOC -->
 
@@ -604,7 +605,7 @@ All resources of `twitter_api_v2` is provided under the `BSD-3` license.
 - [Release Note](https://github.com/twitter-dart/twitter-api-v2/releases)
 - [Bug Report](https://github.com/twitter-dart/twitter-api-v2/issues)
 
-## Contributors ✨
+## 1.8. Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
