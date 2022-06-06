@@ -114,4 +114,5 @@ const _$SpaceLanguageEnumMap = {
   SpaceLanguage.swedish: 'sv',
   SpaceLanguage.turkish: 'tr',
   SpaceLanguage.ukranian: 'uk',
+  SpaceLanguage.undetermined: 'other',
 };

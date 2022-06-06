@@ -76,7 +76,10 @@ enum SpaceLanguage {
   turkish('tr'),
 
   @JsonValue('uk')
-  ukranian('uk');
+  ukranian('uk'),
+
+  @JsonValue('other')
+  undetermined('other');
 
   /// The language code
   final String code;
