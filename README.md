@@ -37,12 +37,12 @@
 
 <!-- TOC -->
 
-- [1. Guide](#1-guide)
-  - [1.1. Getting Started](#11-getting-started)
+- [1. Guide 🌎](#1-guide-)
+  - [1.1. Getting Started ⚡](#11-getting-started-)
     - [1.1.1. Install Library](#111-install-library)
     - [1.1.2. Import](#112-import)
     - [1.1.3. Implementation](#113-implementation)
-  - [1.2. Supported Endpoints and Matrix](#12-supported-endpoints-and-matrix)
+  - [1.2. Supported Endpoints 👀](#12-supported-endpoints-)
     - [1.2.1. Tweets Service](#121-tweets-service)
       - [1.2.1.1. Manage Tweet](#1211-manage-tweet)
       - [1.2.1.2. Likes](#1212-likes)
@@ -73,27 +73,27 @@
       - [1.2.4.6. Members](#1246-members)
     - [1.2.5. Compliance Service](#125-compliance-service)
       - [1.2.5.1. Batch Compliance](#1251-batch-compliance)
-  - [1.3. Tips](#13-tips)
+  - [1.3. Tips 🏄](#13-tips-)
     - [1.3.1. Method Names](#131-method-names)
     - [1.3.2. Generate App-Only Bearer Token](#132-generate-app-only-bearer-token)
     - [1.3.3. Null Parameter at Request](#133-null-parameter-at-request)
     - [1.3.4. Expand Object Fields with `expansions`](#134-expand-object-fields-with-expansions)
     - [1.3.5. Expand Object Fields with `fields`](#135-expand-object-fields-with-fields)
-  - [1.4. Contribution](#14-contribution)
-  - [1.5. Support](#15-support)
-  - [1.6. License](#16-license)
-  - [1.7. More Information](#17-more-information)
-  - [1.8. Contributors ✨](#18-contributors-)
+  - [1.4. Contribution 🏆](#14-contribution-)
+  - [1.5. Contributors ✨](#15-contributors-)
+  - [1.6. Support ❤️](#16-support-️)
+  - [1.7. License 🔑](#17-license-)
+  - [1.8. More Information 🧐](#18-more-information-)
 
 <!-- /TOC -->
 
-# 1. Guide
+# 1. Guide 🌎
 
 This library provides the easiest way to use [Twitter API v2.0](https://developer.twitter.com/en/docs/twitter-api/data-dictionary/introduction) in **Dart** and **Flutter** apps.
 
 **Show some ❤️ and star the repo to support the project.**
 
-## 1.1. Getting Started
+## 1.1. Getting Started ⚡
 
 ### 1.1.1. Install Library
 
@@ -197,7 +197,7 @@ void main() async {
 }
 ```
 
-## 1.2. Supported Endpoints and Matrix
+## 1.2. Supported Endpoints 👀
 
 ### 1.2.1. Tweets Service
 
@@ -408,7 +408,7 @@ void main() async {
 > **Note**</br>
 > Not all additional fields listed in the official documentation are supported. We intend to support them step by step. Also you can create an Issue or Pull Request if you wish to suggest or contribute!
 
-## 1.3. Tips
+## 1.3. Tips 🏄
 
 ### 1.3.1. Method Names
 
@@ -539,7 +539,7 @@ void main() async {
 
 You can see more details about `fields` from [Official Documentation](https://developer.twitter.com/en/docs/twitter-api/fields).
 
-## 1.4. Contribution
+## 1.4. Contribution 🏆
 
 If you would like to contribute to `twitter_api_v2`, please create an [issue](https://github.com/twitter-dart/twitter-api-v2/issues) or create a Pull Request.
 
@@ -560,7 +560,30 @@ Or you can create a [discussion](https://github.com/twitter-dart/twitter-api-v2/
 
 **Feel free to join this development, diverse opinions make software better!**
 
-## 1.5. Support
+## 1.5. Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/myConsciousness"><img src="https://avatars.githubusercontent.com/u/13072231?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Kato Shinya / 加藤 真也</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=myConsciousness" title="Code">💻</a> <a href="#content-myConsciousness" title="Content">🖋</a> <a href="#data-myConsciousness" title="Data">🔣</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=myConsciousness" title="Documentation">📖</a> <a href="#design-myConsciousness" title="Design">🎨</a> <a href="#example-myConsciousness" title="Examples">💡</a> <a href="#fundingFinding-myConsciousness" title="Funding Finding">🔍</a> <a href="#ideas-myConsciousness" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-myConsciousness" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-myConsciousness" title="Maintenance">🚧</a> <a href="#mentoring-myConsciousness" title="Mentoring">🧑‍🏫</a> <a href="#projectManagement-myConsciousness" title="Project Management">📆</a> <a href="#question-myConsciousness" title="Answering Questions">💬</a> <a href="https://github.com/twitter-dart/twitter-api-v2/pulls?q=is%3Apr+reviewed-by%3AmyConsciousness" title="Reviewed Pull Requests">👀</a> <a href="#security-myConsciousness" title="Security">🛡️</a> <a href="#translation-myConsciousness" title="Translation">🌍</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=myConsciousness" title="Tests">⚠️</a> <a href="#tutorial-myConsciousness" title="Tutorials">✅</a></td>
+    <td align="center"><a href="https://github.com/XRayAdamo"><img src="https://avatars.githubusercontent.com/u/4430621?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Konstantin</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=XRayAdamo" title="Code">💻</a> <a href="#design-XRayAdamo" title="Design">🎨</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=XRayAdamo" title="Documentation">📖</a> <a href="#example-XRayAdamo" title="Examples">💡</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=XRayAdamo" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://ko-fi.com/robertodoering"><img src="https://avatars.githubusercontent.com/u/20045287?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Roberto Doering</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=robertodoering" title="Code">💻</a> <a href="#design-robertodoering" title="Design">🎨</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=robertodoering" title="Documentation">📖</a> <a href="#example-robertodoering" title="Examples">💡</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=robertodoering" title="Tests">⚠️</a> <a href="#ideas-robertodoering" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/niteshsh4rma"><img src="https://avatars.githubusercontent.com/u/58659088?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nitesh Sharma</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=niteshsh4rma" title="Code">💻</a> <a href="#design-niteshsh4rma" title="Design">🎨</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=niteshsh4rma" title="Documentation">📖</a> <a href="#example-niteshsh4rma" title="Examples">💡</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=niteshsh4rma" title="Tests">⚠️</a> <a href="#ideas-niteshsh4rma" title="Ideas, Planning, & Feedback">🤔</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+## 1.6. Support ❤️
 
 The simplest way to show us your support is by **giving the project a star** at [GitHub](https://github.com/twitter-dart/twitter-api-v2) and [Pub.dev](https://pub.dev/packages/twitter_api_v2).
 
@@ -586,7 +609,7 @@ You can also show on your repository that your app is made with `twitter_api_v2`
 [![Powered by twitter_api_v2](https://img.shields.io/badge/Powered%20by-twitter_api_v2-00acee.svg?style=for-the-badge)](https://github.com/twitter-dart/twitter-api-v2)
 ```
 
-## 1.6. License
+## 1.7. License 🔑
 
 All resources of `twitter_api_v2` is provided under the `BSD-3` license.
 
@@ -595,7 +618,8 @@ All resources of `twitter_api_v2` is provided under the `BSD-3` license.
 > **Note**</br>
 > License notices in the source are strictly validated based on `.github/header-checker-lint.yml`. Please check [header-checker-lint.yml](https://github.com/twitter-dart/twitter-api-v2/tree/main/.github/header-checker-lint.yml) for the permitted standards.
 
-## 1.7. More Information
+
+## 1.8. More Information 🧐
 
 `twitter_api_v2` was designed and implemented by **_Kato Shinya ([@myConsciousness](https://github.com/myConsciousness))_**.
 
@@ -604,26 +628,3 @@ All resources of `twitter_api_v2` is provided under the `BSD-3` license.
 - [API Document](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/twitter_api_v2-library.html)
 - [Release Note](https://github.com/twitter-dart/twitter-api-v2/releases)
 - [Bug Report](https://github.com/twitter-dart/twitter-api-v2/issues)
-
-## 1.8. Contributors ✨
-
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tr>
-    <td align="center"><a href="https://github.com/myConsciousness"><img src="https://avatars.githubusercontent.com/u/13072231?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Kato Shinya / 加藤 真也</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=myConsciousness" title="Code">💻</a> <a href="#content-myConsciousness" title="Content">🖋</a> <a href="#data-myConsciousness" title="Data">🔣</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=myConsciousness" title="Documentation">📖</a> <a href="#design-myConsciousness" title="Design">🎨</a> <a href="#example-myConsciousness" title="Examples">💡</a> <a href="#fundingFinding-myConsciousness" title="Funding Finding">🔍</a> <a href="#ideas-myConsciousness" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-myConsciousness" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-myConsciousness" title="Maintenance">🚧</a> <a href="#mentoring-myConsciousness" title="Mentoring">🧑‍🏫</a> <a href="#projectManagement-myConsciousness" title="Project Management">📆</a> <a href="#question-myConsciousness" title="Answering Questions">💬</a> <a href="https://github.com/twitter-dart/twitter-api-v2/pulls?q=is%3Apr+reviewed-by%3AmyConsciousness" title="Reviewed Pull Requests">👀</a> <a href="#security-myConsciousness" title="Security">🛡️</a> <a href="#translation-myConsciousness" title="Translation">🌍</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=myConsciousness" title="Tests">⚠️</a> <a href="#tutorial-myConsciousness" title="Tutorials">✅</a></td>
-    <td align="center"><a href="https://github.com/XRayAdamo"><img src="https://avatars.githubusercontent.com/u/4430621?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Konstantin</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=XRayAdamo" title="Code">💻</a> <a href="#design-XRayAdamo" title="Design">🎨</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=XRayAdamo" title="Documentation">📖</a> <a href="#example-XRayAdamo" title="Examples">💡</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=XRayAdamo" title="Tests">⚠️</a></td>
-    <td align="center"><a href="https://ko-fi.com/robertodoering"><img src="https://avatars.githubusercontent.com/u/20045287?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Roberto Doering</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=robertodoering" title="Code">💻</a> <a href="#design-robertodoering" title="Design">🎨</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=robertodoering" title="Documentation">📖</a> <a href="#example-robertodoering" title="Examples">💡</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=robertodoering" title="Tests">⚠️</a> <a href="#ideas-robertodoering" title="Ideas, Planning, & Feedback">🤔</a></td>
-    <td align="center"><a href="https://github.com/niteshsh4rma"><img src="https://avatars.githubusercontent.com/u/58659088?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nitesh Sharma</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=niteshsh4rma" title="Code">💻</a> <a href="#design-niteshsh4rma" title="Design">🎨</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=niteshsh4rma" title="Documentation">📖</a> <a href="#example-niteshsh4rma" title="Examples">💡</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=niteshsh4rma" title="Tests">⚠️</a> <a href="#ideas-niteshsh4rma" title="Ideas, Planning, & Feedback">🤔</a></td>
-  </tr>
-</table>
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
