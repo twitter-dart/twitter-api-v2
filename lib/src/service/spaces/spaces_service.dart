@@ -309,7 +309,7 @@ abstract class SpacesService {
   ///                  request. While the place ID will be located in the Tweet
   ///                  object, you will find this ID and all additional place
   ///                  fields in the `includes` data object.
-  /// 
+  ///
   /// - [pollFields]: This fields parameter enables you to select which specific
   ///                 poll fields will deliver in each returned Tweet. Specify
   ///                 the desired fields in a comma-separated list without
@@ -411,9 +411,9 @@ class _SpacesService extends BaseService implements SpacesService {
           '/2/spaces/search',
           queryParameters: {
             'query': query,
-            'expansions': super.serializeExpansions(expansions),
-            'user.fields': super.serializeFields(userFields),
-            'space.fields': super.serializeFields(spaceFields),
+            'expansions': expansions,
+            'user.fields': userFields,
+            'space.fields': spaceFields,
           },
         ),
         dataBuilder: SpaceData.fromJson,
@@ -432,9 +432,9 @@ class _SpacesService extends BaseService implements SpacesService {
           UserContext.oauth2Only,
           '/2/spaces/$spaceId',
           queryParameters: {
-            'expansions': super.serializeExpansions(expansions),
-            'user.fields': super.serializeFields(userFields),
-            'space.fields': super.serializeFields(spaceFields),
+            'expansions': expansions,
+            'user.fields': userFields,
+            'space.fields': spaceFields,
           },
         ),
         dataBuilder: SpaceData.fromJson,
@@ -452,10 +452,10 @@ class _SpacesService extends BaseService implements SpacesService {
           UserContext.oauth2Only,
           '/2/spaces',
           queryParameters: {
-            'ids': super.serialize(spaceIds),
-            'expansions': super.serializeExpansions(expansions),
-            'user.fields': super.serializeFields(userFields),
-            'space.fields': super.serializeFields(spaceFields),
+            'ids': spaceIds,
+            'expansions': expansions,
+            'user.fields': userFields,
+            'space.fields': spaceFields,
           },
         ),
         dataBuilder: SpaceData.fromJson,
@@ -475,11 +475,11 @@ class _SpacesService extends BaseService implements SpacesService {
           UserContext.oauth2Only,
           '/2/spaces/$spaceId/buyers',
           queryParameters: {
-            'expansions': super.serializeExpansions(expansions),
-            'tweet.fields': super.serializeFields(tweetFields),
-            'user.fields': super.serializeFields(userFields),
-            'place.fields': super.serializeFields(placeFields),
-            'poll.fields': super.serializeFields(pollFields),
+            'expansions': expansions,
+            'tweet.fields': tweetFields,
+            'user.fields': userFields,
+            'place.fields': placeFields,
+            'poll.fields': pollFields,
           },
         ),
         dataBuilder: UserData.fromJson,
@@ -499,11 +499,11 @@ class _SpacesService extends BaseService implements SpacesService {
           UserContext.oauth2Only,
           '/2/spaces/$spaceId/tweets',
           queryParameters: {
-            'expansions': super.serializeExpansions(expansions),
-            'tweet.fields': super.serializeFields(tweetFields),
-            'user.fields': super.serializeFields(userFields),
-            'place.fields': super.serializeFields(placeFields),
-            'poll.fields': super.serializeFields(pollFields),
+            'expansions': expansions,
+            'tweet.fields': tweetFields,
+            'user.fields': userFields,
+            'place.fields': placeFields,
+            'poll.fields': pollFields,
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -522,10 +522,10 @@ class _SpacesService extends BaseService implements SpacesService {
           UserContext.oauth2Only,
           '/2/spaces/by/creator_ids',
           queryParameters: {
-            'user_ids': super.serialize(userIds),
-            'expansions': super.serializeExpansions(expansions),
-            'user.fields': super.serializeFields(userFields),
-            'space.fields': super.serializeFields(spaceFields),
+            'user_ids': userIds,
+            'expansions': expansions,
+            'user.fields': userFields,
+            'space.fields': spaceFields,
           },
         ),
         dataBuilder: SpaceData.fromJson,

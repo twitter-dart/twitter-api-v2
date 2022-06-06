@@ -3,9 +3,9 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
-import '../field.dart';
+import '../serializable.dart';
 
-enum SpaceField implements Field {
+enum SpaceField implements Serializable {
   /// `id`
   id('id'),
 

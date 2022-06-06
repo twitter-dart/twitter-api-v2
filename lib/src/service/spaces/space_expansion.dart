@@ -3,10 +3,10 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
-import '../expansion.dart';
+import '../serializable.dart';
 
 /// Represents an extensible field about Space.
-enum SpaceExpansion implements Expansion {
+enum SpaceExpansion implements Serializable {
   /// `invited_user_ids`
   invitedUserIds('invited_user_ids'),
 

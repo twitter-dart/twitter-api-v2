@@ -3,10 +3,10 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
-import '../expansion.dart';
+import '../serializable.dart';
 
 /// Represents an extensible field about Tweet.
-enum TweetExpansion implements Expansion {
+enum TweetExpansion implements Serializable {
   /// `author_id`
   authorId('author_id'),
 

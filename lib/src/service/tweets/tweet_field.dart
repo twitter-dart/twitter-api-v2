@@ -3,9 +3,9 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
-import '../field.dart';
+import '../serializable.dart';
 
-enum TweetField implements Field {
+enum TweetField implements Serializable {
   /// `attachments`
   attachments('attachments'),
 
