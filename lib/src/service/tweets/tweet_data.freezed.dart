@@ -33,7 +33,7 @@ mixin _$TweetData {
   TweetAttachments? get attachments => throw _privateConstructorUsedError;
   PublicTweetMetrics? get publicMetrics => throw _privateConstructorUsedError;
   Geo? get geo => throw _privateConstructorUsedError;
-  String? get lang => throw _privateConstructorUsedError;
+  TweetLanguage? get lang => throw _privateConstructorUsedError;
   @JsonKey(name: 'possibly_sensitive')
   bool? get isPossiblySensitive => throw _privateConstructorUsedError;
   @JsonKey(name: 'reply_settings')
@@ -64,7 +64,7 @@ abstract class $TweetDataCopyWith<$Res> {
       TweetAttachments? attachments,
       PublicTweetMetrics? publicMetrics,
       Geo? geo,
-      String? lang,
+      TweetLanguage? lang,
       @JsonKey(name: 'possibly_sensitive') bool? isPossiblySensitive,
       @JsonKey(name: 'reply_settings') ReplySetting? replySetting,
       String? source,
@@ -154,7 +154,7 @@ class _$TweetDataCopyWithImpl<$Res> implements $TweetDataCopyWith<$Res> {
       lang: lang == freezed
           ? _value.lang
           : lang // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as TweetLanguage?,
       isPossiblySensitive: isPossiblySensitive == freezed
           ? _value.isPossiblySensitive
           : isPossiblySensitive // ignore: cast_nullable_to_non_nullable
@@ -252,7 +252,7 @@ abstract class _$$_TweetDataCopyWith<$Res> implements $TweetDataCopyWith<$Res> {
       TweetAttachments? attachments,
       PublicTweetMetrics? publicMetrics,
       Geo? geo,
-      String? lang,
+      TweetLanguage? lang,
       @JsonKey(name: 'possibly_sensitive') bool? isPossiblySensitive,
       @JsonKey(name: 'reply_settings') ReplySetting? replySetting,
       String? source,
@@ -349,7 +349,7 @@ class __$$_TweetDataCopyWithImpl<$Res> extends _$TweetDataCopyWithImpl<$Res>
       lang: lang == freezed
           ? _value.lang
           : lang // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as TweetLanguage?,
       isPossiblySensitive: isPossiblySensitive == freezed
           ? _value.isPossiblySensitive
           : isPossiblySensitive // ignore: cast_nullable_to_non_nullable
@@ -438,7 +438,7 @@ class _$_TweetData implements _TweetData {
   @override
   final Geo? geo;
   @override
-  final String? lang;
+  final TweetLanguage? lang;
   @override
   @JsonKey(name: 'possibly_sensitive')
   final bool? isPossiblySensitive;
@@ -535,7 +535,7 @@ abstract class _TweetData implements TweetData {
       final TweetAttachments? attachments,
       final PublicTweetMetrics? publicMetrics,
       final Geo? geo,
-      final String? lang,
+      final TweetLanguage? lang,
       @JsonKey(name: 'possibly_sensitive') final bool? isPossiblySensitive,
       @JsonKey(name: 'reply_settings') final ReplySetting? replySetting,
       final String? source,
@@ -570,7 +570,7 @@ abstract class _TweetData implements TweetData {
   @override
   Geo? get geo => throw _privateConstructorUsedError;
   @override
-  String? get lang => throw _privateConstructorUsedError;
+  TweetLanguage? get lang => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'possibly_sensitive')
   bool? get isPossiblySensitive => throw _privateConstructorUsedError;

@@ -18,7 +18,8 @@ _$_SpaceData _$$_SpaceDataFromJson(Map json) => $checkedCreate(
           state: $checkedConvert(
               'state', (v) => $enumDecodeNullable(_$SpaceStateEnumMap, v)),
           creatorId: $checkedConvert('creator_id', (v) => v as String?),
-          lang: $checkedConvert('lang', (v) => v as String?),
+          lang: $checkedConvert(
+              'lang', (v) => $enumDecodeNullable(_$SpaceLanguageEnumMap, v)),
           hostIds: $checkedConvert('host_ids',
               (v) => (v as List<dynamic>?)?.map((e) => e as String).toList()),
           topicIds: $checkedConvert('topic_ids',
@@ -68,7 +69,7 @@ Map<String, dynamic> _$$_SpaceDataToJson(_$_SpaceData instance) =>
       'title': instance.title,
       'state': _$SpaceStateEnumMap[instance.state],
       'creator_id': instance.creatorId,
-      'lang': instance.lang,
+      'lang': _$SpaceLanguageEnumMap[instance.lang],
       'host_ids': instance.hostIds,
       'topic_ids': instance.topicIds,
       'speaker_ids': instance.speakerIds,
@@ -86,4 +87,32 @@ Map<String, dynamic> _$$_SpaceDataToJson(_$_SpaceData instance) =>
 const _$SpaceStateEnumMap = {
   SpaceState.scheduled: 'scheduled',
   SpaceState.live: 'live',
+};
+
+const _$SpaceLanguageEnumMap = {
+  SpaceLanguage.arabic: 'ar',
+  SpaceLanguage.armenian: 'hy',
+  SpaceLanguage.chinese: 'zh',
+  SpaceLanguage.danish: 'da',
+  SpaceLanguage.english: 'en',
+  SpaceLanguage.finnish: 'fi',
+  SpaceLanguage.french: 'fr',
+  SpaceLanguage.german: 'de',
+  SpaceLanguage.hindi: 'hi',
+  SpaceLanguage.hebrew: 'iw',
+  SpaceLanguage.indonesian: 'in',
+  SpaceLanguage.italian: 'it',
+  SpaceLanguage.japanese: 'ja',
+  SpaceLanguage.kazakh: 'kk',
+  SpaceLanguage.korean: 'ko',
+  SpaceLanguage.norwegian: 'no',
+  SpaceLanguage.polish: 'pl',
+  SpaceLanguage.portuguese: 'pt',
+  SpaceLanguage.romanian: 'ro',
+  SpaceLanguage.russian: 'ru',
+  SpaceLanguage.spanish: 'es',
+  SpaceLanguage.swedish: 'sv',
+  SpaceLanguage.turkish: 'tr',
+  SpaceLanguage.ukranian: 'uk',
+  SpaceLanguage.undetermined: 'other',
 };

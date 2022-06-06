@@ -6,6 +6,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
+import 'space_language.dart';
 import 'space_state.dart';
 
 part 'space_data.freezed.dart';
@@ -18,7 +19,7 @@ class SpaceData with _$SpaceData {
     String? title,
     SpaceState? state,
     String? creatorId,
-    String? lang,
+    SpaceLanguage? lang,
     List<String>? hostIds,
     List<String>? topicIds,
     List<String>? speakerIds,
