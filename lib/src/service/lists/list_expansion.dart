@@ -3,10 +3,10 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
-import '../expansion.dart';
+import '../serializable.dart';
 
 /// Represents an extensible field about List.
-enum ListExpansion implements Expansion {
+enum ListExpansion implements Serializable {
   /// `owner_id`
   ownerId('owner_id');
 

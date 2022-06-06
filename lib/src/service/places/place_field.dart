@@ -3,9 +3,9 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
-import '../field.dart';
+import '../serializable.dart';
 
-enum PlaceField implements Field {
+enum PlaceField implements Serializable {
   /// `contained_within`
   containedWithin('contained_within'),
 

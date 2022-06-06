@@ -3,10 +3,10 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
-import '../expansion.dart';
+import '../serializable.dart';
 
 /// Represents an extensible field about User.
-enum UserExpansion implements Expansion {
+enum UserExpansion implements Serializable {
   /// `pinned_tweet_id`
   pinnedTweetId('pinned_tweet_id');
 

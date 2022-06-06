@@ -12,9 +12,8 @@ import 'package:http/http.dart' as http;
 import '../client/client_context.dart';
 import '../client/user_context.dart';
 import '../twitter_exception.dart';
-import 'expansion.dart';
-import 'field.dart';
 import 'includes.dart';
+import 'serializable.dart';
 import 'twitter_response.dart';
 
 abstract class Service {
@@ -52,12 +51,6 @@ abstract class Service {
     required D Function(Map<String, Object?> json) dataBuilder,
     M Function(Map<String, Object?> json)? metaBuilder,
   });
-
-  String? serialize(List<String>? strings);
-
-  String? serializeExpansions(List<Expansion>? expansions);
-
-  String? serializeFields(List<Field>? fields);
 }
 
 abstract class BaseService implements Service {
@@ -224,17 +217,6 @@ abstract class BaseService implements Service {
     );
   }
 
-  @override
-  String? serialize(List<String>? strings) => strings?.toSet().join(',');
-
-  @override
-  String? serializeExpansions(List<Expansion>? expansions) =>
-      expansions?.toSet().map((e) => e.value).toList().join(',');
-
-  @override
-  String? serializeFields(List<Field>? fields) =>
-      fields?.toSet().map((e) => e.value).toList().join(',');
-
   Map<String, dynamic> _checkResponseBody(final http.Response response) {
     final jsonBody = jsonDecode(response.body);
     if (!jsonBody.containsKey('data')) {
@@ -268,11 +250,28 @@ abstract class BaseService implements Service {
 
   Map<String, String> _convertQueryParameters(
     final Map<String, dynamic> queryParameters,
-  ) =>
-      Map.from(_removeNullParameters(queryParameters) ?? {}).map(
-        //! Uri.https(...) needs iterable in the value for query params by
-        //! which it means a String in the value of the Map too. So you need
-        //! to convert it from Map<String, dynamic> to Map<String, String>
-        (key, value) => MapEntry(key, value.toString()),
-      );
+  ) {
+    final serializedParameters = queryParameters.map((key, value) {
+      if (value is List<Serializable>?) {
+        return MapEntry(
+          key,
+          value?.toSet().map((e) => e.value).toList().join(','),
+        );
+      } else if (value is List?) {
+        return MapEntry(
+          key,
+          value?.toSet().join(','),
+        );
+      }
+
+      return MapEntry(key, value);
+    });
+
+    return Map.from(_removeNullParameters(serializedParameters) ?? {}).map(
+      //! Uri.https(...) needs iterable in the value for query params by
+      //! which it means a String in the value of the Map too. So you need
+      //! to convert it from Map<String, dynamic> to Map<String, String>
+      (key, value) => MapEntry(key, value.toString()),
+    );
+  }
 }
