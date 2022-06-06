@@ -57,6 +57,20 @@
         "test",
         "ideas"
       ]
+    },
+    {
+      "login": "niteshsh4rma",
+      "name": "Nitesh Sharma",
+      "avatar_url": "https://avatars.githubusercontent.com/u/58659088?v=4",
+      "profile": "https://github.com/niteshsh4rma",
+      "contributions": [
+        "code",
+        "design",
+        "doc",
+        "example",
+        "test",
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
