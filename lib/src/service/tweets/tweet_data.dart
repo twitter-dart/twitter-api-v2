@@ -25,22 +25,21 @@ class TweetData with _$TweetData {
   const factory TweetData({
     required String id,
     required String text,
-    @JsonKey(name: 'author_id') String? authorId,
-    @JsonKey(name: 'in_reply_to_user_id') String? inReplyToUserId,
-    @JsonKey(name: 'conversation_id') String? conversationId,
-    @JsonKey(name: 'referenced_tweets') List<ReferencedTweet>? referencedTweets,
-    @JsonKey(name: 'context_annotations')
-        List<TweetContextAnnotationGroup>? contextAnnotations,
+    String? authorId,
+    String? inReplyToUserId,
+    String? conversationId,
+    List<ReferencedTweet>? referencedTweets,
+    List<TweetContextAnnotationGroup>? contextAnnotations,
     TweetEntities? entities,
     TweetAttachments? attachments,
-    @JsonKey(name: 'public_metrics') PublicTweetMetrics? publicMetrics,
+    PublicTweetMetrics? publicMetrics,
     Geo? geo,
     String? lang,
     @JsonKey(name: 'possibly_sensitive') bool? isPossiblySensitive,
     @JsonKey(name: 'reply_settings') ReplySetting? replySetting,
     String? source,
     TweetWithheld? withheld,
-    @JsonKey(name: 'created_at') DateTime? createdAt,
+    DateTime? createdAt,
   }) = _TweetData;
 
   factory TweetData.fromJson(Map<String, Object?> json) =>

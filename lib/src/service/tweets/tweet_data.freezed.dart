@@ -22,21 +22,15 @@ TweetData _$TweetDataFromJson(Map<String, dynamic> json) {
 mixin _$TweetData {
   String get id => throw _privateConstructorUsedError;
   String get text => throw _privateConstructorUsedError;
-  @JsonKey(name: 'author_id')
   String? get authorId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'in_reply_to_user_id')
   String? get inReplyToUserId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'conversation_id')
   String? get conversationId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'referenced_tweets')
   List<ReferencedTweet>? get referencedTweets =>
       throw _privateConstructorUsedError;
-  @JsonKey(name: 'context_annotations')
   List<TweetContextAnnotationGroup>? get contextAnnotations =>
       throw _privateConstructorUsedError;
   TweetEntities? get entities => throw _privateConstructorUsedError;
   TweetAttachments? get attachments => throw _privateConstructorUsedError;
-  @JsonKey(name: 'public_metrics')
   PublicTweetMetrics? get publicMetrics => throw _privateConstructorUsedError;
   Geo? get geo => throw _privateConstructorUsedError;
   String? get lang => throw _privateConstructorUsedError;
@@ -46,7 +40,6 @@ mixin _$TweetData {
   ReplySetting? get replySetting => throw _privateConstructorUsedError;
   String? get source => throw _privateConstructorUsedError;
   TweetWithheld? get withheld => throw _privateConstructorUsedError;
-  @JsonKey(name: 'created_at')
   DateTime? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -62,30 +55,21 @@ abstract class $TweetDataCopyWith<$Res> {
   $Res call(
       {String id,
       String text,
-      @JsonKey(name: 'author_id')
-          String? authorId,
-      @JsonKey(name: 'in_reply_to_user_id')
-          String? inReplyToUserId,
-      @JsonKey(name: 'conversation_id')
-          String? conversationId,
-      @JsonKey(name: 'referenced_tweets')
-          List<ReferencedTweet>? referencedTweets,
-      @JsonKey(name: 'context_annotations')
-          List<TweetContextAnnotationGroup>? contextAnnotations,
+      String? authorId,
+      String? inReplyToUserId,
+      String? conversationId,
+      List<ReferencedTweet>? referencedTweets,
+      List<TweetContextAnnotationGroup>? contextAnnotations,
       TweetEntities? entities,
       TweetAttachments? attachments,
-      @JsonKey(name: 'public_metrics')
-          PublicTweetMetrics? publicMetrics,
+      PublicTweetMetrics? publicMetrics,
       Geo? geo,
       String? lang,
-      @JsonKey(name: 'possibly_sensitive')
-          bool? isPossiblySensitive,
-      @JsonKey(name: 'reply_settings')
-          ReplySetting? replySetting,
+      @JsonKey(name: 'possibly_sensitive') bool? isPossiblySensitive,
+      @JsonKey(name: 'reply_settings') ReplySetting? replySetting,
       String? source,
       TweetWithheld? withheld,
-      @JsonKey(name: 'created_at')
-          DateTime? createdAt});
+      DateTime? createdAt});
 
   $TweetEntitiesCopyWith<$Res>? get entities;
   $TweetAttachmentsCopyWith<$Res>? get attachments;
@@ -259,30 +243,21 @@ abstract class _$$_TweetDataCopyWith<$Res> implements $TweetDataCopyWith<$Res> {
   $Res call(
       {String id,
       String text,
-      @JsonKey(name: 'author_id')
-          String? authorId,
-      @JsonKey(name: 'in_reply_to_user_id')
-          String? inReplyToUserId,
-      @JsonKey(name: 'conversation_id')
-          String? conversationId,
-      @JsonKey(name: 'referenced_tweets')
-          List<ReferencedTweet>? referencedTweets,
-      @JsonKey(name: 'context_annotations')
-          List<TweetContextAnnotationGroup>? contextAnnotations,
+      String? authorId,
+      String? inReplyToUserId,
+      String? conversationId,
+      List<ReferencedTweet>? referencedTweets,
+      List<TweetContextAnnotationGroup>? contextAnnotations,
       TweetEntities? entities,
       TweetAttachments? attachments,
-      @JsonKey(name: 'public_metrics')
-          PublicTweetMetrics? publicMetrics,
+      PublicTweetMetrics? publicMetrics,
       Geo? geo,
       String? lang,
-      @JsonKey(name: 'possibly_sensitive')
-          bool? isPossiblySensitive,
-      @JsonKey(name: 'reply_settings')
-          ReplySetting? replySetting,
+      @JsonKey(name: 'possibly_sensitive') bool? isPossiblySensitive,
+      @JsonKey(name: 'reply_settings') ReplySetting? replySetting,
       String? source,
       TweetWithheld? withheld,
-      @JsonKey(name: 'created_at')
-          DateTime? createdAt});
+      DateTime? createdAt});
 
   @override
   $TweetEntitiesCopyWith<$Res>? get entities;
@@ -405,30 +380,21 @@ class _$_TweetData implements _TweetData {
   const _$_TweetData(
       {required this.id,
       required this.text,
-      @JsonKey(name: 'author_id')
-          this.authorId,
-      @JsonKey(name: 'in_reply_to_user_id')
-          this.inReplyToUserId,
-      @JsonKey(name: 'conversation_id')
-          this.conversationId,
-      @JsonKey(name: 'referenced_tweets')
-          final List<ReferencedTweet>? referencedTweets,
-      @JsonKey(name: 'context_annotations')
-          final List<TweetContextAnnotationGroup>? contextAnnotations,
+      this.authorId,
+      this.inReplyToUserId,
+      this.conversationId,
+      final List<ReferencedTweet>? referencedTweets,
+      final List<TweetContextAnnotationGroup>? contextAnnotations,
       this.entities,
       this.attachments,
-      @JsonKey(name: 'public_metrics')
-          this.publicMetrics,
+      this.publicMetrics,
       this.geo,
       this.lang,
-      @JsonKey(name: 'possibly_sensitive')
-          this.isPossiblySensitive,
-      @JsonKey(name: 'reply_settings')
-          this.replySetting,
+      @JsonKey(name: 'possibly_sensitive') this.isPossiblySensitive,
+      @JsonKey(name: 'reply_settings') this.replySetting,
       this.source,
       this.withheld,
-      @JsonKey(name: 'created_at')
-          this.createdAt})
+      this.createdAt})
       : _referencedTweets = referencedTweets,
         _contextAnnotations = contextAnnotations;
 
@@ -440,17 +406,13 @@ class _$_TweetData implements _TweetData {
   @override
   final String text;
   @override
-  @JsonKey(name: 'author_id')
   final String? authorId;
   @override
-  @JsonKey(name: 'in_reply_to_user_id')
   final String? inReplyToUserId;
   @override
-  @JsonKey(name: 'conversation_id')
   final String? conversationId;
   final List<ReferencedTweet>? _referencedTweets;
   @override
-  @JsonKey(name: 'referenced_tweets')
   List<ReferencedTweet>? get referencedTweets {
     final value = _referencedTweets;
     if (value == null) return null;
@@ -460,7 +422,6 @@ class _$_TweetData implements _TweetData {
 
   final List<TweetContextAnnotationGroup>? _contextAnnotations;
   @override
-  @JsonKey(name: 'context_annotations')
   List<TweetContextAnnotationGroup>? get contextAnnotations {
     final value = _contextAnnotations;
     if (value == null) return null;
@@ -473,7 +434,6 @@ class _$_TweetData implements _TweetData {
   @override
   final TweetAttachments? attachments;
   @override
-  @JsonKey(name: 'public_metrics')
   final PublicTweetMetrics? publicMetrics;
   @override
   final Geo? geo;
@@ -490,7 +450,6 @@ class _$_TweetData implements _TweetData {
   @override
   final TweetWithheld? withheld;
   @override
-  @JsonKey(name: 'created_at')
   final DateTime? createdAt;
 
   @override
@@ -567,30 +526,21 @@ abstract class _TweetData implements TweetData {
   const factory _TweetData(
       {required final String id,
       required final String text,
-      @JsonKey(name: 'author_id')
-          final String? authorId,
-      @JsonKey(name: 'in_reply_to_user_id')
-          final String? inReplyToUserId,
-      @JsonKey(name: 'conversation_id')
-          final String? conversationId,
-      @JsonKey(name: 'referenced_tweets')
-          final List<ReferencedTweet>? referencedTweets,
-      @JsonKey(name: 'context_annotations')
-          final List<TweetContextAnnotationGroup>? contextAnnotations,
+      final String? authorId,
+      final String? inReplyToUserId,
+      final String? conversationId,
+      final List<ReferencedTweet>? referencedTweets,
+      final List<TweetContextAnnotationGroup>? contextAnnotations,
       final TweetEntities? entities,
       final TweetAttachments? attachments,
-      @JsonKey(name: 'public_metrics')
-          final PublicTweetMetrics? publicMetrics,
+      final PublicTweetMetrics? publicMetrics,
       final Geo? geo,
       final String? lang,
-      @JsonKey(name: 'possibly_sensitive')
-          final bool? isPossiblySensitive,
-      @JsonKey(name: 'reply_settings')
-          final ReplySetting? replySetting,
+      @JsonKey(name: 'possibly_sensitive') final bool? isPossiblySensitive,
+      @JsonKey(name: 'reply_settings') final ReplySetting? replySetting,
       final String? source,
       final TweetWithheld? withheld,
-      @JsonKey(name: 'created_at')
-          final DateTime? createdAt}) = _$_TweetData;
+      final DateTime? createdAt}) = _$_TweetData;
 
   factory _TweetData.fromJson(Map<String, dynamic> json) =
       _$_TweetData.fromJson;
@@ -600,20 +550,15 @@ abstract class _TweetData implements TweetData {
   @override
   String get text => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'author_id')
   String? get authorId => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'in_reply_to_user_id')
   String? get inReplyToUserId => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'conversation_id')
   String? get conversationId => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'referenced_tweets')
   List<ReferencedTweet>? get referencedTweets =>
       throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'context_annotations')
   List<TweetContextAnnotationGroup>? get contextAnnotations =>
       throw _privateConstructorUsedError;
   @override
@@ -621,7 +566,6 @@ abstract class _TweetData implements TweetData {
   @override
   TweetAttachments? get attachments => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'public_metrics')
   PublicTweetMetrics? get publicMetrics => throw _privateConstructorUsedError;
   @override
   Geo? get geo => throw _privateConstructorUsedError;
@@ -638,7 +582,6 @@ abstract class _TweetData implements TweetData {
   @override
   TweetWithheld? get withheld => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'created_at')
   DateTime? get createdAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

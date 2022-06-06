@@ -20,9 +20,7 @@ TweetAttachments _$TweetAttachmentsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TweetAttachments {
-  @JsonKey(name: 'media_keys')
   List<String>? get mediaKeys => throw _privateConstructorUsedError;
-  @JsonKey(name: 'poll_ids')
   List<String>? get pollIds => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,9 +34,7 @@ abstract class $TweetAttachmentsCopyWith<$Res> {
   factory $TweetAttachmentsCopyWith(
           TweetAttachments value, $Res Function(TweetAttachments) then) =
       _$TweetAttachmentsCopyWithImpl<$Res>;
-  $Res call(
-      {@JsonKey(name: 'media_keys') List<String>? mediaKeys,
-      @JsonKey(name: 'poll_ids') List<String>? pollIds});
+  $Res call({List<String>? mediaKeys, List<String>? pollIds});
 }
 
 /// @nodoc
@@ -75,9 +71,7 @@ abstract class _$$_TweetAttachmentsCopyWith<$Res>
           _$_TweetAttachments value, $Res Function(_$_TweetAttachments) then) =
       __$$_TweetAttachmentsCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {@JsonKey(name: 'media_keys') List<String>? mediaKeys,
-      @JsonKey(name: 'poll_ids') List<String>? pollIds});
+  $Res call({List<String>? mediaKeys, List<String>? pollIds});
 }
 
 /// @nodoc
@@ -113,8 +107,7 @@ class __$$_TweetAttachmentsCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_TweetAttachments implements _TweetAttachments {
   const _$_TweetAttachments(
-      {@JsonKey(name: 'media_keys') final List<String>? mediaKeys,
-      @JsonKey(name: 'poll_ids') final List<String>? pollIds})
+      {final List<String>? mediaKeys, final List<String>? pollIds})
       : _mediaKeys = mediaKeys,
         _pollIds = pollIds;
 
@@ -123,7 +116,6 @@ class _$_TweetAttachments implements _TweetAttachments {
 
   final List<String>? _mediaKeys;
   @override
-  @JsonKey(name: 'media_keys')
   List<String>? get mediaKeys {
     final value = _mediaKeys;
     if (value == null) return null;
@@ -133,7 +125,6 @@ class _$_TweetAttachments implements _TweetAttachments {
 
   final List<String>? _pollIds;
   @override
-  @JsonKey(name: 'poll_ids')
   List<String>? get pollIds {
     final value = _pollIds;
     if (value == null) return null;
@@ -176,18 +167,15 @@ class _$_TweetAttachments implements _TweetAttachments {
 
 abstract class _TweetAttachments implements TweetAttachments {
   const factory _TweetAttachments(
-          {@JsonKey(name: 'media_keys') final List<String>? mediaKeys,
-          @JsonKey(name: 'poll_ids') final List<String>? pollIds}) =
-      _$_TweetAttachments;
+      {final List<String>? mediaKeys,
+      final List<String>? pollIds}) = _$_TweetAttachments;
 
   factory _TweetAttachments.fromJson(Map<String, dynamic> json) =
       _$_TweetAttachments.fromJson;
 
   @override
-  @JsonKey(name: 'media_keys')
   List<String>? get mediaKeys => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'poll_ids')
   List<String>? get pollIds => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

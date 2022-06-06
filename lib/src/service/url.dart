@@ -16,10 +16,10 @@ class Url with _$Url {
     required int start,
     required int end,
     required String url,
-    @JsonKey(name: 'expanded_url') required String expandedUrl,
-    @JsonKey(name: 'display_url') required String displayUrl,
-    @JsonKey(name: 'unwound_url') String? unwoundUrl,
-    @JsonKey(name: 'media_key') String? mediaKey,
+    required String expandedUrl,
+    required String displayUrl,
+    String? unwoundUrl,
+    String? mediaKey,
   }) = _Url;
 
   factory Url.fromJson(Map<String, Object?> json) => _$UrlFromJson(json);

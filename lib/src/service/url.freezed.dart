@@ -23,13 +23,9 @@ mixin _$Url {
   int get start => throw _privateConstructorUsedError;
   int get end => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
-  @JsonKey(name: 'expanded_url')
   String get expandedUrl => throw _privateConstructorUsedError;
-  @JsonKey(name: 'display_url')
   String get displayUrl => throw _privateConstructorUsedError;
-  @JsonKey(name: 'unwound_url')
   String? get unwoundUrl => throw _privateConstructorUsedError;
-  @JsonKey(name: 'media_key')
   String? get mediaKey => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,10 +41,10 @@ abstract class $UrlCopyWith<$Res> {
       {int start,
       int end,
       String url,
-      @JsonKey(name: 'expanded_url') String expandedUrl,
-      @JsonKey(name: 'display_url') String displayUrl,
-      @JsonKey(name: 'unwound_url') String? unwoundUrl,
-      @JsonKey(name: 'media_key') String? mediaKey});
+      String expandedUrl,
+      String displayUrl,
+      String? unwoundUrl,
+      String? mediaKey});
 }
 
 /// @nodoc
@@ -111,10 +107,10 @@ abstract class _$$_UrlCopyWith<$Res> implements $UrlCopyWith<$Res> {
       {int start,
       int end,
       String url,
-      @JsonKey(name: 'expanded_url') String expandedUrl,
-      @JsonKey(name: 'display_url') String displayUrl,
-      @JsonKey(name: 'unwound_url') String? unwoundUrl,
-      @JsonKey(name: 'media_key') String? mediaKey});
+      String expandedUrl,
+      String displayUrl,
+      String? unwoundUrl,
+      String? mediaKey});
 }
 
 /// @nodoc
@@ -176,10 +172,10 @@ class _$_Url implements _Url {
       {required this.start,
       required this.end,
       required this.url,
-      @JsonKey(name: 'expanded_url') required this.expandedUrl,
-      @JsonKey(name: 'display_url') required this.displayUrl,
-      @JsonKey(name: 'unwound_url') this.unwoundUrl,
-      @JsonKey(name: 'media_key') this.mediaKey});
+      required this.expandedUrl,
+      required this.displayUrl,
+      this.unwoundUrl,
+      this.mediaKey});
 
   factory _$_Url.fromJson(Map<String, dynamic> json) => _$$_UrlFromJson(json);
 
@@ -190,16 +186,12 @@ class _$_Url implements _Url {
   @override
   final String url;
   @override
-  @JsonKey(name: 'expanded_url')
   final String expandedUrl;
   @override
-  @JsonKey(name: 'display_url')
   final String displayUrl;
   @override
-  @JsonKey(name: 'unwound_url')
   final String? unwoundUrl;
   @override
-  @JsonKey(name: 'media_key')
   final String? mediaKey;
 
   @override
@@ -252,10 +244,10 @@ abstract class _Url implements Url {
       {required final int start,
       required final int end,
       required final String url,
-      @JsonKey(name: 'expanded_url') required final String expandedUrl,
-      @JsonKey(name: 'display_url') required final String displayUrl,
-      @JsonKey(name: 'unwound_url') final String? unwoundUrl,
-      @JsonKey(name: 'media_key') final String? mediaKey}) = _$_Url;
+      required final String expandedUrl,
+      required final String displayUrl,
+      final String? unwoundUrl,
+      final String? mediaKey}) = _$_Url;
 
   factory _Url.fromJson(Map<String, dynamic> json) = _$_Url.fromJson;
 
@@ -266,16 +258,12 @@ abstract class _Url implements Url {
   @override
   String get url => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'expanded_url')
   String get expandedUrl => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'display_url')
   String get displayUrl => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'unwound_url')
   String? get unwoundUrl => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'media_key')
   String? get mediaKey => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

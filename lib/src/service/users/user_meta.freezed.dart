@@ -20,11 +20,8 @@ UserMeta _$UserMetaFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserMeta {
-  @JsonKey(name: 'result_count')
   int get resultCount => throw _privateConstructorUsedError;
-  @JsonKey(name: 'next_token')
   String? get nextToken => throw _privateConstructorUsedError;
-  @JsonKey(name: 'previous_token')
   String? get previousToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,10 +34,7 @@ mixin _$UserMeta {
 abstract class $UserMetaCopyWith<$Res> {
   factory $UserMetaCopyWith(UserMeta value, $Res Function(UserMeta) then) =
       _$UserMetaCopyWithImpl<$Res>;
-  $Res call(
-      {@JsonKey(name: 'result_count') int resultCount,
-      @JsonKey(name: 'next_token') String? nextToken,
-      @JsonKey(name: 'previous_token') String? previousToken});
+  $Res call({int resultCount, String? nextToken, String? previousToken});
 }
 
 /// @nodoc
@@ -80,10 +74,7 @@ abstract class _$$_UserMetaCopyWith<$Res> implements $UserMetaCopyWith<$Res> {
           _$_UserMeta value, $Res Function(_$_UserMeta) then) =
       __$$_UserMetaCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {@JsonKey(name: 'result_count') int resultCount,
-      @JsonKey(name: 'next_token') String? nextToken,
-      @JsonKey(name: 'previous_token') String? previousToken});
+  $Res call({int resultCount, String? nextToken, String? previousToken});
 }
 
 /// @nodoc
@@ -123,21 +114,16 @@ class __$$_UserMetaCopyWithImpl<$Res> extends _$UserMetaCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_UserMeta implements _UserMeta {
   const _$_UserMeta(
-      {@JsonKey(name: 'result_count') required this.resultCount,
-      @JsonKey(name: 'next_token') this.nextToken,
-      @JsonKey(name: 'previous_token') this.previousToken});
+      {required this.resultCount, this.nextToken, this.previousToken});
 
   factory _$_UserMeta.fromJson(Map<String, dynamic> json) =>
       _$$_UserMetaFromJson(json);
 
   @override
-  @JsonKey(name: 'result_count')
   final int resultCount;
   @override
-  @JsonKey(name: 'next_token')
   final String? nextToken;
   @override
-  @JsonKey(name: 'previous_token')
   final String? previousToken;
 
   @override
@@ -178,21 +164,17 @@ class _$_UserMeta implements _UserMeta {
 
 abstract class _UserMeta implements UserMeta {
   const factory _UserMeta(
-          {@JsonKey(name: 'result_count') required final int resultCount,
-          @JsonKey(name: 'next_token') final String? nextToken,
-          @JsonKey(name: 'previous_token') final String? previousToken}) =
-      _$_UserMeta;
+      {required final int resultCount,
+      final String? nextToken,
+      final String? previousToken}) = _$_UserMeta;
 
   factory _UserMeta.fromJson(Map<String, dynamic> json) = _$_UserMeta.fromJson;
 
   @override
-  @JsonKey(name: 'result_count')
   int get resultCount => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'next_token')
   String? get nextToken => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'previous_token')
   String? get previousToken => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

@@ -24,15 +24,10 @@ mixin _$ComplianceData {
   JobType get type => throw _privateConstructorUsedError;
   JobStatus get status => throw _privateConstructorUsedError;
   bool get resumable => throw _privateConstructorUsedError;
-  @JsonKey(name: 'upload_url')
   String get uploadUrl => throw _privateConstructorUsedError;
-  @JsonKey(name: 'download_url')
   String get downloadUrl => throw _privateConstructorUsedError;
-  @JsonKey(name: 'upload_expires_at')
   DateTime get uploadExpiresAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'download_expires_at')
   DateTime get downloadExpiresAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'created_at')
   DateTime get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -51,11 +46,11 @@ abstract class $ComplianceDataCopyWith<$Res> {
       JobType type,
       JobStatus status,
       bool resumable,
-      @JsonKey(name: 'upload_url') String uploadUrl,
-      @JsonKey(name: 'download_url') String downloadUrl,
-      @JsonKey(name: 'upload_expires_at') DateTime uploadExpiresAt,
-      @JsonKey(name: 'download_expires_at') DateTime downloadExpiresAt,
-      @JsonKey(name: 'created_at') DateTime createdAt});
+      String uploadUrl,
+      String downloadUrl,
+      DateTime uploadExpiresAt,
+      DateTime downloadExpiresAt,
+      DateTime createdAt});
 }
 
 /// @nodoc
@@ -132,11 +127,11 @@ abstract class _$$_ComplianceDataCopyWith<$Res>
       JobType type,
       JobStatus status,
       bool resumable,
-      @JsonKey(name: 'upload_url') String uploadUrl,
-      @JsonKey(name: 'download_url') String downloadUrl,
-      @JsonKey(name: 'upload_expires_at') DateTime uploadExpiresAt,
-      @JsonKey(name: 'download_expires_at') DateTime downloadExpiresAt,
-      @JsonKey(name: 'created_at') DateTime createdAt});
+      String uploadUrl,
+      String downloadUrl,
+      DateTime uploadExpiresAt,
+      DateTime downloadExpiresAt,
+      DateTime createdAt});
 }
 
 /// @nodoc
@@ -211,11 +206,11 @@ class _$_ComplianceData implements _ComplianceData {
       required this.type,
       required this.status,
       required this.resumable,
-      @JsonKey(name: 'upload_url') required this.uploadUrl,
-      @JsonKey(name: 'download_url') required this.downloadUrl,
-      @JsonKey(name: 'upload_expires_at') required this.uploadExpiresAt,
-      @JsonKey(name: 'download_expires_at') required this.downloadExpiresAt,
-      @JsonKey(name: 'created_at') required this.createdAt});
+      required this.uploadUrl,
+      required this.downloadUrl,
+      required this.uploadExpiresAt,
+      required this.downloadExpiresAt,
+      required this.createdAt});
 
   factory _$_ComplianceData.fromJson(Map<String, dynamic> json) =>
       _$$_ComplianceDataFromJson(json);
@@ -229,19 +224,14 @@ class _$_ComplianceData implements _ComplianceData {
   @override
   final bool resumable;
   @override
-  @JsonKey(name: 'upload_url')
   final String uploadUrl;
   @override
-  @JsonKey(name: 'download_url')
   final String downloadUrl;
   @override
-  @JsonKey(name: 'upload_expires_at')
   final DateTime uploadExpiresAt;
   @override
-  @JsonKey(name: 'download_expires_at')
   final DateTime downloadExpiresAt;
   @override
-  @JsonKey(name: 'created_at')
   final DateTime createdAt;
 
   @override
@@ -299,16 +289,11 @@ abstract class _ComplianceData implements ComplianceData {
       required final JobType type,
       required final JobStatus status,
       required final bool resumable,
-      @JsonKey(name: 'upload_url')
-          required final String uploadUrl,
-      @JsonKey(name: 'download_url')
-          required final String downloadUrl,
-      @JsonKey(name: 'upload_expires_at')
-          required final DateTime uploadExpiresAt,
-      @JsonKey(name: 'download_expires_at')
-          required final DateTime downloadExpiresAt,
-      @JsonKey(name: 'created_at')
-          required final DateTime createdAt}) = _$_ComplianceData;
+      required final String uploadUrl,
+      required final String downloadUrl,
+      required final DateTime uploadExpiresAt,
+      required final DateTime downloadExpiresAt,
+      required final DateTime createdAt}) = _$_ComplianceData;
 
   factory _ComplianceData.fromJson(Map<String, dynamic> json) =
       _$_ComplianceData.fromJson;
@@ -322,19 +307,14 @@ abstract class _ComplianceData implements ComplianceData {
   @override
   bool get resumable => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'upload_url')
   String get uploadUrl => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'download_url')
   String get downloadUrl => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'upload_expires_at')
   DateTime get uploadExpiresAt => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'download_expires_at')
   DateTime get downloadExpiresAt => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'created_at')
   DateTime get createdAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

@@ -14,7 +14,7 @@ part 'tweet_withheld.g.dart';
 class TweetWithheld with _$TweetWithheld {
   const factory TweetWithheld({
     @JsonKey(name: 'copyright') required bool isCopyright,
-    @JsonKey(name: 'country_codes') required List<String> countryCodes,
+    required List<String> countryCodes,
   }) = _TweetWithheld;
 
   factory TweetWithheld.fromJson(Map<String, Object?> json) =>

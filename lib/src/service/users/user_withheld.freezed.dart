@@ -20,7 +20,6 @@ UserWithheld _$UserWithheldFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserWithheld {
-  @JsonKey(name: 'country_codes')
   List<String> get countryCodes => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,7 +33,7 @@ abstract class $UserWithheldCopyWith<$Res> {
   factory $UserWithheldCopyWith(
           UserWithheld value, $Res Function(UserWithheld) then) =
       _$UserWithheldCopyWithImpl<$Res>;
-  $Res call({@JsonKey(name: 'country_codes') List<String> countryCodes});
+  $Res call({List<String> countryCodes});
 }
 
 /// @nodoc
@@ -65,7 +64,7 @@ abstract class _$$_UserWithheldCopyWith<$Res>
           _$_UserWithheld value, $Res Function(_$_UserWithheld) then) =
       __$$_UserWithheldCopyWithImpl<$Res>;
   @override
-  $Res call({@JsonKey(name: 'country_codes') List<String> countryCodes});
+  $Res call({List<String> countryCodes});
 }
 
 /// @nodoc
@@ -95,9 +94,7 @@ class __$$_UserWithheldCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_UserWithheld implements _UserWithheld {
-  const _$_UserWithheld(
-      {@JsonKey(name: 'country_codes')
-          required final List<String> countryCodes})
+  const _$_UserWithheld({required final List<String> countryCodes})
       : _countryCodes = countryCodes;
 
   factory _$_UserWithheld.fromJson(Map<String, dynamic> json) =>
@@ -105,7 +102,6 @@ class _$_UserWithheld implements _UserWithheld {
 
   final List<String> _countryCodes;
   @override
-  @JsonKey(name: 'country_codes')
   List<String> get countryCodes {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_countryCodes);
@@ -142,15 +138,13 @@ class _$_UserWithheld implements _UserWithheld {
 }
 
 abstract class _UserWithheld implements UserWithheld {
-  const factory _UserWithheld(
-      {@JsonKey(name: 'country_codes')
-          required final List<String> countryCodes}) = _$_UserWithheld;
+  const factory _UserWithheld({required final List<String> countryCodes}) =
+      _$_UserWithheld;
 
   factory _UserWithheld.fromJson(Map<String, dynamic> json) =
       _$_UserWithheld.fromJson;
 
   @override
-  @JsonKey(name: 'country_codes')
   List<String> get countryCodes => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

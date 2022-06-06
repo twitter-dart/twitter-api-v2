@@ -20,15 +20,10 @@ TweetMeta _$TweetMetaFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TweetMeta {
-  @JsonKey(name: 'newest_id')
   String? get newestId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'oldest_id')
   String? get oldestId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'result_count')
   int? get resultCount => throw _privateConstructorUsedError;
-  @JsonKey(name: 'next_token')
   String? get nextToken => throw _privateConstructorUsedError;
-  @JsonKey(name: 'previous_token')
   String? get previousToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,11 +37,11 @@ abstract class $TweetMetaCopyWith<$Res> {
   factory $TweetMetaCopyWith(TweetMeta value, $Res Function(TweetMeta) then) =
       _$TweetMetaCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'newest_id') String? newestId,
-      @JsonKey(name: 'oldest_id') String? oldestId,
-      @JsonKey(name: 'result_count') int? resultCount,
-      @JsonKey(name: 'next_token') String? nextToken,
-      @JsonKey(name: 'previous_token') String? previousToken});
+      {String? newestId,
+      String? oldestId,
+      int? resultCount,
+      String? nextToken,
+      String? previousToken});
 }
 
 /// @nodoc
@@ -97,11 +92,11 @@ abstract class _$$_TweetMetaCopyWith<$Res> implements $TweetMetaCopyWith<$Res> {
       __$$_TweetMetaCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'newest_id') String? newestId,
-      @JsonKey(name: 'oldest_id') String? oldestId,
-      @JsonKey(name: 'result_count') int? resultCount,
-      @JsonKey(name: 'next_token') String? nextToken,
-      @JsonKey(name: 'previous_token') String? previousToken});
+      {String? newestId,
+      String? oldestId,
+      int? resultCount,
+      String? nextToken,
+      String? previousToken});
 }
 
 /// @nodoc
@@ -151,29 +146,24 @@ class __$$_TweetMetaCopyWithImpl<$Res> extends _$TweetMetaCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_TweetMeta implements _TweetMeta {
   const _$_TweetMeta(
-      {@JsonKey(name: 'newest_id') this.newestId,
-      @JsonKey(name: 'oldest_id') this.oldestId,
-      @JsonKey(name: 'result_count') this.resultCount,
-      @JsonKey(name: 'next_token') this.nextToken,
-      @JsonKey(name: 'previous_token') this.previousToken});
+      {this.newestId,
+      this.oldestId,
+      this.resultCount,
+      this.nextToken,
+      this.previousToken});
 
   factory _$_TweetMeta.fromJson(Map<String, dynamic> json) =>
       _$$_TweetMetaFromJson(json);
 
   @override
-  @JsonKey(name: 'newest_id')
   final String? newestId;
   @override
-  @JsonKey(name: 'oldest_id')
   final String? oldestId;
   @override
-  @JsonKey(name: 'result_count')
   final int? resultCount;
   @override
-  @JsonKey(name: 'next_token')
   final String? nextToken;
   @override
-  @JsonKey(name: 'previous_token')
   final String? previousToken;
 
   @override
@@ -218,30 +208,24 @@ class _$_TweetMeta implements _TweetMeta {
 
 abstract class _TweetMeta implements TweetMeta {
   const factory _TweetMeta(
-          {@JsonKey(name: 'newest_id') final String? newestId,
-          @JsonKey(name: 'oldest_id') final String? oldestId,
-          @JsonKey(name: 'result_count') final int? resultCount,
-          @JsonKey(name: 'next_token') final String? nextToken,
-          @JsonKey(name: 'previous_token') final String? previousToken}) =
-      _$_TweetMeta;
+      {final String? newestId,
+      final String? oldestId,
+      final int? resultCount,
+      final String? nextToken,
+      final String? previousToken}) = _$_TweetMeta;
 
   factory _TweetMeta.fromJson(Map<String, dynamic> json) =
       _$_TweetMeta.fromJson;
 
   @override
-  @JsonKey(name: 'newest_id')
   String? get newestId => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'oldest_id')
   String? get oldestId => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'result_count')
   int? get resultCount => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'next_token')
   String? get nextToken => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'previous_token')
   String? get previousToken => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

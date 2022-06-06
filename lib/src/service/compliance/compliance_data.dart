@@ -2,8 +2,6 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// ignore_for_file: invalid_annotation_target
-
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -21,11 +19,11 @@ class ComplianceData with _$ComplianceData {
     required JobType type,
     required JobStatus status,
     required bool resumable,
-    @JsonKey(name: 'upload_url') required String uploadUrl,
-    @JsonKey(name: 'download_url') required String downloadUrl,
-    @JsonKey(name: 'upload_expires_at') required DateTime uploadExpiresAt,
-    @JsonKey(name: 'download_expires_at') required DateTime downloadExpiresAt,
-    @JsonKey(name: 'created_at') required DateTime createdAt,
+    required String uploadUrl,
+    required String downloadUrl,
+    required DateTime uploadExpiresAt,
+    required DateTime downloadExpiresAt,
+    required DateTime createdAt,
   }) = _ComplianceData;
 
   factory ComplianceData.fromJson(Map<String, Object?> json) =>

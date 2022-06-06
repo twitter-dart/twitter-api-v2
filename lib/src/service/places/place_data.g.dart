@@ -13,10 +13,10 @@ _$_PlaceData _$$_PlaceDataFromJson(Map json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = _$_PlaceData(
-          fullName: $checkedConvert('full_name', (v) => v as String),
           id: $checkedConvert('id', (v) => v as String),
-          containedWithin: $checkedConvert('contained_within',
-              (v) => (v as List<dynamic>?)?.map((e) => e as String).toList()),
+          fullName: $checkedConvert('full_name', (v) => v as String),
+          name: $checkedConvert('name', (v) => v as String?),
+          placeType: $checkedConvert('place_type', (v) => v as String?),
           country: $checkedConvert('country', (v) => v as String?),
           countryCode: $checkedConvert('country_code', (v) => v as String?),
           geo: $checkedConvert(
@@ -24,27 +24,27 @@ _$_PlaceData _$$_PlaceDataFromJson(Map json) => $checkedCreate(
               (v) => v == null
                   ? null
                   : PlaceGeo.fromJson(Map<String, Object?>.from(v as Map))),
-          name: $checkedConvert('name', (v) => v as String?),
-          placeType: $checkedConvert('place_type', (v) => v as String?),
+          containedWithin: $checkedConvert('contained_within',
+              (v) => (v as List<dynamic>?)?.map((e) => e as String).toList()),
         );
         return val;
       },
       fieldKeyMap: const {
         'fullName': 'full_name',
-        'containedWithin': 'contained_within',
+        'placeType': 'place_type',
         'countryCode': 'country_code',
-        'placeType': 'place_type'
+        'containedWithin': 'contained_within'
       },
     );
 
 Map<String, dynamic> _$$_PlaceDataToJson(_$_PlaceData instance) =>
     <String, dynamic>{
-      'full_name': instance.fullName,
       'id': instance.id,
-      'contained_within': instance.containedWithin,
+      'full_name': instance.fullName,
+      'name': instance.name,
+      'place_type': instance.placeType,
       'country': instance.country,
       'country_code': instance.countryCode,
       'geo': instance.geo,
-      'name': instance.name,
-      'place_type': instance.placeType,
+      'contained_within': instance.containedWithin,
     };

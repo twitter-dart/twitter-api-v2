@@ -21,8 +21,8 @@ class Includes with _$Includes {
     List<TweetData>? tweets,
     List<UserData>? users,
     List<MediaData>? media,
-    List<PollData>? polls,
     List<PlaceData>? places,
+    List<PollData>? polls,
   }) = _Includes;
 
   factory Includes.fromJson(Map<String, Object?> json) =>

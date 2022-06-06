@@ -20,11 +20,8 @@ ListMeta _$ListMetaFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ListMeta {
-  @JsonKey(name: 'result_count')
   int? get resultCount => throw _privateConstructorUsedError;
-  @JsonKey(name: 'next_token')
   String? get nextToken => throw _privateConstructorUsedError;
-  @JsonKey(name: 'previous_token')
   String? get previousToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,10 +34,7 @@ mixin _$ListMeta {
 abstract class $ListMetaCopyWith<$Res> {
   factory $ListMetaCopyWith(ListMeta value, $Res Function(ListMeta) then) =
       _$ListMetaCopyWithImpl<$Res>;
-  $Res call(
-      {@JsonKey(name: 'result_count') int? resultCount,
-      @JsonKey(name: 'next_token') String? nextToken,
-      @JsonKey(name: 'previous_token') String? previousToken});
+  $Res call({int? resultCount, String? nextToken, String? previousToken});
 }
 
 /// @nodoc
@@ -80,10 +74,7 @@ abstract class _$$_ListMetaCopyWith<$Res> implements $ListMetaCopyWith<$Res> {
           _$_ListMeta value, $Res Function(_$_ListMeta) then) =
       __$$_ListMetaCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {@JsonKey(name: 'result_count') int? resultCount,
-      @JsonKey(name: 'next_token') String? nextToken,
-      @JsonKey(name: 'previous_token') String? previousToken});
+  $Res call({int? resultCount, String? nextToken, String? previousToken});
 }
 
 /// @nodoc
@@ -122,22 +113,16 @@ class __$$_ListMetaCopyWithImpl<$Res> extends _$ListMetaCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ListMeta implements _ListMeta {
-  const _$_ListMeta(
-      {@JsonKey(name: 'result_count') this.resultCount,
-      @JsonKey(name: 'next_token') this.nextToken,
-      @JsonKey(name: 'previous_token') this.previousToken});
+  const _$_ListMeta({this.resultCount, this.nextToken, this.previousToken});
 
   factory _$_ListMeta.fromJson(Map<String, dynamic> json) =>
       _$$_ListMetaFromJson(json);
 
   @override
-  @JsonKey(name: 'result_count')
   final int? resultCount;
   @override
-  @JsonKey(name: 'next_token')
   final String? nextToken;
   @override
-  @JsonKey(name: 'previous_token')
   final String? previousToken;
 
   @override
@@ -178,21 +163,17 @@ class _$_ListMeta implements _ListMeta {
 
 abstract class _ListMeta implements ListMeta {
   const factory _ListMeta(
-          {@JsonKey(name: 'result_count') final int? resultCount,
-          @JsonKey(name: 'next_token') final String? nextToken,
-          @JsonKey(name: 'previous_token') final String? previousToken}) =
-      _$_ListMeta;
+      {final int? resultCount,
+      final String? nextToken,
+      final String? previousToken}) = _$_ListMeta;
 
   factory _ListMeta.fromJson(Map<String, dynamic> json) = _$_ListMeta.fromJson;
 
   @override
-  @JsonKey(name: 'result_count')
   int? get resultCount => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'next_token')
   String? get nextToken => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'previous_token')
   String? get previousToken => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

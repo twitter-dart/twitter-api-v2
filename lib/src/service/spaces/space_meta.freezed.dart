@@ -20,7 +20,6 @@ SpaceMeta _$SpaceMetaFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SpaceMeta {
-  @JsonKey(name: 'result_count')
   int? get resultCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -33,7 +32,7 @@ mixin _$SpaceMeta {
 abstract class $SpaceMetaCopyWith<$Res> {
   factory $SpaceMetaCopyWith(SpaceMeta value, $Res Function(SpaceMeta) then) =
       _$SpaceMetaCopyWithImpl<$Res>;
-  $Res call({@JsonKey(name: 'result_count') int? resultCount});
+  $Res call({int? resultCount});
 }
 
 /// @nodoc
@@ -63,7 +62,7 @@ abstract class _$$_SpaceMetaCopyWith<$Res> implements $SpaceMetaCopyWith<$Res> {
           _$_SpaceMeta value, $Res Function(_$_SpaceMeta) then) =
       __$$_SpaceMetaCopyWithImpl<$Res>;
   @override
-  $Res call({@JsonKey(name: 'result_count') int? resultCount});
+  $Res call({int? resultCount});
 }
 
 /// @nodoc
@@ -92,14 +91,12 @@ class __$$_SpaceMetaCopyWithImpl<$Res> extends _$SpaceMetaCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_SpaceMeta implements _SpaceMeta {
-  const _$_SpaceMeta(
-      {@JsonKey(name: 'result_count') required this.resultCount});
+  const _$_SpaceMeta({required this.resultCount});
 
   factory _$_SpaceMeta.fromJson(Map<String, dynamic> json) =>
       _$$_SpaceMetaFromJson(json);
 
   @override
-  @JsonKey(name: 'result_count')
   final int? resultCount;
 
   @override
@@ -133,15 +130,12 @@ class _$_SpaceMeta implements _SpaceMeta {
 }
 
 abstract class _SpaceMeta implements SpaceMeta {
-  const factory _SpaceMeta(
-          {@JsonKey(name: 'result_count') required final int? resultCount}) =
-      _$_SpaceMeta;
+  const factory _SpaceMeta({required final int? resultCount}) = _$_SpaceMeta;
 
   factory _SpaceMeta.fromJson(Map<String, dynamic> json) =
       _$_SpaceMeta.fromJson;
 
   @override
-  @JsonKey(name: 'result_count')
   int? get resultCount => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
