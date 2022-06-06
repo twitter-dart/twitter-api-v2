@@ -43,6 +43,20 @@
         "example",
         "test"
       ]
+    },
+    {
+      "login": "robertodoering",
+      "name": "Roberto Doering",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20045287?v=4",
+      "profile": "https://ko-fi.com/robertodoering",
+      "contributions": [
+        "code",
+        "design",
+        "doc",
+        "example",
+        "test",
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
