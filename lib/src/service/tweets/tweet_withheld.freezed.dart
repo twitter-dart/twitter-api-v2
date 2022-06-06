@@ -22,7 +22,6 @@ TweetWithheld _$TweetWithheldFromJson(Map<String, dynamic> json) {
 mixin _$TweetWithheld {
   @JsonKey(name: 'copyright')
   bool get isCopyright => throw _privateConstructorUsedError;
-  @JsonKey(name: 'country_codes')
   List<String> get countryCodes => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,7 +37,7 @@ abstract class $TweetWithheldCopyWith<$Res> {
       _$TweetWithheldCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'copyright') bool isCopyright,
-      @JsonKey(name: 'country_codes') List<String> countryCodes});
+      List<String> countryCodes});
 }
 
 /// @nodoc
@@ -77,7 +76,7 @@ abstract class _$$_TweetWithheldCopyWith<$Res>
   @override
   $Res call(
       {@JsonKey(name: 'copyright') bool isCopyright,
-      @JsonKey(name: 'country_codes') List<String> countryCodes});
+      List<String> countryCodes});
 }
 
 /// @nodoc
@@ -114,7 +113,7 @@ class __$$_TweetWithheldCopyWithImpl<$Res>
 class _$_TweetWithheld implements _TweetWithheld {
   const _$_TweetWithheld(
       {@JsonKey(name: 'copyright') required this.isCopyright,
-      @JsonKey(name: 'country_codes') required final List<String> countryCodes})
+      required final List<String> countryCodes})
       : _countryCodes = countryCodes;
 
   factory _$_TweetWithheld.fromJson(Map<String, dynamic> json) =>
@@ -125,7 +124,6 @@ class _$_TweetWithheld implements _TweetWithheld {
   final bool isCopyright;
   final List<String> _countryCodes;
   @override
-  @JsonKey(name: 'country_codes')
   List<String> get countryCodes {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_countryCodes);
@@ -167,10 +165,8 @@ class _$_TweetWithheld implements _TweetWithheld {
 
 abstract class _TweetWithheld implements TweetWithheld {
   const factory _TweetWithheld(
-      {@JsonKey(name: 'copyright')
-          required final bool isCopyright,
-      @JsonKey(name: 'country_codes')
-          required final List<String> countryCodes}) = _$_TweetWithheld;
+      {@JsonKey(name: 'copyright') required final bool isCopyright,
+      required final List<String> countryCodes}) = _$_TweetWithheld;
 
   factory _TweetWithheld.fromJson(Map<String, dynamic> json) =
       _$_TweetWithheld.fromJson;
@@ -179,7 +175,6 @@ abstract class _TweetWithheld implements TweetWithheld {
   @JsonKey(name: 'copyright')
   bool get isCopyright => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'country_codes')
   List<String> get countryCodes => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

@@ -23,14 +23,14 @@ class UserData with _$UserData {
     required String username,
     String? description,
     String? url,
-    @JsonKey(name: 'profile_image_url') String? profileImageUrl,
+    String? profileImageUrl,
     String? location,
     @JsonKey(name: 'protected') bool? isProtected,
     @JsonKey(name: 'verified') bool? isVerified,
-    @JsonKey(name: 'pinned_tweet_id') String? pinnedTweetId,
+    String? pinnedTweetId,
     UserEntities? entities,
-    @JsonKey(name: 'public_metrics') PublicUserMetrics? publicMetrics,
-    @JsonKey(name: 'created_at') DateTime? createdAt,
+    PublicUserMetrics? publicMetrics,
+    DateTime? createdAt,
     UserWithheld? withheld,
   }) = _UserData;
 

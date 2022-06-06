@@ -24,7 +24,6 @@ mixin _$TweetAnnotation {
   int get end => throw _privateConstructorUsedError;
   double get probability => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
-  @JsonKey(name: 'normalized_text')
   String get normalizedText => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -43,7 +42,7 @@ abstract class $TweetAnnotationCopyWith<$Res> {
       int end,
       double probability,
       String type,
-      @JsonKey(name: 'normalized_text') String normalizedText});
+      String normalizedText});
 }
 
 /// @nodoc
@@ -100,7 +99,7 @@ abstract class _$$_TweetAnnotationCopyWith<$Res>
       int end,
       double probability,
       String type,
-      @JsonKey(name: 'normalized_text') String normalizedText});
+      String normalizedText});
 }
 
 /// @nodoc
@@ -155,7 +154,7 @@ class _$_TweetAnnotation implements _TweetAnnotation {
       required this.end,
       required this.probability,
       required this.type,
-      @JsonKey(name: 'normalized_text') required this.normalizedText});
+      required this.normalizedText});
 
   factory _$_TweetAnnotation.fromJson(Map<String, dynamic> json) =>
       _$$_TweetAnnotationFromJson(json);
@@ -169,7 +168,6 @@ class _$_TweetAnnotation implements _TweetAnnotation {
   @override
   final String type;
   @override
-  @JsonKey(name: 'normalized_text')
   final String normalizedText;
 
   @override
@@ -218,8 +216,7 @@ abstract class _TweetAnnotation implements TweetAnnotation {
       required final int end,
       required final double probability,
       required final String type,
-      @JsonKey(name: 'normalized_text')
-          required final String normalizedText}) = _$_TweetAnnotation;
+      required final String normalizedText}) = _$_TweetAnnotation;
 
   factory _TweetAnnotation.fromJson(Map<String, dynamic> json) =
       _$_TweetAnnotation.fromJson;
@@ -233,7 +230,6 @@ abstract class _TweetAnnotation implements TweetAnnotation {
   @override
   String get type => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'normalized_text')
   String get normalizedText => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

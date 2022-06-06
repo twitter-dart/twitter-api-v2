@@ -22,7 +22,6 @@ ListData _$ListDataFromJson(Map<String, dynamic> json) {
 mixin _$ListData {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  @JsonKey(name: 'owner_id')
   String? get ownerId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,8 +34,7 @@ mixin _$ListData {
 abstract class $ListDataCopyWith<$Res> {
   factory $ListDataCopyWith(ListData value, $Res Function(ListData) then) =
       _$ListDataCopyWithImpl<$Res>;
-  $Res call(
-      {String id, String name, @JsonKey(name: 'owner_id') String? ownerId});
+  $Res call({String id, String name, String? ownerId});
 }
 
 /// @nodoc
@@ -76,8 +74,7 @@ abstract class _$$_ListDataCopyWith<$Res> implements $ListDataCopyWith<$Res> {
           _$_ListData value, $Res Function(_$_ListData) then) =
       __$$_ListDataCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String id, String name, @JsonKey(name: 'owner_id') String? ownerId});
+  $Res call({String id, String name, String? ownerId});
 }
 
 /// @nodoc
@@ -116,10 +113,7 @@ class __$$_ListDataCopyWithImpl<$Res> extends _$ListDataCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ListData implements _ListData {
-  const _$_ListData(
-      {required this.id,
-      required this.name,
-      @JsonKey(name: 'owner_id') this.ownerId});
+  const _$_ListData({required this.id, required this.name, this.ownerId});
 
   factory _$_ListData.fromJson(Map<String, dynamic> json) =>
       _$$_ListDataFromJson(json);
@@ -129,7 +123,6 @@ class _$_ListData implements _ListData {
   @override
   final String name;
   @override
-  @JsonKey(name: 'owner_id')
   final String? ownerId;
 
   @override
@@ -170,7 +163,7 @@ abstract class _ListData implements ListData {
   const factory _ListData(
       {required final String id,
       required final String name,
-      @JsonKey(name: 'owner_id') final String? ownerId}) = _$_ListData;
+      final String? ownerId}) = _$_ListData;
 
   factory _ListData.fromJson(Map<String, dynamic> json) = _$_ListData.fromJson;
 
@@ -179,7 +172,6 @@ abstract class _ListData implements ListData {
   @override
   String get name => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'owner_id')
   String? get ownerId => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

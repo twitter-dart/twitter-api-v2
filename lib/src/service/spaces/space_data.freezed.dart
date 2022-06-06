@@ -23,32 +23,19 @@ mixin _$SpaceData {
   String get id => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
   SpaceState? get state => throw _privateConstructorUsedError;
-  @JsonKey(name: 'creator_id')
   String? get creatorId => throw _privateConstructorUsedError;
   String? get lang => throw _privateConstructorUsedError;
-  @JsonKey(name: 'host_ids')
   List<String>? get hostIds => throw _privateConstructorUsedError;
-  @JsonKey(name: 'topic_ids')
   List<String>? get topicIds => throw _privateConstructorUsedError;
-  @JsonKey(name: 'speaker_ids')
   List<String>? get speakerIds => throw _privateConstructorUsedError;
-  @JsonKey(name: 'invited_user_ids')
   List<String>? get invitedUserIds => throw _privateConstructorUsedError;
-  @JsonKey(name: 'subscriber_count')
   int? get subscriberCount => throw _privateConstructorUsedError;
-  @JsonKey(name: 'participant_count')
   int? get participantCount => throw _privateConstructorUsedError;
-  @JsonKey(name: 'is_ticketed')
   bool? get isTicketed => throw _privateConstructorUsedError;
-  @JsonKey(name: 'scheduled_start')
   DateTime? get scheduledStart => throw _privateConstructorUsedError;
-  @JsonKey(name: 'started_at')
   DateTime? get startedAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'ended_at')
   DateTime? get endedAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'created_at')
   DateTime? get createdAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'updated_at')
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -65,20 +52,20 @@ abstract class $SpaceDataCopyWith<$Res> {
       {String id,
       String? title,
       SpaceState? state,
-      @JsonKey(name: 'creator_id') String? creatorId,
+      String? creatorId,
       String? lang,
-      @JsonKey(name: 'host_ids') List<String>? hostIds,
-      @JsonKey(name: 'topic_ids') List<String>? topicIds,
-      @JsonKey(name: 'speaker_ids') List<String>? speakerIds,
-      @JsonKey(name: 'invited_user_ids') List<String>? invitedUserIds,
-      @JsonKey(name: 'subscriber_count') int? subscriberCount,
-      @JsonKey(name: 'participant_count') int? participantCount,
-      @JsonKey(name: 'is_ticketed') bool? isTicketed,
-      @JsonKey(name: 'scheduled_start') DateTime? scheduledStart,
-      @JsonKey(name: 'started_at') DateTime? startedAt,
-      @JsonKey(name: 'ended_at') DateTime? endedAt,
-      @JsonKey(name: 'created_at') DateTime? createdAt,
-      @JsonKey(name: 'updated_at') DateTime? updatedAt});
+      List<String>? hostIds,
+      List<String>? topicIds,
+      List<String>? speakerIds,
+      List<String>? invitedUserIds,
+      int? subscriberCount,
+      int? participantCount,
+      bool? isTicketed,
+      DateTime? scheduledStart,
+      DateTime? startedAt,
+      DateTime? endedAt,
+      DateTime? createdAt,
+      DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -192,20 +179,20 @@ abstract class _$$_SpaceDataCopyWith<$Res> implements $SpaceDataCopyWith<$Res> {
       {String id,
       String? title,
       SpaceState? state,
-      @JsonKey(name: 'creator_id') String? creatorId,
+      String? creatorId,
       String? lang,
-      @JsonKey(name: 'host_ids') List<String>? hostIds,
-      @JsonKey(name: 'topic_ids') List<String>? topicIds,
-      @JsonKey(name: 'speaker_ids') List<String>? speakerIds,
-      @JsonKey(name: 'invited_user_ids') List<String>? invitedUserIds,
-      @JsonKey(name: 'subscriber_count') int? subscriberCount,
-      @JsonKey(name: 'participant_count') int? participantCount,
-      @JsonKey(name: 'is_ticketed') bool? isTicketed,
-      @JsonKey(name: 'scheduled_start') DateTime? scheduledStart,
-      @JsonKey(name: 'started_at') DateTime? startedAt,
-      @JsonKey(name: 'ended_at') DateTime? endedAt,
-      @JsonKey(name: 'created_at') DateTime? createdAt,
-      @JsonKey(name: 'updated_at') DateTime? updatedAt});
+      List<String>? hostIds,
+      List<String>? topicIds,
+      List<String>? speakerIds,
+      List<String>? invitedUserIds,
+      int? subscriberCount,
+      int? participantCount,
+      bool? isTicketed,
+      DateTime? scheduledStart,
+      DateTime? startedAt,
+      DateTime? endedAt,
+      DateTime? createdAt,
+      DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -318,20 +305,20 @@ class _$_SpaceData implements _SpaceData {
       {required this.id,
       this.title,
       this.state,
-      @JsonKey(name: 'creator_id') this.creatorId,
+      this.creatorId,
       this.lang,
-      @JsonKey(name: 'host_ids') final List<String>? hostIds,
-      @JsonKey(name: 'topic_ids') final List<String>? topicIds,
-      @JsonKey(name: 'speaker_ids') final List<String>? speakerIds,
-      @JsonKey(name: 'invited_user_ids') final List<String>? invitedUserIds,
-      @JsonKey(name: 'subscriber_count') this.subscriberCount,
-      @JsonKey(name: 'participant_count') this.participantCount,
-      @JsonKey(name: 'is_ticketed') this.isTicketed,
-      @JsonKey(name: 'scheduled_start') this.scheduledStart,
-      @JsonKey(name: 'started_at') this.startedAt,
-      @JsonKey(name: 'ended_at') this.endedAt,
-      @JsonKey(name: 'created_at') this.createdAt,
-      @JsonKey(name: 'updated_at') this.updatedAt})
+      final List<String>? hostIds,
+      final List<String>? topicIds,
+      final List<String>? speakerIds,
+      final List<String>? invitedUserIds,
+      this.subscriberCount,
+      this.participantCount,
+      this.isTicketed,
+      this.scheduledStart,
+      this.startedAt,
+      this.endedAt,
+      this.createdAt,
+      this.updatedAt})
       : _hostIds = hostIds,
         _topicIds = topicIds,
         _speakerIds = speakerIds,
@@ -347,13 +334,11 @@ class _$_SpaceData implements _SpaceData {
   @override
   final SpaceState? state;
   @override
-  @JsonKey(name: 'creator_id')
   final String? creatorId;
   @override
   final String? lang;
   final List<String>? _hostIds;
   @override
-  @JsonKey(name: 'host_ids')
   List<String>? get hostIds {
     final value = _hostIds;
     if (value == null) return null;
@@ -363,7 +348,6 @@ class _$_SpaceData implements _SpaceData {
 
   final List<String>? _topicIds;
   @override
-  @JsonKey(name: 'topic_ids')
   List<String>? get topicIds {
     final value = _topicIds;
     if (value == null) return null;
@@ -373,7 +357,6 @@ class _$_SpaceData implements _SpaceData {
 
   final List<String>? _speakerIds;
   @override
-  @JsonKey(name: 'speaker_ids')
   List<String>? get speakerIds {
     final value = _speakerIds;
     if (value == null) return null;
@@ -383,7 +366,6 @@ class _$_SpaceData implements _SpaceData {
 
   final List<String>? _invitedUserIds;
   @override
-  @JsonKey(name: 'invited_user_ids')
   List<String>? get invitedUserIds {
     final value = _invitedUserIds;
     if (value == null) return null;
@@ -392,28 +374,20 @@ class _$_SpaceData implements _SpaceData {
   }
 
   @override
-  @JsonKey(name: 'subscriber_count')
   final int? subscriberCount;
   @override
-  @JsonKey(name: 'participant_count')
   final int? participantCount;
   @override
-  @JsonKey(name: 'is_ticketed')
   final bool? isTicketed;
   @override
-  @JsonKey(name: 'scheduled_start')
   final DateTime? scheduledStart;
   @override
-  @JsonKey(name: 'started_at')
   final DateTime? startedAt;
   @override
-  @JsonKey(name: 'ended_at')
   final DateTime? endedAt;
   @override
-  @JsonKey(name: 'created_at')
   final DateTime? createdAt;
   @override
-  @JsonKey(name: 'updated_at')
   final DateTime? updatedAt;
 
   @override
@@ -489,20 +463,20 @@ abstract class _SpaceData implements SpaceData {
       {required final String id,
       final String? title,
       final SpaceState? state,
-      @JsonKey(name: 'creator_id') final String? creatorId,
+      final String? creatorId,
       final String? lang,
-      @JsonKey(name: 'host_ids') final List<String>? hostIds,
-      @JsonKey(name: 'topic_ids') final List<String>? topicIds,
-      @JsonKey(name: 'speaker_ids') final List<String>? speakerIds,
-      @JsonKey(name: 'invited_user_ids') final List<String>? invitedUserIds,
-      @JsonKey(name: 'subscriber_count') final int? subscriberCount,
-      @JsonKey(name: 'participant_count') final int? participantCount,
-      @JsonKey(name: 'is_ticketed') final bool? isTicketed,
-      @JsonKey(name: 'scheduled_start') final DateTime? scheduledStart,
-      @JsonKey(name: 'started_at') final DateTime? startedAt,
-      @JsonKey(name: 'ended_at') final DateTime? endedAt,
-      @JsonKey(name: 'created_at') final DateTime? createdAt,
-      @JsonKey(name: 'updated_at') final DateTime? updatedAt}) = _$_SpaceData;
+      final List<String>? hostIds,
+      final List<String>? topicIds,
+      final List<String>? speakerIds,
+      final List<String>? invitedUserIds,
+      final int? subscriberCount,
+      final int? participantCount,
+      final bool? isTicketed,
+      final DateTime? scheduledStart,
+      final DateTime? startedAt,
+      final DateTime? endedAt,
+      final DateTime? createdAt,
+      final DateTime? updatedAt}) = _$_SpaceData;
 
   factory _SpaceData.fromJson(Map<String, dynamic> json) =
       _$_SpaceData.fromJson;
@@ -514,45 +488,32 @@ abstract class _SpaceData implements SpaceData {
   @override
   SpaceState? get state => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'creator_id')
   String? get creatorId => throw _privateConstructorUsedError;
   @override
   String? get lang => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'host_ids')
   List<String>? get hostIds => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'topic_ids')
   List<String>? get topicIds => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'speaker_ids')
   List<String>? get speakerIds => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'invited_user_ids')
   List<String>? get invitedUserIds => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'subscriber_count')
   int? get subscriberCount => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'participant_count')
   int? get participantCount => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'is_ticketed')
   bool? get isTicketed => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'scheduled_start')
   DateTime? get scheduledStart => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'started_at')
   DateTime? get startedAt => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'ended_at')
   DateTime? get endedAt => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'created_at')
   DateTime? get createdAt => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'updated_at')
   DateTime? get updatedAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

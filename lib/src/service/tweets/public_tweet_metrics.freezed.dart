@@ -20,13 +20,9 @@ PublicTweetMetrics _$PublicTweetMetricsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PublicTweetMetrics {
-  @JsonKey(name: 'like_count')
   int get likeCount => throw _privateConstructorUsedError;
-  @JsonKey(name: 'retweet_count')
   int get retweetCount => throw _privateConstructorUsedError;
-  @JsonKey(name: 'reply_count')
   int get replyCount => throw _privateConstructorUsedError;
-  @JsonKey(name: 'quote_count')
   int get quoteCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,11 +36,7 @@ abstract class $PublicTweetMetricsCopyWith<$Res> {
   factory $PublicTweetMetricsCopyWith(
           PublicTweetMetrics value, $Res Function(PublicTweetMetrics) then) =
       _$PublicTweetMetricsCopyWithImpl<$Res>;
-  $Res call(
-      {@JsonKey(name: 'like_count') int likeCount,
-      @JsonKey(name: 'retweet_count') int retweetCount,
-      @JsonKey(name: 'reply_count') int replyCount,
-      @JsonKey(name: 'quote_count') int quoteCount});
+  $Res call({int likeCount, int retweetCount, int replyCount, int quoteCount});
 }
 
 /// @nodoc
@@ -91,11 +83,7 @@ abstract class _$$_PublicTweetMetricsCopyWith<$Res>
           $Res Function(_$_PublicTweetMetrics) then) =
       __$$_PublicTweetMetricsCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {@JsonKey(name: 'like_count') int likeCount,
-      @JsonKey(name: 'retweet_count') int retweetCount,
-      @JsonKey(name: 'reply_count') int replyCount,
-      @JsonKey(name: 'quote_count') int quoteCount});
+  $Res call({int likeCount, int retweetCount, int replyCount, int quoteCount});
 }
 
 /// @nodoc
@@ -141,25 +129,21 @@ class __$$_PublicTweetMetricsCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_PublicTweetMetrics implements _PublicTweetMetrics {
   const _$_PublicTweetMetrics(
-      {@JsonKey(name: 'like_count') required this.likeCount,
-      @JsonKey(name: 'retweet_count') required this.retweetCount,
-      @JsonKey(name: 'reply_count') required this.replyCount,
-      @JsonKey(name: 'quote_count') required this.quoteCount});
+      {required this.likeCount,
+      required this.retweetCount,
+      required this.replyCount,
+      required this.quoteCount});
 
   factory _$_PublicTweetMetrics.fromJson(Map<String, dynamic> json) =>
       _$$_PublicTweetMetricsFromJson(json);
 
   @override
-  @JsonKey(name: 'like_count')
   final int likeCount;
   @override
-  @JsonKey(name: 'retweet_count')
   final int retweetCount;
   @override
-  @JsonKey(name: 'reply_count')
   final int replyCount;
   @override
-  @JsonKey(name: 'quote_count')
   final int quoteCount;
 
   @override
@@ -204,26 +188,21 @@ class _$_PublicTweetMetrics implements _PublicTweetMetrics {
 
 abstract class _PublicTweetMetrics implements PublicTweetMetrics {
   const factory _PublicTweetMetrics(
-          {@JsonKey(name: 'like_count') required final int likeCount,
-          @JsonKey(name: 'retweet_count') required final int retweetCount,
-          @JsonKey(name: 'reply_count') required final int replyCount,
-          @JsonKey(name: 'quote_count') required final int quoteCount}) =
-      _$_PublicTweetMetrics;
+      {required final int likeCount,
+      required final int retweetCount,
+      required final int replyCount,
+      required final int quoteCount}) = _$_PublicTweetMetrics;
 
   factory _PublicTweetMetrics.fromJson(Map<String, dynamic> json) =
       _$_PublicTweetMetrics.fromJson;
 
   @override
-  @JsonKey(name: 'like_count')
   int get likeCount => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'retweet_count')
   int get retweetCount => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'reply_count')
   int get replyCount => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'quote_count')
   int get quoteCount => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

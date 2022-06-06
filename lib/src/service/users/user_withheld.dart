@@ -2,8 +2,6 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// ignore_for_file: invalid_annotation_target
-
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -13,7 +11,7 @@ part 'user_withheld.g.dart';
 @freezed
 class UserWithheld with _$UserWithheld {
   const factory UserWithheld({
-    @JsonKey(name: 'country_codes') required List<String> countryCodes,
+    required List<String> countryCodes,
   }) = _UserWithheld;
 
   factory UserWithheld.fromJson(Map<String, Object?> json) =>

@@ -25,19 +25,15 @@ mixin _$UserData {
   String get username => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get url => throw _privateConstructorUsedError;
-  @JsonKey(name: 'profile_image_url')
   String? get profileImageUrl => throw _privateConstructorUsedError;
   String? get location => throw _privateConstructorUsedError;
   @JsonKey(name: 'protected')
   bool? get isProtected => throw _privateConstructorUsedError;
   @JsonKey(name: 'verified')
   bool? get isVerified => throw _privateConstructorUsedError;
-  @JsonKey(name: 'pinned_tweet_id')
   String? get pinnedTweetId => throw _privateConstructorUsedError;
   UserEntities? get entities => throw _privateConstructorUsedError;
-  @JsonKey(name: 'public_metrics')
   PublicUserMetrics? get publicMetrics => throw _privateConstructorUsedError;
-  @JsonKey(name: 'created_at')
   DateTime? get createdAt => throw _privateConstructorUsedError;
   UserWithheld? get withheld => throw _privateConstructorUsedError;
 
@@ -57,14 +53,14 @@ abstract class $UserDataCopyWith<$Res> {
       String username,
       String? description,
       String? url,
-      @JsonKey(name: 'profile_image_url') String? profileImageUrl,
+      String? profileImageUrl,
       String? location,
       @JsonKey(name: 'protected') bool? isProtected,
       @JsonKey(name: 'verified') bool? isVerified,
-      @JsonKey(name: 'pinned_tweet_id') String? pinnedTweetId,
+      String? pinnedTweetId,
       UserEntities? entities,
-      @JsonKey(name: 'public_metrics') PublicUserMetrics? publicMetrics,
-      @JsonKey(name: 'created_at') DateTime? createdAt,
+      PublicUserMetrics? publicMetrics,
+      DateTime? createdAt,
       UserWithheld? withheld});
 
   $UserEntitiesCopyWith<$Res>? get entities;
@@ -203,14 +199,14 @@ abstract class _$$_UserDataCopyWith<$Res> implements $UserDataCopyWith<$Res> {
       String username,
       String? description,
       String? url,
-      @JsonKey(name: 'profile_image_url') String? profileImageUrl,
+      String? profileImageUrl,
       String? location,
       @JsonKey(name: 'protected') bool? isProtected,
       @JsonKey(name: 'verified') bool? isVerified,
-      @JsonKey(name: 'pinned_tweet_id') String? pinnedTweetId,
+      String? pinnedTweetId,
       UserEntities? entities,
-      @JsonKey(name: 'public_metrics') PublicUserMetrics? publicMetrics,
-      @JsonKey(name: 'created_at') DateTime? createdAt,
+      PublicUserMetrics? publicMetrics,
+      DateTime? createdAt,
       UserWithheld? withheld});
 
   @override
@@ -318,14 +314,14 @@ class _$_UserData implements _UserData {
       required this.username,
       this.description,
       this.url,
-      @JsonKey(name: 'profile_image_url') this.profileImageUrl,
+      this.profileImageUrl,
       this.location,
       @JsonKey(name: 'protected') this.isProtected,
       @JsonKey(name: 'verified') this.isVerified,
-      @JsonKey(name: 'pinned_tweet_id') this.pinnedTweetId,
+      this.pinnedTweetId,
       this.entities,
-      @JsonKey(name: 'public_metrics') this.publicMetrics,
-      @JsonKey(name: 'created_at') this.createdAt,
+      this.publicMetrics,
+      this.createdAt,
       this.withheld});
 
   factory _$_UserData.fromJson(Map<String, dynamic> json) =>
@@ -342,7 +338,6 @@ class _$_UserData implements _UserData {
   @override
   final String? url;
   @override
-  @JsonKey(name: 'profile_image_url')
   final String? profileImageUrl;
   @override
   final String? location;
@@ -353,15 +348,12 @@ class _$_UserData implements _UserData {
   @JsonKey(name: 'verified')
   final bool? isVerified;
   @override
-  @JsonKey(name: 'pinned_tweet_id')
   final String? pinnedTweetId;
   @override
   final UserEntities? entities;
   @override
-  @JsonKey(name: 'public_metrics')
   final PublicUserMetrics? publicMetrics;
   @override
-  @JsonKey(name: 'created_at')
   final DateTime? createdAt;
   @override
   final UserWithheld? withheld;
@@ -435,14 +427,14 @@ abstract class _UserData implements UserData {
       required final String username,
       final String? description,
       final String? url,
-      @JsonKey(name: 'profile_image_url') final String? profileImageUrl,
+      final String? profileImageUrl,
       final String? location,
       @JsonKey(name: 'protected') final bool? isProtected,
       @JsonKey(name: 'verified') final bool? isVerified,
-      @JsonKey(name: 'pinned_tweet_id') final String? pinnedTweetId,
+      final String? pinnedTweetId,
       final UserEntities? entities,
-      @JsonKey(name: 'public_metrics') final PublicUserMetrics? publicMetrics,
-      @JsonKey(name: 'created_at') final DateTime? createdAt,
+      final PublicUserMetrics? publicMetrics,
+      final DateTime? createdAt,
       final UserWithheld? withheld}) = _$_UserData;
 
   factory _UserData.fromJson(Map<String, dynamic> json) = _$_UserData.fromJson;
@@ -458,7 +450,6 @@ abstract class _UserData implements UserData {
   @override
   String? get url => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'profile_image_url')
   String? get profileImageUrl => throw _privateConstructorUsedError;
   @override
   String? get location => throw _privateConstructorUsedError;
@@ -469,15 +460,12 @@ abstract class _UserData implements UserData {
   @JsonKey(name: 'verified')
   bool? get isVerified => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'pinned_tweet_id')
   String? get pinnedTweetId => throw _privateConstructorUsedError;
   @override
   UserEntities? get entities => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'public_metrics')
   PublicUserMetrics? get publicMetrics => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'created_at')
   DateTime? get createdAt => throw _privateConstructorUsedError;
   @override
   UserWithheld? get withheld => throw _privateConstructorUsedError;

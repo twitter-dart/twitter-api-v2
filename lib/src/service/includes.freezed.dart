@@ -23,8 +23,8 @@ mixin _$Includes {
   List<TweetData>? get tweets => throw _privateConstructorUsedError;
   List<UserData>? get users => throw _privateConstructorUsedError;
   List<MediaData>? get media => throw _privateConstructorUsedError;
-  List<PollData>? get polls => throw _privateConstructorUsedError;
   List<PlaceData>? get places => throw _privateConstructorUsedError;
+  List<PollData>? get polls => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,8 +40,8 @@ abstract class $IncludesCopyWith<$Res> {
       {List<TweetData>? tweets,
       List<UserData>? users,
       List<MediaData>? media,
-      List<PollData>? polls,
-      List<PlaceData>? places});
+      List<PlaceData>? places,
+      List<PollData>? polls});
 }
 
 /// @nodoc
@@ -57,8 +57,8 @@ class _$IncludesCopyWithImpl<$Res> implements $IncludesCopyWith<$Res> {
     Object? tweets = freezed,
     Object? users = freezed,
     Object? media = freezed,
-    Object? polls = freezed,
     Object? places = freezed,
+    Object? polls = freezed,
   }) {
     return _then(_value.copyWith(
       tweets: tweets == freezed
@@ -73,14 +73,14 @@ class _$IncludesCopyWithImpl<$Res> implements $IncludesCopyWith<$Res> {
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
               as List<MediaData>?,
-      polls: polls == freezed
-          ? _value.polls
-          : polls // ignore: cast_nullable_to_non_nullable
-              as List<PollData>?,
       places: places == freezed
           ? _value.places
           : places // ignore: cast_nullable_to_non_nullable
               as List<PlaceData>?,
+      polls: polls == freezed
+          ? _value.polls
+          : polls // ignore: cast_nullable_to_non_nullable
+              as List<PollData>?,
     ));
   }
 }
@@ -95,8 +95,8 @@ abstract class _$$_IncludesCopyWith<$Res> implements $IncludesCopyWith<$Res> {
       {List<TweetData>? tweets,
       List<UserData>? users,
       List<MediaData>? media,
-      List<PollData>? polls,
-      List<PlaceData>? places});
+      List<PlaceData>? places,
+      List<PollData>? polls});
 }
 
 /// @nodoc
@@ -114,8 +114,8 @@ class __$$_IncludesCopyWithImpl<$Res> extends _$IncludesCopyWithImpl<$Res>
     Object? tweets = freezed,
     Object? users = freezed,
     Object? media = freezed,
-    Object? polls = freezed,
     Object? places = freezed,
+    Object? polls = freezed,
   }) {
     return _then(_$_Includes(
       tweets: tweets == freezed
@@ -130,14 +130,14 @@ class __$$_IncludesCopyWithImpl<$Res> extends _$IncludesCopyWithImpl<$Res>
           ? _value._media
           : media // ignore: cast_nullable_to_non_nullable
               as List<MediaData>?,
-      polls: polls == freezed
-          ? _value._polls
-          : polls // ignore: cast_nullable_to_non_nullable
-              as List<PollData>?,
       places: places == freezed
           ? _value._places
           : places // ignore: cast_nullable_to_non_nullable
               as List<PlaceData>?,
+      polls: polls == freezed
+          ? _value._polls
+          : polls // ignore: cast_nullable_to_non_nullable
+              as List<PollData>?,
     ));
   }
 }
@@ -149,13 +149,13 @@ class _$_Includes implements _Includes {
       {final List<TweetData>? tweets,
       final List<UserData>? users,
       final List<MediaData>? media,
-      final List<PollData>? polls,
-      final List<PlaceData>? places})
+      final List<PlaceData>? places,
+      final List<PollData>? polls})
       : _tweets = tweets,
         _users = users,
         _media = media,
-        _polls = polls,
-        _places = places;
+        _places = places,
+        _polls = polls;
 
   factory _$_Includes.fromJson(Map<String, dynamic> json) =>
       _$$_IncludesFromJson(json);
@@ -187,15 +187,6 @@ class _$_Includes implements _Includes {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<PollData>? _polls;
-  @override
-  List<PollData>? get polls {
-    final value = _polls;
-    if (value == null) return null;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
   final List<PlaceData>? _places;
   @override
   List<PlaceData>? get places {
@@ -205,9 +196,18 @@ class _$_Includes implements _Includes {
     return EqualUnmodifiableListView(value);
   }
 
+  final List<PollData>? _polls;
+  @override
+  List<PollData>? get polls {
+    final value = _polls;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   String toString() {
-    return 'Includes(tweets: $tweets, users: $users, media: $media, polls: $polls, places: $places)';
+    return 'Includes(tweets: $tweets, users: $users, media: $media, places: $places, polls: $polls)';
   }
 
   @override
@@ -218,8 +218,8 @@ class _$_Includes implements _Includes {
             const DeepCollectionEquality().equals(other._tweets, _tweets) &&
             const DeepCollectionEquality().equals(other._users, _users) &&
             const DeepCollectionEquality().equals(other._media, _media) &&
-            const DeepCollectionEquality().equals(other._polls, _polls) &&
-            const DeepCollectionEquality().equals(other._places, _places));
+            const DeepCollectionEquality().equals(other._places, _places) &&
+            const DeepCollectionEquality().equals(other._polls, _polls));
   }
 
   @JsonKey(ignore: true)
@@ -229,8 +229,8 @@ class _$_Includes implements _Includes {
       const DeepCollectionEquality().hash(_tweets),
       const DeepCollectionEquality().hash(_users),
       const DeepCollectionEquality().hash(_media),
-      const DeepCollectionEquality().hash(_polls),
-      const DeepCollectionEquality().hash(_places));
+      const DeepCollectionEquality().hash(_places),
+      const DeepCollectionEquality().hash(_polls));
 
   @JsonKey(ignore: true)
   @override
@@ -248,8 +248,8 @@ abstract class _Includes implements Includes {
       {final List<TweetData>? tweets,
       final List<UserData>? users,
       final List<MediaData>? media,
-      final List<PollData>? polls,
-      final List<PlaceData>? places}) = _$_Includes;
+      final List<PlaceData>? places,
+      final List<PollData>? polls}) = _$_Includes;
 
   factory _Includes.fromJson(Map<String, dynamic> json) = _$_Includes.fromJson;
 
@@ -260,9 +260,9 @@ abstract class _Includes implements Includes {
   @override
   List<MediaData>? get media => throw _privateConstructorUsedError;
   @override
-  List<PollData>? get polls => throw _privateConstructorUsedError;
-  @override
   List<PlaceData>? get places => throw _privateConstructorUsedError;
+  @override
+  List<PollData>? get polls => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_IncludesCopyWith<_$_Includes> get copyWith =>

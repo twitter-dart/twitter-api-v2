@@ -7,7 +7,6 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-
 // Project imports:
 import 'geo_coordinates.dart';
 
@@ -21,6 +20,5 @@ class Geo with _$Geo {
     GeoCoordinates? coordinates,
   }) = _Geo;
 
-  factory Geo.fromJson(Map<String, Object?> json) =>
-      _$GeoFromJson(json);
+  factory Geo.fromJson(Map<String, Object?> json) => _$GeoFromJson(json);
 }
