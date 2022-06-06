@@ -30,6 +30,19 @@
         "test",
         "tutorial"
       ]
+    },
+    {
+      "login": "XRayAdamo",
+      "name": "Konstantin",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4430621?v=4",
+      "profile": "https://github.com/XRayAdamo",
+      "contributions": [
+        "code",
+        "design",
+        "doc",
+        "example",
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 7,
