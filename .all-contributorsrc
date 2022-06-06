@@ -71,6 +71,16 @@
         "test",
         "ideas"
       ]
+    },
+    {
+      "login": "andypiper",
+      "name": "Andy Piper",
+      "avatar_url": "https://avatars.githubusercontent.com/u/552452?v=4",
+      "profile": "https://andypiper.me",
+      "contributions": [
+        "content",
+        "talk"
+      ]
     }
   ],
   "contributorsPerLine": 7,
