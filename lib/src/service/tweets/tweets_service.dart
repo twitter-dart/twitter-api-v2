@@ -9,7 +9,7 @@ import 'dart:convert';
 import '../../client/client_context.dart';
 import '../../client/user_context.dart';
 import '../base_service.dart';
-import '../includes.dart';
+import '../common/includes.dart';
 import '../places/place_field.dart';
 import '../polls/poll_field.dart';
 import '../twitter_response.dart';

@@ -6,9 +6,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import '../mention.dart';
-import '../tag.dart';
-import '../url.dart';
+import '../common/mention.dart';
+import '../common/tag.dart';
+import '../common/url.dart';
 import 'tweet_annotation.dart';
 
 part 'tweet_entities.freezed.dart';
