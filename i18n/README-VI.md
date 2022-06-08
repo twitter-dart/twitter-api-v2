@@ -174,7 +174,7 @@ void main() async {
       tweetId: tweets.data.first.id,
     );
 
-    // Stream enpoint với High-performance Volume thì có sẵn.
+    // Stream endpoint với High-performance Volume thì có sẵn.
     final volumeStream = await twitter.tweetsService.connectVolumeStream();
     await for (final response in volumeStream.handleError(print)) {
       print(response);
