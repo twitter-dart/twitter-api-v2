@@ -10,6 +10,7 @@ import '../../client/client_context.dart';
 import '../../client/user_context.dart';
 import '../base_service.dart';
 import '../common/includes.dart';
+import '../filtered_stream_response.dart';
 import '../places/place_field.dart';
 import '../polls/poll_field.dart';
 import '../twitter_response.dart';
@@ -19,6 +20,7 @@ import '../users/user_field.dart';
 import '../users/user_meta.dart';
 import 'filtering_rule_data.dart';
 import 'filtering_rule_meta.dart';
+import 'matching_rule.dart';
 import 'reply_setting.dart';
 import 'tweet_count_data.dart';
 import 'tweet_count_meta.dart';
@@ -1674,7 +1676,7 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/api-reference/get-tweets-search-stream
-  Future<Stream<TwitterResponse<TweetData, void>>> connectFilteredStream({
+  Future<Stream<FilteredStreamResponse>> connectFilteredStream({
     int? backfillMinutes,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
@@ -2327,7 +2329,7 @@ class _TweetsService extends BaseService implements TweetsService {
   }
 
   @override
-  Future<Stream<TwitterResponse<TweetData, void>>> connectFilteredStream({
+  Future<Stream<FilteredStreamResponse>> connectFilteredStream({
     int? backfillMinutes,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
@@ -2349,11 +2351,14 @@ class _TweetsService extends BaseService implements TweetsService {
     );
 
     return stream.map(
-      (event) => TwitterResponse(
+      (event) => FilteredStreamResponse(
         data: TweetData.fromJson(event['data']),
         includes: event.containsKey('includes')
             ? Includes.fromJson(event['includes'])
             : null,
+        matchingRules: (event['matching_rules'] as List)
+            .map((json) => MatchingRule.fromJson(json))
+            .toList(),
       ),
     );
   }
