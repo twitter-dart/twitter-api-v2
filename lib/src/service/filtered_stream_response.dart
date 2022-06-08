@@ -20,6 +20,6 @@ class FilteredStreamResponse extends TwitterResponse<TweetData, void> {
 
   @override
   String toString() =>
-      'TwitterResponse(data: $data, includes: $includes, meta: null, '
+      'FilteredStreamResponse(data: $data, includes: $includes, meta: null, '
       'matchingRules: $matchingRules)';
 }
