@@ -6,11 +6,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import 'media/media_data.dart';
-import 'places/place_data.dart';
-import 'polls/poll_data.dart';
-import 'tweets/tweet_data.dart';
-import 'users/user_data.dart';
+import '../media/media_data.dart';
+import '../places/place_data.dart';
+import '../polls/poll_data.dart';
+import '../tweets/tweet_data.dart';
+import '../users/user_data.dart';
 
 part 'includes.freezed.dart';
 part 'includes.g.dart';

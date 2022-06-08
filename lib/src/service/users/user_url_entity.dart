@@ -6,7 +6,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import '../url.dart';
+import '../common/url.dart';
 
 part 'user_url_entity.freezed.dart';
 part 'user_url_entity.g.dart';

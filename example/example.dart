@@ -73,7 +73,8 @@ void main() async {
 
     final filteredStream = await twitter.tweetsService.connectFilteredStream();
     await for (final response in filteredStream.handleError(print)) {
-      print(response);
+      print(response.data);
+      print(response.matchingRules);
     }
   } on v2.TwitterException catch (e) {
     print(e.response.headers);
