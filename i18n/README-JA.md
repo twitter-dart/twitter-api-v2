@@ -611,7 +611,7 @@ OSSに貢献するための方法は様々です。例えば、次のような�
 
 ## 1.7. ライセンス 🔑
 
-`twitter_api_v2`に含まれる全てのリソースは`BSD-3`ライセンスの下に提供されます。
+`twitter_api_v2`に含まれる全てのリソースは`BSD-3`ライセンスに則って提供されます。
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Ftwitter-dart%2Ftwitter-api-v2.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Ftwitter-dart%2Ftwitter-api-v2?ref=badge_large)
 
