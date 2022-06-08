@@ -9,6 +9,7 @@ import 'package:test/test.dart';
 // Project imports:
 import 'package:twitter_api_v2/src/client/client_context.dart';
 import 'package:twitter_api_v2/src/client/user_context.dart';
+import 'package:twitter_api_v2/src/service/filtered_stream_response.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering_rule_data.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering_rule_meta.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_count_data.dart';
@@ -20,6 +21,7 @@ import 'package:twitter_api_v2/src/service/twitter_response.dart';
 import 'package:twitter_api_v2/src/service/users/user_data.dart';
 import 'package:twitter_api_v2/src/service/users/user_meta.dart';
 import 'package:twitter_api_v2/src/twitter_exception.dart';
+import 'package:twitter_api_v2/twitter_api_v2.dart';
 import '../../../mocks/client_context_stubs.dart' as context;
 
 void main() {
@@ -628,9 +630,11 @@ void main() {
 
     final data = await response.toList();
 
-    expect(response, isA<Stream<TwitterResponse<TweetData, void>>>());
-    expect(data, isA<List<TwitterResponse<TweetData, void>>>());
-    expect(data.length, 1);
+    expect(response, isA<Stream<FilteredStreamResponse>>());
+    expect(data.first, isA<FilteredStreamResponse>());
+    expect(data.first.data, isA<TweetData>());
+    expect(data.first.matchingRules, isA<List<MatchingRule>>());
+    expect(data.first.matchingRules.isNotEmpty, isTrue);
   });
 
   test('.createFilteringRules', () async {
