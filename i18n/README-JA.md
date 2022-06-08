@@ -621,7 +621,7 @@ OSSに貢献するための方法は様々です。例えば、次のような�
 
 ## 1.8. その他 🧐
 
-`twitter_api_v2`は**_Kato Shinya ([@myConsciousness](https://github.com/myConsciousness))_**によって設計され実装されました。
+`twitter_api_v2`は **_Kato Shinya ([@myConsciousness](https://github.com/myConsciousness))_** によって設計され実装されました。
 
 - [作者プロフィール](https://github.com/myConsciousness)
 - [ライセンス](https://github.com/twitter-dart/twitter-api-v2/blob/main/LICENSE)
