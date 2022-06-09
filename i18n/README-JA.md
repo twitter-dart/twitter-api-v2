@@ -32,7 +32,7 @@
 
 ---
 
-| [English](https://github.com/twitter-dart/twitter-api-v2/blob/main/README.md) | 日本語 |
+| [English](https://github.com/twitter-dart/twitter-api-v2/blob/main/README.md) | 日本語 | [Tiếng Việt](https://github.com/twitter-dart/twitter-api-v2/blob/main/i18n/README-VI.md) |
 
 ---
 
