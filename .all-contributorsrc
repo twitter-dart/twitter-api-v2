@@ -34,6 +34,16 @@
       ]
     },
     {
+      "login": "andypiper",
+      "name": "Andy Piper",
+      "avatar_url": "https://avatars.githubusercontent.com/u/552452?v=4",
+      "profile": "https://andypiper.me",
+      "contributions": [
+        "content",
+        "talk"
+      ]
+    },
+    {
       "login": "XRayAdamo",
       "name": "Konstantin",
       "avatar_url": "https://avatars.githubusercontent.com/u/4430621?v=4",
@@ -75,13 +85,13 @@
       ]
     },
     {
-      "login": "andypiper",
-      "name": "Andy Piper",
-      "avatar_url": "https://avatars.githubusercontent.com/u/552452?v=4",
-      "profile": "https://andypiper.me",
+      "login": "ngoluuduythai",
+      "name": "ngoluuduythai",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12238262?v=4",
+      "profile": "https://github.com/ngoluuduythai",
       "contributions": [
-        "content",
-        "talk"
+        "doc",
+        "translation"
       ]
     }
   ],
