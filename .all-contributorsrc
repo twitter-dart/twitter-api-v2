@@ -1,8 +1,8 @@
 {
   "files": [
     "README.md",
-    "README-JA.md",
-    "README-VI.md"
+    "i18n/README-JA.md",
+    "i18n/README-VI.md"
   ],
   "imageSize": 100,
   "commit": false,
