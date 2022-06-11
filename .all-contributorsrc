@@ -3,7 +3,8 @@
     "README.md",
     "i18n/README-JA.md",
     "i18n/README-VI.md",
-    "i18n/README-BN.md"
+    "i18n/README-BN.md",
+    "i18n/README-FR.md"
   ],
   "imageSize": 100,
   "commit": false,
@@ -106,7 +107,7 @@
       ]
     }
   ],
-  "contributorsPerLine": 7,
+  "contributorsPerLine": 5,
   "projectName": "twitter-api-v2",
   "projectOwner": "twitter-dart",
   "repoType": "github",
