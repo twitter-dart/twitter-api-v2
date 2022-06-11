@@ -94,6 +94,16 @@
         "doc",
         "translation"
       ]
+    },
+    {
+      "login": "its-me-mahmud",
+      "name": "Abdullah Al Mahmud",
+      "avatar_url": "https://avatars.githubusercontent.com/u/53822204?v=4",
+      "profile": "http://g.dev/abdullahalmahmud",
+      "contributions": [
+        "doc",
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
