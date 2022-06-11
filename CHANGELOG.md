@@ -5,7 +5,9 @@
 - Added `FilteredStreamResponse` as the return type of `Filtered Stream` endpoint. And now we can see the IDs and tags of the rules matched in the streaming from the `FilteredStreamResponse.matchingRules` field. The `FilteredStreamResponse` extends `TwitterResponse`, so there are no destructive changes. ([#226](https://github.com/twitter-dart/twitter-api-v2/issues/226))
 - Added translated READMEs. ([#213](https://github.com/twitter-dart/twitter-api-v2/issues/213))
   - Japanese
+  - French
   - Vietnamese
+  - Bengali
 
 ## v2.5.0
 
