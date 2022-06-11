@@ -17,6 +17,7 @@
       - [1.3.3.1. Consider adding examples](#1331-consider-adding-examples)
       - [1.3.3.2. Avoid useless code documentation](#1332-avoid-useless-code-documentation)
       - [1.3.3.3. Consider adding linkage between docs](#1333-consider-adding-linkage-between-docs)
+    - [1.3.4. Naming Conventions](#134-naming-conventions)
 
 <!-- /TOC -->
 
@@ -35,7 +36,7 @@ Note that this is not yet an exhaustive guide, and consider it a work in progres
 
 ### 1.1.1. Max line length
 
-For all files, including markdown, keep each line within 80 characters.
+For all files, including markdown on dartdocs, keep each line within 80 characters.
 
 ### 1.1.2. Trailing Commas and Wrapping
 
@@ -162,3 +163,21 @@ Avoid documentation that just repeats the obvious. For example, `void doStuff()`
 
 You should use `[]` (brackets) to link dartdoc elements that can be referenced on the same file.
 Also, consider adding a "See also" section to element documentation.
+
+### 1.3.4. Naming Conventions
+
+Basically we follow naming style in [Effective Dart](https://dart.dev/guides/language/effective-dart/style).
+
+The only thing to note is the **method name**. The method name should be a name that describes the operation of each endpoint. It's also better to give a standard prefix so that users can quickly find the method they want to use.
+
+So `twitter_api_v2` uses the following standard prefixes depending on endpoint characteristics.
+
+| Prefix      | Description                                                                                                                                  |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| **lookup**  | This prefix is attached to endpoints that reference tweets, users, etc. |
+| **search**  | This prefix is attached to endpoints that perform extensive searches.                                                                                |
+| **connect** | This prefix is attached to endpoints with high-performance streaming.                                                           |
+| **count**   | This prefix is attached to the endpoint that counts a particular item.                                                                                    |
+| **create**  | This prefix is attached to the endpoint performing the create state such as `Tweet` and `Follow`.                                            |
+| **destroy** | This prefix is attached to the endpoint performing the destroy state such as `Tweet` and `Follow`.                                           |
+| **update**  | This prefix is attached to the endpoint performing the update state.                                                                         |
