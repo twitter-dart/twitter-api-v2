@@ -33,6 +33,9 @@ enum MediaField implements Serializable {
   /// `promoted_metrics`
   promotedMetrics('promoted_metrics'),
 
+  /// `public_metrics`
+  publicMetrics('public_metrics'),
+
   /// `width`
   width('width'),
 
