@@ -14,6 +14,11 @@ class ListData with _$ListData {
     required String id,
     required String name,
     String? ownerId,
+    DateTime? createdAt,
+    String? description,
+    int? followerCount,
+    int? memberCount,
+    @JsonKey(name: 'private') bool? isPrivate,
   }) = _ListData;
 
   factory ListData.fromJson(Map<String, Object?> json) =>
