@@ -20,6 +20,7 @@ import 'space_data.dart';
 import 'space_expansion.dart';
 import 'space_field.dart';
 import 'space_meta.dart';
+import 'topic_field.dart';
 
 abstract class SpacesService {
   /// Returns the new instance of [SpacesService].
@@ -59,6 +60,12 @@ abstract class SpacesService {
   ///                  specific Space fields will deliver in each returned
   ///                  Space.
   ///
+  /// - [topicFields]: This fields parameter enables you to select which
+  ///                  specific topic metadata in each returned Space topic
+  ///                  object, if the creator of the Space set one or more
+  ///                  topics. Specify the desired fields in a comma-separated
+  ///                  list.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/spaces/search
@@ -79,6 +86,7 @@ abstract class SpacesService {
     List<SpaceExpansion>? expansions,
     List<UserField>? userFields,
     List<SpaceField>? spaceFields,
+    List<TopicField>? topicFields,
   });
 
   /// Returns a variety of information about a single Space specified by the
@@ -108,6 +116,12 @@ abstract class SpacesService {
   ///                  specific Space fields will deliver in each returned
   ///                  Space.
   ///
+  /// - [topicFields]: This fields parameter enables you to select which
+  ///                  specific topic metadata in each returned Space topic
+  ///                  object, if the creator of the Space set one or more
+  ///                  topics. Specify the desired fields in a comma-separated
+  ///                  list.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/spaces/:id
@@ -128,6 +142,7 @@ abstract class SpacesService {
     List<SpaceExpansion>? expansions,
     List<UserField>? userFields,
     List<SpaceField>? spaceFields,
+    List<TopicField>? topicFields,
   });
 
   /// Returns details about multiple Spaces. Up to 100 comma-separated Spaces
@@ -157,6 +172,12 @@ abstract class SpacesService {
   ///                  specific Space fields will deliver in each returned
   ///                  Space.
   ///
+  /// - [topicFields]: This fields parameter enables you to select which
+  ///                  specific topic metadata in each returned Space topic
+  ///                  object, if the creator of the Space set one or more
+  ///                  topics. Specify the desired fields in a comma-separated
+  ///                  list.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/spaces
@@ -177,6 +198,7 @@ abstract class SpacesService {
     List<SpaceExpansion>? expansions,
     List<UserField>? userFields,
     List<SpaceField>? spaceFields,
+    List<TopicField>? topicFields,
   });
 
   /// Returns a list of user who purchased a ticket to the requested Space.
@@ -367,6 +389,11 @@ abstract class SpacesService {
   /// - [spaceFields]: This fields parameter enables you to select which
   ///                  specific Space fields will deliver in each returned
   ///                  Space.
+  /// - [topicFields]: This fields parameter enables you to select which
+  ///                  specific topic metadata in each returned Space topic
+  ///                  object, if the creator of the Space set one or more
+  ///                  topics. Specify the desired fields in a comma-separated
+  ///                  list.
   ///
   /// ## Endpoint Url
   ///
@@ -391,6 +418,7 @@ abstract class SpacesService {
     List<SpaceExpansion>? expansions,
     List<UserField>? userFields,
     List<SpaceField>? spaceFields,
+    List<TopicField>? topicFields,
   });
 }
 
@@ -404,6 +432,7 @@ class _SpacesService extends BaseService implements SpacesService {
     List<SpaceExpansion>? expansions,
     List<UserField>? userFields,
     List<SpaceField>? spaceFields,
+    List<TopicField>? topicFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -414,6 +443,7 @@ class _SpacesService extends BaseService implements SpacesService {
             'expansions': expansions,
             'user.fields': userFields,
             'space.fields': spaceFields,
+            'topic.fields': topicFields,
           },
         ),
         dataBuilder: SpaceData.fromJson,
@@ -426,6 +456,7 @@ class _SpacesService extends BaseService implements SpacesService {
     List<SpaceExpansion>? expansions,
     List<UserField>? userFields,
     List<SpaceField>? spaceFields,
+    List<TopicField>? topicFields,
   }) async =>
       super.buildResponse(
         await super.get(
@@ -435,6 +466,7 @@ class _SpacesService extends BaseService implements SpacesService {
             'expansions': expansions,
             'user.fields': userFields,
             'space.fields': spaceFields,
+            'topic.fields': topicFields,
           },
         ),
         dataBuilder: SpaceData.fromJson,
@@ -446,6 +478,7 @@ class _SpacesService extends BaseService implements SpacesService {
     List<SpaceExpansion>? expansions,
     List<UserField>? userFields,
     List<SpaceField>? spaceFields,
+    List<TopicField>? topicFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -456,6 +489,7 @@ class _SpacesService extends BaseService implements SpacesService {
             'expansions': expansions,
             'user.fields': userFields,
             'space.fields': spaceFields,
+            'topic.fields': topicFields,
           },
         ),
         dataBuilder: SpaceData.fromJson,
@@ -516,6 +550,7 @@ class _SpacesService extends BaseService implements SpacesService {
     List<SpaceExpansion>? expansions,
     List<UserField>? userFields,
     List<SpaceField>? spaceFields,
+    List<TopicField>? topicFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -526,6 +561,7 @@ class _SpacesService extends BaseService implements SpacesService {
             'expansions': expansions,
             'user.fields': userFields,
             'space.fields': spaceFields,
+            'topic.fields': topicFields,
           },
         ),
         dataBuilder: SpaceData.fromJson,

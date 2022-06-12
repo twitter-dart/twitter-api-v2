@@ -6,12 +6,12 @@
 import 'package:test/test.dart';
 
 // Project imports:
-import 'package:twitter_api_v2/src/service/spaces/space_state.dart';
+import 'package:twitter_api_v2/src/service/spaces/topic_field.dart';
 
 void main() {
-  test('.name', () {
-    expect(SpaceState.live.name == 'live', isTrue);
-    expect(SpaceState.scheduled.name == 'scheduled', isTrue);
-    expect(SpaceState.ended.name == 'ended', isTrue);
+  test('.value', () {
+    expect(TopicField.id.value, 'id');
+    expect(TopicField.description, 'description');
+    expect(TopicField.name, 'name');
   });
 }

@@ -87,6 +87,7 @@ Map<String, dynamic> _$$_SpaceDataToJson(_$_SpaceData instance) =>
 const _$SpaceStateEnumMap = {
   SpaceState.scheduled: 'scheduled',
   SpaceState.live: 'live',
+  SpaceState.ended: 'ended',
 };
 
 const _$SpaceLanguageEnumMap = {
