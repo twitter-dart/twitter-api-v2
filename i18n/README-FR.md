@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <b>The Lightweight and Cross-Platform Wrapper for Twitter API v2.0 🐦</b>
+  <b>Wrapper léger et multiplateforme pour l'API Twitter v2.0 🐦</b>
 </p>
 
 ---
@@ -32,91 +32,91 @@
 
 ---
 
-| English | [日本語](https://github.com/twitter-dart/twitter-api-v2/blob/main/i18n/README-JA.md) | [Français](https://github.com/twitter-dart/twitter-api-v2/blob/main/i18n/README-FR.md) | [Tiếng Việt](https://github.com/twitter-dart/twitter-api-v2/blob/main/i18n/README-VI.md) | [বাংলা](https://github.com/twitter-dart/twitter-api-v2/blob/main/i18n/README-BN.md) |
+| [English](https://github.com/twitter-dart/twitter-api-v2/blob/main/README.md) | [日本語](https://github.com/twitter-dart/twitter-api-v2/blob/main/i18n/README-JA.md) | Français | [Tiếng Việt](https://github.com/twitter-dart/twitter-api-v2/blob/main/i18n/README-VI.md) | [বাংলা](https://github.com/twitter-dart/twitter-api-v2/blob/main/i18n/README-BN.md) |
 
 ---
 
 <!-- TOC -->
 
-- [1. Guide 🌎](#1-guide-)
-  - [1.1. Getting Started ⚡](#11-getting-started-)
-    - [1.1.1. Install Library](#111-install-library)
-    - [1.1.2. Import](#112-import)
-    - [1.1.3. Implementation](#113-implementation)
-  - [1.2. Supported Endpoints 👀](#12-supported-endpoints-)
-    - [1.2.1. Tweets Service](#121-tweets-service)
-      - [1.2.1.1. Tweet](#1211-tweet)
-      - [1.2.1.2. Likes](#1212-likes)
+- [1. Guider 🌎](#1-guider-)
+  - [1.1. Commencer ⚡](#11-commencer-)
+    - [1.1.1. Installer la bibliothèque](#111-installer-la-bibliothèque)
+    - [1.1.2. Importer](#112-importer)
+    - [1.1.3. Mise en œuvre](#113-mise-en-œuvre)
+  - [1.2. Terminaux pris en charge 👀](#12-terminaux-pris-en-charge-)
+    - [1.2.1. Service de tweets](#121-service-de-tweets)
+      - [1.2.1.1. Tweeter](#1211-tweeter)
+      - [1.2.1.2. Aime](#1212-aime)
       - [1.2.1.3. Retweets](#1213-retweets)
-      - [1.2.1.4. Quote Tweets](#1214-quote-tweets)
-      - [1.2.1.5. Search Tweets](#1215-search-tweets)
-      - [1.2.1.6. Lookup Tweets](#1216-lookup-tweets)
-      - [1.2.1.7. Tweet Counts](#1217-tweet-counts)
-      - [1.2.1.8. Bookmarks](#1218-bookmarks)
-      - [1.2.1.9. Timelines](#1219-timelines)
-      - [1.2.1.10. Hide Replies](#12110-hide-replies)
-      - [1.2.1.11. Volume Stream](#12111-volume-stream)
-      - [1.2.1.12. Filtered Stream](#12112-filtered-stream)
-    - [1.2.2. Users Service](#122-users-service)
-      - [1.2.2.1. Follows](#1221-follows)
-      - [1.2.2.2. Lookup Users](#1222-lookup-users)
-      - [1.2.2.3. Users Mutes](#1223-users-mutes)
-      - [1.2.2.4. Blocks](#1224-blocks)
-    - [1.2.3. Spaces Service](#123-spaces-service)
-      - [1.2.3.1. Search Spaces](#1231-search-spaces)
-      - [1.2.3.2. Lookup Spaces](#1232-lookup-spaces)
-    - [1.2.4. Lists Service](#124-lists-service)
-      - [1.2.4.1. Lookup Lists](#1241-lookup-lists)
-      - [1.2.4.2. Pinnings](#1242-pinnings)
-      - [1.2.4.3. Tweet Lookup](#1243-tweet-lookup)
-      - [1.2.4.4. List Manage](#1244-list-manage)
-      - [1.2.4.5. Follows](#1245-follows)
-      - [1.2.4.6. Members](#1246-members)
-    - [1.2.5. Compliance Service](#125-compliance-service)
-      - [1.2.5.1. Batch Compliance](#1251-batch-compliance)
-  - [1.3. Tips 🏄](#13-tips-)
-    - [1.3.1. Method Names](#131-method-names)
-    - [1.3.2. Generate App-Only Bearer Token](#132-generate-app-only-bearer-token)
-    - [1.3.3. Null Parameter at Request](#133-null-parameter-at-request)
-    - [1.3.4. Expand Object Fields with `expansions`](#134-expand-object-fields-with-expansions)
-    - [1.3.5. Expand Object Fields with `fields`](#135-expand-object-fields-with-fields)
+      - [1.2.1.4. Citer des tweets](#1214-citer-des-tweets)
+      - [1.2.1.5. Rechercher des tweets](#1215-rechercher-des-tweets)
+      - [1.2.1.6. Rechercher des tweets](#1216-rechercher-des-tweets)
+      - [1.2.1.7. Le tweet compte](#1217-le-tweet-compte)
+      - [1.2.1.8. Signets](#1218-signets)
+      - [1.2.1.9. Délais](#1219-délais)
+      - [1.2.1.10. Masquer les réponses](#12110-masquer-les-réponses)
+      - [1.2.1.11. Flux de volume](#12111-flux-de-volume)
+      - [1.2.1.12. Flux filtré](#12112-flux-filtré)
+    - [1.2.2. Service aux utilisateurs](#122-service-aux-utilisateurs)
+      - [1.2.2.1. Suit](#1221-suit)
+      - [1.2.2.2. Rechercher des utilisateurs](#1222-rechercher-des-utilisateurs)
+      - [1.2.2.3. Utilisateurs muets](#1223-utilisateurs-muets)
+      - [1.2.2.4. Blocs](#1224-blocs)
+    - [1.2.3. Service Espaces](#123-service-espaces)
+      - [1.2.3.1. Espaces de recherche](#1231-espaces-de-recherche)
+      - [1.2.3.2. Espaces de recherche](#1232-espaces-de-recherche)
+    - [1.2.4. Service des listes](#124-service-des-listes)
+      - [1.2.4.1. Listes de recherche](#1241-listes-de-recherche)
+      - [1.2.4.2. Épinglages](#1242-épinglages)
+      - [1.2.4.3. Recherche de tweet](#1243-recherche-de-tweet)
+      - [1.2.4.4. Gérer la liste](#1244-gérer-la-liste)
+      - [1.2.4.5. Suit](#1245-suit)
+      - [1.2.4.6. Membres](#1246-membres)
+    - [1.2.5. Service de conformité](#125-service-de-conformité)
+      - [1.2.5.1. Conformité des lots](#1251-conformité-des-lots)
+  - [1.3. Des astuces 🏄](#13-des-astuces-)
+    - [1.3.1. Noms de méthode](#131-noms-de-méthode)
+    - [1.3.2. Générer un jeton porteur uniquement pour l'application](#132-générer-un-jeton-porteur-uniquement-pour-lapplication)
+    - [1.3.3. Paramètre nul à la demande](#133-paramètre-nul-à-la-demande)
+    - [1.3.4. Développez les champs d'objet avec `expansions`](#134-développez-les-champs-dobjet-avec-expansions)
+    - [1.3.5. Développez les champs d'objet avec `fields`](#135-développez-les-champs-dobjet-avec-fields)
   - [1.4. Contribution 🏆](#14-contribution-)
-  - [1.5. Contributors ✨](#15-contributors-)
-  - [1.6. Support ❤️](#16-support-️)
-  - [1.7. License 🔑](#17-license-)
-  - [1.8. More Information 🧐](#18-more-information-)
+  - [1.5. Contributeurs ✨](#15-contributeurs-)
+  - [1.6. Soutien ❤️](#16-soutien-️)
+  - [1.7. Licence 🔑](#17-licence-)
+  - [1.8. Plus d'information 🧐](#18-plus-dinformation-)
 
 <!-- /TOC -->
 
-# 1. Guide 🌎
+# 1. Guider 🌎
 
-This library provides the easiest way to use [Twitter API v2.0](https://developer.twitter.com/en/docs/twitter-api/data-dictionary/introduction) in **Dart** and **Flutter** apps.
+Cette bibliothèque offre le moyen le plus simple d'utiliser [Twitter API v2.0](https://developer.twitter.com/en/docs/twitter-api/data-dictionary/introduction) indans les applications **Dart** and **Flutter**.
 
-**Show some ❤️ and star the repo to support the project.**
+**Montre quelques❤️et mettre en vedette le dépôt pour soutenir le projet.**
 
-## 1.1. Getting Started ⚡
+## 1.1. Commencer ⚡
 
-### 1.1.1. Install Library
+### 1.1.1. Installer la bibliothèque
 
-**With Dart:**
+**Avec Dart:**
 
 ```bash
  dart pub add twitter_api_v2
 ```
 
-**Or With Flutter:**
+**Ou Avec Flutter:**
 
 ```bash
  flutter pub add twitter_api_v2
 ```
 
-### 1.1.2. Import
+### 1.1.2. Importer
 
 ```dart
 import 'package:twitter_api_v2/twitter_api_v2';
 ```
 
-### 1.1.3. Implementation
+### 1.1.3. Mise en œuvre
 
 ```dart
 void main() async {
@@ -199,20 +199,20 @@ void main() async {
 }
 ```
 
-## 1.2. Supported Endpoints 👀
+## 1.2. Terminaux pris en charge 👀
 
-### 1.2.1. Tweets Service
+### 1.2.1. Service de tweets
 
-#### 1.2.1.1. Tweet
+#### 1.2.1.1. Tweeter
 
-| Endpoint                                                                                                                      | Method Name                                                                                                        |
+| Point final                                                                                                                     | Nom de la méthode                                                                                                        |
 | ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | [POST /2/tweets](https://developer.twitter.com/en/docs/twitter-api/tweets/manage-tweets/api-reference/post-tweets)            | [createTweet](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/createTweet.html)   |
 | [DELETE /2/tweets/:id](https://developer.twitter.com/en/docs/twitter-api/tweets/manage-tweets/api-reference/delete-tweets-id) | [destroyTweet](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/destroyTweet.html) |
 
-#### 1.2.1.2. Likes
+#### 1.2.1.2. Aime
 
-| Endpoint                                                                                                                                           | Method Name                                                                                                                  |
+| Point final                                                                                                                                          | Nom de la méthode                                                                                                                  |
 | -------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | [POST /2/users/:id/likes](https://developer.twitter.com/en/docs/twitter-api/tweets/likes/api-reference/post-users-id-likes)                        | [createLike](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/createLike.html)               |
 | [DELETE /2/users/:id/likes/:tweet_id](https://developer.twitter.com/en/docs/twitter-api/tweets/likes/api-reference/delete-users-id-likes-tweet_id) | [destroyLike](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/destroyLike.html)             |
@@ -221,90 +221,90 @@ void main() async {
 
 #### 1.2.1.3. Retweets
 
-| Endpoint                                                                                                                                                           | Method Name                                                                                                                        |
+| Point final                                                                                                                                                           | Nom de la méthode                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
 | [POST /2/users/:id/retweets](https://developer.twitter.com/en/docs/twitter-api/tweets/retweets/api-reference/post-users-id-retweets)                               | [createRetweet](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/createRetweet.html)               |
 | [DELETE /2/users/:id/retweets/:source_tweet_id](https://developer.twitter.com/en/docs/twitter-api/tweets/retweets/api-reference/delete-users-id-retweets-tweet_id) | [destroyRetweet](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/destroyRetweet.html)             |
 | [GET /2/tweets/:id/retweeted_by](https://developer.twitter.com/en/docs/twitter-api/tweets/retweets/api-reference/get-tweets-id-retweeted_by)                       | [lookupRetweetedUsers](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupRetweetedUsers.html) |
 
-#### 1.2.1.4. Quote Tweets
+#### 1.2.1.4. Citer des tweets
 
-| Endpoint                                                                                                                                         | Method Name                                                                                                                  |
+| Point final                                                                                                                                         | Nom de la méthode                                                                                                                  |
 | ------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------- |
 | [GET /2/tweets/:id/quote_tweets](https://developer.twitter.com/en/docs/twitter-api/tweets/quote-tweets/api-reference/get-tweets-id-quote_tweets) | [lookupQuoteTweets](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupQuoteTweets.html) |
 
-#### 1.2.1.5. Search Tweets
+#### 1.2.1.5. Rechercher des tweets
 
-| Endpoint                                                                                                                              | Method Name                                                                                                        |
+| Point final                                                                                                                              | Nom de la méthode                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | [GET /2/tweets/search/all](https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-all)       | [searchAll](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/searchAll.html)       |
 | [GET /2/tweets/search/recent](https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-recent) | [searchRecent](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/searchRecent.html) |
 
-#### 1.2.1.6. Lookup Tweets
+#### 1.2.1.6. Rechercher des tweets
 
-| Endpoint                                                                                                         | Method Name                                                                                                      |
+| Point final                                                                                                         | Nom de la méthode                                                                                                      |
 | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | [GET /2/tweets](https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference/get-tweets)        | [lookupByIds](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupByIds.html) |
 | [GET /2/tweets/:id](https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference/get-tweets-id) | [lookupById](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupByIds.html)  |
 
-#### 1.2.1.7. Tweet Counts
+#### 1.2.1.7. Le tweet compte
 
-| Endpoint                                                                                                                              | Method Name                                                                                                      |
+| Point final                                                                                                                              | Nom de la méthode                                                                                                      |
 | ------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | [GET /2/tweets/counts/all](https://developer.twitter.com/en/docs/twitter-api/tweets/counts/api-reference/get-tweets-counts-all)       | [countAll](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/countAll.html)       |
 | [GET /2/tweets/counts/recent](https://developer.twitter.com/en/docs/twitter-api/tweets/counts/api-reference/get-tweets-counts-recent) | [countRecent](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/countRecent.html) |
 
-#### 1.2.1.8. Bookmarks
+#### 1.2.1.8. Signets
 
-| Endpoint                                                                                                                                                       | Method Name                                                                                                              |
+| Point final                                                                                                                                                      | Nom de la méthode                                                                                                              |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | [POST /2/users/:id/bookmarks](https://developer.twitter.com/en/docs/twitter-api/tweets/bookmarks/api-reference/post-users-id-bookmarks)                        | [createBookmark](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/createBookmark.html)   |
 | [DELETE /2/users/:id/bookmarks/:tweet_id](https://developer.twitter.com/en/docs/twitter-api/tweets/bookmarks/api-reference/delete-users-id-bookmarks-tweet_id) | [destroyBookmark](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/destroyBookmark.html) |
 | [GET /2/users/:id/bookmarks](https://developer.twitter.com/en/docs/twitter-api/tweets/bookmarks/api-reference/get-users-id-bookmarks)                          | [lookupBookmarks](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupBookmarks.html) |
 
-#### 1.2.1.9. Timelines
+#### 1.2.1.9. Délais
 
-| Endpoint                                                                                                                                                                | Method Name                                                                                                                    |
+| Point final                                                                                                                                                                | Nom de la méthode                                                                                                                    |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | [GET /2/users/:id/mentions](https://developer.twitter.com/en/docs/twitter-api/tweets/timelines/api-reference/get-users-id-mentions)                                     | [lookupMentions](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupMentions.html)         |
 | [GET /2/users/:id/tweets](https://developer.twitter.com/en/docs/twitter-api/tweets/timelines/api-reference/get-users-id-tweets)                                         | [lookupTweets](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupTweets.html)             |
 | [GET /2/users/:id/timelines/reverse_chronological](https://developer.twitter.com/en/docs/twitter-api/tweets/timelines/api-reference/get-users-id-reverse-chronological) | [lookupHomeTimeline](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupHomeTimeline.html) |
 
-#### 1.2.1.10. Hide Replies
+#### 1.2.1.10. Masquer les réponses
 
-| Endpoint                                                                                                                             | Method Name                                                                                                                    |
+| Point final                                                                                                                            | Nom de la méthode                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
 | [PUT /2/tweets/:id/hidden](https://developer.twitter.com/en/docs/twitter-api/tweets/hide-replies/api-reference/put-tweets-id-hidden) | [createHiddenReply](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/createHiddenReply.html)   |
 | [PUT /2/tweets/:id/hidden](https://developer.twitter.com/en/docs/twitter-api/tweets/hide-replies/api-reference/put-tweets-id-hidden) | [destroyHiddenReply](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/destroyHiddenReply.html) |
 
-#### 1.2.1.11. Volume Stream
+#### 1.2.1.11. Flux de volume
 
-| Endpoint                                                                                                                                      | Method Name                                                                                                                      |
+| Point final                                                                                                                                      | Nom de la méthode                                                                                                                      |
 | --------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | [GET /2/tweets/sample/stream](https://developer.twitter.com/en/docs/twitter-api/tweets/volume-streams/api-reference/get-tweets-sample-stream) | [connectVolumeStream](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/connectVolumeStream.html) |
 
-#### 1.2.1.12. Filtered Stream
+#### 1.2.1.12. Flux filtré
 
-| Endpoint                                                                                                                                                     | Method Name                                                                                                                          |
+| Point final                                                                                                                                                     | Nom de la méthode                                                                                                                          |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
 | [POST /2/tweets/search/stream/rules](https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/api-reference/post-tweets-search-stream-rules) | [createFilteringRules](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/createFilteringRules.html)   |
 | [GET /2/tweets/search/stream/rules](https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/api-reference/get-tweets-search-stream-rules)   | [lookupFilteringRules](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupFilteringRules.html)   |
 | [GET /2/tweets/search/stream](https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/api-reference/get-tweets-search-stream)               | [connectFilteredStream](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/connectFilteredStream.html) |
 
-### 1.2.2. Users Service
+### 1.2.2. Service aux utilisateurs
 
-#### 1.2.2.1. Follows
+#### 1.2.2.1. Suit
 
-| Endpoint                                                                                                                                                                    | Method Name                                                                                                               |
+| Point final                                                                                                                                                                    | Nom de la méthode                                                                                                               |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | [POST /2/users/:id/following](https://developer.twitter.com/en/docs/twitter-api/users/follows/api-reference/post-users-source_user_id-following)                            | [createFollow](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/createFollow.html)         |
 | [DELETE /2/users/:source_user_id/following/:target_user_id](https://developer.twitter.com/en/docs/twitter-api/users/follows/api-reference/delete-users-source_id-following) | [destroyFollow](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/destroyFollow.html)       |
 | [GET /2/users/:id/followers](https://developer.twitter.com/en/docs/twitter-api/users/follows/api-reference/get-users-id-followers)                                          | [lookupFollowers](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/lookupFollowers.html)   |
 | [GET /2/users/:id/following](https://developer.twitter.com/en/docs/twitter-api/users/follows/api-reference/get-users-id-following)                                          | [lookupFollowings](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/lookupFollowings.html) |
 
-#### 1.2.2.2. Lookup Users
+#### 1.2.2.2. Rechercher des utilisateurs
 
-| Endpoint                                                                                                                                          | Method Name                                                                                                         |
+| Point final                                                                                                                                          | Nom de la méthode                                                                                                         |
 | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
 | [GET /2/users](https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users)                                            | [lookupByIds](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/lookupByIds.html)     |
 | [GET /2/users/:id](https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users-id)                                     | [lookupById](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/lookupById.html)       |
@@ -312,33 +312,33 @@ void main() async {
 | [GET /2/users/by/username/:username](https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users-by-username-username) | [lookupByName](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/lookupByName.html)   |
 | [GET /2/users/me](https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users-me)                                      | [lookupMe](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/lookupMe.html)           |
 
-#### 1.2.2.3. Users Mutes
+#### 1.2.2.3. Utilisateurs muets
 
-| Endpoint                                                                                                                                                          | Method Name                                                                                                                 |
+| Point final                                                                                                                                                          | Nom de la méthode                                                                                                                 |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
 | [POST /2/users/:id/muting](https://developer.twitter.com/en/docs/twitter-api/users/mutes/api-reference/post-users-user_id-muting)                                 | [createMute](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/createMute.html)               |
 | [DELETE /2/users/:source_user_id/muting/:target_user_id](https://developer.twitter.com/en/docs/twitter-api/users/mutes/api-reference/delete-users-user_id-muting) | [destroyMute](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/destroyMute.html)             |
 | [GET /2/users/:id/muting](https://developer.twitter.com/en/docs/twitter-api/users/mutes/api-reference/get-users-muting)                                           | [lookupMutingUsers](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/lookupMutingUsers.html) |
 
-#### 1.2.2.4. Blocks
+#### 1.2.2.4. Blocs
 
-| Endpoint                                                                                                                                                               | Method Name                                                                                                                     |
+| Point final                                                                                                                                                               | Nom de la méthode                                                                                                                     |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | [POST /2/users/:id/blocking](https://developer.twitter.com/en/docs/twitter-api/users/blocks/api-reference/post-users-user_id-blocking)                                 | [createBlock](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/createBlock.html)                 |
 | [DELETE /2/users/:source_user_id/blocking/:target_user_id](https://developer.twitter.com/en/docs/twitter-api/users/blocks/api-reference/delete-users-user_id-blocking) | [destroyBlock](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/destroyBlock.html)               |
 | [GET /2/users/:id/blocking](https://developer.twitter.com/en/docs/twitter-api/users/blocks/api-reference/get-users-blocking)                                           | [lookupBlockingUsers](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/lookupBlockingUsers.html) |
 
-### 1.2.3. Spaces Service
+### 1.2.3. Service Espaces
 
-#### 1.2.3.1. Search Spaces
+#### 1.2.3.1. Espaces de recherche
 
-| Endpoint                                                                                                                | Method Name                                                                                            |
+| Point final                                                                                                                | Nom de la méthode                                                                                            |
 | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | [GET /2/spaces/search](https://developer.twitter.com/en/docs/twitter-api/spaces/search/api-reference/get-spaces-search) | [search](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/SpacesService/search.html) |
 
-#### 1.2.3.2. Lookup Spaces
+#### 1.2.3.2. Espaces de recherche
 
-| Endpoint                                                                                                                                | Method Name                                                                                                                    |
+| Point final                                                                                                                               | Nom de la méthode                                                                                                                    |
 | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | [GET /2/spaces](https://developer.twitter.com/en/docs/twitter-api/spaces/lookup/api-reference/get-spaces)                               | [lookupByIds](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/SpacesService/lookupByIds.html)               |
 | [GET /2/spaces/:id](https://developer.twitter.com/en/docs/twitter-api/spaces/lookup/api-reference/get-spaces-id)                        | [lookupById](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/SpacesService/lookupById.html)                 |
@@ -346,32 +346,32 @@ void main() async {
 | [GET /2/spaces/:id/tweets](https://developer.twitter.com/en/docs/twitter-api/spaces/lookup/api-reference/get-spaces-id-tweets)          | [lookupTweets](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/SpacesService/lookupTweets.html)             |
 | [GET /2/spaces/by/creator_ids](https://developer.twitter.com/en/docs/twitter-api/spaces/lookup/api-reference/get-spaces-by-creator-ids) | [lookupByCreatorIds](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/SpacesService/lookupByCreatorIds.html) |
 
-### 1.2.4. Lists Service
+### 1.2.4. Service des listes
 
-#### 1.2.4.1. Lookup Lists
+#### 1.2.4.1. Listes de recherche
 
-| Endpoint                                                                                                                                   | Method Name                                                                                                         |
+| Point final                                                                                                                                   | Nom de la méthode                                                                                                         |
 | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
 | [GET /2/lists/:id](https://developer.twitter.com/en/docs/twitter-api/lists/list-lookup/api-reference/get-lists-id)                         | [lookupById](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/lookupById.html)       |
 | [GET /2/users/:id/owned_lists](https://developer.twitter.com/en/docs/twitter-api/lists/list-lookup/api-reference/get-users-id-owned_lists) | [lookupOwnedBy](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/lookupOwnedBy.html) |
 
-#### 1.2.4.2. Pinnings
+#### 1.2.4.2. Épinglages
 
-| Endpoint                                                                                                                                                             | Method Name                                                                                                                 |
+| Point final                                                                                                                                                             | Nom de la méthode                                                                                                                 |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
 | [POST /2/users/:id/pinned_lists](https://developer.twitter.com/en/docs/twitter-api/lists/pinned-lists/api-reference/post-users-id-pinned-lists)                      | [createPinnedList](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/createPinnedList.html)   |
 | [DELETE /2/users/:id/pinned_lists/:list_id](https://developer.twitter.com/en/docs/twitter-api/lists/pinned-lists/api-reference/delete-users-id-pinned-lists-list_id) | [destroyPinnedList](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/destroyPinnedList.html) |
 | [GET /2/users/:id/pinned_lists](https://developer.twitter.com/en/docs/twitter-api/lists/pinned-lists/api-reference/get-users-id-pinned_lists)                        | [lookupPinnedLists](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/lookupPinnedLists.html) |
 
-#### 1.2.4.3. Tweet Lookup
+#### 1.2.4.3. Recherche de tweet
 
-| Endpoint                                                                                                                         | Method Name                                                                                                       |
+| Point final                                                                                                                         | Nom de la méthode                                                                                                       |
 | -------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
 | [GET /2/lists/:id/tweets](https://developer.twitter.com/en/docs/twitter-api/lists/list-tweets/api-reference/get-lists-id-tweets) | [lookupTweets](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/lookupTweets.html) |
 
-#### 1.2.4.4. List Manage
+#### 1.2.4.4. Gérer la liste
 
-| Endpoint                                                                                                                  | Method Name                                                                                                                     |
+| Point final                                                                                                                  | Nom de la méthode                                                                                                                     |
 | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | [POST /2/lists](https://developer.twitter.com/en/docs/twitter-api/lists/manage-lists/api-reference/post-lists)            | [createPublicList](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/createPublicList.html)       |
 | [POST /2/lists](https://developer.twitter.com/en/docs/twitter-api/lists/manage-lists/api-reference/post-lists)            | [createPrivateList](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/createPrivateList.html)     |
@@ -379,56 +379,56 @@ void main() async {
 | [PUT /2/lists/:id](https://developer.twitter.com/en/docs/twitter-api/lists/manage-lists/api-reference/put-lists-id)       | [updateListAsPublic](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/updateListAsPublic.html)   |
 | [PUT /2/lists/:id](https://developer.twitter.com/en/docs/twitter-api/lists/manage-lists/api-reference/put-lists-id)       | [updateListAsPrivate](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/updateListAsPrivate.html) |
 
-#### 1.2.4.5. Follows
+#### 1.2.4.5. Suit
 
-| Endpoint                                                                                                                                                                 | Method Name                                                                                                                     |
+| Point final                                                                                                                                                                 | Nom de la méthode                                                                                                                     |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------- |
 | [POST /2/users/:id/followed_lists](https://developer.twitter.com/en/docs/twitter-api/lists/list-follows/api-reference/post-users-id-followed-lists)                      | [createFollow](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/createFollow.html)               |
 | [DELETE /2/users/:id/followed_lists/:list_id](https://developer.twitter.com/en/docs/twitter-api/lists/list-follows/api-reference/delete-users-id-followed-lists-list_id) | [destroyFollow](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/destroyFollow.html)             |
 | [GET /2/lists/:id/followers](https://developer.twitter.com/en/docs/twitter-api/lists/list-follows/api-reference/get-lists-id-followers)                                  | [lookupFollowers](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/lookupFollowers.html)         |
 | [GET /2/users/:id/followed_lists](https://developer.twitter.com/en/docs/twitter-api/lists/list-follows/api-reference/get-users-id-followed_lists)                        | [lookupFollowedLists](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/lookupFollowedLists.html) |
 
-#### 1.2.4.6. Members
+#### 1.2.4.6. Membres
 
-| Endpoint                                                                                                                                                   | Method Name                                                                                                                 |
+| Point final                                                                                                                                               | Nom de la méthode                                                                                                                 |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
 | [POST /2/lists/:id/members](https://developer.twitter.com/en/docs/twitter-api/lists/list-members/api-reference/post-lists-id-members)                      | [createMember](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/createMember.html)           |
 | [DELETE /2/lists/:id/members/:user_id](https://developer.twitter.com/en/docs/twitter-api/lists/list-members/api-reference/delete-lists-id-members-user_id) | [destroyMember](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/destroyMember.html)         |
 | [GET /2/lists/:id/members](https://developer.twitter.com/en/docs/twitter-api/lists/list-members/api-reference/get-lists-id-members)                        | [lookupMembers](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/lookupMembers.html)         |
 | [GET /2/users/:id/list_memberships](https://developer.twitter.com/en/docs/twitter-api/lists/list-members/api-reference/get-lists-id-members)               | [lookupMemberships](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/lookupMemberships.html) |
 
-### 1.2.5. Compliance Service
+### 1.2.5. Service de conformité
 
-#### 1.2.5.1. Batch Compliance
+#### 1.2.5.1. Conformité des lots
 
-| Endpoint                                                                                                                                         | Method Name                                                                                                        |
+| Point final                                                                                                                                         | Nom de la méthode                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
 | [POST /2/compliance/jobs](https://developer.twitter.com/en/docs/twitter-api/compliance/batch-compliance/api-reference/post-compliance-jobs)      | [createJob](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ComplianceService/createJob.html)   |
 | [GET /2/compliance/jobs](https://developer.twitter.com/en/docs/twitter-api/compliance/batch-compliance/api-reference/get-compliance-jobs)        | [lookupJobs](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ComplianceService/lookupJobs.html) |
 | [GET /2/compliance/jobs/:id](https://developer.twitter.com/en/docs/twitter-api/compliance/batch-compliance/api-reference/get-compliance-jobs-id) | [lookupJob](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ComplianceService/lookupJob.html)   |
 
-> **Note**</br>
-> Not all additional fields listed in the official documentation are supported. We intend to support them step by step. Also you can create an Issue or Pull Request if you wish to suggest or contribute!
+> **Remarque**</br>
+> Tous les champs supplémentaires répertoriés dans la documentation officielle ne sont pas pris en charge. Nous entendons les accompagner pas à pas. Vous pouvez également créer un problème ou une demande d'extraction si vous souhaitez suggérer ou contribuer !
 
-## 1.3. Tips 🏄
+## 1.3. Des astuces 🏄
 
-### 1.3.1. Method Names
+### 1.3.1. Noms de méthode
 
-`twitter_api_v2` uses the following standard prefixes depending on endpoint characteristics. So it's very easy to find the method corresponding to the endpoint you want to use!
+`twitter_api_v2` utilise les préfixes standard suivants en fonction des caractéristiques du terminal. Il est donc très facile de trouver la méthode correspondant au point de terminaison que vous souhaitez utiliser !
 
-| Prefix      | Description                                                                                                                                  |
+| Préfixe     | La description                                                                                                                                 |
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| **lookup**  | This prefix is attached to endpoints that reference tweets, users, etc. |
-| **search**  | This prefix is attached to endpoints that perform extensive searches.                                                                                |
-| **connect** | This prefix is attached to endpoints with high-performance streaming.                                                           |
-| **count**   | This prefix is attached to the endpoint that counts a particular item.                                                                                    |
-| **create**  | This prefix is attached to the endpoint performing the create state such as `Tweet` and `Follow`.                                            |
-| **destroy** | This prefix is attached to the endpoint performing the destroy state such as `Tweet` and `Follow`.                                           |
-| **update**  | This prefix is attached to the endpoint performing the update state.                                                                         |
+| **chercher**  | Ce préfixe est attaché aux points de terminaison qui référencent les tweets, les utilisateurs, etc. |
+| **chercher**  | Ce préfixe est associé aux points de terminaison qui effectuent des recherches approfondies.                                                       |
+| **relier** | Ce préfixe est associé aux points de terminaison avec un streaming hautes performances.                                                    |
+| **compter**   | Ce préfixe est attaché au point de terminaison qui compte un élément particulier.                                                                      |
+| **créer**  | Ce préfixe est attaché au point de terminaison exécutant l'état de création tel que `Tweet` et `Follow`.                                            |
+| **détruire** | Ce préfixe est attaché au point de terminaison exécutant l'état de destruction tel que  `Tweet` et `Follow`.                                           |
+| **mettre à jour**  | Ce préfixe est attaché au point de terminaison effectuant l'état de mise à jour.                                                   |
 
-### 1.3.2. Generate App-Only Bearer Token
+### 1.3.2. Générer un jeton porteur uniquement pour l'application
 
-`twitter_api_v2` provides utility to generate/find your app-only bearer token.
+`twitter_api_v2` fournit un utilitaire pour générer/trouver votre jeton de support d'application uniquement.
 
 ```dart
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
@@ -443,14 +443,13 @@ void main() async {
 }
 ```
 
-### 1.3.3. Null Parameter at Request
+### 1.3.3. Paramètre nul à la demande
 
-In this library, parameters that are not required at request time, i.e., optional parameters, are defined as nullable.
-However, developers do not need to be aware of the null parameter when sending requests when using this library.
+Dans cette bibliothèque, les paramètres qui ne sont pas requis au moment de la demande, c'est-à-dire les paramètres facultatifs, sont définis comme nullables. Cependant, les développeurs n'ont pas besoin d'être conscients du paramètre null lors de l'envoi de requêtes lors de l'utilisation de cette bibliothèque.
 
-It means the parameters specified with a null value are safely removed and ignored before the request is sent.
+Cela signifie que les paramètres spécifiés avec une valeur nulle sont supprimés en toute sécurité et ignorés avant l'envoi de la demande.
 
-For example, arguments specified with null are ignored in the following request.
+Par exemple, les arguments spécifiés avec null sont ignorés dans la requête suivante.
 
 ```dart
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
@@ -467,13 +466,13 @@ void main() async {
 }
 ```
 
-### 1.3.4. Expand Object Fields with `expansions`
+### 1.3.4. Développez les champs d'objet avec `expansions`
 
-For example, there may be a situation where data contains only an ID, and you want to retrieve the data object associated with that ID as well. In such cases, the `Twitter API v2.0` specification called `expansions` is useful, and this library supports that specification.
+Par exemple, il peut arriver que les données contiennent uniquement un ID et que vous souhaitiez également récupérer l'objet de données associé à cet ID. Dans de tels cas, la `Twitter API v2.0` spécification appelée `expansions` est utile et cette bibliothèque prend en charge cette spécification.
 
-Basically it can be used in endpoints that perform GET communication such as `lookup` and `search` processing. Some fields may also be included in the `includes` property of [TwitterResponse](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TwitterResponse-class.html).
+Fondamentalement, il peut être utilisé dans les points de terminaison qui effectuent une communication GET telle que le `lookup` traitement `search` Certains champs peuvent également être inclus dans la `includes` propriété de [TwitterResponse](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TwitterResponse-class.html).
 
-You can use `expansions` like below:
+Vous pouvez utiliser `expansions` comme ci-dessous :
 
 ```dart
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
@@ -498,15 +497,15 @@ void main() async {
 }
 ```
 
-You can see more details about `expansions` from [Official Documentation](https://developer.twitter.com/en/docs/twitter-api/expansions).
+Vous pouvez voir plus de détails sur la `expansions` [documentation officielle .](https://developer.twitter.com/en/docs/twitter-api/expansions).
 
-### 1.3.5. Expand Object Fields with `fields`
+### 1.3.5. Développez les champs d'objet avec `fields`
 
-`Twitter API v2.0` supports a very interesting specification, allowing users to control the amount of data contained in the response object for each endpoint depending on the situation. It's called `fields`, and this library supports this specification.
+`Twitter API v2.0` prend en charge une spécification très intéressante, permettant aux utilisateurs de contrôler la quantité de données contenues dans l'objet de réponse pour chaque point de terminaison en fonction de la situation. Elle s'appelle `fields`,  et cette bibliothèque prend en charge cette spécification.
 
-Basically it can be used in endpoints that perform GET communication such as `lookup` and `search` processing. Some fields may also be included in the `includes` field of [TwitterResponse](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TwitterResponse-class.html).
+Fondamentalement, il peut être utilisé dans les points de terminaison qui effectuent une communication GET telle que le `lookup` traitement `search` Certains champs peuvent également être inclus dans le `includes` champ de [TwitterResponse](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TwitterResponse-class.html).
 
-You can use `fields` like below:
+Vous pouvez utiliser `fields` comme ci-dessous :
 
 ```dart
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
@@ -536,35 +535,35 @@ void main() async {
 }
 ```
 
-> **Note**</br>
-> Some fields must be combined with `expansions`.
+> **Remarque**</br>
+> Certains champs doivent être combinés avec `expansions`.
 
-You can see more details about `fields` from [Official Documentation](https://developer.twitter.com/en/docs/twitter-api/fields).
+`fields`Vous pouvez voir plus de détails sur la [documentation officielle .](https://developer.twitter.com/en/docs/twitter-api/fields).
 
 ## 1.4. Contribution 🏆
 
-If you would like to contribute to `twitter_api_v2`, please create an [issue](https://github.com/twitter-dart/twitter-api-v2/issues) or create a Pull Request.
+Si vous souhaitez contribuer à `twitter_api_v2`, veuillez créer un [issue](https://github.com/twitter-dart/twitter-api-v2/issues) ou créer une demande d'extraction.
 
-There are many ways to contribute to the OSS. For example, the following subjects can be considered:
+Il existe de nombreuses façons de contribuer à l'OSS. Par exemple, les sujets suivants peuvent être considérés :
 
-- There are request parameters or response fields that are not implemented.
-- Documentation is outdated or incomplete.
-- Have a better way or idea to achieve the functionality.
+- Certains paramètres de requête ou champs de réponse ne sont pas implémentés.
+- La documentation est obsolète ou incomplète.
+- voir une meilleure façon ou une meilleure idée pour réaliser la fonctionnalité.
 - etc...
 
-You can see more details from resources below:
+Vous pouvez voir plus de détails à partir des ressources ci-dessous :
 
-- [Contributor Covenant Code of Conduct](https://github.com/twitter-dart/twitter-api-v2/blob/main/CODE_OF_CONDUCT.md)
-- [Contribution Guidelines](https://github.com/twitter-dart/twitter-api-v2/blob/main/CONTRIBUTING.md)
-- [Style Guide](https://github.com/twitter-dart/twitter-api-v2/blob/main/STYLEGUIDE.md)
+- [Code de conduite de l'engagement des contributeurs](https://github.com/twitter-dart/twitter-api-v2/blob/main/CODE_OF_CONDUCT.md)
+- [Lignes directrices sur les contributions](https://github.com/twitter-dart/twitter-api-v2/blob/main/CONTRIBUTING.md)
+- [Guide de style](https://github.com/twitter-dart/twitter-api-v2/blob/main/STYLEGUIDE.md)
 
-Or you can create a [discussion](https://github.com/twitter-dart/twitter-api-v2/discussions) if you like.
+Ou vous pouvez créer une [discussion](https://github.com/twitter-dart/twitter-api-v2/discussions) si vous le souhaitez.
 
-**Feel free to join this development, diverse opinions make software better!**
+**N'hésitez pas à rejoindre ce développement, diverses opinions rendent le logiciel meilleur !**
 
-## 1.5. Contributors ✨
+## 1.5. Contributeurs ✨
 
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+Merci à ces gens merveilleux ([clé emoji](https://allcontributors.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -589,13 +588,13 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+Ce projet suit la spécification [all-contributors](https://github.com/all-contributors/all-contributors) Les contributions de toute nature sont les bienvenues !
 
-## 1.6. Support ❤️
+## 1.6. Soutien ❤️
 
-The simplest way to show us your support is by **giving the project a star** at [GitHub](https://github.com/twitter-dart/twitter-api-v2) and [Pub.dev](https://pub.dev/packages/twitter_api_v2).
+Le moyen le plus simple de nous montrer votre soutien est de donner au projet une étoile sur **giving the project a star**  [GitHub](https://github.com/twitter-dart/twitter-api-v2) et [Pub.dev](https://pub.dev/packages/twitter_api_v2).
 
-You can also support this project by **becoming a sponsor** on GitHub:
+Vous pouvez également soutenir ce projet en **becoming a sponsor** sur GitHub:
 
 <div align="left">
   <p>
@@ -605,7 +604,7 @@ You can also support this project by **becoming a sponsor** on GitHub:
   </p>
 </div>
 
-You can also show on your repository that your app is made with `twitter_api_v2` by using one of the following badges:
+Vous pouvez également afficher sur votre référentiel avec lequel votre application est créée `twitter_api_v2` en utilisant l'un des badges suivants :
 
 [![Powered by twitter_api_v2](https://img.shields.io/badge/Powered%20by-twitter_api_v2-00acee.svg)](https://github.com/twitter-dart/twitter-api-v2)
 [![Powered by twitter_api_v2](https://img.shields.io/badge/Powered%20by-twitter_api_v2-00acee.svg?style=flat-square)](https://github.com/twitter-dart/twitter-api-v2)
@@ -617,21 +616,22 @@ You can also show on your repository that your app is made with `twitter_api_v2`
 [![Powered by twitter_api_v2](https://img.shields.io/badge/Powered%20by-twitter_api_v2-00acee.svg?style=for-the-badge)](https://github.com/twitter-dart/twitter-api-v2)
 ```
 
-## 1.7. License 🔑
+## 1.7. Licence 🔑
 
-All resources of `twitter_api_v2` is provided under the `BSD-3` license.
+Toutes les ressources de `twitter_api_v2` sont fournies sous `BSD-3` licence.
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Ftwitter-dart%2Ftwitter-api-v2.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Ftwitter-dart%2Ftwitter-api-v2?ref=badge_large)
 
-> **Note**</br>
-> License notices in the source are strictly validated based on `.github/header-checker-lint.yml`. Please check [header-checker-lint.yml](https://github.com/twitter-dart/twitter-api-v2/tree/main/.github/header-checker-lint.yml) for the permitted standards.
+> **Remarque**</br>
+> Les mentions de licence dans la source sont strictement validées sur la base de `.github/header-checker-lint.yml`. Veuillez vérifier[header-checker-lint.yml](https://github.com/twitter-dart/twitter-api-v2/tree/main/.github/header-checker-lint.yml)  pour les normes autorisées.
 
-## 1.8. More Information 🧐
 
-`twitter_api_v2` was designed and implemented by **_Kato Shinya ([@myConsciousness](https://github.com/myConsciousness))_**.
+## 1.8. Plus d'information 🧐
 
-- [Creator Profile](https://github.com/myConsciousness)
-- [License](https://github.com/twitter-dart/twitter-api-v2/blob/main/LICENSE)
-- [API Document](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/twitter_api_v2-library.html)
-- [Release Note](https://github.com/twitter-dart/twitter-api-v2/releases)
-- [Bug Report](https://github.com/twitter-dart/twitter-api-v2/issues)
+`twitter_api_v2` a été conçu et mis en œuvre par **_Kato Shinya ([@myConsciousness](https://github.com/myConsciousness))_**.
+
+- [Profil du créateur](https://github.com/myConsciousness)
+- [Licence](https://github.com/twitter-dart/twitter-api-v2/blob/main/LICENSE)
+- [Document d'API](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/twitter_api_v2-library.html)
+- [Note de version](https://github.com/twitter-dart/twitter-api-v2/releases)
+- [Rapport d'erreur](https://github.com/twitter-dart/twitter-api-v2/issues)

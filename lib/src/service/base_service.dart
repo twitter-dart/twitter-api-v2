@@ -12,8 +12,8 @@ import 'package:http/http.dart' as http;
 import '../client/client_context.dart';
 import '../client/user_context.dart';
 import '../twitter_exception.dart';
-import 'includes.dart';
-import 'serializable.dart';
+import 'common/includes.dart';
+import 'common/serializable.dart';
 import 'twitter_response.dart';
 
 abstract class Service {

@@ -1,7 +1,21 @@
 # Release Note
 
+## v2.6.0
+
+- Added `FilteredStreamResponse` as the return type of `Filtered Stream` endpoint. And now we can see the IDs and tags of the rules matched in the streaming from the `FilteredStreamResponse.matchingRules` field. The `FilteredStreamResponse` extends `TwitterResponse`, so there are no destructive changes. ([#226](https://github.com/twitter-dart/twitter-api-v2/issues/226))
+- Added translated READMEs. ([#213](https://github.com/twitter-dart/twitter-api-v2/issues/213))
+  - Japanese
+  - French
+  - Vietnamese
+  - Bengali
+
 ## v2.5.0
 
+- Added `spaceFields` argument. ([#184](https://github.com/twitter-dart/twitter-api-v2/issues/184))
+  - GET /2/spaces/search
+  - GET /2/spaces
+  - GET /2/spaces/:id
+  - GET /2/spaces/by/creator_ids
 - Added `pollFields` argument. ([#181](https://github.com/twitter-dart/twitter-api-v2/issues/181))
   - GET /2/users/:id/bookmarks
   - GET /2/tweets/search/stream
@@ -38,6 +52,7 @@
   - GET /2/spaces/:id/tweets
 - `PlaceData` class is migrated to `Geo` class, and updated `PlaceData` parameters.
 - `PlaceCoordinates` class is migrated to `GeoCoordinates` class, and updated `PlaceCoordinates` paramters.
+- Changed the type of `lang` field from `String?` to `TweetLanguage?`. ([#207](https://github.com/twitter-dart/twitter-api-v2/issues/207))
 
 ## v2.4.2
 

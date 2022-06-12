@@ -3,7 +3,7 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
-import 'includes.dart';
+import 'common/includes.dart';
 
 /// The class represents the response from Twitter API v2.
 class TwitterResponse<D, M> {

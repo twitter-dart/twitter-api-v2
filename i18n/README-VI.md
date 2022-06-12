@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <b>The Lightweight and Cross-Platform Wrapper for Twitter API v2.0 🐦</b>
+  <b>Thư viện đóng gói Twitter API v2.0 nhẹ và đa nền tảng 🐦</b>
 </p>
 
 ---
@@ -32,79 +32,79 @@
 
 ---
 
-| English | [日本語](https://github.com/twitter-dart/twitter-api-v2/blob/main/i18n/README-JA.md) | [Français](https://github.com/twitter-dart/twitter-api-v2/blob/main/i18n/README-FR.md) | [Tiếng Việt](https://github.com/twitter-dart/twitter-api-v2/blob/main/i18n/README-VI.md) | [বাংলা](https://github.com/twitter-dart/twitter-api-v2/blob/main/i18n/README-BN.md) |
+| [English](https://github.com/twitter-dart/twitter-api-v2/blob/main/README.md) | [日本語](https://github.com/twitter-dart/twitter-api-v2/blob/main/i18n/README-JA.md) | [Français](https://github.com/twitter-dart/twitter-api-v2/blob/main/i18n/README-FR.md) | Tiếng Việt | [বাংলা](https://github.com/twitter-dart/twitter-api-v2/blob/main/i18n/README-BN.md) |
 
 ---
 
 <!-- TOC -->
 
-- [1. Guide 🌎](#1-guide-)
-  - [1.1. Getting Started ⚡](#11-getting-started-)
-    - [1.1.1. Install Library](#111-install-library)
+- [1. Hướng dẫn 🌎](#1-hướng-dẫn-)
+  - [1.1. Bắt đầu ⚡](#11-bắt-đầu-)
+    - [1.1.1. Cài đặt thư viện](#111-cài-đặt-thư-viện)
     - [1.1.2. Import](#112-import)
     - [1.1.3. Implementation](#113-implementation)
-  - [1.2. Supported Endpoints 👀](#12-supported-endpoints-)
-    - [1.2.1. Tweets Service](#121-tweets-service)
+  - [1.2. Các Endpoint được hỗ trợ 👀](#12-các-endpoint-được-hỗ-trợ-)
+    - [1.2.1. Các Tweet Service](#121-các-tweet-service)
       - [1.2.1.1. Tweet](#1211-tweet)
-      - [1.2.1.2. Likes](#1212-likes)
-      - [1.2.1.3. Retweets](#1213-retweets)
-      - [1.2.1.4. Quote Tweets](#1214-quote-tweets)
-      - [1.2.1.5. Search Tweets](#1215-search-tweets)
-      - [1.2.1.6. Lookup Tweets](#1216-lookup-tweets)
-      - [1.2.1.7. Tweet Counts](#1217-tweet-counts)
-      - [1.2.1.8. Bookmarks](#1218-bookmarks)
-      - [1.2.1.9. Timelines](#1219-timelines)
-      - [1.2.1.10. Hide Replies](#12110-hide-replies)
+      - [1.2.1.2. Các lượt thích](#1212-các-lượt-thích)
+      - [1.2.1.3. Các lượt Retweet](#1213-các-lượt-retweet)
+      - [1.2.1.4. Các Tweet trích dẫn](#1214-các-tweet-trích-dẫn)
+      - [1.2.1.5. Tìm kiếm các Tweet](#1215-tìm-kiếm-các-tweet)
+      - [1.2.1.6. Tra cứu các Tweet](#1216-tra-cứu-các-tweet)
+      - [1.2.1.7. Đếm các Tweet](#1217-đếm-các-tweet)
+      - [1.2.1.8. Các đánh dấu (Bookmarks)](#1218-các-đánh-dấu-bookmarks)
+      - [1.2.1.9. Các dòng thời gian (Timelines)](#1219-các-dòng-thời-gian-timelines)
+      - [1.2.1.10. Các phản hồi đã ẩn](#12110-các-phản-hồi-đã-ẩn)
       - [1.2.1.11. Volume Stream](#12111-volume-stream)
-      - [1.2.1.12. Filtered Stream](#12112-filtered-stream)
-    - [1.2.2. Users Service](#122-users-service)
-      - [1.2.2.1. Follows](#1221-follows)
-      - [1.2.2.2. Lookup Users](#1222-lookup-users)
-      - [1.2.2.3. Users Mutes](#1223-users-mutes)
-      - [1.2.2.4. Blocks](#1224-blocks)
-    - [1.2.3. Spaces Service](#123-spaces-service)
-      - [1.2.3.1. Search Spaces](#1231-search-spaces)
-      - [1.2.3.2. Lookup Spaces](#1232-lookup-spaces)
-    - [1.2.4. Lists Service](#124-lists-service)
-      - [1.2.4.1. Lookup Lists](#1241-lookup-lists)
-      - [1.2.4.2. Pinnings](#1242-pinnings)
-      - [1.2.4.3. Tweet Lookup](#1243-tweet-lookup)
-      - [1.2.4.4. List Manage](#1244-list-manage)
-      - [1.2.4.5. Follows](#1245-follows)
-      - [1.2.4.6. Members](#1246-members)
+      - [1.2.1.12. Stream đã được lọc](#12112-stream-đã-được-lọc)
+    - [1.2.2. Service về người dùng](#122-service-về-người-dùng)
+      - [1.2.2.1. Các lượt theo dõi](#1221-các-lượt-theo-dõi)
+      - [1.2.2.2. Tra cứ người dùng](#1222-tra-cứ-người-dùng)
+      - [1.2.2.3. Tắt tiếng người dùng](#1223-tắt-tiếng-người-dùng)
+      - [1.2.2.4. Chặn](#1224-chặn)
+    - [1.2.3. Service về các Space](#123-service-về-các-space)
+      - [1.2.3.1. Tìm kiếm các Space](#1231-tìm-kiếm-các-space)
+      - [1.2.3.2. Tra cứu các Space](#1232-tra-cứu-các-space)
+    - [1.2.4. Service về danh sách](#124-service-về-danh-sách)
+      - [1.2.4.1. Tra cứu các danh sách](#1241-tra-cứu-các-danh-sách)
+      - [1.2.4.2. Các Ghim](#1242-các-ghim)
+      - [1.2.4.3. Tra cứu Tweet](#1243-tra-cứu-tweet)
+      - [1.2.4.4. Quản lý danh sách](#1244-quản-lý-danh-sách)
+      - [1.2.4.5. Các lượt theo dõi](#1245-các-lượt-theo-dõi)
+      - [1.2.4.6. Các thành viên](#1246-các-thành-viên)
     - [1.2.5. Compliance Service](#125-compliance-service)
       - [1.2.5.1. Batch Compliance](#1251-batch-compliance)
-  - [1.3. Tips 🏄](#13-tips-)
-    - [1.3.1. Method Names](#131-method-names)
-    - [1.3.2. Generate App-Only Bearer Token](#132-generate-app-only-bearer-token)
-    - [1.3.3. Null Parameter at Request](#133-null-parameter-at-request)
-    - [1.3.4. Expand Object Fields with `expansions`](#134-expand-object-fields-with-expansions)
-    - [1.3.5. Expand Object Fields with `fields`](#135-expand-object-fields-with-fields)
-  - [1.4. Contribution 🏆](#14-contribution-)
-  - [1.5. Contributors ✨](#15-contributors-)
-  - [1.6. Support ❤️](#16-support-️)
-  - [1.7. License 🔑](#17-license-)
-  - [1.8. More Information 🧐](#18-more-information-)
+  - [1.3. Các mẹo 🏄](#13-các-mẹo-)
+    - [1.3.1. Tên các phương thức](#131-tên-các-phương-thức)
+    - [1.3.2. Tạo App-Only Bearer Token](#132-tạo-app-only-bearer-token)
+    - [1.3.3. Tham số Null trong Request](#133-tham-số-null-trong-request)
+    - [1.3.4. Mở rộng các trường của đối tượng với `expansions`](#134-mở-rộng-các-trường-của-đối-tượng-với-expansions)
+    - [1.3.5. Mở rộng các trường của đối tượng với `fields`](#135-mở-rộng-các-trường-của-đối-tượng-với-fields)
+  - [1.4. Sự đóng góp 🏆](#14-sự-đóng-góp-)
+  - [1.5. Những người đóng góp ✨](#15-những-người-đóng-góp-)
+  - [1.6. Ủng hộ ❤️](#16-ủng-hộ-️)
+  - [1.7. Giấy phép 🔑](#17-giấy-phép-)
+  - [1.8. Thông tin thêm 🧐](#18-thông-tin-thêm-)
 
 <!-- /TOC -->
 
-# 1. Guide 🌎
+# 1. Hướng dẫn 🌎
 
-This library provides the easiest way to use [Twitter API v2.0](https://developer.twitter.com/en/docs/twitter-api/data-dictionary/introduction) in **Dart** and **Flutter** apps.
+Thư viện này cung cấp cách dễ nhất để dùng [Twitter API v2.0](https://developer.twitter.com/en/docs/twitter-api/data-dictionary/introduction) trong **Dart** và các ứng dụng **Flutter**.
 
-**Show some ❤️ and star the repo to support the project.**
+**Hãy thả ❤️ và star cho repo này dể ủng hộ dự án!.**
 
-## 1.1. Getting Started ⚡
+## 1.1. Bắt đầu ⚡
 
-### 1.1.1. Install Library
+### 1.1.1. Cài đặt thư viện
 
-**With Dart:**
+**Với Dart:**
 
 ```bash
  dart pub add twitter_api_v2
 ```
 
-**Or With Flutter:**
+**Hoặc với Flutter:**
 
 ```bash
  flutter pub add twitter_api_v2
@@ -120,20 +120,23 @@ import 'package:twitter_api_v2/twitter_api_v2';
 
 ```dart
 void main() async {
-  //! You need to get keys and tokens at https://developer.twitter.com
+  //! Bạn cần có các key và token ở trang https://developer.twitter.com
   final twitter = v2.TwitterApi(
-    //! Authentication with OAuth2.0 is the default.
+    //! Xác thực (Authentication) với OAuth2.0 là mặc định.
     //!
-    //! Note that to use endpoints that require certain user permissions,
-    //! such as Tweets and Likes, you need a token issued by OAuth2.0 PKCE.
+    //! Lưu ý rằng để sử dụng các endpoint này cần các quyền cụ thể của người dùng,
+    //! như các lượt tweet và lượt thích, bạn cần có một token được tạo ra bởi OAuth2.0 PKCE.
+
     bearerToken: 'YOUR_TOKEN_HERE',
 
-    //! Or perhaps you would prefer to use the good old OAuth1.0a method
-    //! over the OAuth2.0 PKCE method. Then you can use the following code
-    //! to set the OAuth1.0a tokens.
+    //! Hoặc có thể bạn sẽ thích sử dụng phương thức OAuth1.0a
+    //! hơn phương thức OAuth2.0 PKCE. Thì bạn có thể sử dụng code sau đây
+    //! để thiết lập OAuth1.0a token.
     //!
-    //! However, note that some endpoints cannot be used for OAuth 1.0a method
-    //! authentication.
+    //! Tuy nhiên, lưu ý rằng một vài endpoint không thể sử dụng phương thức OAuth 1.0a
+    //! để xác thực.
+
+
     oauthTokens: v2.OAuthTokens(
       consumerKey: 'YOUR_CONSUMER_KEY_HERE',
       consumerSecret: 'YOUR_CONSUMER_SECRET_HERE',
@@ -143,13 +146,13 @@ void main() async {
   );
 
   try {
-    // Get the authenticated user's profile.
+    // Lấy về hồ sơ (profile) của người dùng đã xác thực
     final me = await twitter.usersService.lookupMe();
-    // Get the tweets associated with the search query.
+    // Lấy về các tweet với truy vấn tìm kiếm (query) tương ứng.
     final tweets = await twitter.tweetsService.searchRecent(
       query: '#ElonMusk',
       maxResults: 20,
-      // You can expand the search result.
+      // Bạn có thể mở rộng kết quả tìm kiếm.
       expansions: [
         v2.TweetExpansion.authorId,
         v2.TweetExpansion.inReplyToUserId,
@@ -171,13 +174,13 @@ void main() async {
       tweetId: tweets.data.first.id,
     );
 
-    // High-performance Volume Stream endpoint is available.
+    // Stream endpoint với High-performance Volume thì có sẵn.
     final volumeStream = await twitter.tweetsService.connectVolumeStream();
     await for (final response in volumeStream.handleError(print)) {
       print(response);
     }
 
-    // Also high-performance Filtered Stream endpoint is available.
+    // Stream endpoint với hiệu suất lọc cao cũng có sẵn.
     await twitter.tweetsService.createFilteringRules(
       rules: [
         v2.FilteringRuleData(value: '#ElonMusk'),
@@ -199,112 +202,112 @@ void main() async {
 }
 ```
 
-## 1.2. Supported Endpoints 👀
+## 1.2. Các Endpoint được hỗ trợ 👀
 
-### 1.2.1. Tweets Service
+### 1.2.1. Các Tweet Service
 
 #### 1.2.1.1. Tweet
 
-| Endpoint                                                                                                                      | Method Name                                                                                                        |
+| Endpoint                                                                                                                      | Tên Phương Thức                                                                                                        |
 | ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | [POST /2/tweets](https://developer.twitter.com/en/docs/twitter-api/tweets/manage-tweets/api-reference/post-tweets)            | [createTweet](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/createTweet.html)   |
 | [DELETE /2/tweets/:id](https://developer.twitter.com/en/docs/twitter-api/tweets/manage-tweets/api-reference/delete-tweets-id) | [destroyTweet](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/destroyTweet.html) |
 
-#### 1.2.1.2. Likes
+#### 1.2.1.2. Các lượt thích
 
-| Endpoint                                                                                                                                           | Method Name                                                                                                                  |
+| Endpoint                                                                                                                                           | Tên Phương Thức                                                                                                                  |
 | -------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | [POST /2/users/:id/likes](https://developer.twitter.com/en/docs/twitter-api/tweets/likes/api-reference/post-users-id-likes)                        | [createLike](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/createLike.html)               |
 | [DELETE /2/users/:id/likes/:tweet_id](https://developer.twitter.com/en/docs/twitter-api/tweets/likes/api-reference/delete-users-id-likes-tweet_id) | [destroyLike](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/destroyLike.html)             |
 | [GET /2/tweets/:id/liking_users](https://developer.twitter.com/en/docs/twitter-api/tweets/likes/api-reference/get-tweets-id-liking_users)          | [lookupLikingUsers](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupLikingUsers.html) |
 | [GET /2/users/:id/liked_tweets](https://developer.twitter.com/en/docs/twitter-api/tweets/likes/api-reference/get-users-id-liked_tweets)            | [lookupLikedTweets](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupLikedTweets.html) |
 
-#### 1.2.1.3. Retweets
+#### 1.2.1.3. Các lượt Retweet
 
-| Endpoint                                                                                                                                                           | Method Name                                                                                                                        |
+| Endpoint                                                                                                                                                           | Tên Phương Thức                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
 | [POST /2/users/:id/retweets](https://developer.twitter.com/en/docs/twitter-api/tweets/retweets/api-reference/post-users-id-retweets)                               | [createRetweet](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/createRetweet.html)               |
 | [DELETE /2/users/:id/retweets/:source_tweet_id](https://developer.twitter.com/en/docs/twitter-api/tweets/retweets/api-reference/delete-users-id-retweets-tweet_id) | [destroyRetweet](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/destroyRetweet.html)             |
 | [GET /2/tweets/:id/retweeted_by](https://developer.twitter.com/en/docs/twitter-api/tweets/retweets/api-reference/get-tweets-id-retweeted_by)                       | [lookupRetweetedUsers](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupRetweetedUsers.html) |
 
-#### 1.2.1.4. Quote Tweets
+#### 1.2.1.4. Các Tweet trích dẫn
 
-| Endpoint                                                                                                                                         | Method Name                                                                                                                  |
+| Endpoint                                                                                                                                         | Tên Phương Thức                                                                                                                  |
 | ------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------- |
 | [GET /2/tweets/:id/quote_tweets](https://developer.twitter.com/en/docs/twitter-api/tweets/quote-tweets/api-reference/get-tweets-id-quote_tweets) | [lookupQuoteTweets](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupQuoteTweets.html) |
 
-#### 1.2.1.5. Search Tweets
+#### 1.2.1.5. Tìm kiếm các Tweet
 
-| Endpoint                                                                                                                              | Method Name                                                                                                        |
+| Endpoint                                                                                                                              | Tên Phương Thức                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | [GET /2/tweets/search/all](https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-all)       | [searchAll](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/searchAll.html)       |
 | [GET /2/tweets/search/recent](https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-recent) | [searchRecent](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/searchRecent.html) |
 
-#### 1.2.1.6. Lookup Tweets
+#### 1.2.1.6. Tra cứu các Tweet
 
-| Endpoint                                                                                                         | Method Name                                                                                                      |
+| Endpoint                                                                                                         | Tên Phương Thức                                                                                                      |
 | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | [GET /2/tweets](https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference/get-tweets)        | [lookupByIds](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupByIds.html) |
 | [GET /2/tweets/:id](https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference/get-tweets-id) | [lookupById](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupByIds.html)  |
 
-#### 1.2.1.7. Tweet Counts
+#### 1.2.1.7. Đếm các Tweet
 
-| Endpoint                                                                                                                              | Method Name                                                                                                      |
+| Endpoint                                                                                                                              | Tên Phương Thức                                                                                                      |
 | ------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | [GET /2/tweets/counts/all](https://developer.twitter.com/en/docs/twitter-api/tweets/counts/api-reference/get-tweets-counts-all)       | [countAll](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/countAll.html)       |
 | [GET /2/tweets/counts/recent](https://developer.twitter.com/en/docs/twitter-api/tweets/counts/api-reference/get-tweets-counts-recent) | [countRecent](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/countRecent.html) |
 
-#### 1.2.1.8. Bookmarks
+#### 1.2.1.8. Các đánh dấu (Bookmarks)
 
-| Endpoint                                                                                                                                                       | Method Name                                                                                                              |
+| Endpoint                                                                                                                                                       | Tên Phương Thức                                                                                                              |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | [POST /2/users/:id/bookmarks](https://developer.twitter.com/en/docs/twitter-api/tweets/bookmarks/api-reference/post-users-id-bookmarks)                        | [createBookmark](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/createBookmark.html)   |
 | [DELETE /2/users/:id/bookmarks/:tweet_id](https://developer.twitter.com/en/docs/twitter-api/tweets/bookmarks/api-reference/delete-users-id-bookmarks-tweet_id) | [destroyBookmark](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/destroyBookmark.html) |
 | [GET /2/users/:id/bookmarks](https://developer.twitter.com/en/docs/twitter-api/tweets/bookmarks/api-reference/get-users-id-bookmarks)                          | [lookupBookmarks](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupBookmarks.html) |
 
-#### 1.2.1.9. Timelines
+#### 1.2.1.9. Các dòng thời gian (Timelines)
 
-| Endpoint                                                                                                                                                                | Method Name                                                                                                                    |
+| Endpoint                                                                                                                                                                | Tên Phương Thức                                                                                                                    |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | [GET /2/users/:id/mentions](https://developer.twitter.com/en/docs/twitter-api/tweets/timelines/api-reference/get-users-id-mentions)                                     | [lookupMentions](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupMentions.html)         |
 | [GET /2/users/:id/tweets](https://developer.twitter.com/en/docs/twitter-api/tweets/timelines/api-reference/get-users-id-tweets)                                         | [lookupTweets](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupTweets.html)             |
 | [GET /2/users/:id/timelines/reverse_chronological](https://developer.twitter.com/en/docs/twitter-api/tweets/timelines/api-reference/get-users-id-reverse-chronological) | [lookupHomeTimeline](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupHomeTimeline.html) |
 
-#### 1.2.1.10. Hide Replies
+#### 1.2.1.10. Các phản hồi đã ẩn
 
-| Endpoint                                                                                                                             | Method Name                                                                                                                    |
+| Endpoint                                                                                                                             | Tên Phương Thức                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
 | [PUT /2/tweets/:id/hidden](https://developer.twitter.com/en/docs/twitter-api/tweets/hide-replies/api-reference/put-tweets-id-hidden) | [createHiddenReply](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/createHiddenReply.html)   |
 | [PUT /2/tweets/:id/hidden](https://developer.twitter.com/en/docs/twitter-api/tweets/hide-replies/api-reference/put-tweets-id-hidden) | [destroyHiddenReply](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/destroyHiddenReply.html) |
 
 #### 1.2.1.11. Volume Stream
 
-| Endpoint                                                                                                                                      | Method Name                                                                                                                      |
+| Endpoint                                                                                                                                      | Tên Phương Thức                                                                                                                      |
 | --------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | [GET /2/tweets/sample/stream](https://developer.twitter.com/en/docs/twitter-api/tweets/volume-streams/api-reference/get-tweets-sample-stream) | [connectVolumeStream](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/connectVolumeStream.html) |
 
-#### 1.2.1.12. Filtered Stream
+#### 1.2.1.12. Stream đã được lọc
 
-| Endpoint                                                                                                                                                     | Method Name                                                                                                                          |
+| Endpoint                                                                                                                                                     | Tên Phương Thức                                                                                                                          |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
 | [POST /2/tweets/search/stream/rules](https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/api-reference/post-tweets-search-stream-rules) | [createFilteringRules](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/createFilteringRules.html)   |
 | [GET /2/tweets/search/stream/rules](https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/api-reference/get-tweets-search-stream-rules)   | [lookupFilteringRules](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupFilteringRules.html)   |
 | [GET /2/tweets/search/stream](https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/api-reference/get-tweets-search-stream)               | [connectFilteredStream](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/connectFilteredStream.html) |
 
-### 1.2.2. Users Service
+### 1.2.2. Service về người dùng
 
-#### 1.2.2.1. Follows
+#### 1.2.2.1. Các lượt theo dõi
 
-| Endpoint                                                                                                                                                                    | Method Name                                                                                                               |
+| Endpoint                                                                                                                                                                    | Tên Phương Thức                                                                                                               |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | [POST /2/users/:id/following](https://developer.twitter.com/en/docs/twitter-api/users/follows/api-reference/post-users-source_user_id-following)                            | [createFollow](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/createFollow.html)         |
 | [DELETE /2/users/:source_user_id/following/:target_user_id](https://developer.twitter.com/en/docs/twitter-api/users/follows/api-reference/delete-users-source_id-following) | [destroyFollow](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/destroyFollow.html)       |
 | [GET /2/users/:id/followers](https://developer.twitter.com/en/docs/twitter-api/users/follows/api-reference/get-users-id-followers)                                          | [lookupFollowers](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/lookupFollowers.html)   |
 | [GET /2/users/:id/following](https://developer.twitter.com/en/docs/twitter-api/users/follows/api-reference/get-users-id-following)                                          | [lookupFollowings](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/lookupFollowings.html) |
 
-#### 1.2.2.2. Lookup Users
+#### 1.2.2.2. Tra cứ người dùng
 
-| Endpoint                                                                                                                                          | Method Name                                                                                                         |
+| Endpoint                                                                                                                                          | Tên Phương Thức                                                                                                         |
 | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
 | [GET /2/users](https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users)                                            | [lookupByIds](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/lookupByIds.html)     |
 | [GET /2/users/:id](https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users-id)                                     | [lookupById](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/lookupById.html)       |
@@ -312,33 +315,33 @@ void main() async {
 | [GET /2/users/by/username/:username](https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users-by-username-username) | [lookupByName](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/lookupByName.html)   |
 | [GET /2/users/me](https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users-me)                                      | [lookupMe](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/lookupMe.html)           |
 
-#### 1.2.2.3. Users Mutes
+#### 1.2.2.3. Tắt tiếng người dùng
 
-| Endpoint                                                                                                                                                          | Method Name                                                                                                                 |
+| Endpoint                                                                                                                                                          | Tên Phương Thức                                                                                                                 |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
 | [POST /2/users/:id/muting](https://developer.twitter.com/en/docs/twitter-api/users/mutes/api-reference/post-users-user_id-muting)                                 | [createMute](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/createMute.html)               |
 | [DELETE /2/users/:source_user_id/muting/:target_user_id](https://developer.twitter.com/en/docs/twitter-api/users/mutes/api-reference/delete-users-user_id-muting) | [destroyMute](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/destroyMute.html)             |
 | [GET /2/users/:id/muting](https://developer.twitter.com/en/docs/twitter-api/users/mutes/api-reference/get-users-muting)                                           | [lookupMutingUsers](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/lookupMutingUsers.html) |
 
-#### 1.2.2.4. Blocks
+#### 1.2.2.4. Chặn
 
-| Endpoint                                                                                                                                                               | Method Name                                                                                                                     |
+| Endpoint                                                                                                                                                               | Tên Phương Thức                                                                                                                     |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | [POST /2/users/:id/blocking](https://developer.twitter.com/en/docs/twitter-api/users/blocks/api-reference/post-users-user_id-blocking)                                 | [createBlock](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/createBlock.html)                 |
 | [DELETE /2/users/:source_user_id/blocking/:target_user_id](https://developer.twitter.com/en/docs/twitter-api/users/blocks/api-reference/delete-users-user_id-blocking) | [destroyBlock](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/destroyBlock.html)               |
 | [GET /2/users/:id/blocking](https://developer.twitter.com/en/docs/twitter-api/users/blocks/api-reference/get-users-blocking)                                           | [lookupBlockingUsers](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/lookupBlockingUsers.html) |
 
-### 1.2.3. Spaces Service
+### 1.2.3. Service về các Space
 
-#### 1.2.3.1. Search Spaces
+#### 1.2.3.1. Tìm kiếm các Space
 
-| Endpoint                                                                                                                | Method Name                                                                                            |
+| Endpoint                                                                                                                | Tên Phương Thức                                                                                            |
 | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | [GET /2/spaces/search](https://developer.twitter.com/en/docs/twitter-api/spaces/search/api-reference/get-spaces-search) | [search](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/SpacesService/search.html) |
 
-#### 1.2.3.2. Lookup Spaces
+#### 1.2.3.2. Tra cứu các Space
 
-| Endpoint                                                                                                                                | Method Name                                                                                                                    |
+| Endpoint                                                                                                                                | Tên Phương Thức                                                                                                                    |
 | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | [GET /2/spaces](https://developer.twitter.com/en/docs/twitter-api/spaces/lookup/api-reference/get-spaces)                               | [lookupByIds](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/SpacesService/lookupByIds.html)               |
 | [GET /2/spaces/:id](https://developer.twitter.com/en/docs/twitter-api/spaces/lookup/api-reference/get-spaces-id)                        | [lookupById](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/SpacesService/lookupById.html)                 |
@@ -346,32 +349,32 @@ void main() async {
 | [GET /2/spaces/:id/tweets](https://developer.twitter.com/en/docs/twitter-api/spaces/lookup/api-reference/get-spaces-id-tweets)          | [lookupTweets](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/SpacesService/lookupTweets.html)             |
 | [GET /2/spaces/by/creator_ids](https://developer.twitter.com/en/docs/twitter-api/spaces/lookup/api-reference/get-spaces-by-creator-ids) | [lookupByCreatorIds](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/SpacesService/lookupByCreatorIds.html) |
 
-### 1.2.4. Lists Service
+### 1.2.4. Service về danh sách
 
-#### 1.2.4.1. Lookup Lists
+#### 1.2.4.1. Tra cứu các danh sách
 
-| Endpoint                                                                                                                                   | Method Name                                                                                                         |
+| Endpoint                                                                                                                                   | Tên Phương Thức                                                                                                         |
 | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
 | [GET /2/lists/:id](https://developer.twitter.com/en/docs/twitter-api/lists/list-lookup/api-reference/get-lists-id)                         | [lookupById](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/lookupById.html)       |
 | [GET /2/users/:id/owned_lists](https://developer.twitter.com/en/docs/twitter-api/lists/list-lookup/api-reference/get-users-id-owned_lists) | [lookupOwnedBy](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/lookupOwnedBy.html) |
 
-#### 1.2.4.2. Pinnings
+#### 1.2.4.2. Các Ghim
 
-| Endpoint                                                                                                                                                             | Method Name                                                                                                                 |
+| Endpoint                                                                                                                                                             | Tên Phương Thức                                                                                                                 |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
 | [POST /2/users/:id/pinned_lists](https://developer.twitter.com/en/docs/twitter-api/lists/pinned-lists/api-reference/post-users-id-pinned-lists)                      | [createPinnedList](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/createPinnedList.html)   |
 | [DELETE /2/users/:id/pinned_lists/:list_id](https://developer.twitter.com/en/docs/twitter-api/lists/pinned-lists/api-reference/delete-users-id-pinned-lists-list_id) | [destroyPinnedList](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/destroyPinnedList.html) |
 | [GET /2/users/:id/pinned_lists](https://developer.twitter.com/en/docs/twitter-api/lists/pinned-lists/api-reference/get-users-id-pinned_lists)                        | [lookupPinnedLists](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/lookupPinnedLists.html) |
 
-#### 1.2.4.3. Tweet Lookup
+#### 1.2.4.3. Tra cứu Tweet
 
-| Endpoint                                                                                                                         | Method Name                                                                                                       |
+| Endpoint                                                                                                                         | Tên Phương Thức                                                                                                       |
 | -------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
 | [GET /2/lists/:id/tweets](https://developer.twitter.com/en/docs/twitter-api/lists/list-tweets/api-reference/get-lists-id-tweets) | [lookupTweets](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/lookupTweets.html) |
 
-#### 1.2.4.4. List Manage
+#### 1.2.4.4. Quản lý danh sách
 
-| Endpoint                                                                                                                  | Method Name                                                                                                                     |
+| Endpoint                                                                                                                  | Tên Phương Thức                                                                                                                     |
 | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | [POST /2/lists](https://developer.twitter.com/en/docs/twitter-api/lists/manage-lists/api-reference/post-lists)            | [createPublicList](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/createPublicList.html)       |
 | [POST /2/lists](https://developer.twitter.com/en/docs/twitter-api/lists/manage-lists/api-reference/post-lists)            | [createPrivateList](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/createPrivateList.html)     |
@@ -379,18 +382,18 @@ void main() async {
 | [PUT /2/lists/:id](https://developer.twitter.com/en/docs/twitter-api/lists/manage-lists/api-reference/put-lists-id)       | [updateListAsPublic](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/updateListAsPublic.html)   |
 | [PUT /2/lists/:id](https://developer.twitter.com/en/docs/twitter-api/lists/manage-lists/api-reference/put-lists-id)       | [updateListAsPrivate](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/updateListAsPrivate.html) |
 
-#### 1.2.4.5. Follows
+#### 1.2.4.5. Các lượt theo dõi
 
-| Endpoint                                                                                                                                                                 | Method Name                                                                                                                     |
+| Endpoint                                                                                                                                                                 | Tên Phương Thức                                                                                                                     |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------- |
 | [POST /2/users/:id/followed_lists](https://developer.twitter.com/en/docs/twitter-api/lists/list-follows/api-reference/post-users-id-followed-lists)                      | [createFollow](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/createFollow.html)               |
 | [DELETE /2/users/:id/followed_lists/:list_id](https://developer.twitter.com/en/docs/twitter-api/lists/list-follows/api-reference/delete-users-id-followed-lists-list_id) | [destroyFollow](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/destroyFollow.html)             |
 | [GET /2/lists/:id/followers](https://developer.twitter.com/en/docs/twitter-api/lists/list-follows/api-reference/get-lists-id-followers)                                  | [lookupFollowers](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/lookupFollowers.html)         |
 | [GET /2/users/:id/followed_lists](https://developer.twitter.com/en/docs/twitter-api/lists/list-follows/api-reference/get-users-id-followed_lists)                        | [lookupFollowedLists](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/lookupFollowedLists.html) |
 
-#### 1.2.4.6. Members
+#### 1.2.4.6. Các thành viên
 
-| Endpoint                                                                                                                                                   | Method Name                                                                                                                 |
+| Endpoint                                                                                                                                                   | Tên Phương Thức                                                                                                                 |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
 | [POST /2/lists/:id/members](https://developer.twitter.com/en/docs/twitter-api/lists/list-members/api-reference/post-lists-id-members)                      | [createMember](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/createMember.html)           |
 | [DELETE /2/lists/:id/members/:user_id](https://developer.twitter.com/en/docs/twitter-api/lists/list-members/api-reference/delete-lists-id-members-user_id) | [destroyMember](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/destroyMember.html)         |
@@ -401,34 +404,34 @@ void main() async {
 
 #### 1.2.5.1. Batch Compliance
 
-| Endpoint                                                                                                                                         | Method Name                                                                                                        |
+| Endpoint                                                                                                                                         | Tên Phương Thức                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
 | [POST /2/compliance/jobs](https://developer.twitter.com/en/docs/twitter-api/compliance/batch-compliance/api-reference/post-compliance-jobs)      | [createJob](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ComplianceService/createJob.html)   |
 | [GET /2/compliance/jobs](https://developer.twitter.com/en/docs/twitter-api/compliance/batch-compliance/api-reference/get-compliance-jobs)        | [lookupJobs](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ComplianceService/lookupJobs.html) |
 | [GET /2/compliance/jobs/:id](https://developer.twitter.com/en/docs/twitter-api/compliance/batch-compliance/api-reference/get-compliance-jobs-id) | [lookupJob](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ComplianceService/lookupJob.html)   |
 
-> **Note**</br>
-> Not all additional fields listed in the official documentation are supported. We intend to support them step by step. Also you can create an Issue or Pull Request if you wish to suggest or contribute!
+> **Lưu ý**</br>
+> Không phải tất cả các trường bổ sung được liệt kê trong tài liệu chính thức đều được hỗ trợ. Chúng tôi dự định sẽ hỗ trợ chúng từng bước. Ngoài ra, bạn có thể tạo Issue hoặc Pull Request nếu bạn muốn đề xuất hoặc đóng góp!
 
-## 1.3. Tips 🏄
+## 1.3. Các mẹo 🏄
 
-### 1.3.1. Method Names
+### 1.3.1. Tên các phương thức
 
-`twitter_api_v2` uses the following standard prefixes depending on endpoint characteristics. So it's very easy to find the method corresponding to the endpoint you want to use!
+`twitter_api_v2` sử dụng các tiền tố chuẩn sau tùy thuộc vào các đặc điểm của endpoint. Vì vậy, rất dễ dàng để tìm thấy phương thức tương ứng với endpoint mà bạn muốn sử dụng!
 
-| Prefix      | Description                                                                                                                                  |
+| Tiền tố      | Mô tả                                                                                                                                  |
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| **lookup**  | This prefix is attached to endpoints that reference tweets, users, etc. |
-| **search**  | This prefix is attached to endpoints that perform extensive searches.                                                                                |
-| **connect** | This prefix is attached to endpoints with high-performance streaming.                                                           |
-| **count**   | This prefix is attached to the endpoint that counts a particular item.                                                                                    |
-| **create**  | This prefix is attached to the endpoint performing the create state such as `Tweet` and `Follow`.                                            |
-| **destroy** | This prefix is attached to the endpoint performing the destroy state such as `Tweet` and `Follow`.                                           |
-| **update**  | This prefix is attached to the endpoint performing the update state.                                                                         |
+| **lookup**  | Tiền tố này được gắn với các endpoint mà tham chiếu đến các tweet, người dùng, v.v. |
+| **search**  | Tiền tố này được gắn với các endpoint thực hiện các tìm kiếm mở rộng.                                                                                |
+| **connect** | Tiền tố này được gắn với các endpoint với high-performance streaming.                                                           |
+| **count**   | Tiền tố này được gắn với các endpoint đếm một đối tượng cụ thể.                                                                                    |
+| **create**  | Tiền tố này được gắn với các endpoint thực hiện trạng thái tạo chẳng hạn như `Tweet` và `Theo dõi`.                                            |
+| **destroy** | Tiền tố này được gắn với các endpoint thực hiện trạng thái hủy chẳng hạn như `Tweet` và `Theo dõi`.                                           |
+| **update**  | Tiền tố này được gắn với các endpoint thực hiện trạng thái cập nhật.                                                                         |
 
-### 1.3.2. Generate App-Only Bearer Token
+### 1.3.2. Tạo App-Only Bearer Token
 
-`twitter_api_v2` provides utility to generate/find your app-only bearer token.
+`twitter_api_v2` cung cấp tiện ích để tạo / tìm mã app-only bearer token của bạn.
 
 ```dart
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
@@ -443,14 +446,14 @@ void main() async {
 }
 ```
 
-### 1.3.3. Null Parameter at Request
+### 1.3.3. Tham số Null trong Request
 
-In this library, parameters that are not required at request time, i.e., optional parameters, are defined as nullable.
-However, developers do not need to be aware of the null parameter when sending requests when using this library.
+Trong thư viện này, các tham số là không bắt buộc lúc gửi request, tức là các tham số tùy chọn, được định nghĩa là có thể null.
+Tuy nhiên, các nhà phát triển không cần phải biết về tham số null khi gửi yêu cầu khi sử dụng thư viện này.
 
-It means the parameters specified with a null value are safely removed and ignored before the request is sent.
+Nó có nghĩa là các tham số được gán giá trị null sẽ được loại bỏ và bỏ qua một cách an toàn trước khi request được gửi đi.
 
-For example, arguments specified with null are ignored in the following request.
+Ví dụ, các tham số được gán bằng null sẽ bị bỏ qua trong request sau.
 
 ```dart
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
@@ -460,20 +463,20 @@ void main() async {
 
   await twitter.tweetsService.createTweet(
     text: 'Hello, World!',
-    // These parameters are ignored at request because they are null.
+    // Các tham số này bị bỏ qua khi request vì chúng null.
     mediaIds: null,
     expansions: null,
   );
 }
 ```
 
-### 1.3.4. Expand Object Fields with `expansions`
+### 1.3.4. Mở rộng các trường của đối tượng với `expansions`
 
-For example, there may be a situation where data contains only an ID, and you want to retrieve the data object associated with that ID as well. In such cases, the `Twitter API v2.0` specification called `expansions` is useful, and this library supports that specification.
+Ví dụ: có thể xảy ra trường hợp dữ liệu chỉ chứa một ID và bạn cũng muốn truy xuất đối tượng dữ liệu được liên kết với ID đó. Trong những trường hợp như vậy, thông số kỹ thuật `Twitter API v2.0` được gọi là `expansions` rất hữu ích và thư viện này hỗ trợ thông số kỹ thuật đó.
 
-Basically it can be used in endpoints that perform GET communication such as `lookup` and `search` processing. Some fields may also be included in the `includes` property of [TwitterResponse](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TwitterResponse-class.html).
+Về cơ bản, nó có thể được sử dụng trong các endpoint để mà thực hiện giao tiếp GET như xử lý `tra cứu` và ` tìm kiếm`. Một số trường cũng có thể được đưa vào thuộc tính `include` của [TwitterResponse](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TwitterResponse-class.html).
 
-You can use `expansions` like below:
+Bạn có thể sử dụng `expansions` như bên dưới:
 
 ```dart
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
@@ -484,7 +487,7 @@ void main() async {
   try {
     final tweets = await twitter.tweetsService.searchRecent(
       query: '#ElonMusk',
-      // Specify fields you need!
+      // Chỉ định các trường bạn cần!
       expansions: [
         v2.TweetExpansion.authorId,
         v2.TweetExpansion.inReplyToUserId,
@@ -498,15 +501,15 @@ void main() async {
 }
 ```
 
-You can see more details about `expansions` from [Official Documentation](https://developer.twitter.com/en/docs/twitter-api/expansions).
+Bạn có thể xem thêm chi tiết về `expansions` từ [Tài liệu chính thức](https://developer.twitter.com/en/docs/twitter-api/expansions).
 
-### 1.3.5. Expand Object Fields with `fields`
+### 1.3.5. Mở rộng các trường của đối tượng với `fields`
 
-`Twitter API v2.0` supports a very interesting specification, allowing users to control the amount of data contained in the response object for each endpoint depending on the situation. It's called `fields`, and this library supports this specification.
+`Twitter API v2.0` hỗ trợ một thông số kỹ thuật rất thú vị, cho phép người dùng kiểm soát lượng dữ liệu có trong response object cho endpoint tùy thuộc vào tình huống. Nó được gọi là `fields` và thư viện này hỗ trợ đặc tả này.
 
-Basically it can be used in endpoints that perform GET communication such as `lookup` and `search` processing. Some fields may also be included in the `includes` field of [TwitterResponse](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TwitterResponse-class.html).
+Về cơ bản, nó có thể được sử dụng trong các endpoint thực hiện giao tiếp GET chẳng hạn như xử lý `tra cứu` và ` tìm kiếm`. Một số trường cũng có thể được đưa vào trường `include` của [TwitterResponse](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TwitterResponse-class.html).
 
-You can use `fields` like below:
+Bạn có thể sử dụng `fields` như bên dưới:
 
 ```dart
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
@@ -536,35 +539,35 @@ void main() async {
 }
 ```
 
-> **Note**</br>
-> Some fields must be combined with `expansions`.
+> **Lưu ý**</br>
+> Một số trường phải được kết hợp với `expansions`.
 
-You can see more details about `fields` from [Official Documentation](https://developer.twitter.com/en/docs/twitter-api/fields).
+Bạn có thể xem thêm chi tiết về `fields` từ [Tài liệu chính thức](https://developer.twitter.com/en/docs/twitter-api/fields).
 
-## 1.4. Contribution 🏆
+## 1.4. Sự đóng góp 🏆
 
-If you would like to contribute to `twitter_api_v2`, please create an [issue](https://github.com/twitter-dart/twitter-api-v2/issues) or create a Pull Request.
+Nếu bạn muốn đóng góp cho `twitter_api_v2`, vui lòng tạo [issue](https://github.com/twitter-dart/twitter-api-v2/issues) hoặc tạo một Pull Request.
 
-There are many ways to contribute to the OSS. For example, the following subjects can be considered:
+Có nhiều cách để đóng góp cho OSS. Ví dụ, các đề mục sau có thể được xem xét:
 
-- There are request parameters or response fields that are not implemented.
-- Documentation is outdated or incomplete.
-- Have a better way or idea to achieve the functionality.
-- etc...
+- Có các tham số request hoặc trường response không được thực hiện.
+- Tài liệu lỗi thời hoặc không đầy đủ.
+- Có cách hoặc ý tưởng tốt hơn để đạt được chức năng.
+- vân vân...
 
-You can see more details from resources below:
+Bạn có thể xem thêm chi tiết từ các nguồn bên dưới:
 
-- [Contributor Covenant Code of Conduct](https://github.com/twitter-dart/twitter-api-v2/blob/main/CODE_OF_CONDUCT.md)
-- [Contribution Guidelines](https://github.com/twitter-dart/twitter-api-v2/blob/main/CONTRIBUTING.md)
-- [Style Guide](https://github.com/twitter-dart/twitter-api-v2/blob/main/STYLEGUIDE.md)
+- [Quy tắc ứng xử của những người đóng góp](https://github.com/twitter-dart/twitter-api-v2/blob/main/CODE_OF_CONDUCT.md)
+- [Các nguyên tắc đóng góp](https://github.com/twitter-dart/twitter-api-v2/blob/main/CONTRIBUTING.md)
+- [Style Guide (Hướng dẫn phong cách)](https://github.com/twitter-dart/twitter-api-v2/blob/main/STYLEGUIDE.md)
 
-Or you can create a [discussion](https://github.com/twitter-dart/twitter-api-v2/discussions) if you like.
+Hoặc bạn có thể tạo [thảo luận](https://github.com/twitter-dart/twitter-api-v2/discussions) nếu cần.
 
-**Feel free to join this development, diverse opinions make software better!**
+**Hãy tham gia vào sự phát triển này, các ý kiến đa dạng giúp phần mềm tốt hơn!**
 
-## 1.5. Contributors ✨
+## 1.5. Những người đóng góp ✨
 
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+Cảm ơn những người tuyệt vời này ([emoji key](https://allcontributor.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -589,13 +592,13 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+Dự án này tuân theo đặc điểm kỹ thuật của [all-contributors](https://github.com/all-contributor/all-contributor). Những đóng góp của bất kỳ hình thức nào đều được chào đón!
 
-## 1.6. Support ❤️
+## 1.6. Ủng hộ ❤️
 
-The simplest way to show us your support is by **giving the project a star** at [GitHub](https://github.com/twitter-dart/twitter-api-v2) and [Pub.dev](https://pub.dev/packages/twitter_api_v2).
+Cách đơn giản nhất để cho chúng tôi thấy sự ủng hộ của bạn là **cho dự án một ngôi sao** tại [GitHub](https://github.com/twitter-dart/twitter-api-v2) và [Pub.dev](https://pub.dev/packages/twitter_api_v2).
 
-You can also support this project by **becoming a sponsor** on GitHub:
+Bạn cũng có thể hỗ trợ dự án này bằng cách **trở thành nhà tài trợ** trên GitHub:
 
 <div align="left">
   <p>
@@ -605,7 +608,7 @@ You can also support this project by **becoming a sponsor** on GitHub:
   </p>
 </div>
 
-You can also show on your repository that your app is made with `twitter_api_v2` by using one of the following badges:
+Bạn cũng có thể hiển thị trên repository của mình rằng ứng dụng của bạn được tạo bằng `twitter_api_v2` bằng cách sử dụng một trong các huy hiệu sau:
 
 [![Powered by twitter_api_v2](https://img.shields.io/badge/Powered%20by-twitter_api_v2-00acee.svg)](https://github.com/twitter-dart/twitter-api-v2)
 [![Powered by twitter_api_v2](https://img.shields.io/badge/Powered%20by-twitter_api_v2-00acee.svg?style=flat-square)](https://github.com/twitter-dart/twitter-api-v2)
@@ -617,21 +620,21 @@ You can also show on your repository that your app is made with `twitter_api_v2`
 [![Powered by twitter_api_v2](https://img.shields.io/badge/Powered%20by-twitter_api_v2-00acee.svg?style=for-the-badge)](https://github.com/twitter-dart/twitter-api-v2)
 ```
 
-## 1.7. License 🔑
+## 1.7. Giấy phép 🔑
 
-All resources of `twitter_api_v2` is provided under the `BSD-3` license.
+Tất cả tài nguyên của `twitter_api_v2` được cung cấp theo giấy phép` BSD-3`.
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Ftwitter-dart%2Ftwitter-api-v2.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Ftwitter-dart%2Ftwitter-api-v2?ref=badge_large)
 
-> **Note**</br>
-> License notices in the source are strictly validated based on `.github/header-checker-lint.yml`. Please check [header-checker-lint.yml](https://github.com/twitter-dart/twitter-api-v2/tree/main/.github/header-checker-lint.yml) for the permitted standards.
+> **Lưu ý**</br>
+> Thông báo giấy phép trong source được xác thực nghiêm ngặt dựa trên `.github / header-checker-lint.yml`. Vui lòng kiểm tra [header-checker-lint.yml](https://github.com/twitter-dart/twitter-api-v2/tree/main/.github/header-checker-lint.yml) để biết các tiêu chuẩn được phép.
 
-## 1.8. More Information 🧐
+## 1.8. Thông tin thêm 🧐
 
-`twitter_api_v2` was designed and implemented by **_Kato Shinya ([@myConsciousness](https://github.com/myConsciousness))_**.
+`twitter_api_v2` được thiết kế và triển khai bởi **_Kato Shinya ([@myConsciousness](https://github.com/myConsciousness))_**.
 
-- [Creator Profile](https://github.com/myConsciousness)
-- [License](https://github.com/twitter-dart/twitter-api-v2/blob/main/LICENSE)
-- [API Document](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/twitter_api_v2-library.html)
-- [Release Note](https://github.com/twitter-dart/twitter-api-v2/releases)
-- [Bug Report](https://github.com/twitter-dart/twitter-api-v2/issues)
+- [Hồ sơ người sáng tạo](https://github.com/myConsciousness)
+- [Giấy phép](https://github.com/twitter-dart/twitter-api-v2/blob/main/LICENSE)
+- [Tài liệu API](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/twitter_api_v2-library.html)
+- [Ghi chú phát hành](https://github.com/twitter-dart/twitter-api-v2/releases)
+- [Báo cáo lỗi](https://github.com/twitter-dart/twitter-api-v2/issues)
