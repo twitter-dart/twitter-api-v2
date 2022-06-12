@@ -11,11 +11,11 @@ part 'promoted_media_metrics.g.dart';
 @freezed
 class PromotedMediaMetrics with _$PromotedMediaMetrics {
   const factory PromotedMediaMetrics({
-    required int playback0Count,
-    required int playback25Count,
-    required int playback50Count,
-    required int playback75Count,
-    required int playback100Count,
+    @JsonKey(name: 'playback_0_count') required int playback0Count,
+    @JsonKey(name: 'playback_25_count') required int playback25Count,
+    @JsonKey(name: 'playback_50_count') required int playback50Count,
+    @JsonKey(name: 'playback_75_count') required int playback75Count,
+    @JsonKey(name: 'playback_100_count') required int playback100Count,
     required int viewCount,
   }) = _PromotedMediaMetrics;
 

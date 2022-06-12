@@ -20,10 +20,15 @@ PromotedMediaMetrics _$PromotedMediaMetricsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PromotedMediaMetrics {
+  @JsonKey(name: 'playback_0_count')
   int get playback0Count => throw _privateConstructorUsedError;
+  @JsonKey(name: 'playback_25_count')
   int get playback25Count => throw _privateConstructorUsedError;
+  @JsonKey(name: 'playback_50_count')
   int get playback50Count => throw _privateConstructorUsedError;
+  @JsonKey(name: 'playback_75_count')
   int get playback75Count => throw _privateConstructorUsedError;
+  @JsonKey(name: 'playback_100_count')
   int get playback100Count => throw _privateConstructorUsedError;
   int get viewCount => throw _privateConstructorUsedError;
 
@@ -39,11 +44,11 @@ abstract class $PromotedMediaMetricsCopyWith<$Res> {
           $Res Function(PromotedMediaMetrics) then) =
       _$PromotedMediaMetricsCopyWithImpl<$Res>;
   $Res call(
-      {int playback0Count,
-      int playback25Count,
-      int playback50Count,
-      int playback75Count,
-      int playback100Count,
+      {@JsonKey(name: 'playback_0_count') int playback0Count,
+      @JsonKey(name: 'playback_25_count') int playback25Count,
+      @JsonKey(name: 'playback_50_count') int playback50Count,
+      @JsonKey(name: 'playback_75_count') int playback75Count,
+      @JsonKey(name: 'playback_100_count') int playback100Count,
       int viewCount});
 }
 
@@ -102,11 +107,11 @@ abstract class _$$_PromotedMediaMetricsCopyWith<$Res>
       __$$_PromotedMediaMetricsCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int playback0Count,
-      int playback25Count,
-      int playback50Count,
-      int playback75Count,
-      int playback100Count,
+      {@JsonKey(name: 'playback_0_count') int playback0Count,
+      @JsonKey(name: 'playback_25_count') int playback25Count,
+      @JsonKey(name: 'playback_50_count') int playback50Count,
+      @JsonKey(name: 'playback_75_count') int playback75Count,
+      @JsonKey(name: 'playback_100_count') int playback100Count,
       int viewCount});
 }
 
@@ -163,25 +168,30 @@ class __$$_PromotedMediaMetricsCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_PromotedMediaMetrics implements _PromotedMediaMetrics {
   const _$_PromotedMediaMetrics(
-      {required this.playback0Count,
-      required this.playback25Count,
-      required this.playback50Count,
-      required this.playback75Count,
-      required this.playback100Count,
+      {@JsonKey(name: 'playback_0_count') required this.playback0Count,
+      @JsonKey(name: 'playback_25_count') required this.playback25Count,
+      @JsonKey(name: 'playback_50_count') required this.playback50Count,
+      @JsonKey(name: 'playback_75_count') required this.playback75Count,
+      @JsonKey(name: 'playback_100_count') required this.playback100Count,
       required this.viewCount});
 
   factory _$_PromotedMediaMetrics.fromJson(Map<String, dynamic> json) =>
       _$$_PromotedMediaMetricsFromJson(json);
 
   @override
+  @JsonKey(name: 'playback_0_count')
   final int playback0Count;
   @override
+  @JsonKey(name: 'playback_25_count')
   final int playback25Count;
   @override
+  @JsonKey(name: 'playback_50_count')
   final int playback50Count;
   @override
+  @JsonKey(name: 'playback_75_count')
   final int playback75Count;
   @override
+  @JsonKey(name: 'playback_100_count')
   final int playback100Count;
   @override
   final int viewCount;
@@ -234,25 +244,30 @@ class _$_PromotedMediaMetrics implements _PromotedMediaMetrics {
 
 abstract class _PromotedMediaMetrics implements PromotedMediaMetrics {
   const factory _PromotedMediaMetrics(
-      {required final int playback0Count,
-      required final int playback25Count,
-      required final int playback50Count,
-      required final int playback75Count,
-      required final int playback100Count,
+      {@JsonKey(name: 'playback_0_count') required final int playback0Count,
+      @JsonKey(name: 'playback_25_count') required final int playback25Count,
+      @JsonKey(name: 'playback_50_count') required final int playback50Count,
+      @JsonKey(name: 'playback_75_count') required final int playback75Count,
+      @JsonKey(name: 'playback_100_count') required final int playback100Count,
       required final int viewCount}) = _$_PromotedMediaMetrics;
 
   factory _PromotedMediaMetrics.fromJson(Map<String, dynamic> json) =
       _$_PromotedMediaMetrics.fromJson;
 
   @override
+  @JsonKey(name: 'playback_0_count')
   int get playback0Count => throw _privateConstructorUsedError;
   @override
+  @JsonKey(name: 'playback_25_count')
   int get playback25Count => throw _privateConstructorUsedError;
   @override
+  @JsonKey(name: 'playback_50_count')
   int get playback50Count => throw _privateConstructorUsedError;
   @override
+  @JsonKey(name: 'playback_75_count')
   int get playback75Count => throw _privateConstructorUsedError;
   @override
+  @JsonKey(name: 'playback_100_count')
   int get playback100Count => throw _privateConstructorUsedError;
   @override
   int get viewCount => throw _privateConstructorUsedError;

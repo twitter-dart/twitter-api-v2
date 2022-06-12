@@ -14,30 +14,33 @@ _$_NonPublicMediaMetrics _$$_NonPublicMediaMetricsFromJson(Map json) =>
       json,
       ($checkedConvert) {
         final val = _$_NonPublicMediaMetrics(
-          playback0Count: $checkedConvert('playback0_count', (v) => v as int),
-          playback25Count: $checkedConvert('playback25_count', (v) => v as int),
-          playback50Count: $checkedConvert('playback50_count', (v) => v as int),
-          playback75Count: $checkedConvert('playback75_count', (v) => v as int),
+          playback0Count: $checkedConvert('playback_0_count', (v) => v as int),
+          playback25Count:
+              $checkedConvert('playback_25_count', (v) => v as int),
+          playback50Count:
+              $checkedConvert('playback_50_count', (v) => v as int),
+          playback75Count:
+              $checkedConvert('playback_75_count', (v) => v as int),
           playback100Count:
-              $checkedConvert('playback100_count', (v) => v as int),
+              $checkedConvert('playback_100_count', (v) => v as int),
         );
         return val;
       },
       fieldKeyMap: const {
-        'playback0Count': 'playback0_count',
-        'playback25Count': 'playback25_count',
-        'playback50Count': 'playback50_count',
-        'playback75Count': 'playback75_count',
-        'playback100Count': 'playback100_count'
+        'playback0Count': 'playback_0_count',
+        'playback25Count': 'playback_25_count',
+        'playback50Count': 'playback_50_count',
+        'playback75Count': 'playback_75_count',
+        'playback100Count': 'playback_100_count'
       },
     );
 
 Map<String, dynamic> _$$_NonPublicMediaMetricsToJson(
         _$_NonPublicMediaMetrics instance) =>
     <String, dynamic>{
-      'playback0_count': instance.playback0Count,
-      'playback25_count': instance.playback25Count,
-      'playback50_count': instance.playback50Count,
-      'playback75_count': instance.playback75Count,
-      'playback100_count': instance.playback100Count,
+      'playback_0_count': instance.playback0Count,
+      'playback_25_count': instance.playback25Count,
+      'playback_50_count': instance.playback50Count,
+      'playback_75_count': instance.playback75Count,
+      'playback_100_count': instance.playback100Count,
     };

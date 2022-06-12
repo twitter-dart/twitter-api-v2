@@ -11,11 +11,11 @@ part 'non_public_media_metrics.g.dart';
 @freezed
 class NonPublicMediaMetrics with _$NonPublicMediaMetrics {
   const factory NonPublicMediaMetrics({
-    required int playback0Count,
-    required int playback25Count,
-    required int playback50Count,
-    required int playback75Count,
-    required int playback100Count,
+    @JsonKey(name: 'playback_0_count') required int playback0Count,
+    @JsonKey(name: 'playback_25_count') required int playback25Count,
+    @JsonKey(name: 'playback_50_count') required int playback50Count,
+    @JsonKey(name: 'playback_75_count') required int playback75Count,
+    @JsonKey(name: 'playback_100_count') required int playback100Count,
   }) = _NonPublicMediaMetrics;
 
   factory NonPublicMediaMetrics.fromJson(Map<String, Object?> json) =>
