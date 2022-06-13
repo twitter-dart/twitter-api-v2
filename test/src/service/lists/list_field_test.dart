@@ -15,6 +15,6 @@ void main() {
     expect(ListField.followerCount.value, 'follower_count');
     expect(ListField.memberCount.value, 'member_count');
     expect(ListField.ownerId.value, 'owner_id');
-    expect(ListField.isPrivate.value, 'private');
+    expect(ListField.private.value, 'private');
   });
 }

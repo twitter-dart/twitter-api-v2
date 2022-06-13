@@ -16,7 +16,7 @@ enum ListField implements Serializable {
   memberCount('member_count'),
 
   /// `private`
-  isPrivate('private'),
+  private('private'),
 
   /// `description`
   description('description'),
