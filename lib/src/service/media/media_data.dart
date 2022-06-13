@@ -25,7 +25,7 @@ class MediaData with _$MediaData {
     String? url,
     @JsonKey(name: 'duration_ms') int? durationMilliseconds,
     int? height,
-    PrivateMediaMetrics? privateMetrics,
+    @JsonKey(name: 'non_public_metrics') PrivateMediaMetrics? privateMetrics,
     OrganicMediaMetrics? organicMetrics,
     String? previewImageUrl,
     PromotedMediaMetrics? promotedMetrics,
