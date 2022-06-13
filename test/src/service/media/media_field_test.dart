@@ -14,7 +14,7 @@ void main() {
     expect(MediaField.durationMs.value, 'duration_ms');
     expect(MediaField.height.value, 'height');
     expect(MediaField.mediaKey.value, 'media_key');
-    expect(MediaField.nonPublicMetrics.value, 'non_public_metrics');
+    expect(MediaField.privateMetrics.value, 'non_public_metrics');
     expect(MediaField.organicMetrics.value, 'organic_metrics');
     expect(MediaField.previewImageUrl.value, 'preview_image_url');
     expect(MediaField.promotedMetrics.value, 'promoted_metrics');

@@ -17,13 +17,14 @@ _$_MediaData _$$_MediaDataFromJson(Map json) => $checkedCreate(
           type: $checkedConvert(
               'type', (v) => $enumDecode(_$MediaTypeEnumMap, v)),
           url: $checkedConvert('url', (v) => v as String?),
-          durationMs: $checkedConvert('duration_ms', (v) => v as int?),
+          durationMilliseconds:
+              $checkedConvert('duration_ms', (v) => v as int?),
           height: $checkedConvert('height', (v) => v as int?),
-          nonPublicMetrics: $checkedConvert(
-              'non_public_metrics',
+          privateMetrics: $checkedConvert(
+              'private_metrics',
               (v) => v == null
                   ? null
-                  : NonPublicMediaMetrics.fromJson(
+                  : PrivateMediaMetrics.fromJson(
                       Map<String, Object?>.from(v as Map))),
           organicMetrics: $checkedConvert(
               'organic_metrics',
@@ -52,8 +53,8 @@ _$_MediaData _$$_MediaDataFromJson(Map json) => $checkedCreate(
       },
       fieldKeyMap: const {
         'key': 'media_key',
-        'durationMs': 'duration_ms',
-        'nonPublicMetrics': 'non_public_metrics',
+        'durationMilliseconds': 'duration_ms',
+        'privateMetrics': 'private_metrics',
         'organicMetrics': 'organic_metrics',
         'previewImageUrl': 'preview_image_url',
         'promotedMetrics': 'promoted_metrics',
@@ -67,9 +68,9 @@ Map<String, dynamic> _$$_MediaDataToJson(_$_MediaData instance) =>
       'media_key': instance.key,
       'type': _$MediaTypeEnumMap[instance.type],
       'url': instance.url,
-      'duration_ms': instance.durationMs,
+      'duration_ms': instance.durationMilliseconds,
       'height': instance.height,
-      'non_public_metrics': instance.nonPublicMetrics,
+      'private_metrics': instance.privateMetrics,
       'organic_metrics': instance.organicMetrics,
       'preview_image_url': instance.previewImageUrl,
       'promoted_metrics': instance.promotedMetrics,

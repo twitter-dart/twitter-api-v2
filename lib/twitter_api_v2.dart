@@ -20,7 +20,7 @@ export 'package:twitter_api_v2/src/service/lists/lists_service.dart';
 export 'package:twitter_api_v2/src/service/media/media_data.dart';
 export 'package:twitter_api_v2/src/service/media/media_field.dart';
 export 'package:twitter_api_v2/src/service/media/media_type.dart';
-export 'package:twitter_api_v2/src/service/media/non_public_media_metrics.dart';
+export 'package:twitter_api_v2/src/service/media/private_media_metrics.dart';
 export 'package:twitter_api_v2/src/service/media/organic_media_metrics.dart';
 export 'package:twitter_api_v2/src/service/media/promoted_media_metrics.dart';
 export 'package:twitter_api_v2/src/service/media/public_media_metrics.dart';

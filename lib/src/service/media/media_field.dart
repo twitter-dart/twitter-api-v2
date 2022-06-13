@@ -16,13 +16,13 @@ enum MediaField implements Serializable {
   url('url'),
 
   /// `duration_ms`
-  durationMs('duration_ms'),
+  durationMilliseconds('duration_ms'),
 
   /// `height`
   height('height'),
 
   ///  `non_public_metrics`
-  nonPublicMetrics('non_public_metrics'),
+  privateMetrics('non_public_metrics'),
 
   /// `organic_metrics`
   organicMetrics('organic_metrics'),

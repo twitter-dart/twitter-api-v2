@@ -2,18 +2,18 @@
 
 // ignore_for_file: non_constant_identifier_names
 
-part of 'non_public_media_metrics.dart';
+part of 'private_media_metrics.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_NonPublicMediaMetrics _$$_NonPublicMediaMetricsFromJson(Map json) =>
+_$_PrivateMediaMetrics _$$_PrivateMediaMetricsFromJson(Map json) =>
     $checkedCreate(
-      r'_$_NonPublicMediaMetrics',
+      r'_$_PrivateMediaMetrics',
       json,
       ($checkedConvert) {
-        final val = _$_NonPublicMediaMetrics(
+        final val = _$_PrivateMediaMetrics(
           playback0Count: $checkedConvert('playback_0_count', (v) => v as int),
           playback25Count:
               $checkedConvert('playback_25_count', (v) => v as int),
@@ -35,8 +35,8 @@ _$_NonPublicMediaMetrics _$$_NonPublicMediaMetricsFromJson(Map json) =>
       },
     );
 
-Map<String, dynamic> _$$_NonPublicMediaMetricsToJson(
-        _$_NonPublicMediaMetrics instance) =>
+Map<String, dynamic> _$$_PrivateMediaMetricsToJson(
+        _$_PrivateMediaMetrics instance) =>
     <String, dynamic>{
       'playback_0_count': instance.playback0Count,
       'playback_25_count': instance.playback25Count,

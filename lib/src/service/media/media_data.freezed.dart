@@ -24,10 +24,10 @@ mixin _$MediaData {
   String get key => throw _privateConstructorUsedError;
   MediaType get type => throw _privateConstructorUsedError;
   String? get url => throw _privateConstructorUsedError;
-  int? get durationMs => throw _privateConstructorUsedError;
+  @JsonKey(name: 'duration_ms')
+  int? get durationMilliseconds => throw _privateConstructorUsedError;
   int? get height => throw _privateConstructorUsedError;
-  NonPublicMediaMetrics? get nonPublicMetrics =>
-      throw _privateConstructorUsedError;
+  PrivateMediaMetrics? get privateMetrics => throw _privateConstructorUsedError;
   OrganicMediaMetrics? get organicMetrics => throw _privateConstructorUsedError;
   String? get previewImageUrl => throw _privateConstructorUsedError;
   PromotedMediaMetrics? get promotedMetrics =>
@@ -50,9 +50,9 @@ abstract class $MediaDataCopyWith<$Res> {
       {@JsonKey(name: 'media_key') String key,
       MediaType type,
       String? url,
-      int? durationMs,
+      @JsonKey(name: 'duration_ms') int? durationMilliseconds,
       int? height,
-      NonPublicMediaMetrics? nonPublicMetrics,
+      PrivateMediaMetrics? privateMetrics,
       OrganicMediaMetrics? organicMetrics,
       String? previewImageUrl,
       PromotedMediaMetrics? promotedMetrics,
@@ -60,7 +60,7 @@ abstract class $MediaDataCopyWith<$Res> {
       int? width,
       String? altText});
 
-  $NonPublicMediaMetricsCopyWith<$Res>? get nonPublicMetrics;
+  $PrivateMediaMetricsCopyWith<$Res>? get privateMetrics;
   $OrganicMediaMetricsCopyWith<$Res>? get organicMetrics;
   $PromotedMediaMetricsCopyWith<$Res>? get promotedMetrics;
   $PublicMediaMetricsCopyWith<$Res>? get publicMetrics;
@@ -79,9 +79,9 @@ class _$MediaDataCopyWithImpl<$Res> implements $MediaDataCopyWith<$Res> {
     Object? key = freezed,
     Object? type = freezed,
     Object? url = freezed,
-    Object? durationMs = freezed,
+    Object? durationMilliseconds = freezed,
     Object? height = freezed,
-    Object? nonPublicMetrics = freezed,
+    Object? privateMetrics = freezed,
     Object? organicMetrics = freezed,
     Object? previewImageUrl = freezed,
     Object? promotedMetrics = freezed,
@@ -102,18 +102,18 @@ class _$MediaDataCopyWithImpl<$Res> implements $MediaDataCopyWith<$Res> {
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String?,
-      durationMs: durationMs == freezed
-          ? _value.durationMs
-          : durationMs // ignore: cast_nullable_to_non_nullable
+      durationMilliseconds: durationMilliseconds == freezed
+          ? _value.durationMilliseconds
+          : durationMilliseconds // ignore: cast_nullable_to_non_nullable
               as int?,
       height: height == freezed
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
               as int?,
-      nonPublicMetrics: nonPublicMetrics == freezed
-          ? _value.nonPublicMetrics
-          : nonPublicMetrics // ignore: cast_nullable_to_non_nullable
-              as NonPublicMediaMetrics?,
+      privateMetrics: privateMetrics == freezed
+          ? _value.privateMetrics
+          : privateMetrics // ignore: cast_nullable_to_non_nullable
+              as PrivateMediaMetrics?,
       organicMetrics: organicMetrics == freezed
           ? _value.organicMetrics
           : organicMetrics // ignore: cast_nullable_to_non_nullable
@@ -142,14 +142,13 @@ class _$MediaDataCopyWithImpl<$Res> implements $MediaDataCopyWith<$Res> {
   }
 
   @override
-  $NonPublicMediaMetricsCopyWith<$Res>? get nonPublicMetrics {
-    if (_value.nonPublicMetrics == null) {
+  $PrivateMediaMetricsCopyWith<$Res>? get privateMetrics {
+    if (_value.privateMetrics == null) {
       return null;
     }
 
-    return $NonPublicMediaMetricsCopyWith<$Res>(_value.nonPublicMetrics!,
-        (value) {
-      return _then(_value.copyWith(nonPublicMetrics: value));
+    return $PrivateMediaMetricsCopyWith<$Res>(_value.privateMetrics!, (value) {
+      return _then(_value.copyWith(privateMetrics: value));
     });
   }
 
@@ -198,9 +197,9 @@ abstract class _$$_MediaDataCopyWith<$Res> implements $MediaDataCopyWith<$Res> {
       {@JsonKey(name: 'media_key') String key,
       MediaType type,
       String? url,
-      int? durationMs,
+      @JsonKey(name: 'duration_ms') int? durationMilliseconds,
       int? height,
-      NonPublicMediaMetrics? nonPublicMetrics,
+      PrivateMediaMetrics? privateMetrics,
       OrganicMediaMetrics? organicMetrics,
       String? previewImageUrl,
       PromotedMediaMetrics? promotedMetrics,
@@ -209,7 +208,7 @@ abstract class _$$_MediaDataCopyWith<$Res> implements $MediaDataCopyWith<$Res> {
       String? altText});
 
   @override
-  $NonPublicMediaMetricsCopyWith<$Res>? get nonPublicMetrics;
+  $PrivateMediaMetricsCopyWith<$Res>? get privateMetrics;
   @override
   $OrganicMediaMetricsCopyWith<$Res>? get organicMetrics;
   @override
@@ -233,9 +232,9 @@ class __$$_MediaDataCopyWithImpl<$Res> extends _$MediaDataCopyWithImpl<$Res>
     Object? key = freezed,
     Object? type = freezed,
     Object? url = freezed,
-    Object? durationMs = freezed,
+    Object? durationMilliseconds = freezed,
     Object? height = freezed,
-    Object? nonPublicMetrics = freezed,
+    Object? privateMetrics = freezed,
     Object? organicMetrics = freezed,
     Object? previewImageUrl = freezed,
     Object? promotedMetrics = freezed,
@@ -256,18 +255,18 @@ class __$$_MediaDataCopyWithImpl<$Res> extends _$MediaDataCopyWithImpl<$Res>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String?,
-      durationMs: durationMs == freezed
-          ? _value.durationMs
-          : durationMs // ignore: cast_nullable_to_non_nullable
+      durationMilliseconds: durationMilliseconds == freezed
+          ? _value.durationMilliseconds
+          : durationMilliseconds // ignore: cast_nullable_to_non_nullable
               as int?,
       height: height == freezed
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
               as int?,
-      nonPublicMetrics: nonPublicMetrics == freezed
-          ? _value.nonPublicMetrics
-          : nonPublicMetrics // ignore: cast_nullable_to_non_nullable
-              as NonPublicMediaMetrics?,
+      privateMetrics: privateMetrics == freezed
+          ? _value.privateMetrics
+          : privateMetrics // ignore: cast_nullable_to_non_nullable
+              as PrivateMediaMetrics?,
       organicMetrics: organicMetrics == freezed
           ? _value.organicMetrics
           : organicMetrics // ignore: cast_nullable_to_non_nullable
@@ -303,9 +302,9 @@ class _$_MediaData implements _MediaData {
       {@JsonKey(name: 'media_key') required this.key,
       required this.type,
       this.url,
-      this.durationMs,
+      @JsonKey(name: 'duration_ms') this.durationMilliseconds,
       this.height,
-      this.nonPublicMetrics,
+      this.privateMetrics,
       this.organicMetrics,
       this.previewImageUrl,
       this.promotedMetrics,
@@ -324,11 +323,12 @@ class _$_MediaData implements _MediaData {
   @override
   final String? url;
   @override
-  final int? durationMs;
+  @JsonKey(name: 'duration_ms')
+  final int? durationMilliseconds;
   @override
   final int? height;
   @override
-  final NonPublicMediaMetrics? nonPublicMetrics;
+  final PrivateMediaMetrics? privateMetrics;
   @override
   final OrganicMediaMetrics? organicMetrics;
   @override
@@ -344,7 +344,7 @@ class _$_MediaData implements _MediaData {
 
   @override
   String toString() {
-    return 'MediaData(key: $key, type: $type, url: $url, durationMs: $durationMs, height: $height, nonPublicMetrics: $nonPublicMetrics, organicMetrics: $organicMetrics, previewImageUrl: $previewImageUrl, promotedMetrics: $promotedMetrics, publicMetrics: $publicMetrics, width: $width, altText: $altText)';
+    return 'MediaData(key: $key, type: $type, url: $url, durationMilliseconds: $durationMilliseconds, height: $height, privateMetrics: $privateMetrics, organicMetrics: $organicMetrics, previewImageUrl: $previewImageUrl, promotedMetrics: $promotedMetrics, publicMetrics: $publicMetrics, width: $width, altText: $altText)';
   }
 
   @override
@@ -356,10 +356,10 @@ class _$_MediaData implements _MediaData {
             const DeepCollectionEquality().equals(other.type, type) &&
             const DeepCollectionEquality().equals(other.url, url) &&
             const DeepCollectionEquality()
-                .equals(other.durationMs, durationMs) &&
+                .equals(other.durationMilliseconds, durationMilliseconds) &&
             const DeepCollectionEquality().equals(other.height, height) &&
             const DeepCollectionEquality()
-                .equals(other.nonPublicMetrics, nonPublicMetrics) &&
+                .equals(other.privateMetrics, privateMetrics) &&
             const DeepCollectionEquality()
                 .equals(other.organicMetrics, organicMetrics) &&
             const DeepCollectionEquality()
@@ -379,9 +379,9 @@ class _$_MediaData implements _MediaData {
       const DeepCollectionEquality().hash(key),
       const DeepCollectionEquality().hash(type),
       const DeepCollectionEquality().hash(url),
-      const DeepCollectionEquality().hash(durationMs),
+      const DeepCollectionEquality().hash(durationMilliseconds),
       const DeepCollectionEquality().hash(height),
-      const DeepCollectionEquality().hash(nonPublicMetrics),
+      const DeepCollectionEquality().hash(privateMetrics),
       const DeepCollectionEquality().hash(organicMetrics),
       const DeepCollectionEquality().hash(previewImageUrl),
       const DeepCollectionEquality().hash(promotedMetrics),
@@ -405,9 +405,9 @@ abstract class _MediaData implements MediaData {
       {@JsonKey(name: 'media_key') required final String key,
       required final MediaType type,
       final String? url,
-      final int? durationMs,
+      @JsonKey(name: 'duration_ms') final int? durationMilliseconds,
       final int? height,
-      final NonPublicMediaMetrics? nonPublicMetrics,
+      final PrivateMediaMetrics? privateMetrics,
       final OrganicMediaMetrics? organicMetrics,
       final String? previewImageUrl,
       final PromotedMediaMetrics? promotedMetrics,
@@ -426,12 +426,12 @@ abstract class _MediaData implements MediaData {
   @override
   String? get url => throw _privateConstructorUsedError;
   @override
-  int? get durationMs => throw _privateConstructorUsedError;
+  @JsonKey(name: 'duration_ms')
+  int? get durationMilliseconds => throw _privateConstructorUsedError;
   @override
   int? get height => throw _privateConstructorUsedError;
   @override
-  NonPublicMediaMetrics? get nonPublicMetrics =>
-      throw _privateConstructorUsedError;
+  PrivateMediaMetrics? get privateMetrics => throw _privateConstructorUsedError;
   @override
   OrganicMediaMetrics? get organicMetrics => throw _privateConstructorUsedError;
   @override

@@ -9,8 +9,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
 import 'media_type.dart';
-import 'non_public_media_metrics.dart';
 import 'organic_media_metrics.dart';
+import 'private_media_metrics.dart';
 import 'promoted_media_metrics.dart';
 import 'public_media_metrics.dart';
 
@@ -23,9 +23,9 @@ class MediaData with _$MediaData {
     @JsonKey(name: 'media_key') required String key,
     required MediaType type,
     String? url,
-    int? durationMs,
+    @JsonKey(name: 'duration_ms') int? durationMilliseconds,
     int? height,
-    NonPublicMediaMetrics? nonPublicMetrics,
+    PrivateMediaMetrics? privateMetrics,
     OrganicMediaMetrics? organicMetrics,
     String? previewImageUrl,
     PromotedMediaMetrics? promotedMetrics,
