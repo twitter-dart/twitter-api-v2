@@ -17,6 +17,7 @@ import '../users/user_field.dart';
 import '../users/user_meta.dart';
 import 'list_data.dart';
 import 'list_expansion.dart';
+import 'list_field.dart';
 import 'list_meta.dart';
 
 abstract class ListsService {
@@ -45,6 +46,13 @@ abstract class ListsService {
   ///                 will find this ID and all additional user fields in the
   ///                 included data object.
   ///
+  /// - [listFields]: This fields parameter enables you to select which specific
+  ///                 List fields will deliver with each returned List objects.
+  ///                 Specify the desired fields in a comma-separated list
+  ///                 without spaces between commas and fields. These specified
+  ///                 List fields will display directly in the List data
+  ///                 objects.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/lists/:id
@@ -64,6 +72,7 @@ abstract class ListsService {
     required String listId,
     List<ListExpansion>? expansions,
     List<UserField>? userFields,
+    List<ListField>? listFields,
   });
 
   /// Returns all Lists owned by the specified user.
@@ -98,6 +107,13 @@ abstract class ListsService {
   ///                 will find this ID and all additional user fields in the
   ///                 included data object.
   ///
+  /// - [listFields]: This fields parameter enables you to select which specific
+  ///                 List fields will deliver with each returned List objects.
+  ///                 Specify the desired fields in a comma-separated list
+  ///                 without spaces between commas and fields. These specified
+  ///                 List fields will display directly in the List data
+  ///                 objects.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/owned_lists
@@ -119,6 +135,7 @@ abstract class ListsService {
     String? paginationToken,
     List<ListExpansion>? expansions,
     List<UserField>? userFields,
+    List<ListField>? listFields,
   });
 
   /// Enables the authenticated user to pin a List.
@@ -198,6 +215,13 @@ abstract class ListsService {
   ///                 will find this ID and all additional user fields in the
   ///                 included data object.
   ///
+  /// - [listFields]: This fields parameter enables you to select which specific
+  ///                 List fields will deliver with each returned List objects.
+  ///                 Specify the desired fields in a comma-separated list
+  ///                 without spaces between commas and fields. These specified
+  ///                 List fields will display directly in the List data
+  ///                 objects.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/pinned_lists
@@ -214,6 +238,7 @@ abstract class ListsService {
     required String userId,
     List<ListExpansion>? expansions,
     List<UserField>? userFields,
+    List<ListField>? listFields,
   });
 
   /// Returns a list of Tweets from the specified List.
@@ -536,6 +561,13 @@ abstract class ListsService {
   ///                 will find this ID and all additional user fields in the
   ///                 included data object.
   ///
+  /// - [listFields]: This fields parameter enables you to select which specific
+  ///                 List fields will deliver with each returned List objects.
+  ///                 Specify the desired fields in a comma-separated list
+  ///                 without spaces between commas and fields. These specified
+  ///                 List fields will display directly in the List data
+  ///                 objects.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/followed_lists
@@ -557,6 +589,7 @@ abstract class ListsService {
     String? paginationToken,
     List<ListExpansion>? expansions,
     List<UserField>? userFields,
+    List<ListField>? listFields,
   });
 
   /// Enables the authenticated user to add a member to a List they own.
@@ -700,6 +733,13 @@ abstract class ListsService {
   ///               will find this ID and all additional user fields in the
   ///               included data object.
   ///
+  /// - [listFields]: This fields parameter enables you to select which specific
+  ///                 List fields will deliver with each returned List objects.
+  ///                 Specify the desired fields in a comma-separated list
+  ///                 without spaces between commas and fields. These specified
+  ///                 List fields will display directly in the List data
+  ///                 objects.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/list_memberships
@@ -721,6 +761,7 @@ abstract class ListsService {
     String? paginationToken,
     List<ListExpansion>? expansions,
     List<UserField>? userFields,
+    List<ListField>? listFields,
   });
 }
 
@@ -733,6 +774,7 @@ class _ListsService extends BaseService implements ListsService {
     required String listId,
     List<ListExpansion>? expansions,
     List<UserField>? userFields,
+    List<ListField>? listFields,
   }) async =>
       super.buildResponse(
         await super.get(
@@ -741,6 +783,7 @@ class _ListsService extends BaseService implements ListsService {
           queryParameters: {
             'expansions': expansions,
             'user.fields': userFields,
+            'list.fields': listFields,
           },
         ),
         dataBuilder: ListData.fromJson,
@@ -753,6 +796,7 @@ class _ListsService extends BaseService implements ListsService {
     String? paginationToken,
     List<ListExpansion>? expansions,
     List<UserField>? userFields,
+    List<ListField>? listFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -763,6 +807,7 @@ class _ListsService extends BaseService implements ListsService {
             'pagination_token': paginationToken,
             'expansions': expansions,
             'user.fields': userFields,
+            'list.fields': listFields,
           },
         ),
         dataBuilder: ListData.fromJson,
@@ -797,6 +842,7 @@ class _ListsService extends BaseService implements ListsService {
     required String userId,
     List<ListExpansion>? expansions,
     List<UserField>? userFields,
+    List<ListField>? listFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -805,6 +851,7 @@ class _ListsService extends BaseService implements ListsService {
           queryParameters: {
             'expansions': expansions,
             'user.fields': userFields,
+            'list.fields': listFields,
           },
         ),
         dataBuilder: ListData.fromJson,
@@ -941,6 +988,7 @@ class _ListsService extends BaseService implements ListsService {
     String? paginationToken,
     List<ListExpansion>? expansions,
     List<UserField>? userFields,
+    List<ListField>? listFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -951,6 +999,7 @@ class _ListsService extends BaseService implements ListsService {
             'pagination_token': paginationToken,
             'expansions': expansions,
             'user.fields': userFields,
+            'list.fields': listFields,
           },
         ),
         dataBuilder: ListData.fromJson,
@@ -1018,6 +1067,7 @@ class _ListsService extends BaseService implements ListsService {
     String? paginationToken,
     List<ListExpansion>? expansions,
     List<UserField>? userFields,
+    List<ListField>? listFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -1028,6 +1078,7 @@ class _ListsService extends BaseService implements ListsService {
             'pagination_token': paginationToken,
             'expansions': expansions,
             'user.fields': userFields,
+            'list.fields': listFields,
           },
         ),
         dataBuilder: ListData.fromJson,

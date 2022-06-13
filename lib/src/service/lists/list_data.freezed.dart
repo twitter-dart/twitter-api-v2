@@ -23,6 +23,12 @@ mixin _$ListData {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String? get ownerId => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  int? get followerCount => throw _privateConstructorUsedError;
+  int? get memberCount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'private')
+  bool? get isPrivate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +40,15 @@ mixin _$ListData {
 abstract class $ListDataCopyWith<$Res> {
   factory $ListDataCopyWith(ListData value, $Res Function(ListData) then) =
       _$ListDataCopyWithImpl<$Res>;
-  $Res call({String id, String name, String? ownerId});
+  $Res call(
+      {String id,
+      String name,
+      String? ownerId,
+      DateTime? createdAt,
+      String? description,
+      int? followerCount,
+      int? memberCount,
+      @JsonKey(name: 'private') bool? isPrivate});
 }
 
 /// @nodoc
@@ -50,6 +64,11 @@ class _$ListDataCopyWithImpl<$Res> implements $ListDataCopyWith<$Res> {
     Object? id = freezed,
     Object? name = freezed,
     Object? ownerId = freezed,
+    Object? createdAt = freezed,
+    Object? description = freezed,
+    Object? followerCount = freezed,
+    Object? memberCount = freezed,
+    Object? isPrivate = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -64,6 +83,26 @@ class _$ListDataCopyWithImpl<$Res> implements $ListDataCopyWith<$Res> {
           ? _value.ownerId
           : ownerId // ignore: cast_nullable_to_non_nullable
               as String?,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      followerCount: followerCount == freezed
+          ? _value.followerCount
+          : followerCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      memberCount: memberCount == freezed
+          ? _value.memberCount
+          : memberCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isPrivate: isPrivate == freezed
+          ? _value.isPrivate
+          : isPrivate // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -74,7 +113,15 @@ abstract class _$$_ListDataCopyWith<$Res> implements $ListDataCopyWith<$Res> {
           _$_ListData value, $Res Function(_$_ListData) then) =
       __$$_ListDataCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String name, String? ownerId});
+  $Res call(
+      {String id,
+      String name,
+      String? ownerId,
+      DateTime? createdAt,
+      String? description,
+      int? followerCount,
+      int? memberCount,
+      @JsonKey(name: 'private') bool? isPrivate});
 }
 
 /// @nodoc
@@ -92,6 +139,11 @@ class __$$_ListDataCopyWithImpl<$Res> extends _$ListDataCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? ownerId = freezed,
+    Object? createdAt = freezed,
+    Object? description = freezed,
+    Object? followerCount = freezed,
+    Object? memberCount = freezed,
+    Object? isPrivate = freezed,
   }) {
     return _then(_$_ListData(
       id: id == freezed
@@ -106,6 +158,26 @@ class __$$_ListDataCopyWithImpl<$Res> extends _$ListDataCopyWithImpl<$Res>
           ? _value.ownerId
           : ownerId // ignore: cast_nullable_to_non_nullable
               as String?,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      followerCount: followerCount == freezed
+          ? _value.followerCount
+          : followerCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      memberCount: memberCount == freezed
+          ? _value.memberCount
+          : memberCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isPrivate: isPrivate == freezed
+          ? _value.isPrivate
+          : isPrivate // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -113,7 +185,15 @@ class __$$_ListDataCopyWithImpl<$Res> extends _$ListDataCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ListData implements _ListData {
-  const _$_ListData({required this.id, required this.name, this.ownerId});
+  const _$_ListData(
+      {required this.id,
+      required this.name,
+      this.ownerId,
+      this.createdAt,
+      this.description,
+      this.followerCount,
+      this.memberCount,
+      @JsonKey(name: 'private') this.isPrivate});
 
   factory _$_ListData.fromJson(Map<String, dynamic> json) =>
       _$$_ListDataFromJson(json);
@@ -124,10 +204,21 @@ class _$_ListData implements _ListData {
   final String name;
   @override
   final String? ownerId;
+  @override
+  final DateTime? createdAt;
+  @override
+  final String? description;
+  @override
+  final int? followerCount;
+  @override
+  final int? memberCount;
+  @override
+  @JsonKey(name: 'private')
+  final bool? isPrivate;
 
   @override
   String toString() {
-    return 'ListData(id: $id, name: $name, ownerId: $ownerId)';
+    return 'ListData(id: $id, name: $name, ownerId: $ownerId, createdAt: $createdAt, description: $description, followerCount: $followerCount, memberCount: $memberCount, isPrivate: $isPrivate)';
   }
 
   @override
@@ -137,7 +228,15 @@ class _$_ListData implements _ListData {
             other is _$_ListData &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.ownerId, ownerId));
+            const DeepCollectionEquality().equals(other.ownerId, ownerId) &&
+            const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description) &&
+            const DeepCollectionEquality()
+                .equals(other.followerCount, followerCount) &&
+            const DeepCollectionEquality()
+                .equals(other.memberCount, memberCount) &&
+            const DeepCollectionEquality().equals(other.isPrivate, isPrivate));
   }
 
   @JsonKey(ignore: true)
@@ -146,7 +245,12 @@ class _$_ListData implements _ListData {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(ownerId));
+      const DeepCollectionEquality().hash(ownerId),
+      const DeepCollectionEquality().hash(createdAt),
+      const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(followerCount),
+      const DeepCollectionEquality().hash(memberCount),
+      const DeepCollectionEquality().hash(isPrivate));
 
   @JsonKey(ignore: true)
   @override
@@ -163,7 +267,12 @@ abstract class _ListData implements ListData {
   const factory _ListData(
       {required final String id,
       required final String name,
-      final String? ownerId}) = _$_ListData;
+      final String? ownerId,
+      final DateTime? createdAt,
+      final String? description,
+      final int? followerCount,
+      final int? memberCount,
+      @JsonKey(name: 'private') final bool? isPrivate}) = _$_ListData;
 
   factory _ListData.fromJson(Map<String, dynamic> json) = _$_ListData.fromJson;
 
@@ -173,6 +282,17 @@ abstract class _ListData implements ListData {
   String get name => throw _privateConstructorUsedError;
   @override
   String? get ownerId => throw _privateConstructorUsedError;
+  @override
+  DateTime? get createdAt => throw _privateConstructorUsedError;
+  @override
+  String? get description => throw _privateConstructorUsedError;
+  @override
+  int? get followerCount => throw _privateConstructorUsedError;
+  @override
+  int? get memberCount => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'private')
+  bool? get isPrivate => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_ListDataCopyWith<_$_ListData> get copyWith =>
