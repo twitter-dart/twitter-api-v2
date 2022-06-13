@@ -21,7 +21,7 @@ enum MediaField implements Serializable {
   /// `height`
   height('height'),
 
-  ///  `non_public_metrics`
+  /// `non_public_metrics`
   privateMetrics('non_public_metrics'),
 
   /// `organic_metrics`
