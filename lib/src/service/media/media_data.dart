@@ -9,6 +9,10 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
 import 'media_type.dart';
+import 'organic_media_metrics.dart';
+import 'private_media_metrics.dart';
+import 'promoted_media_metrics.dart';
+import 'public_media_metrics.dart';
 
 part 'media_data.freezed.dart';
 part 'media_data.g.dart';
@@ -18,6 +22,16 @@ class MediaData with _$MediaData {
   const factory MediaData({
     @JsonKey(name: 'media_key') required String key,
     required MediaType type,
+    String? url,
+    @JsonKey(name: 'duration_ms') int? durationMilliseconds,
+    int? height,
+    @JsonKey(name: 'non_public_metrics') PrivateMediaMetrics? privateMetrics,
+    OrganicMediaMetrics? organicMetrics,
+    String? previewImageUrl,
+    PromotedMediaMetrics? promotedMetrics,
+    PublicMediaMetrics? publicMetrics,
+    int? width,
+    String? altText,
   }) = _MediaData;
 
   factory MediaData.fromJson(Map<String, Object?> json) =>

@@ -11,6 +11,7 @@ import '../../client/user_context.dart';
 import '../base_service.dart';
 import '../common/includes.dart';
 import '../filtered_stream_response.dart';
+import '../media/media_field.dart';
 import '../places/place_field.dart';
 import '../polls/poll_field.dart';
 import '../twitter_response.dart';
@@ -291,6 +292,17 @@ abstract class TweetsService {
   ///                 located in the Tweet object, you will find this ID and all
   ///                 additional poll fields in the `includes` data object.
   ///
+  /// - [mediaFields]: This fields parameter enables you to select which
+  ///                  specific media fields will deliver in each returned
+  ///                  Tweet. Specify the desired fields in a comma-separated
+  ///                  list without spaces between commas and fields. The Tweet
+  ///                  will only return media fields if the Tweet contains media
+  ///                  and if you've also included the
+  ///                  `expansions=attachments.media_keys` query parameter in
+  ///                  your request. While the media ID will be located in the
+  ///                  Tweet object, you will find this ID and all additional
+  ///                  media fields in the `includes` data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/:id/liking_users
@@ -315,6 +327,7 @@ abstract class TweetsService {
     List<UserField>? userFields,
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
+    List<MediaField>? mediaFields,
   });
 
   /// Allows you to get information about a user’s liked Tweets.
@@ -380,6 +393,17 @@ abstract class TweetsService {
   ///                 located in the Tweet object, you will find this ID and all
   ///                 additional poll fields in the `includes` data object.
   ///
+  /// - [mediaFields]: This fields parameter enables you to select which
+  ///                  specific media fields will deliver in each returned
+  ///                  Tweet. Specify the desired fields in a comma-separated
+  ///                  list without spaces between commas and fields. The Tweet
+  ///                  will only return media fields if the Tweet contains media
+  ///                  and if you've also included the
+  ///                  `expansions=attachments.media_keys` query parameter in
+  ///                  your request. While the media ID will be located in the
+  ///                  Tweet object, you will find this ID and all additional
+  ///                  media fields in the `includes` data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/liked_tweets
@@ -404,6 +428,7 @@ abstract class TweetsService {
     List<UserField>? userFields,
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
+    List<MediaField>? mediaFields,
   });
 
   /// Allows you to get information about who has Retweeted a Tweet.
@@ -466,6 +491,17 @@ abstract class TweetsService {
   ///                 located in the Tweet object, you will find this ID and all
   ///                 additional poll fields in the `includes` data object.
   ///
+  /// - [mediaFields]: This fields parameter enables you to select which
+  ///                  specific media fields will deliver in each returned
+  ///                  Tweet. Specify the desired fields in a comma-separated
+  ///                  list without spaces between commas and fields. The Tweet
+  ///                  will only return media fields if the Tweet contains media
+  ///                  and if you've also included the
+  ///                  `expansions=attachments.media_keys` query parameter in
+  ///                  your request. While the media ID will be located in the
+  ///                  Tweet object, you will find this ID and all additional
+  ///                  media fields in the `includes` data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/:id/retweeted_by
@@ -490,6 +526,7 @@ abstract class TweetsService {
     List<UserField>? userFields,
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
+    List<MediaField>? mediaFields,
   });
 
   /// Returns Quote Tweets for a Tweet specified by the requested Tweet ID.
@@ -560,6 +597,17 @@ abstract class TweetsService {
   ///                 located in the Tweet object, you will find this ID and all
   ///                 additional poll fields in the `includes` data object.
   ///
+  /// - [mediaFields]: This fields parameter enables you to select which
+  ///                  specific media fields will deliver in each returned
+  ///                  Tweet. Specify the desired fields in a comma-separated
+  ///                  list without spaces between commas and fields. The Tweet
+  ///                  will only return media fields if the Tweet contains media
+  ///                  and if you've also included the
+  ///                  `expansions=attachments.media_keys` query parameter in
+  ///                  your request. While the media ID will be located in the
+  ///                  Tweet object, you will find this ID and all additional
+  ///                  media fields in the `includes` data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/:id/quote_tweets
@@ -584,6 +632,7 @@ abstract class TweetsService {
     List<UserField>? userFields,
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
+    List<MediaField>? mediaFields,
   });
 
   /// The recent search endpoint returns Tweets from the last seven days that
@@ -656,6 +705,17 @@ abstract class TweetsService {
   ///                 located in the Tweet object, you will find this ID and all
   ///                 additional poll fields in the `includes` data object.
   ///
+  /// - [mediaFields]: This fields parameter enables you to select which
+  ///                  specific media fields will deliver in each returned
+  ///                  Tweet. Specify the desired fields in a comma-separated
+  ///                  list without spaces between commas and fields. The Tweet
+  ///                  will only return media fields if the Tweet contains media
+  ///                  and if you've also included the
+  ///                  `expansions=attachments.media_keys` query parameter in
+  ///                  your request. While the media ID will be located in the
+  ///                  Tweet object, you will find this ID and all additional
+  ///                  media fields in the `includes` data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/search/recent
@@ -680,6 +740,7 @@ abstract class TweetsService {
     List<UserField>? userFields,
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
+    List<MediaField>? mediaFields,
   });
 
   /// This endpoint is only available to those users who have been approved for
@@ -755,6 +816,17 @@ abstract class TweetsService {
   ///                 located in the Tweet object, you will find this ID and all
   ///                 additional poll fields in the `includes` data object.
   ///
+  /// - [mediaFields]: This fields parameter enables you to select which
+  ///                  specific media fields will deliver in each returned
+  ///                  Tweet. Specify the desired fields in a comma-separated
+  ///                  list without spaces between commas and fields. The Tweet
+  ///                  will only return media fields if the Tweet contains media
+  ///                  and if you've also included the
+  ///                  `expansions=attachments.media_keys` query parameter in
+  ///                  your request. While the media ID will be located in the
+  ///                  Tweet object, you will find this ID and all additional
+  ///                  media fields in the `includes` data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/search/all
@@ -779,6 +851,7 @@ abstract class TweetsService {
     List<UserField>? userFields,
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
+    List<MediaField>? mediaFields,
   });
 
   /// Returns a variety of information about a single Tweet specified by the
@@ -834,6 +907,17 @@ abstract class TweetsService {
   ///                 located in the Tweet object, you will find this ID and all
   ///                 additional poll fields in the `includes` data object.
   ///
+  /// - [mediaFields]: This fields parameter enables you to select which
+  ///                  specific media fields will deliver in each returned
+  ///                  Tweet. Specify the desired fields in a comma-separated
+  ///                  list without spaces between commas and fields. The Tweet
+  ///                  will only return media fields if the Tweet contains media
+  ///                  and if you've also included the
+  ///                  `expansions=attachments.media_keys` query parameter in
+  ///                  your request. While the media ID will be located in the
+  ///                  Tweet object, you will find this ID and all additional
+  ///                  media fields in the `includes` data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/:id
@@ -856,6 +940,7 @@ abstract class TweetsService {
     List<UserField>? userFields,
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
+    List<MediaField>? mediaFields,
   });
 
   /// Returns a variety of information about the Tweet specified by the
@@ -912,6 +997,17 @@ abstract class TweetsService {
   ///                 located in the Tweet object, you will find this ID and all
   ///                 additional poll fields in the `includes` data object.
   ///
+  /// - [mediaFields]: This fields parameter enables you to select which
+  ///                  specific media fields will deliver in each returned
+  ///                  Tweet. Specify the desired fields in a comma-separated
+  ///                  list without spaces between commas and fields. The Tweet
+  ///                  will only return media fields if the Tweet contains media
+  ///                  and if you've also included the
+  ///                  `expansions=attachments.media_keys` query parameter in
+  ///                  your request. While the media ID will be located in the
+  ///                  Tweet object, you will find this ID and all additional
+  ///                  media fields in the `includes` data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets
@@ -934,6 +1030,7 @@ abstract class TweetsService {
     List<UserField>? userFields,
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
+    List<MediaField>? mediaFields,
   });
 
   /// The recent Tweet counts endpoint returns count of Tweets from the last
@@ -1118,6 +1215,17 @@ abstract class TweetsService {
   ///                 located in the Tweet object, you will find this ID and all
   ///                 additional poll fields in the `includes` data object.
   ///
+  /// - [mediaFields]: This fields parameter enables you to select which
+  ///                  specific media fields will deliver in each returned
+  ///                  Tweet. Specify the desired fields in a comma-separated
+  ///                  list without spaces between commas and fields. The Tweet
+  ///                  will only return media fields if the Tweet contains media
+  ///                  and if you've also included the
+  ///                  `expansions=attachments.media_keys` query parameter in
+  ///                  your request. While the media ID will be located in the
+  ///                  Tweet object, you will find this ID and all additional
+  ///                  media fields in the `includes` data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/bookmarks/:tweet_id
@@ -1137,6 +1245,7 @@ abstract class TweetsService {
     List<UserField>? userFields,
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
+    List<MediaField>? mediaFields,
   });
 
   /// Hides a reply to a Tweet.
@@ -1259,6 +1368,17 @@ abstract class TweetsService {
   ///                 located in the Tweet object, you will find this ID and all
   ///                 additional poll fields in the `includes` data object.
   ///
+  /// - [mediaFields]: This fields parameter enables you to select which
+  ///                  specific media fields will deliver in each returned
+  ///                  Tweet. Specify the desired fields in a comma-separated
+  ///                  list without spaces between commas and fields. The Tweet
+  ///                  will only return media fields if the Tweet contains media
+  ///                  and if you've also included the
+  ///                  `expansions=attachments.media_keys` query parameter in
+  ///                  your request. While the media ID will be located in the
+  ///                  Tweet object, you will find this ID and all additional
+  ///                  media fields in the `includes` data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/mentions
@@ -1286,6 +1406,7 @@ abstract class TweetsService {
     List<UserField>? userFields,
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
+    List<MediaField>? mediaFields,
   });
 
   /// Returns Tweets composed by a single user, specified by the requested user
@@ -1364,6 +1485,17 @@ abstract class TweetsService {
   ///                 located in the Tweet object, you will find this ID and all
   ///                 additional poll fields in the `includes` data object.
   ///
+  /// - [mediaFields]: This fields parameter enables you to select which
+  ///                  specific media fields will deliver in each returned
+  ///                  Tweet. Specify the desired fields in a comma-separated
+  ///                  list without spaces between commas and fields. The Tweet
+  ///                  will only return media fields if the Tweet contains media
+  ///                  and if you've also included the
+  ///                  `expansions=attachments.media_keys` query parameter in
+  ///                  your request. While the media ID will be located in the
+  ///                  Tweet object, you will find this ID and all additional
+  ///                  media fields in the `includes` data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/tweets
@@ -1391,6 +1523,7 @@ abstract class TweetsService {
     List<UserField>? userFields,
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
+    List<MediaField>? mediaFields,
   });
 
   /// Allows you to retrieve a collection of the most recent Tweets and Retweets
@@ -1464,6 +1597,17 @@ abstract class TweetsService {
   ///                 located in the Tweet object, you will find this ID and all
   ///                 additional poll fields in the `includes` data object.
   ///
+  /// - [mediaFields]: This fields parameter enables you to select which
+  ///                  specific media fields will deliver in each returned
+  ///                  Tweet. Specify the desired fields in a comma-separated
+  ///                  list without spaces between commas and fields. The Tweet
+  ///                  will only return media fields if the Tweet contains media
+  ///                  and if you've also included the
+  ///                  `expansions=attachments.media_keys` query parameter in
+  ///                  your request. While the media ID will be located in the
+  ///                  Tweet object, you will find this ID and all additional
+  ///                  media fields in the `includes` data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/timelines/reverse_chronological
@@ -1485,6 +1629,7 @@ abstract class TweetsService {
     List<UserField>? userFields,
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
+    List<MediaField>? mediaFields,
   });
 
   /// Streams about 1% of all Tweets in real-time.
@@ -1563,6 +1708,17 @@ abstract class TweetsService {
   ///                 located in the Tweet object, you will find this ID and all
   ///                 additional poll fields in the `includes` data object.
   ///
+  /// - [mediaFields]: This fields parameter enables you to select which
+  ///                  specific media fields will deliver in each returned
+  ///                  Tweet. Specify the desired fields in a comma-separated
+  ///                  list without spaces between commas and fields. The Tweet
+  ///                  will only return media fields if the Tweet contains media
+  ///                  and if you've also included the
+  ///                  `expansions=attachments.media_keys` query parameter in
+  ///                  your request. While the media ID will be located in the
+  ///                  Tweet object, you will find this ID and all additional
+  ///                  media fields in the `includes` data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/sample/stream
@@ -1582,6 +1738,7 @@ abstract class TweetsService {
     List<UserField>? userFields,
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
+    List<MediaField>? mediaFields,
   });
 
   /// Streams Tweets in real-time that match the rules that you added to the
@@ -1664,6 +1821,17 @@ abstract class TweetsService {
   ///                 located in the Tweet object, you will find this ID and all
   ///                 additional poll fields in the `includes` data object.
   ///
+  /// - [mediaFields]: This fields parameter enables you to select which
+  ///                  specific media fields will deliver in each returned
+  ///                  Tweet. Specify the desired fields in a comma-separated
+  ///                  list without spaces between commas and fields. The Tweet
+  ///                  will only return media fields if the Tweet contains media
+  ///                  and if you've also included the
+  ///                  `expansions=attachments.media_keys` query parameter in
+  ///                  your request. While the media ID will be located in the
+  ///                  Tweet object, you will find this ID and all additional
+  ///                  media fields in the `includes` data object.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/search/stream
@@ -1683,6 +1851,7 @@ abstract class TweetsService {
     List<UserField>? userFields,
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
+    List<MediaField>? mediaFields,
   });
 
   /// Returns either a single rule, or a list of rules that have been added to
@@ -1884,6 +2053,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<UserField>? userFields,
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
+    List<MediaField>? mediaFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -1897,6 +2067,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'user.fields': userFields,
             'place.fields': placeFields,
             'poll.fields': pollFields,
+            'media.fields': mediaFields,
           },
         ),
         dataBuilder: UserData.fromJson,
@@ -1913,6 +2084,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<UserField>? userFields,
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
+    List<MediaField>? mediaFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -1926,6 +2098,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'user.fields': userFields,
             'place.fields': placeFields,
             'poll.fields': pollFields,
+            'media.fields': mediaFields,
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -1942,6 +2115,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<UserField>? userFields,
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
+    List<MediaField>? mediaFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -1955,6 +2129,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'user.fields': userFields,
             'place.fields': placeFields,
             'poll.fields': pollFields,
+            'media.fields': mediaFields,
           },
         ),
         dataBuilder: UserData.fromJson,
@@ -1971,6 +2146,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<UserField>? userFields,
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
+    List<MediaField>? mediaFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -1984,6 +2160,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'user.fields': userFields,
             'place.fields': placeFields,
             'poll.fields': pollFields,
+            'media.fields': mediaFields,
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -2000,6 +2177,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<UserField>? userFields,
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
+    List<MediaField>? mediaFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -2014,6 +2192,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'user.fields': userFields,
             'place.fields': placeFields,
             'poll.fields': pollFields,
+            'media.fields': mediaFields,
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -2030,6 +2209,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<UserField>? userFields,
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
+    List<MediaField>? mediaFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -2044,6 +2224,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'user.fields': userFields,
             'place.fields': placeFields,
             'poll.fields': pollFields,
+            'media.fields': mediaFields,
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -2058,6 +2239,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<UserField>? userFields,
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
+    List<MediaField>? mediaFields,
   }) async =>
       super.buildResponse(
         await super.get(
@@ -2069,6 +2251,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'user.fields': userFields,
             'place.fields': placeFields,
             'poll.fields': pollFields,
+            'media.fields': mediaFields,
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -2082,6 +2265,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<UserField>? userFields,
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
+    List<MediaField>? mediaFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -2094,6 +2278,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'user.fields': userFields,
             'place.fields': placeFields,
             'poll.fields': pollFields,
+            'media.fields': mediaFields,
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -2170,6 +2355,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<UserField>? userFields,
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
+    List<MediaField>? mediaFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -2181,6 +2367,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'user.fields': userFields,
             'place.fields': placeFields,
             'poll.fields': pollFields,
+            'media.fields': mediaFields,
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -2219,6 +2406,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<UserField>? userFields,
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
+    List<MediaField>? mediaFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -2232,6 +2420,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'user.fields': userFields,
             'place.fields': placeFields,
             'poll.fields': pollFields,
+            'media.fields': mediaFields,
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -2248,6 +2437,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<UserField>? userFields,
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
+    List<MediaField>? mediaFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -2261,6 +2451,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'user.fields': userFields,
             'place.fields': placeFields,
             'poll.fields': pollFields,
+            'media.fields': mediaFields,
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -2277,6 +2468,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<UserField>? userFields,
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
+    List<MediaField>? mediaFields,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -2290,6 +2482,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'user.fields': userFields,
             'place.fields': placeFields,
             'poll.fields': pollFields,
+            'media.fields': mediaFields,
           },
         ),
         dataBuilder: TweetData.fromJson,
@@ -2304,6 +2497,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<UserField>? userFields,
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
+    List<MediaField>? mediaFields,
   }) async {
     final stream = await super.getStream(
       UserContext.oauth2Only,
@@ -2315,6 +2509,7 @@ class _TweetsService extends BaseService implements TweetsService {
         'user.fields': userFields,
         'place.fields': placeFields,
         'poll.fields': pollFields,
+        'media.fields': mediaFields,
       },
     );
 
@@ -2336,6 +2531,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<UserField>? userFields,
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
+    List<MediaField>? mediaFields,
   }) async {
     final stream = await super.getStream(
       UserContext.oauth2Only,
@@ -2347,6 +2543,7 @@ class _TweetsService extends BaseService implements TweetsService {
         'user.fields': userFields,
         'place.fields': placeFields,
         'poll.fields': pollFields,
+        'media.fields': mediaFields,
       },
     );
 

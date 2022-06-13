@@ -16,16 +16,67 @@ _$_MediaData _$$_MediaDataFromJson(Map json) => $checkedCreate(
           key: $checkedConvert('media_key', (v) => v as String),
           type: $checkedConvert(
               'type', (v) => $enumDecode(_$MediaTypeEnumMap, v)),
+          url: $checkedConvert('url', (v) => v as String?),
+          durationMilliseconds:
+              $checkedConvert('duration_ms', (v) => v as int?),
+          height: $checkedConvert('height', (v) => v as int?),
+          privateMetrics: $checkedConvert(
+              'private_metrics',
+              (v) => v == null
+                  ? null
+                  : PrivateMediaMetrics.fromJson(
+                      Map<String, Object?>.from(v as Map))),
+          organicMetrics: $checkedConvert(
+              'organic_metrics',
+              (v) => v == null
+                  ? null
+                  : OrganicMediaMetrics.fromJson(
+                      Map<String, Object?>.from(v as Map))),
+          previewImageUrl:
+              $checkedConvert('preview_image_url', (v) => v as String?),
+          promotedMetrics: $checkedConvert(
+              'promoted_metrics',
+              (v) => v == null
+                  ? null
+                  : PromotedMediaMetrics.fromJson(
+                      Map<String, Object?>.from(v as Map))),
+          publicMetrics: $checkedConvert(
+              'public_metrics',
+              (v) => v == null
+                  ? null
+                  : PublicMediaMetrics.fromJson(
+                      Map<String, Object?>.from(v as Map))),
+          width: $checkedConvert('width', (v) => v as int?),
+          altText: $checkedConvert('alt_text', (v) => v as String?),
         );
         return val;
       },
-      fieldKeyMap: const {'key': 'media_key'},
+      fieldKeyMap: const {
+        'key': 'media_key',
+        'durationMilliseconds': 'duration_ms',
+        'privateMetrics': 'private_metrics',
+        'organicMetrics': 'organic_metrics',
+        'previewImageUrl': 'preview_image_url',
+        'promotedMetrics': 'promoted_metrics',
+        'publicMetrics': 'public_metrics',
+        'altText': 'alt_text'
+      },
     );
 
 Map<String, dynamic> _$$_MediaDataToJson(_$_MediaData instance) =>
     <String, dynamic>{
       'media_key': instance.key,
       'type': _$MediaTypeEnumMap[instance.type],
+      'url': instance.url,
+      'duration_ms': instance.durationMilliseconds,
+      'height': instance.height,
+      'private_metrics': instance.privateMetrics,
+      'organic_metrics': instance.organicMetrics,
+      'preview_image_url': instance.previewImageUrl,
+      'promoted_metrics': instance.promotedMetrics,
+      'public_metrics': instance.publicMetrics,
+      'width': instance.width,
+      'alt_text': instance.altText,
     };
 
 const _$MediaTypeEnumMap = {
