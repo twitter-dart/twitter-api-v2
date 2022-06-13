@@ -11,7 +11,7 @@ import 'package:twitter_api_v2/twitter_api_v2.dart';
 void main() {
   test('.name', () {
     expect(MediaField.altText.value, 'alt_text');
-    expect(MediaField.durationMs.value, 'duration_ms');
+    expect(MediaField.durationMilliseconds.value, 'duration_ms');
     expect(MediaField.height.value, 'height');
     expect(MediaField.mediaKey.value, 'media_key');
     expect(MediaField.privateMetrics.value, 'non_public_metrics');
