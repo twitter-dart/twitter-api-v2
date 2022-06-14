@@ -8,6 +8,29 @@
   - French
   - Vietnamese
   - Bengali
+- Added `mediaFields` arguments. ([#183](https://github.com/twitter-dart/twitter-api-v2/issues/183))
+  - GET /2/users/:id/bookmarks
+  - GET /2/tweets/search/stream
+  - GET /2/tweets/:id/liking_users
+  - GET /2/users/:id/liked_tweets
+  - GET /2/tweets/:id/quote_tweets
+  - GET /2/tweets/:id/retweeted_by
+  - GET /2/tweets/search/all
+  - GET /2/tweets/search/recent
+  - GET /2/users/:id/mentions
+  - GET /2/users/:id/timelines/reverse_chronological
+  - GET /2/users/:id/tweets
+  - GET /2/tweets
+  - GET /2/tweets/:id
+  - GET /2/tweets/sample/stream
+  - GET /2/spaces/:id/buyers
+  - GET /2/spaces/:id/tweets
+- Added `mediaFields` arguments. ([#186](https://github.com/twitter-dart/twitter-api-v2/issues/186))
+  - GET /2/users/:id/followed_lists
+  - GET /2/lists/:id
+  - GET /2/users/:id/owned_lists
+  - GET /2/users/:id/list_memberships
+  - GET /2/users/:id/pinned_lists
 
 ## v2.5.0
 
