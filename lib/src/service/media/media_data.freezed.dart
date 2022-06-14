@@ -27,6 +27,7 @@ mixin _$MediaData {
   @JsonKey(name: 'duration_ms')
   int? get durationMilliseconds => throw _privateConstructorUsedError;
   int? get height => throw _privateConstructorUsedError;
+  @JsonKey(name: 'non_public_metrics')
   PrivateMediaMetrics? get privateMetrics => throw _privateConstructorUsedError;
   OrganicMediaMetrics? get organicMetrics => throw _privateConstructorUsedError;
   String? get previewImageUrl => throw _privateConstructorUsedError;
@@ -52,7 +53,7 @@ abstract class $MediaDataCopyWith<$Res> {
       String? url,
       @JsonKey(name: 'duration_ms') int? durationMilliseconds,
       int? height,
-      PrivateMediaMetrics? privateMetrics,
+      @JsonKey(name: 'non_public_metrics') PrivateMediaMetrics? privateMetrics,
       OrganicMediaMetrics? organicMetrics,
       String? previewImageUrl,
       PromotedMediaMetrics? promotedMetrics,
@@ -199,7 +200,7 @@ abstract class _$$_MediaDataCopyWith<$Res> implements $MediaDataCopyWith<$Res> {
       String? url,
       @JsonKey(name: 'duration_ms') int? durationMilliseconds,
       int? height,
-      PrivateMediaMetrics? privateMetrics,
+      @JsonKey(name: 'non_public_metrics') PrivateMediaMetrics? privateMetrics,
       OrganicMediaMetrics? organicMetrics,
       String? previewImageUrl,
       PromotedMediaMetrics? promotedMetrics,
@@ -304,7 +305,7 @@ class _$_MediaData implements _MediaData {
       this.url,
       @JsonKey(name: 'duration_ms') this.durationMilliseconds,
       this.height,
-      this.privateMetrics,
+      @JsonKey(name: 'non_public_metrics') this.privateMetrics,
       this.organicMetrics,
       this.previewImageUrl,
       this.promotedMetrics,
@@ -328,6 +329,7 @@ class _$_MediaData implements _MediaData {
   @override
   final int? height;
   @override
+  @JsonKey(name: 'non_public_metrics')
   final PrivateMediaMetrics? privateMetrics;
   @override
   final OrganicMediaMetrics? organicMetrics;
@@ -402,12 +404,15 @@ class _$_MediaData implements _MediaData {
 
 abstract class _MediaData implements MediaData {
   const factory _MediaData(
-      {@JsonKey(name: 'media_key') required final String key,
+      {@JsonKey(name: 'media_key')
+          required final String key,
       required final MediaType type,
       final String? url,
-      @JsonKey(name: 'duration_ms') final int? durationMilliseconds,
+      @JsonKey(name: 'duration_ms')
+          final int? durationMilliseconds,
       final int? height,
-      final PrivateMediaMetrics? privateMetrics,
+      @JsonKey(name: 'non_public_metrics')
+          final PrivateMediaMetrics? privateMetrics,
       final OrganicMediaMetrics? organicMetrics,
       final String? previewImageUrl,
       final PromotedMediaMetrics? promotedMetrics,
@@ -431,6 +436,7 @@ abstract class _MediaData implements MediaData {
   @override
   int? get height => throw _privateConstructorUsedError;
   @override
+  @JsonKey(name: 'non_public_metrics')
   PrivateMediaMetrics? get privateMetrics => throw _privateConstructorUsedError;
   @override
   OrganicMediaMetrics? get organicMetrics => throw _privateConstructorUsedError;
