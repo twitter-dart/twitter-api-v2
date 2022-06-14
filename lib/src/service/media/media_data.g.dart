@@ -21,7 +21,7 @@ _$_MediaData _$$_MediaDataFromJson(Map json) => $checkedCreate(
               $checkedConvert('duration_ms', (v) => v as int?),
           height: $checkedConvert('height', (v) => v as int?),
           privateMetrics: $checkedConvert(
-              'private_metrics',
+              'non_public_metrics',
               (v) => v == null
                   ? null
                   : PrivateMediaMetrics.fromJson(
@@ -54,7 +54,7 @@ _$_MediaData _$$_MediaDataFromJson(Map json) => $checkedCreate(
       fieldKeyMap: const {
         'key': 'media_key',
         'durationMilliseconds': 'duration_ms',
-        'privateMetrics': 'private_metrics',
+        'privateMetrics': 'non_public_metrics',
         'organicMetrics': 'organic_metrics',
         'previewImageUrl': 'preview_image_url',
         'promotedMetrics': 'promoted_metrics',
@@ -70,7 +70,7 @@ Map<String, dynamic> _$$_MediaDataToJson(_$_MediaData instance) =>
       'url': instance.url,
       'duration_ms': instance.durationMilliseconds,
       'height': instance.height,
-      'private_metrics': instance.privateMetrics,
+      'non_public_metrics': instance.privateMetrics,
       'organic_metrics': instance.organicMetrics,
       'preview_image_url': instance.previewImageUrl,
       'promoted_metrics': instance.promotedMetrics,
