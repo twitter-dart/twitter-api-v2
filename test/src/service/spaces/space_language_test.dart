@@ -33,7 +33,7 @@ void main() {
     expect(SpaceLanguage.spanish.name, 'spanish');
     expect(SpaceLanguage.swedish.name, 'swedish');
     expect(SpaceLanguage.turkish.name, 'turkish');
-    expect(SpaceLanguage.ukranian.name, 'ukranian');
+    expect(SpaceLanguage.ukrainian.name, 'ukrainian');
   });
 
   test('.code', () {
@@ -47,7 +47,7 @@ void main() {
     expect(SpaceLanguage.german.code, 'de');
     expect(SpaceLanguage.hindi.code, 'hi');
     expect(SpaceLanguage.hebrew.code, 'iw');
-    expect(SpaceLanguage.indonesian.code, 'in');
+    expect(SpaceLanguage.indonesian.code, 'id');
     expect(SpaceLanguage.italian.code, 'it');
     expect(SpaceLanguage.japanese.code, 'ja');
     expect(SpaceLanguage.kazakh.code, 'kk');
@@ -60,6 +60,6 @@ void main() {
     expect(SpaceLanguage.spanish.code, 'es');
     expect(SpaceLanguage.swedish.code, 'sv');
     expect(SpaceLanguage.turkish.code, 'tr');
-    expect(SpaceLanguage.ukranian.code, 'uk');
+    expect(SpaceLanguage.ukrainian.code, 'uk');
   });
 }

@@ -100,7 +100,7 @@ const _$SpaceLanguageEnumMap = {
   SpaceLanguage.german: 'de',
   SpaceLanguage.hindi: 'hi',
   SpaceLanguage.hebrew: 'iw',
-  SpaceLanguage.indonesian: 'in',
+  SpaceLanguage.indonesian: 'id',
   SpaceLanguage.italian: 'it',
   SpaceLanguage.japanese: 'ja',
   SpaceLanguage.kazakh: 'kk',
@@ -113,6 +113,6 @@ const _$SpaceLanguageEnumMap = {
   SpaceLanguage.spanish: 'es',
   SpaceLanguage.swedish: 'sv',
   SpaceLanguage.turkish: 'tr',
-  SpaceLanguage.ukranian: 'uk',
+  SpaceLanguage.ukrainian: 'uk',
   SpaceLanguage.undetermined: 'other',
 };

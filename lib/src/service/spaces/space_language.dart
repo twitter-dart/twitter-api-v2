@@ -36,8 +36,8 @@ enum SpaceLanguage {
   @JsonValue('iw')
   hebrew('iw'),
 
-  @JsonValue('in')
-  indonesian('in'),
+  @JsonValue('id')
+  indonesian('id'),
 
   @JsonValue('it')
   italian('it'),
@@ -76,7 +76,7 @@ enum SpaceLanguage {
   turkish('tr'),
 
   @JsonValue('uk')
-  ukranian('uk'),
+  ukrainian('uk'),
 
   @JsonValue('other')
   undetermined('other');
