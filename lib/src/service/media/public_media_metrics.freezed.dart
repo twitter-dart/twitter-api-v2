@@ -20,6 +20,13 @@ PublicMediaMetrics _$PublicMediaMetricsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PublicMediaMetrics {
+  /// A count of how many times the video included in the Tweet has been
+  /// viewed.
+  ///
+  /// This is the number of video views aggregated across all Tweets in which
+  /// the given video has been posted. That means that the metric includes
+  /// the combined views from any instance where the video has been Retweeted
+  /// or re-posted in separate Tweets.
   int get viewCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -100,6 +107,13 @@ class _$_PublicMediaMetrics implements _PublicMediaMetrics {
   factory _$_PublicMediaMetrics.fromJson(Map<String, dynamic> json) =>
       _$$_PublicMediaMetricsFromJson(json);
 
+  /// A count of how many times the video included in the Tweet has been
+  /// viewed.
+  ///
+  /// This is the number of video views aggregated across all Tweets in which
+  /// the given video has been posted. That means that the metric includes
+  /// the combined views from any instance where the video has been Retweeted
+  /// or re-posted in separate Tweets.
   @override
   final int viewCount;
 
@@ -141,6 +155,14 @@ abstract class _PublicMediaMetrics implements PublicMediaMetrics {
       _$_PublicMediaMetrics.fromJson;
 
   @override
+
+  /// A count of how many times the video included in the Tweet has been
+  /// viewed.
+  ///
+  /// This is the number of video views aggregated across all Tweets in which
+  /// the given video has been posted. That means that the metric includes
+  /// the combined views from any instance where the video has been Retweeted
+  /// or re-posted in separate Tweets.
   int get viewCount => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

@@ -11,9 +11,16 @@ part 'public_user_metrics.g.dart';
 @freezed
 class PublicUserMetrics with _$PublicUserMetrics {
   const factory PublicUserMetrics({
+    /// Number of users who follow this user.
     required int followersCount,
+
+    /// Number of users this user is following.
     required int followingCount,
+
+    /// Number of Tweets (including Retweets) posted by this user.
     required int tweetCount,
+
+    /// Number of lists that include this user.
     required int listedCount,
   }) = _PublicUserMetrics;
 

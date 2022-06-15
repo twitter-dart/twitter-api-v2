@@ -21,8 +21,20 @@ TweetContextAnnotation _$TweetContextAnnotationFromJson(
 
 /// @nodoc
 mixin _$TweetContextAnnotation {
+  /// Domain: Contains the numeric value of the domain.
+  ///
+  /// Entity: Unique value which correlates to an explicitly mentioned Person,
+  /// Place, Product or Organization
   String get id => throw _privateConstructorUsedError;
+
+  /// Domain: Domain name based on the Tweet text.
+  ///
+  /// Entity: Name or reference of entity referenced in the Tweet.
   String get name => throw _privateConstructorUsedError;
+
+  /// Domain: Long form description of domain classification.
+  ///
+  /// Entity: Additional information regarding referenced entity.
   String? get description => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -125,10 +137,22 @@ class _$_TweetContextAnnotation implements _TweetContextAnnotation {
   factory _$_TweetContextAnnotation.fromJson(Map<String, dynamic> json) =>
       _$$_TweetContextAnnotationFromJson(json);
 
+  /// Domain: Contains the numeric value of the domain.
+  ///
+  /// Entity: Unique value which correlates to an explicitly mentioned Person,
+  /// Place, Product or Organization
   @override
   final String id;
+
+  /// Domain: Domain name based on the Tweet text.
+  ///
+  /// Entity: Name or reference of entity referenced in the Tweet.
   @override
   final String name;
+
+  /// Domain: Long form description of domain classification.
+  ///
+  /// Entity: Additional information regarding referenced entity.
   @override
   final String? description;
 
@@ -178,10 +202,23 @@ abstract class _TweetContextAnnotation implements TweetContextAnnotation {
       _$_TweetContextAnnotation.fromJson;
 
   @override
+
+  /// Domain: Contains the numeric value of the domain.
+  ///
+  /// Entity: Unique value which correlates to an explicitly mentioned Person,
+  /// Place, Product or Organization
   String get id => throw _privateConstructorUsedError;
   @override
+
+  /// Domain: Domain name based on the Tweet text.
+  ///
+  /// Entity: Name or reference of entity referenced in the Tweet.
   String get name => throw _privateConstructorUsedError;
   @override
+
+  /// Domain: Long form description of domain classification.
+  ///
+  /// Entity: Additional information regarding referenced entity.
   String? get description => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

@@ -16,7 +16,15 @@ part 'geo.g.dart';
 @freezed
 class Geo with _$Geo {
   const factory Geo({
+    /// The unique identifier of the place, if this is a point of interest
+    /// tagged in the Tweet.
+    ///
+    /// You can obtain the expanded object in includes.places by adding
+    /// `TweetExpansion.geoPlaceId` in the request's query parameter.
     String? placeId,
+
+    /// Contains details about the coordinates of the location tagged by the
+    /// user in this Tweet, if they specified one.
     GeoCoordinates? coordinates,
   }) = _Geo;
 

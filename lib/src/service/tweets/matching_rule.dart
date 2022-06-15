@@ -11,7 +11,11 @@ part 'matching_rule.g.dart';
 @freezed
 class MatchingRule with _$MatchingRule {
   const factory MatchingRule({
+    /// ID of the filter rule that matched against the Tweet delivered.
     required String id,
+
+    /// The tag label of the filter rule that matched against the
+    /// Tweet delivered.
     required String tag,
   }) = _MatchingRule;
 

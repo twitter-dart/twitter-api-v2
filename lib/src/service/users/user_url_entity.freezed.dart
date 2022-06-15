@@ -20,6 +20,7 @@ UserUrlEntity _$UserUrlEntityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserUrlEntity {
+  /// Contains details about the user's profile website.
   List<Url> get urls => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -100,7 +101,10 @@ class _$_UserUrlEntity implements _UserUrlEntity {
   factory _$_UserUrlEntity.fromJson(Map<String, dynamic> json) =>
       _$$_UserUrlEntityFromJson(json);
 
+  /// Contains details about the user's profile website.
   final List<Url> _urls;
+
+  /// Contains details about the user's profile website.
   @override
   List<Url> get urls {
     // ignore: implicit_dynamic_type
@@ -144,6 +148,8 @@ abstract class _UserUrlEntity implements UserUrlEntity {
       _$_UserUrlEntity.fromJson;
 
   @override
+
+  /// Contains details about the user's profile website.
   List<Url> get urls => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

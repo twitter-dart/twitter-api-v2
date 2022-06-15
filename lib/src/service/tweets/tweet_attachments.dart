@@ -11,7 +11,20 @@ part 'tweet_attachments.g.dart';
 @freezed
 class TweetAttachments with _$TweetAttachments {
   const factory TweetAttachments({
+    /// List of unique identifiers of media attached to this Tweet. These
+    /// identifiers use the same media key format as those returned by the
+    /// Media Library.
+    ///
+    /// You can obtain the expanded object in includes.media by adding
+    /// `TweetExpansion.attachmentsMediaKeys` in the request's query parameter.
     List<String>? mediaKeys,
+
+    /// List of unique identifiers of polls present in the Tweets returned.
+    /// These are returned as a string in order to avoid complications with
+    /// languages and tools that cannot handle large integers.
+    ///
+    /// You can obtain the expanded object in includes.polls by adding
+    /// `TweetExpansion.attachmentsPollIds` in the request's query parameter.
     List<String>? pollIds,
   }) = _TweetAttachments;
 

@@ -15,7 +15,11 @@ part 'user_entities.g.dart';
 @freezed
 class UserEntities with _$UserEntities {
   const factory UserEntities({
+    /// Contains details about the user's profile website.
     UserUrlEntity? url,
+
+    /// Contains details about URLs, Hashtags, Cashtags, or mentions located
+    /// within a user's description.
     UserDescriptionEntity? description,
   }) = _UserEntities;
 

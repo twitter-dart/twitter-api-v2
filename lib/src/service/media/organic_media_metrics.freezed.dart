@@ -20,16 +20,48 @@ OrganicMediaMetrics _$OrganicMediaMetricsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$OrganicMediaMetrics {
+  /// The number of users who played through to each quartile in a video.
+  ///
+  /// This reflects the number of quartile views across all Tweets in which
+  /// the given video has been posted.
   @JsonKey(name: 'playback_0_count')
   int get playback0Count => throw _privateConstructorUsedError;
+
+  /// The number of users who played through to each quartile in a video.
+  ///
+  /// This reflects the number of quartile views across all Tweets in which
+  /// the given video has been posted.
   @JsonKey(name: 'playback_25_count')
   int get playback25Count => throw _privateConstructorUsedError;
+
+  /// The number of users who played through to each quartile in a video.
+  ///
+  /// This reflects the number of quartile views across all Tweets in which
+  /// the given video has been posted.
   @JsonKey(name: 'playback_50_count')
   int get playback50Count => throw _privateConstructorUsedError;
+
+  /// The number of users who played through to each quartile in a video.
+  ///
+  /// This reflects the number of quartile views across all Tweets in which
+  /// the given video has been posted.
   @JsonKey(name: 'playback_75_count')
   int get playback75Count => throw _privateConstructorUsedError;
+
+  /// The number of users who played through to each quartile in a video.
+  ///
+  /// This reflects the number of quartile views across all Tweets in which
+  /// the given video has been posted.
   @JsonKey(name: 'playback_100_count')
   int get playback100Count => throw _privateConstructorUsedError;
+
+  /// A count of how many times the video included in the Tweet has been
+  /// viewed.
+  ///
+  /// This is the number of video views aggregated across all Tweets in which
+  /// the given video has been posted. That means that the metric includes
+  /// the combined views from any instance where the video has been Retweeted
+  /// or re-posted in separate Tweets.
   int get viewCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -178,21 +210,53 @@ class _$_OrganicMediaMetrics implements _OrganicMediaMetrics {
   factory _$_OrganicMediaMetrics.fromJson(Map<String, dynamic> json) =>
       _$$_OrganicMediaMetricsFromJson(json);
 
+  /// The number of users who played through to each quartile in a video.
+  ///
+  /// This reflects the number of quartile views across all Tweets in which
+  /// the given video has been posted.
   @override
   @JsonKey(name: 'playback_0_count')
   final int playback0Count;
+
+  /// The number of users who played through to each quartile in a video.
+  ///
+  /// This reflects the number of quartile views across all Tweets in which
+  /// the given video has been posted.
   @override
   @JsonKey(name: 'playback_25_count')
   final int playback25Count;
+
+  /// The number of users who played through to each quartile in a video.
+  ///
+  /// This reflects the number of quartile views across all Tweets in which
+  /// the given video has been posted.
   @override
   @JsonKey(name: 'playback_50_count')
   final int playback50Count;
+
+  /// The number of users who played through to each quartile in a video.
+  ///
+  /// This reflects the number of quartile views across all Tweets in which
+  /// the given video has been posted.
   @override
   @JsonKey(name: 'playback_75_count')
   final int playback75Count;
+
+  /// The number of users who played through to each quartile in a video.
+  ///
+  /// This reflects the number of quartile views across all Tweets in which
+  /// the given video has been posted.
   @override
   @JsonKey(name: 'playback_100_count')
   final int playback100Count;
+
+  /// A count of how many times the video included in the Tweet has been
+  /// viewed.
+  ///
+  /// This is the number of video views aggregated across all Tweets in which
+  /// the given video has been posted. That means that the metric includes
+  /// the combined views from any instance where the video has been Retweeted
+  /// or re-posted in separate Tweets.
   @override
   final int viewCount;
 
@@ -255,21 +319,54 @@ abstract class _OrganicMediaMetrics implements OrganicMediaMetrics {
       _$_OrganicMediaMetrics.fromJson;
 
   @override
+
+  /// The number of users who played through to each quartile in a video.
+  ///
+  /// This reflects the number of quartile views across all Tweets in which
+  /// the given video has been posted.
   @JsonKey(name: 'playback_0_count')
   int get playback0Count => throw _privateConstructorUsedError;
   @override
+
+  /// The number of users who played through to each quartile in a video.
+  ///
+  /// This reflects the number of quartile views across all Tweets in which
+  /// the given video has been posted.
   @JsonKey(name: 'playback_25_count')
   int get playback25Count => throw _privateConstructorUsedError;
   @override
+
+  /// The number of users who played through to each quartile in a video.
+  ///
+  /// This reflects the number of quartile views across all Tweets in which
+  /// the given video has been posted.
   @JsonKey(name: 'playback_50_count')
   int get playback50Count => throw _privateConstructorUsedError;
   @override
+
+  /// The number of users who played through to each quartile in a video.
+  ///
+  /// This reflects the number of quartile views across all Tweets in which
+  /// the given video has been posted.
   @JsonKey(name: 'playback_75_count')
   int get playback75Count => throw _privateConstructorUsedError;
   @override
+
+  /// The number of users who played through to each quartile in a video.
+  ///
+  /// This reflects the number of quartile views across all Tweets in which
+  /// the given video has been posted.
   @JsonKey(name: 'playback_100_count')
   int get playback100Count => throw _privateConstructorUsedError;
   @override
+
+  /// A count of how many times the video included in the Tweet has been
+  /// viewed.
+  ///
+  /// This is the number of video views aggregated across all Tweets in which
+  /// the given video has been posted. That means that the metric includes
+  /// the combined views from any instance where the video has been Retweeted
+  /// or re-posted in separate Tweets.
   int get viewCount => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

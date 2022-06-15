@@ -11,9 +11,17 @@ part 'public_tweet_metrics.g.dart';
 @freezed
 class PublicTweetMetrics with _$PublicTweetMetrics {
   const factory PublicTweetMetrics({
+    /// Number of Likes of this Tweet.
     required int likeCount,
+
+    /// Number of times this Tweet has been Retweeted.
     required int retweetCount,
+
+    /// Number of Replies of this Tweet.
     required int replyCount,
+
+    /// Number of times this Tweet has been Retweeted with a comment
+    /// (also known as Quote).
     required int quoteCount,
   }) = _PublicTweetMetrics;
 

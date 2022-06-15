@@ -11,8 +11,15 @@ part 'tag.g.dart';
 @freezed
 class Tag with _$Tag {
   const factory Tag({
+    /// The start position (zero-based) of the recognized tag within the object.
+    /// All start indices are inclusive.
     required int start,
+
+    /// The end position (zero-based) of the recognized tag within the object.
+    /// This end index is exclusive.
     required int end,
+
+    /// The text of the tag.
     required String tag,
   }) = _Tag;
 

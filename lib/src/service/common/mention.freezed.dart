@@ -20,9 +20,22 @@ Mention _$MentionFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Mention {
+  /// The user id that created the mentions.
   String? get id => throw _privateConstructorUsedError;
+
+  /// The part of text recognized as a user mention.
+  ///
+  /// You can obtain the expanded object in includes.users by adding
+  /// `TweetExpansion.entitiesMentionsUsername` in the request's query
+  /// parameter.
   String get username => throw _privateConstructorUsedError;
+
+  /// The start position (zero-based) of the recognized user mention within
+  /// the Tweet. All start indices are inclusive.
   int get start => throw _privateConstructorUsedError;
+
+  /// The end position (zero-based) of the recognized user mention within t
+  /// he Tweet. This end index is exclusive.
   int get end => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -131,12 +144,25 @@ class _$_Mention implements _Mention {
   factory _$_Mention.fromJson(Map<String, dynamic> json) =>
       _$$_MentionFromJson(json);
 
+  /// The user id that created the mentions.
   @override
   final String? id;
+
+  /// The part of text recognized as a user mention.
+  ///
+  /// You can obtain the expanded object in includes.users by adding
+  /// `TweetExpansion.entitiesMentionsUsername` in the request's query
+  /// parameter.
   @override
   final String username;
+
+  /// The start position (zero-based) of the recognized user mention within
+  /// the Tweet. All start indices are inclusive.
   @override
   final int start;
+
+  /// The end position (zero-based) of the recognized user mention within t
+  /// he Tweet. This end index is exclusive.
   @override
   final int end;
 
@@ -186,12 +212,26 @@ abstract class _Mention implements Mention {
   factory _Mention.fromJson(Map<String, dynamic> json) = _$_Mention.fromJson;
 
   @override
+
+  /// The user id that created the mentions.
   String? get id => throw _privateConstructorUsedError;
   @override
+
+  /// The part of text recognized as a user mention.
+  ///
+  /// You can obtain the expanded object in includes.users by adding
+  /// `TweetExpansion.entitiesMentionsUsername` in the request's query
+  /// parameter.
   String get username => throw _privateConstructorUsedError;
   @override
+
+  /// The start position (zero-based) of the recognized user mention within
+  /// the Tweet. All start indices are inclusive.
   int get start => throw _privateConstructorUsedError;
   @override
+
+  /// The end position (zero-based) of the recognized user mention within t
+  /// he Tweet. This end index is exclusive.
   int get end => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

@@ -11,6 +11,7 @@ part 'user_withheld.g.dart';
 @freezed
 class UserWithheld with _$UserWithheld {
   const factory UserWithheld({
+    /// Provides a list of countries where this user is not available.
     required List<String> countryCodes,
   }) = _UserWithheld;
 

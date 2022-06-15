@@ -20,8 +20,15 @@ FilteringRuleData _$FilteringRuleDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$FilteringRuleData {
+  /// Unique identifier of this rule. This is returned as a string in order
+  /// to avoid complications with languages and tools that cannot
+  /// handle large integers.
   String? get id => throw _privateConstructorUsedError;
+
+  /// The rule text as submitted when creating the rule.
   String get value => throw _privateConstructorUsedError;
+
+  /// The tag label as defined when creating the rule.
   String? get tag => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -122,10 +129,17 @@ class _$_FilteringRuleData implements _FilteringRuleData {
   factory _$_FilteringRuleData.fromJson(Map<String, dynamic> json) =>
       _$$_FilteringRuleDataFromJson(json);
 
+  /// Unique identifier of this rule. This is returned as a string in order
+  /// to avoid complications with languages and tools that cannot
+  /// handle large integers.
   @override
   final String? id;
+
+  /// The rule text as submitted when creating the rule.
   @override
   final String value;
+
+  /// The tag label as defined when creating the rule.
   @override
   final String? tag;
 
@@ -174,10 +188,18 @@ abstract class _FilteringRuleData implements FilteringRuleData {
       _$_FilteringRuleData.fromJson;
 
   @override
+
+  /// Unique identifier of this rule. This is returned as a string in order
+  /// to avoid complications with languages and tools that cannot
+  /// handle large integers.
   String? get id => throw _privateConstructorUsedError;
   @override
+
+  /// The rule text as submitted when creating the rule.
   String get value => throw _privateConstructorUsedError;
   @override
+
+  /// The tag label as defined when creating the rule.
   String? get tag => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

@@ -16,9 +16,16 @@ part 'user_description_entity.g.dart';
 @freezed
 class UserDescriptionEntity with _$UserDescriptionEntity {
   const factory UserDescriptionEntity({
+    /// Contains details about any URLs included in the user's description.
     List<Url>? urls,
+
+    /// Contains details about text recognized as a Hashtag.
     List<Tag>? hashtags,
+
+    /// Contains details about text recognized as a Cashtag.
     List<Tag>? cashtags,
+
+    /// Contains details about text recognized as a user mention.
     List<Mention>? mentions,
   }) = _UserDescriptionEntity;
 

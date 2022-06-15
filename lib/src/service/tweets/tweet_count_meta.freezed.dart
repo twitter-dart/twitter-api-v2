@@ -20,8 +20,13 @@ TweetCountMeta _$TweetCountMetaFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TweetCountMeta {
+  /// Total count of the Tweets that match the query.
   @JsonKey(name: 'total_tweet_count')
   int get total => throw _privateConstructorUsedError;
+
+  /// This parameter is used to get the next `page` of results. The value
+  /// used with the parameter is pulled directly from the response provided
+  /// by the API, and should not be modified.
   String? get nextToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -114,9 +119,14 @@ class _$_TweetCountMeta implements _TweetCountMeta {
   factory _$_TweetCountMeta.fromJson(Map<String, dynamic> json) =>
       _$$_TweetCountMetaFromJson(json);
 
+  /// Total count of the Tweets that match the query.
   @override
   @JsonKey(name: 'total_tweet_count')
   final int total;
+
+  /// This parameter is used to get the next `page` of results. The value
+  /// used with the parameter is pulled directly from the response provided
+  /// by the API, and should not be modified.
   @override
   final String? nextToken;
 
@@ -161,9 +171,15 @@ abstract class _TweetCountMeta implements TweetCountMeta {
       _$_TweetCountMeta.fromJson;
 
   @override
+
+  /// Total count of the Tweets that match the query.
   @JsonKey(name: 'total_tweet_count')
   int get total => throw _privateConstructorUsedError;
   @override
+
+  /// This parameter is used to get the next `page` of results. The value
+  /// used with the parameter is pulled directly from the response provided
+  /// by the API, and should not be modified.
   String? get nextToken => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

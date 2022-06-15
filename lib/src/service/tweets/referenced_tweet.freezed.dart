@@ -20,7 +20,14 @@ ReferencedTweet _$ReferencedTweetFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ReferencedTweet {
+  /// The unique identifier of the referenced Tweet.
   String get id => throw _privateConstructorUsedError;
+
+  /// Indicates the type of relationship between this Tweet and the Tweet
+  /// returned in the response:
+  /// [TweetType.retweeted] (this Tweet is a Retweet),
+  /// [TweetType.quoted] (a Retweet with comment, also known as Quoted Tweet),
+  /// or [TweetType.repliedTo] (this Tweet is a reply).
   TweetType get type => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -111,8 +118,15 @@ class _$_ReferencedTweet implements _ReferencedTweet {
   factory _$_ReferencedTweet.fromJson(Map<String, dynamic> json) =>
       _$$_ReferencedTweetFromJson(json);
 
+  /// The unique identifier of the referenced Tweet.
   @override
   final String id;
+
+  /// Indicates the type of relationship between this Tweet and the Tweet
+  /// returned in the response:
+  /// [TweetType.retweeted] (this Tweet is a Retweet),
+  /// [TweetType.quoted] (a Retweet with comment, also known as Quoted Tweet),
+  /// or [TweetType.repliedTo] (this Tweet is a reply).
   @override
   final TweetType type;
 
@@ -157,8 +171,16 @@ abstract class _ReferencedTweet implements ReferencedTweet {
       _$_ReferencedTweet.fromJson;
 
   @override
+
+  /// The unique identifier of the referenced Tweet.
   String get id => throw _privateConstructorUsedError;
   @override
+
+  /// Indicates the type of relationship between this Tweet and the Tweet
+  /// returned in the response:
+  /// [TweetType.retweeted] (this Tweet is a Retweet),
+  /// [TweetType.quoted] (a Retweet with comment, also known as Quoted Tweet),
+  /// or [TweetType.repliedTo] (this Tweet is a reply).
   TweetType get type => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

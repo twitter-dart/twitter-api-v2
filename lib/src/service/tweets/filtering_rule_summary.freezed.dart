@@ -20,12 +20,19 @@ FilteringRuleSummary _$FilteringRuleSummaryFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$FilteringRuleSummary {
+  /// The count of created filtering rules.
   @JsonKey(name: 'created')
   int? get createdCount => throw _privateConstructorUsedError;
+
+  /// The count of not created filtering rules.
   @JsonKey(name: 'not_created')
   int? get notCreatedCount => throw _privateConstructorUsedError;
+
+  /// The count of deleted filtering rules.
   @JsonKey(name: 'deleted')
   int? get deletedCount => throw _privateConstructorUsedError;
+
+  /// The count of not deleted filtering rules.
   @JsonKey(name: 'not_deleted')
   int? get notDeletedCount => throw _privateConstructorUsedError;
 
@@ -149,15 +156,22 @@ class _$_FilteringRuleSummary implements _FilteringRuleSummary {
   factory _$_FilteringRuleSummary.fromJson(Map<String, dynamic> json) =>
       _$$_FilteringRuleSummaryFromJson(json);
 
+  /// The count of created filtering rules.
   @override
   @JsonKey(name: 'created')
   final int? createdCount;
+
+  /// The count of not created filtering rules.
   @override
   @JsonKey(name: 'not_created')
   final int? notCreatedCount;
+
+  /// The count of deleted filtering rules.
   @override
   @JsonKey(name: 'deleted')
   final int? deletedCount;
+
+  /// The count of not deleted filtering rules.
   @override
   @JsonKey(name: 'not_deleted')
   final int? notDeletedCount;
@@ -215,15 +229,23 @@ abstract class _FilteringRuleSummary implements FilteringRuleSummary {
       _$_FilteringRuleSummary.fromJson;
 
   @override
+
+  /// The count of created filtering rules.
   @JsonKey(name: 'created')
   int? get createdCount => throw _privateConstructorUsedError;
   @override
+
+  /// The count of not created filtering rules.
   @JsonKey(name: 'not_created')
   int? get notCreatedCount => throw _privateConstructorUsedError;
   @override
+
+  /// The count of deleted filtering rules.
   @JsonKey(name: 'deleted')
   int? get deletedCount => throw _privateConstructorUsedError;
   @override
+
+  /// The count of not deleted filtering rules.
   @JsonKey(name: 'not_deleted')
   int? get notDeletedCount => throw _privateConstructorUsedError;
   @override

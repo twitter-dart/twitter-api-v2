@@ -11,8 +11,13 @@ part 'place_geo.g.dart';
 @freezed
 class PlaceGeo with _$PlaceGeo {
   const factory PlaceGeo({
+    /// The place type.
     required String type,
+
+    /// The bounding box.
     required List<double> bbox,
+
+    /// The place properties.
     required Map<String, dynamic> properties,
   }) = _PlaceGeo;
 

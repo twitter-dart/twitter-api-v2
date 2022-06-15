@@ -20,8 +20,13 @@ FilteringRuleMeta _$FilteringRuleMetaFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$FilteringRuleMeta {
+  /// The time when the request body was returned.
   @JsonKey(name: 'sent')
   DateTime? get sentAt => throw _privateConstructorUsedError;
+
+  /// Contains fields that describe whether you were successful or
+  /// unsuccessful in creating or deleting the different rules that
+  /// you passed in your request.
   FilteringRuleSummary? get summary => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -131,9 +136,14 @@ class _$_FilteringRuleMeta implements _FilteringRuleMeta {
   factory _$_FilteringRuleMeta.fromJson(Map<String, dynamic> json) =>
       _$$_FilteringRuleMetaFromJson(json);
 
+  /// The time when the request body was returned.
   @override
   @JsonKey(name: 'sent')
   final DateTime? sentAt;
+
+  /// Contains fields that describe whether you were successful or
+  /// unsuccessful in creating or deleting the different rules that
+  /// you passed in your request.
   @override
   final FilteringRuleSummary? summary;
 
@@ -179,9 +189,15 @@ abstract class _FilteringRuleMeta implements FilteringRuleMeta {
       _$_FilteringRuleMeta.fromJson;
 
   @override
+
+  /// The time when the request body was returned.
   @JsonKey(name: 'sent')
   DateTime? get sentAt => throw _privateConstructorUsedError;
   @override
+
+  /// Contains fields that describe whether you were successful or
+  /// unsuccessful in creating or deleting the different rules that
+  /// you passed in your request.
   FilteringRuleSummary? get summary => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

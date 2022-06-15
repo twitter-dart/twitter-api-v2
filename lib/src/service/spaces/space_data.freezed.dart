@@ -20,22 +20,135 @@ SpaceData _$SpaceDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SpaceData {
+  /// The unique identifier of the requested Space.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Uniquely identify a Space returned in the response.
   String get id => throw _privateConstructorUsedError;
+
+  /// The title of the Space as specified by the creator.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Determine the title of a Space, understand referenced keywords,
+  ///   hashtags, and mentions.
   String? get title => throw _privateConstructorUsedError;
+
+  /// Indicates if the Space has started or will start in the future,
+  /// or if it has ended.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Filter live or scheduled Spaces.
   SpaceState? get state => throw _privateConstructorUsedError;
+
+  /// The id of the Space creator.
   String? get creatorId => throw _privateConstructorUsedError;
+
+  /// Language of the Space, if detected by Twitter. Returned as a BCP47
+  /// language tag.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Classify Spaces by inferred language.
   SpaceLanguage? get lang => throw _privateConstructorUsedError;
+
+  /// The unique identifier of the users who are hosting this Space.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Expand User objects, understand engagement.
   List<String>? get hostIds => throw _privateConstructorUsedError;
+
+  /// A list of IDs of the topics selected by the creator of the Space.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Determine the title of a Space, understand referenced keywords,
+  ///   hashtags, and mentions.
   List<String>? get topicIds => throw _privateConstructorUsedError;
+
+  /// The list of users who were speaking at any point during the Space.
+  /// This list contains all the users in invited_user_ids in addition to any
+  /// user who requested to speak and was allowed via the Add speaker option.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Expand User objects, understand engagement.
   List<String>? get speakerIds => throw _privateConstructorUsedError;
+
+  /// The list of user IDs that were invited to join as speakers. Usually,
+  /// users in this list are invited to speak via the Invite user option.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Expand User objects, understand engagement.
   List<String>? get invitedUserIds => throw _privateConstructorUsedError;
+
+  /// The number of people who set a reminder to a Space.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Understand how many people are interested in attending the event.
+  ///   This metric is available for scheduled Spaces and Spaces scheduled in
+  ///   the past that are currently live.
   int? get subscriberCount => throw _privateConstructorUsedError;
+
+  /// The current number of users in the Space, including Hosts and Speakers.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Understand engagement, and create reports and visualizations for
+  ///   creators.
   int? get participantCount => throw _privateConstructorUsedError;
+
+  /// Indicates is this is a ticketed Space.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Create user experiences to highlight content of interest.
   bool? get isTicketed => throw _privateConstructorUsedError;
+
+  /// Indicates the start time of a scheduled Space, as set by the creator
+  /// of the Space. This field is returned only if the Space has been
+  /// scheduled; in other words, if the field is returned, it means the Space
+  /// is a scheduled Space.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Integrate with calendar notifications, filter and sort Spaces by time.
   DateTime? get scheduledStart => throw _privateConstructorUsedError;
+
+  /// Indicates the actual start time of a Space.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Determine start time of a Space.
   DateTime? get startedAt => throw _privateConstructorUsedError;
+
+  /// Time when the Space was ended. Only available for ended Spaces.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Understand when a live Space ended in order to compute
+  ///   its runtime duration.
   DateTime? get endedAt => throw _privateConstructorUsedError;
+
+  /// Creation time of this Space.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Understand when a Space was first created and sort Spaces by
+  ///   creation time.
   DateTime? get createdAt => throw _privateConstructorUsedError;
+
+  /// Specifies the date and time of the last update to any of the Space's
+  /// metadata, such as its title or scheduled time.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Keep information up to date.
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -327,17 +440,57 @@ class _$_SpaceData implements _SpaceData {
   factory _$_SpaceData.fromJson(Map<String, dynamic> json) =>
       _$$_SpaceDataFromJson(json);
 
+  /// The unique identifier of the requested Space.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Uniquely identify a Space returned in the response.
   @override
   final String id;
+
+  /// The title of the Space as specified by the creator.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Determine the title of a Space, understand referenced keywords,
+  ///   hashtags, and mentions.
   @override
   final String? title;
+
+  /// Indicates if the Space has started or will start in the future,
+  /// or if it has ended.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Filter live or scheduled Spaces.
   @override
   final SpaceState? state;
+
+  /// The id of the Space creator.
   @override
   final String? creatorId;
+
+  /// Language of the Space, if detected by Twitter. Returned as a BCP47
+  /// language tag.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Classify Spaces by inferred language.
   @override
   final SpaceLanguage? lang;
+
+  /// The unique identifier of the users who are hosting this Space.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Expand User objects, understand engagement.
   final List<String>? _hostIds;
+
+  /// The unique identifier of the users who are hosting this Space.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Expand User objects, understand engagement.
   @override
   List<String>? get hostIds {
     final value = _hostIds;
@@ -346,7 +499,20 @@ class _$_SpaceData implements _SpaceData {
     return EqualUnmodifiableListView(value);
   }
 
+  /// A list of IDs of the topics selected by the creator of the Space.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Determine the title of a Space, understand referenced keywords,
+  ///   hashtags, and mentions.
   final List<String>? _topicIds;
+
+  /// A list of IDs of the topics selected by the creator of the Space.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Determine the title of a Space, understand referenced keywords,
+  ///   hashtags, and mentions.
   @override
   List<String>? get topicIds {
     final value = _topicIds;
@@ -355,7 +521,22 @@ class _$_SpaceData implements _SpaceData {
     return EqualUnmodifiableListView(value);
   }
 
+  /// The list of users who were speaking at any point during the Space.
+  /// This list contains all the users in invited_user_ids in addition to any
+  /// user who requested to speak and was allowed via the Add speaker option.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Expand User objects, understand engagement.
   final List<String>? _speakerIds;
+
+  /// The list of users who were speaking at any point during the Space.
+  /// This list contains all the users in invited_user_ids in addition to any
+  /// user who requested to speak and was allowed via the Add speaker option.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Expand User objects, understand engagement.
   @override
   List<String>? get speakerIds {
     final value = _speakerIds;
@@ -364,7 +545,20 @@ class _$_SpaceData implements _SpaceData {
     return EqualUnmodifiableListView(value);
   }
 
+  /// The list of user IDs that were invited to join as speakers. Usually,
+  /// users in this list are invited to speak via the Invite user option.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Expand User objects, understand engagement.
   final List<String>? _invitedUserIds;
+
+  /// The list of user IDs that were invited to join as speakers. Usually,
+  /// users in this list are invited to speak via the Invite user option.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Expand User objects, understand engagement.
   @override
   List<String>? get invitedUserIds {
     final value = _invitedUserIds;
@@ -373,20 +567,76 @@ class _$_SpaceData implements _SpaceData {
     return EqualUnmodifiableListView(value);
   }
 
+  /// The number of people who set a reminder to a Space.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Understand how many people are interested in attending the event.
+  ///   This metric is available for scheduled Spaces and Spaces scheduled in
+  ///   the past that are currently live.
   @override
   final int? subscriberCount;
+
+  /// The current number of users in the Space, including Hosts and Speakers.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Understand engagement, and create reports and visualizations for
+  ///   creators.
   @override
   final int? participantCount;
+
+  /// Indicates is this is a ticketed Space.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Create user experiences to highlight content of interest.
   @override
   final bool? isTicketed;
+
+  /// Indicates the start time of a scheduled Space, as set by the creator
+  /// of the Space. This field is returned only if the Space has been
+  /// scheduled; in other words, if the field is returned, it means the Space
+  /// is a scheduled Space.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Integrate with calendar notifications, filter and sort Spaces by time.
   @override
   final DateTime? scheduledStart;
+
+  /// Indicates the actual start time of a Space.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Determine start time of a Space.
   @override
   final DateTime? startedAt;
+
+  /// Time when the Space was ended. Only available for ended Spaces.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Understand when a live Space ended in order to compute
+  ///   its runtime duration.
   @override
   final DateTime? endedAt;
+
+  /// Creation time of this Space.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Understand when a Space was first created and sort Spaces by
+  ///   creation time.
   @override
   final DateTime? createdAt;
+
+  /// Specifies the date and time of the last update to any of the Space's
+  /// metadata, such as its title or scheduled time.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Keep information up to date.
   @override
   final DateTime? updatedAt;
 
@@ -482,38 +732,152 @@ abstract class _SpaceData implements SpaceData {
       _$_SpaceData.fromJson;
 
   @override
+
+  /// The unique identifier of the requested Space.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Uniquely identify a Space returned in the response.
   String get id => throw _privateConstructorUsedError;
   @override
+
+  /// The title of the Space as specified by the creator.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Determine the title of a Space, understand referenced keywords,
+  ///   hashtags, and mentions.
   String? get title => throw _privateConstructorUsedError;
   @override
+
+  /// Indicates if the Space has started or will start in the future,
+  /// or if it has ended.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Filter live or scheduled Spaces.
   SpaceState? get state => throw _privateConstructorUsedError;
   @override
+
+  /// The id of the Space creator.
   String? get creatorId => throw _privateConstructorUsedError;
   @override
+
+  /// Language of the Space, if detected by Twitter. Returned as a BCP47
+  /// language tag.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Classify Spaces by inferred language.
   SpaceLanguage? get lang => throw _privateConstructorUsedError;
   @override
+
+  /// The unique identifier of the users who are hosting this Space.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Expand User objects, understand engagement.
   List<String>? get hostIds => throw _privateConstructorUsedError;
   @override
+
+  /// A list of IDs of the topics selected by the creator of the Space.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Determine the title of a Space, understand referenced keywords,
+  ///   hashtags, and mentions.
   List<String>? get topicIds => throw _privateConstructorUsedError;
   @override
+
+  /// The list of users who were speaking at any point during the Space.
+  /// This list contains all the users in invited_user_ids in addition to any
+  /// user who requested to speak and was allowed via the Add speaker option.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Expand User objects, understand engagement.
   List<String>? get speakerIds => throw _privateConstructorUsedError;
   @override
+
+  /// The list of user IDs that were invited to join as speakers. Usually,
+  /// users in this list are invited to speak via the Invite user option.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Expand User objects, understand engagement.
   List<String>? get invitedUserIds => throw _privateConstructorUsedError;
   @override
+
+  /// The number of people who set a reminder to a Space.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Understand how many people are interested in attending the event.
+  ///   This metric is available for scheduled Spaces and Spaces scheduled in
+  ///   the past that are currently live.
   int? get subscriberCount => throw _privateConstructorUsedError;
   @override
+
+  /// The current number of users in the Space, including Hosts and Speakers.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Understand engagement, and create reports and visualizations for
+  ///   creators.
   int? get participantCount => throw _privateConstructorUsedError;
   @override
+
+  /// Indicates is this is a ticketed Space.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Create user experiences to highlight content of interest.
   bool? get isTicketed => throw _privateConstructorUsedError;
   @override
+
+  /// Indicates the start time of a scheduled Space, as set by the creator
+  /// of the Space. This field is returned only if the Space has been
+  /// scheduled; in other words, if the field is returned, it means the Space
+  /// is a scheduled Space.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Integrate with calendar notifications, filter and sort Spaces by time.
   DateTime? get scheduledStart => throw _privateConstructorUsedError;
   @override
+
+  /// Indicates the actual start time of a Space.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Determine start time of a Space.
   DateTime? get startedAt => throw _privateConstructorUsedError;
   @override
+
+  /// Time when the Space was ended. Only available for ended Spaces.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Understand when a live Space ended in order to compute
+  ///   its runtime duration.
   DateTime? get endedAt => throw _privateConstructorUsedError;
   @override
+
+  /// Creation time of this Space.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Understand when a Space was first created and sort Spaces by
+  ///   creation time.
   DateTime? get createdAt => throw _privateConstructorUsedError;
   @override
+
+  /// Specifies the date and time of the last update to any of the Space's
+  /// metadata, such as its title or scheduled time.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Keep information up to date.
   DateTime? get updatedAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

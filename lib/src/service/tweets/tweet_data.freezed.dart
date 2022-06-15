@@ -20,26 +20,192 @@ TweetData _$TweetDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TweetData {
+  /// Unique identifier of this Tweet. This is returned as a string in order
+  /// to avoid complications with languages and tools that cannot handle
+  /// large integers.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Use this to programmatically retrieve a specific Tweet.
   String get id => throw _privateConstructorUsedError;
+
+  /// The actual UTF-8 text of the Tweet. See [twitter-text](https://github.com/twitter/twitter-text/) for details on
+  /// what characters are currently considered valid.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Keyword extraction and sentiment analysis/classification.
   String get text => throw _privateConstructorUsedError;
+
+  /// Unique identifier of this user. This is returned as a string in order
+  /// to avoid complications with languages and tools that cannot handle large
+  /// integers.
+  ///
+  /// You can obtain the expanded object in `includes.users` by adding
+  /// `TweetExpansion.authorId` in the request's query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Hydrating User object, sharing dataset for peer review.
   String? get authorId => throw _privateConstructorUsedError;
+
+  /// If this Tweet is a Reply, indicates the user ID of the parent Tweet's
+  /// author. This is returned as a string in order to avoid complications
+  /// with languages and tools that cannot handle large integers.
+  ///
+  /// You can obtain the expanded object in `includes.users` by adding
+  /// `TweetExpansion.inReplyToUserId` in the request's query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Use this to determine if this Tweet was in reply to another Tweet.
   String? get inReplyToUserId => throw _privateConstructorUsedError;
+
+  /// The Tweet ID of the original Tweet of the conversation (which includes
+  /// direct replies, replies of replies).
+  ///
+  /// To obtain this field, add `TweetField.conversationId` in the request's
+  /// query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Use this to reconstruct the conversation from a Tweet.
   String? get conversationId => throw _privateConstructorUsedError;
+
+  /// A list of Tweets this Tweet refers to. For example, if the parent Tweet
+  /// is a Retweet, a Retweet with comment (also known as Quoted Tweet) or a
+  /// Reply, it will include the related Tweet referenced to by its parent.
+  ///
+  /// To obtain this field, add `TweetField.referencedTweets` in the
+  /// request's query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - This field can be used to understand conversational aspects of
+  ///   retweets etc.
   List<ReferencedTweet>? get referencedTweets =>
       throw _privateConstructorUsedError;
+
+  /// Contains context annotations for the Tweet.
+  ///
+  /// To obtain this field, add `TweetField.contextAnnotations` in the
+  /// request's query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Entity recognition/extraction, topical analysis.
   List<TweetContextAnnotationGroup>? get contextAnnotations =>
       throw _privateConstructorUsedError;
+
+  /// Contains details about text that has a special meaning in a Tweet.
+  ///
+  /// To obtain this field, add `TweetField.entities` in the request's query
+  /// parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Entities are objects that provide additional information about
+  ///   hashtags, urls, user mentions, and cashtags associated with a Tweet.
+  ///   Reference each respective entity for further details. Please note that
+  ///   all start indices are inclusive. The majority of end indices are
+  ///   exclusive, except for entities.annotations.end, which is currently
+  ///   inclusive.
   TweetEntities? get entities => throw _privateConstructorUsedError;
+
+  /// Specifies the type of attachments (if any) present in this Tweet.
+  ///
+  /// To obtain this field, add `TweetField.attachments` in the request's
+  /// query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Understanding the objects returned for requested expansions
   TweetAttachments? get attachments => throw _privateConstructorUsedError;
+
+  /// Engagement metrics for the Tweet at the time of the request.
+  ///
+  /// To obtain this field, add `TweetField.publicMetrics` in the request's
+  /// query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Use this to measure Tweet engagement.
   PublicTweetMetrics? get publicMetrics => throw _privateConstructorUsedError;
+
+  /// Contains details about the location tagged by the user in this Tweet,
+  /// if they specified one.
+  ///
+  /// To obtain this field, add `TweetField.geo` in the request's query
+  /// parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Determine if a Tweet is related to a named location with corresponding
+  ///   geo coordinates.
   Geo? get geo => throw _privateConstructorUsedError;
+
+  /// Language of the Tweet, if detected by Twitter. Returned as a BCP47
+  /// language.
+  ///
+  /// To return this field, add `TweetField.lang` in the request's
+  /// query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Classify Tweets by spoken language.
   TweetLanguage? get lang => throw _privateConstructorUsedError;
+
+  /// Indicates if this Tweet contains URLs marked as sensitive, for example
+  /// content suitable for mature audiences.
+  ///
+  /// To obtain this field, add `TweetField.possiblySensitive` in the
+  /// request's query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Studying circulation of certain types of content.
   @JsonKey(name: 'possibly_sensitive')
   bool? get isPossiblySensitive => throw _privateConstructorUsedError;
+
+  /// Shows who can reply to this Tweet. Fields returned are
+  /// [ReplySetting.everyone], [ReplySetting.mentionedUsers],
+  /// and [ReplySetting.following].
+  /// To obtain this field, add `TweeField.replySetting` in the
+  /// request's query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - This field allows you to determine whether conversation reply settings
+  /// have been set for the Tweet and if so, what settings have been set.
   @JsonKey(name: 'reply_settings')
   ReplySetting? get replySetting => throw _privateConstructorUsedError;
+
+  /// The name of the app the user Tweeted from.
+  ///
+  /// To obtain this field, add `TweetField.source` in the request's
+  /// query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Determine if a Twitter user posted from the web, mobile device, or
+  /// other app.
   String? get source => throw _privateConstructorUsedError;
+
+  /// Contains withholding details for [withheld content](https://help.twitter.com/en/rules-and-policies/tweet-withheld-by-country).
+  ///
+  /// To return this field, add `TweetField.withheld` in the request's query
+  /// parameter.
   TweetWithheld? get withheld => throw _privateConstructorUsedError;
+
+  /// Creation time of the Tweet.
+  ///
+  /// To obtain this field, add `TweetField.createdAt` in the request's query
+  /// parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - This field can be used to understand when a Tweet was created and
+  ///   used for time-series analysis etc.
   DateTime? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -401,17 +567,87 @@ class _$_TweetData implements _TweetData {
   factory _$_TweetData.fromJson(Map<String, dynamic> json) =>
       _$$_TweetDataFromJson(json);
 
+  /// Unique identifier of this Tweet. This is returned as a string in order
+  /// to avoid complications with languages and tools that cannot handle
+  /// large integers.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Use this to programmatically retrieve a specific Tweet.
   @override
   final String id;
+
+  /// The actual UTF-8 text of the Tweet. See [twitter-text](https://github.com/twitter/twitter-text/) for details on
+  /// what characters are currently considered valid.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Keyword extraction and sentiment analysis/classification.
   @override
   final String text;
+
+  /// Unique identifier of this user. This is returned as a string in order
+  /// to avoid complications with languages and tools that cannot handle large
+  /// integers.
+  ///
+  /// You can obtain the expanded object in `includes.users` by adding
+  /// `TweetExpansion.authorId` in the request's query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Hydrating User object, sharing dataset for peer review.
   @override
   final String? authorId;
+
+  /// If this Tweet is a Reply, indicates the user ID of the parent Tweet's
+  /// author. This is returned as a string in order to avoid complications
+  /// with languages and tools that cannot handle large integers.
+  ///
+  /// You can obtain the expanded object in `includes.users` by adding
+  /// `TweetExpansion.inReplyToUserId` in the request's query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Use this to determine if this Tweet was in reply to another Tweet.
   @override
   final String? inReplyToUserId;
+
+  /// The Tweet ID of the original Tweet of the conversation (which includes
+  /// direct replies, replies of replies).
+  ///
+  /// To obtain this field, add `TweetField.conversationId` in the request's
+  /// query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Use this to reconstruct the conversation from a Tweet.
   @override
   final String? conversationId;
+
+  /// A list of Tweets this Tweet refers to. For example, if the parent Tweet
+  /// is a Retweet, a Retweet with comment (also known as Quoted Tweet) or a
+  /// Reply, it will include the related Tweet referenced to by its parent.
+  ///
+  /// To obtain this field, add `TweetField.referencedTweets` in the
+  /// request's query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - This field can be used to understand conversational aspects of
+  ///   retweets etc.
   final List<ReferencedTweet>? _referencedTweets;
+
+  /// A list of Tweets this Tweet refers to. For example, if the parent Tweet
+  /// is a Retweet, a Retweet with comment (also known as Quoted Tweet) or a
+  /// Reply, it will include the related Tweet referenced to by its parent.
+  ///
+  /// To obtain this field, add `TweetField.referencedTweets` in the
+  /// request's query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - This field can be used to understand conversational aspects of
+  ///   retweets etc.
   @override
   List<ReferencedTweet>? get referencedTweets {
     final value = _referencedTweets;
@@ -420,7 +656,24 @@ class _$_TweetData implements _TweetData {
     return EqualUnmodifiableListView(value);
   }
 
+  /// Contains context annotations for the Tweet.
+  ///
+  /// To obtain this field, add `TweetField.contextAnnotations` in the
+  /// request's query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Entity recognition/extraction, topical analysis.
   final List<TweetContextAnnotationGroup>? _contextAnnotations;
+
+  /// Contains context annotations for the Tweet.
+  ///
+  /// To obtain this field, add `TweetField.contextAnnotations` in the
+  /// request's query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Entity recognition/extraction, topical analysis.
   @override
   List<TweetContextAnnotationGroup>? get contextAnnotations {
     final value = _contextAnnotations;
@@ -429,26 +682,124 @@ class _$_TweetData implements _TweetData {
     return EqualUnmodifiableListView(value);
   }
 
+  /// Contains details about text that has a special meaning in a Tweet.
+  ///
+  /// To obtain this field, add `TweetField.entities` in the request's query
+  /// parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Entities are objects that provide additional information about
+  ///   hashtags, urls, user mentions, and cashtags associated with a Tweet.
+  ///   Reference each respective entity for further details. Please note that
+  ///   all start indices are inclusive. The majority of end indices are
+  ///   exclusive, except for entities.annotations.end, which is currently
+  ///   inclusive.
   @override
   final TweetEntities? entities;
+
+  /// Specifies the type of attachments (if any) present in this Tweet.
+  ///
+  /// To obtain this field, add `TweetField.attachments` in the request's
+  /// query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Understanding the objects returned for requested expansions
   @override
   final TweetAttachments? attachments;
+
+  /// Engagement metrics for the Tweet at the time of the request.
+  ///
+  /// To obtain this field, add `TweetField.publicMetrics` in the request's
+  /// query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Use this to measure Tweet engagement.
   @override
   final PublicTweetMetrics? publicMetrics;
+
+  /// Contains details about the location tagged by the user in this Tweet,
+  /// if they specified one.
+  ///
+  /// To obtain this field, add `TweetField.geo` in the request's query
+  /// parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Determine if a Tweet is related to a named location with corresponding
+  ///   geo coordinates.
   @override
   final Geo? geo;
+
+  /// Language of the Tweet, if detected by Twitter. Returned as a BCP47
+  /// language.
+  ///
+  /// To return this field, add `TweetField.lang` in the request's
+  /// query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Classify Tweets by spoken language.
   @override
   final TweetLanguage? lang;
+
+  /// Indicates if this Tweet contains URLs marked as sensitive, for example
+  /// content suitable for mature audiences.
+  ///
+  /// To obtain this field, add `TweetField.possiblySensitive` in the
+  /// request's query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Studying circulation of certain types of content.
   @override
   @JsonKey(name: 'possibly_sensitive')
   final bool? isPossiblySensitive;
+
+  /// Shows who can reply to this Tweet. Fields returned are
+  /// [ReplySetting.everyone], [ReplySetting.mentionedUsers],
+  /// and [ReplySetting.following].
+  /// To obtain this field, add `TweeField.replySetting` in the
+  /// request's query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - This field allows you to determine whether conversation reply settings
+  /// have been set for the Tweet and if so, what settings have been set.
   @override
   @JsonKey(name: 'reply_settings')
   final ReplySetting? replySetting;
+
+  /// The name of the app the user Tweeted from.
+  ///
+  /// To obtain this field, add `TweetField.source` in the request's
+  /// query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Determine if a Twitter user posted from the web, mobile device, or
+  /// other app.
   @override
   final String? source;
+
+  /// Contains withholding details for [withheld content](https://help.twitter.com/en/rules-and-policies/tweet-withheld-by-country).
+  ///
+  /// To return this field, add `TweetField.withheld` in the request's query
+  /// parameter.
   @override
   final TweetWithheld? withheld;
+
+  /// Creation time of the Tweet.
+  ///
+  /// To obtain this field, add `TweetField.createdAt` in the request's query
+  /// parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - This field can be used to understand when a Tweet was created and
+  ///   used for time-series analysis etc.
   @override
   final DateTime? createdAt;
 
@@ -546,42 +897,209 @@ abstract class _TweetData implements TweetData {
       _$_TweetData.fromJson;
 
   @override
+
+  /// Unique identifier of this Tweet. This is returned as a string in order
+  /// to avoid complications with languages and tools that cannot handle
+  /// large integers.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Use this to programmatically retrieve a specific Tweet.
   String get id => throw _privateConstructorUsedError;
   @override
+
+  /// The actual UTF-8 text of the Tweet. See [twitter-text](https://github.com/twitter/twitter-text/) for details on
+  /// what characters are currently considered valid.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Keyword extraction and sentiment analysis/classification.
   String get text => throw _privateConstructorUsedError;
   @override
+
+  /// Unique identifier of this user. This is returned as a string in order
+  /// to avoid complications with languages and tools that cannot handle large
+  /// integers.
+  ///
+  /// You can obtain the expanded object in `includes.users` by adding
+  /// `TweetExpansion.authorId` in the request's query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Hydrating User object, sharing dataset for peer review.
   String? get authorId => throw _privateConstructorUsedError;
   @override
+
+  /// If this Tweet is a Reply, indicates the user ID of the parent Tweet's
+  /// author. This is returned as a string in order to avoid complications
+  /// with languages and tools that cannot handle large integers.
+  ///
+  /// You can obtain the expanded object in `includes.users` by adding
+  /// `TweetExpansion.inReplyToUserId` in the request's query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Use this to determine if this Tweet was in reply to another Tweet.
   String? get inReplyToUserId => throw _privateConstructorUsedError;
   @override
+
+  /// The Tweet ID of the original Tweet of the conversation (which includes
+  /// direct replies, replies of replies).
+  ///
+  /// To obtain this field, add `TweetField.conversationId` in the request's
+  /// query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Use this to reconstruct the conversation from a Tweet.
   String? get conversationId => throw _privateConstructorUsedError;
   @override
+
+  /// A list of Tweets this Tweet refers to. For example, if the parent Tweet
+  /// is a Retweet, a Retweet with comment (also known as Quoted Tweet) or a
+  /// Reply, it will include the related Tweet referenced to by its parent.
+  ///
+  /// To obtain this field, add `TweetField.referencedTweets` in the
+  /// request's query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - This field can be used to understand conversational aspects of
+  ///   retweets etc.
   List<ReferencedTweet>? get referencedTweets =>
       throw _privateConstructorUsedError;
   @override
+
+  /// Contains context annotations for the Tweet.
+  ///
+  /// To obtain this field, add `TweetField.contextAnnotations` in the
+  /// request's query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Entity recognition/extraction, topical analysis.
   List<TweetContextAnnotationGroup>? get contextAnnotations =>
       throw _privateConstructorUsedError;
   @override
+
+  /// Contains details about text that has a special meaning in a Tweet.
+  ///
+  /// To obtain this field, add `TweetField.entities` in the request's query
+  /// parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Entities are objects that provide additional information about
+  ///   hashtags, urls, user mentions, and cashtags associated with a Tweet.
+  ///   Reference each respective entity for further details. Please note that
+  ///   all start indices are inclusive. The majority of end indices are
+  ///   exclusive, except for entities.annotations.end, which is currently
+  ///   inclusive.
   TweetEntities? get entities => throw _privateConstructorUsedError;
   @override
+
+  /// Specifies the type of attachments (if any) present in this Tweet.
+  ///
+  /// To obtain this field, add `TweetField.attachments` in the request's
+  /// query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Understanding the objects returned for requested expansions
   TweetAttachments? get attachments => throw _privateConstructorUsedError;
   @override
+
+  /// Engagement metrics for the Tweet at the time of the request.
+  ///
+  /// To obtain this field, add `TweetField.publicMetrics` in the request's
+  /// query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Use this to measure Tweet engagement.
   PublicTweetMetrics? get publicMetrics => throw _privateConstructorUsedError;
   @override
+
+  /// Contains details about the location tagged by the user in this Tweet,
+  /// if they specified one.
+  ///
+  /// To obtain this field, add `TweetField.geo` in the request's query
+  /// parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Determine if a Tweet is related to a named location with corresponding
+  ///   geo coordinates.
   Geo? get geo => throw _privateConstructorUsedError;
   @override
+
+  /// Language of the Tweet, if detected by Twitter. Returned as a BCP47
+  /// language.
+  ///
+  /// To return this field, add `TweetField.lang` in the request's
+  /// query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Classify Tweets by spoken language.
   TweetLanguage? get lang => throw _privateConstructorUsedError;
   @override
+
+  /// Indicates if this Tweet contains URLs marked as sensitive, for example
+  /// content suitable for mature audiences.
+  ///
+  /// To obtain this field, add `TweetField.possiblySensitive` in the
+  /// request's query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Studying circulation of certain types of content.
   @JsonKey(name: 'possibly_sensitive')
   bool? get isPossiblySensitive => throw _privateConstructorUsedError;
   @override
+
+  /// Shows who can reply to this Tweet. Fields returned are
+  /// [ReplySetting.everyone], [ReplySetting.mentionedUsers],
+  /// and [ReplySetting.following].
+  /// To obtain this field, add `TweeField.replySetting` in the
+  /// request's query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - This field allows you to determine whether conversation reply settings
+  /// have been set for the Tweet and if so, what settings have been set.
   @JsonKey(name: 'reply_settings')
   ReplySetting? get replySetting => throw _privateConstructorUsedError;
   @override
+
+  /// The name of the app the user Tweeted from.
+  ///
+  /// To obtain this field, add `TweetField.source` in the request's
+  /// query parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Determine if a Twitter user posted from the web, mobile device, or
+  /// other app.
   String? get source => throw _privateConstructorUsedError;
   @override
+
+  /// Contains withholding details for [withheld content](https://help.twitter.com/en/rules-and-policies/tweet-withheld-by-country).
+  ///
+  /// To return this field, add `TweetField.withheld` in the request's query
+  /// parameter.
   TweetWithheld? get withheld => throw _privateConstructorUsedError;
   @override
+
+  /// Creation time of the Tweet.
+  ///
+  /// To obtain this field, add `TweetField.createdAt` in the request's query
+  /// parameter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - This field can be used to understand when a Tweet was created and
+  ///   used for time-series analysis etc.
   DateTime? get createdAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

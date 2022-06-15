@@ -18,10 +18,33 @@ part 'includes.g.dart';
 @freezed
 class Includes with _$Includes {
   const factory Includes({
+    /// This includes a list of referenced Retweets, Quoted Tweets, or replies
+    /// in the form of Tweet objects with their default fields and any
+    /// additional fields requested using the `tweet.fields` parameter, assuming
+    /// there is a referenced Tweet present in the returned Tweet(s).
     List<TweetData>? tweets,
+
+    /// This includes a list of referenced Tweet authors in the form of user
+    /// objects with their default fields and any additional fields requested
+    /// using the user.fields parameter.
     List<UserData>? users,
+
+    /// This includes a list of images, videos, and GIFs included in Tweets in
+    /// the form of media objects with their default fields and any additional
+    /// fields requested using the media.fields parameter, assuming there is a
+    /// media attachment present in the returned Tweet(s).
     List<MediaData>? media,
+
+    /// This includes a list of referenced places in Tweets in the form of place
+    /// objects with their default fields and any additional fields requested
+    /// using the place.fields parameter, assuming there is a place present in
+    /// the returned Tweet(s).
     List<PlaceData>? places,
+
+    /// This includes a list of polls that are attached to Tweets in the form
+    /// of poll objects with their default fields and any additional fields
+    /// requested using the poll.fields parameter, assuming there is a poll
+    /// present in the returned Tweet(s).
     List<PollData>? polls,
   }) = _Includes;
 

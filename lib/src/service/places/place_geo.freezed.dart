@@ -20,8 +20,13 @@ PlaceGeo _$PlaceGeoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PlaceGeo {
+  /// The place type.
   String get type => throw _privateConstructorUsedError;
+
+  /// The bounding box.
   List<double> get bbox => throw _privateConstructorUsedError;
+
+  /// The place properties.
   Map<String, dynamic> get properties => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -123,16 +128,24 @@ class _$_PlaceGeo implements _PlaceGeo {
   factory _$_PlaceGeo.fromJson(Map<String, dynamic> json) =>
       _$$_PlaceGeoFromJson(json);
 
+  /// The place type.
   @override
   final String type;
+
+  /// The bounding box.
   final List<double> _bbox;
+
+  /// The bounding box.
   @override
   List<double> get bbox {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_bbox);
   }
 
+  /// The place properties.
   final Map<String, dynamic> _properties;
+
+  /// The place properties.
   @override
   Map<String, dynamic> get properties {
     // ignore: implicit_dynamic_type
@@ -183,10 +196,16 @@ abstract class _PlaceGeo implements PlaceGeo {
   factory _PlaceGeo.fromJson(Map<String, dynamic> json) = _$_PlaceGeo.fromJson;
 
   @override
+
+  /// The place type.
   String get type => throw _privateConstructorUsedError;
   @override
+
+  /// The bounding box.
   List<double> get bbox => throw _privateConstructorUsedError;
   @override
+
+  /// The place properties.
   Map<String, dynamic> get properties => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

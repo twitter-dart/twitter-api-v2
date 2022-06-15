@@ -13,9 +13,16 @@ part 'filtering_rule_summary.g.dart';
 @freezed
 class FilteringRuleSummary with _$FilteringRuleSummary {
   const factory FilteringRuleSummary({
+    /// The count of created filtering rules.
     @JsonKey(name: 'created') int? createdCount,
+
+    /// The count of not created filtering rules.
     @JsonKey(name: 'not_created') int? notCreatedCount,
+
+    /// The count of deleted filtering rules.
     @JsonKey(name: 'deleted') int? deletedCount,
+
+    /// The count of not deleted filtering rules.
     @JsonKey(name: 'not_deleted') int? notDeletedCount,
   }) = _FilteringRuleSummary;
 

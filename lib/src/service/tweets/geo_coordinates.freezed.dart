@@ -20,7 +20,13 @@ GeoCoordinates _$GeoCoordinatesFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$GeoCoordinates {
+  /// Describes the type of coordinate. The only value supported at present
+  /// is Point.
   String get type => throw _privateConstructorUsedError;
+
+  /// A pair of decimal values representing the precise location of the user
+  /// (latitude, longitude). This value be `null` unless the user explicitly
+  /// shared their precise location.
   List<double> get coordinates => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -113,9 +119,19 @@ class _$_GeoCoordinates implements _GeoCoordinates {
   factory _$_GeoCoordinates.fromJson(Map<String, dynamic> json) =>
       _$$_GeoCoordinatesFromJson(json);
 
+  /// Describes the type of coordinate. The only value supported at present
+  /// is Point.
   @override
   final String type;
+
+  /// A pair of decimal values representing the precise location of the user
+  /// (latitude, longitude). This value be `null` unless the user explicitly
+  /// shared their precise location.
   final List<double> _coordinates;
+
+  /// A pair of decimal values representing the precise location of the user
+  /// (latitude, longitude). This value be `null` unless the user explicitly
+  /// shared their precise location.
   @override
   List<double> get coordinates {
     // ignore: implicit_dynamic_type
@@ -164,8 +180,15 @@ abstract class _GeoCoordinates implements GeoCoordinates {
       _$_GeoCoordinates.fromJson;
 
   @override
+
+  /// Describes the type of coordinate. The only value supported at present
+  /// is Point.
   String get type => throw _privateConstructorUsedError;
   @override
+
+  /// A pair of decimal values representing the precise location of the user
+  /// (latitude, longitude). This value be `null` unless the user explicitly
+  /// shared their precise location.
   List<double> get coordinates => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

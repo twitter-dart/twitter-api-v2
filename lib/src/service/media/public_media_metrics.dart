@@ -11,6 +11,13 @@ part 'public_media_metrics.g.dart';
 @freezed
 class PublicMediaMetrics with _$PublicMediaMetrics {
   const factory PublicMediaMetrics({
+    /// A count of how many times the video included in the Tweet has been
+    /// viewed.
+    ///
+    /// This is the number of video views aggregated across all Tweets in which
+    /// the given video has been posted. That means that the metric includes
+    /// the combined views from any instance where the video has been Retweeted
+    /// or re-posted in separate Tweets.
     required int viewCount,
   }) = _PublicMediaMetrics;
 

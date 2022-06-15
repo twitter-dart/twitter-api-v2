@@ -20,12 +20,22 @@ PollData _$PollDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PollData {
+  /// Unique identifier of the expanded poll.
   String get id => throw _privateConstructorUsedError;
+
+  /// Contains objects describing each choice in the referenced poll.
   List<PollOption> get options => throw _privateConstructorUsedError;
+
+  /// Indicates if this poll is still active and can receive votes,
+  /// or if the voting is now closed.
+  PollVotingStatus? get votingStatus => throw _privateConstructorUsedError;
+
+  /// Specifies the total duration of this poll.
   int? get durationMinutes => throw _privateConstructorUsedError;
+
+  /// Specifies the end date and time for this poll.
   @JsonKey(name: 'end_datetime')
   DateTime? get endAt => throw _privateConstructorUsedError;
-  PollVotingStatus? get votingStatus => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,9 +50,9 @@ abstract class $PollDataCopyWith<$Res> {
   $Res call(
       {String id,
       List<PollOption> options,
+      PollVotingStatus? votingStatus,
       int? durationMinutes,
-      @JsonKey(name: 'end_datetime') DateTime? endAt,
-      PollVotingStatus? votingStatus});
+      @JsonKey(name: 'end_datetime') DateTime? endAt});
 }
 
 /// @nodoc
@@ -57,9 +67,9 @@ class _$PollDataCopyWithImpl<$Res> implements $PollDataCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? options = freezed,
+    Object? votingStatus = freezed,
     Object? durationMinutes = freezed,
     Object? endAt = freezed,
-    Object? votingStatus = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -70,6 +80,10 @@ class _$PollDataCopyWithImpl<$Res> implements $PollDataCopyWith<$Res> {
           ? _value.options
           : options // ignore: cast_nullable_to_non_nullable
               as List<PollOption>,
+      votingStatus: votingStatus == freezed
+          ? _value.votingStatus
+          : votingStatus // ignore: cast_nullable_to_non_nullable
+              as PollVotingStatus?,
       durationMinutes: durationMinutes == freezed
           ? _value.durationMinutes
           : durationMinutes // ignore: cast_nullable_to_non_nullable
@@ -78,10 +92,6 @@ class _$PollDataCopyWithImpl<$Res> implements $PollDataCopyWith<$Res> {
           ? _value.endAt
           : endAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      votingStatus: votingStatus == freezed
-          ? _value.votingStatus
-          : votingStatus // ignore: cast_nullable_to_non_nullable
-              as PollVotingStatus?,
     ));
   }
 }
@@ -95,9 +105,9 @@ abstract class _$$_PollDataCopyWith<$Res> implements $PollDataCopyWith<$Res> {
   $Res call(
       {String id,
       List<PollOption> options,
+      PollVotingStatus? votingStatus,
       int? durationMinutes,
-      @JsonKey(name: 'end_datetime') DateTime? endAt,
-      PollVotingStatus? votingStatus});
+      @JsonKey(name: 'end_datetime') DateTime? endAt});
 }
 
 /// @nodoc
@@ -114,9 +124,9 @@ class __$$_PollDataCopyWithImpl<$Res> extends _$PollDataCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? options = freezed,
+    Object? votingStatus = freezed,
     Object? durationMinutes = freezed,
     Object? endAt = freezed,
-    Object? votingStatus = freezed,
   }) {
     return _then(_$_PollData(
       id: id == freezed
@@ -127,6 +137,10 @@ class __$$_PollDataCopyWithImpl<$Res> extends _$PollDataCopyWithImpl<$Res>
           ? _value._options
           : options // ignore: cast_nullable_to_non_nullable
               as List<PollOption>,
+      votingStatus: votingStatus == freezed
+          ? _value.votingStatus
+          : votingStatus // ignore: cast_nullable_to_non_nullable
+              as PollVotingStatus?,
       durationMinutes: durationMinutes == freezed
           ? _value.durationMinutes
           : durationMinutes // ignore: cast_nullable_to_non_nullable
@@ -135,10 +149,6 @@ class __$$_PollDataCopyWithImpl<$Res> extends _$PollDataCopyWithImpl<$Res>
           ? _value.endAt
           : endAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      votingStatus: votingStatus == freezed
-          ? _value.votingStatus
-          : votingStatus // ignore: cast_nullable_to_non_nullable
-              as PollVotingStatus?,
     ));
   }
 }
@@ -149,34 +159,45 @@ class _$_PollData implements _PollData {
   const _$_PollData(
       {required this.id,
       required final List<PollOption> options,
+      this.votingStatus,
       this.durationMinutes,
-      @JsonKey(name: 'end_datetime') this.endAt,
-      this.votingStatus})
+      @JsonKey(name: 'end_datetime') this.endAt})
       : _options = options;
 
   factory _$_PollData.fromJson(Map<String, dynamic> json) =>
       _$$_PollDataFromJson(json);
 
+  /// Unique identifier of the expanded poll.
   @override
   final String id;
+
+  /// Contains objects describing each choice in the referenced poll.
   final List<PollOption> _options;
+
+  /// Contains objects describing each choice in the referenced poll.
   @override
   List<PollOption> get options {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_options);
   }
 
-  @override
-  final int? durationMinutes;
-  @override
-  @JsonKey(name: 'end_datetime')
-  final DateTime? endAt;
+  /// Indicates if this poll is still active and can receive votes,
+  /// or if the voting is now closed.
   @override
   final PollVotingStatus? votingStatus;
 
+  /// Specifies the total duration of this poll.
+  @override
+  final int? durationMinutes;
+
+  /// Specifies the end date and time for this poll.
+  @override
+  @JsonKey(name: 'end_datetime')
+  final DateTime? endAt;
+
   @override
   String toString() {
-    return 'PollData(id: $id, options: $options, durationMinutes: $durationMinutes, endAt: $endAt, votingStatus: $votingStatus)';
+    return 'PollData(id: $id, options: $options, votingStatus: $votingStatus, durationMinutes: $durationMinutes, endAt: $endAt)';
   }
 
   @override
@@ -187,10 +208,10 @@ class _$_PollData implements _PollData {
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other._options, _options) &&
             const DeepCollectionEquality()
-                .equals(other.durationMinutes, durationMinutes) &&
-            const DeepCollectionEquality().equals(other.endAt, endAt) &&
+                .equals(other.votingStatus, votingStatus) &&
             const DeepCollectionEquality()
-                .equals(other.votingStatus, votingStatus));
+                .equals(other.durationMinutes, durationMinutes) &&
+            const DeepCollectionEquality().equals(other.endAt, endAt));
   }
 
   @JsonKey(ignore: true)
@@ -199,9 +220,9 @@ class _$_PollData implements _PollData {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(_options),
+      const DeepCollectionEquality().hash(votingStatus),
       const DeepCollectionEquality().hash(durationMinutes),
-      const DeepCollectionEquality().hash(endAt),
-      const DeepCollectionEquality().hash(votingStatus));
+      const DeepCollectionEquality().hash(endAt));
 
   @JsonKey(ignore: true)
   @override
@@ -218,23 +239,34 @@ abstract class _PollData implements PollData {
   const factory _PollData(
       {required final String id,
       required final List<PollOption> options,
+      final PollVotingStatus? votingStatus,
       final int? durationMinutes,
-      @JsonKey(name: 'end_datetime') final DateTime? endAt,
-      final PollVotingStatus? votingStatus}) = _$_PollData;
+      @JsonKey(name: 'end_datetime') final DateTime? endAt}) = _$_PollData;
 
   factory _PollData.fromJson(Map<String, dynamic> json) = _$_PollData.fromJson;
 
   @override
+
+  /// Unique identifier of the expanded poll.
   String get id => throw _privateConstructorUsedError;
   @override
+
+  /// Contains objects describing each choice in the referenced poll.
   List<PollOption> get options => throw _privateConstructorUsedError;
   @override
+
+  /// Indicates if this poll is still active and can receive votes,
+  /// or if the voting is now closed.
+  PollVotingStatus? get votingStatus => throw _privateConstructorUsedError;
+  @override
+
+  /// Specifies the total duration of this poll.
   int? get durationMinutes => throw _privateConstructorUsedError;
   @override
+
+  /// Specifies the end date and time for this poll.
   @JsonKey(name: 'end_datetime')
   DateTime? get endAt => throw _privateConstructorUsedError;
-  @override
-  PollVotingStatus? get votingStatus => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_PollDataCopyWith<_$_PollData> get copyWith =>

@@ -20,9 +20,16 @@ PublicUserMetrics _$PublicUserMetricsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PublicUserMetrics {
+  /// Number of users who follow this user.
   int get followersCount => throw _privateConstructorUsedError;
+
+  /// Number of users this user is following.
   int get followingCount => throw _privateConstructorUsedError;
+
+  /// Number of Tweets (including Retweets) posted by this user.
   int get tweetCount => throw _privateConstructorUsedError;
+
+  /// Number of lists that include this user.
   int get listedCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -145,12 +152,19 @@ class _$_PublicUserMetrics implements _PublicUserMetrics {
   factory _$_PublicUserMetrics.fromJson(Map<String, dynamic> json) =>
       _$$_PublicUserMetricsFromJson(json);
 
+  /// Number of users who follow this user.
   @override
   final int followersCount;
+
+  /// Number of users this user is following.
   @override
   final int followingCount;
+
+  /// Number of Tweets (including Retweets) posted by this user.
   @override
   final int tweetCount;
+
+  /// Number of lists that include this user.
   @override
   final int listedCount;
 
@@ -206,12 +220,20 @@ abstract class _PublicUserMetrics implements PublicUserMetrics {
       _$_PublicUserMetrics.fromJson;
 
   @override
+
+  /// Number of users who follow this user.
   int get followersCount => throw _privateConstructorUsedError;
   @override
+
+  /// Number of users this user is following.
   int get followingCount => throw _privateConstructorUsedError;
   @override
+
+  /// Number of Tweets (including Retweets) posted by this user.
   int get tweetCount => throw _privateConstructorUsedError;
   @override
+
+  /// Number of lists that include this user.
   int get listedCount => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

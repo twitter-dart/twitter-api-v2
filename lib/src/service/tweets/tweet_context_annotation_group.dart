@@ -14,7 +14,12 @@ part 'tweet_context_annotation_group.g.dart';
 @freezed
 class TweetContextAnnotationGroup with _$TweetContextAnnotationGroup {
   const factory TweetContextAnnotationGroup({
+    /// Contains elements which identify detailed information regarding the
+    /// domain classification based on Tweet text.
     required TweetContextAnnotation domain,
+
+    /// Contains elements which identify detailed information regarding the
+    /// entity classification bases on Tweet text.
     required TweetContextAnnotation entity,
   }) = _TweetContextAnnotationGroup;
 

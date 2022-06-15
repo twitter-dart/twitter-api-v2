@@ -11,6 +11,7 @@ part 'space_meta.g.dart';
 @freezed
 class SpaceMeta with _$SpaceMeta {
   const factory SpaceMeta({
+    /// The number of spaces returned in this request.
     required int? resultCount,
   }) = _SpaceMeta;
 

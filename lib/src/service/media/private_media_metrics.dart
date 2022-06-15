@@ -13,10 +13,34 @@ part 'private_media_metrics.g.dart';
 @freezed
 class PrivateMediaMetrics with _$PrivateMediaMetrics {
   const factory PrivateMediaMetrics({
+    /// The number of users who played through to each quartile in a video.
+    ///
+    /// This reflects the number of quartile views across all Tweets in which
+    /// the given video has been posted.
     @JsonKey(name: 'playback_0_count') required int playback0Count,
+
+    /// The number of users who played through to each quartile in a video.
+    ///
+    /// This reflects the number of quartile views across all Tweets in which
+    /// the given video has been posted.
     @JsonKey(name: 'playback_25_count') required int playback25Count,
+
+    /// The number of users who played through to each quartile in a video.
+    ///
+    /// This reflects the number of quartile views across all Tweets in which
+    /// the given video has been posted.
     @JsonKey(name: 'playback_50_count') required int playback50Count,
+
+    /// The number of users who played through to each quartile in a video.
+    ///
+    /// This reflects the number of quartile views across all Tweets in which
+    /// the given video has been posted.
     @JsonKey(name: 'playback_75_count') required int playback75Count,
+
+    /// The number of users who played through to each quartile in a video.
+    ///
+    /// This reflects the number of quartile views across all Tweets in which
+    /// the given video has been posted.
     @JsonKey(name: 'playback_100_count') required int playback100Count,
   }) = _PrivateMediaMetrics;
 
