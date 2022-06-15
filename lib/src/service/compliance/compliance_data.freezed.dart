@@ -20,14 +20,40 @@ ComplianceData _$ComplianceDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ComplianceData {
+  /// The unique identifier for this job.
   String get id => throw _privateConstructorUsedError;
+
+  /// The type of the job, whether tweets or users.
   JobType get type => throw _privateConstructorUsedError;
+
+  /// Current status of this job.
   JobStatus get status => throw _privateConstructorUsedError;
+
+  /// Indicates this job is enabled the upload URL with support for resumable
+  /// uploads.
   bool get resumable => throw _privateConstructorUsedError;
+
+  /// A URL representing the location where to upload IDs consumed by your
+  /// app. This URL is already signed with an authentication key, so you
+  /// will not need to pass any additional credentials or headers to
+  /// authenticate the request.
   String get uploadUrl => throw _privateConstructorUsedError;
+
+  /// The predefined location where to download the results from the
+  /// compliance job. This URL is already signed with an authentication key,
+  /// so you will not need to pass any additional credential or header to
+  /// authenticate the request.
   String get downloadUrl => throw _privateConstructorUsedError;
+
+  /// The date and time until which the upload URL will be available
+  /// (usually 15 minutes from the request time).
   DateTime get uploadExpiresAt => throw _privateConstructorUsedError;
+
+  /// The date and time until which the download URL will be available
+  /// (usually 7 days from the request time).
   DateTime get downloadExpiresAt => throw _privateConstructorUsedError;
+
+  /// The date and time when the job was created.
   DateTime get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -215,22 +241,48 @@ class _$_ComplianceData implements _ComplianceData {
   factory _$_ComplianceData.fromJson(Map<String, dynamic> json) =>
       _$$_ComplianceDataFromJson(json);
 
+  /// The unique identifier for this job.
   @override
   final String id;
+
+  /// The type of the job, whether tweets or users.
   @override
   final JobType type;
+
+  /// Current status of this job.
   @override
   final JobStatus status;
+
+  /// Indicates this job is enabled the upload URL with support for resumable
+  /// uploads.
   @override
   final bool resumable;
+
+  /// A URL representing the location where to upload IDs consumed by your
+  /// app. This URL is already signed with an authentication key, so you
+  /// will not need to pass any additional credentials or headers to
+  /// authenticate the request.
   @override
   final String uploadUrl;
+
+  /// The predefined location where to download the results from the
+  /// compliance job. This URL is already signed with an authentication key,
+  /// so you will not need to pass any additional credential or header to
+  /// authenticate the request.
   @override
   final String downloadUrl;
+
+  /// The date and time until which the upload URL will be available
+  /// (usually 15 minutes from the request time).
   @override
   final DateTime uploadExpiresAt;
+
+  /// The date and time until which the download URL will be available
+  /// (usually 7 days from the request time).
   @override
   final DateTime downloadExpiresAt;
+
+  /// The date and time when the job was created.
   @override
   final DateTime createdAt;
 
@@ -299,22 +351,49 @@ abstract class _ComplianceData implements ComplianceData {
       _$_ComplianceData.fromJson;
 
   @override
+
+  /// The unique identifier for this job.
   String get id => throw _privateConstructorUsedError;
   @override
+
+  /// The type of the job, whether tweets or users.
   JobType get type => throw _privateConstructorUsedError;
   @override
+
+  /// Current status of this job.
   JobStatus get status => throw _privateConstructorUsedError;
   @override
+
+  /// Indicates this job is enabled the upload URL with support for resumable
+  /// uploads.
   bool get resumable => throw _privateConstructorUsedError;
   @override
+
+  /// A URL representing the location where to upload IDs consumed by your
+  /// app. This URL is already signed with an authentication key, so you
+  /// will not need to pass any additional credentials or headers to
+  /// authenticate the request.
   String get uploadUrl => throw _privateConstructorUsedError;
   @override
+
+  /// The predefined location where to download the results from the
+  /// compliance job. This URL is already signed with an authentication key,
+  /// so you will not need to pass any additional credential or header to
+  /// authenticate the request.
   String get downloadUrl => throw _privateConstructorUsedError;
   @override
+
+  /// The date and time until which the upload URL will be available
+  /// (usually 15 minutes from the request time).
   DateTime get uploadExpiresAt => throw _privateConstructorUsedError;
   @override
+
+  /// The date and time until which the download URL will be available
+  /// (usually 7 days from the request time).
   DateTime get downloadExpiresAt => throw _privateConstructorUsedError;
   @override
+
+  /// The date and time when the job was created.
   DateTime get createdAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

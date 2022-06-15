@@ -20,13 +20,55 @@ PlaceData _$PlaceDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PlaceData {
+  /// The unique identifier of the expanded place, if this is a point of
+  /// interest tagged in the Tweet.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Use this to programmatically retrieve a place.
   String get id => throw _privateConstructorUsedError;
+
+  /// A longer-form detailed place name.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Classify a Tweet by a specific place name.
   String get fullName => throw _privateConstructorUsedError;
+
+  /// The short name of this place.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Classify a Tweet by a specific place name
   String? get name => throw _privateConstructorUsedError;
+
+  /// Specified the particular type of information represented by this place
+  /// information, such as a city name, or a point of interest.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Classify a Tweet by a specific type of place.
   String? get placeType => throw _privateConstructorUsedError;
+
+  /// The full-length name of the country this place belongs to.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Classify a Tweet by country name.
   String? get country => throw _privateConstructorUsedError;
+
+  /// The ISO Alpha-2 country code this place belongs to.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Classify a Tweet by country code.
   String? get countryCode => throw _privateConstructorUsedError;
+
+  /// Contains place details in GeoJSON format.
   PlaceGeo? get geo => throw _privateConstructorUsedError;
+
+  /// Returns the identifiers of known places that contain the referenced
+  /// place.
   List<String>? get containedWithin => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -214,21 +256,66 @@ class _$_PlaceData implements _PlaceData {
   factory _$_PlaceData.fromJson(Map<String, dynamic> json) =>
       _$$_PlaceDataFromJson(json);
 
+  /// The unique identifier of the expanded place, if this is a point of
+  /// interest tagged in the Tweet.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Use this to programmatically retrieve a place.
   @override
   final String id;
+
+  /// A longer-form detailed place name.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Classify a Tweet by a specific place name.
   @override
   final String fullName;
+
+  /// The short name of this place.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Classify a Tweet by a specific place name
   @override
   final String? name;
+
+  /// Specified the particular type of information represented by this place
+  /// information, such as a city name, or a point of interest.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Classify a Tweet by a specific type of place.
   @override
   final String? placeType;
+
+  /// The full-length name of the country this place belongs to.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Classify a Tweet by country name.
   @override
   final String? country;
+
+  /// The ISO Alpha-2 country code this place belongs to.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Classify a Tweet by country code.
   @override
   final String? countryCode;
+
+  /// Contains place details in GeoJSON format.
   @override
   final PlaceGeo? geo;
+
+  /// Returns the identifiers of known places that contain the referenced
+  /// place.
   final List<String>? _containedWithin;
+
+  /// Returns the identifiers of known places that contain the referenced
+  /// place.
   @override
   List<String>? get containedWithin {
     final value = _containedWithin;
@@ -298,20 +385,63 @@ abstract class _PlaceData implements PlaceData {
       _$_PlaceData.fromJson;
 
   @override
+
+  /// The unique identifier of the expanded place, if this is a point of
+  /// interest tagged in the Tweet.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Use this to programmatically retrieve a place.
   String get id => throw _privateConstructorUsedError;
   @override
+
+  /// A longer-form detailed place name.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Classify a Tweet by a specific place name.
   String get fullName => throw _privateConstructorUsedError;
   @override
+
+  /// The short name of this place.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Classify a Tweet by a specific place name
   String? get name => throw _privateConstructorUsedError;
   @override
+
+  /// Specified the particular type of information represented by this place
+  /// information, such as a city name, or a point of interest.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Classify a Tweet by a specific type of place.
   String? get placeType => throw _privateConstructorUsedError;
   @override
+
+  /// The full-length name of the country this place belongs to.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Classify a Tweet by country name.
   String? get country => throw _privateConstructorUsedError;
   @override
+
+  /// The ISO Alpha-2 country code this place belongs to.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Classify a Tweet by country code.
   String? get countryCode => throw _privateConstructorUsedError;
   @override
+
+  /// Contains place details in GeoJSON format.
   PlaceGeo? get geo => throw _privateConstructorUsedError;
   @override
+
+  /// Returns the identifiers of known places that contain the referenced
+  /// place.
   List<String>? get containedWithin => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

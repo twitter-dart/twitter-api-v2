@@ -17,9 +17,11 @@ _$_MediaData _$$_MediaDataFromJson(Map json) => $checkedCreate(
           type: $checkedConvert(
               'type', (v) => $enumDecode(_$MediaTypeEnumMap, v)),
           url: $checkedConvert('url', (v) => v as String?),
+          altText: $checkedConvert('alt_text', (v) => v as String?),
           durationMilliseconds:
               $checkedConvert('duration_ms', (v) => v as int?),
           height: $checkedConvert('height', (v) => v as int?),
+          width: $checkedConvert('width', (v) => v as int?),
           privateMetrics: $checkedConvert(
               'non_public_metrics',
               (v) => v == null
@@ -46,20 +48,18 @@ _$_MediaData _$$_MediaDataFromJson(Map json) => $checkedCreate(
                   ? null
                   : PublicMediaMetrics.fromJson(
                       Map<String, Object?>.from(v as Map))),
-          width: $checkedConvert('width', (v) => v as int?),
-          altText: $checkedConvert('alt_text', (v) => v as String?),
         );
         return val;
       },
       fieldKeyMap: const {
         'key': 'media_key',
+        'altText': 'alt_text',
         'durationMilliseconds': 'duration_ms',
         'privateMetrics': 'non_public_metrics',
         'organicMetrics': 'organic_metrics',
         'previewImageUrl': 'preview_image_url',
         'promotedMetrics': 'promoted_metrics',
-        'publicMetrics': 'public_metrics',
-        'altText': 'alt_text'
+        'publicMetrics': 'public_metrics'
       },
     );
 
@@ -68,15 +68,15 @@ Map<String, dynamic> _$$_MediaDataToJson(_$_MediaData instance) =>
       'media_key': instance.key,
       'type': _$MediaTypeEnumMap[instance.type],
       'url': instance.url,
+      'alt_text': instance.altText,
       'duration_ms': instance.durationMilliseconds,
       'height': instance.height,
+      'width': instance.width,
       'non_public_metrics': instance.privateMetrics,
       'organic_metrics': instance.organicMetrics,
       'preview_image_url': instance.previewImageUrl,
       'promoted_metrics': instance.promotedMetrics,
       'public_metrics': instance.publicMetrics,
-      'width': instance.width,
-      'alt_text': instance.altText,
     };
 
 const _$MediaTypeEnumMap = {
