@@ -20,8 +20,24 @@ ListMeta _$ListMetaFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ListMeta {
+  /// The number of users returned in this request. Note that this number
+  /// may be lower than what was specified in the max_results query parameter.
   int? get resultCount => throw _privateConstructorUsedError;
+
+  /// Pagination token for the next page of results. This value is returned
+  /// when there are multiple pages of results, as the current request may
+  /// only return a subset of results. To retrieve the full list, keep passing
+  /// the value from this field in the pagination_token query parameter. When
+  /// this field is not returned in the response, it means you've reached the
+  /// last page of results, and that there are no further pages.
   String? get nextToken => throw _privateConstructorUsedError;
+
+  /// Pagination token for the previous page of results. This value is
+  /// returned when there are multiple pages of results, as the current
+  /// request may only return a subset of results. To go back to the previous
+  /// page, passing the value from this field in the pagination_token query
+  /// parameter. When this field is not returned in the response, it means you
+  /// are on the first page of results.
   String? get previousToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -118,10 +134,26 @@ class _$_ListMeta implements _ListMeta {
   factory _$_ListMeta.fromJson(Map<String, dynamic> json) =>
       _$$_ListMetaFromJson(json);
 
+  /// The number of users returned in this request. Note that this number
+  /// may be lower than what was specified in the max_results query parameter.
   @override
   final int? resultCount;
+
+  /// Pagination token for the next page of results. This value is returned
+  /// when there are multiple pages of results, as the current request may
+  /// only return a subset of results. To retrieve the full list, keep passing
+  /// the value from this field in the pagination_token query parameter. When
+  /// this field is not returned in the response, it means you've reached the
+  /// last page of results, and that there are no further pages.
   @override
   final String? nextToken;
+
+  /// Pagination token for the previous page of results. This value is
+  /// returned when there are multiple pages of results, as the current
+  /// request may only return a subset of results. To go back to the previous
+  /// page, passing the value from this field in the pagination_token query
+  /// parameter. When this field is not returned in the response, it means you
+  /// are on the first page of results.
   @override
   final String? previousToken;
 
@@ -170,10 +202,27 @@ abstract class _ListMeta implements ListMeta {
   factory _ListMeta.fromJson(Map<String, dynamic> json) = _$_ListMeta.fromJson;
 
   @override
+
+  /// The number of users returned in this request. Note that this number
+  /// may be lower than what was specified in the max_results query parameter.
   int? get resultCount => throw _privateConstructorUsedError;
   @override
+
+  /// Pagination token for the next page of results. This value is returned
+  /// when there are multiple pages of results, as the current request may
+  /// only return a subset of results. To retrieve the full list, keep passing
+  /// the value from this field in the pagination_token query parameter. When
+  /// this field is not returned in the response, it means you've reached the
+  /// last page of results, and that there are no further pages.
   String? get nextToken => throw _privateConstructorUsedError;
   @override
+
+  /// Pagination token for the previous page of results. This value is
+  /// returned when there are multiple pages of results, as the current
+  /// request may only return a subset of results. To go back to the previous
+  /// page, passing the value from this field in the pagination_token query
+  /// parameter. When this field is not returned in the response, it means you
+  /// are on the first page of results.
   String? get previousToken => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

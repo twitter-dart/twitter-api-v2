@@ -20,6 +20,7 @@ SpaceMeta _$SpaceMetaFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SpaceMeta {
+  /// The number of spaces returned in this request.
   int? get resultCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -96,6 +97,7 @@ class _$_SpaceMeta implements _SpaceMeta {
   factory _$_SpaceMeta.fromJson(Map<String, dynamic> json) =>
       _$$_SpaceMetaFromJson(json);
 
+  /// The number of spaces returned in this request.
   @override
   final int? resultCount;
 
@@ -136,6 +138,8 @@ abstract class _SpaceMeta implements SpaceMeta {
       _$_SpaceMeta.fromJson;
 
   @override
+
+  /// The number of spaces returned in this request.
   int? get resultCount => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

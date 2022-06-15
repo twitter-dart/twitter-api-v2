@@ -20,15 +20,45 @@ ListData _$ListDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ListData {
+  /// The unique identifier of this List.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Use this to programmatically retrieve information about a specific
+  ///   Twitter List.
   String get id => throw _privateConstructorUsedError;
+
+  /// The name of the List, as defined when creating the List.
   String get name => throw _privateConstructorUsedError;
-  String? get ownerId => throw _privateConstructorUsedError;
-  DateTime? get createdAt => throw _privateConstructorUsedError;
+
+  /// A brief description to let users know about the List.
   String? get description => throw _privateConstructorUsedError;
+
+  /// Unique identifier of this List's owner.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Returns the List owner ID. Can potentially be used to find out if
+  ///   this specific user owns any other Lists. Can also be used to expand
+  ///   user objects.
+  String? get ownerId => throw _privateConstructorUsedError;
+
+  /// Shows how many users follow this List.
   int? get followerCount => throw _privateConstructorUsedError;
+
+  /// Shows how many members are part of this List.
   int? get memberCount => throw _privateConstructorUsedError;
+
+  /// Indicates if the List is private.
   @JsonKey(name: 'private')
   bool? get isPrivate => throw _privateConstructorUsedError;
+
+  /// The UTC date time that the List was created on Twitter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Can be used to determine how long a List has been on Twitter.
+  DateTime? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,12 +73,12 @@ abstract class $ListDataCopyWith<$Res> {
   $Res call(
       {String id,
       String name,
-      String? ownerId,
-      DateTime? createdAt,
       String? description,
+      String? ownerId,
       int? followerCount,
       int? memberCount,
-      @JsonKey(name: 'private') bool? isPrivate});
+      @JsonKey(name: 'private') bool? isPrivate,
+      DateTime? createdAt});
 }
 
 /// @nodoc
@@ -63,12 +93,12 @@ class _$ListDataCopyWithImpl<$Res> implements $ListDataCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? ownerId = freezed,
-    Object? createdAt = freezed,
     Object? description = freezed,
+    Object? ownerId = freezed,
     Object? followerCount = freezed,
     Object? memberCount = freezed,
     Object? isPrivate = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -79,17 +109,13 @@ class _$ListDataCopyWithImpl<$Res> implements $ListDataCopyWith<$Res> {
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      ownerId: ownerId == freezed
-          ? _value.ownerId
-          : ownerId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdAt: createdAt == freezed
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ownerId: ownerId == freezed
+          ? _value.ownerId
+          : ownerId // ignore: cast_nullable_to_non_nullable
               as String?,
       followerCount: followerCount == freezed
           ? _value.followerCount
@@ -103,6 +129,10 @@ class _$ListDataCopyWithImpl<$Res> implements $ListDataCopyWith<$Res> {
           ? _value.isPrivate
           : isPrivate // ignore: cast_nullable_to_non_nullable
               as bool?,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -116,12 +146,12 @@ abstract class _$$_ListDataCopyWith<$Res> implements $ListDataCopyWith<$Res> {
   $Res call(
       {String id,
       String name,
-      String? ownerId,
-      DateTime? createdAt,
       String? description,
+      String? ownerId,
       int? followerCount,
       int? memberCount,
-      @JsonKey(name: 'private') bool? isPrivate});
+      @JsonKey(name: 'private') bool? isPrivate,
+      DateTime? createdAt});
 }
 
 /// @nodoc
@@ -138,12 +168,12 @@ class __$$_ListDataCopyWithImpl<$Res> extends _$ListDataCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? ownerId = freezed,
-    Object? createdAt = freezed,
     Object? description = freezed,
+    Object? ownerId = freezed,
     Object? followerCount = freezed,
     Object? memberCount = freezed,
     Object? isPrivate = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_$_ListData(
       id: id == freezed
@@ -154,17 +184,13 @@ class __$$_ListDataCopyWithImpl<$Res> extends _$ListDataCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      ownerId: ownerId == freezed
-          ? _value.ownerId
-          : ownerId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdAt: createdAt == freezed
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ownerId: ownerId == freezed
+          ? _value.ownerId
+          : ownerId // ignore: cast_nullable_to_non_nullable
               as String?,
       followerCount: followerCount == freezed
           ? _value.followerCount
@@ -178,6 +204,10 @@ class __$$_ListDataCopyWithImpl<$Res> extends _$ListDataCopyWithImpl<$Res>
           ? _value.isPrivate
           : isPrivate // ignore: cast_nullable_to_non_nullable
               as bool?,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -188,37 +218,67 @@ class _$_ListData implements _ListData {
   const _$_ListData(
       {required this.id,
       required this.name,
-      this.ownerId,
-      this.createdAt,
       this.description,
+      this.ownerId,
       this.followerCount,
       this.memberCount,
-      @JsonKey(name: 'private') this.isPrivate});
+      @JsonKey(name: 'private') this.isPrivate,
+      this.createdAt});
 
   factory _$_ListData.fromJson(Map<String, dynamic> json) =>
       _$$_ListDataFromJson(json);
 
+  /// The unique identifier of this List.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Use this to programmatically retrieve information about a specific
+  ///   Twitter List.
   @override
   final String id;
+
+  /// The name of the List, as defined when creating the List.
   @override
   final String name;
-  @override
-  final String? ownerId;
-  @override
-  final DateTime? createdAt;
+
+  /// A brief description to let users know about the List.
   @override
   final String? description;
+
+  /// Unique identifier of this List's owner.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Returns the List owner ID. Can potentially be used to find out if
+  ///   this specific user owns any other Lists. Can also be used to expand
+  ///   user objects.
+  @override
+  final String? ownerId;
+
+  /// Shows how many users follow this List.
   @override
   final int? followerCount;
+
+  /// Shows how many members are part of this List.
   @override
   final int? memberCount;
+
+  /// Indicates if the List is private.
   @override
   @JsonKey(name: 'private')
   final bool? isPrivate;
 
+  /// The UTC date time that the List was created on Twitter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Can be used to determine how long a List has been on Twitter.
+  @override
+  final DateTime? createdAt;
+
   @override
   String toString() {
-    return 'ListData(id: $id, name: $name, ownerId: $ownerId, createdAt: $createdAt, description: $description, followerCount: $followerCount, memberCount: $memberCount, isPrivate: $isPrivate)';
+    return 'ListData(id: $id, name: $name, description: $description, ownerId: $ownerId, followerCount: $followerCount, memberCount: $memberCount, isPrivate: $isPrivate, createdAt: $createdAt)';
   }
 
   @override
@@ -228,15 +288,15 @@ class _$_ListData implements _ListData {
             other is _$_ListData &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.ownerId, ownerId) &&
-            const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
+            const DeepCollectionEquality().equals(other.ownerId, ownerId) &&
             const DeepCollectionEquality()
                 .equals(other.followerCount, followerCount) &&
             const DeepCollectionEquality()
                 .equals(other.memberCount, memberCount) &&
-            const DeepCollectionEquality().equals(other.isPrivate, isPrivate));
+            const DeepCollectionEquality().equals(other.isPrivate, isPrivate) &&
+            const DeepCollectionEquality().equals(other.createdAt, createdAt));
   }
 
   @JsonKey(ignore: true)
@@ -245,12 +305,12 @@ class _$_ListData implements _ListData {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(ownerId),
-      const DeepCollectionEquality().hash(createdAt),
       const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(ownerId),
       const DeepCollectionEquality().hash(followerCount),
       const DeepCollectionEquality().hash(memberCount),
-      const DeepCollectionEquality().hash(isPrivate));
+      const DeepCollectionEquality().hash(isPrivate),
+      const DeepCollectionEquality().hash(createdAt));
 
   @JsonKey(ignore: true)
   @override
@@ -267,32 +327,63 @@ abstract class _ListData implements ListData {
   const factory _ListData(
       {required final String id,
       required final String name,
-      final String? ownerId,
-      final DateTime? createdAt,
       final String? description,
+      final String? ownerId,
       final int? followerCount,
       final int? memberCount,
-      @JsonKey(name: 'private') final bool? isPrivate}) = _$_ListData;
+      @JsonKey(name: 'private') final bool? isPrivate,
+      final DateTime? createdAt}) = _$_ListData;
 
   factory _ListData.fromJson(Map<String, dynamic> json) = _$_ListData.fromJson;
 
   @override
+
+  /// The unique identifier of this List.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Use this to programmatically retrieve information about a specific
+  ///   Twitter List.
   String get id => throw _privateConstructorUsedError;
   @override
+
+  /// The name of the List, as defined when creating the List.
   String get name => throw _privateConstructorUsedError;
   @override
-  String? get ownerId => throw _privateConstructorUsedError;
-  @override
-  DateTime? get createdAt => throw _privateConstructorUsedError;
-  @override
+
+  /// A brief description to let users know about the List.
   String? get description => throw _privateConstructorUsedError;
   @override
+
+  /// Unique identifier of this List's owner.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Returns the List owner ID. Can potentially be used to find out if
+  ///   this specific user owns any other Lists. Can also be used to expand
+  ///   user objects.
+  String? get ownerId => throw _privateConstructorUsedError;
+  @override
+
+  /// Shows how many users follow this List.
   int? get followerCount => throw _privateConstructorUsedError;
   @override
+
+  /// Shows how many members are part of this List.
   int? get memberCount => throw _privateConstructorUsedError;
   @override
+
+  /// Indicates if the List is private.
   @JsonKey(name: 'private')
   bool? get isPrivate => throw _privateConstructorUsedError;
+  @override
+
+  /// The UTC date time that the List was created on Twitter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Can be used to determine how long a List has been on Twitter.
+  DateTime? get createdAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_ListDataCopyWith<_$_ListData> get copyWith =>
