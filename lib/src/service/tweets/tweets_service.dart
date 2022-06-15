@@ -78,6 +78,17 @@ abstract class TweetsService {
   ///
   /// - https://api.twitter.com/2/tweets
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - tweet.write
+  /// - users.read
+  ///
   /// ## Rate Limits
   ///
   /// - **User rate limit (OAuth 2.0 user Access Token)**:
@@ -107,6 +118,17 @@ abstract class TweetsService {
   ///
   /// - https://api.twitter.com/2/tweets/:id
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - tweet.write
+  /// - users.read
+  ///
   /// ## Rate Limits
   ///
   /// - **User rate limit (OAuth 2.0 user Access Token)**:
@@ -132,6 +154,17 @@ abstract class TweetsService {
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/likes
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - like.write
   ///
   /// ## Rate Limits
   ///
@@ -162,6 +195,17 @@ abstract class TweetsService {
   ///
   /// - https://api.twitter.com/2/users/:id/likes/:tweet_id
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - like.write
+  ///
   /// ## Rate Limits
   ///
   /// - **User rate limit (OAuth 2.0 user Access Token)**:
@@ -188,6 +232,17 @@ abstract class TweetsService {
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/retweets
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - tweet.write
+  /// - users.read
   ///
   /// ## Rate Limits
   ///
@@ -219,6 +274,17 @@ abstract class TweetsService {
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/retweets/:source_tweet_id
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - tweet.write
+  /// - users.read
   ///
   /// ## Rate Limits
   ///
@@ -306,6 +372,18 @@ abstract class TweetsService {
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/:id/liking_users
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 2.0 App-only
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - like.read
   ///
   /// ## Rate Limits
   ///
@@ -408,6 +486,18 @@ abstract class TweetsService {
   ///
   /// - https://api.twitter.com/2/users/:id/liked_tweets
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 2.0 App-only
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - like.read
+  ///
   /// ## Rate Limits
   ///
   /// - **App rate limit (OAuth 2.0 App Access Token)**:
@@ -505,6 +595,17 @@ abstract class TweetsService {
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/:id/retweeted_by
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 2.0 App-only
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
   ///
   /// ## Rate Limits
   ///
@@ -611,6 +712,17 @@ abstract class TweetsService {
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/:id/quote_tweets
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 2.0 App-only
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
   ///
   /// ## Rate Limits
   ///
@@ -719,6 +831,10 @@ abstract class TweetsService {
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/search/recent
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 App-only
   ///
   /// ## Rate Limits
   ///
@@ -831,6 +947,10 @@ abstract class TweetsService {
   ///
   /// - https://api.twitter.com/2/tweets/search/all
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 App-only
+  ///
   /// ## Rate Limits
   ///
   /// - **App rate limit (OAuth 2.0 App Access Token)**:
@@ -922,6 +1042,17 @@ abstract class TweetsService {
   ///
   /// - https://api.twitter.com/2/tweets/:id
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 2.0 App-only
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  ///
   /// ## Rate Limits
   ///
   /// - **App rate limit (OAuth 2.0 App Access Token)**:
@@ -1012,6 +1143,17 @@ abstract class TweetsService {
   ///
   /// - https://api.twitter.com/2/tweets
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 2.0 App-only
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  ///
   /// ## Rate Limits
   ///
   /// - **App rate limit (OAuth 2.0 App Access Token)**:
@@ -1058,6 +1200,10 @@ abstract class TweetsService {
   ///
   /// - https://api.twitter.com/2/tweets/counts/recent
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 App-only
+  ///
   /// ## Rate Limits
   ///
   /// - **App rate limit (OAuth 2.0 App Access Token)**:
@@ -1093,6 +1239,10 @@ abstract class TweetsService {
   ///
   /// - https://api.twitter.com/2/tweets/counts/all
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 App-only
+  ///
   /// ## Rate Limits
   ///
   /// - **App rate limit (OAuth 2.0 App Access Token)**:
@@ -1122,6 +1272,16 @@ abstract class TweetsService {
   ///
   /// - https://api.twitter.com/2/users/:id/bookmarks
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - bookmark.write
+  ///
   /// ## Rate Limits
   ///
   /// - **User rate limit (OAuth 2.0 user Access Token)**:
@@ -1149,6 +1309,16 @@ abstract class TweetsService {
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/bookmarks/:tweet_id
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - bookmark.write
   ///
   /// ## Rate Limits
   ///
@@ -1230,6 +1400,16 @@ abstract class TweetsService {
   ///
   /// - https://api.twitter.com/2/users/:id/bookmarks/:tweet_id
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - bookmark.read
+  ///
   /// ## Rate Limits
   ///
   /// - **User rate limit (OAuth 2.0 user Access Token)**:
@@ -1260,6 +1440,17 @@ abstract class TweetsService {
   ///
   /// - https://api.twitter.com/2/tweets/:id/hidden
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - tweet.moderate.write
+  ///
   /// ## Rate Limits
   ///
   /// - **User rate limit (OAuth 2.0 user Access Token)**:
@@ -1281,6 +1472,17 @@ abstract class TweetsService {
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/:id/hidden
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - tweet.moderate.write
   ///
   /// ## Rate Limits
   ///
@@ -1382,6 +1584,17 @@ abstract class TweetsService {
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/mentions
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 2.0 App-only
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
   ///
   /// ## Rate Limits
   ///
@@ -1500,6 +1713,17 @@ abstract class TweetsService {
   ///
   /// - https://api.twitter.com/2/users/:id/tweets
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 2.0 App-only
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  ///
   /// ## Rate Limits
   ///
   /// - **App rate limit (OAuth 2.0 App Access Token)**:
@@ -1612,6 +1836,16 @@ abstract class TweetsService {
   ///
   /// - https://api.twitter.com/2/users/:id/timelines/reverse_chronological
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  ///
   /// ## Rate Limits
   ///
   /// - **User rate limit (OAuth 2.0 user Access Token)**:
@@ -1722,6 +1956,10 @@ abstract class TweetsService {
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/sample/stream
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 App-only
   ///
   /// ## Rate Limits
   ///
@@ -1836,6 +2074,10 @@ abstract class TweetsService {
   ///
   /// - https://api.twitter.com/2/tweets/search/stream
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 App-only
+  ///
   /// ## Rate Limits
   ///
   /// - **App rate limit (OAuth 2.0 App Access Token)**:
@@ -1870,6 +2112,10 @@ abstract class TweetsService {
   ///
   /// - https://api.twitter.com/2/tweets/search/stream/rules
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 App-only
+  ///
   /// ## Rate Limits
   ///
   /// - **App rate limit (OAuth 2.0 App Access Token)**:
@@ -1901,6 +2147,10 @@ abstract class TweetsService {
   ///
   /// - https://api.twitter.com/2/tweets/search/stream/rules
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 App-only
+  ///
   /// ## Rate Limits
   ///
   /// - **App rate limit (OAuth 2.0 App Access Token)**:
@@ -1924,6 +2174,11 @@ abstract class TweetsService {
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/search/stream/rules
+  ///
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 App-only
   ///
   /// ## Rate Limits
   ///

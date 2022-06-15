@@ -40,6 +40,17 @@ abstract class UsersService {
   ///
   /// - https://api.twitter.com/2/users/:id/following
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - follows.write
+  ///
   /// ## Rate Limits
   ///
   /// - **User rate limit (OAuth 2.0 user Access Token)**:
@@ -68,6 +79,17 @@ abstract class UsersService {
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:source_user_id/following/:target_user_id
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - follows.write
   ///
   /// ## Rate Limits
   ///
@@ -123,6 +145,18 @@ abstract class UsersService {
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/followers
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 2.0 App-only
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - follows.read
   ///
   /// ## Rate Limits
   ///
@@ -183,6 +217,18 @@ abstract class UsersService {
   ///
   /// - https://api.twitter.com/2/users/:id/following
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 2.0 App-only
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - follows.read
+  ///
   /// ## Rate Limits
   ///
   /// - **App rate limit (OAuth 2.0 App Access Token):
@@ -236,6 +282,17 @@ abstract class UsersService {
   ///
   /// - https://api.twitter.com/2/users/:id
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 2.0 App-only
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  ///
   /// ## Rate Limits
   ///
   /// - **App rate limit (OAuth 2.0 App Access Token)**:
@@ -288,6 +345,17 @@ abstract class UsersService {
   ///
   /// - https://api.twitter.com/2/users
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 2.0 App-only
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  ///
   /// ## Rate Limits
   ///
   /// - **App rate limit (OAuth 2.0 App Access Token)**:
@@ -338,6 +406,17 @@ abstract class UsersService {
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/by/username/:username
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 2.0 App-only
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
   ///
   /// ## Rate Limits
   ///
@@ -391,6 +470,17 @@ abstract class UsersService {
   ///
   /// - https://api.twitter.com/2/users/by
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 2.0 App-only
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  ///
   /// ## Rate Limits
   ///
   /// - **App rate limit (OAuth 2.0 App Access Token)**:
@@ -439,6 +529,16 @@ abstract class UsersService {
   ///
   /// - https://api.twitter.com/2/users/me
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  ///
   /// ## Rate Limits
   ///
   /// - **User rate limit (OAuth 2.0 user Access Token)**:
@@ -471,6 +571,17 @@ abstract class UsersService {
   ///
   /// - https://api.twitter.com/2/users/:id/muting
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - mute.write
+  ///
   /// ## Rate Limits
   ///
   /// - **User rate limit (OAuth 2.0 user Access Token)**:
@@ -501,6 +612,17 @@ abstract class UsersService {
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:source_user_id/muting/:target_user_id
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - mute.write
   ///
   /// ## Rate Limits
   ///
@@ -557,6 +679,17 @@ abstract class UsersService {
   ///
   /// - https://api.twitter.com/2/users/:id/muting
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - mute.read
+  ///
   /// ## Rate Limits
   ///
   /// - **User rate limit (OAuth 2.0 user Access Token)**:
@@ -594,6 +727,17 @@ abstract class UsersService {
   ///
   /// - https://api.twitter.com/2/users/:id/blocking
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - block.write
+  ///
   /// ## Rate Limits
   ///
   /// - **User rate limit (OAuth 2.0 user Access Token)**:
@@ -623,6 +767,17 @@ abstract class UsersService {
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/blocking
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - block.write
   ///
   /// ## Rate Limits
   ///
@@ -678,6 +833,17 @@ abstract class UsersService {
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/blocking
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - block.read
   ///
   /// ## Rate Limits
   ///

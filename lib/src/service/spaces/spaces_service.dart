@@ -64,6 +64,17 @@ abstract class SpacesService {
   ///
   /// - https://api.twitter.com/2/spaces/search
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 2.0 App-only
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - space.read
+  ///
   /// ## Rate Limits
   ///
   /// - **User rate limit (OAuth 2.0 user Access Token)**:
@@ -113,6 +124,17 @@ abstract class SpacesService {
   ///
   /// - https://api.twitter.com/2/spaces/:id
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 2.0 App-only
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - space.read
+  ///
   /// ## Rate Limits
   ///
   /// - **User rate limit (OAuth 2.0 user Access Token)**:
@@ -161,6 +183,17 @@ abstract class SpacesService {
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/spaces
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 2.0 App-only
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - space.read
   ///
   /// ## Rate Limits
   ///
@@ -261,6 +294,16 @@ abstract class SpacesService {
   ///
   /// - https://api.twitter.com/2/spaces/:id/buyers
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - space.read
+  ///
   /// ## Rate Limits
   ///
   /// - **User rate limit (OAuth 2.0 user Access Token)**:
@@ -348,6 +391,16 @@ abstract class SpacesService {
   ///
   /// - https://api.twitter.com/2/spaces/:id/tweets
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - space.read
+  ///
   /// ## Rate Limits
   ///
   /// - **User rate limit (OAuth 2.0 user Access Token)**:
@@ -396,6 +449,17 @@ abstract class SpacesService {
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/spaces/by/creator_ids
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 2.0 App-only
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - space.read
   ///
   /// ## Rate Limits
   ///

@@ -57,6 +57,18 @@ abstract class ListsService {
   ///
   /// - https://api.twitter.com/2/lists/:id
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 2.0 App-only
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - list.read
+  ///
   /// ## Rate Limits
   ///
   /// - **App rate limit (OAuth 2.0 App Access Token)**:
@@ -118,6 +130,18 @@ abstract class ListsService {
   ///
   /// - https://api.twitter.com/2/users/:id/owned_lists
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 2.0 App-only
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - list.read
+  ///
   /// ## Rate Limits
   ///
   /// - **App rate limit (OAuth 2.0 App Access Token)**:
@@ -153,6 +177,17 @@ abstract class ListsService {
   ///
   /// - https://api.twitter.com/2/users/:id/owned_lists
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - list.write
+  ///
   /// ## Rate Limits
   ///
   /// - **User rate limit (OAuth 2.0 user Access Token)**:
@@ -178,6 +213,17 @@ abstract class ListsService {
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/pinned_lists/:list_id
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - list.write
   ///
   /// ## Rate Limits
   ///
@@ -225,6 +271,17 @@ abstract class ListsService {
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/pinned_lists
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - list.read
   ///
   /// ## Rate Limits
   ///
@@ -285,6 +342,18 @@ abstract class ListsService {
   ///
   /// - https://api.twitter.com/2/lists/:id/tweets
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 2.0 App-only
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - list.read
+  ///
   /// ## Rate Limits
   ///
   /// - **App rate limit (OAuth 2.0 App Access Token)**:
@@ -317,6 +386,17 @@ abstract class ListsService {
   ///
   /// - https://api.twitter.com/2/lists
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - list.write
+  ///
   /// ## Rate Limits
   ///
   /// - **User rate limit (OAuth 2.0 user Access Token)**:
@@ -340,6 +420,17 @@ abstract class ListsService {
   ///
   /// - https://api.twitter.com/2/lists
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - list.write
+  ///
   /// ## Rate Limits
   ///
   /// - **User rate limit (OAuth 2.0 user Access Token)**:
@@ -360,6 +451,17 @@ abstract class ListsService {
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/lists/:id
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - list.write
   ///
   /// ## Rate Limits
   ///
@@ -385,6 +487,17 @@ abstract class ListsService {
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/lists/:id
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - list.write
   ///
   /// ## Rate Limits
   ///
@@ -412,6 +525,17 @@ abstract class ListsService {
   ///
   /// - https://api.twitter.com/2/lists/:id
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - list.write
+  ///
   /// ## Rate Limits
   ///
   /// - **User rate limit (OAuth 2.0 user Access Token)**:
@@ -438,6 +562,17 @@ abstract class ListsService {
   ///
   /// - https://api.twitter.com/2/users/:id/followed_lists
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - list.write
+  ///
   /// ## Rate Limits
   ///
   /// - **User rate limit (OAuth 2.0 user Access Token)**:
@@ -463,6 +598,17 @@ abstract class ListsService {
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/followed_lists/:list_id
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - list.write
   ///
   /// ## Rate Limits
   ///
@@ -508,6 +654,18 @@ abstract class ListsService {
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/lists/:id/followers
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 2.0 App-only
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - list.read
   ///
   /// ## Rate Limits
   ///
@@ -572,6 +730,18 @@ abstract class ListsService {
   ///
   /// - https://api.twitter.com/2/users/:id/followed_lists
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 2.0 App-only
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - list.read
+  ///
   /// ## Rate Limits
   ///
   /// - **App rate limit (OAuth 2.0 App Access Token)**:
@@ -604,6 +774,17 @@ abstract class ListsService {
   ///
   /// - https://api.twitter.com/2/lists/:id/members
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - list.write
+  ///
   /// ## Rate Limits
   ///
   /// - **User rate limit (OAuth 2.0 user Access Token)**:
@@ -625,6 +806,18 @@ abstract class ListsService {
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/lists/:id/members/:user_id
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - list.write
+  ///
   ///
   /// ## Rate Limits
   ///
@@ -679,6 +872,18 @@ abstract class ListsService {
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/lists/:id/members
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 2.0 App-only
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - list.read
   ///
   /// ## Rate Limits
   ///
@@ -743,6 +948,18 @@ abstract class ListsService {
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/list_memberships
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 2.0 App-only
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - list.read
   ///
   /// ## Rate Limits
   ///
