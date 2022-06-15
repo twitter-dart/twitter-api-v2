@@ -20,7 +20,11 @@ MatchingRule _$MatchingRuleFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MatchingRule {
+  /// ID of the filter rule that matched against the Tweet delivered.
   String get id => throw _privateConstructorUsedError;
+
+  /// The tag label of the filter rule that matched against the
+  /// Tweet delivered.
   String get tag => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -110,8 +114,12 @@ class _$_MatchingRule implements _MatchingRule {
   factory _$_MatchingRule.fromJson(Map<String, dynamic> json) =>
       _$$_MatchingRuleFromJson(json);
 
+  /// ID of the filter rule that matched against the Tweet delivered.
   @override
   final String id;
+
+  /// The tag label of the filter rule that matched against the
+  /// Tweet delivered.
   @override
   final String tag;
 
@@ -155,8 +163,13 @@ abstract class _MatchingRule implements MatchingRule {
       _$_MatchingRule.fromJson;
 
   @override
+
+  /// ID of the filter rule that matched against the Tweet delivered.
   String get id => throw _privateConstructorUsedError;
   @override
+
+  /// The tag label of the filter rule that matched against the
+  /// Tweet delivered.
   String get tag => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

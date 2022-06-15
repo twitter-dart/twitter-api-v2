@@ -13,7 +13,11 @@ part 'tweet_withheld.g.dart';
 @freezed
 class TweetWithheld with _$TweetWithheld {
   const factory TweetWithheld({
+    /// Indicates if the content is being withheld for on the basis of
+    /// copyright infringement.
     @JsonKey(name: 'copyright') required bool isCopyright,
+
+    /// Provides a list of countries where this content is not available.
     required List<String> countryCodes,
   }) = _TweetWithheld;
 

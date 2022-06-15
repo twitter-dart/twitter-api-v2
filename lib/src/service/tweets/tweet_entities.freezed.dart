@@ -20,10 +20,19 @@ TweetEntities _$TweetEntitiesFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TweetEntities {
+  /// Contains details about annotations relative to the text within a Tweet.
   List<TweetAnnotation>? get annotations => throw _privateConstructorUsedError;
+
+  /// Contains details about text recognized as a Hashtag.
   List<Tag>? get hashtags => throw _privateConstructorUsedError;
+
+  /// Contains details about text recognized as a Cashtag.
   List<Tag>? get cashtags => throw _privateConstructorUsedError;
+
+  /// Contains details about text recognized as a user mention.
   List<Mention>? get mentions => throw _privateConstructorUsedError;
+
+  /// Contains details about text recognized as a URL.
   List<Url>? get urls => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -164,7 +173,10 @@ class _$_TweetEntities implements _TweetEntities {
   factory _$_TweetEntities.fromJson(Map<String, dynamic> json) =>
       _$$_TweetEntitiesFromJson(json);
 
+  /// Contains details about annotations relative to the text within a Tweet.
   final List<TweetAnnotation>? _annotations;
+
+  /// Contains details about annotations relative to the text within a Tweet.
   @override
   List<TweetAnnotation>? get annotations {
     final value = _annotations;
@@ -173,7 +185,10 @@ class _$_TweetEntities implements _TweetEntities {
     return EqualUnmodifiableListView(value);
   }
 
+  /// Contains details about text recognized as a Hashtag.
   final List<Tag>? _hashtags;
+
+  /// Contains details about text recognized as a Hashtag.
   @override
   List<Tag>? get hashtags {
     final value = _hashtags;
@@ -182,7 +197,10 @@ class _$_TweetEntities implements _TweetEntities {
     return EqualUnmodifiableListView(value);
   }
 
+  /// Contains details about text recognized as a Cashtag.
   final List<Tag>? _cashtags;
+
+  /// Contains details about text recognized as a Cashtag.
   @override
   List<Tag>? get cashtags {
     final value = _cashtags;
@@ -191,7 +209,10 @@ class _$_TweetEntities implements _TweetEntities {
     return EqualUnmodifiableListView(value);
   }
 
+  /// Contains details about text recognized as a user mention.
   final List<Mention>? _mentions;
+
+  /// Contains details about text recognized as a user mention.
   @override
   List<Mention>? get mentions {
     final value = _mentions;
@@ -200,7 +221,10 @@ class _$_TweetEntities implements _TweetEntities {
     return EqualUnmodifiableListView(value);
   }
 
+  /// Contains details about text recognized as a URL.
   final List<Url>? _urls;
+
+  /// Contains details about text recognized as a URL.
   @override
   List<Url>? get urls {
     final value = _urls;
@@ -260,14 +284,24 @@ abstract class _TweetEntities implements TweetEntities {
       _$_TweetEntities.fromJson;
 
   @override
+
+  /// Contains details about annotations relative to the text within a Tweet.
   List<TweetAnnotation>? get annotations => throw _privateConstructorUsedError;
   @override
+
+  /// Contains details about text recognized as a Hashtag.
   List<Tag>? get hashtags => throw _privateConstructorUsedError;
   @override
+
+  /// Contains details about text recognized as a Cashtag.
   List<Tag>? get cashtags => throw _privateConstructorUsedError;
   @override
+
+  /// Contains details about text recognized as a user mention.
   List<Mention>? get mentions => throw _privateConstructorUsedError;
   @override
+
+  /// Contains details about text recognized as a URL.
   List<Url>? get urls => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

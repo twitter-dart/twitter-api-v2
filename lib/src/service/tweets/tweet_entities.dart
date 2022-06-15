@@ -17,10 +17,19 @@ part 'tweet_entities.g.dart';
 @freezed
 class TweetEntities with _$TweetEntities {
   const factory TweetEntities({
+    /// Contains details about annotations relative to the text within a Tweet.
     List<TweetAnnotation>? annotations,
+
+    /// Contains details about text recognized as a Hashtag.
     List<Tag>? hashtags,
+
+    /// Contains details about text recognized as a Cashtag.
     List<Tag>? cashtags,
+
+    /// Contains details about text recognized as a user mention.
     List<Mention>? mentions,
+
+    /// Contains details about text recognized as a URL.
     List<Url>? urls,
   }) = _TweetEntities;
 

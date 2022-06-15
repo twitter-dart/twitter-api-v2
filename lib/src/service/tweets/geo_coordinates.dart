@@ -11,7 +11,13 @@ part 'geo_coordinates.g.dart';
 @freezed
 class GeoCoordinates with _$GeoCoordinates {
   const factory GeoCoordinates({
+    /// Describes the type of coordinate. The only value supported at present
+    /// is Point.
     required String type,
+
+    /// A pair of decimal values representing the precise location of the user
+    /// (latitude, longitude). This value be `null` unless the user explicitly
+    /// shared their precise location.
     required List<double> coordinates,
   }) = _GeoCoordinates;
 

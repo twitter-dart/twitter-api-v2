@@ -20,10 +20,23 @@ TweetAnnotation _$TweetAnnotationFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TweetAnnotation {
+  /// The start position (zero-based) of the text used to annotate the Tweet.
+  /// All start indices are inclusive.
   int get start => throw _privateConstructorUsedError;
+
+  /// The end position (zero based) of the text used to annotate the Tweet.
+  /// While all other end indices are exclusive, this one is inclusive.
   int get end => throw _privateConstructorUsedError;
+
+  /// The confidence score for the annotation as it correlates to the
+  /// Tweet text.
   double get probability => throw _privateConstructorUsedError;
+
+  /// The description of the type of entity identified when the Tweet text
+  /// was interpreted.
   String get type => throw _privateConstructorUsedError;
+
+  /// The text used to determine the annotation type.
   String get normalizedText => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -159,14 +172,27 @@ class _$_TweetAnnotation implements _TweetAnnotation {
   factory _$_TweetAnnotation.fromJson(Map<String, dynamic> json) =>
       _$$_TweetAnnotationFromJson(json);
 
+  /// The start position (zero-based) of the text used to annotate the Tweet.
+  /// All start indices are inclusive.
   @override
   final int start;
+
+  /// The end position (zero based) of the text used to annotate the Tweet.
+  /// While all other end indices are exclusive, this one is inclusive.
   @override
   final int end;
+
+  /// The confidence score for the annotation as it correlates to the
+  /// Tweet text.
   @override
   final double probability;
+
+  /// The description of the type of entity identified when the Tweet text
+  /// was interpreted.
   @override
   final String type;
+
+  /// The text used to determine the annotation type.
   @override
   final String normalizedText;
 
@@ -222,14 +248,28 @@ abstract class _TweetAnnotation implements TweetAnnotation {
       _$_TweetAnnotation.fromJson;
 
   @override
+
+  /// The start position (zero-based) of the text used to annotate the Tweet.
+  /// All start indices are inclusive.
   int get start => throw _privateConstructorUsedError;
   @override
+
+  /// The end position (zero based) of the text used to annotate the Tweet.
+  /// While all other end indices are exclusive, this one is inclusive.
   int get end => throw _privateConstructorUsedError;
   @override
+
+  /// The confidence score for the annotation as it correlates to the
+  /// Tweet text.
   double get probability => throw _privateConstructorUsedError;
   @override
+
+  /// The description of the type of entity identified when the Tweet text
+  /// was interpreted.
   String get type => throw _privateConstructorUsedError;
   @override
+
+  /// The text used to determine the annotation type.
   String get normalizedText => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

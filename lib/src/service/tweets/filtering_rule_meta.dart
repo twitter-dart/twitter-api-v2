@@ -16,7 +16,12 @@ part 'filtering_rule_meta.g.dart';
 @freezed
 class FilteringRuleMeta with _$FilteringRuleMeta {
   const factory FilteringRuleMeta({
+    /// The time when the request body was returned.
     @JsonKey(name: 'sent') DateTime? sentAt,
+
+    /// Contains fields that describe whether you were successful or
+    /// unsuccessful in creating or deleting the different rules that
+    /// you passed in your request.
     FilteringRuleSummary? summary,
   }) = _FilteringRuleMeta;
 

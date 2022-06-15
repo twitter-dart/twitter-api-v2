@@ -21,7 +21,12 @@ TweetContextAnnotationGroup _$TweetContextAnnotationGroupFromJson(
 
 /// @nodoc
 mixin _$TweetContextAnnotationGroup {
+  /// Contains elements which identify detailed information regarding the
+  /// domain classification based on Tweet text.
   TweetContextAnnotation get domain => throw _privateConstructorUsedError;
+
+  /// Contains elements which identify detailed information regarding the
+  /// entity classification bases on Tweet text.
   TweetContextAnnotation get entity => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -139,8 +144,13 @@ class _$_TweetContextAnnotationGroup implements _TweetContextAnnotationGroup {
   factory _$_TweetContextAnnotationGroup.fromJson(Map<String, dynamic> json) =>
       _$$_TweetContextAnnotationGroupFromJson(json);
 
+  /// Contains elements which identify detailed information regarding the
+  /// domain classification based on Tweet text.
   @override
   final TweetContextAnnotation domain;
+
+  /// Contains elements which identify detailed information regarding the
+  /// entity classification bases on Tweet text.
   @override
   final TweetContextAnnotation entity;
 
@@ -188,8 +198,14 @@ abstract class _TweetContextAnnotationGroup
       _$_TweetContextAnnotationGroup.fromJson;
 
   @override
+
+  /// Contains elements which identify detailed information regarding the
+  /// domain classification based on Tweet text.
   TweetContextAnnotation get domain => throw _privateConstructorUsedError;
   @override
+
+  /// Contains elements which identify detailed information regarding the
+  /// entity classification bases on Tweet text.
   TweetContextAnnotation get entity => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

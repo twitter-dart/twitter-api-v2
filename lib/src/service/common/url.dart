@@ -13,12 +13,27 @@ part 'url.g.dart';
 @freezed
 class Url with _$Url {
   const factory Url({
+    /// The start position (zero-based) of the recognized URL within the Tweet.
+    /// All start indices are inclusive.
     required int start,
+
+    /// The end position (zero-based) of the recognized URL within the Tweet.
+    /// This end index is exclusive.
     required int end,
+
+    /// The URL in the format tweeted by the user.
     required String url,
+
+    /// The fully resolved URL.
     required String expandedUrl,
+
+    /// The URL as displayed in the Twitter client.
     required String displayUrl,
+
+    /// The full destination URL.
     String? unwoundUrl,
+
+    /// The unique key to the media.
     String? mediaKey,
   }) = _Url;
 

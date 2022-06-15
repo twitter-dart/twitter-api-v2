@@ -20,10 +20,21 @@ TweetMeta _$TweetMetaFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TweetMeta {
+  /// The Tweet ID of the most recent Tweet returned in the response.
   String? get newestId => throw _privateConstructorUsedError;
+
+  /// The Tweet ID of the oldest Tweet returned in the response.
   String? get oldestId => throw _privateConstructorUsedError;
+
+  /// The number of Tweet results returned in the response.
   int? get resultCount => throw _privateConstructorUsedError;
+
+  /// A value that encodes the next 'page' of results that can be requested,
+  /// via the `pagination_token` request parameter.
   String? get nextToken => throw _privateConstructorUsedError;
+
+  /// A value that encodes the previous 'page' of results that can be
+  /// requested, via the `pagination_token` request parameter.
   String? get previousToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -155,14 +166,25 @@ class _$_TweetMeta implements _TweetMeta {
   factory _$_TweetMeta.fromJson(Map<String, dynamic> json) =>
       _$$_TweetMetaFromJson(json);
 
+  /// The Tweet ID of the most recent Tweet returned in the response.
   @override
   final String? newestId;
+
+  /// The Tweet ID of the oldest Tweet returned in the response.
   @override
   final String? oldestId;
+
+  /// The number of Tweet results returned in the response.
   @override
   final int? resultCount;
+
+  /// A value that encodes the next 'page' of results that can be requested,
+  /// via the `pagination_token` request parameter.
   @override
   final String? nextToken;
+
+  /// A value that encodes the previous 'page' of results that can be
+  /// requested, via the `pagination_token` request parameter.
   @override
   final String? previousToken;
 
@@ -218,14 +240,26 @@ abstract class _TweetMeta implements TweetMeta {
       _$_TweetMeta.fromJson;
 
   @override
+
+  /// The Tweet ID of the most recent Tweet returned in the response.
   String? get newestId => throw _privateConstructorUsedError;
   @override
+
+  /// The Tweet ID of the oldest Tweet returned in the response.
   String? get oldestId => throw _privateConstructorUsedError;
   @override
+
+  /// The number of Tweet results returned in the response.
   int? get resultCount => throw _privateConstructorUsedError;
   @override
+
+  /// A value that encodes the next 'page' of results that can be requested,
+  /// via the `pagination_token` request parameter.
   String? get nextToken => throw _privateConstructorUsedError;
   @override
+
+  /// A value that encodes the previous 'page' of results that can be
+  /// requested, via the `pagination_token` request parameter.
   String? get previousToken => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

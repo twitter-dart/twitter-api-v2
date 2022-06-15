@@ -20,8 +20,12 @@ TweetWithheld _$TweetWithheldFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TweetWithheld {
+  /// Indicates if the content is being withheld for on the basis of
+  /// copyright infringement.
   @JsonKey(name: 'copyright')
   bool get isCopyright => throw _privateConstructorUsedError;
+
+  /// Provides a list of countries where this content is not available.
   List<String> get countryCodes => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -119,10 +123,16 @@ class _$_TweetWithheld implements _TweetWithheld {
   factory _$_TweetWithheld.fromJson(Map<String, dynamic> json) =>
       _$$_TweetWithheldFromJson(json);
 
+  /// Indicates if the content is being withheld for on the basis of
+  /// copyright infringement.
   @override
   @JsonKey(name: 'copyright')
   final bool isCopyright;
+
+  /// Provides a list of countries where this content is not available.
   final List<String> _countryCodes;
+
+  /// Provides a list of countries where this content is not available.
   @override
   List<String> get countryCodes {
     // ignore: implicit_dynamic_type
@@ -172,9 +182,14 @@ abstract class _TweetWithheld implements TweetWithheld {
       _$_TweetWithheld.fromJson;
 
   @override
+
+  /// Indicates if the content is being withheld for on the basis of
+  /// copyright infringement.
   @JsonKey(name: 'copyright')
   bool get isCopyright => throw _privateConstructorUsedError;
   @override
+
+  /// Provides a list of countries where this content is not available.
   List<String> get countryCodes => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

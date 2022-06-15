@@ -13,8 +13,13 @@ part 'tweet_count_data.g.dart';
 @freezed
 class TweetCountData with _$TweetCountData {
   const factory TweetCountData({
+    /// Start time for the granularity.
     required DateTime start,
+
+    /// End time for the granularity.
     required DateTime end,
+
+    /// Count of the volume of Tweets that match the query.
     @JsonKey(name: 'tweet_count') required int count,
   }) = _TweetCountData;
 

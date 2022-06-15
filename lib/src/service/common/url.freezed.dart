@@ -20,12 +20,27 @@ Url _$UrlFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Url {
+  /// The start position (zero-based) of the recognized URL within the Tweet.
+  /// All start indices are inclusive.
   int get start => throw _privateConstructorUsedError;
+
+  /// The end position (zero-based) of the recognized URL within the Tweet.
+  /// This end index is exclusive.
   int get end => throw _privateConstructorUsedError;
+
+  /// The URL in the format tweeted by the user.
   String get url => throw _privateConstructorUsedError;
+
+  /// The fully resolved URL.
   String get expandedUrl => throw _privateConstructorUsedError;
+
+  /// The URL as displayed in the Twitter client.
   String get displayUrl => throw _privateConstructorUsedError;
+
+  /// The full destination URL.
   String? get unwoundUrl => throw _privateConstructorUsedError;
+
+  /// The unique key to the media.
   String? get mediaKey => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -179,18 +194,33 @@ class _$_Url implements _Url {
 
   factory _$_Url.fromJson(Map<String, dynamic> json) => _$$_UrlFromJson(json);
 
+  /// The start position (zero-based) of the recognized URL within the Tweet.
+  /// All start indices are inclusive.
   @override
   final int start;
+
+  /// The end position (zero-based) of the recognized URL within the Tweet.
+  /// This end index is exclusive.
   @override
   final int end;
+
+  /// The URL in the format tweeted by the user.
   @override
   final String url;
+
+  /// The fully resolved URL.
   @override
   final String expandedUrl;
+
+  /// The URL as displayed in the Twitter client.
   @override
   final String displayUrl;
+
+  /// The full destination URL.
   @override
   final String? unwoundUrl;
+
+  /// The unique key to the media.
   @override
   final String? mediaKey;
 
@@ -252,18 +282,34 @@ abstract class _Url implements Url {
   factory _Url.fromJson(Map<String, dynamic> json) = _$_Url.fromJson;
 
   @override
+
+  /// The start position (zero-based) of the recognized URL within the Tweet.
+  /// All start indices are inclusive.
   int get start => throw _privateConstructorUsedError;
   @override
+
+  /// The end position (zero-based) of the recognized URL within the Tweet.
+  /// This end index is exclusive.
   int get end => throw _privateConstructorUsedError;
   @override
+
+  /// The URL in the format tweeted by the user.
   String get url => throw _privateConstructorUsedError;
   @override
+
+  /// The fully resolved URL.
   String get expandedUrl => throw _privateConstructorUsedError;
   @override
+
+  /// The URL as displayed in the Twitter client.
   String get displayUrl => throw _privateConstructorUsedError;
   @override
+
+  /// The full destination URL.
   String? get unwoundUrl => throw _privateConstructorUsedError;
   @override
+
+  /// The unique key to the media.
   String? get mediaKey => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

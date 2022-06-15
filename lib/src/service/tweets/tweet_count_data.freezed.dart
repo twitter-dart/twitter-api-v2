@@ -20,8 +20,13 @@ TweetCountData _$TweetCountDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TweetCountData {
+  /// Start time for the granularity.
   DateTime get start => throw _privateConstructorUsedError;
+
+  /// End time for the granularity.
   DateTime get end => throw _privateConstructorUsedError;
+
+  /// Count of the volume of Tweets that match the query.
   @JsonKey(name: 'tweet_count')
   int get count => throw _privateConstructorUsedError;
 
@@ -128,10 +133,15 @@ class _$_TweetCountData implements _TweetCountData {
   factory _$_TweetCountData.fromJson(Map<String, dynamic> json) =>
       _$$_TweetCountDataFromJson(json);
 
+  /// Start time for the granularity.
   @override
   final DateTime start;
+
+  /// End time for the granularity.
   @override
   final DateTime end;
+
+  /// Count of the volume of Tweets that match the query.
   @override
   @JsonKey(name: 'tweet_count')
   final int count;
@@ -181,10 +191,16 @@ abstract class _TweetCountData implements TweetCountData {
       _$_TweetCountData.fromJson;
 
   @override
+
+  /// Start time for the granularity.
   DateTime get start => throw _privateConstructorUsedError;
   @override
+
+  /// End time for the granularity.
   DateTime get end => throw _privateConstructorUsedError;
   @override
+
+  /// Count of the volume of Tweets that match the query.
   @JsonKey(name: 'tweet_count')
   int get count => throw _privateConstructorUsedError;
   @override

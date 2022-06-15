@@ -20,8 +20,15 @@ Tag _$TagFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Tag {
+  /// The start position (zero-based) of the recognized tag within the Tweet.
+  /// All start indices are inclusive.
   int get start => throw _privateConstructorUsedError;
+
+  /// The end position (zero-based) of the recognized tag within the Tweet.
+  /// This end index is exclusive.
   int get end => throw _privateConstructorUsedError;
+
+  /// The text of the tag.
   String get tag => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -114,10 +121,17 @@ class _$_Tag implements _Tag {
 
   factory _$_Tag.fromJson(Map<String, dynamic> json) => _$$_TagFromJson(json);
 
+  /// The start position (zero-based) of the recognized tag within the Tweet.
+  /// All start indices are inclusive.
   @override
   final int start;
+
+  /// The end position (zero-based) of the recognized tag within the Tweet.
+  /// This end index is exclusive.
   @override
   final int end;
+
+  /// The text of the tag.
   @override
   final String tag;
 
@@ -164,10 +178,18 @@ abstract class _Tag implements Tag {
   factory _Tag.fromJson(Map<String, dynamic> json) = _$_Tag.fromJson;
 
   @override
+
+  /// The start position (zero-based) of the recognized tag within the Tweet.
+  /// All start indices are inclusive.
   int get start => throw _privateConstructorUsedError;
   @override
+
+  /// The end position (zero-based) of the recognized tag within the Tweet.
+  /// This end index is exclusive.
   int get end => throw _privateConstructorUsedError;
   @override
+
+  /// The text of the tag.
   String get tag => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

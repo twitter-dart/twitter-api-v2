@@ -20,7 +20,15 @@ Geo _$GeoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Geo {
+  /// The unique identifier of the place, if this is a point of interest
+  /// tagged in the Tweet.
+  ///
+  /// You can obtain the expanded object in includes.places by adding
+  /// `TweetExpansion.geoPlaceId` in the request's query parameter.
   String? get placeId => throw _privateConstructorUsedError;
+
+  /// Contains details about the coordinates of the location tagged by the
+  /// user in this Tweet, if they specified one.
   GeoCoordinates? get coordinates => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -119,8 +127,16 @@ class _$_Geo implements _Geo {
 
   factory _$_Geo.fromJson(Map<String, dynamic> json) => _$$_GeoFromJson(json);
 
+  /// The unique identifier of the place, if this is a point of interest
+  /// tagged in the Tweet.
+  ///
+  /// You can obtain the expanded object in includes.places by adding
+  /// `TweetExpansion.geoPlaceId` in the request's query parameter.
   @override
   final String? placeId;
+
+  /// Contains details about the coordinates of the location tagged by the
+  /// user in this Tweet, if they specified one.
   @override
   final GeoCoordinates? coordinates;
 
@@ -164,8 +180,17 @@ abstract class _Geo implements Geo {
   factory _Geo.fromJson(Map<String, dynamic> json) = _$_Geo.fromJson;
 
   @override
+
+  /// The unique identifier of the place, if this is a point of interest
+  /// tagged in the Tweet.
+  ///
+  /// You can obtain the expanded object in includes.places by adding
+  /// `TweetExpansion.geoPlaceId` in the request's query parameter.
   String? get placeId => throw _privateConstructorUsedError;
   @override
+
+  /// Contains details about the coordinates of the location tagged by the
+  /// user in this Tweet, if they specified one.
   GeoCoordinates? get coordinates => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

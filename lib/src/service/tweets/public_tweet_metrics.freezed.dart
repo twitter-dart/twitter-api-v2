@@ -20,9 +20,17 @@ PublicTweetMetrics _$PublicTweetMetricsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PublicTweetMetrics {
+  /// Number of Likes of this Tweet.
   int get likeCount => throw _privateConstructorUsedError;
+
+  /// Number of times this Tweet has been Retweeted.
   int get retweetCount => throw _privateConstructorUsedError;
+
+  /// Number of Replies of this Tweet.
   int get replyCount => throw _privateConstructorUsedError;
+
+  /// Number of times this Tweet has been Retweeted with a comment
+  /// (also known as Quote).
   int get quoteCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -137,12 +145,20 @@ class _$_PublicTweetMetrics implements _PublicTweetMetrics {
   factory _$_PublicTweetMetrics.fromJson(Map<String, dynamic> json) =>
       _$$_PublicTweetMetricsFromJson(json);
 
+  /// Number of Likes of this Tweet.
   @override
   final int likeCount;
+
+  /// Number of times this Tweet has been Retweeted.
   @override
   final int retweetCount;
+
+  /// Number of Replies of this Tweet.
   @override
   final int replyCount;
+
+  /// Number of times this Tweet has been Retweeted with a comment
+  /// (also known as Quote).
   @override
   final int quoteCount;
 
@@ -197,12 +213,21 @@ abstract class _PublicTweetMetrics implements PublicTweetMetrics {
       _$_PublicTweetMetrics.fromJson;
 
   @override
+
+  /// Number of Likes of this Tweet.
   int get likeCount => throw _privateConstructorUsedError;
   @override
+
+  /// Number of times this Tweet has been Retweeted.
   int get retweetCount => throw _privateConstructorUsedError;
   @override
+
+  /// Number of Replies of this Tweet.
   int get replyCount => throw _privateConstructorUsedError;
   @override
+
+  /// Number of times this Tweet has been Retweeted with a comment
+  /// (also known as Quote).
   int get quoteCount => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

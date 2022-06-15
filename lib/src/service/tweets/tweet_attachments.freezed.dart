@@ -20,7 +20,20 @@ TweetAttachments _$TweetAttachmentsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TweetAttachments {
+  /// List of unique identifiers of media attached to this Tweet. These
+  /// identifiers use the same media key format as those returned by the
+  /// Media Library.
+  ///
+  /// You can obtain the expanded object in includes.media by adding
+  /// `TweetExpansion.attachmentsMediaKeys` in the request's query parameter.
   List<String>? get mediaKeys => throw _privateConstructorUsedError;
+
+  /// List of unique identifiers of polls present in the Tweets returned.
+  /// These are returned as a string in order to avoid complications with
+  /// languages and tools that cannot handle large integers.
+  ///
+  /// You can obtain the expanded object in includes.polls by adding
+  /// `TweetExpansion.attachmentsPollIds` in the request's query parameter.
   List<String>? get pollIds => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -114,7 +127,20 @@ class _$_TweetAttachments implements _TweetAttachments {
   factory _$_TweetAttachments.fromJson(Map<String, dynamic> json) =>
       _$$_TweetAttachmentsFromJson(json);
 
+  /// List of unique identifiers of media attached to this Tweet. These
+  /// identifiers use the same media key format as those returned by the
+  /// Media Library.
+  ///
+  /// You can obtain the expanded object in includes.media by adding
+  /// `TweetExpansion.attachmentsMediaKeys` in the request's query parameter.
   final List<String>? _mediaKeys;
+
+  /// List of unique identifiers of media attached to this Tweet. These
+  /// identifiers use the same media key format as those returned by the
+  /// Media Library.
+  ///
+  /// You can obtain the expanded object in includes.media by adding
+  /// `TweetExpansion.attachmentsMediaKeys` in the request's query parameter.
   @override
   List<String>? get mediaKeys {
     final value = _mediaKeys;
@@ -123,7 +149,20 @@ class _$_TweetAttachments implements _TweetAttachments {
     return EqualUnmodifiableListView(value);
   }
 
+  /// List of unique identifiers of polls present in the Tweets returned.
+  /// These are returned as a string in order to avoid complications with
+  /// languages and tools that cannot handle large integers.
+  ///
+  /// You can obtain the expanded object in includes.polls by adding
+  /// `TweetExpansion.attachmentsPollIds` in the request's query parameter.
   final List<String>? _pollIds;
+
+  /// List of unique identifiers of polls present in the Tweets returned.
+  /// These are returned as a string in order to avoid complications with
+  /// languages and tools that cannot handle large integers.
+  ///
+  /// You can obtain the expanded object in includes.polls by adding
+  /// `TweetExpansion.attachmentsPollIds` in the request's query parameter.
   @override
   List<String>? get pollIds {
     final value = _pollIds;
@@ -174,8 +213,22 @@ abstract class _TweetAttachments implements TweetAttachments {
       _$_TweetAttachments.fromJson;
 
   @override
+
+  /// List of unique identifiers of media attached to this Tweet. These
+  /// identifiers use the same media key format as those returned by the
+  /// Media Library.
+  ///
+  /// You can obtain the expanded object in includes.media by adding
+  /// `TweetExpansion.attachmentsMediaKeys` in the request's query parameter.
   List<String>? get mediaKeys => throw _privateConstructorUsedError;
   @override
+
+  /// List of unique identifiers of polls present in the Tweets returned.
+  /// These are returned as a string in order to avoid complications with
+  /// languages and tools that cannot handle large integers.
+  ///
+  /// You can obtain the expanded object in includes.polls by adding
+  /// `TweetExpansion.attachmentsPollIds` in the request's query parameter.
   List<String>? get pollIds => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
