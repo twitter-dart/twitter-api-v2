@@ -20,11 +20,11 @@ Tag _$TagFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Tag {
-  /// The start position (zero-based) of the recognized tag within the Tweet.
+  /// The start position (zero-based) of the recognized tag within the object.
   /// All start indices are inclusive.
   int get start => throw _privateConstructorUsedError;
 
-  /// The end position (zero-based) of the recognized tag within the Tweet.
+  /// The end position (zero-based) of the recognized tag within the object.
   /// This end index is exclusive.
   int get end => throw _privateConstructorUsedError;
 
@@ -121,12 +121,12 @@ class _$_Tag implements _Tag {
 
   factory _$_Tag.fromJson(Map<String, dynamic> json) => _$$_TagFromJson(json);
 
-  /// The start position (zero-based) of the recognized tag within the Tweet.
+  /// The start position (zero-based) of the recognized tag within the object.
   /// All start indices are inclusive.
   @override
   final int start;
 
-  /// The end position (zero-based) of the recognized tag within the Tweet.
+  /// The end position (zero-based) of the recognized tag within the object.
   /// This end index is exclusive.
   @override
   final int end;
@@ -179,12 +179,12 @@ abstract class _Tag implements Tag {
 
   @override
 
-  /// The start position (zero-based) of the recognized tag within the Tweet.
+  /// The start position (zero-based) of the recognized tag within the object.
   /// All start indices are inclusive.
   int get start => throw _privateConstructorUsedError;
   @override
 
-  /// The end position (zero-based) of the recognized tag within the Tweet.
+  /// The end position (zero-based) of the recognized tag within the object.
   /// This end index is exclusive.
   int get end => throw _privateConstructorUsedError;
   @override

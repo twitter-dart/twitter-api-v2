@@ -20,21 +20,103 @@ UserData _$UserDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserData {
+  /// The unique identifier of this user.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Use this to programmatically retrieve information about a specific
+  ///   Twitter user.
   String get id => throw _privateConstructorUsedError;
+
+  /// The name of the user, as they’ve defined it on their profile.
+  /// Not necessarily a person’s name. Typically capped at 50 characters,
+  /// but subject to change.
   String get name => throw _privateConstructorUsedError;
+
+  /// The Twitter screen name, handle, or alias that this user identifies
+  /// themselves with. Usernames are unique but subject to change. Typically
+  ///  a maximum of 15 characters long, but some historical accounts may exist
+  /// with longer names.
   String get username => throw _privateConstructorUsedError;
+
+  /// The text of this user's profile description (also known as bio),
+  /// if the user provided one.
   String? get description => throw _privateConstructorUsedError;
+
+  /// The URL specified in the user's profile, if present.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - A URL provided by a Twitter user in their profile.
+  ///   This could be a homepage, but is not always the case.
   String? get url => throw _privateConstructorUsedError;
+
+  /// The URL to the profile image for this user, as shown on the user's
+  /// profile.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Can be used to download this user's profile image.
   String? get profileImageUrl => throw _privateConstructorUsedError;
+
+  /// The location specified in the user's profile, if the user provided one.
+  /// As this is a freeform value, it may not indicate a valid location,
+  /// but it may be fuzzily evaluated when performing searches with
+  /// location queries.
   String? get location => throw _privateConstructorUsedError;
+
+  /// Indicates if this user has chosen to protect their Tweets
+  /// (in other words, if this user's Tweets are private).
   @JsonKey(name: 'protected')
   bool? get isProtected => throw _privateConstructorUsedError;
+
+  /// Indicates if this user is a verified Twitter User.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Indicates whether or not this Twitter user has a verified account.
+  ///   A verified account lets people know that an account of public
+  ///   interest is authentic.
   @JsonKey(name: 'verified')
   bool? get isVerified => throw _privateConstructorUsedError;
+
+  /// Unique identifier of this user's pinned Tweet.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Determine the Tweet pinned to the top of the user’s profile.
+  ///   Can potentially be used to determine the user’s language.
   String? get pinnedTweetId => throw _privateConstructorUsedError;
+
+  /// Contains details about text that has a special meaning in the user's
+  /// description.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Entities are objects that provide additional information about
+  ///   hashtags, urls, user mentions, and cashtags associated with the
+  ///   description. Reference each respective entity for further details. All
+  ///   user start indices are inclusive, while all user end indices are
+  ///   exclusive.
   UserEntities? get entities => throw _privateConstructorUsedError;
+
+  /// Contains details about activity for this user.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Can potentially be used to determine a Twitter user’s reach or
+  ///   influence, quantify the user’s range of interests, and the user’s
+  ///   level of engagement on Twitter.
   PublicUserMetrics? get publicMetrics => throw _privateConstructorUsedError;
+
+  /// The UTC date time that the user account was created on Twitter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Can be used to determine how long a someone has been using Twitter.
   DateTime? get createdAt => throw _privateConstructorUsedError;
+
+  /// Contains withholding details for [withheld content](https://help.twitter.com/en/rules-and-policies/tweet-withheld-by-country), if applicable.
   UserWithheld? get withheld => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -327,34 +409,116 @@ class _$_UserData implements _UserData {
   factory _$_UserData.fromJson(Map<String, dynamic> json) =>
       _$$_UserDataFromJson(json);
 
+  /// The unique identifier of this user.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Use this to programmatically retrieve information about a specific
+  ///   Twitter user.
   @override
   final String id;
+
+  /// The name of the user, as they’ve defined it on their profile.
+  /// Not necessarily a person’s name. Typically capped at 50 characters,
+  /// but subject to change.
   @override
   final String name;
+
+  /// The Twitter screen name, handle, or alias that this user identifies
+  /// themselves with. Usernames are unique but subject to change. Typically
+  ///  a maximum of 15 characters long, but some historical accounts may exist
+  /// with longer names.
   @override
   final String username;
+
+  /// The text of this user's profile description (also known as bio),
+  /// if the user provided one.
   @override
   final String? description;
+
+  /// The URL specified in the user's profile, if present.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - A URL provided by a Twitter user in their profile.
+  ///   This could be a homepage, but is not always the case.
   @override
   final String? url;
+
+  /// The URL to the profile image for this user, as shown on the user's
+  /// profile.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Can be used to download this user's profile image.
   @override
   final String? profileImageUrl;
+
+  /// The location specified in the user's profile, if the user provided one.
+  /// As this is a freeform value, it may not indicate a valid location,
+  /// but it may be fuzzily evaluated when performing searches with
+  /// location queries.
   @override
   final String? location;
+
+  /// Indicates if this user has chosen to protect their Tweets
+  /// (in other words, if this user's Tweets are private).
   @override
   @JsonKey(name: 'protected')
   final bool? isProtected;
+
+  /// Indicates if this user is a verified Twitter User.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Indicates whether or not this Twitter user has a verified account.
+  ///   A verified account lets people know that an account of public
+  ///   interest is authentic.
   @override
   @JsonKey(name: 'verified')
   final bool? isVerified;
+
+  /// Unique identifier of this user's pinned Tweet.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Determine the Tweet pinned to the top of the user’s profile.
+  ///   Can potentially be used to determine the user’s language.
   @override
   final String? pinnedTweetId;
+
+  /// Contains details about text that has a special meaning in the user's
+  /// description.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Entities are objects that provide additional information about
+  ///   hashtags, urls, user mentions, and cashtags associated with the
+  ///   description. Reference each respective entity for further details. All
+  ///   user start indices are inclusive, while all user end indices are
+  ///   exclusive.
   @override
   final UserEntities? entities;
+
+  /// Contains details about activity for this user.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Can potentially be used to determine a Twitter user’s reach or
+  ///   influence, quantify the user’s range of interests, and the user’s
+  ///   level of engagement on Twitter.
   @override
   final PublicUserMetrics? publicMetrics;
+
+  /// The UTC date time that the user account was created on Twitter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Can be used to determine how long a someone has been using Twitter.
   @override
   final DateTime? createdAt;
+
+  /// Contains withholding details for [withheld content](https://help.twitter.com/en/rules-and-policies/tweet-withheld-by-country), if applicable.
   @override
   final UserWithheld? withheld;
 
@@ -440,34 +604,117 @@ abstract class _UserData implements UserData {
   factory _UserData.fromJson(Map<String, dynamic> json) = _$_UserData.fromJson;
 
   @override
+
+  /// The unique identifier of this user.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Use this to programmatically retrieve information about a specific
+  ///   Twitter user.
   String get id => throw _privateConstructorUsedError;
   @override
+
+  /// The name of the user, as they’ve defined it on their profile.
+  /// Not necessarily a person’s name. Typically capped at 50 characters,
+  /// but subject to change.
   String get name => throw _privateConstructorUsedError;
   @override
+
+  /// The Twitter screen name, handle, or alias that this user identifies
+  /// themselves with. Usernames are unique but subject to change. Typically
+  ///  a maximum of 15 characters long, but some historical accounts may exist
+  /// with longer names.
   String get username => throw _privateConstructorUsedError;
   @override
+
+  /// The text of this user's profile description (also known as bio),
+  /// if the user provided one.
   String? get description => throw _privateConstructorUsedError;
   @override
+
+  /// The URL specified in the user's profile, if present.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - A URL provided by a Twitter user in their profile.
+  ///   This could be a homepage, but is not always the case.
   String? get url => throw _privateConstructorUsedError;
   @override
+
+  /// The URL to the profile image for this user, as shown on the user's
+  /// profile.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Can be used to download this user's profile image.
   String? get profileImageUrl => throw _privateConstructorUsedError;
   @override
+
+  /// The location specified in the user's profile, if the user provided one.
+  /// As this is a freeform value, it may not indicate a valid location,
+  /// but it may be fuzzily evaluated when performing searches with
+  /// location queries.
   String? get location => throw _privateConstructorUsedError;
   @override
+
+  /// Indicates if this user has chosen to protect their Tweets
+  /// (in other words, if this user's Tweets are private).
   @JsonKey(name: 'protected')
   bool? get isProtected => throw _privateConstructorUsedError;
   @override
+
+  /// Indicates if this user is a verified Twitter User.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Indicates whether or not this Twitter user has a verified account.
+  ///   A verified account lets people know that an account of public
+  ///   interest is authentic.
   @JsonKey(name: 'verified')
   bool? get isVerified => throw _privateConstructorUsedError;
   @override
+
+  /// Unique identifier of this user's pinned Tweet.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Determine the Tweet pinned to the top of the user’s profile.
+  ///   Can potentially be used to determine the user’s language.
   String? get pinnedTweetId => throw _privateConstructorUsedError;
   @override
+
+  /// Contains details about text that has a special meaning in the user's
+  /// description.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Entities are objects that provide additional information about
+  ///   hashtags, urls, user mentions, and cashtags associated with the
+  ///   description. Reference each respective entity for further details. All
+  ///   user start indices are inclusive, while all user end indices are
+  ///   exclusive.
   UserEntities? get entities => throw _privateConstructorUsedError;
   @override
+
+  /// Contains details about activity for this user.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Can potentially be used to determine a Twitter user’s reach or
+  ///   influence, quantify the user’s range of interests, and the user’s
+  ///   level of engagement on Twitter.
   PublicUserMetrics? get publicMetrics => throw _privateConstructorUsedError;
   @override
+
+  /// The UTC date time that the user account was created on Twitter.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Can be used to determine how long a someone has been using Twitter.
   DateTime? get createdAt => throw _privateConstructorUsedError;
   @override
+
+  /// Contains withholding details for [withheld content](https://help.twitter.com/en/rules-and-policies/tweet-withheld-by-country), if applicable.
   UserWithheld? get withheld => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

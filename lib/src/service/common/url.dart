@@ -13,15 +13,15 @@ part 'url.g.dart';
 @freezed
 class Url with _$Url {
   const factory Url({
-    /// The start position (zero-based) of the recognized URL within the Tweet.
+    /// The start position (zero-based) of the recognized URL within the object.
     /// All start indices are inclusive.
     required int start,
 
-    /// The end position (zero-based) of the recognized URL within the Tweet.
+    /// The end position (zero-based) of the recognized URL within the object.
     /// This end index is exclusive.
     required int end,
 
-    /// The URL in the format tweeted by the user.
+    /// The URL in the format posted by the user.
     required String url,
 
     /// The fully resolved URL.

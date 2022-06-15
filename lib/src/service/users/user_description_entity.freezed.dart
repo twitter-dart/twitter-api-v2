@@ -21,9 +21,16 @@ UserDescriptionEntity _$UserDescriptionEntityFromJson(
 
 /// @nodoc
 mixin _$UserDescriptionEntity {
+  /// Contains details about any URLs included in the user's description.
   List<Url>? get urls => throw _privateConstructorUsedError;
+
+  /// Contains details about text recognized as a Hashtag.
   List<Tag>? get hashtags => throw _privateConstructorUsedError;
+
+  /// Contains details about text recognized as a Cashtag.
   List<Tag>? get cashtags => throw _privateConstructorUsedError;
+
+  /// Contains details about text recognized as a user mention.
   List<Mention>? get mentions => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -151,7 +158,10 @@ class _$_UserDescriptionEntity implements _UserDescriptionEntity {
   factory _$_UserDescriptionEntity.fromJson(Map<String, dynamic> json) =>
       _$$_UserDescriptionEntityFromJson(json);
 
+  /// Contains details about any URLs included in the user's description.
   final List<Url>? _urls;
+
+  /// Contains details about any URLs included in the user's description.
   @override
   List<Url>? get urls {
     final value = _urls;
@@ -160,7 +170,10 @@ class _$_UserDescriptionEntity implements _UserDescriptionEntity {
     return EqualUnmodifiableListView(value);
   }
 
+  /// Contains details about text recognized as a Hashtag.
   final List<Tag>? _hashtags;
+
+  /// Contains details about text recognized as a Hashtag.
   @override
   List<Tag>? get hashtags {
     final value = _hashtags;
@@ -169,7 +182,10 @@ class _$_UserDescriptionEntity implements _UserDescriptionEntity {
     return EqualUnmodifiableListView(value);
   }
 
+  /// Contains details about text recognized as a Cashtag.
   final List<Tag>? _cashtags;
+
+  /// Contains details about text recognized as a Cashtag.
   @override
   List<Tag>? get cashtags {
     final value = _cashtags;
@@ -178,7 +194,10 @@ class _$_UserDescriptionEntity implements _UserDescriptionEntity {
     return EqualUnmodifiableListView(value);
   }
 
+  /// Contains details about text recognized as a user mention.
   final List<Mention>? _mentions;
+
+  /// Contains details about text recognized as a user mention.
   @override
   List<Mention>? get mentions {
     final value = _mentions;
@@ -235,12 +254,20 @@ abstract class _UserDescriptionEntity implements UserDescriptionEntity {
       _$_UserDescriptionEntity.fromJson;
 
   @override
+
+  /// Contains details about any URLs included in the user's description.
   List<Url>? get urls => throw _privateConstructorUsedError;
   @override
+
+  /// Contains details about text recognized as a Hashtag.
   List<Tag>? get hashtags => throw _privateConstructorUsedError;
   @override
+
+  /// Contains details about text recognized as a Cashtag.
   List<Tag>? get cashtags => throw _privateConstructorUsedError;
   @override
+
+  /// Contains details about text recognized as a user mention.
   List<Mention>? get mentions => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

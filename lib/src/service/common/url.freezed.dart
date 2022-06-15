@@ -20,15 +20,15 @@ Url _$UrlFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Url {
-  /// The start position (zero-based) of the recognized URL within the Tweet.
+  /// The start position (zero-based) of the recognized URL within the object.
   /// All start indices are inclusive.
   int get start => throw _privateConstructorUsedError;
 
-  /// The end position (zero-based) of the recognized URL within the Tweet.
+  /// The end position (zero-based) of the recognized URL within the object.
   /// This end index is exclusive.
   int get end => throw _privateConstructorUsedError;
 
-  /// The URL in the format tweeted by the user.
+  /// The URL in the format posted by the user.
   String get url => throw _privateConstructorUsedError;
 
   /// The fully resolved URL.
@@ -194,17 +194,17 @@ class _$_Url implements _Url {
 
   factory _$_Url.fromJson(Map<String, dynamic> json) => _$$_UrlFromJson(json);
 
-  /// The start position (zero-based) of the recognized URL within the Tweet.
+  /// The start position (zero-based) of the recognized URL within the object.
   /// All start indices are inclusive.
   @override
   final int start;
 
-  /// The end position (zero-based) of the recognized URL within the Tweet.
+  /// The end position (zero-based) of the recognized URL within the object.
   /// This end index is exclusive.
   @override
   final int end;
 
-  /// The URL in the format tweeted by the user.
+  /// The URL in the format posted by the user.
   @override
   final String url;
 
@@ -283,17 +283,17 @@ abstract class _Url implements Url {
 
   @override
 
-  /// The start position (zero-based) of the recognized URL within the Tweet.
+  /// The start position (zero-based) of the recognized URL within the object.
   /// All start indices are inclusive.
   int get start => throw _privateConstructorUsedError;
   @override
 
-  /// The end position (zero-based) of the recognized URL within the Tweet.
+  /// The end position (zero-based) of the recognized URL within the object.
   /// This end index is exclusive.
   int get end => throw _privateConstructorUsedError;
   @override
 
-  /// The URL in the format tweeted by the user.
+  /// The URL in the format posted by the user.
   String get url => throw _privateConstructorUsedError;
   @override
 

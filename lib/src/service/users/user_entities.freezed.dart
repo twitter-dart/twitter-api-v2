@@ -20,7 +20,11 @@ UserEntities _$UserEntitiesFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserEntities {
+  /// Contains details about the user's profile website.
   UserUrlEntity? get url => throw _privateConstructorUsedError;
+
+  /// Contains details about URLs, Hashtags, Cashtags, or mentions located
+  /// within a user's description.
   UserDescriptionEntity? get description => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -140,8 +144,12 @@ class _$_UserEntities implements _UserEntities {
   factory _$_UserEntities.fromJson(Map<String, dynamic> json) =>
       _$$_UserEntitiesFromJson(json);
 
+  /// Contains details about the user's profile website.
   @override
   final UserUrlEntity? url;
+
+  /// Contains details about URLs, Hashtags, Cashtags, or mentions located
+  /// within a user's description.
   @override
   final UserDescriptionEntity? description;
 
@@ -187,8 +195,13 @@ abstract class _UserEntities implements UserEntities {
       _$_UserEntities.fromJson;
 
   @override
+
+  /// Contains details about the user's profile website.
   UserUrlEntity? get url => throw _privateConstructorUsedError;
   @override
+
+  /// Contains details about URLs, Hashtags, Cashtags, or mentions located
+  /// within a user's description.
   UserDescriptionEntity? get description => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

@@ -20,6 +20,7 @@ UserWithheld _$UserWithheldFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserWithheld {
+  /// Provides a list of countries where this user is not available.
   List<String> get countryCodes => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -100,7 +101,10 @@ class _$_UserWithheld implements _UserWithheld {
   factory _$_UserWithheld.fromJson(Map<String, dynamic> json) =>
       _$$_UserWithheldFromJson(json);
 
+  /// Provides a list of countries where this user is not available.
   final List<String> _countryCodes;
+
+  /// Provides a list of countries where this user is not available.
   @override
   List<String> get countryCodes {
     // ignore: implicit_dynamic_type
@@ -145,6 +149,8 @@ abstract class _UserWithheld implements UserWithheld {
       _$_UserWithheld.fromJson;
 
   @override
+
+  /// Provides a list of countries where this user is not available.
   List<String> get countryCodes => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

@@ -14,6 +14,7 @@ part 'user_url_entity.g.dart';
 @freezed
 class UserUrlEntity with _$UserUrlEntity {
   const factory UserUrlEntity({
+    /// Contains details about the user's profile website.
     required List<Url> urls,
   }) = _UserUrlEntity;
 
