@@ -27,6 +27,10 @@ abstract class ComplianceService {
   ///
   /// - https://api.twitter.com/2/compliance/jobs/:id
   ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 App-only
+  ///
   /// ## Rate Limits
   ///
   /// - **App rate limit (OAuth 2.0 App Access Token)**:
@@ -52,6 +56,10 @@ abstract class ComplianceService {
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/compliance/jobs
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 App-only
   ///
   /// ## Rate Limits
   ///
@@ -87,6 +95,10 @@ abstract class ComplianceService {
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/compliance/jobs
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 App-only
   ///
   /// ## Rate Limits
   ///

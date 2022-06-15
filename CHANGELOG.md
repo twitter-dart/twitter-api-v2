@@ -1,5 +1,9 @@
 # Release Note
 
+## v2.6.2
+
+- Added dart documentations about authentication methods and required scopes. ([#263](https://github.com/twitter-dart/twitter-api-v2/issues/263))
+
 ## v2.6.1
 
 - Added documents for response fields. ([#247](https://github.com/twitter-dart/twitter-api-v2/issues/247))
