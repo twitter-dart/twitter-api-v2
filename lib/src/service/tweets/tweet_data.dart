@@ -9,6 +9,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
 import 'geo.dart';
+import 'organic_tweet_metrics.dart';
+import 'private_tweet_metrics.dart';
+import 'promoted_tweet_metrics.dart';
 import 'public_tweet_metrics.dart';
 import 'referenced_tweet.dart';
 import 'reply_setting.dart';
@@ -138,6 +141,36 @@ class TweetData with _$TweetData {
     ///
     /// - Understanding the objects returned for requested expansions
     TweetAttachments? attachments,
+
+    /// Non-public engagement metrics for the Tweet at the time of the request.
+    ///
+    ///Requires user context authentication.
+    ///
+    /// ## How It Can Be Used
+    ///
+    /// - Use this to determine the total number of impressions generated for
+    ///   the Tweet.
+    @JsonKey(name: 'non_public_metrics') PrivateTweetMetrics? privateMetrics,
+
+    /// Engagement metrics, tracked in an organic context, for the Tweet at
+    /// the time of the request.
+    ///
+    /// Requires user context authentication.
+    ///
+    /// ## How It Can Be Used
+    ///
+    /// - Use this to measure organic engagement for the Tweet.
+    OrganicTweetMetrics? organicMetrics,
+
+    /// Engagement metrics, tracked in a promoted context, for the Tweet at the
+    /// time of the request.
+    ///
+    /// Requires user context authentication.
+    ///
+    /// ## How It Can Be Used
+    ///
+    /// - Use this to measure engagement for the Tweet when it was promoted.
+    PromotedTweetMetrics? promotedMetrics,
 
     /// Engagement metrics for the Tweet at the time of the request.
     ///

@@ -24,7 +24,8 @@ void main() {
         'FilteredStreamResponse(data: TweetData(id: 123, text: test, '
         'authorId: null, inReplyToUserId: null, conversationId: null, '
         'referencedTweets: null, contextAnnotations: null, entities: null, '
-        'attachments: null, publicMetrics: null, geo: null, lang: null, '
+        'attachments: null, privateMetrics: null, organicMetrics: null, '
+        'promotedMetrics: null, publicMetrics: null, geo: null, lang: null, '
         'isPossiblySensitive: null, replySetting: null, source: null, '
         'withheld: null, createdAt: null), includes: null, meta: null, '
         'matchingRules: [MatchingRule(id: 456, tag: test)])');

@@ -44,6 +44,24 @@ _$_TweetData _$$_TweetDataFromJson(Map json) => $checkedCreate(
                   ? null
                   : TweetAttachments.fromJson(
                       Map<String, Object?>.from(v as Map))),
+          privateMetrics: $checkedConvert(
+              'non_public_metrics',
+              (v) => v == null
+                  ? null
+                  : PrivateTweetMetrics.fromJson(
+                      Map<String, Object?>.from(v as Map))),
+          organicMetrics: $checkedConvert(
+              'organic_metrics',
+              (v) => v == null
+                  ? null
+                  : OrganicTweetMetrics.fromJson(
+                      Map<String, Object?>.from(v as Map))),
+          promotedMetrics: $checkedConvert(
+              'promoted_metrics',
+              (v) => v == null
+                  ? null
+                  : PromotedTweetMetrics.fromJson(
+                      Map<String, Object?>.from(v as Map))),
           publicMetrics: $checkedConvert(
               'public_metrics',
               (v) => v == null
@@ -79,6 +97,9 @@ _$_TweetData _$$_TweetDataFromJson(Map json) => $checkedCreate(
         'conversationId': 'conversation_id',
         'referencedTweets': 'referenced_tweets',
         'contextAnnotations': 'context_annotations',
+        'privateMetrics': 'non_public_metrics',
+        'organicMetrics': 'organic_metrics',
+        'promotedMetrics': 'promoted_metrics',
         'publicMetrics': 'public_metrics',
         'isPossiblySensitive': 'possibly_sensitive',
         'replySetting': 'reply_settings',
@@ -97,6 +118,9 @@ Map<String, dynamic> _$$_TweetDataToJson(_$_TweetData instance) =>
       'context_annotations': instance.contextAnnotations,
       'entities': instance.entities,
       'attachments': instance.attachments,
+      'non_public_metrics': instance.privateMetrics,
+      'organic_metrics': instance.organicMetrics,
+      'promoted_metrics': instance.promotedMetrics,
       'public_metrics': instance.publicMetrics,
       'geo': instance.geo,
       'lang': _$TweetLanguageEnumMap[instance.lang],

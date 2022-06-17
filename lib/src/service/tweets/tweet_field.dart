@@ -36,6 +36,15 @@ enum TweetField implements Serializable {
   /// `lang`
   lang('lang'),
 
+  /// `non_public_metrics`
+  privateMetrics('non_public_metrics'),
+
+  /// `organic_metrics`
+  organicMetrics('organic_metrics'),
+
+  /// `promoted_metrics`
+  promotedMetrics('promoted_metrics'),
+
   /// `public_metrics`
   publicMetrics('public_metrics'),
 
