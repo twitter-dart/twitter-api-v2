@@ -1,5 +1,12 @@
 # Release Note
 
+## v2.7.0
+
+- Added metrics field for `TweetField`. ([#268](https://github.com/twitter-dart/twitter-api-v2/issues/268))
+  - `non_public_metrics`
+  - `organic_metrics`
+  - `promoted_metrics`
+
 ## v2.6.2
 
 - Added dart documentations about authentication methods and required scopes. ([#263](https://github.com/twitter-dart/twitter-api-v2/issues/263))

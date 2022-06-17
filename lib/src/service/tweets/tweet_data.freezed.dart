@@ -122,6 +122,38 @@ mixin _$TweetData {
   /// - Understanding the objects returned for requested expansions
   TweetAttachments? get attachments => throw _privateConstructorUsedError;
 
+  /// Non-public engagement metrics for the Tweet at the time of the request.
+  ///
+  ///Requires user context authentication.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Use this to determine the total number of impressions generated for
+  ///   the Tweet.
+  @JsonKey(name: 'non_public_metrics')
+  PrivateTweetMetrics? get privateMetrics => throw _privateConstructorUsedError;
+
+  /// Engagement metrics, tracked in an organic context, for the Tweet at
+  /// the time of the request.
+  ///
+  /// Requires user context authentication.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Use this to measure organic engagement for the Tweet.
+  OrganicTweetMetrics? get organicMetrics => throw _privateConstructorUsedError;
+
+  /// Engagement metrics, tracked in a promoted context, for the Tweet at the
+  /// time of the request.
+  ///
+  /// Requires user context authentication.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Use this to measure engagement for the Tweet when it was promoted.
+  PromotedTweetMetrics? get promotedMetrics =>
+      throw _privateConstructorUsedError;
+
   /// Engagement metrics for the Tweet at the time of the request.
   ///
   /// To obtain this field, add `TweetField.publicMetrics` in the request's
@@ -228,6 +260,9 @@ abstract class $TweetDataCopyWith<$Res> {
       List<TweetContextAnnotationGroup>? contextAnnotations,
       TweetEntities? entities,
       TweetAttachments? attachments,
+      @JsonKey(name: 'non_public_metrics') PrivateTweetMetrics? privateMetrics,
+      OrganicTweetMetrics? organicMetrics,
+      PromotedTweetMetrics? promotedMetrics,
       PublicTweetMetrics? publicMetrics,
       Geo? geo,
       TweetLanguage? lang,
@@ -239,6 +274,9 @@ abstract class $TweetDataCopyWith<$Res> {
 
   $TweetEntitiesCopyWith<$Res>? get entities;
   $TweetAttachmentsCopyWith<$Res>? get attachments;
+  $PrivateTweetMetricsCopyWith<$Res>? get privateMetrics;
+  $OrganicTweetMetricsCopyWith<$Res>? get organicMetrics;
+  $PromotedTweetMetricsCopyWith<$Res>? get promotedMetrics;
   $PublicTweetMetricsCopyWith<$Res>? get publicMetrics;
   $GeoCopyWith<$Res>? get geo;
   $TweetWithheldCopyWith<$Res>? get withheld;
@@ -263,6 +301,9 @@ class _$TweetDataCopyWithImpl<$Res> implements $TweetDataCopyWith<$Res> {
     Object? contextAnnotations = freezed,
     Object? entities = freezed,
     Object? attachments = freezed,
+    Object? privateMetrics = freezed,
+    Object? organicMetrics = freezed,
+    Object? promotedMetrics = freezed,
     Object? publicMetrics = freezed,
     Object? geo = freezed,
     Object? lang = freezed,
@@ -309,6 +350,18 @@ class _$TweetDataCopyWithImpl<$Res> implements $TweetDataCopyWith<$Res> {
           ? _value.attachments
           : attachments // ignore: cast_nullable_to_non_nullable
               as TweetAttachments?,
+      privateMetrics: privateMetrics == freezed
+          ? _value.privateMetrics
+          : privateMetrics // ignore: cast_nullable_to_non_nullable
+              as PrivateTweetMetrics?,
+      organicMetrics: organicMetrics == freezed
+          ? _value.organicMetrics
+          : organicMetrics // ignore: cast_nullable_to_non_nullable
+              as OrganicTweetMetrics?,
+      promotedMetrics: promotedMetrics == freezed
+          ? _value.promotedMetrics
+          : promotedMetrics // ignore: cast_nullable_to_non_nullable
+              as PromotedTweetMetrics?,
       publicMetrics: publicMetrics == freezed
           ? _value.publicMetrics
           : publicMetrics // ignore: cast_nullable_to_non_nullable
@@ -367,6 +420,40 @@ class _$TweetDataCopyWithImpl<$Res> implements $TweetDataCopyWith<$Res> {
   }
 
   @override
+  $PrivateTweetMetricsCopyWith<$Res>? get privateMetrics {
+    if (_value.privateMetrics == null) {
+      return null;
+    }
+
+    return $PrivateTweetMetricsCopyWith<$Res>(_value.privateMetrics!, (value) {
+      return _then(_value.copyWith(privateMetrics: value));
+    });
+  }
+
+  @override
+  $OrganicTweetMetricsCopyWith<$Res>? get organicMetrics {
+    if (_value.organicMetrics == null) {
+      return null;
+    }
+
+    return $OrganicTweetMetricsCopyWith<$Res>(_value.organicMetrics!, (value) {
+      return _then(_value.copyWith(organicMetrics: value));
+    });
+  }
+
+  @override
+  $PromotedTweetMetricsCopyWith<$Res>? get promotedMetrics {
+    if (_value.promotedMetrics == null) {
+      return null;
+    }
+
+    return $PromotedTweetMetricsCopyWith<$Res>(_value.promotedMetrics!,
+        (value) {
+      return _then(_value.copyWith(promotedMetrics: value));
+    });
+  }
+
+  @override
   $PublicTweetMetricsCopyWith<$Res>? get publicMetrics {
     if (_value.publicMetrics == null) {
       return null;
@@ -416,6 +503,9 @@ abstract class _$$_TweetDataCopyWith<$Res> implements $TweetDataCopyWith<$Res> {
       List<TweetContextAnnotationGroup>? contextAnnotations,
       TweetEntities? entities,
       TweetAttachments? attachments,
+      @JsonKey(name: 'non_public_metrics') PrivateTweetMetrics? privateMetrics,
+      OrganicTweetMetrics? organicMetrics,
+      PromotedTweetMetrics? promotedMetrics,
       PublicTweetMetrics? publicMetrics,
       Geo? geo,
       TweetLanguage? lang,
@@ -429,6 +519,12 @@ abstract class _$$_TweetDataCopyWith<$Res> implements $TweetDataCopyWith<$Res> {
   $TweetEntitiesCopyWith<$Res>? get entities;
   @override
   $TweetAttachmentsCopyWith<$Res>? get attachments;
+  @override
+  $PrivateTweetMetricsCopyWith<$Res>? get privateMetrics;
+  @override
+  $OrganicTweetMetricsCopyWith<$Res>? get organicMetrics;
+  @override
+  $PromotedTweetMetricsCopyWith<$Res>? get promotedMetrics;
   @override
   $PublicTweetMetricsCopyWith<$Res>? get publicMetrics;
   @override
@@ -458,6 +554,9 @@ class __$$_TweetDataCopyWithImpl<$Res> extends _$TweetDataCopyWithImpl<$Res>
     Object? contextAnnotations = freezed,
     Object? entities = freezed,
     Object? attachments = freezed,
+    Object? privateMetrics = freezed,
+    Object? organicMetrics = freezed,
+    Object? promotedMetrics = freezed,
     Object? publicMetrics = freezed,
     Object? geo = freezed,
     Object? lang = freezed,
@@ -504,6 +603,18 @@ class __$$_TweetDataCopyWithImpl<$Res> extends _$TweetDataCopyWithImpl<$Res>
           ? _value.attachments
           : attachments // ignore: cast_nullable_to_non_nullable
               as TweetAttachments?,
+      privateMetrics: privateMetrics == freezed
+          ? _value.privateMetrics
+          : privateMetrics // ignore: cast_nullable_to_non_nullable
+              as PrivateTweetMetrics?,
+      organicMetrics: organicMetrics == freezed
+          ? _value.organicMetrics
+          : organicMetrics // ignore: cast_nullable_to_non_nullable
+              as OrganicTweetMetrics?,
+      promotedMetrics: promotedMetrics == freezed
+          ? _value.promotedMetrics
+          : promotedMetrics // ignore: cast_nullable_to_non_nullable
+              as PromotedTweetMetrics?,
       publicMetrics: publicMetrics == freezed
           ? _value.publicMetrics
           : publicMetrics // ignore: cast_nullable_to_non_nullable
@@ -553,6 +664,9 @@ class _$_TweetData implements _TweetData {
       final List<TweetContextAnnotationGroup>? contextAnnotations,
       this.entities,
       this.attachments,
+      @JsonKey(name: 'non_public_metrics') this.privateMetrics,
+      this.organicMetrics,
+      this.promotedMetrics,
       this.publicMetrics,
       this.geo,
       this.lang,
@@ -709,6 +823,40 @@ class _$_TweetData implements _TweetData {
   @override
   final TweetAttachments? attachments;
 
+  /// Non-public engagement metrics for the Tweet at the time of the request.
+  ///
+  ///Requires user context authentication.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Use this to determine the total number of impressions generated for
+  ///   the Tweet.
+  @override
+  @JsonKey(name: 'non_public_metrics')
+  final PrivateTweetMetrics? privateMetrics;
+
+  /// Engagement metrics, tracked in an organic context, for the Tweet at
+  /// the time of the request.
+  ///
+  /// Requires user context authentication.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Use this to measure organic engagement for the Tweet.
+  @override
+  final OrganicTweetMetrics? organicMetrics;
+
+  /// Engagement metrics, tracked in a promoted context, for the Tweet at the
+  /// time of the request.
+  ///
+  /// Requires user context authentication.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Use this to measure engagement for the Tweet when it was promoted.
+  @override
+  final PromotedTweetMetrics? promotedMetrics;
+
   /// Engagement metrics for the Tweet at the time of the request.
   ///
   /// To obtain this field, add `TweetField.publicMetrics` in the request's
@@ -805,7 +953,7 @@ class _$_TweetData implements _TweetData {
 
   @override
   String toString() {
-    return 'TweetData(id: $id, text: $text, authorId: $authorId, inReplyToUserId: $inReplyToUserId, conversationId: $conversationId, referencedTweets: $referencedTweets, contextAnnotations: $contextAnnotations, entities: $entities, attachments: $attachments, publicMetrics: $publicMetrics, geo: $geo, lang: $lang, isPossiblySensitive: $isPossiblySensitive, replySetting: $replySetting, source: $source, withheld: $withheld, createdAt: $createdAt)';
+    return 'TweetData(id: $id, text: $text, authorId: $authorId, inReplyToUserId: $inReplyToUserId, conversationId: $conversationId, referencedTweets: $referencedTweets, contextAnnotations: $contextAnnotations, entities: $entities, attachments: $attachments, privateMetrics: $privateMetrics, organicMetrics: $organicMetrics, promotedMetrics: $promotedMetrics, publicMetrics: $publicMetrics, geo: $geo, lang: $lang, isPossiblySensitive: $isPossiblySensitive, replySetting: $replySetting, source: $source, withheld: $withheld, createdAt: $createdAt)';
   }
 
   @override
@@ -828,6 +976,12 @@ class _$_TweetData implements _TweetData {
             const DeepCollectionEquality()
                 .equals(other.attachments, attachments) &&
             const DeepCollectionEquality()
+                .equals(other.privateMetrics, privateMetrics) &&
+            const DeepCollectionEquality()
+                .equals(other.organicMetrics, organicMetrics) &&
+            const DeepCollectionEquality()
+                .equals(other.promotedMetrics, promotedMetrics) &&
+            const DeepCollectionEquality()
                 .equals(other.publicMetrics, publicMetrics) &&
             const DeepCollectionEquality().equals(other.geo, geo) &&
             const DeepCollectionEquality().equals(other.lang, lang) &&
@@ -842,25 +996,29 @@ class _$_TweetData implements _TweetData {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(text),
-      const DeepCollectionEquality().hash(authorId),
-      const DeepCollectionEquality().hash(inReplyToUserId),
-      const DeepCollectionEquality().hash(conversationId),
-      const DeepCollectionEquality().hash(_referencedTweets),
-      const DeepCollectionEquality().hash(_contextAnnotations),
-      const DeepCollectionEquality().hash(entities),
-      const DeepCollectionEquality().hash(attachments),
-      const DeepCollectionEquality().hash(publicMetrics),
-      const DeepCollectionEquality().hash(geo),
-      const DeepCollectionEquality().hash(lang),
-      const DeepCollectionEquality().hash(isPossiblySensitive),
-      const DeepCollectionEquality().hash(replySetting),
-      const DeepCollectionEquality().hash(source),
-      const DeepCollectionEquality().hash(withheld),
-      const DeepCollectionEquality().hash(createdAt));
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(text),
+        const DeepCollectionEquality().hash(authorId),
+        const DeepCollectionEquality().hash(inReplyToUserId),
+        const DeepCollectionEquality().hash(conversationId),
+        const DeepCollectionEquality().hash(_referencedTweets),
+        const DeepCollectionEquality().hash(_contextAnnotations),
+        const DeepCollectionEquality().hash(entities),
+        const DeepCollectionEquality().hash(attachments),
+        const DeepCollectionEquality().hash(privateMetrics),
+        const DeepCollectionEquality().hash(organicMetrics),
+        const DeepCollectionEquality().hash(promotedMetrics),
+        const DeepCollectionEquality().hash(publicMetrics),
+        const DeepCollectionEquality().hash(geo),
+        const DeepCollectionEquality().hash(lang),
+        const DeepCollectionEquality().hash(isPossiblySensitive),
+        const DeepCollectionEquality().hash(replySetting),
+        const DeepCollectionEquality().hash(source),
+        const DeepCollectionEquality().hash(withheld),
+        const DeepCollectionEquality().hash(createdAt)
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -884,11 +1042,17 @@ abstract class _TweetData implements TweetData {
       final List<TweetContextAnnotationGroup>? contextAnnotations,
       final TweetEntities? entities,
       final TweetAttachments? attachments,
+      @JsonKey(name: 'non_public_metrics')
+          final PrivateTweetMetrics? privateMetrics,
+      final OrganicTweetMetrics? organicMetrics,
+      final PromotedTweetMetrics? promotedMetrics,
       final PublicTweetMetrics? publicMetrics,
       final Geo? geo,
       final TweetLanguage? lang,
-      @JsonKey(name: 'possibly_sensitive') final bool? isPossiblySensitive,
-      @JsonKey(name: 'reply_settings') final ReplySetting? replySetting,
+      @JsonKey(name: 'possibly_sensitive')
+          final bool? isPossiblySensitive,
+      @JsonKey(name: 'reply_settings')
+          final ReplySetting? replySetting,
       final String? source,
       final TweetWithheld? withheld,
       final DateTime? createdAt}) = _$_TweetData;
@@ -1007,6 +1171,41 @@ abstract class _TweetData implements TweetData {
   ///
   /// - Understanding the objects returned for requested expansions
   TweetAttachments? get attachments => throw _privateConstructorUsedError;
+  @override
+
+  /// Non-public engagement metrics for the Tweet at the time of the request.
+  ///
+  ///Requires user context authentication.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Use this to determine the total number of impressions generated for
+  ///   the Tweet.
+  @JsonKey(name: 'non_public_metrics')
+  PrivateTweetMetrics? get privateMetrics => throw _privateConstructorUsedError;
+  @override
+
+  /// Engagement metrics, tracked in an organic context, for the Tweet at
+  /// the time of the request.
+  ///
+  /// Requires user context authentication.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Use this to measure organic engagement for the Tweet.
+  OrganicTweetMetrics? get organicMetrics => throw _privateConstructorUsedError;
+  @override
+
+  /// Engagement metrics, tracked in a promoted context, for the Tweet at the
+  /// time of the request.
+  ///
+  /// Requires user context authentication.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Use this to measure engagement for the Tweet when it was promoted.
+  PromotedTweetMetrics? get promotedMetrics =>
+      throw _privateConstructorUsedError;
   @override
 
   /// Engagement metrics for the Tweet at the time of the request.
