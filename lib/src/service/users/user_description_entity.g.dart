@@ -46,8 +46,8 @@ _$_UserDescriptionEntity _$$_UserDescriptionEntityFromJson(Map json) =>
 Map<String, dynamic> _$$_UserDescriptionEntityToJson(
         _$_UserDescriptionEntity instance) =>
     <String, dynamic>{
-      'urls': instance.urls,
-      'hashtags': instance.hashtags,
-      'cashtags': instance.cashtags,
-      'mentions': instance.mentions,
+      'urls': instance.urls?.map((e) => e.toJson()).toList(),
+      'hashtags': instance.hashtags?.map((e) => e.toJson()).toList(),
+      'cashtags': instance.cashtags?.map((e) => e.toJson()).toList(),
+      'mentions': instance.mentions?.map((e) => e.toJson()).toList(),
     };

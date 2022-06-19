@@ -31,5 +31,5 @@ Map<String, dynamic> _$$_FilteringRuleMetaToJson(
         _$_FilteringRuleMeta instance) =>
     <String, dynamic>{
       'sent': instance.sentAt?.toIso8601String(),
-      'summary': instance.summary,
+      'summary': instance.summary?.toJson(),
     };

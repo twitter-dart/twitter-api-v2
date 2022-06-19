@@ -50,9 +50,9 @@ _$_TweetEntities _$$_TweetEntitiesFromJson(Map json) => $checkedCreate(
 
 Map<String, dynamic> _$$_TweetEntitiesToJson(_$_TweetEntities instance) =>
     <String, dynamic>{
-      'annotations': instance.annotations,
-      'hashtags': instance.hashtags,
-      'cashtags': instance.cashtags,
-      'mentions': instance.mentions,
-      'urls': instance.urls,
+      'annotations': instance.annotations?.map((e) => e.toJson()).toList(),
+      'hashtags': instance.hashtags?.map((e) => e.toJson()).toList(),
+      'cashtags': instance.cashtags?.map((e) => e.toJson()).toList(),
+      'mentions': instance.mentions?.map((e) => e.toJson()).toList(),
+      'urls': instance.urls?.map((e) => e.toJson()).toList(),
     };

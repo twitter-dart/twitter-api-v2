@@ -31,6 +31,6 @@ _$_TweetContextAnnotationGroup _$$_TweetContextAnnotationGroupFromJson(
 Map<String, dynamic> _$$_TweetContextAnnotationGroupToJson(
         _$_TweetContextAnnotationGroup instance) =>
     <String, dynamic>{
-      'domain': instance.domain,
-      'entity': instance.entity,
+      'domain': instance.domain.toJson(),
+      'entity': instance.entity.toJson(),
     };

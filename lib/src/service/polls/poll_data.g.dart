@@ -39,7 +39,7 @@ _$_PollData _$$_PollDataFromJson(Map json) => $checkedCreate(
 Map<String, dynamic> _$$_PollDataToJson(_$_PollData instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'options': instance.options,
+      'options': instance.options.map((e) => e.toJson()).toList(),
       'voting_status': _$PollVotingStatusEnumMap[instance.votingStatus],
       'duration_minutes': instance.durationMinutes,
       'end_datetime': instance.endAt?.toIso8601String(),

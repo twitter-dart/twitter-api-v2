@@ -25,5 +25,5 @@ _$_UserUrlEntity _$$_UserUrlEntityFromJson(Map json) => $checkedCreate(
 
 Map<String, dynamic> _$$_UserUrlEntityToJson(_$_UserUrlEntity instance) =>
     <String, dynamic>{
-      'urls': instance.urls,
+      'urls': instance.urls.map((e) => e.toJson()).toList(),
     };
