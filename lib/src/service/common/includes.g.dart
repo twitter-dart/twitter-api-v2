@@ -50,9 +50,9 @@ _$_Includes _$$_IncludesFromJson(Map json) => $checkedCreate(
 
 Map<String, dynamic> _$$_IncludesToJson(_$_Includes instance) =>
     <String, dynamic>{
-      'tweets': instance.tweets,
-      'users': instance.users,
-      'media': instance.media,
-      'places': instance.places,
-      'polls': instance.polls,
+      'tweets': instance.tweets?.map((e) => e.toJson()).toList(),
+      'users': instance.users?.map((e) => e.toJson()).toList(),
+      'media': instance.media?.map((e) => e.toJson()).toList(),
+      'places': instance.places?.map((e) => e.toJson()).toList(),
+      'polls': instance.polls?.map((e) => e.toJson()).toList(),
     };

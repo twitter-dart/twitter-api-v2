@@ -28,5 +28,5 @@ _$_Geo _$$_GeoFromJson(Map json) => $checkedCreate(
 
 Map<String, dynamic> _$$_GeoToJson(_$_Geo instance) => <String, dynamic>{
       'place_id': instance.placeId,
-      'coordinates': instance.coordinates,
+      'coordinates': instance.coordinates?.toJson(),
     };

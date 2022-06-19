@@ -68,8 +68,8 @@ Map<String, dynamic> _$$_UserDataToJson(_$_UserData instance) =>
       'protected': instance.isProtected,
       'verified': instance.isVerified,
       'pinned_tweet_id': instance.pinnedTweetId,
-      'entities': instance.entities,
-      'public_metrics': instance.publicMetrics,
+      'entities': instance.entities?.toJson(),
+      'public_metrics': instance.publicMetrics?.toJson(),
       'created_at': instance.createdAt?.toIso8601String(),
-      'withheld': instance.withheld,
+      'withheld': instance.withheld?.toJson(),
     };

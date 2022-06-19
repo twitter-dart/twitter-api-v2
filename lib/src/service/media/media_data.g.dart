@@ -72,11 +72,11 @@ Map<String, dynamic> _$$_MediaDataToJson(_$_MediaData instance) =>
       'duration_ms': instance.durationMilliseconds,
       'height': instance.height,
       'width': instance.width,
-      'non_public_metrics': instance.privateMetrics,
-      'organic_metrics': instance.organicMetrics,
+      'non_public_metrics': instance.privateMetrics?.toJson(),
+      'organic_metrics': instance.organicMetrics?.toJson(),
       'preview_image_url': instance.previewImageUrl,
-      'promoted_metrics': instance.promotedMetrics,
-      'public_metrics': instance.publicMetrics,
+      'promoted_metrics': instance.promotedMetrics?.toJson(),
+      'public_metrics': instance.publicMetrics?.toJson(),
     };
 
 const _$MediaTypeEnumMap = {

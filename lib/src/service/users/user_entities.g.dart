@@ -32,6 +32,6 @@ _$_UserEntities _$$_UserEntitiesFromJson(Map json) => $checkedCreate(
 
 Map<String, dynamic> _$$_UserEntitiesToJson(_$_UserEntities instance) =>
     <String, dynamic>{
-      'url': instance.url,
-      'description': instance.description,
+      'url': instance.url?.toJson(),
+      'description': instance.description?.toJson(),
     };
