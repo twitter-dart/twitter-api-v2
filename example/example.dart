@@ -2,6 +2,8 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+import 'dart:async';
+
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
 
 void main() async {
@@ -79,6 +81,8 @@ void main() async {
       print(response.data);
       print(response.matchingRules);
     }
+  } on TimeoutException catch (e) {
+    print(e);
   } on v2.TwitterException catch (e) {
     print(e.response.headers);
     print(e.body);
