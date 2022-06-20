@@ -31,6 +31,14 @@ class TwitterResponse<D, M> {
   /// Returns true if this response has not [meta], otherwise false.
   bool get hasNotMeta => !hasMeta;
 
+  Map<String, dynamic> toJson() => {
+        'data': data is List
+            ? (data as List).map((e) => e.toJson()).toList()
+            : (data as dynamic).toJson(),
+        'includes': includes?.toJson(),
+        'meta': (meta as dynamic)?.toJson(),
+      };
+
   @override
   String toString() =>
       'TwitterResponse(data: $data, includes: $includes, meta: $meta)';
