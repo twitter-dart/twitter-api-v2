@@ -7,6 +7,7 @@
   - `organic_metrics`
   - `promoted_metrics`
 - The `toJson` method of the response data object has been improved. Nested objects are now converted to JSON at the same time as the parent object's `toJson`. ([#272](https://github.com/twitter-dart/twitter-api-v2/issues/272))
+- Added `toJson` method to `TwitterResponse`. ([#274](https://github.com/twitter-dart/twitter-api-v2/issues/274))
 
 ## v2.6.2
 
