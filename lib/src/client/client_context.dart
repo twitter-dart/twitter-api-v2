@@ -16,45 +16,39 @@ abstract class ClientContext {
   factory ClientContext({
     required String bearerToken,
     OAuthTokens? oauthTokens,
+    required Duration timeout,
   }) =>
       _ClientContext(
         bearerToken: bearerToken,
         oauthTokens: oauthTokens,
+        timeout: timeout,
       );
 
-  Future<http.Response> get(
-    UserContext userContext,
-    Uri uri, {
-    Duration timeout = const Duration(seconds: 10),
-  });
+  Future<http.Response> get(UserContext userContext, Uri uri);
 
   Future<http.Response> post(
     UserContext userContext,
     Uri uri, {
     Map<String, String> headers = const {},
     dynamic body,
-    Duration timeout = const Duration(seconds: 10),
   });
 
   Future<http.Response> delete(
     UserContext userContext,
-    Uri uri, {
-    Duration timeout = const Duration(seconds: 10),
-  });
+    Uri uri,
+  );
 
   Future<http.Response> put(
     UserContext userContext,
     Uri uri, {
     Map<String, String> headers = const {},
     dynamic body,
-    Duration timeout = const Duration(seconds: 10),
   });
 
   Future<http.StreamedResponse> getStream(
     UserContext userContext,
-    http.BaseRequest request, {
-    Duration timeout = const Duration(seconds: 10),
-  });
+    http.BaseRequest request,
+  );
 
   /// Returns true if this context has an OAuth 1.0a client, otherwise false.
   bool get hasOAuth1Client;
@@ -64,6 +58,7 @@ class _ClientContext implements ClientContext {
   _ClientContext({
     required String bearerToken,
     OAuthTokens? oauthTokens,
+    required this.timeout,
   })  : _oauth1Client = oauthTokens != null
             ? OAuth1Client(
                 consumerKey: oauthTokens.consumerKey,
@@ -80,12 +75,14 @@ class _ClientContext implements ClientContext {
   /// The OAuth 2.0 client
   final OAuth2Client _oauth2Client;
 
+  /// The timeout
+  final Duration timeout;
+
   @override
   Future<http.Response> get(
     UserContext userContext,
-    Uri uri, {
-    Duration timeout = const Duration(seconds: 10),
-  }) {
+    Uri uri,
+  ) {
     if (userContext == UserContext.oauth2OrOAuth1 && hasOAuth1Client) {
       //! If an authentication token is set, the OAuth 1.0a method is given
       //! priority.
@@ -101,7 +98,6 @@ class _ClientContext implements ClientContext {
     Uri uri, {
     Map<String, String> headers = const {},
     body,
-    Duration timeout = const Duration(seconds: 10),
   }) {
     if (userContext == UserContext.oauth2OrOAuth1 && hasOAuth1Client) {
       //! If an authentication token is set, the OAuth 1.0a method is given
@@ -125,9 +121,8 @@ class _ClientContext implements ClientContext {
   @override
   Future<http.Response> delete(
     UserContext userContext,
-    Uri uri, {
-    Duration timeout = const Duration(seconds: 10),
-  }) {
+    Uri uri,
+  ) {
     if (userContext == UserContext.oauth2OrOAuth1 && hasOAuth1Client) {
       //! If an authentication token is set, the OAuth 1.0a method is given
       //! priority.
@@ -143,7 +138,6 @@ class _ClientContext implements ClientContext {
     Uri uri, {
     Map<String, String> headers = const {},
     dynamic body,
-    Duration timeout = const Duration(seconds: 10),
   }) async {
     if (userContext == UserContext.oauth2OrOAuth1 && hasOAuth1Client) {
       //! If an authentication token is set, the OAuth 1.0a method is given
@@ -167,9 +161,8 @@ class _ClientContext implements ClientContext {
   @override
   Future<http.StreamedResponse> getStream(
     UserContext userContext,
-    http.BaseRequest request, {
-    Duration timeout = const Duration(seconds: 10),
-  }) async {
+    http.BaseRequest request,
+  ) async {
     if (userContext == UserContext.oauth2OrOAuth1 && hasOAuth1Client) {
       //! If an authentication token is set, the OAuth 1.0a method is given
       //! priority.

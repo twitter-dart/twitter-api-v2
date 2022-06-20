@@ -17,8 +17,13 @@ abstract class TwitterApi {
   factory TwitterApi({
     required String bearerToken,
     OAuthTokens? oauthTokens,
+    Duration timeout = const Duration(seconds: 10),
   }) =>
-      _TwitterApi(bearerToken: bearerToken, oauthTokens: oauthTokens);
+      _TwitterApi(
+        bearerToken: bearerToken,
+        oauthTokens: oauthTokens,
+        timeout: timeout,
+      );
 
   /// Returns the tweets service.
   TweetsService get tweetsService;
@@ -40,10 +45,12 @@ class _TwitterApi implements TwitterApi {
   _TwitterApi({
     required String bearerToken,
     OAuthTokens? oauthTokens,
+    required Duration timeout,
   }) : _twitterService = TwitterService(
           context: ClientContext(
             bearerToken: bearerToken,
             oauthTokens: oauthTokens,
+            timeout: timeout,
           ),
         );
 

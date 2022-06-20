@@ -140,6 +140,9 @@ void main() async {
       accessToken: 'YOUR_ACCESS_TOKEN_HERE',
       accessTokenSecret: 'YOUR_ACCESS_TOKEN_SECRET_HERE',
     ),
+
+    //! The default timeout is 10 seconds.
+    timeout: Duration(seconds: 20),
   );
 
   try {

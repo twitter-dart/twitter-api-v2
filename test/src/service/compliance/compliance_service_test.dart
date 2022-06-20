@@ -36,7 +36,10 @@ void main() {
 
     test('throws TwitterException', () async {
       final complianceService = ComplianceService(
-        context: ClientContext(bearerToken: ''),
+        context: ClientContext(
+          bearerToken: '',
+          timeout: const Duration(seconds: 10),
+        ),
       );
 
       expect(

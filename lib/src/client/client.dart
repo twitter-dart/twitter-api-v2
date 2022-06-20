@@ -14,34 +14,34 @@ import '../twitter_exception.dart';
 abstract class Client {
   Future<http.Response> get(
     Uri uri, {
-    Duration timeout = const Duration(seconds: 10),
+    required Duration timeout,
   });
 
   Future<http.Response> post(
     Uri uri, {
     Map<String, String> headers = const {},
     dynamic body,
-    Duration timeout = const Duration(seconds: 10),
+    required Duration timeout,
   });
 
   Future<http.Response> delete(
     Uri uri, {
     Map<String, String> headers = const {},
     dynamic body,
-    Duration timeout = const Duration(seconds: 10),
+    required Duration timeout,
   });
 
   Future<http.Response> put(
     Uri uri, {
     Map<String, String> headers = const {},
     dynamic body,
-    Duration timeout = const Duration(seconds: 10),
+    required Duration timeout,
   });
 
   Future<http.StreamedResponse> send(
     http.BaseRequest request, {
     Map<String, String> headers = const {},
-    Duration timeout = const Duration(seconds: 10),
+    required Duration timeout,
   });
 
   T checkResponse<T extends http.BaseResponse>(final T response) {
