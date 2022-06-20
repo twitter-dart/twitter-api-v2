@@ -119,6 +119,10 @@ import 'package:twitter_api_v2/twitter_api_v2';
 ### 1.1.3. Implementation
 
 ```dart
+import 'dart:async';
+
+import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
+
 void main() async {
   //! You need to get keys and tokens at https://developer.twitter.com
   final twitter = v2.TwitterApi(
@@ -140,6 +144,9 @@ void main() async {
       accessToken: 'YOUR_ACCESS_TOKEN_HERE',
       accessTokenSecret: 'YOUR_ACCESS_TOKEN_SECRET_HERE',
     ),
+
+    //! The default timeout is 10 seconds.
+    timeout: Duration(seconds: 20),
   );
 
   try {
@@ -191,6 +198,8 @@ void main() async {
       print(response.data);
       print(response.matchingRules);
     }
+  } on TimeoutException catch (e) {
+    print(e);
   } on v2.TwitterException catch (e) {
     print(e.response.headers);
     print(e.body);

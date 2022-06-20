@@ -56,9 +56,9 @@ class OAuth1Client extends Client {
   @override
   Future<http.Response> get(
     Uri uri, {
-    Duration timeout = const Duration(seconds: 10),
+    required Duration timeout,
   }) async =>
-      checkResponse(
+      super.checkResponse(
         await oauthClient.get(uri).timeout(timeout),
       );
 
@@ -67,9 +67,9 @@ class OAuth1Client extends Client {
     Uri uri, {
     Map<String, String> headers = const {},
     dynamic body,
-    Duration timeout = const Duration(seconds: 10),
+    required Duration timeout,
   }) async =>
-      checkResponse(
+      super.checkResponse(
         await oauthClient
             .post(
               uri,
@@ -85,9 +85,9 @@ class OAuth1Client extends Client {
     Uri uri, {
     Map<String, String> headers = const {},
     dynamic body,
-    Duration timeout = const Duration(seconds: 10),
+    required Duration timeout,
   }) async =>
-      checkResponse(
+      super.checkResponse(
         await oauthClient
             .delete(
               uri,
@@ -103,9 +103,9 @@ class OAuth1Client extends Client {
     Uri uri, {
     Map<String, String> headers = const {},
     dynamic body,
-    Duration timeout = const Duration(seconds: 10),
+    required Duration timeout,
   }) async =>
-      checkResponse(
+      super.checkResponse(
         await oauthClient
             .put(
               uri,
@@ -120,7 +120,7 @@ class OAuth1Client extends Client {
   Future<http.StreamedResponse> send(
     http.BaseRequest request, {
     Map<String, String> headers = const {},
-    Duration timeout = const Duration(seconds: 10),
+    required Duration timeout,
   }) async {
     request.headers.addAll(headers);
 

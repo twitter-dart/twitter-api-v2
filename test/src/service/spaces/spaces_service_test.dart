@@ -46,7 +46,10 @@ void main() {
 
     test('throws TwitterException', () async {
       final spacesService = SpacesService(
-        context: ClientContext(bearerToken: ''),
+        context: ClientContext(
+          bearerToken: '',
+          timeout: const Duration(seconds: 10),
+        ),
       );
 
       expect(

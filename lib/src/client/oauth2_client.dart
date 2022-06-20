@@ -21,9 +21,9 @@ class OAuth2Client extends Client {
   @override
   Future<http.Response> get(
     Uri uri, {
-    Duration timeout = const Duration(seconds: 10),
+    required Duration timeout,
   }) async =>
-      checkResponse(
+      super.checkResponse(
         await http.get(
           uri,
           headers: {'Authorization': 'Bearer $_bearerToken'},
@@ -35,9 +35,9 @@ class OAuth2Client extends Client {
     Uri uri, {
     Map<String, String> headers = const {},
     dynamic body,
-    Duration timeout = const Duration(seconds: 10),
+    required Duration timeout,
   }) async =>
-      checkResponse(
+      super.checkResponse(
         await http
             .post(
               uri,
@@ -54,9 +54,9 @@ class OAuth2Client extends Client {
     Uri uri, {
     Map<String, String> headers = const {},
     dynamic body,
-    Duration timeout = const Duration(seconds: 10),
+    required Duration timeout,
   }) async =>
-      checkResponse(
+      super.checkResponse(
         await http
             .delete(
               uri,
@@ -73,9 +73,9 @@ class OAuth2Client extends Client {
     Uri uri, {
     Map<String, String> headers = const {},
     body,
-    Duration timeout = const Duration(seconds: 10),
+    required Duration timeout,
   }) async =>
-      checkResponse(
+      super.checkResponse(
         await http
             .put(
               uri,
@@ -91,7 +91,7 @@ class OAuth2Client extends Client {
   Future<http.StreamedResponse> send(
     http.BaseRequest request, {
     Map<String, String> headers = const {},
-    Duration timeout = const Duration(seconds: 10),
+    required Duration timeout,
   }) async {
     request.headers.addAll(
       {'Authorization': 'Bearer $_bearerToken', ...headers},

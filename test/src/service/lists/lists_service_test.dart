@@ -42,7 +42,10 @@ void main() {
 
     test('throws TwitterException', () async {
       final listsService = ListsService(
-        context: ClientContext(bearerToken: ''),
+        context: ClientContext(
+          bearerToken: '',
+          timeout: const Duration(seconds: 10),
+        ),
       );
 
       expect(
