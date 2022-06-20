@@ -1,5 +1,9 @@
 # Release Note
 
+## v2.8.0
+
+- Added `timeout` option to `TwitterApi`. The default timeout duration is 10 seconds. ([#252](https://github.com/twitter-dart/twitter-api-v2/issues/252))
+
 ## v2.7.0
 
 - Added metrics field for `TweetField`. ([#268](https://github.com/twitter-dart/twitter-api-v2/issues/268))
