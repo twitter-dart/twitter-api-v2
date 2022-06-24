@@ -49,6 +49,7 @@ export 'package:twitter_api_v2/src/service/tweets/promoted_tweet_metrics.dart';
 export 'package:twitter_api_v2/src/service/tweets/public_tweet_metrics.dart';
 export 'package:twitter_api_v2/src/service/tweets/referenced_tweet.dart';
 export 'package:twitter_api_v2/src/service/tweets/reply_setting.dart';
+export 'package:twitter_api_v2/src/service/tweets/sort_order.dart';
 export 'package:twitter_api_v2/src/service/tweets/tweet_attachments.dart';
 export 'package:twitter_api_v2/src/service/tweets/tweet_context_annotation.dart';
 export 'package:twitter_api_v2/src/service/tweets/tweet_context_annotation_group.dart';
