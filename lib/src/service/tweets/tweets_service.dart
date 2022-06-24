@@ -23,6 +23,7 @@ import 'filtering_rule_data.dart';
 import 'filtering_rule_meta.dart';
 import 'matching_rule.dart';
 import 'reply_setting.dart';
+import 'sort_order.dart';
 import 'tweet_count_data.dart';
 import 'tweet_count_meta.dart';
 import 'tweet_data.dart';
@@ -771,6 +772,10 @@ abstract class TweetsService {
   ///                the response provided by the API, and should not be
   ///                modified. You can learn more by visiting our page on [pagination](https://developer.twitter.com/en/docs/twitter-api/tweets/search/integrate/paginate).
   ///
+  /// - [sortOrder]: This parameter is used to specify the order in which you
+  ///                want the Tweets returned. By default, a request will return
+  ///                the most recent Tweets first (sorted by recency).
+  ///
   /// - [expansions]: Expansions enable you to request additional data objects
   ///                 that relate to the originally returned Tweets. Submit a
   ///                 list of desired expansions in a comma-separated list
@@ -851,6 +856,7 @@ abstract class TweetsService {
     required String query,
     int? maxResults,
     String? nextToken,
+    SortOrder? sortOrder,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
@@ -885,6 +891,10 @@ abstract class TweetsService {
   ///                The value used with the parameter is pulled directly from
   ///                the response provided by the API, and should not be
   ///                modified. You can learn more by visiting our page on [pagination](https://developer.twitter.com/en/docs/twitter-api/tweets/search/integrate/paginate).
+  ///
+  /// - [sortOrder]: This parameter is used to specify the order in which you
+  ///                want the Tweets returned. By default, a request will return
+  ///                the most recent Tweets first (sorted by recency).
   ///
   /// - [expansions]: Expansions enable you to request additional data objects
   ///                 that relate to the originally returned Tweets. Submit a
@@ -966,6 +976,7 @@ abstract class TweetsService {
     required String query,
     int? maxResults,
     String? nextToken,
+    SortOrder? sortOrder,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
@@ -2427,6 +2438,7 @@ class _TweetsService extends BaseService implements TweetsService {
     required String query,
     int? maxResults,
     String? nextToken,
+    SortOrder? sortOrder,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
@@ -2442,6 +2454,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'query': query,
             'max_results': maxResults,
             'next_token': nextToken,
+            'sort_order': sortOrder?.name,
             'expansions': expansions,
             'tweet.fields': tweetFields,
             'user.fields': userFields,
@@ -2459,6 +2472,7 @@ class _TweetsService extends BaseService implements TweetsService {
     required String query,
     int? maxResults,
     String? nextToken,
+    SortOrder? sortOrder,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
@@ -2474,6 +2488,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'query': query,
             'max_results': maxResults,
             'next_token': nextToken,
+            'sort_order': sortOrder?.name,
             'expansions': expansions,
             'tweet.fields': tweetFields,
             'user.fields': userFields,

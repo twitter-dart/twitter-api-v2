@@ -3,6 +3,7 @@
 ## v2.8.0
 
 - Added `timeout` option to `TwitterApi`. The default timeout duration is 10 seconds. ([#252](https://github.com/twitter-dart/twitter-api-v2/issues/252))
+- Added `sortOrder` parameter to `TweetsService.searchRecent` and `TweetsService.searchAll`. ([#284](https://github.com/twitter-dart/twitter-api-v2/issues/284))
 
 ## v2.7.0
 
@@ -95,7 +96,7 @@
   - GET /2/spaces/:id/buyers
   - GET /2/spaces/:id/tweets
 - `PlaceData` class is migrated to `Geo` class, and updated `PlaceData` parameters.
-- `PlaceCoordinates` class is migrated to `GeoCoordinates` class, and updated `PlaceCoordinates` paramters.
+- `PlaceCoordinates` class is migrated to `GeoCoordinates` class, and updated `PlaceCoordinates` parameters.
 - Changed the type of `lang` field from `String?` to `TweetLanguage?`. ([#207](https://github.com/twitter-dart/twitter-api-v2/issues/207))
 
 ## v2.4.2
