@@ -65,16 +65,6 @@ abstract class TweetsService {
   ///                   Options include `mentionedUsers` and `following`.
   ///                   The default to `everyone`.
   ///
-  /// - [expansions]: Expansions enable you to request additional data objects
-  ///                 that relate to the originally returned Tweets. Submit a
-  ///                 list of desired expansions in a comma-separated list
-  ///                 without spaces. The ID that represents the expanded data
-  ///                 object will be included directly in the Tweet data object,
-  ///                 but the expanded object metadata will be returned within
-  ///                 the includes response object, and will also include the
-  ///                 ID so that you can match this data object to the original
-  ///                 Tweet object.
-  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets
@@ -106,7 +96,6 @@ abstract class TweetsService {
     List<String>? taggedUserIds,
     String? inReplyToTweetId,
     ReplySetting? replySetting,
-    List<TweetExpansion>? expansions,
   });
 
   /// Allows a user or authenticated user ID to delete a Tweet.
@@ -2347,7 +2336,6 @@ class _TweetsService extends BaseService implements TweetsService {
     List<String>? taggedUserIds,
     String? inReplyToTweetId,
     ReplySetting? replySetting,
-    List<TweetExpansion>? expansions,
   }) async =>
       super.buildResponse(
         await super.post(
@@ -2369,7 +2357,6 @@ class _TweetsService extends BaseService implements TweetsService {
             'reply_settings': replySetting == ReplySetting.everyone
                 ? null
                 : replySetting?.name,
-            'expansions': expansions,
           },
         ),
         dataBuilder: TweetData.fromJson,
