@@ -40,7 +40,10 @@ enum MediaField implements Serializable {
   width('width'),
 
   /// `altText`
-  altText('alt_text');
+  altText('alt_text'),
+
+  /// `variants`
+  variants('variants');
 
   @override
   final String value;

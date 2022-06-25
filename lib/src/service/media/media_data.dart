@@ -13,6 +13,7 @@ import 'organic_media_metrics.dart';
 import 'private_media_metrics.dart';
 import 'promoted_media_metrics.dart';
 import 'public_media_metrics.dart';
+import 'variant.dart';
 
 part 'media_data.freezed.dart';
 part 'media_data.g.dart';
@@ -105,6 +106,14 @@ class MediaData with _$MediaData {
     ///
     /// - Determine total number of views for the video attached to the Tweet.
     PublicMediaMetrics? publicMetrics,
+
+    /// Variants of media attached in the MediaObject.
+    ///
+    /// ## How It Can Be Used
+    ///
+    /// - Each media object may have multiple display or playback variants,
+    /// with different resolutions or formats.
+    List<Variant>? variants,
   }) = _MediaData;
 
   factory MediaData.fromJson(Map<String, Object?> json) =>
