@@ -291,7 +291,7 @@ void main() {
   test('.searchRecent', () async {
     final tweetsService = TweetsService(
       context: context.buildGetStub(
-        UserContext.oauth2OrOAuth1,
+        UserContext.oauth2Only,
         '/2/tweets/search/recent',
         'test/src/service/tweets/data/search_recent.json',
         {'query': 'hello'},
