@@ -13,6 +13,9 @@ void main() async {
     //!
     //! Note that to use endpoints that require certain user permissions,
     //! such as Tweets and Likes, you need a token issued by OAuth2.0 PKCE.
+    //!
+    //! The easiest way to achieve authentication with OAuth 2.0 PKCE is
+    //! to use [twitter_oauth2_pkce](https://pub.dev/packages/twitter_oauth2_pkce)!
     bearerToken: 'YOUR_TOKEN_HERE',
 
     //! Or perhaps you would prefer to use the good old OAuth1.0a method

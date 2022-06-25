@@ -80,6 +80,7 @@
     - [1.3.3. Null Parameter at Request](#133-null-parameter-at-request)
     - [1.3.4. Expand Object Fields with `expansions`](#134-expand-object-fields-with-expansions)
     - [1.3.5. Expand Object Fields with `fields`](#135-expand-object-fields-with-fields)
+    - [1.3.6. OAuth 2.0 Authorization Code Flow with PKCE](#136-oauth-20-authorization-code-flow-with-pkce)
   - [1.4. Contribution 🏆](#14-contribution-)
   - [1.5. Contributors ✨](#15-contributors-)
   - [1.6. Support ❤️](#16-support-️)
@@ -93,6 +94,8 @@
 This library provides the easiest way to use [Twitter API v2.0](https://developer.twitter.com/en/docs/twitter-api/data-dictionary/introduction) in **Dart** and **Flutter** apps.
 
 **Show some ❤️ and star the repo to support the project.**
+
+We also provide [twitter_oauth2_pkce](https://pub.dev/packages/twitter_oauth2_pkce) for easy [OAuth 2.0 PKCE authentication](https://developer.twitter.com/en/docs/authentication/oauth-2-0/authorization-code) when using the Twitter API!
 
 ## 1.1. Getting Started ⚡
 
@@ -130,6 +133,9 @@ void main() async {
     //!
     //! Note that to use endpoints that require certain user permissions,
     //! such as Tweets and Likes, you need a token issued by OAuth2.0 PKCE.
+    //!
+    //! The easiest way to achieve authentication with OAuth 2.0 PKCE is
+    //! to use [twitter_oauth2_pkce](https://pub.dev/packages/twitter_oauth2_pkce)!
     bearerToken: 'YOUR_TOKEN_HERE',
 
     //! Or perhaps you would prefer to use the good old OAuth1.0a method
@@ -423,7 +429,7 @@ void main() async {
 
 ### 1.3.1. Method Names
 
-`twitter_api_v2` uses the following standard prefixes depending on endpoint characteristics. So it's very easy to find the method corresponding to the endpoint you want to use!
+**twitter_api_v2** uses the following standard prefixes depending on endpoint characteristics. So it's very easy to find the method corresponding to the endpoint you want to use!
 
 | Prefix      | Description                                                                                                                                  |
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -437,7 +443,7 @@ void main() async {
 
 ### 1.3.2. Generate App-Only Bearer Token
 
-`twitter_api_v2` provides utility to generate/find your app-only bearer token.
+**twitter_api_v2** provides utility to generate/find your app-only bearer token.
 
 ```dart
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
@@ -550,9 +556,25 @@ void main() async {
 
 You can see more details about `fields` from [Official Documentation](https://developer.twitter.com/en/docs/twitter-api/fields).
 
+### 1.3.6. OAuth 2.0 Authorization Code Flow with PKCE
+
+**Twitter API v2.0** supports authentication methods with [OAuth 2.0 PKCE](https://developer.twitter.com/en/docs/authentication/oauth-2-0/authorization-code), and it allows users of apps using **Twitter API v2.0** to request authorization for the minimum necessary [scope](https://developer.twitter.com/en/docs/authentication/guides/v2-authentication-mapping) of operation.
+
+Since **OAuth2.0 PKCE** authentication requires going through a browser, **twitter_api_v2** does not provide this specification for compatibility with CLI applications. Instead, we provide [twitter_oauth2_pkce](https://pub.dev/packages/twitter_oauth2_pkce), a library for Flutter apps.
+
+The **twitter_oauth2_pkce** is 100% compatible with **twitter_api_v2** and can be used. You can see more details from links below.
+
+- [Repository](https://github.com/twitter-dart/twitter-oauth2-pkce)
+- [Pub.dev](https://pub.dev/packages/twitter_oauth2_pkce)
+
+
+Also, please refer to the next simple sample Flutter application that combines **twitter_api_v2** and **twitter_oauth2_pkce**.
+
+- [Example Tweet App](https://github.com/twitter-dart/example-tweet-app-with-twitter-api-v2)
+
 ## 1.4. Contribution 🏆
 
-If you would like to contribute to `twitter_api_v2`, please create an [issue](https://github.com/twitter-dart/twitter-api-v2/issues) or create a Pull Request.
+If you would like to contribute to **twitter_api_v2**, please create an [issue](https://github.com/twitter-dart/twitter-api-v2/issues) or create a Pull Request.
 
 There are many ways to contribute to the OSS. For example, the following subjects can be considered:
 
@@ -614,7 +636,7 @@ You can also support this project by **becoming a sponsor** on GitHub:
   </p>
 </div>
 
-You can also show on your repository that your app is made with `twitter_api_v2` by using one of the following badges:
+You can also show on your repository that your app is made with **twitter_api_v2** by using one of the following badges:
 
 [![Powered by twitter_api_v2](https://img.shields.io/badge/Powered%20by-twitter_api_v2-00acee.svg)](https://github.com/twitter-dart/twitter-api-v2)
 [![Powered by twitter_api_v2](https://img.shields.io/badge/Powered%20by-twitter_api_v2-00acee.svg?style=flat-square)](https://github.com/twitter-dart/twitter-api-v2)
@@ -628,7 +650,7 @@ You can also show on your repository that your app is made with `twitter_api_v2`
 
 ## 1.7. License 🔑
 
-All resources of `twitter_api_v2` is provided under the `BSD-3` license.
+All resources of **twitter_api_v2** is provided under the `BSD-3` license.
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Ftwitter-dart%2Ftwitter-api-v2.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Ftwitter-dart%2Ftwitter-api-v2?ref=badge_large)
 
@@ -637,7 +659,7 @@ All resources of `twitter_api_v2` is provided under the `BSD-3` license.
 
 ## 1.8. More Information 🧐
 
-`twitter_api_v2` was designed and implemented by **_Kato Shinya ([@myConsciousness](https://github.com/myConsciousness))_**.
+**twitter_api_v2** was designed and implemented by **_Kato Shinya ([@myConsciousness](https://github.com/myConsciousness))_**.
 
 - [Creator Profile](https://github.com/myConsciousness)
 - [License](https://github.com/twitter-dart/twitter-api-v2/blob/main/LICENSE)
