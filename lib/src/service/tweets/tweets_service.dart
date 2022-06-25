@@ -776,6 +776,22 @@ abstract class TweetsService {
   ///                want the Tweets returned. By default, a request will return
   ///                the most recent Tweets first (sorted by recency).
   ///
+  /// - [startTime]: YYYY-MM-DDTHH:mm:ssZ (ISO 8601/RFC 3339). The oldest UTC
+  ///                timestamp from which the Tweets will be provided. Timestamp
+  ///                is in second granularity and is inclusive (for example,
+  ///                12:00:01 includes the first second of the minute). By
+  ///                default, a request will return Tweets from up to 30 days
+  ///                ago if you do not include this parameter.
+  ///
+  /// - [endTime]: YYYY-MM-DDTHH:mm:ssZ (ISO 8601/RFC 3339). Used with
+  ///              `startTime`. The newest, most recent UTC timestamp to which
+  ///              the Tweets will be provided. Timestamp is in second
+  ///              granularity and is exclusive (for example, 12:00:01 excludes
+  ///              the first second of the minute). If used without `startTime`,
+  ///              Tweets from 30 days before `endTime` will be returned by
+  ///              default. If not specified, `endTime` will default to
+  ///              [now - 30 seconds].
+  ///
   /// - [expansions]: Expansions enable you to request additional data objects
   ///                 that relate to the originally returned Tweets. Submit a
   ///                 list of desired expansions in a comma-separated list
@@ -857,6 +873,8 @@ abstract class TweetsService {
     int? maxResults,
     String? nextToken,
     SortOrder? sortOrder,
+    DateTime? startTime,
+    DateTime? endTime,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
@@ -895,6 +913,22 @@ abstract class TweetsService {
   /// - [sortOrder]: This parameter is used to specify the order in which you
   ///                want the Tweets returned. By default, a request will return
   ///                the most recent Tweets first (sorted by recency).
+  ///
+  /// - [startTime]: YYYY-MM-DDTHH:mm:ssZ (ISO 8601/RFC 3339). The oldest UTC
+  ///                timestamp from which the Tweets will be provided. Timestamp
+  ///                is in second granularity and is inclusive (for example,
+  ///                12:00:01 includes the first second of the minute). By
+  ///                default, a request will return Tweets from up to 30 days
+  ///                ago if you do not include this parameter.
+  ///
+  /// - [endTime]: YYYY-MM-DDTHH:mm:ssZ (ISO 8601/RFC 3339). Used with
+  ///              `startTime`. The newest, most recent UTC timestamp to which
+  ///              the Tweets will be provided. Timestamp is in second
+  ///              granularity and is exclusive (for example, 12:00:01 excludes
+  ///              the first second of the minute). If used without `startTime`,
+  ///              Tweets from 30 days before `endTime` will be returned by
+  ///              default. If not specified, `endTime` will default to
+  ///              [now - 30 seconds].
   ///
   /// - [expansions]: Expansions enable you to request additional data objects
   ///                 that relate to the originally returned Tweets. Submit a
@@ -977,6 +1011,8 @@ abstract class TweetsService {
     int? maxResults,
     String? nextToken,
     SortOrder? sortOrder,
+    DateTime? startTime,
+    DateTime? endTime,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
@@ -1207,6 +1243,22 @@ abstract class TweetsService {
   ///                request contains more than 31 days-worth of results, and
   ///                should not be modified. You can learn more by visiting our page on [pagination](https://developer.twitter.com/en/docs/twitter-api/pagination).
   ///
+  /// - [startTime]: YYYY-MM-DDTHH:mm:ssZ (ISO 8601/RFC 3339). The oldest UTC
+  ///                timestamp from which the Tweets will be provided. Timestamp
+  ///                is in second granularity and is inclusive (for example,
+  ///                12:00:01 includes the first second of the minute). By
+  ///                default, a request will return Tweets from up to 30 days
+  ///                ago if you do not include this parameter.
+  ///
+  /// - [endTime]: YYYY-MM-DDTHH:mm:ssZ (ISO 8601/RFC 3339). Used with
+  ///              `startTime`. The newest, most recent UTC timestamp to which
+  ///              the Tweets will be provided. Timestamp is in second
+  ///              granularity and is exclusive (for example, 12:00:01 excludes
+  ///              the first second of the minute). If used without `startTime`,
+  ///              Tweets from 30 days before `endTime` will be returned by
+  ///              default. If not specified, `endTime` will default to
+  ///              [now - 30 seconds].
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/counts/recent
@@ -1223,8 +1275,12 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/counts/api-reference/get-tweets-counts-recent
-  Future<TwitterResponse<List<TweetCountData>, TweetCountMeta>> countRecent(
-      {required String query, String? nextToken});
+  Future<TwitterResponse<List<TweetCountData>, TweetCountMeta>> countRecent({
+    required String query,
+    String? nextToken,
+    DateTime? startTime,
+    DateTime? endTime,
+  });
 
   /// This endpoint is only available to those users who have been approved
   /// for Academic Research access.
@@ -1246,6 +1302,22 @@ abstract class TweetsService {
   ///                request contains more than 31 days-worth of results, and
   ///                should not be modified. You can learn more by visiting our page on [pagination](https://developer.twitter.com/en/docs/twitter-api/pagination).
   ///
+  /// - [startTime]: YYYY-MM-DDTHH:mm:ssZ (ISO 8601/RFC 3339). The oldest UTC
+  ///                timestamp from which the Tweets will be provided. Timestamp
+  ///                is in second granularity and is inclusive (for example,
+  ///                12:00:01 includes the first second of the minute). By
+  ///                default, a request will return Tweets from up to 30 days
+  ///                ago if you do not include this parameter.
+  ///
+  /// - [endTime]: YYYY-MM-DDTHH:mm:ssZ (ISO 8601/RFC 3339). Used with
+  ///              `startTime`. The newest, most recent UTC timestamp to which
+  ///              the Tweets will be provided. Timestamp is in second
+  ///              granularity and is exclusive (for example, 12:00:01 excludes
+  ///              the first second of the minute). If used without `startTime`,
+  ///              Tweets from 30 days before `endTime` will be returned by
+  ///              default. If not specified, `endTime` will default to
+  ///              [now - 30 seconds].
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/counts/all
@@ -1262,8 +1334,12 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/counts/api-reference/get-tweets-counts-all
-  Future<TwitterResponse<List<TweetCountData>, TweetCountMeta>> countAll(
-      {required String query, String? nextToken});
+  Future<TwitterResponse<List<TweetCountData>, TweetCountMeta>> countAll({
+    required String query,
+    String? nextToken,
+    DateTime? startTime,
+    DateTime? endTime,
+  });
 
   /// Causes the user ID of an authenticated user identified in the path
   /// parameter to Bookmark the target Tweet provided in the request body.
@@ -1535,6 +1611,22 @@ abstract class TweetsService {
   ///                      from the response provided by the API, and should not
   ///                      be modified.
   ///
+  /// - [startTime]: YYYY-MM-DDTHH:mm:ssZ (ISO 8601/RFC 3339). The oldest UTC
+  ///                timestamp from which the Tweets will be provided. Timestamp
+  ///                is in second granularity and is inclusive (for example,
+  ///                12:00:01 includes the first second of the minute). By
+  ///                default, a request will return Tweets from up to 30 days
+  ///                ago if you do not include this parameter.
+  ///
+  /// - [endTime]: YYYY-MM-DDTHH:mm:ssZ (ISO 8601/RFC 3339). Used with
+  ///              `startTime`. The newest, most recent UTC timestamp to which
+  ///              the Tweets will be provided. Timestamp is in second
+  ///              granularity and is exclusive (for example, 12:00:01 excludes
+  ///              the first second of the minute). If used without `startTime`,
+  ///              Tweets from 30 days before `endTime` will be returned by
+  ///              default. If not specified, `endTime` will default to
+  ///              [now - 30 seconds].
+  ///
   /// - [expansions]: Expansions enable you to request additional data objects
   ///                 that relate to the originally returned Tweets. Submit a
   ///                 list of desired expansions in a comma-separated list
@@ -1625,6 +1717,8 @@ abstract class TweetsService {
     required String userId,
     int? maxResults,
     String? paginationToken,
+    DateTime? startTime,
+    DateTime? endTime,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
@@ -1662,6 +1756,22 @@ abstract class TweetsService {
   ///                      The value used with the parameter is pulled directly
   ///                      from the response provided by the API, and should
   ///                      not be modified.
+  ///
+  /// - [startTime]: YYYY-MM-DDTHH:mm:ssZ (ISO 8601/RFC 3339). The oldest UTC
+  ///                timestamp from which the Tweets will be provided. Timestamp
+  ///                is in second granularity and is inclusive (for example,
+  ///                12:00:01 includes the first second of the minute). By
+  ///                default, a request will return Tweets from up to 30 days
+  ///                ago if you do not include this parameter.
+  ///
+  /// - [endTime]: YYYY-MM-DDTHH:mm:ssZ (ISO 8601/RFC 3339). Used with
+  ///              `startTime`. The newest, most recent UTC timestamp to which
+  ///              the Tweets will be provided. Timestamp is in second
+  ///              granularity and is exclusive (for example, 12:00:01 excludes
+  ///              the first second of the minute). If used without `startTime`,
+  ///              Tweets from 30 days before `endTime` will be returned by
+  ///              default. If not specified, `endTime` will default to
+  ///              [now - 30 seconds].
   ///
   /// - [expansions]: Expansions enable you to request additional data objects
   ///                 that relate to the originally returned Tweets. Submit a
@@ -1753,6 +1863,8 @@ abstract class TweetsService {
     required String userId,
     int? maxResults,
     String? paginationToken,
+    DateTime? startTime,
+    DateTime? endTime,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
@@ -1785,6 +1897,22 @@ abstract class TweetsService {
   ///                      value used with the parameter is pulled directly from
   ///                      the response provided by the API, and should not be
   ///                      modified.
+  ///
+  /// - [startTime]: YYYY-MM-DDTHH:mm:ssZ (ISO 8601/RFC 3339). The oldest UTC
+  ///                timestamp from which the Tweets will be provided. Timestamp
+  ///                is in second granularity and is inclusive (for example,
+  ///                12:00:01 includes the first second of the minute). By
+  ///                default, a request will return Tweets from up to 30 days
+  ///                ago if you do not include this parameter.
+  ///
+  /// - [endTime]: YYYY-MM-DDTHH:mm:ssZ (ISO 8601/RFC 3339). Used with
+  ///              `startTime`. The newest, most recent UTC timestamp to which
+  ///              the Tweets will be provided. Timestamp is in second
+  ///              granularity and is exclusive (for example, 12:00:01 excludes
+  ///              the first second of the minute). If used without `startTime`,
+  ///              Tweets from 30 days before `endTime` will be returned by
+  ///              default. If not specified, `endTime` will default to
+  ///              [now - 30 seconds].
   ///
   /// - [expansions]: Expansions enable you to request additional data objects
   ///                 that relate to the originally returned Tweets. Submit a
@@ -1869,6 +1997,8 @@ abstract class TweetsService {
     required String userId,
     int? maxResults,
     String? paginationToken,
+    DateTime? startTime,
+    DateTime? endTime,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
@@ -2439,6 +2569,8 @@ class _TweetsService extends BaseService implements TweetsService {
     int? maxResults,
     String? nextToken,
     SortOrder? sortOrder,
+    DateTime? startTime,
+    DateTime? endTime,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
@@ -2455,6 +2587,8 @@ class _TweetsService extends BaseService implements TweetsService {
             'max_results': maxResults,
             'next_token': nextToken,
             'sort_order': sortOrder?.name,
+            'start_time': startTime?.toUtc().toIso8601String(),
+            'end_time': endTime?.toUtc().toIso8601String(),
             'expansions': expansions,
             'tweet.fields': tweetFields,
             'user.fields': userFields,
@@ -2473,6 +2607,8 @@ class _TweetsService extends BaseService implements TweetsService {
     int? maxResults,
     String? nextToken,
     SortOrder? sortOrder,
+    DateTime? startTime,
+    DateTime? endTime,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
@@ -2489,6 +2625,8 @@ class _TweetsService extends BaseService implements TweetsService {
             'max_results': maxResults,
             'next_token': nextToken,
             'sort_order': sortOrder?.name,
+            'start_time': startTime?.toUtc().toIso8601String(),
+            'end_time': endTime?.toUtc().toIso8601String(),
             'expansions': expansions,
             'tweet.fields': tweetFields,
             'user.fields': userFields,
@@ -2558,6 +2696,8 @@ class _TweetsService extends BaseService implements TweetsService {
   Future<TwitterResponse<List<TweetCountData>, TweetCountMeta>> countRecent({
     required String query,
     String? nextToken,
+    DateTime? startTime,
+    DateTime? endTime,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -2566,6 +2706,8 @@ class _TweetsService extends BaseService implements TweetsService {
           queryParameters: {
             'query': query,
             'next_token': nextToken,
+            'start_time': startTime?.toUtc().toIso8601String(),
+            'end_time': endTime?.toUtc().toIso8601String(),
           },
         ),
         dataBuilder: TweetCountData.fromJson,
@@ -2576,6 +2718,8 @@ class _TweetsService extends BaseService implements TweetsService {
   Future<TwitterResponse<List<TweetCountData>, TweetCountMeta>> countAll({
     required String query,
     String? nextToken,
+    DateTime? startTime,
+    DateTime? endTime,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -2584,6 +2728,8 @@ class _TweetsService extends BaseService implements TweetsService {
           queryParameters: {
             'query': query,
             'next_token': nextToken,
+            'start_time': startTime?.toUtc().toIso8601String(),
+            'end_time': endTime?.toUtc().toIso8601String(),
           },
         ),
         dataBuilder: TweetCountData.fromJson,
@@ -2671,6 +2817,8 @@ class _TweetsService extends BaseService implements TweetsService {
     required String userId,
     int? maxResults,
     String? paginationToken,
+    DateTime? startTime,
+    DateTime? endTime,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
@@ -2685,6 +2833,8 @@ class _TweetsService extends BaseService implements TweetsService {
           queryParameters: {
             'max_results': maxResults,
             'pagination_token': paginationToken,
+            'start_time': startTime?.toUtc().toIso8601String(),
+            'end_time': endTime?.toUtc().toIso8601String(),
             'expansions': expansions,
             'tweet.fields': tweetFields,
             'user.fields': userFields,
@@ -2702,6 +2852,8 @@ class _TweetsService extends BaseService implements TweetsService {
     required String userId,
     int? maxResults,
     String? paginationToken,
+    DateTime? startTime,
+    DateTime? endTime,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
@@ -2716,6 +2868,8 @@ class _TweetsService extends BaseService implements TweetsService {
           queryParameters: {
             'max_results': maxResults,
             'pagination_token': paginationToken,
+            'start_time': startTime?.toUtc().toIso8601String(),
+            'end_time': endTime?.toUtc().toIso8601String(),
             'expansions': expansions,
             'tweet.fields': tweetFields,
             'user.fields': userFields,
@@ -2733,6 +2887,8 @@ class _TweetsService extends BaseService implements TweetsService {
     required String userId,
     int? maxResults,
     String? paginationToken,
+    DateTime? startTime,
+    DateTime? endTime,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
@@ -2747,6 +2903,8 @@ class _TweetsService extends BaseService implements TweetsService {
           queryParameters: {
             'max_results': maxResults,
             'pagination_token': paginationToken,
+            'start_time': startTime?.toUtc().toIso8601String(),
+            'end_time': endTime?.toUtc().toIso8601String(),
             'expansions': expansions,
             'tweet.fields': tweetFields,
             'user.fields': userFields,
