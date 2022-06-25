@@ -112,7 +112,7 @@ class MediaData with _$MediaData {
     /// ## How It Can Be Used
     ///
     /// - Each media object may have multiple display or playback variants,
-    /// with different resolutions or formats.
+    ///   with different resolutions or formats.
     List<Variant>? variants,
   }) = _MediaData;
 
