@@ -567,7 +567,6 @@ The **twitter_oauth2_pkce** is 100% compatible with **twitter_api_v2** and can b
 - [Repository](https://github.com/twitter-dart/twitter-oauth2-pkce)
 - [Pub.dev](https://pub.dev/packages/twitter_oauth2_pkce)
 
-
 Also, please refer to the next simple sample Flutter application that combines **twitter_api_v2** and **twitter_oauth2_pkce**.
 
 - [Example Tweet App](https://github.com/twitter-dart/example-tweet-app-with-twitter-api-v2)
