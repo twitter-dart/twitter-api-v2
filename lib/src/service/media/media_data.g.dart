@@ -48,6 +48,12 @@ _$_MediaData _$$_MediaDataFromJson(Map json) => $checkedCreate(
                   ? null
                   : PublicMediaMetrics.fromJson(
                       Map<String, Object?>.from(v as Map))),
+          variants: $checkedConvert(
+              'variants',
+              (v) => (v as List<dynamic>?)
+                  ?.map((e) =>
+                      Variant.fromJson(Map<String, Object?>.from(e as Map)))
+                  .toList()),
         );
         return val;
       },
@@ -77,6 +83,7 @@ Map<String, dynamic> _$$_MediaDataToJson(_$_MediaData instance) =>
       'preview_image_url': instance.previewImageUrl,
       'promoted_metrics': instance.promotedMetrics?.toJson(),
       'public_metrics': instance.publicMetrics?.toJson(),
+      'variants': instance.variants?.map((e) => e.toJson()).toList(),
     };
 
 const _$MediaTypeEnumMap = {

@@ -100,6 +100,10 @@ mixin _$MediaData {
   /// - Determine total number of views for the video attached to the Tweet.
   PublicMediaMetrics? get publicMetrics => throw _privateConstructorUsedError;
 
+  /// Each media object may have multiple display or playback variants,
+  /// with different resolutions or formats.
+  List<Variant>? get variants => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $MediaDataCopyWith<MediaData> get copyWith =>
@@ -122,7 +126,8 @@ abstract class $MediaDataCopyWith<$Res> {
       OrganicMediaMetrics? organicMetrics,
       String? previewImageUrl,
       PromotedMediaMetrics? promotedMetrics,
-      PublicMediaMetrics? publicMetrics});
+      PublicMediaMetrics? publicMetrics,
+      List<Variant>? variants});
 
   $PrivateMediaMetricsCopyWith<$Res>? get privateMetrics;
   $OrganicMediaMetricsCopyWith<$Res>? get organicMetrics;
@@ -152,6 +157,7 @@ class _$MediaDataCopyWithImpl<$Res> implements $MediaDataCopyWith<$Res> {
     Object? previewImageUrl = freezed,
     Object? promotedMetrics = freezed,
     Object? publicMetrics = freezed,
+    Object? variants = freezed,
   }) {
     return _then(_value.copyWith(
       key: key == freezed
@@ -202,6 +208,10 @@ class _$MediaDataCopyWithImpl<$Res> implements $MediaDataCopyWith<$Res> {
           ? _value.publicMetrics
           : publicMetrics // ignore: cast_nullable_to_non_nullable
               as PublicMediaMetrics?,
+      variants: variants == freezed
+          ? _value.variants
+          : variants // ignore: cast_nullable_to_non_nullable
+              as List<Variant>?,
     ));
   }
 
@@ -269,7 +279,8 @@ abstract class _$$_MediaDataCopyWith<$Res> implements $MediaDataCopyWith<$Res> {
       OrganicMediaMetrics? organicMetrics,
       String? previewImageUrl,
       PromotedMediaMetrics? promotedMetrics,
-      PublicMediaMetrics? publicMetrics});
+      PublicMediaMetrics? publicMetrics,
+      List<Variant>? variants});
 
   @override
   $PrivateMediaMetricsCopyWith<$Res>? get privateMetrics;
@@ -305,6 +316,7 @@ class __$$_MediaDataCopyWithImpl<$Res> extends _$MediaDataCopyWithImpl<$Res>
     Object? previewImageUrl = freezed,
     Object? promotedMetrics = freezed,
     Object? publicMetrics = freezed,
+    Object? variants = freezed,
   }) {
     return _then(_$_MediaData(
       key: key == freezed
@@ -355,6 +367,10 @@ class __$$_MediaDataCopyWithImpl<$Res> extends _$MediaDataCopyWithImpl<$Res>
           ? _value.publicMetrics
           : publicMetrics // ignore: cast_nullable_to_non_nullable
               as PublicMediaMetrics?,
+      variants: variants == freezed
+          ? _value._variants
+          : variants // ignore: cast_nullable_to_non_nullable
+              as List<Variant>?,
     ));
   }
 }
@@ -374,7 +390,9 @@ class _$_MediaData implements _MediaData {
       this.organicMetrics,
       this.previewImageUrl,
       this.promotedMetrics,
-      this.publicMetrics});
+      this.publicMetrics,
+      final List<Variant>? variants})
+      : _variants = variants;
 
   factory _$_MediaData.fromJson(Map<String, dynamic> json) =>
       _$$_MediaDataFromJson(json);
@@ -470,9 +488,23 @@ class _$_MediaData implements _MediaData {
   @override
   final PublicMediaMetrics? publicMetrics;
 
+  /// Each media object may have multiple display or playback variants,
+  /// with different resolutions or formats.
+  final List<Variant>? _variants;
+
+  /// Each media object may have multiple display or playback variants,
+  /// with different resolutions or formats.
+  @override
+  List<Variant>? get variants {
+    final value = _variants;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   String toString() {
-    return 'MediaData(key: $key, type: $type, url: $url, altText: $altText, durationMilliseconds: $durationMilliseconds, height: $height, width: $width, privateMetrics: $privateMetrics, organicMetrics: $organicMetrics, previewImageUrl: $previewImageUrl, promotedMetrics: $promotedMetrics, publicMetrics: $publicMetrics)';
+    return 'MediaData(key: $key, type: $type, url: $url, altText: $altText, durationMilliseconds: $durationMilliseconds, height: $height, width: $width, privateMetrics: $privateMetrics, organicMetrics: $organicMetrics, previewImageUrl: $previewImageUrl, promotedMetrics: $promotedMetrics, publicMetrics: $publicMetrics, variants: $variants)';
   }
 
   @override
@@ -497,7 +529,8 @@ class _$_MediaData implements _MediaData {
             const DeepCollectionEquality()
                 .equals(other.promotedMetrics, promotedMetrics) &&
             const DeepCollectionEquality()
-                .equals(other.publicMetrics, publicMetrics));
+                .equals(other.publicMetrics, publicMetrics) &&
+            const DeepCollectionEquality().equals(other._variants, _variants));
   }
 
   @JsonKey(ignore: true)
@@ -515,7 +548,8 @@ class _$_MediaData implements _MediaData {
       const DeepCollectionEquality().hash(organicMetrics),
       const DeepCollectionEquality().hash(previewImageUrl),
       const DeepCollectionEquality().hash(promotedMetrics),
-      const DeepCollectionEquality().hash(publicMetrics));
+      const DeepCollectionEquality().hash(publicMetrics),
+      const DeepCollectionEquality().hash(_variants));
 
   @JsonKey(ignore: true)
   @override
@@ -544,7 +578,8 @@ abstract class _MediaData implements MediaData {
       final OrganicMediaMetrics? organicMetrics,
       final String? previewImageUrl,
       final PromotedMediaMetrics? promotedMetrics,
-      final PublicMediaMetrics? publicMetrics}) = _$_MediaData;
+      final PublicMediaMetrics? publicMetrics,
+      final List<Variant>? variants}) = _$_MediaData;
 
   factory _MediaData.fromJson(Map<String, dynamic> json) =
       _$_MediaData.fromJson;
@@ -641,6 +676,11 @@ abstract class _MediaData implements MediaData {
   ///
   /// - Determine total number of views for the video attached to the Tweet.
   PublicMediaMetrics? get publicMetrics => throw _privateConstructorUsedError;
+  @override
+
+  /// Each media object may have multiple display or playback variants,
+  /// with different resolutions or formats.
+  List<Variant>? get variants => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_MediaDataCopyWith<_$_MediaData> get copyWith =>

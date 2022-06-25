@@ -22,5 +22,6 @@ void main() {
     expect(MediaField.type.value, 'type');
     expect(MediaField.url.value, 'url');
     expect(MediaField.width.value, 'width');
+    expect(MediaField.variants.value, 'variants');
   });
 }
