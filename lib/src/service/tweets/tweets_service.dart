@@ -58,6 +58,8 @@ abstract class TweetsService {
   ///                    the list of tagged users even though the Tweet is
   ///                    successfully created.
   ///
+  /// - [placeId]: Place ID being attached to the Tweet for geo location.
+  ///
   /// - [pollDuration]: Duration of the poll in minutes for a Tweet with a poll.
   ///                   This is only required if the request includes
   ///                   [pollOptions].
@@ -110,6 +112,7 @@ abstract class TweetsService {
     bool? forSuperFollowersOnly,
     List<String>? mediaIds,
     List<String>? taggedUserIds,
+    String? placeId,
     Duration? pollDuration,
     List<String>? pollOptions,
     String? inReplyToTweetId,
@@ -2378,6 +2381,7 @@ class _TweetsService extends BaseService implements TweetsService {
     bool? forSuperFollowersOnly,
     List<String>? mediaIds,
     List<String>? taggedUserIds,
+    String? placeId,
     Duration? pollDuration,
     List<String>? pollOptions,
     String? inReplyToTweetId,
@@ -2397,10 +2401,12 @@ class _TweetsService extends BaseService implements TweetsService {
               'media_ids': mediaIds,
               'tagged_user_ids': taggedUserIds,
             },
+            'geo': {
+              'place_id': placeId,
+            },
             'poll': {
               'duration_minutes': pollDuration?.inMinutes,
               'options': pollOptions,
-            },
             'reply': {
               'in_reply_to_tweet_id': inReplyToTweetId,
               'exclude_reply_user_ids': excludeReplyUserIds,
