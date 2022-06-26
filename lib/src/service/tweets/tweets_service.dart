@@ -781,11 +781,15 @@ abstract class TweetsService {
   ///              default. If not specified, `endTime` will default to
   ///              [now - 30 seconds].
   ///
-  /// - [sinceId]: Returns results with a Tweet ID greater than (that is, more
-  ///              recent than) the specified ID. The ID specified is exclusive
-  ///              and responses will not include it. If included with the same
-  ///              request as a [startTime] parameter, only [sinceId] will
-  ///              be used.
+  /// - [sinceTweetId]: Returns results with a Tweet ID greater than (that is,
+  ///                   more recent than) the specified ID. The ID specified is
+  ///                   exclusive and responses will not include it. If included
+  ///                   with the same request as a [startTime] parameter, only
+  ///                   [sinceTweetId] will be used.
+  ///
+  /// - [untilTweetId]: Returns results with a Tweet ID less than (that is,
+  ///                   older than) the specified ID. The ID specified is
+  ///                   exclusive and responses will not include it.
   ///
   /// - [expansions]: Expansions enable you to request additional data objects
   ///                 that relate to the originally returned Tweets. Submit a
@@ -870,7 +874,8 @@ abstract class TweetsService {
     SortOrder? sortOrder,
     DateTime? startTime,
     DateTime? endTime,
-    String? sinceId,
+    String? sinceTweetId,
+    String? untilTweetId,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
@@ -926,11 +931,15 @@ abstract class TweetsService {
   ///              default. If not specified, `endTime` will default to
   ///              [now - 30 seconds].
   ///
-  /// - [sinceId]: Returns results with a Tweet ID greater than (that is, more
-  ///              recent than) the specified ID. The ID specified is exclusive
-  ///              and responses will not include it. If included with the same
-  ///              request as a [startTime] parameter, only [sinceId] will
-  ///              be used.
+  /// - [sinceTweetId]: Returns results with a Tweet ID greater than (that is,
+  ///                   more recent than) the specified ID. The ID specified is
+  ///                   exclusive and responses will not include it. If included
+  ///                   with the same request as a [startTime] parameter, only
+  ///                   [sinceTweetId] will be used.
+  ///
+  /// - [untilTweetId]: Returns results with a Tweet ID less than (that is,
+  ///                   older than) the specified ID. The ID specified is
+  ///                   exclusive and responses will not include it.
   ///
   /// - [expansions]: Expansions enable you to request additional data objects
   ///                 that relate to the originally returned Tweets. Submit a
@@ -1015,7 +1024,8 @@ abstract class TweetsService {
     SortOrder? sortOrder,
     DateTime? startTime,
     DateTime? endTime,
-    String? sinceId,
+    String? sinceTweetId,
+    String? untilTweetId,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
@@ -2572,7 +2582,8 @@ class _TweetsService extends BaseService implements TweetsService {
     SortOrder? sortOrder,
     DateTime? startTime,
     DateTime? endTime,
-    String? sinceId,
+    String? sinceTweetId,
+    String? untilTweetId,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
@@ -2591,7 +2602,8 @@ class _TweetsService extends BaseService implements TweetsService {
             'sort_order': sortOrder?.name,
             'start_time': startTime,
             'end_time': endTime,
-            'since_id': sinceId,
+            'since_id': sinceTweetId,
+            'until_id': untilTweetId,
             'expansions': expansions,
             'tweet.fields': tweetFields,
             'user.fields': userFields,
@@ -2612,7 +2624,8 @@ class _TweetsService extends BaseService implements TweetsService {
     SortOrder? sortOrder,
     DateTime? startTime,
     DateTime? endTime,
-    String? sinceId,
+    String? sinceTweetId,
+    String? untilTweetId,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
@@ -2631,7 +2644,8 @@ class _TweetsService extends BaseService implements TweetsService {
             'sort_order': sortOrder?.name,
             'start_time': startTime,
             'end_time': endTime,
-            'since_id': sinceId,
+            'since_id': sinceTweetId,
+            'until_id': untilTweetId,
             'expansions': expansions,
             'tweet.fields': tweetFields,
             'user.fields': userFields,
