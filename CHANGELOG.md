@@ -14,6 +14,9 @@
   - GET /2/tweets/counts/all
   - GET /2/tweets/counts/recent
 - Added `variants` field to `MediaData` object. You can get this field by using `MediaField.variants`. ([#265](https://github.com/twitter-dart/twitter-api-v2/issues/265))
+- Added `sinceId` parameter. ([#285](https://github.com/twitter-dart/twitter-api-v2/issues/285))
+  - GET /2/tweets/search/all
+  - GET /2/tweets/search/recent
 - Added `excludeReplyUserIds` parameter to `createTweet`. ([#283](https://github.com/twitter-dart/twitter-api-v2/issues/283))
 
 ## v2.7.0
