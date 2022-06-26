@@ -69,6 +69,10 @@ abstract class TweetsService {
   ///                   Options include `mentionedUsers` and `following`.
   ///                   The default to `everyone`.
   ///
+  /// - [directMessageDeepLink]: Tweets a link directly to a
+  ///                            [Direct Message conversation](https://business.twitter.com/en/help/campaign-editing-and-optimization/public-to-private-conversation.html)
+  ///                           with an account.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets
@@ -101,6 +105,7 @@ abstract class TweetsService {
     String? inReplyToTweetId,
     List<String>? excludeReplyUserIds,
     ReplySetting? replySetting,
+    String? directMessageDeepLink,
   });
 
   /// Allows a user or authenticated user ID to delete a Tweet.
@@ -2356,6 +2361,7 @@ class _TweetsService extends BaseService implements TweetsService {
     String? inReplyToTweetId,
     List<String>? excludeReplyUserIds,
     ReplySetting? replySetting,
+    String? directMessageDeepLink,
   }) async =>
       super.buildResponse(
         await super.post(
@@ -2378,6 +2384,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'reply_settings': replySetting == ReplySetting.everyone
                 ? null
                 : replySetting?.name,
+            'direct_message_deep_link': directMessageDeepLink,
           },
         ),
         dataBuilder: TweetData.fromJson,
