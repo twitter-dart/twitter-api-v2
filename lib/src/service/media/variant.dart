@@ -11,9 +11,14 @@ part 'variant.g.dart';
 @freezed
 class Variant with _$Variant {
   const factory Variant({
+    /// The number of bit rates in the content.
     int? bitRate,
-    String? contentType,
-    String? url,
+
+    /// The content type.
+    required String contentType,
+
+    /// The utr to the content.
+    required String url,
   }) = _Variant;
 
   factory Variant.fromJson(Map<String, Object?> json) =>
