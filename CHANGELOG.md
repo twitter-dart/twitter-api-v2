@@ -23,6 +23,7 @@
 - Added `excludeReplyUserIds` parameter to `createTweet`. ([#283](https://github.com/twitter-dart/twitter-api-v2/issues/283))
 - Added `directMessageDeepLink` parameter to `createTweet`. ([#279](https://github.com/twitter-dart/twitter-api-v2/issues/279))
 - Added `placeId` parameter to `createTweet`. ([#280](https://github.com/twitter-dart/twitter-api-v2/issues/280))
+- Added `pollDuration` and `pollOptions` parameters to `createTweet`. ([#282](https://github.com/twitter-dart/twitter-api-v2/issues/282))
 
 ## v2.7.0
 

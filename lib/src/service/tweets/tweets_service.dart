@@ -60,6 +60,14 @@ abstract class TweetsService {
   ///
   /// - [placeId]: Place ID being attached to the Tweet for geo location.
   ///
+  /// - [pollDuration]: Duration of the poll in minutes for a Tweet with a poll.
+  ///                   This is only required if the request includes
+  ///                   [pollOptions].
+  ///
+  /// - [pollOptions]: A list of poll options for a Tweet with a poll.
+  ///                  For the request to be successful it must also include
+  ///                  [pollDuration] too.
+  ///
   /// - [inReplyToTweetId]: Tweet ID of the Tweet being replied to. Please note
   ///                       that [inReplyToTweetId] needs to be in the request
   ///                       if [excludeReplyUserIds] is present.
@@ -105,6 +113,8 @@ abstract class TweetsService {
     List<String>? mediaIds,
     List<String>? taggedUserIds,
     String? placeId,
+    Duration? pollDuration,
+    List<String>? pollOptions,
     String? inReplyToTweetId,
     List<String>? excludeReplyUserIds,
     ReplySetting? replySetting,
@@ -2372,6 +2382,8 @@ class _TweetsService extends BaseService implements TweetsService {
     List<String>? mediaIds,
     List<String>? taggedUserIds,
     String? placeId,
+    Duration? pollDuration,
+    List<String>? pollOptions,
     String? inReplyToTweetId,
     List<String>? excludeReplyUserIds,
     ReplySetting? replySetting,
@@ -2391,6 +2403,10 @@ class _TweetsService extends BaseService implements TweetsService {
             },
             'geo': {
               'place_id': placeId,
+            },
+            'poll': {
+              'duration_minutes': pollDuration?.inMinutes,
+              'options': pollOptions,
             },
             'reply': {
               'in_reply_to_tweet_id': inReplyToTweetId,
