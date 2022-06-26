@@ -21,6 +21,8 @@ Variant _$VariantFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Variant {
   /// The number of bit rates in the content.
+  ///
+  /// It may be null when content type is `application/x-mpegURL`.
   int? get bitRate => throw _privateConstructorUsedError;
 
   /// The content type.
@@ -123,6 +125,8 @@ class _$_Variant implements _Variant {
       _$$_VariantFromJson(json);
 
   /// The number of bit rates in the content.
+  ///
+  /// It may be null when content type is `application/x-mpegURL`.
   @override
   final int? bitRate;
 
@@ -180,6 +184,8 @@ abstract class _Variant implements Variant {
   @override
 
   /// The number of bit rates in the content.
+  ///
+  /// It may be null when content type is `application/x-mpegURL`.
   int? get bitRate => throw _privateConstructorUsedError;
   @override
 

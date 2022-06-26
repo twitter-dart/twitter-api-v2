@@ -12,6 +12,8 @@ part 'variant.g.dart';
 class Variant with _$Variant {
   const factory Variant({
     /// The number of bit rates in the content.
+    ///
+    /// It may be null when content type is `application/x-mpegURL`.
     int? bitRate,
 
     /// The content type.
