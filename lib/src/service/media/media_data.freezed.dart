@@ -100,8 +100,12 @@ mixin _$MediaData {
   /// - Determine total number of views for the video attached to the Tweet.
   PublicMediaMetrics? get publicMetrics => throw _privateConstructorUsedError;
 
-  /// Each media object may have multiple display or playback variants,
-  /// with different resolutions or formats.
+  /// Variants of media attached in the MediaObject.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Each media object may have multiple display or playback variants,
+  ///   with different resolutions or formats.
   List<Variant>? get variants => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -488,12 +492,20 @@ class _$_MediaData implements _MediaData {
   @override
   final PublicMediaMetrics? publicMetrics;
 
-  /// Each media object may have multiple display or playback variants,
-  /// with different resolutions or formats.
+  /// Variants of media attached in the MediaObject.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Each media object may have multiple display or playback variants,
+  ///   with different resolutions or formats.
   final List<Variant>? _variants;
 
-  /// Each media object may have multiple display or playback variants,
-  /// with different resolutions or formats.
+  /// Variants of media attached in the MediaObject.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Each media object may have multiple display or playback variants,
+  ///   with different resolutions or formats.
   @override
   List<Variant>? get variants {
     final value = _variants;
@@ -678,8 +690,12 @@ abstract class _MediaData implements MediaData {
   PublicMediaMetrics? get publicMetrics => throw _privateConstructorUsedError;
   @override
 
-  /// Each media object may have multiple display or playback variants,
-  /// with different resolutions or formats.
+  /// Variants of media attached in the MediaObject.
+  ///
+  /// ## How It Can Be Used
+  ///
+  /// - Each media object may have multiple display or playback variants,
+  ///   with different resolutions or formats.
   List<Variant>? get variants => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

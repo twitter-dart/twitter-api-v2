@@ -45,6 +45,6 @@ Map<String, dynamic> _$$_PlaceDataToJson(_$_PlaceData instance) =>
       'place_type': instance.placeType,
       'country': instance.country,
       'country_code': instance.countryCode,
-      'geo': instance.geo,
+      'geo': instance.geo?.toJson(),
       'contained_within': instance.containedWithin,
     };

@@ -11,9 +11,16 @@ part 'variant.g.dart';
 @freezed
 class Variant with _$Variant {
   const factory Variant({
+    /// The number of bit rates in the content.
+    ///
+    /// It may be null when content type is `application/x-mpegURL`.
     int? bitRate,
-    String? contentType,
-    String? url,
+
+    /// The content type.
+    required String contentType,
+
+    /// The url to the content.
+    required String url,
   }) = _Variant;
 
   factory Variant.fromJson(Map<String, Object?> json) =>

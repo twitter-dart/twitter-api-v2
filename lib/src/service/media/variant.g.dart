@@ -14,8 +14,8 @@ _$_Variant _$$_VariantFromJson(Map json) => $checkedCreate(
       ($checkedConvert) {
         final val = _$_Variant(
           bitRate: $checkedConvert('bit_rate', (v) => v as int?),
-          contentType: $checkedConvert('content_type', (v) => v as String?),
-          url: $checkedConvert('url', (v) => v as String?),
+          contentType: $checkedConvert('content_type', (v) => v as String),
+          url: $checkedConvert('url', (v) => v as String),
         );
         return val;
       },

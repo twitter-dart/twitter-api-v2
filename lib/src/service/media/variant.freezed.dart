@@ -20,9 +20,16 @@ Variant _$VariantFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Variant {
+  /// The number of bit rates in the content.
+  ///
+  /// It may be null when content type is `application/x-mpegURL`.
   int? get bitRate => throw _privateConstructorUsedError;
-  String? get contentType => throw _privateConstructorUsedError;
-  String? get url => throw _privateConstructorUsedError;
+
+  /// The content type.
+  String get contentType => throw _privateConstructorUsedError;
+
+  /// The url to the content.
+  String get url => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,7 +40,7 @@ mixin _$Variant {
 abstract class $VariantCopyWith<$Res> {
   factory $VariantCopyWith(Variant value, $Res Function(Variant) then) =
       _$VariantCopyWithImpl<$Res>;
-  $Res call({int? bitRate, String? contentType, String? url});
+  $Res call({int? bitRate, String contentType, String url});
 }
 
 /// @nodoc
@@ -58,11 +65,11 @@ class _$VariantCopyWithImpl<$Res> implements $VariantCopyWith<$Res> {
       contentType: contentType == freezed
           ? _value.contentType
           : contentType // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       url: url == freezed
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -73,7 +80,7 @@ abstract class _$$_VariantCopyWith<$Res> implements $VariantCopyWith<$Res> {
           _$_Variant value, $Res Function(_$_Variant) then) =
       __$$_VariantCopyWithImpl<$Res>;
   @override
-  $Res call({int? bitRate, String? contentType, String? url});
+  $Res call({int? bitRate, String contentType, String url});
 }
 
 /// @nodoc
@@ -99,11 +106,11 @@ class __$$_VariantCopyWithImpl<$Res> extends _$VariantCopyWithImpl<$Res>
       contentType: contentType == freezed
           ? _value.contentType
           : contentType // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       url: url == freezed
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -111,17 +118,25 @@ class __$$_VariantCopyWithImpl<$Res> extends _$VariantCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Variant implements _Variant {
-  const _$_Variant({this.bitRate, this.contentType, this.url});
+  const _$_Variant(
+      {this.bitRate, required this.contentType, required this.url});
 
   factory _$_Variant.fromJson(Map<String, dynamic> json) =>
       _$$_VariantFromJson(json);
 
+  /// The number of bit rates in the content.
+  ///
+  /// It may be null when content type is `application/x-mpegURL`.
   @override
   final int? bitRate;
+
+  /// The content type.
   @override
-  final String? contentType;
+  final String contentType;
+
+  /// The url to the content.
   @override
-  final String? url;
+  final String url;
 
   @override
   String toString() {
@@ -161,17 +176,25 @@ class _$_Variant implements _Variant {
 abstract class _Variant implements Variant {
   const factory _Variant(
       {final int? bitRate,
-      final String? contentType,
-      final String? url}) = _$_Variant;
+      required final String contentType,
+      required final String url}) = _$_Variant;
 
   factory _Variant.fromJson(Map<String, dynamic> json) = _$_Variant.fromJson;
 
   @override
+
+  /// The number of bit rates in the content.
+  ///
+  /// It may be null when content type is `application/x-mpegURL`.
   int? get bitRate => throw _privateConstructorUsedError;
   @override
-  String? get contentType => throw _privateConstructorUsedError;
+
+  /// The content type.
+  String get contentType => throw _privateConstructorUsedError;
   @override
-  String? get url => throw _privateConstructorUsedError;
+
+  /// The url to the content.
+  String get url => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_VariantCopyWith<_$_Variant> get copyWith =>
