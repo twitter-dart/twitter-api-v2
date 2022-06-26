@@ -26,7 +26,7 @@ mixin _$Variant {
   /// The content type.
   String get contentType => throw _privateConstructorUsedError;
 
-  /// The utr to the content.
+  /// The url to the content.
   String get url => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -130,7 +130,7 @@ class _$_Variant implements _Variant {
   @override
   final String contentType;
 
-  /// The utr to the content.
+  /// The url to the content.
   @override
   final String url;
 
@@ -187,7 +187,7 @@ abstract class _Variant implements Variant {
   String get contentType => throw _privateConstructorUsedError;
   @override
 
-  /// The utr to the content.
+  /// The url to the content.
   String get url => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

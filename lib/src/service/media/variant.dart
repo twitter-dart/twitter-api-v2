@@ -17,7 +17,7 @@ class Variant with _$Variant {
     /// The content type.
     required String contentType,
 
-    /// The utr to the content.
+    /// The url to the content.
     required String url,
   }) = _Variant;
 
