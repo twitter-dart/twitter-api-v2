@@ -781,6 +781,12 @@ abstract class TweetsService {
   ///              default. If not specified, `endTime` will default to
   ///              [now - 30 seconds].
   ///
+  /// - [sinceId]: Returns results with a Tweet ID greater than (that is, more
+  ///              recent than) the specified ID. The ID specified is exclusive
+  ///              and responses will not include it. If included with the same
+  ///              request as a [startTime] parameter, only [sinceId] will
+  ///              be used.
+  ///
   /// - [expansions]: Expansions enable you to request additional data objects
   ///                 that relate to the originally returned Tweets. Submit a
   ///                 list of desired expansions in a comma-separated list
@@ -864,6 +870,7 @@ abstract class TweetsService {
     SortOrder? sortOrder,
     DateTime? startTime,
     DateTime? endTime,
+    String? sinceId,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
@@ -918,6 +925,12 @@ abstract class TweetsService {
   ///              Tweets from 30 days before `endTime` will be returned by
   ///              default. If not specified, `endTime` will default to
   ///              [now - 30 seconds].
+  ///
+  /// - [sinceId]: Returns results with a Tweet ID greater than (that is, more
+  ///              recent than) the specified ID. The ID specified is exclusive
+  ///              and responses will not include it. If included with the same
+  ///              request as a [startTime] parameter, only [sinceId] will
+  ///              be used.
   ///
   /// - [expansions]: Expansions enable you to request additional data objects
   ///                 that relate to the originally returned Tweets. Submit a
@@ -1002,6 +1015,7 @@ abstract class TweetsService {
     SortOrder? sortOrder,
     DateTime? startTime,
     DateTime? endTime,
+    String? sinceId,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
@@ -2558,6 +2572,7 @@ class _TweetsService extends BaseService implements TweetsService {
     SortOrder? sortOrder,
     DateTime? startTime,
     DateTime? endTime,
+    String? sinceId,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
@@ -2576,6 +2591,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'sort_order': sortOrder?.name,
             'start_time': startTime,
             'end_time': endTime,
+            'since_id': sinceId,
             'expansions': expansions,
             'tweet.fields': tweetFields,
             'user.fields': userFields,
@@ -2596,6 +2612,7 @@ class _TweetsService extends BaseService implements TweetsService {
     SortOrder? sortOrder,
     DateTime? startTime,
     DateTime? endTime,
+    String? sinceId,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
@@ -2614,6 +2631,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'sort_order': sortOrder?.name,
             'start_time': startTime,
             'end_time': endTime,
+            'since_id': sinceId,
             'expansions': expansions,
             'tweet.fields': tweetFields,
             'user.fields': userFields,
