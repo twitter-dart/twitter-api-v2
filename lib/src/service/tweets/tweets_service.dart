@@ -45,7 +45,8 @@ abstract class TweetsService {
   ///
   /// - [quoteTweetId]: Link to the Tweet being quoted.
   ///
-  /// - [forSuperFollowersOnly]: Allows you to Tweet exclusively for [Super Followers](https://help.twitter.com/en/using-twitter/super-follows).
+  /// - [forSuperFollowersOnly]: Allows you to Tweet exclusively for
+  ///                           [Super Followers](https://help.twitter.com/en/using-twitter/super-follows).
   ///
   /// - [mediaIds]: A list of Media IDs being attached to the Tweet.
   ///               This is only required if the request includes
@@ -60,6 +61,9 @@ abstract class TweetsService {
   /// - [inReplyToTweetId]: Tweet ID of the Tweet being replied to. Please note
   ///                       that [inReplyToTweetId] needs to be in the request
   ///                       if [excludeReplyUserIds] is present.
+  ///
+  /// - [excludeReplyUserIds]: A list of User IDs to be excluded from the reply
+  ///                          Tweet thus removing a user from a thread.
   ///
   /// - [replySetting]: Settings to indicate who can reply to the Tweet.
   ///                   Options include `mentionedUsers` and `following`.
@@ -95,6 +99,7 @@ abstract class TweetsService {
     List<String>? mediaIds,
     List<String>? taggedUserIds,
     String? inReplyToTweetId,
+    List<String>? excludeReplyUserIds,
     ReplySetting? replySetting,
   });
 
@@ -2335,6 +2340,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<String>? mediaIds,
     List<String>? taggedUserIds,
     String? inReplyToTweetId,
+    List<String>? excludeReplyUserIds,
     ReplySetting? replySetting,
   }) async =>
       super.buildResponse(
@@ -2351,6 +2357,7 @@ class _TweetsService extends BaseService implements TweetsService {
             },
             'reply': {
               'in_reply_to_tweet_id': inReplyToTweetId,
+              'exclude_reply_user_ids': excludeReplyUserIds,
             },
             //! `ReplySetting.everyone` cannot be specified for this endpoint.
             //! Convert to null and delete the field before sending a request.
