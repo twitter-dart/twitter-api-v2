@@ -58,6 +58,8 @@ abstract class TweetsService {
   ///                    the list of tagged users even though the Tweet is
   ///                    successfully created.
   ///
+  /// - [placeId]: Place ID being attached to the Tweet for geo location.
+  ///
   /// - [inReplyToTweetId]: Tweet ID of the Tweet being replied to. Please note
   ///                       that [inReplyToTweetId] needs to be in the request
   ///                       if [excludeReplyUserIds] is present.
@@ -102,6 +104,7 @@ abstract class TweetsService {
     bool? forSuperFollowersOnly,
     List<String>? mediaIds,
     List<String>? taggedUserIds,
+    String? placeId,
     String? inReplyToTweetId,
     List<String>? excludeReplyUserIds,
     ReplySetting? replySetting,
@@ -2368,6 +2371,7 @@ class _TweetsService extends BaseService implements TweetsService {
     bool? forSuperFollowersOnly,
     List<String>? mediaIds,
     List<String>? taggedUserIds,
+    String? placeId,
     String? inReplyToTweetId,
     List<String>? excludeReplyUserIds,
     ReplySetting? replySetting,
@@ -2384,6 +2388,9 @@ class _TweetsService extends BaseService implements TweetsService {
             'media': {
               'media_ids': mediaIds,
               'tagged_user_ids': taggedUserIds,
+            },
+            'geo': {
+              'place_id': placeId,
             },
             'reply': {
               'in_reply_to_tweet_id': inReplyToTweetId,
