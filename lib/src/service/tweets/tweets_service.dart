@@ -2407,6 +2407,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'poll': {
               'duration_minutes': pollDuration?.inMinutes,
               'options': pollOptions,
+            },
             'reply': {
               'in_reply_to_tweet_id': inReplyToTweetId,
               'exclude_reply_user_ids': excludeReplyUserIds,
