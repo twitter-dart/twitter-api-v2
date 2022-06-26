@@ -5,6 +5,14 @@
 - Added `timeout` option to `TwitterApi`. The default timeout duration is 10 seconds. ([#252](https://github.com/twitter-dart/twitter-api-v2/issues/252))
 - Added `sortOrder` parameter to `TweetsService.searchRecent` and `TweetsService.searchAll`. ([#284](https://github.com/twitter-dart/twitter-api-v2/issues/284))
 - Removed `expansions` parameter from `createTweet` method because this is not the supported parameter. ([#288](https://github.com/twitter-dart/twitter-api-v2/issues/288))
+- Added `startTime` and `endTime` parameters. ([#240](https://github.com/twitter-dart/twitter-api-v2/issues/240))
+  - GET /2/tweets/search/all
+  - GET /2/tweets/search/recent
+  - GET /2/users/:id/mentions
+  - GET /2/users/:id/timelines/reverse_chronological
+  - GET /2/users/:id/tweets
+  - GET /2/tweets/counts/all
+  - GET /2/tweets/counts/recent
 
 ## v2.7.0
 
