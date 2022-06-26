@@ -17,6 +17,7 @@
 - Added `sinceId` parameter. ([#285](https://github.com/twitter-dart/twitter-api-v2/issues/285))
   - GET /2/tweets/search/all
   - GET /2/tweets/search/recent
+- Added `excludeReplyUserIds` parameter to `createTweet`. ([#283](https://github.com/twitter-dart/twitter-api-v2/issues/283))
 
 ## v2.7.0
 
