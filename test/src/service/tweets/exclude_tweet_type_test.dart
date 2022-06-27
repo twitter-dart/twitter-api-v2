@@ -10,7 +10,7 @@ import 'package:twitter_api_v2/twitter_api_v2.dart';
 
 void main() {
   test('.name', () {
-    expect(TweetExcludeType.retweets.name, 'retweets');
-    expect(TweetExcludeType.replies.name, 'replies');
+    expect(ExcludeTweetType.retweets.name, 'retweets');
+    expect(ExcludeTweetType.replies.name, 'replies');
   });
 }
