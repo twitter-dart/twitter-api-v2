@@ -16,12 +16,17 @@ import 'package:twitter_api_v2/src/service/tweets/matching_rule.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_count_data.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_count_meta.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_data.dart';
+import 'package:twitter_api_v2/src/service/tweets/tweet_geo_param.dart';
+import 'package:twitter_api_v2/src/service/tweets/tweet_media_param.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_meta.dart';
+import 'package:twitter_api_v2/src/service/tweets/tweet_poll_param.dart';
+import 'package:twitter_api_v2/src/service/tweets/tweet_reply_param.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweets_service.dart';
 import 'package:twitter_api_v2/src/service/twitter_response.dart';
 import 'package:twitter_api_v2/src/service/users/user_data.dart';
 import 'package:twitter_api_v2/src/service/users/user_meta.dart';
 import 'package:twitter_api_v2/src/twitter_exception.dart';
+
 import '../../../mocks/client_context_stubs.dart' as context;
 
 void main() {
@@ -35,7 +40,13 @@ void main() {
         ),
       );
 
-      final response = await tweetsService.createTweet(text: 'Hello, World!');
+      final response = await tweetsService.createTweet(
+        text: 'Hello, World!',
+        media: TweetMediaParam(mediaIds: [], taggedUserIds: []),
+        geo: TweetGeoParam(placeId: ''),
+        poll: TweetPollParam(durationInMinute: 10, options: []),
+        reply: TweetReplyParam(inReplyToTweetId: '', excludeReplyUserIds: []),
+      );
 
       expect(response, isA<TwitterResponse>());
       expect(response.data, isA<TweetData>());
