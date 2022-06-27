@@ -257,6 +257,11 @@ abstract class BaseService implements Service {
           key,
           value?.toSet().map((e) => e.value).toList().join(','),
         );
+      } else if (value is List<Enum>?) {
+        return MapEntry(
+          key,
+          value?.toSet().map((e) => e.name).join(','),
+        );
       } else if (value is List?) {
         return MapEntry(
           key,
