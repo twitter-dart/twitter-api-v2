@@ -193,9 +193,9 @@ void main() async {
     // Also high-performance Filtered Stream endpoint is available.
     await twitter.tweetsService.createFilteringRules(
       rules: [
-        v2.FilteringRuleData(value: '#ElonMusk'),
-        v2.FilteringRuleData(value: '#Tesla'),
-        v2.FilteringRuleData(value: '#SpaceX'),
+        v2.FilteringRuleParam(value: '#ElonMusk'),
+        v2.FilteringRuleParam(value: '#Tesla'),
+        v2.FilteringRuleParam(value: '#SpaceX'),
       ],
     );
 
@@ -431,15 +431,15 @@ void main() async {
 
 **twitter_api_v2** uses the following standard prefixes depending on endpoint characteristics. So it's very easy to find the method corresponding to the endpoint you want to use!
 
-| Prefix      | Description                                                                                                                                  |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| **lookup**  | This prefix is attached to endpoints that reference tweets, users, etc. |
-| **search**  | This prefix is attached to endpoints that perform extensive searches.                                                                                |
-| **connect** | This prefix is attached to endpoints with high-performance streaming.                                                           |
-| **count**   | This prefix is attached to the endpoint that counts a particular item.                                                                                    |
-| **create**  | This prefix is attached to the endpoint performing the create state such as `Tweet` and `Follow`.                                            |
-| **destroy** | This prefix is attached to the endpoint performing the destroy state such as `Tweet` and `Follow`.                                           |
-| **update**  | This prefix is attached to the endpoint performing the update state.                                                                         |
+| Prefix      | Description                                                                                        |
+| ----------- | -------------------------------------------------------------------------------------------------- |
+| **lookup**  | This prefix is attached to endpoints that reference tweets, users, etc.                            |
+| **search**  | This prefix is attached to endpoints that perform extensive searches.                              |
+| **connect** | This prefix is attached to endpoints with high-performance streaming.                              |
+| **count**   | This prefix is attached to the endpoint that counts a particular item.                             |
+| **create**  | This prefix is attached to the endpoint performing the create state such as `Tweet` and `Follow`.  |
+| **destroy** | This prefix is attached to the endpoint performing the destroy state such as `Tweet` and `Follow`. |
+| **update**  | This prefix is attached to the endpoint performing the update state.                               |
 
 ### 1.3.2. Generate App-Only Bearer Token
 

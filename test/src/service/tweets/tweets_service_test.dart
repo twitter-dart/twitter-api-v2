@@ -12,6 +12,7 @@ import 'package:twitter_api_v2/src/client/user_context.dart';
 import 'package:twitter_api_v2/src/service/filtered_stream_response.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering_rule_data.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering_rule_meta.dart';
+import 'package:twitter_api_v2/src/service/tweets/filtering_rule_param.dart';
 import 'package:twitter_api_v2/src/service/tweets/matching_rule.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_count_data.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_count_meta.dart';
@@ -26,7 +27,6 @@ import 'package:twitter_api_v2/src/service/twitter_response.dart';
 import 'package:twitter_api_v2/src/service/users/user_data.dart';
 import 'package:twitter_api_v2/src/service/users/user_meta.dart';
 import 'package:twitter_api_v2/src/twitter_exception.dart';
-
 import '../../../mocks/client_context_stubs.dart' as context;
 
 void main() {
@@ -661,8 +661,8 @@ void main() {
     );
 
     final response = await tweetsService.createFilteringRules(rules: [
-      FilteringRuleData(value: 'test'),
-      FilteringRuleData(value: 'hello'),
+      FilteringRuleParam(value: 'test'),
+      FilteringRuleParam(value: 'hello'),
     ]);
 
     expect(

@@ -13,7 +13,7 @@ _$_FilteringRuleData _$$_FilteringRuleDataFromJson(Map json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = _$_FilteringRuleData(
-          id: $checkedConvert('id', (v) => v as String?),
+          id: $checkedConvert('id', (v) => v as String),
           value: $checkedConvert('value', (v) => v as String),
           tag: $checkedConvert('tag', (v) => v as String?),
         );

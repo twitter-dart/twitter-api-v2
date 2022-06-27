@@ -14,7 +14,7 @@ class FilteringRuleData with _$FilteringRuleData {
     /// Unique identifier of this rule. This is returned as a string in order
     /// to avoid complications with languages and tools that cannot
     /// handle large integers.
-    String? id,
+    required String id,
 
     /// The rule text as submitted when creating the rule.
     required String value,
