@@ -55,6 +55,7 @@ export 'package:twitter_api_v2/src/service/tweets/tweet_attachments.dart';
 export 'package:twitter_api_v2/src/service/tweets/tweet_context_annotation.dart';
 export 'package:twitter_api_v2/src/service/tweets/tweet_context_annotation_group.dart';
 export 'package:twitter_api_v2/src/service/tweets/tweet_count_data.dart';
+export 'package:twitter_api_v2/src/service/tweets/tweet_count_granularity.dart';
 export 'package:twitter_api_v2/src/service/tweets/tweet_count_meta.dart';
 export 'package:twitter_api_v2/src/service/tweets/tweet_data.dart';
 export 'package:twitter_api_v2/src/service/tweets/tweet_entities.dart';
