@@ -29,7 +29,11 @@ import 'tweet_count_meta.dart';
 import 'tweet_data.dart';
 import 'tweet_expansion.dart';
 import 'tweet_field.dart';
+import 'tweet_geo_param.dart';
+import 'tweet_media_param.dart';
 import 'tweet_meta.dart';
+import 'tweet_poll_param.dart';
+import 'tweet_reply_param.dart';
 
 abstract class TweetsService {
   /// Returns the new instance of [TweetsService].
@@ -48,33 +52,6 @@ abstract class TweetsService {
   /// - [forSuperFollowersOnly]: Allows you to Tweet exclusively for
   ///                           [Super Followers](https://help.twitter.com/en/using-twitter/super-follows).
   ///
-  /// - [mediaIds]: A list of Media IDs being attached to the Tweet.
-  ///               This is only required if the request includes
-  ///               the [taggedUserIds].
-  ///
-  /// - [taggedUserIds]: A list of User IDs being tagged in the Tweet with
-  ///                    Media. If the user you're tagging doesn't have
-  ///                    photo-tagging enabled, their names won't show up in
-  ///                    the list of tagged users even though the Tweet is
-  ///                    successfully created.
-  ///
-  /// - [placeId]: Place ID being attached to the Tweet for geo location.
-  ///
-  /// - [pollDuration]: Duration of the poll in minutes for a Tweet with a poll.
-  ///                   This is only required if the request includes
-  ///                   [pollOptions].
-  ///
-  /// - [pollOptions]: A list of poll options for a Tweet with a poll.
-  ///                  For the request to be successful it must also include
-  ///                  [pollDuration] too.
-  ///
-  /// - [inReplyToTweetId]: Tweet ID of the Tweet being replied to. Please note
-  ///                       that [inReplyToTweetId] needs to be in the request
-  ///                       if [excludeReplyUserIds] is present.
-  ///
-  /// - [excludeReplyUserIds]: A list of User IDs to be excluded from the reply
-  ///                          Tweet thus removing a user from a thread.
-  ///
   /// - [replySetting]: Settings to indicate who can reply to the Tweet.
   ///                   Options include `mentionedUsers` and `following`.
   ///                   The default to `everyone`.
@@ -82,6 +59,22 @@ abstract class TweetsService {
   /// - [directMessageDeepLink]: Tweets a link directly to a
   ///                            [Direct Message conversation](https://business.twitter.com/en/help/campaign-editing-and-optimization/public-to-private-conversation.html)
   ///                           with an account.
+  ///
+  /// - [media]: The object that contains media information being attached to
+  ///            created Tweet. This is mutually exclusive from Quote Tweet ID
+  ///            and Poll.
+  ///
+  /// - [geo]: A JSON object that contains location information for a Tweet.
+  ///          You can only add a location to Tweets if you have geo enabled in
+  ///          your profile settings. If you don't have geo enabled, you can
+  ///          still add a location parameter in your request body, but it won't
+  ///          get attached to your Tweet
+  ///
+  /// - [poll]: The object that contains options for a Tweet with a poll.
+  ///           This is mutually exclusive from Media and Quote Tweet ID.
+  ///
+  /// - [reply]: The object that contains information of the Tweet being
+  ///            replied to.
   ///
   /// ## Endpoint Url
   ///
@@ -110,15 +103,12 @@ abstract class TweetsService {
     required String text,
     String? quoteTweetId,
     bool? forSuperFollowersOnly,
-    List<String>? mediaIds,
-    List<String>? taggedUserIds,
-    String? placeId,
-    Duration? pollDuration,
-    List<String>? pollOptions,
-    String? inReplyToTweetId,
-    List<String>? excludeReplyUserIds,
     ReplySetting? replySetting,
     String? directMessageDeepLink,
+    TweetMediaParam? media,
+    TweetGeoParam? geo,
+    TweetPollParam? poll,
+    TweetReplyParam? reply,
   });
 
   /// Allows a user or authenticated user ID to delete a Tweet.
@@ -2379,15 +2369,12 @@ class _TweetsService extends BaseService implements TweetsService {
     required String text,
     String? quoteTweetId,
     bool? forSuperFollowersOnly,
-    List<String>? mediaIds,
-    List<String>? taggedUserIds,
-    String? placeId,
-    Duration? pollDuration,
-    List<String>? pollOptions,
-    String? inReplyToTweetId,
-    List<String>? excludeReplyUserIds,
     ReplySetting? replySetting,
     String? directMessageDeepLink,
+    TweetMediaParam? media,
+    TweetGeoParam? geo,
+    TweetPollParam? poll,
+    TweetReplyParam? reply,
   }) async =>
       super.buildResponse(
         await super.post(
@@ -2398,19 +2385,19 @@ class _TweetsService extends BaseService implements TweetsService {
             'quote_tweet_id': quoteTweetId,
             'for_super_followers_only': forSuperFollowersOnly,
             'media': {
-              'media_ids': mediaIds,
-              'tagged_user_ids': taggedUserIds,
+              'media_ids': media?.mediaIds,
+              'tagged_user_ids': media?.taggedUserIds,
             },
             'geo': {
-              'place_id': placeId,
+              'place_id': geo?.placeId,
             },
             'poll': {
-              'duration_minutes': pollDuration?.inMinutes,
-              'options': pollOptions,
+              'duration_minutes': poll?.durationInMinute,
+              'options': poll?.options,
             },
             'reply': {
-              'in_reply_to_tweet_id': inReplyToTweetId,
-              'exclude_reply_user_ids': excludeReplyUserIds,
+              'in_reply_to_tweet_id': reply?.inReplyToTweetId,
+              'exclude_reply_user_ids': reply?.excludeReplyUserIds,
             },
             //! `ReplySetting.everyone` cannot be specified for this endpoint.
             //! Convert to null and delete the field before sending a request.
