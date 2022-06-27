@@ -2006,6 +2006,20 @@ abstract class TweetsService {
   ///              default. If not specified, `endTime` will default to
   ///              [now - 30 seconds].
   ///
+  /// - [sinceTweetId]: Returns results with a Tweet ID greater than
+  ///                   (that is, more recent than) the specified 'since'
+  ///                  Tweet ID. There are limits to the number of Tweets that
+  ///                  can be accessed through the API. If the limit of Tweets
+  ///                  has occurred since the [sinceTweetId], the [sinceTweetId]
+  ///                  will be forced to the oldest ID available.
+  ///
+  /// - [untilTweetId]: Returns results with a Tweet ID less than
+  ///                   (that is, older than) the specified 'until' Tweet ID.
+  ///                   There are limits to the number of Tweets that can be
+  ///                   accessed through the API. If the limit of Tweets has
+  ///                   occurred since the [untilTweetId], the [untilTweetId]
+  ///                   will be forced to the most recent ID available.
+  ///
   /// - [expansions]: Expansions enable you to request additional data objects
   ///                 that relate to the originally returned Tweets. Submit a
   ///                 list of desired expansions in a comma-separated list
@@ -2091,6 +2105,8 @@ abstract class TweetsService {
     String? paginationToken,
     DateTime? startTime,
     DateTime? endTime,
+    String? sinceTweetId,
+    String? untilTweetId,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
@@ -3016,6 +3032,8 @@ class _TweetsService extends BaseService implements TweetsService {
     String? paginationToken,
     DateTime? startTime,
     DateTime? endTime,
+    String? sinceTweetId,
+    String? untilTweetId,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
@@ -3032,6 +3050,8 @@ class _TweetsService extends BaseService implements TweetsService {
             'pagination_token': paginationToken,
             'start_time': startTime,
             'end_time': endTime,
+            'since_id': sinceTweetId,
+            'until_id': untilTweetId,
             'expansions': expansions,
             'tweet.fields': tweetFields,
             'user.fields': userFields,
