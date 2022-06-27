@@ -26,6 +26,7 @@ import 'matching_rule.dart';
 import 'reply_setting.dart';
 import 'sort_order.dart';
 import 'tweet_count_data.dart';
+import 'tweet_count_granularity.dart';
 import 'tweet_count_meta.dart';
 import 'tweet_data.dart';
 import 'tweet_expansion.dart';
@@ -1297,6 +1298,11 @@ abstract class TweetsService {
   ///                   specified is exclusive and responses will not include
   ///                   it.
   ///
+  /// - [granularity]: This is the granularity that you want the time series
+  ///                  count data to be grouped by. You can request
+  ///                  `minute`, `hour`, or `day` granularity. The default
+  ///                  granularity, if not specified is `hour`.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/counts/recent
@@ -1320,6 +1326,7 @@ abstract class TweetsService {
     DateTime? endTime,
     String? sinceTweetId,
     String? untilTweetId,
+    TweetCountGranularity? granularity,
   });
 
   /// This endpoint is only available to those users who have been approved
@@ -1369,6 +1376,11 @@ abstract class TweetsService {
   ///                   [sinceTweetId]. The ID specified is exclusive and
   ///                   responses will not include it.
   ///
+  /// - [granularity]: This is the granularity that you want the time series
+  ///                  count data to be grouped by. You can request
+  ///                  `minute`, `hour`, or `day` granularity. The default
+  ///                  granularity, if not specified is `hour`.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/counts/all
@@ -1392,6 +1404,7 @@ abstract class TweetsService {
     DateTime? endTime,
     String? sinceTweetId,
     String? untilTweetId,
+    TweetCountGranularity? granularity,
   });
 
   /// Causes the user ID of an authenticated user identified in the path
@@ -2770,6 +2783,7 @@ class _TweetsService extends BaseService implements TweetsService {
     DateTime? endTime,
     String? sinceTweetId,
     String? untilTweetId,
+    TweetCountGranularity? granularity,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -2782,6 +2796,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'end_time': endTime,
             'since_id': sinceTweetId,
             'until_id': untilTweetId,
+            'granularity': granularity?.name,
           },
         ),
         dataBuilder: TweetCountData.fromJson,
@@ -2796,6 +2811,7 @@ class _TweetsService extends BaseService implements TweetsService {
     DateTime? endTime,
     String? sinceTweetId,
     String? untilTweetId,
+    TweetCountGranularity? granularity,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -2808,6 +2824,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'end_time': endTime,
             'since_id': sinceTweetId,
             'until_id': untilTweetId,
+            'granularity': granularity?.name,
           },
         ),
         dataBuilder: TweetCountData.fromJson,

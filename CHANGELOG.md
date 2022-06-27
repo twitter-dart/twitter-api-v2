@@ -44,6 +44,9 @@
 - Added `sinceTweetId` and `untilTweetId` parameters to `countAll` and `countRecent`. ([#311](https://github.com/twitter-dart/twitter-api-v2/issues/311))
   - GET /2/tweets/counts/all
   - GET /2/tweets/counts/recent
+- Added `granularity` parameter to `countAll` and `countRecent`. ([#310](https://github.com/twitter-dart/twitter-api-v2/issues/310))
+  - GET /2/tweets/counts/all
+  - GET /2/tweets/counts/recent
 
 ## v2.7.0
 
