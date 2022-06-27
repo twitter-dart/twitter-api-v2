@@ -49,6 +49,7 @@
   - GET /2/tweets/counts/recent
 - Added `sinceTweetId` and `untilTweetId` parameters to `TweetsService.lookupTweets`. ([#309](https://github.com/twitter-dart/twitter-api-v2/issues/309))
 - Added `excludes` parameter to `TweetsService.lookupTweets`. ([#308](https://github.com/twitter-dart/twitter-api-v2/issues/308))
+- Added `sinceTweetId` and `untilTweetId` parameters to `lookupMentions`. ([#305](https://github.com/twitter-dart/twitter-api-v2/issues/305))
 
 ## v2.7.0
 
