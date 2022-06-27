@@ -47,6 +47,7 @@
 - Added `granularity` parameter to `countAll` and `countRecent`. ([#310](https://github.com/twitter-dart/twitter-api-v2/issues/310))
   - GET /2/tweets/counts/all
   - GET /2/tweets/counts/recent
+- Added `sinceTweetId` and `untilTweetId` parameters to `TweetsService.lookupTweets`. ([#309](https://github.com/twitter-dart/twitter-api-v2/issues/309))
 
 ## v2.7.0
 
