@@ -387,12 +387,18 @@ void main() {
         UserContext.oauth2Only,
         '/2/tweets/counts/recent',
         'test/src/service/tweets/data/counts_recent.json',
-        {'query': 'hello'},
+        {
+          'query': 'hello',
+          'since_id': '1111',
+          'until_id': '2222',
+        },
       ),
     );
 
     final response = await tweetsService.countRecent(
       query: 'hello',
+      sinceTweetId: '1111',
+      untilTweetId: '2222',
     );
 
     expect(response, isA<TwitterResponse>());
@@ -407,12 +413,18 @@ void main() {
         UserContext.oauth2Only,
         '/2/tweets/counts/all',
         'test/src/service/tweets/data/counts_all.json',
-        {'query': 'hello'},
+        {
+          'query': 'hello',
+          'since_id': '1111',
+          'until_id': '2222',
+        },
       ),
     );
 
     final response = await tweetsService.countAll(
       query: 'hello',
+      sinceTweetId: '1111',
+      untilTweetId: '2222',
     );
 
     expect(response, isA<TwitterResponse>());

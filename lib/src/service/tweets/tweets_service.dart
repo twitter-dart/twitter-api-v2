@@ -1286,6 +1286,17 @@ abstract class TweetsService {
   ///              default. If not specified, `endTime` will default to
   ///              [now - 30 seconds].
   ///
+  /// - [sinceTweetId]: Returns results with a Tweet ID greater than (that is,
+  ///                   more recent than) the specified ID. The ID specified is
+  ///                   exclusive and responses will not include it. If included
+  ///                   with the same request as a [startTime] parameter, only
+  ///                   [sinceTweetId] will be used.
+  ///
+  /// - [untilTweetId]: Returns results with a Tweet ID less than
+  ///                   (that is, older than) the specified ID. The ID
+  ///                   specified is exclusive and responses will not include
+  ///                   it.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/counts/recent
@@ -1307,6 +1318,8 @@ abstract class TweetsService {
     String? nextToken,
     DateTime? startTime,
     DateTime? endTime,
+    String? sinceTweetId,
+    String? untilTweetId,
   });
 
   /// This endpoint is only available to those users who have been approved
@@ -1345,6 +1358,17 @@ abstract class TweetsService {
   ///              default. If not specified, `endTime` will default to
   ///              [now - 30 seconds].
   ///
+  /// - [sinceTweetId]: Returns results with a Tweet ID greater than (that is,
+  ///                   more recent than) the specified ID. The ID specified is
+  ///                   exclusive and responses will not include it. If included
+  ///                   with the same request as a [startTime] parameter, only
+  ///                   [sinceTweetId] will be used.
+  ///
+  /// - [untilTweetId]: Returns results with a Tweet ID less than
+  ///                   (that is, older than) the specified ID. Used with
+  ///                   [sinceTweetId]. The ID specified is exclusive and
+  ///                   responses will not include it.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/counts/all
@@ -1366,6 +1390,8 @@ abstract class TweetsService {
     String? nextToken,
     DateTime? startTime,
     DateTime? endTime,
+    String? sinceTweetId,
+    String? untilTweetId,
   });
 
   /// Causes the user ID of an authenticated user identified in the path
@@ -2742,6 +2768,8 @@ class _TweetsService extends BaseService implements TweetsService {
     String? nextToken,
     DateTime? startTime,
     DateTime? endTime,
+    String? sinceTweetId,
+    String? untilTweetId,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -2752,6 +2780,8 @@ class _TweetsService extends BaseService implements TweetsService {
             'next_token': nextToken,
             'start_time': startTime,
             'end_time': endTime,
+            'since_id': sinceTweetId,
+            'until_id': untilTweetId,
           },
         ),
         dataBuilder: TweetCountData.fromJson,
@@ -2764,6 +2794,8 @@ class _TweetsService extends BaseService implements TweetsService {
     String? nextToken,
     DateTime? startTime,
     DateTime? endTime,
+    String? sinceTweetId,
+    String? untilTweetId,
   }) async =>
       super.buildMultiDataResponse(
         await super.get(
@@ -2774,6 +2806,8 @@ class _TweetsService extends BaseService implements TweetsService {
             'next_token': nextToken,
             'start_time': startTime,
             'end_time': endTime,
+            'since_id': sinceTweetId,
+            'until_id': untilTweetId,
           },
         ),
         dataBuilder: TweetCountData.fromJson,
