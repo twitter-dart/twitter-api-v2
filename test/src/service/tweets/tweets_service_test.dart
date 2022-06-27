@@ -44,7 +44,7 @@ void main() {
         text: 'Hello, World!',
         media: TweetMediaParam(mediaIds: [], taggedUserIds: []),
         geo: TweetGeoParam(placeId: ''),
-        poll: TweetPollParam(durationInMinute: 10, options: []),
+        poll: TweetPollParam(duration: Duration(days: 7), options: []),
         reply: TweetReplyParam(inReplyToTweetId: '', excludeReplyUserIds: []),
       );
 
