@@ -2495,7 +2495,7 @@ class _TweetsService extends BaseService implements TweetsService {
               'place_id': geo?.placeId,
             },
             'poll': {
-              'duration_minutes': poll?.durationInMinute,
+              'duration_minutes': poll?.duration.inMinutes,
               'options': poll?.options,
             },
             'reply': {

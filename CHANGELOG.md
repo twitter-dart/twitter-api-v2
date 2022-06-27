@@ -1,5 +1,9 @@
 # Release Note
 
+## v2.8.1
+
+- Changed the field type of `TweetPollParam`'s `durationInMinutes` to `Duration` and changed the name to `duration`. ([#322](https://github.com/twitter-dart/twitter-api-v2/issues/322))
+
 ## v2.8.0
 
 ### Breaking Changes

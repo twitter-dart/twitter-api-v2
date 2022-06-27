@@ -7,10 +7,10 @@
 /// This is mutually exclusive from Media and Quote Tweet ID.
 class TweetPollParam {
   /// Returns the new instance of [TweetPollParam].
-  TweetPollParam({required this.durationInMinute, required this.options});
+  TweetPollParam({required this.duration, required this.options});
 
-  /// Duration of the poll in minutes for a Tweet with a poll.
-  final int durationInMinute;
+  /// Duration of the poll for a Tweet with a poll.
+  final Duration duration;
 
   /// A list of poll options for a Tweet with a poll.
   final List<String> options;
