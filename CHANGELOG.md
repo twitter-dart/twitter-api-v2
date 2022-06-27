@@ -2,9 +2,20 @@
 
 ## v2.8.0
 
-- Added `timeout` option to `TwitterApi`. The default timeout duration is 10 seconds. ([#252](https://github.com/twitter-dart/twitter-api-v2/issues/252))
-- Added `sortOrder` parameter to `TweetsService.searchRecent` and `TweetsService.searchAll`. ([#284](https://github.com/twitter-dart/twitter-api-v2/issues/284))
+### Breaking Changes
+
+- Migration is required for fields that existed in previous versions due to objectification of some of the `createTweet` request parameters. ([#304](https://github.com/twitter-dart/twitter-api-v2/issues/304))
+  - Use `TweetMediaParam` object to specify `mediaIds` and `taggedUserIds`.
+  - Use `TweetReplyParam` object to specify `inReplyToTweetId`
+
+### Bug Fixes
+
 - Removed `expansions` parameter from `createTweet` method because this is not the supported parameter. ([#288](https://github.com/twitter-dart/twitter-api-v2/issues/288))
+
+### New Features
+
+- Added `timeout` option to `TwitterApi`. The default timeout duration is **10 seconds**. ([#252](https://github.com/twitter-dart/twitter-api-v2/issues/252))
+- Added `sortOrder` parameter to `TweetsService.searchRecent` and `TweetsService.searchAll`. ([#284](https://github.com/twitter-dart/twitter-api-v2/issues/284))
 - Added `startTime` and `endTime` parameters. ([#240](https://github.com/twitter-dart/twitter-api-v2/issues/240))
   - GET /2/tweets/search/all
   - GET /2/tweets/search/recent
@@ -20,10 +31,14 @@
 - Added `untilTweetId` parameter. ([#286](https://github.com/twitter-dart/twitter-api-v2/issues/286))
   - GET /2/tweets/search/all
   - GET /2/tweets/search/recent
-- Added `excludeReplyUserIds` parameter to `createTweet`. ([#283](https://github.com/twitter-dart/twitter-api-v2/issues/283))
 - Added `directMessageDeepLink` parameter to `createTweet`. ([#279](https://github.com/twitter-dart/twitter-api-v2/issues/279))
-- Added `placeId` parameter to `createTweet`. ([#280](https://github.com/twitter-dart/twitter-api-v2/issues/280))
-- Added `pollDuration` and `pollOptions` parameters to `createTweet`. ([#282](https://github.com/twitter-dart/twitter-api-v2/issues/282))
+- Added `geo` parameter to `createTweet`. ([#280](https://github.com/twitter-dart/twitter-api-v2/issues/280))([#304](https://github.com/twitter-dart/twitter-api-v2/issues/304))
+- Added `poll` parameter to `createTweet`. ([#282](https://github.com/twitter-dart/twitter-api-v2/issues/282))([#304](https://github.com/twitter-dart/twitter-api-v2/issues/304))
+- Added objects for request parameter of `createTweet`. ([#304](https://github.com/twitter-dart/twitter-api-v2/issues/304))
+  - `TweetMediaParam`
+  - `TweetGeoParam`
+  - `TweetPollParam`
+  - `TweetReplyParam`
 
 ## v2.7.0
 
