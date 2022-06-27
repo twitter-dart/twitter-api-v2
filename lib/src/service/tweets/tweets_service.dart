@@ -29,7 +29,7 @@ import 'tweet_count_data.dart';
 import 'tweet_count_granularity.dart';
 import 'tweet_count_meta.dart';
 import 'tweet_data.dart';
-import 'tweet_exclude_type.dart';
+import 'exclude_tweet_type.dart';
 import 'tweet_expansion.dart';
 import 'tweet_field.dart';
 import 'tweet_geo_param.dart';
@@ -1956,7 +1956,7 @@ abstract class TweetsService {
     DateTime? endTime,
     String? sinceTweetId,
     String? untilTweetId,
-    List<TweetExcludeType>? excludes,
+    List<ExcludeTweetType>? excludes,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
@@ -2019,6 +2019,9 @@ abstract class TweetsService {
   ///                   accessed through the API. If the limit of Tweets has
   ///                   occurred since the [untilTweetId], the [untilTweetId]
   ///                   will be forced to the most recent ID available.
+  ///
+  /// - [excludes]: The list of the types of Tweets to exclude from the
+  ///               response.
   ///
   /// - [expansions]: Expansions enable you to request additional data objects
   ///                 that relate to the originally returned Tweets. Submit a
@@ -2107,6 +2110,7 @@ abstract class TweetsService {
     DateTime? endTime,
     String? sinceTweetId,
     String? untilTweetId,
+    List<ExcludeTweetType>? excludes,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
@@ -2993,7 +2997,7 @@ class _TweetsService extends BaseService implements TweetsService {
     DateTime? endTime,
     String? sinceTweetId,
     String? untilTweetId,
-    List<TweetExcludeType>? excludes,
+    List<ExcludeTweetType>? excludes,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
@@ -3034,6 +3038,7 @@ class _TweetsService extends BaseService implements TweetsService {
     DateTime? endTime,
     String? sinceTweetId,
     String? untilTweetId,
+    List<ExcludeTweetType>? excludes,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
@@ -3052,6 +3057,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'end_time': endTime,
             'since_id': sinceTweetId,
             'until_id': untilTweetId,
+            'exclude': excludes,
             'expansions': expansions,
             'tweet.fields': tweetFields,
             'user.fields': userFields,
