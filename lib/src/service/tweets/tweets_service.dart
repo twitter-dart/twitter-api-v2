@@ -29,6 +29,7 @@ import 'tweet_count_data.dart';
 import 'tweet_count_granularity.dart';
 import 'tweet_count_meta.dart';
 import 'tweet_data.dart';
+import 'tweet_exclude_type.dart';
 import 'tweet_expansion.dart';
 import 'tweet_field.dart';
 import 'tweet_geo_param.dart';
@@ -1839,6 +1840,12 @@ abstract class TweetsService {
   ///              default. If not specified, `endTime` will default to
   ///              [now - 30 seconds].
   ///
+  /// - [excludes]: The list of the types of Tweets to exclude from the
+  ///               response. When exclude=retweets is used, the maximum
+  ///               historical Tweets returned is still 3200. When the
+  ///               exclude=replies parameter is used for any value, only the
+  ///               most recent 800 Tweets are available.
+  ///
   /// - [expansions]: Expansions enable you to request additional data objects
   ///                 that relate to the originally returned Tweets. Submit a
   ///                 list of desired expansions in a comma-separated list
@@ -1931,6 +1938,7 @@ abstract class TweetsService {
     String? paginationToken,
     DateTime? startTime,
     DateTime? endTime,
+    List<TweetExcludeType>? excludes,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
@@ -2949,6 +2957,7 @@ class _TweetsService extends BaseService implements TweetsService {
     String? paginationToken,
     DateTime? startTime,
     DateTime? endTime,
+    List<TweetExcludeType>? excludes,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
@@ -2965,6 +2974,7 @@ class _TweetsService extends BaseService implements TweetsService {
             'pagination_token': paginationToken,
             'start_time': startTime,
             'end_time': endTime,
+            'exclude': excludes,
             'expansions': expansions,
             'tweet.fields': tweetFields,
             'user.fields': userFields,

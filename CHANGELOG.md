@@ -47,6 +47,7 @@
 - Added `granularity` parameter to `countAll` and `countRecent`. ([#310](https://github.com/twitter-dart/twitter-api-v2/issues/310))
   - GET /2/tweets/counts/all
   - GET /2/tweets/counts/recent
+- Added `excludes` parameter to `TweetsService.lookupTweets`. ([#308](https://github.com/twitter-dart/twitter-api-v2/issues/308))
 
 ## v2.7.0
 
