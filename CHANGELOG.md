@@ -7,6 +7,8 @@
 - Migration is required for fields that existed in previous versions due to objectification of some of the `createTweet` request parameters. ([#304](https://github.com/twitter-dart/twitter-api-v2/issues/304))
   - Use `TweetMediaParam` object to specify `mediaIds` and `taggedUserIds`.
   - Use `TweetReplyParam` object to specify `inReplyToTweetId`
+- Migration is required for `createFilteringRules`. ([#312](https://github.com/twitter-dart/twitter-api-v2/issues/312))
+  - Use `FilteringRuleParam` object to specify filtering rules.
 
 ### Bug Fixes
 

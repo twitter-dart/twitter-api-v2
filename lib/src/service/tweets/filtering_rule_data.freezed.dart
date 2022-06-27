@@ -23,7 +23,7 @@ mixin _$FilteringRuleData {
   /// Unique identifier of this rule. This is returned as a string in order
   /// to avoid complications with languages and tools that cannot
   /// handle large integers.
-  String? get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
 
   /// The rule text as submitted when creating the rule.
   String get value => throw _privateConstructorUsedError;
@@ -42,7 +42,7 @@ abstract class $FilteringRuleDataCopyWith<$Res> {
   factory $FilteringRuleDataCopyWith(
           FilteringRuleData value, $Res Function(FilteringRuleData) then) =
       _$FilteringRuleDataCopyWithImpl<$Res>;
-  $Res call({String? id, String value, String? tag});
+  $Res call({String id, String value, String? tag});
 }
 
 /// @nodoc
@@ -64,7 +64,7 @@ class _$FilteringRuleDataCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       value: value == freezed
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -84,7 +84,7 @@ abstract class _$$_FilteringRuleDataCopyWith<$Res>
           $Res Function(_$_FilteringRuleData) then) =
       __$$_FilteringRuleDataCopyWithImpl<$Res>;
   @override
-  $Res call({String? id, String value, String? tag});
+  $Res call({String id, String value, String? tag});
 }
 
 /// @nodoc
@@ -108,7 +108,7 @@ class __$$_FilteringRuleDataCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       value: value == freezed
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -124,7 +124,7 @@ class __$$_FilteringRuleDataCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_FilteringRuleData implements _FilteringRuleData {
-  const _$_FilteringRuleData({this.id, required this.value, this.tag});
+  const _$_FilteringRuleData({required this.id, required this.value, this.tag});
 
   factory _$_FilteringRuleData.fromJson(Map<String, dynamic> json) =>
       _$$_FilteringRuleDataFromJson(json);
@@ -133,7 +133,7 @@ class _$_FilteringRuleData implements _FilteringRuleData {
   /// to avoid complications with languages and tools that cannot
   /// handle large integers.
   @override
-  final String? id;
+  final String id;
 
   /// The rule text as submitted when creating the rule.
   @override
@@ -180,7 +180,7 @@ class _$_FilteringRuleData implements _FilteringRuleData {
 
 abstract class _FilteringRuleData implements FilteringRuleData {
   const factory _FilteringRuleData(
-      {final String? id,
+      {required final String id,
       required final String value,
       final String? tag}) = _$_FilteringRuleData;
 
@@ -192,7 +192,7 @@ abstract class _FilteringRuleData implements FilteringRuleData {
   /// Unique identifier of this rule. This is returned as a string in order
   /// to avoid complications with languages and tools that cannot
   /// handle large integers.
-  String? get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   @override
 
   /// The rule text as submitted when creating the rule.

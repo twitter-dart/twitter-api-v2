@@ -21,6 +21,7 @@ import '../users/user_field.dart';
 import '../users/user_meta.dart';
 import 'filtering_rule_data.dart';
 import 'filtering_rule_meta.dart';
+import 'filtering_rule_param.dart';
 import 'matching_rule.dart';
 import 'reply_setting.dart';
 import 'sort_order.dart';
@@ -2328,7 +2329,7 @@ abstract class TweetsService {
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/api-reference/post-tweets-search-stream-rules
   Future<TwitterResponse<List<FilteringRuleData>, FilteringRuleMeta>>
       createFilteringRules({
-    required List<FilteringRuleData> rules,
+    required List<FilteringRuleParam> rules,
     bool? dryRun,
   });
 
@@ -3049,7 +3050,7 @@ class _TweetsService extends BaseService implements TweetsService {
   @override
   Future<TwitterResponse<List<FilteringRuleData>, FilteringRuleMeta>>
       createFilteringRules({
-    required List<FilteringRuleData> rules,
+    required List<FilteringRuleParam> rules,
     bool? dryRun,
   }) async =>
           super.buildMultiDataResponse(

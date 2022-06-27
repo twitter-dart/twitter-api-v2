@@ -73,9 +73,9 @@ void main() async {
     // Also high-performance Filtered Stream endpoint is available.
     await twitter.tweetsService.createFilteringRules(
       rules: [
-        v2.FilteringRuleData(value: '#ElonMusk'),
-        v2.FilteringRuleData(value: '#Tesla'),
-        v2.FilteringRuleData(value: '#SpaceX'),
+        v2.FilteringRuleParam(value: '#ElonMusk'),
+        v2.FilteringRuleParam(value: '#Tesla'),
+        v2.FilteringRuleParam(value: '#SpaceX'),
       ],
     );
 

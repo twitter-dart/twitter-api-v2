@@ -40,6 +40,7 @@ export 'package:twitter_api_v2/src/service/spaces/space_state.dart';
 export 'package:twitter_api_v2/src/service/spaces/spaces_service.dart';
 export 'package:twitter_api_v2/src/service/tweets/filtering_rule_data.dart';
 export 'package:twitter_api_v2/src/service/tweets/filtering_rule_meta.dart';
+export 'package:twitter_api_v2/src/service/tweets/filtering_rule_param.dart';
 export 'package:twitter_api_v2/src/service/tweets/geo.dart';
 export 'package:twitter_api_v2/src/service/tweets/geo_coordinates.dart';
 export 'package:twitter_api_v2/src/service/tweets/matching_rule.dart';
