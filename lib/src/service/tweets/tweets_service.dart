@@ -1840,6 +1840,22 @@ abstract class TweetsService {
   ///              default. If not specified, `endTime` will default to
   ///              [now - 30 seconds].
   ///
+  /// - [sinceTweetId]: Returns results with a Tweet ID greater than
+  ///                   (that is, more recent than) the specified 'since'
+  ///                   Tweet ID. Only the 3200 most recent Tweets are
+  ///                   available. The result will exclude the since_id. If the
+  ///                   limit of Tweets has occurred since the [sinceTweetId],
+  ///                   the [sinceTweetId] will be forced to the oldest ID
+  ///                   available.
+  ///
+  /// - [untilTweetId]: Returns results with a Tweet ID less than
+  ///                   (that is, older than) the specified 'until' Tweet ID.
+  ///                   Only the 3200 most recent Tweets are available. The
+  ///                   result will exclude the until_id. If the limit of
+  ///                   Tweets has occurred since the [untilTweetId], the
+  ///                   [untilTweetId]  will be forced to the most recent ID
+  ///                   available.
+  ///
   /// - [excludes]: The list of the types of Tweets to exclude from the
   ///               response. When exclude=retweets is used, the maximum
   ///               historical Tweets returned is still 3200. When the
@@ -1938,6 +1954,8 @@ abstract class TweetsService {
     String? paginationToken,
     DateTime? startTime,
     DateTime? endTime,
+    String? sinceTweetId,
+    String? untilTweetId,
     List<TweetExcludeType>? excludes,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
@@ -2957,6 +2975,8 @@ class _TweetsService extends BaseService implements TweetsService {
     String? paginationToken,
     DateTime? startTime,
     DateTime? endTime,
+    String? sinceTweetId,
+    String? untilTweetId,
     List<TweetExcludeType>? excludes,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
@@ -2974,6 +2994,8 @@ class _TweetsService extends BaseService implements TweetsService {
             'pagination_token': paginationToken,
             'start_time': startTime,
             'end_time': endTime,
+            'since_id': sinceTweetId,
+            'until_id': untilTweetId,
             'exclude': excludes,
             'expansions': expansions,
             'tweet.fields': tweetFields,
