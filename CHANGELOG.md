@@ -8,11 +8,14 @@
   - Use `TweetMediaParam` object to specify `mediaIds` and `taggedUserIds`.
   - Use `TweetReplyParam` object to specify `inReplyToTweetId`
 
+### Bug Fixes
+
+- Removed `expansions` parameter from `createTweet` method because this is not the supported parameter. ([#288](https://github.com/twitter-dart/twitter-api-v2/issues/288))
+
 ### New Features
 
 - Added `timeout` option to `TwitterApi`. The default timeout duration is **10 seconds**. ([#252](https://github.com/twitter-dart/twitter-api-v2/issues/252))
 - Added `sortOrder` parameter to `TweetsService.searchRecent` and `TweetsService.searchAll`. ([#284](https://github.com/twitter-dart/twitter-api-v2/issues/284))
-- Removed `expansions` parameter from `createTweet` method because this is not the supported parameter. ([#288](https://github.com/twitter-dart/twitter-api-v2/issues/288))
 - Added `startTime` and `endTime` parameters. ([#240](https://github.com/twitter-dart/twitter-api-v2/issues/240))
   - GET /2/tweets/search/all
   - GET /2/tweets/search/recent
