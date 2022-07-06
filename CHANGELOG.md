@@ -1,5 +1,15 @@
 # Release Note
 
+## v2.9.0
+
+- Added `state` parameter for `SpacesService.search`. ([#324](https://github.com/twitter-dart/twitter-api-v2/issues/324))
+- Added `topicFields` parameters. ([#185](https://github.com/twitter-dart/twitter-api-v2/issues/185))
+  - GET /2/spaces/search
+  - GET /2/spaces
+  - GET /2/spaces/:id
+  - GET /2/spaces/by/creator_ids
+- Added `SpaceExpansion.topicIds`. ([#185](https://github.com/twitter-dart/twitter-api-v2/issues/185))
+
 ## v2.8.1
 
 - Changed the field type of `TweetPollParam`'s `durationInMinutes` to `Duration` and changed the name to `duration`. ([#322](https://github.com/twitter-dart/twitter-api-v2/issues/322))

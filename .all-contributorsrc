@@ -4,7 +4,8 @@
     "i18n/README-JA.md",
     "i18n/README-VI.md",
     "i18n/README-BN.md",
-    "i18n/README-FR.md"
+    "i18n/README-FR.md",
+    "i18n/README-ES.md"
   ],
   "imageSize": 100,
   "commit": false,
@@ -111,6 +112,16 @@
       "name": "Oumar fall",
       "avatar_url": "https://avatars.githubusercontent.com/u/82382673?v=4",
       "profile": "https://github.com/omar6260",
+      "contributions": [
+        "doc",
+        "translation"
+      ]
+    },
+    {
+      "login": "natastro",
+      "name": "Natalie Stroud",
+      "avatar_url": "https://avatars.githubusercontent.com/u/17433156?v=4",
+      "profile": "http://www.natalieastroud.com",
       "contributions": [
         "doc",
         "translation"
