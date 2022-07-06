@@ -41,47 +41,35 @@ class MockClientContext extends _i1.Mock implements _i3.ClientContext {
           .noSuchMethod(Invocation.getter(#hasOAuth1Client), returnValue: false)
       as bool);
   @override
-  _i4.Future<_i2.Response> get(_i5.UserContext? userContext, Uri? uri,
-          {Duration? timeout = const Duration(seconds: 10)}) =>
-      (super.noSuchMethod(
-              Invocation.method(#get, [userContext, uri], {#timeout: timeout}),
+  _i4.Future<_i2.Response> get(_i5.UserContext? userContext, Uri? uri) =>
+      (super.noSuchMethod(Invocation.method(#get, [userContext, uri]),
               returnValue: Future<_i2.Response>.value(_FakeResponse_0()))
           as _i4.Future<_i2.Response>);
   @override
   _i4.Future<_i2.Response> post(_i5.UserContext? userContext, Uri? uri,
-          {Map<String, String>? headers = const {},
-          dynamic body,
-          Duration? timeout = const Duration(seconds: 10)}) =>
+          {Map<String, String>? headers = const {}, dynamic body}) =>
       (super.noSuchMethod(
-              Invocation.method(#post, [userContext, uri],
-                  {#headers: headers, #body: body, #timeout: timeout}),
+              Invocation.method(
+                  #post, [userContext, uri], {#headers: headers, #body: body}),
               returnValue: Future<_i2.Response>.value(_FakeResponse_0()))
           as _i4.Future<_i2.Response>);
   @override
-  _i4.Future<_i2.Response> delete(_i5.UserContext? userContext, Uri? uri,
-          {Duration? timeout = const Duration(seconds: 10)}) =>
-      (super.noSuchMethod(
-          Invocation.method(#delete, [userContext, uri], {#timeout: timeout}),
-          returnValue:
-              Future<_i2.Response>.value(_FakeResponse_0())) as _i4
-          .Future<_i2.Response>);
+  _i4.Future<_i2.Response> delete(_i5.UserContext? userContext, Uri? uri) =>
+      (super.noSuchMethod(Invocation.method(#delete, [userContext, uri]),
+              returnValue: Future<_i2.Response>.value(_FakeResponse_0()))
+          as _i4.Future<_i2.Response>);
   @override
   _i4.Future<_i2.Response> put(_i5.UserContext? userContext, Uri? uri,
-          {Map<String, String>? headers = const {},
-          dynamic body,
-          Duration? timeout = const Duration(seconds: 10)}) =>
+          {Map<String, String>? headers = const {}, dynamic body}) =>
       (super.noSuchMethod(
-              Invocation.method(#put, [userContext, uri],
-                  {#headers: headers, #body: body, #timeout: timeout}),
+              Invocation.method(
+                  #put, [userContext, uri], {#headers: headers, #body: body}),
               returnValue: Future<_i2.Response>.value(_FakeResponse_0()))
           as _i4.Future<_i2.Response>);
   @override
   _i4.Future<_i2.StreamedResponse> getStream(
-          _i5.UserContext? userContext, _i2.BaseRequest? request,
-          {Duration? timeout = const Duration(seconds: 10)}) =>
-      (super.noSuchMethod(
-              Invocation.method(
-                  #getStream, [userContext, request], {#timeout: timeout}),
+          _i5.UserContext? userContext, _i2.BaseRequest? request) =>
+      (super.noSuchMethod(Invocation.method(#getStream, [userContext, request]),
               returnValue:
                   Future<_i2.StreamedResponse>.value(_FakeStreamedResponse_1()))
           as _i4.Future<_i2.StreamedResponse>);

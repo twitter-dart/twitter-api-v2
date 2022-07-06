@@ -17,7 +17,10 @@ enum SpaceExpansion implements Serializable {
   creatorId('creator_id'),
 
   /// `host_ids`
-  hostIds('host_ids');
+  hostIds('host_ids'),
+
+  /// `topic_ids`
+  topicIds('topic_ids');
 
   @override
   final String value;

@@ -25,7 +25,6 @@ MockClientContext buildGetStub(
   when(mockClientContext.get(
     userContext,
     Uri.https('api.twitter.com', unencodedPath, queryParameters),
-    timeout: anyNamed('timeout'),
   )).thenAnswer(
     (_) async => http.Response(
       await File(resourcePath).readAsString(),
@@ -53,7 +52,6 @@ MockClientContext buildPostStub(
     Uri.https('api.twitter.com', unencodedPath, queryParameters),
     headers: anyNamed('headers'),
     body: anyNamed('body'),
-    timeout: anyNamed('timeout'),
   )).thenAnswer(
     (_) async => http.Response(
       await File(resourcePath).readAsString(),
@@ -102,7 +100,6 @@ MockClientContext buildPutStub(
     Uri.https('api.twitter.com', unencodedPath),
     headers: anyNamed('headers'),
     body: anyNamed('body'),
-    timeout: anyNamed('timeout'),
   )).thenAnswer(
     (_) async => http.Response(
       await File(resourcePath).readAsString(),
@@ -137,7 +134,6 @@ MockClientContext buildSendStub(
   when(mockClientContext.getStream(
     userContext,
     any,
-    timeout: anyNamed('timeout'),
   )).thenAnswer(
     (_) async {
       return http.StreamedResponse(
