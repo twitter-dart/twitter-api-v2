@@ -127,6 +127,17 @@
         "doc",
         "translation"
       ]
+    },
+    {
+      "login": "novas1r1",
+      "name": "novas1r1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2575205?v=4",
+      "profile": "https://twitch.tv/novas1r1",
+      "contributions": [
+        "doc",
+        "translation",
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 5,
