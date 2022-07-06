@@ -128,7 +128,8 @@ void main() {
           'users': null,
           'media': null,
           'places': null,
-          'polls': null
+          'polls': null,
+          'topics': null
         },
         'meta': null,
       });
@@ -207,7 +208,7 @@ void main() {
         response.toString(),
         'TwitterResponse(data: true, '
         'includes: Includes(tweets: null, users: null, '
-        'media: null, places: null, polls: null), '
+        'media: null, places: null, polls: null, topics: null), '
         'meta: false)');
   });
 }

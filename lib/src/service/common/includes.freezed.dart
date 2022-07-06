@@ -49,6 +49,12 @@ mixin _$Includes {
   /// present in the returned Tweet(s).
   List<PollData>? get polls => throw _privateConstructorUsedError;
 
+  /// This includes a list of topics that are attached to Spaces in the form
+  /// of topic objects with their default fields and any additional fields
+  /// requested using the topic.fields parameter, assuming there is a topic
+  /// present in the returned Space(s).
+  List<TopicData>? get topics => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $IncludesCopyWith<Includes> get copyWith =>
@@ -64,7 +70,8 @@ abstract class $IncludesCopyWith<$Res> {
       List<UserData>? users,
       List<MediaData>? media,
       List<PlaceData>? places,
-      List<PollData>? polls});
+      List<PollData>? polls,
+      List<TopicData>? topics});
 }
 
 /// @nodoc
@@ -82,6 +89,7 @@ class _$IncludesCopyWithImpl<$Res> implements $IncludesCopyWith<$Res> {
     Object? media = freezed,
     Object? places = freezed,
     Object? polls = freezed,
+    Object? topics = freezed,
   }) {
     return _then(_value.copyWith(
       tweets: tweets == freezed
@@ -104,6 +112,10 @@ class _$IncludesCopyWithImpl<$Res> implements $IncludesCopyWith<$Res> {
           ? _value.polls
           : polls // ignore: cast_nullable_to_non_nullable
               as List<PollData>?,
+      topics: topics == freezed
+          ? _value.topics
+          : topics // ignore: cast_nullable_to_non_nullable
+              as List<TopicData>?,
     ));
   }
 }
@@ -119,7 +131,8 @@ abstract class _$$_IncludesCopyWith<$Res> implements $IncludesCopyWith<$Res> {
       List<UserData>? users,
       List<MediaData>? media,
       List<PlaceData>? places,
-      List<PollData>? polls});
+      List<PollData>? polls,
+      List<TopicData>? topics});
 }
 
 /// @nodoc
@@ -139,6 +152,7 @@ class __$$_IncludesCopyWithImpl<$Res> extends _$IncludesCopyWithImpl<$Res>
     Object? media = freezed,
     Object? places = freezed,
     Object? polls = freezed,
+    Object? topics = freezed,
   }) {
     return _then(_$_Includes(
       tweets: tweets == freezed
@@ -161,6 +175,10 @@ class __$$_IncludesCopyWithImpl<$Res> extends _$IncludesCopyWithImpl<$Res>
           ? _value._polls
           : polls // ignore: cast_nullable_to_non_nullable
               as List<PollData>?,
+      topics: topics == freezed
+          ? _value._topics
+          : topics // ignore: cast_nullable_to_non_nullable
+              as List<TopicData>?,
     ));
   }
 }
@@ -173,12 +191,14 @@ class _$_Includes implements _Includes {
       final List<UserData>? users,
       final List<MediaData>? media,
       final List<PlaceData>? places,
-      final List<PollData>? polls})
+      final List<PollData>? polls,
+      final List<TopicData>? topics})
       : _tweets = tweets,
         _users = users,
         _media = media,
         _places = places,
-        _polls = polls;
+        _polls = polls,
+        _topics = topics;
 
   factory _$_Includes.fromJson(Map<String, dynamic> json) =>
       _$$_IncludesFromJson(json);
@@ -271,9 +291,27 @@ class _$_Includes implements _Includes {
     return EqualUnmodifiableListView(value);
   }
 
+  /// This includes a list of topics that are attached to Spaces in the form
+  /// of topic objects with their default fields and any additional fields
+  /// requested using the topic.fields parameter, assuming there is a topic
+  /// present in the returned Space(s).
+  final List<TopicData>? _topics;
+
+  /// This includes a list of topics that are attached to Spaces in the form
+  /// of topic objects with their default fields and any additional fields
+  /// requested using the topic.fields parameter, assuming there is a topic
+  /// present in the returned Space(s).
+  @override
+  List<TopicData>? get topics {
+    final value = _topics;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   String toString() {
-    return 'Includes(tweets: $tweets, users: $users, media: $media, places: $places, polls: $polls)';
+    return 'Includes(tweets: $tweets, users: $users, media: $media, places: $places, polls: $polls, topics: $topics)';
   }
 
   @override
@@ -285,7 +323,8 @@ class _$_Includes implements _Includes {
             const DeepCollectionEquality().equals(other._users, _users) &&
             const DeepCollectionEquality().equals(other._media, _media) &&
             const DeepCollectionEquality().equals(other._places, _places) &&
-            const DeepCollectionEquality().equals(other._polls, _polls));
+            const DeepCollectionEquality().equals(other._polls, _polls) &&
+            const DeepCollectionEquality().equals(other._topics, _topics));
   }
 
   @JsonKey(ignore: true)
@@ -296,7 +335,8 @@ class _$_Includes implements _Includes {
       const DeepCollectionEquality().hash(_users),
       const DeepCollectionEquality().hash(_media),
       const DeepCollectionEquality().hash(_places),
-      const DeepCollectionEquality().hash(_polls));
+      const DeepCollectionEquality().hash(_polls),
+      const DeepCollectionEquality().hash(_topics));
 
   @JsonKey(ignore: true)
   @override
@@ -315,7 +355,8 @@ abstract class _Includes implements Includes {
       final List<UserData>? users,
       final List<MediaData>? media,
       final List<PlaceData>? places,
-      final List<PollData>? polls}) = _$_Includes;
+      final List<PollData>? polls,
+      final List<TopicData>? topics}) = _$_Includes;
 
   factory _Includes.fromJson(Map<String, dynamic> json) = _$_Includes.fromJson;
 
@@ -353,6 +394,13 @@ abstract class _Includes implements Includes {
   /// requested using the poll.fields parameter, assuming there is a poll
   /// present in the returned Tweet(s).
   List<PollData>? get polls => throw _privateConstructorUsedError;
+  @override
+
+  /// This includes a list of topics that are attached to Spaces in the form
+  /// of topic objects with their default fields and any additional fields
+  /// requested using the topic.fields parameter, assuming there is a topic
+  /// present in the returned Space(s).
+  List<TopicData>? get topics => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_IncludesCopyWith<_$_Includes> get copyWith =>

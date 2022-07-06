@@ -9,6 +9,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../media/media_data.dart';
 import '../places/place_data.dart';
 import '../polls/poll_data.dart';
+import '../spaces/topic_data.dart';
 import '../tweets/tweet_data.dart';
 import '../users/user_data.dart';
 
@@ -46,6 +47,12 @@ class Includes with _$Includes {
     /// requested using the poll.fields parameter, assuming there is a poll
     /// present in the returned Tweet(s).
     List<PollData>? polls,
+
+    /// This includes a list of topics that are attached to Spaces in the form
+    /// of topic objects with their default fields and any additional fields
+    /// requested using the topic.fields parameter, assuming there is a topic
+    /// present in the returned Space(s).
+    List<TopicData>? topics,
   }) = _Includes;
 
   factory Includes.fromJson(Map<String, Object?> json) =>
