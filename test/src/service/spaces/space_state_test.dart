@@ -12,5 +12,6 @@ void main() {
   test('.name', () {
     expect(SpaceState.live.name == 'live', isTrue);
     expect(SpaceState.scheduled.name == 'scheduled', isTrue);
+    expect(SpaceState.ended.name == 'ended', isTrue);
   });
 }

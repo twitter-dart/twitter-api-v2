@@ -21,13 +21,13 @@ TopicData _$TopicDataFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$TopicData {
   /// The id of this topic.
-  String? get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
 
   /// The name of this topic.
-  String? get name => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
 
   /// The description of this topic.
-  String? get description => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,7 +39,7 @@ mixin _$TopicData {
 abstract class $TopicDataCopyWith<$Res> {
   factory $TopicDataCopyWith(TopicData value, $Res Function(TopicData) then) =
       _$TopicDataCopyWithImpl<$Res>;
-  $Res call({String? id, String? name, String? description});
+  $Res call({String id, String name, String description});
 }
 
 /// @nodoc
@@ -60,15 +60,15 @@ class _$TopicDataCopyWithImpl<$Res> implements $TopicDataCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -79,7 +79,7 @@ abstract class _$$_TopicDataCopyWith<$Res> implements $TopicDataCopyWith<$Res> {
           _$_TopicData value, $Res Function(_$_TopicData) then) =
       __$$_TopicDataCopyWithImpl<$Res>;
   @override
-  $Res call({String? id, String? name, String? description});
+  $Res call({String id, String name, String description});
 }
 
 /// @nodoc
@@ -102,15 +102,15 @@ class __$$_TopicDataCopyWithImpl<$Res> extends _$TopicDataCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -118,22 +118,23 @@ class __$$_TopicDataCopyWithImpl<$Res> extends _$TopicDataCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_TopicData implements _TopicData {
-  const _$_TopicData({this.id, this.name, this.description});
+  const _$_TopicData(
+      {required this.id, required this.name, required this.description});
 
   factory _$_TopicData.fromJson(Map<String, dynamic> json) =>
       _$$_TopicDataFromJson(json);
 
   /// The id of this topic.
   @override
-  final String? id;
+  final String id;
 
   /// The name of this topic.
   @override
-  final String? name;
+  final String name;
 
   /// The description of this topic.
   @override
-  final String? description;
+  final String description;
 
   @override
   String toString() {
@@ -172,9 +173,9 @@ class _$_TopicData implements _TopicData {
 
 abstract class _TopicData implements TopicData {
   const factory _TopicData(
-      {final String? id,
-      final String? name,
-      final String? description}) = _$_TopicData;
+      {required final String id,
+      required final String name,
+      required final String description}) = _$_TopicData;
 
   factory _TopicData.fromJson(Map<String, dynamic> json) =
       _$_TopicData.fromJson;
@@ -182,15 +183,15 @@ abstract class _TopicData implements TopicData {
   @override
 
   /// The id of this topic.
-  String? get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   @override
 
   /// The name of this topic.
-  String? get name => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   @override
 
   /// The description of this topic.
-  String? get description => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_TopicDataCopyWith<_$_TopicData> get copyWith =>

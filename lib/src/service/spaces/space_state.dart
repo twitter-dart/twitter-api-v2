@@ -9,4 +9,7 @@ enum SpaceState {
 
   /// "live"
   live,
+
+  /// "ended"
+  ended,
 }
