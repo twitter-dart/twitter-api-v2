@@ -9,6 +9,7 @@
   - GET /2/spaces/:id
   - GET /2/spaces/by/creator_ids
 - Added `SpaceExpansion.topicIds`. ([#185](https://github.com/twitter-dart/twitter-api-v2/issues/185))
+- Added `ended` element for `SpaceState`. ([#333](https://github.com/twitter-dart/twitter-api-v2/issues/333))
 
 ## v2.8.1
 

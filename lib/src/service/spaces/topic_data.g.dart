@@ -13,9 +13,9 @@ _$_TopicData _$$_TopicDataFromJson(Map json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = _$_TopicData(
-          id: $checkedConvert('id', (v) => v as String?),
-          name: $checkedConvert('name', (v) => v as String?),
-          description: $checkedConvert('description', (v) => v as String?),
+          id: $checkedConvert('id', (v) => v as String),
+          name: $checkedConvert('name', (v) => v as String),
+          description: $checkedConvert('description', (v) => v as String),
         );
         return val;
       },
