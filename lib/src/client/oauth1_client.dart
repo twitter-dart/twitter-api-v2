@@ -58,9 +58,18 @@ class OAuth1Client extends Client {
     Uri uri, {
     required Duration timeout,
   }) async =>
-      super.checkResponse(
-        await oauthClient.get(uri).timeout(timeout),
-      );
+      await oauthClient.get(uri).timeout(timeout);
+
+  @override
+  Future<http.StreamedResponse> getStream(
+    http.BaseRequest request, {
+    Map<String, String> headers = const {},
+    required Duration timeout,
+  }) async {
+    request.headers.addAll(headers);
+
+    return await oauthClient.send(request).timeout(timeout);
+  }
 
   @override
   Future<http.Response> post(
@@ -69,16 +78,14 @@ class OAuth1Client extends Client {
     dynamic body,
     required Duration timeout,
   }) async =>
-      super.checkResponse(
-        await oauthClient
-            .post(
-              uri,
-              headers: headers,
-              body: body,
-              encoding: utf8,
-            )
-            .timeout(timeout),
-      );
+      await oauthClient
+          .post(
+            uri,
+            headers: headers,
+            body: body,
+            encoding: utf8,
+          )
+          .timeout(timeout);
 
   @override
   Future<http.Response> delete(
@@ -87,16 +94,14 @@ class OAuth1Client extends Client {
     dynamic body,
     required Duration timeout,
   }) async =>
-      super.checkResponse(
-        await oauthClient
-            .delete(
-              uri,
-              headers: headers,
-              body: body,
-              encoding: utf8,
-            )
-            .timeout(timeout),
-      );
+      await oauthClient
+          .delete(
+            uri,
+            headers: headers,
+            body: body,
+            encoding: utf8,
+          )
+          .timeout(timeout);
 
   @override
   Future<http.Response> put(
@@ -105,27 +110,12 @@ class OAuth1Client extends Client {
     dynamic body,
     required Duration timeout,
   }) async =>
-      super.checkResponse(
-        await oauthClient
-            .put(
-              uri,
-              headers: headers,
-              body: body,
-              encoding: utf8,
-            )
-            .timeout(timeout),
-      );
-
-  @override
-  Future<http.StreamedResponse> send(
-    http.BaseRequest request, {
-    Map<String, String> headers = const {},
-    required Duration timeout,
-  }) async {
-    request.headers.addAll(headers);
-
-    return checkResponse(
-      await oauthClient.send(request).timeout(timeout),
-    );
-  }
+      await oauthClient
+          .put(
+            uri,
+            headers: headers,
+            body: body,
+            encoding: utf8,
+          )
+          .timeout(timeout);
 }

@@ -93,6 +93,26 @@ class _ClientContext implements ClientContext {
   }
 
   @override
+  Future<http.StreamedResponse> getStream(
+    UserContext userContext,
+    http.BaseRequest request,
+  ) async {
+    if (userContext == UserContext.oauth2OrOAuth1 && hasOAuth1Client) {
+      //! If an authentication token is set, the OAuth 1.0a method is given
+      //! priority.
+      return _oauth1Client!.getStream(
+        request,
+        timeout: timeout,
+      );
+    }
+
+    return _oauth2Client.getStream(
+      request,
+      timeout: timeout,
+    );
+  }
+
+  @override
   Future<http.Response> post(
     UserContext userContext,
     Uri uri, {
@@ -154,26 +174,6 @@ class _ClientContext implements ClientContext {
       uri,
       headers: headers,
       body: body,
-      timeout: timeout,
-    );
-  }
-
-  @override
-  Future<http.StreamedResponse> getStream(
-    UserContext userContext,
-    http.BaseRequest request,
-  ) async {
-    if (userContext == UserContext.oauth2OrOAuth1 && hasOAuth1Client) {
-      //! If an authentication token is set, the OAuth 1.0a method is given
-      //! priority.
-      return _oauth1Client!.send(
-        request,
-        timeout: timeout,
-      );
-    }
-
-    return _oauth2Client.send(
-      request,
       timeout: timeout,
     );
   }
