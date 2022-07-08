@@ -23,72 +23,13 @@ class OAuth2Client extends Client {
     Uri uri, {
     required Duration timeout,
   }) async =>
-      super.checkResponse(
-        await http.get(
-          uri,
-          headers: {'Authorization': 'Bearer $_bearerToken'},
-        ).timeout(timeout),
-      );
+      await http.get(
+        uri,
+        headers: {'Authorization': 'Bearer $_bearerToken'},
+      ).timeout(timeout);
 
   @override
-  Future<http.Response> post(
-    Uri uri, {
-    Map<String, String> headers = const {},
-    dynamic body,
-    required Duration timeout,
-  }) async =>
-      super.checkResponse(
-        await http
-            .post(
-              uri,
-              headers: {'Authorization': 'Bearer $_bearerToken'}
-                ..addAll(headers),
-              body: body,
-              encoding: utf8,
-            )
-            .timeout(timeout),
-      );
-
-  @override
-  Future<http.Response> delete(
-    Uri uri, {
-    Map<String, String> headers = const {},
-    dynamic body,
-    required Duration timeout,
-  }) async =>
-      super.checkResponse(
-        await http
-            .delete(
-              uri,
-              headers: {'Authorization': 'Bearer $_bearerToken'}
-                ..addAll(headers),
-              body: body,
-              encoding: utf8,
-            )
-            .timeout(timeout),
-      );
-
-  @override
-  Future<http.Response> put(
-    Uri uri, {
-    Map<String, String> headers = const {},
-    body,
-    required Duration timeout,
-  }) async =>
-      super.checkResponse(
-        await http
-            .put(
-              uri,
-              headers: {'Authorization': 'Bearer $_bearerToken'}
-                ..addAll(headers),
-              body: body,
-              encoding: utf8,
-            )
-            .timeout(timeout),
-      );
-
-  @override
-  Future<http.StreamedResponse> send(
+  Future<http.StreamedResponse> getStream(
     http.BaseRequest request, {
     Map<String, String> headers = const {},
     required Duration timeout,
@@ -97,8 +38,54 @@ class OAuth2Client extends Client {
       {'Authorization': 'Bearer $_bearerToken', ...headers},
     );
 
-    return checkResponse(
-      await request.send().timeout(timeout),
-    );
+    return request.send().timeout(timeout);
   }
+
+  @override
+  Future<http.Response> post(
+    Uri uri, {
+    Map<String, String> headers = const {},
+    dynamic body,
+    required Duration timeout,
+  }) async =>
+      await http
+          .post(
+            uri,
+            headers: {'Authorization': 'Bearer $_bearerToken'}..addAll(headers),
+            body: body,
+            encoding: utf8,
+          )
+          .timeout(timeout);
+
+  @override
+  Future<http.Response> delete(
+    Uri uri, {
+    Map<String, String> headers = const {},
+    dynamic body,
+    required Duration timeout,
+  }) async =>
+      await http
+          .delete(
+            uri,
+            headers: {'Authorization': 'Bearer $_bearerToken'}..addAll(headers),
+            body: body,
+            encoding: utf8,
+          )
+          .timeout(timeout);
+
+  @override
+  Future<http.Response> put(
+    Uri uri, {
+    Map<String, String> headers = const {},
+    body,
+    required Duration timeout,
+  }) async =>
+      await http
+          .put(
+            uri,
+            headers: {'Authorization': 'Bearer $_bearerToken'}..addAll(headers),
+            body: body,
+            encoding: utf8,
+          )
+          .timeout(timeout);
 }

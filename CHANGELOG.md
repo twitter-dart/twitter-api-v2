@@ -10,6 +10,7 @@
   - GET /2/spaces/by/creator_ids
 - Added `SpaceExpansion.topicIds`. ([#185](https://github.com/twitter-dart/twitter-api-v2/issues/185))
 - Added `ended` element for `SpaceState`. ([#333](https://github.com/twitter-dart/twitter-api-v2/issues/333))
+- Removed HTTP status code checking process. With this modification, no exception will be thrown if, for example, you try to retweet a particular tweet and the tweet has already been deleted by its owner. However, a `TwitterException` will still be thrown if there is no Data field in the response. ([#329](https://github.com/twitter-dart/twitter-api-v2/issues/329))
 
 ## v2.8.1
 
