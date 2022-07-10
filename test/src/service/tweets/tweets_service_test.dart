@@ -5,10 +5,11 @@
 // Package imports:
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
-
 // Project imports:
 import 'package:twitter_api_v2/src/client/client_context.dart';
 import 'package:twitter_api_v2/src/client/user_context.dart';
+import 'package:twitter_api_v2/src/exception/rate_limit_exceeded_exception.dart';
+import 'package:twitter_api_v2/src/exception/twitter_exception.dart';
 import 'package:twitter_api_v2/src/service/filtered_stream_response.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering_rule_data.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering_rule_meta.dart';
@@ -26,7 +27,7 @@ import 'package:twitter_api_v2/src/service/tweets/tweets_service.dart';
 import 'package:twitter_api_v2/src/service/twitter_response.dart';
 import 'package:twitter_api_v2/src/service/users/user_data.dart';
 import 'package:twitter_api_v2/src/service/users/user_meta.dart';
-import 'package:twitter_api_v2/src/twitter_exception.dart';
+
 import '../../../mocks/client_context_stubs.dart' as context;
 
 void main() {
@@ -87,6 +88,31 @@ void main() {
         throwsA(
           allOf(isA<TwitterException>(),
               predicate((e) => e.toString().isNotEmpty)),
+        ),
+      );
+    });
+
+    test('throws RateLimitExceededException', () async {
+      final tweetsService = TweetsService(
+        context: context.buildPostStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets',
+          'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+        ),
+      );
+
+      expect(
+        () async => await tweetsService.createTweet(
+            text: 'Throw RateLimitExceededException'),
+        throwsA(
+          allOf(
+            isA<RateLimitExceededException>(),
+            predicate(
+              (e) =>
+                  e.toString() ==
+                  'RateLimitExceededException: Rate limit exceeded',
+            ),
+          ),
         ),
       );
     });

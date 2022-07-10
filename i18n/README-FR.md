@@ -191,6 +191,10 @@ void main() async {
       print(response.data);
       print(response.matchingRules);
     }
+  } on TimeoutException catch (e) {
+    print(e);
+  } on v2.RateLimitExceededException catch (e) {
+    print(e)
   } on v2.TwitterException catch (e) {
     print(e.response.headers);
     print(e.body);
@@ -406,9 +410,6 @@ void main() async {
 | [POST /2/compliance/jobs](https://developer.twitter.com/en/docs/twitter-api/compliance/batch-compliance/api-reference/post-compliance-jobs)      | [createJob](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ComplianceService/createJob.html)   |
 | [GET /2/compliance/jobs](https://developer.twitter.com/en/docs/twitter-api/compliance/batch-compliance/api-reference/get-compliance-jobs)        | [lookupJobs](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ComplianceService/lookupJobs.html) |
 | [GET /2/compliance/jobs/:id](https://developer.twitter.com/en/docs/twitter-api/compliance/batch-compliance/api-reference/get-compliance-jobs-id) | [lookupJob](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ComplianceService/lookupJob.html)   |
-
-> **Remarque**</br>
-> Tous les champs supplémentaires répertoriés dans la documentation officielle ne sont pas pris en charge. Nous entendons les accompagner pas à pas. Vous pouvez également créer un problème ou une demande d'extraction si vous souhaitez suggérer ou contribuer !
 
 ## 1.3. Des astuces 🏄
 

@@ -189,6 +189,10 @@ void main() async {
       print(response.data);
       print(response.matchingRules);
     }
+  } on TimeoutException catch (e) {
+    print(e);
+  } on v2.RateLimitExceededException catch (e) {
+    print(e);
   } on v2.TwitterException catch (e) {
     print(e.response.headers);
     print(e.body);
@@ -404,9 +408,6 @@ void main() async {
 | [POST /2/compliance/jobs](https://developer.twitter.com/en/docs/twitter-api/compliance/batch-compliance/api-reference/post-compliance-jobs)      | [createJob](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ComplianceService/createJob.html)   |
 | [GET /2/compliance/jobs](https://developer.twitter.com/en/docs/twitter-api/compliance/batch-compliance/api-reference/get-compliance-jobs)        | [lookupJobs](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ComplianceService/lookupJobs.html) |
 | [GET /2/compliance/jobs/:id](https://developer.twitter.com/en/docs/twitter-api/compliance/batch-compliance/api-reference/get-compliance-jobs-id) | [lookupJob](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ComplianceService/lookupJob.html)   |
-
-> **Note**</br>
-> 公式ドキュメントに記載されている全ての追加フィールドをサポートできているわけではありません。私たちはそれらを段階的にサポートしていく方針です。または、もしあなたが貢献を望むのであればIssueまたはプルリクエストを作成してください！
 
 ## 1.3. 補足 🏄
 

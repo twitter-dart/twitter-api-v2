@@ -9,7 +9,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 // Project imports:
-import '../twitter_exception.dart';
+import '../exception/twitter_exception.dart';
 
 /// Provides the convenience utils for OAuth.
 class OAuthUtils {
