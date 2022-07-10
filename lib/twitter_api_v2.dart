@@ -4,6 +4,8 @@
 
 export 'package:twitter_api_v2/src/auth/oauth_utils.dart';
 export 'package:twitter_api_v2/src/client/oauth_tokens.dart';
+export 'package:twitter_api_v2/src/exception/rate_limit_exceeded_exception.dart';
+export 'package:twitter_api_v2/src/exception/twitter_exception.dart';
 export 'package:twitter_api_v2/src/service/common/includes.dart';
 export 'package:twitter_api_v2/src/service/common/mention.dart';
 export 'package:twitter_api_v2/src/service/common/tag.dart';
@@ -80,4 +82,3 @@ export 'package:twitter_api_v2/src/service/users/user_field.dart';
 export 'package:twitter_api_v2/src/service/users/user_meta.dart';
 export 'package:twitter_api_v2/src/service/users/users_service.dart';
 export 'package:twitter_api_v2/src/twitter_api.dart';
-export 'package:twitter_api_v2/src/twitter_exception.dart';

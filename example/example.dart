@@ -86,6 +86,8 @@ void main() async {
     }
   } on TimeoutException catch (e) {
     print(e);
+  } on v2.RateLimitExceededException catch (e) {
+    print(e);
   } on v2.TwitterException catch (e) {
     print(e.response.headers);
     print(e.body);

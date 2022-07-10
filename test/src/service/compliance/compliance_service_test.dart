@@ -8,12 +8,12 @@ import 'package:test/test.dart';
 // Project imports:
 import 'package:twitter_api_v2/src/client/client_context.dart';
 import 'package:twitter_api_v2/src/client/user_context.dart';
+import 'package:twitter_api_v2/src/exception/twitter_exception.dart';
 import 'package:twitter_api_v2/src/service/compliance/compliance_data.dart';
 import 'package:twitter_api_v2/src/service/compliance/compliance_service.dart';
 import 'package:twitter_api_v2/src/service/compliance/job_status.dart';
 import 'package:twitter_api_v2/src/service/compliance/job_type.dart';
 import 'package:twitter_api_v2/src/service/twitter_response.dart';
-import 'package:twitter_api_v2/src/twitter_exception.dart';
 import '../../../mocks/client_context_stubs.dart' as context;
 
 void main() {

@@ -5,8 +5,8 @@
 // Package imports:
 import 'package:http/http.dart';
 
-/// This class indicates that an unexpected error occurred when communicating
-/// with the Twitter API.
+/// This exception indicates that an unexpected error occurred when
+/// communicating　with the Twitter API.
 class TwitterException implements Exception {
   /// Returns the new instance of [TwitterException].
   TwitterException(this.message, this.response, [String? body])

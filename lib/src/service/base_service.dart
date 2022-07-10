@@ -11,7 +11,8 @@ import 'package:http/http.dart' as http;
 // Project imports:
 import '../client/client_context.dart';
 import '../client/user_context.dart';
-import '../twitter_exception.dart';
+import '../exception/rate_limit_exceeded_exception.dart';
+import '../exception/twitter_exception.dart';
 import 'common/includes.dart';
 import 'common/serializable.dart';
 import 'twitter_response.dart';
@@ -78,12 +79,14 @@ abstract class BaseService implements Service {
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
   }) async {
-    final response = await _context.get(
-      userContext,
-      Uri.https(
-        _authority,
-        unencodedPath,
-        _convertQueryParameters(queryParameters),
+    final response = _checkResponseError(
+      await _context.get(
+        userContext,
+        Uri.https(
+          _authority,
+          unencodedPath,
+          _convertQueryParameters(queryParameters),
+        ),
       ),
     );
 
@@ -120,15 +123,17 @@ abstract class BaseService implements Service {
     Map<String, dynamic> queryParameters = const {},
     dynamic body = const {},
   }) async {
-    final response = await _context.post(
-      userContext,
-      Uri.https(
-        _authority,
-        unencodedPath,
-        _convertQueryParameters(queryParameters),
+    final response = _checkResponseError(
+      await _context.post(
+        userContext,
+        Uri.https(
+          _authority,
+          unencodedPath,
+          _convertQueryParameters(queryParameters),
+        ),
+        headers: {'Content-type': 'application/json'},
+        body: jsonEncode(_removeNullParameters(body)),
       ),
-      headers: {'Content-type': 'application/json'},
-      body: jsonEncode(_removeNullParameters(body)),
     );
 
     return response;
@@ -139,9 +144,11 @@ abstract class BaseService implements Service {
     final UserContext userContext,
     final String unencodedPath,
   ) async {
-    final response = await _context.delete(
-      userContext,
-      Uri.https(_authority, unencodedPath),
+    final response = _checkResponseError(
+      await _context.delete(
+        userContext,
+        Uri.https(_authority, unencodedPath),
+      ),
     );
 
     return response;
@@ -153,11 +160,13 @@ abstract class BaseService implements Service {
     final String unencodedPath, {
     dynamic body = const {},
   }) async {
-    final response = await _context.put(
-      userContext,
-      Uri.https(_authority, unencodedPath),
-      headers: {'Content-type': 'application/json'},
-      body: jsonEncode(_removeNullParameters(body)),
+    final response = _checkResponseError(
+      await _context.put(
+        userContext,
+        Uri.https(_authority, unencodedPath),
+        headers: {'Content-type': 'application/json'},
+        body: jsonEncode(_removeNullParameters(body)),
+      ),
     );
 
     return response;
@@ -217,8 +226,24 @@ abstract class BaseService implements Service {
     );
   }
 
+  http.Response _checkResponseError(final http.Response response) {
+    final jsonBody = jsonDecode(response.body);
+
+    if (jsonBody.containsKey('errors')) {
+      final errors = jsonBody['errors'];
+      for (final error in errors) {
+        if (error['code'] == 88) {
+          throw RateLimitExceededException(error['message'] ?? '');
+        }
+      }
+    }
+
+    return response;
+  }
+
   Map<String, dynamic> _checkResponseBody(final http.Response response) {
     final jsonBody = jsonDecode(response.body);
+
     if (!jsonBody.containsKey('data')) {
       //! This occurs when the tweet to be processed has been deleted or
       //! when the target data does not exist at the time of search.
@@ -235,9 +260,9 @@ abstract class BaseService implements Service {
     final http.StreamedResponse response,
     final String event,
   ) {
-    final body = jsonDecode(event);
+    final jsonBody = jsonDecode(event);
 
-    if (!body.containsKey('data')) {
+    if (!jsonBody.containsKey('data')) {
       throw TwitterException(
         'No response data exists for the request.',
         response,
@@ -245,7 +270,7 @@ abstract class BaseService implements Service {
       );
     }
 
-    return body;
+    return jsonBody;
   }
 
   Map<String, String> _convertQueryParameters(
