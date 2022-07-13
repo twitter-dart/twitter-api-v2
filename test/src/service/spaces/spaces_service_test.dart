@@ -14,6 +14,7 @@ import 'package:twitter_api_v2/src/service/spaces/space_data.dart';
 import 'package:twitter_api_v2/src/service/spaces/space_meta.dart';
 import 'package:twitter_api_v2/src/service/spaces/space_state.dart';
 import 'package:twitter_api_v2/src/service/spaces/spaces_service.dart';
+import 'package:twitter_api_v2/src/service/spaces/topic_data.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_data.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_meta.dart';
 import 'package:twitter_api_v2/src/service/twitter_response.dart';
@@ -160,6 +161,7 @@ void main() {
       expect(response, isA<TwitterResponse>());
       expect(response.data, isA<List<SpaceData>>());
       expect(response.includes?.topics, isNotNull);
+      expect(response.includes?.topics, isA<List<TopicData>>());
       expect(response.includes!.topics!.first.id, '847527650667094017');
       expect(response.includes!.topics!.first.name, 'Gaming');
       expect(response.includes!.topics!.first.description, 'All about gaming');
