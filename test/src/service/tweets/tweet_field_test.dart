@@ -9,6 +9,26 @@ import 'package:test/test.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_field.dart';
 
 void main() {
+  test('.name', () {
+    expect(TweetField.attachments.name, 'attachments');
+    expect(TweetField.authorId.name, 'authorId');
+    expect(TweetField.contextAnnotations.name, 'contextAnnotations');
+    expect(TweetField.conversationId.name, 'conversationId');
+    expect(TweetField.createdAt.name, 'createdAt');
+    expect(TweetField.entities.name, 'entities');
+    expect(TweetField.geo.name, 'geo');
+    expect(TweetField.id.name, 'id');
+    expect(TweetField.inReplyToUserId.name, 'inReplyToUserId');
+    expect(TweetField.lang.name, 'lang');
+    expect(TweetField.publicMetrics.name, 'publicMetrics');
+    expect(TweetField.possiblySensitive.name, 'possiblySensitive');
+    expect(TweetField.referencedTweets.name, 'referencedTweets');
+    expect(TweetField.replySettings.name, 'replySettings');
+    expect(TweetField.source.name, 'source');
+    expect(TweetField.text.name, 'text');
+    expect(TweetField.withheld.name, 'withheld');
+  });
+
   test('.value', () {
     expect(TweetField.attachments.value, 'attachments');
     expect(TweetField.authorId.value, 'author_id');

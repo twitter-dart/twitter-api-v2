@@ -9,6 +9,23 @@ import 'package:test/test.dart';
 import 'package:twitter_api_v2/src/service/users/user_field.dart';
 
 void main() {
+  test('.name', () {
+    expect(UserField.id.name, 'id');
+    expect(UserField.description.name, 'description');
+    expect(UserField.name.name, 'name');
+    expect(UserField.username.name, 'username');
+    expect(UserField.url.name, 'url');
+    expect(UserField.profileImageUrl.name, 'profileImageUrl');
+    expect(UserField.location.name, 'location');
+    expect(UserField.pinnedTweetId.name, 'pinnedTweetId');
+    expect(UserField.protected.name, 'protected');
+    expect(UserField.verified.name, 'verified');
+    expect(UserField.publicMetrics.name, 'publicMetrics');
+    expect(UserField.entities.name, 'entities');
+    expect(UserField.createdAt.name, 'createdAt');
+    expect(UserField.withheld.name, 'withheld');
+  });
+
   test('.value', () {
     expect(UserField.id.value, 'id');
     expect(UserField.description.value, 'description');
