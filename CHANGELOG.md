@@ -1,5 +1,9 @@
 # Release Note
 
+## v2.10.0
+
+- Fixed to raise `TwitterException` if response object cannot be converted to JSON. ([#347](https://github.com/twitter-dart/twitter-api-v2/issues/347))
+
 ## v2.9.0
 
 - Added `state` parameter for `SpacesService.search`. ([#324](https://github.com/twitter-dart/twitter-api-v2/issues/324))

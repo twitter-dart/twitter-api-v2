@@ -3,7 +3,7 @@
 // modification, are permitted provided the conditions.
 
 // Dart imports:
-import 'dart:convert';
+import 'dart:convert' as converter;
 
 // Package imports:
 import 'package:http/http.dart' as http;
@@ -112,7 +112,7 @@ abstract class BaseService implements Service {
     );
 
     return streamedResponse.stream
-        .transform(utf8.decoder)
+        .transform(converter.utf8.decoder)
         .map((event) => _checkStreamedResponse(streamedResponse, event));
   }
 
@@ -132,7 +132,7 @@ abstract class BaseService implements Service {
           _convertQueryParameters(queryParameters),
         ),
         headers: {'Content-type': 'application/json'},
-        body: jsonEncode(_removeNullParameters(body)),
+        body: converter.jsonEncode(_removeNullParameters(body)),
       ),
     );
 
@@ -165,7 +165,7 @@ abstract class BaseService implements Service {
         userContext,
         Uri.https(_authority, unencodedPath),
         headers: {'Content-type': 'application/json'},
-        body: jsonEncode(_removeNullParameters(body)),
+        body: converter.jsonEncode(_removeNullParameters(body)),
       ),
     );
 
@@ -226,8 +226,22 @@ abstract class BaseService implements Service {
     );
   }
 
+  dynamic _jsonDecode(
+    final http.BaseResponse response,
+    final String body,
+  ) {
+    try {
+      return converter.jsonDecode(body);
+    } on FormatException {
+      throw TwitterException(
+        'Failed to decode the response body as JSON.',
+        response,
+      );
+    }
+  }
+
   http.Response _checkResponseError(final http.Response response) {
-    final jsonBody = jsonDecode(response.body);
+    final jsonBody = _jsonDecode(response, response.body);
 
     if (jsonBody.containsKey('errors')) {
       final errors = jsonBody['errors'];
@@ -242,7 +256,7 @@ abstract class BaseService implements Service {
   }
 
   Map<String, dynamic> _checkResponseBody(final http.Response response) {
-    final jsonBody = jsonDecode(response.body);
+    final jsonBody = _jsonDecode(response, response.body);
 
     if (!jsonBody.containsKey('data')) {
       //! This occurs when the tweet to be processed has been deleted or
@@ -260,7 +274,7 @@ abstract class BaseService implements Service {
     final http.StreamedResponse response,
     final String event,
   ) {
-    final jsonBody = jsonDecode(event);
+    final jsonBody = _jsonDecode(response, event);
 
     if (!jsonBody.containsKey('data')) {
       throw TwitterException(
