@@ -4,11 +4,17 @@
 
 // Package imports:
 import 'package:test/test.dart';
+import 'package:twitter_api_v2/src/service/common/serializable.dart';
 
 // Project imports:
 import 'package:twitter_api_v2/src/service/tweets/tweet_field.dart';
 
 void main() {
+  test('is serializable', () {
+    // ignore: unnecessary_type_check
+    expect(TweetField.attachments is Serializable, isTrue);
+  });
+
   test('.name', () {
     expect(TweetField.attachments.name, 'attachments');
     expect(TweetField.authorId.name, 'authorId');
