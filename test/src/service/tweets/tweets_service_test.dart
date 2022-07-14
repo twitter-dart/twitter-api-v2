@@ -12,6 +12,7 @@ import 'package:twitter_api_v2/src/client/user_context.dart';
 import 'package:twitter_api_v2/src/exception/rate_limit_exceeded_exception.dart';
 import 'package:twitter_api_v2/src/exception/twitter_exception.dart';
 import 'package:twitter_api_v2/src/service/filtered_stream_response.dart';
+import 'package:twitter_api_v2/src/service/tweets/exclude_tweet_type.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering_rule_data.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering_rule_meta.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering_rule_param.dart';
@@ -19,6 +20,8 @@ import 'package:twitter_api_v2/src/service/tweets/matching_rule.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_count_data.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_count_meta.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_data.dart';
+import 'package:twitter_api_v2/src/service/tweets/tweet_expansion.dart';
+import 'package:twitter_api_v2/src/service/tweets/tweet_field.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_geo_param.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_media_param.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_meta.dart';
@@ -413,6 +416,100 @@ void main() {
       expect(response.data.id, '1067094924124872705');
     });
 
+    test('with expansions', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets/1111',
+          'test/src/service/tweets/data/lookup_by_id.json',
+          {
+            'expansions': 'author_id',
+          },
+        ),
+      );
+
+      final response = await tweetsService.lookupById(
+        tweetId: '1111',
+        expansions: [TweetExpansion.authorId],
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<TweetData>());
+      expect(response.data.id, '1067094924124872705');
+    });
+
+    test('with multiple expansions', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets/1111',
+          'test/src/service/tweets/data/lookup_by_id.json',
+          {
+            'expansions': 'author_id,attachments.media_keys',
+          },
+        ),
+      );
+
+      final response = await tweetsService.lookupById(
+        tweetId: '1111',
+        expansions: [
+          TweetExpansion.authorId,
+          TweetExpansion.attachmentsMediaKeys
+        ],
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<TweetData>());
+      expect(response.data.id, '1067094924124872705');
+    });
+
+    test('with fields', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets/1111',
+          'test/src/service/tweets/data/lookup_by_id.json',
+          {
+            'tweet.fields': 'attachments',
+          },
+        ),
+      );
+
+      final response = await tweetsService.lookupById(
+        tweetId: '1111',
+        tweetFields: [TweetField.attachments],
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<TweetData>());
+      expect(response.data.id, '1067094924124872705');
+    });
+
+    test('with multiple fields', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets/1111',
+          'test/src/service/tweets/data/lookup_by_id.json',
+          {
+            'tweet.fields': 'attachments,author_id',
+          },
+        ),
+      );
+
+      final response = await tweetsService.lookupById(
+        tweetId: '1111',
+        tweetFields: [
+          TweetField.attachments,
+          TweetField.authorId,
+        ],
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<TweetData>());
+      expect(response.data.id, '1067094924124872705');
+    });
+
     test('with media', () async {
       final tweetsService = TweetsService(
         context: context.buildGetStub(
@@ -651,30 +748,118 @@ void main() {
     expect(response.meta!.resultCount, 5);
   });
 
-  test('.lookupTweets', () async {
-    final tweetsService = TweetsService(
-      context: context.buildGetStub(
-        UserContext.oauth2OrOAuth1,
-        '/2/users/0000/tweets',
-        'test/src/service/tweets/data/lookup_tweets.json',
-        {
-          'max_results': '10',
-          'pagination_token': 'TOKEN',
-        },
-      ),
-    );
+  group('.lookupTweets', () {
+    test('normal case', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/0000/tweets',
+          'test/src/service/tweets/data/lookup_tweets.json',
+          {
+            'max_results': '10',
+            'pagination_token': 'TOKEN',
+          },
+        ),
+      );
 
-    final response = await tweetsService.lookupTweets(
-      userId: '0000',
-      maxResults: 10,
-      paginationToken: 'TOKEN',
-    );
+      final response = await tweetsService.lookupTweets(
+        userId: '0000',
+        maxResults: 10,
+        paginationToken: 'TOKEN',
+      );
 
-    expect(response, isA<TwitterResponse>());
-    expect(response.data, isA<List<TweetData>>());
-    expect(response.meta, isA<TweetMeta>());
-    expect(response.data.length, 10);
-    expect(response.meta!.resultCount, 10);
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<TweetData>>());
+      expect(response.meta, isA<TweetMeta>());
+      expect(response.data.length, 10);
+      expect(response.meta!.resultCount, 10);
+    });
+
+    test('with exclude', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/0000/tweets',
+          'test/src/service/tweets/data/lookup_tweets.json',
+          {
+            'max_results': '10',
+            'pagination_token': 'TOKEN',
+            'exclude': 'replies',
+          },
+        ),
+      );
+
+      final response = await tweetsService.lookupTweets(
+        userId: '0000',
+        maxResults: 10,
+        paginationToken: 'TOKEN',
+        excludes: [ExcludeTweetType.replies],
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<TweetData>>());
+      expect(response.meta, isA<TweetMeta>());
+      expect(response.data.length, 10);
+      expect(response.meta!.resultCount, 10);
+    });
+
+    test('with excludes', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/0000/tweets',
+          'test/src/service/tweets/data/lookup_tweets.json',
+          {
+            'max_results': '10',
+            'pagination_token': 'TOKEN',
+            'exclude': 'retweets,replies',
+          },
+        ),
+      );
+
+      final response = await tweetsService.lookupTweets(
+        userId: '0000',
+        maxResults: 10,
+        paginationToken: 'TOKEN',
+        excludes: ExcludeTweetType.values,
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<TweetData>>());
+      expect(response.meta, isA<TweetMeta>());
+      expect(response.data.length, 10);
+      expect(response.meta!.resultCount, 10);
+    });
+
+    test('with date time in ISO format', () async {
+      final now = DateTime.now();
+
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/0000/tweets',
+          'test/src/service/tweets/data/lookup_tweets.json',
+          {
+            'max_results': '10',
+            'pagination_token': 'TOKEN',
+            'start_time': now.toUtc().toIso8601String(),
+          },
+        ),
+      );
+
+      final response = await tweetsService.lookupTweets(
+        userId: '0000',
+        maxResults: 10,
+        paginationToken: 'TOKEN',
+        startTime: now,
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<TweetData>>());
+      expect(response.meta, isA<TweetMeta>());
+      expect(response.data.length, 10);
+      expect(response.meta!.resultCount, 10);
+    });
   });
 
   test('.lookupHomeTimeline', () async {
