@@ -63,5 +63,113 @@ void main() {
         throwsA(isA<TwitterException>()),
       );
     });
+
+    test('GET Stream', () async {
+      final twitter = TwitterApi(bearerToken: '');
+      final response = await twitter.tweetsService.connectVolumeStream();
+
+      //! Stream does not raise an exception when retrieving.
+      expect(response, isNotNull);
+      expect(response, isA<Stream<TwitterResponse<TweetData, void>>>());
+    });
+
+    test('POST', () {
+      final twitter = TwitterApi(bearerToken: '');
+
+      expect(
+        () async => await twitter.tweetsService.createTweet(text: ''),
+        throwsA(isA<TwitterException>()),
+      );
+    });
+
+    test('DELETE', () {
+      final twitter = TwitterApi(bearerToken: '');
+
+      expect(
+        () async => await twitter.tweetsService.destroyTweet(tweetId: ''),
+        throwsA(isA<FormatException>()),
+      );
+    });
+
+    test('PUT', () {
+      final twitter = TwitterApi(bearerToken: '');
+
+      expect(
+        () async => await twitter.listsService.updateListAsPrivate(listId: ''),
+        throwsA(isA<FormatException>()),
+      );
+    });
+  });
+
+  //! Since authentication information cannot be shared,
+  //! only that the communication is established is verified.
+  group('HTTP client in OAuth 1.0a', () {
+    test('GET', () {
+      final twitter = TwitterApi(
+        bearerToken: '',
+        oauthTokens: OAuthTokens(
+          consumerKey: '',
+          consumerSecret: '',
+          accessToken: '',
+          accessTokenSecret: '',
+        ),
+      );
+
+      expect(
+        () async => await twitter.tweetsService.lookupById(tweetId: ''),
+        throwsA(isA<TwitterException>()),
+      );
+    });
+
+    test('POST', () {
+      final twitter = TwitterApi(
+        bearerToken: '',
+        oauthTokens: OAuthTokens(
+          consumerKey: '',
+          consumerSecret: '',
+          accessToken: '',
+          accessTokenSecret: '',
+        ),
+      );
+
+      expect(
+        () async => await twitter.tweetsService.createTweet(text: ''),
+        throwsA(isA<TwitterException>()),
+      );
+    });
+
+    test('DELETE', () {
+      final twitter = TwitterApi(
+        bearerToken: '',
+        oauthTokens: OAuthTokens(
+          consumerKey: '',
+          consumerSecret: '',
+          accessToken: '',
+          accessTokenSecret: '',
+        ),
+      );
+
+      expect(
+        () async => await twitter.tweetsService.destroyTweet(tweetId: ''),
+        throwsA(isA<FormatException>()),
+      );
+    });
+
+    test('PUT', () {
+      final twitter = TwitterApi(
+        bearerToken: '',
+        oauthTokens: OAuthTokens(
+          consumerKey: '',
+          consumerSecret: '',
+          accessToken: '',
+          accessTokenSecret: '',
+        ),
+      );
+
+      expect(
+        () async => await twitter.listsService.updateListAsPrivate(listId: ''),
+        throwsA(isA<FormatException>()),
+      );
+    });
   });
 }
