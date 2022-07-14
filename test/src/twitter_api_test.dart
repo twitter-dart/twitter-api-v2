@@ -90,7 +90,7 @@ void main() {
 
       expect(
         () async => await twitter.tweetsService.destroyTweet(tweetId: ''),
-        throwsA(isA<FormatException>()),
+        throwsA(isA<TwitterException>()),
       );
     });
 
@@ -99,7 +99,7 @@ void main() {
 
       expect(
         () async => await twitter.listsService.updateListAsPrivate(listId: ''),
-        throwsA(isA<FormatException>()),
+        throwsA(isA<TwitterException>()),
       );
     });
   });
@@ -154,7 +154,7 @@ void main() {
 
       expect(
         () async => await twitter.tweetsService.destroyTweet(tweetId: ''),
-        throwsA(isA<FormatException>()),
+        throwsA(isA<TwitterException>()),
       );
     });
 
@@ -171,7 +171,7 @@ void main() {
 
       expect(
         () async => await twitter.listsService.updateListAsPrivate(listId: ''),
-        throwsA(isA<FormatException>()),
+        throwsA(isA<TwitterException>()),
       );
     });
   });
