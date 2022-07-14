@@ -10,6 +10,22 @@ import 'package:twitter_api_v2/twitter_api_v2.dart';
 
 void main() {
   test('.name', () {
+    expect(MediaField.altText.name, 'altText');
+    expect(MediaField.durationMilliseconds.name, 'durationMilliseconds');
+    expect(MediaField.height.name, 'height');
+    expect(MediaField.mediaKey.name, 'mediaKey');
+    expect(MediaField.privateMetrics.name, 'privateMetrics');
+    expect(MediaField.organicMetrics.name, 'organicMetrics');
+    expect(MediaField.previewImageUrl.name, 'previewImageUrl');
+    expect(MediaField.promotedMetrics.name, 'promotedMetrics');
+    expect(MediaField.publicMetrics.name, 'publicMetrics');
+    expect(MediaField.type.name, 'type');
+    expect(MediaField.url.name, 'url');
+    expect(MediaField.width.name, 'width');
+    expect(MediaField.variants.name, 'variants');
+  });
+
+  test('.value', () {
     expect(MediaField.altText.value, 'alt_text');
     expect(MediaField.durationMilliseconds.value, 'duration_ms');
     expect(MediaField.height.value, 'height');

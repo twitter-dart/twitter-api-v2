@@ -9,6 +9,15 @@ import 'package:test/test.dart';
 import 'package:twitter_api_v2/src/service/lists/list_field.dart';
 
 void main() {
+  test('.name', () {
+    expect(ListField.createdAt.name, 'createdAt');
+    expect(ListField.description.name, 'description');
+    expect(ListField.followerCount.name, 'followerCount');
+    expect(ListField.memberCount.name, 'memberCount');
+    expect(ListField.ownerId.name, 'ownerId');
+    expect(ListField.private.name, 'private');
+  });
+
   test('.value', () {
     expect(ListField.createdAt.value, 'created_at');
     expect(ListField.description.value, 'description');

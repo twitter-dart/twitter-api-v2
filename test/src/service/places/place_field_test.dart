@@ -9,6 +9,17 @@ import 'package:test/test.dart';
 import 'package:twitter_api_v2/src/service/places/place_field.dart';
 
 void main() {
+  test('.name', () {
+    expect(PlaceField.containedWithin.name, 'containedWithin');
+    expect(PlaceField.country.name, 'country');
+    expect(PlaceField.countryCode.name, 'countryCode');
+    expect(PlaceField.fullName.name, 'fullName');
+    expect(PlaceField.geo.name, 'geo');
+    expect(PlaceField.id.name, 'id');
+    expect(PlaceField.name.name, 'name');
+    expect(PlaceField.placeType.name, 'placeType');
+  });
+
   test('.value', () {
     expect(PlaceField.containedWithin.value, 'contained_within');
     expect(PlaceField.country.value, 'country');

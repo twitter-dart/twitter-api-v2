@@ -9,6 +9,14 @@ import 'package:test/test.dart';
 import 'package:twitter_api_v2/src/service/polls/poll_field.dart';
 
 void main() {
+  test('.name', () {
+    expect(PollField.durationMinutes.name, 'durationMinutes');
+    expect(PollField.endAt.name, 'endAt');
+    expect(PollField.id.name, 'id');
+    expect(PollField.options.name, 'options');
+    expect(PollField.votingStatus.name, 'votingStatus');
+  });
+
   test('.value', () {
     expect(PollField.durationMinutes.value, 'duration_minutes');
     expect(PollField.endAt.value, 'end_datetime');
