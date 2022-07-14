@@ -160,23 +160,44 @@ void main() {
     expect(response.data, isA<UserData>());
   });
 
-  test('.lookupByNames', () async {
-    final usersService = UsersService(
-      context: context.buildGetStub(
-        UserContext.oauth2OrOAuth1,
-        '/2/users/by',
-        'test/src/service/users/data/lookup_by_names.json',
-        {'usernames': 'TwitterDev,Twitter'},
-      ),
-    );
+  group('.lookupByNames', () {
+    test('normal case', () async {
+      final usersService = UsersService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/by',
+          'test/src/service/users/data/lookup_by_names.json',
+          {'usernames': 'TwitterDev,Twitter'},
+        ),
+      );
 
-    final response = await usersService.lookupByNames(
-      usernames: ['TwitterDev', 'Twitter'],
-    );
+      final response = await usersService.lookupByNames(
+        usernames: ['TwitterDev', 'Twitter'],
+      );
 
-    expect(response, isA<TwitterResponse>());
-    expect(response.data, isA<List<UserData>>());
-    expect(response.data.length, 2);
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<UserData>>());
+      expect(response.data.length, 2);
+    });
+
+    test('with various fields', () async {
+      final usersService = UsersService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/by',
+          'test/src/service/users/data/lookup_by_names_with_various_fields.json',
+          {'usernames': 'TwitterDev,Twitter'},
+        ),
+      );
+
+      final response = await usersService.lookupByNames(
+        usernames: ['TwitterDev', 'Twitter'],
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<UserData>>());
+      expect(response.data.length, 2);
+    });
   });
 
   test('.lookupMe', () async {

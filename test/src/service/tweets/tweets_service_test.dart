@@ -325,7 +325,7 @@ void main() {
     expect(response.meta!.resultCount, 10);
   });
 
-  group('searchRecent', () {
+  group('.searchRecent', () {
     test('normal case', () async {
       final tweetsService = TweetsService(
         context: context.buildGetStub(
@@ -393,23 +393,82 @@ void main() {
     expect(response.meta!.resultCount, 6);
   });
 
-  test('.lookupById', () async {
-    final tweetsService = TweetsService(
-      context: context.buildGetStub(
-        UserContext.oauth2OrOAuth1,
-        '/2/tweets/1111',
-        'test/src/service/tweets/data/lookup_by_id.json',
-        {},
-      ),
-    );
+  group('.lookupById', () {
+    test('normal case', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets/1111',
+          'test/src/service/tweets/data/lookup_by_id.json',
+          {},
+        ),
+      );
 
-    final response = await tweetsService.lookupById(
-      tweetId: '1111',
-    );
+      final response = await tweetsService.lookupById(
+        tweetId: '1111',
+      );
 
-    expect(response, isA<TwitterResponse>());
-    expect(response.data, isA<TweetData>());
-    expect(response.data.id, '1067094924124872705');
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<TweetData>());
+      expect(response.data.id, '1067094924124872705');
+    });
+
+    test('with media', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets/1111',
+          'test/src/service/tweets/data/lookup_by_id_with_media.json',
+          {},
+        ),
+      );
+
+      final response = await tweetsService.lookupById(
+        tweetId: '1111',
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<TweetData>());
+      expect(response.data.id, '1067094924124872705');
+    });
+
+    test('with polls', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets/1111',
+          'test/src/service/tweets/data/lookup_by_id_with_polls.json',
+          {},
+        ),
+      );
+
+      final response = await tweetsService.lookupById(
+        tweetId: '1111',
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<TweetData>());
+      expect(response.data.id, '1067094924124872705');
+    });
+
+    test('with places', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets/1111',
+          'test/src/service/tweets/data/lookup_by_id_with_places.json',
+          {},
+        ),
+      );
+
+      final response = await tweetsService.lookupById(
+        tweetId: '1111',
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<TweetData>());
+      expect(response.data.id, '1067094924124872705');
+    });
   });
 
   test('.lookupByIds', () async {
