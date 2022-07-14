@@ -325,26 +325,50 @@ void main() {
     expect(response.meta!.resultCount, 10);
   });
 
-  test('.searchRecent', () async {
-    final tweetsService = TweetsService(
-      context: context.buildGetStub(
-        UserContext.oauth2Only,
-        '/2/tweets/search/recent',
-        'test/src/service/tweets/data/search_recent.json',
-        {'query': 'hello'},
-      ),
-    );
+  group('searchRecent', () {
+    test('normal case', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2Only,
+          '/2/tweets/search/recent',
+          'test/src/service/tweets/data/search_recent.json',
+          {'query': 'hello'},
+        ),
+      );
 
-    final response = await tweetsService.searchRecent(
-      query: 'hello',
-    );
+      final response = await tweetsService.searchRecent(
+        query: 'hello',
+      );
 
-    expect(response, isA<TwitterResponse>());
-    expect(response.data, isA<List<TweetData>>());
-    expect(response.meta, isA<TweetMeta>());
-    expect(response.data.length, 6);
-    expect(response.meta, isNotNull);
-    expect(response.meta!.resultCount, 6);
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<TweetData>>());
+      expect(response.meta, isA<TweetMeta>());
+      expect(response.data.length, 6);
+      expect(response.meta, isNotNull);
+      expect(response.meta!.resultCount, 6);
+    });
+
+    test('with various fields', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2Only,
+          '/2/tweets/search/recent',
+          'test/src/service/tweets/data/search_recent_with_various_fields.json',
+          {'query': 'hello'},
+        ),
+      );
+
+      final response = await tweetsService.searchRecent(
+        query: 'hello',
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<TweetData>>());
+      expect(response.meta, isA<TweetMeta>());
+      expect(response.data.length, 6);
+      expect(response.meta, isNotNull);
+      expect(response.meta!.resultCount, 6);
+    });
   });
 
   test('.searchAll', () async {
