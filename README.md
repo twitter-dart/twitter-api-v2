@@ -206,6 +206,8 @@ void main() async {
     }
   } on TimeoutException catch (e) {
     print(e);
+  } on v2.UnauthorizedException catch (e) {
+    print(e);
   } on v2.RateLimitExceededException catch (e) {
     print(e);
   } on v2.TwitterException catch (e) {
