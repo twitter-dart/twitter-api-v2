@@ -52,7 +52,13 @@ class _TwitterApi implements TwitterApi {
             oauthTokens: oauthTokens,
             timeout: timeout,
           ),
-        );
+        ) {
+    if (bearerToken.isEmpty && oauthTokens == null) {
+      throw ArgumentError(
+        'An access token using OAuth 2.0 or OAuth 1.0a is required.',
+      );
+    }
+  }
 
   /// The twitter service
   final TwitterService _twitterService;
