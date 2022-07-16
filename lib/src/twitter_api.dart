@@ -92,7 +92,35 @@ import 'service/users/users_service.dart';
 ///
 /// - [twitter_oauth2_pkce](https://pub.dev/packages/twitter_oauth2_pkce)
 ///
+/// ## Timeout
+///
+/// When communicating with the `Twitter API v2.0`, network and other
+/// infrastructure conditions may inhibit communication, and resulting in
+/// inevitable timeouts.
+///
+/// The timeout period in this library is defined as **10 seconds**,
+/// but if you wish to specify an arbitrary timeout period, the following
+/// options are available.
+///
+/// ```dart
+/// final twitter = TwitterApi(
+///   bearerToken: 'YOUR_TOKEN_HERE',
+///   timeout: Duration(seconds: 30),
+/// );
+/// ```
+///
+/// ## Exceptions
+///
+/// The following exceptions may be thrown by this object.
+///
+/// - [TimeoutException](https://api.dart.dev/stable/2.17.6/dart-async/TimeoutException-class.html): If the request takes longer than the specified timeout.
+/// - [UnauthorizedException](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UnauthorizedException-class.html): When the access token is invalid.
+/// - [RateLimitExceededException](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/RateLimitExceededException-class.html): When the rate limit is exceeded.
+/// - [TwitterException](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TwitterException-class.html): When the response body is not a valid JSON and etc.
+///
 /// ## More Information
+///
+/// You can see more information from the following links:
 ///
 /// - [Repository](https://github.com/twitter-dart/twitter-api-v2)
 /// - [README](https://github.com/twitter-dart/twitter-api-v2/blob/main/README.md)
