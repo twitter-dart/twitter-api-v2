@@ -18,37 +18,44 @@ import 'package:twitter_api_v2/src/service/users/users_service.dart';
 import 'package:twitter_api_v2/src/twitter_api.dart';
 
 void main() {
+  test('when there are no tokens', () {
+    expect(
+      () => TwitterApi(bearerToken: ''),
+      throwsA(isA<ArgumentError>()),
+    );
+  });
+
   group('services', () {
     test('.tweetsService', () {
-      final twitter = TwitterApi(bearerToken: '');
+      final twitter = TwitterApi(bearerToken: 'XXX');
 
       expect(twitter.tweetsService, isNotNull);
       expect(twitter.tweetsService, isA<TweetsService>());
     });
 
     test('.usersService', () {
-      final twitter = TwitterApi(bearerToken: '');
+      final twitter = TwitterApi(bearerToken: 'XXX');
 
       expect(twitter.usersService, isNotNull);
       expect(twitter.usersService, isA<UsersService>());
     });
 
     test('.spacesService', () {
-      final twitter = TwitterApi(bearerToken: '');
+      final twitter = TwitterApi(bearerToken: 'XXX');
 
       expect(twitter.spacesService, isNotNull);
       expect(twitter.spacesService, isA<SpacesService>());
     });
 
     test('.listsService', () {
-      final twitter = TwitterApi(bearerToken: '');
+      final twitter = TwitterApi(bearerToken: 'XXX');
 
       expect(twitter.listsService, isNotNull);
       expect(twitter.listsService, isA<ListsService>());
     });
 
     test('.complianceService', () {
-      final twitter = TwitterApi(bearerToken: '');
+      final twitter = TwitterApi(bearerToken: 'XXX');
 
       expect(twitter.complianceService, isNotNull);
       expect(twitter.complianceService, isA<ComplianceService>());
@@ -59,7 +66,7 @@ void main() {
   //! only that the communication is established is verified.
   group('HTTP client in OAuth 2.0', () {
     test('GET', () {
-      final twitter = TwitterApi(bearerToken: '');
+      final twitter = TwitterApi(bearerToken: 'XXX');
 
       expect(
         () async => await twitter.tweetsService.lookupById(tweetId: ''),
@@ -68,7 +75,7 @@ void main() {
     });
 
     test('GET Stream', () async {
-      final twitter = TwitterApi(bearerToken: '');
+      final twitter = TwitterApi(bearerToken: 'XXX');
       final response = await twitter.tweetsService.connectVolumeStream();
 
       //! Stream does not raise an exception when retrieving.
@@ -77,7 +84,7 @@ void main() {
     });
 
     test('POST', () {
-      final twitter = TwitterApi(bearerToken: '');
+      final twitter = TwitterApi(bearerToken: 'XXX');
 
       expect(
         () async => await twitter.tweetsService.createTweet(text: ''),
@@ -86,7 +93,7 @@ void main() {
     });
 
     test('DELETE', () {
-      final twitter = TwitterApi(bearerToken: '');
+      final twitter = TwitterApi(bearerToken: 'XXX');
 
       expect(
         () async => await twitter.tweetsService.destroyTweet(tweetId: ''),
@@ -95,7 +102,7 @@ void main() {
     });
 
     test('PUT', () {
-      final twitter = TwitterApi(bearerToken: '');
+      final twitter = TwitterApi(bearerToken: 'XXX');
 
       expect(
         () async => await twitter.listsService.updateListAsPrivate(listId: ''),
