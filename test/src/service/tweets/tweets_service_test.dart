@@ -11,6 +11,7 @@ import 'package:twitter_api_v2/src/client/client_context.dart';
 import 'package:twitter_api_v2/src/client/user_context.dart';
 import 'package:twitter_api_v2/src/exception/rate_limit_exceeded_exception.dart';
 import 'package:twitter_api_v2/src/exception/twitter_exception.dart';
+import 'package:twitter_api_v2/src/exception/unauthorized_exception.dart';
 import 'package:twitter_api_v2/src/service/filtered_stream_response.dart';
 import 'package:twitter_api_v2/src/service/tweets/exclude_tweet_type.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering_rule_data.dart';
@@ -58,7 +59,7 @@ void main() {
       expect(response.data.text, 'Hello, World!');
     });
 
-    test('throws TwitterException', () async {
+    test('throws UnauthorizedException', () async {
       final tweetsService = TweetsService(
         context: ClientContext(
           bearerToken: '',
@@ -67,10 +68,10 @@ void main() {
       );
 
       expect(
-        () async =>
-            await tweetsService.createTweet(text: 'Throw TwitterException'),
+        () async => await tweetsService.createTweet(
+            text: 'Throw UnauthorizedException'),
         throwsA(
-          allOf(isA<TwitterException>(),
+          allOf(isA<UnauthorizedException>(),
               predicate((e) => e.toString().isNotEmpty)),
         ),
       );
