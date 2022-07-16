@@ -37,10 +37,6 @@ class MockClientContext extends _i1.Mock implements _i3.ClientContext {
   }
 
   @override
-  bool get hasOAuth1Client => (super
-          .noSuchMethod(Invocation.getter(#hasOAuth1Client), returnValue: false)
-      as bool);
-  @override
   _i4.Future<_i2.Response> get(_i5.UserContext? userContext, Uri? uri) =>
       (super.noSuchMethod(Invocation.method(#get, [userContext, uri]),
               returnValue: Future<_i2.Response>.value(_FakeResponse_0()))

@@ -182,7 +182,9 @@ class _$_UserEntities implements _UserEntities {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserEntitiesToJson(this);
+    return _$$_UserEntitiesToJson(
+      this,
+    );
   }
 }
 
@@ -197,12 +199,12 @@ abstract class _UserEntities implements UserEntities {
   @override
 
   /// Contains details about the user's profile website.
-  UserUrlEntity? get url => throw _privateConstructorUsedError;
+  UserUrlEntity? get url;
   @override
 
   /// Contains details about URLs, Hashtags, Cashtags, or mentions located
   /// within a user's description.
-  UserDescriptionEntity? get description => throw _privateConstructorUsedError;
+  UserDescriptionEntity? get description;
   @override
   @JsonKey(ignore: true)
   _$$_UserEntitiesCopyWith<_$_UserEntities> get copyWith =>

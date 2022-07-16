@@ -231,7 +231,9 @@ class _$_PollData implements _PollData {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PollDataToJson(this);
+    return _$$_PollDataToJson(
+      this,
+    );
   }
 }
 
@@ -248,25 +250,25 @@ abstract class _PollData implements PollData {
   @override
 
   /// Unique identifier of the expanded poll.
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
 
   /// Contains objects describing each choice in the referenced poll.
-  List<PollOption> get options => throw _privateConstructorUsedError;
+  List<PollOption> get options;
   @override
 
   /// Indicates if this poll is still active and can receive votes,
   /// or if the voting is now closed.
-  PollVotingStatus? get votingStatus => throw _privateConstructorUsedError;
+  PollVotingStatus? get votingStatus;
   @override
 
   /// Specifies the total duration of this poll.
-  int? get durationMinutes => throw _privateConstructorUsedError;
+  int? get durationMinutes;
   @override
 
   /// Specifies the end date and time for this poll.
   @JsonKey(name: 'end_datetime')
-  DateTime? get endAt => throw _privateConstructorUsedError;
+  DateTime? get endAt;
   @override
   @JsonKey(ignore: true)
   _$$_PollDataCopyWith<_$_PollData> get copyWith =>

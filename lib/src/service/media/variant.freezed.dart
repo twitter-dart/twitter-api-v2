@@ -169,7 +169,9 @@ class _$_Variant implements _Variant {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_VariantToJson(this);
+    return _$$_VariantToJson(
+      this,
+    );
   }
 }
 
@@ -186,15 +188,15 @@ abstract class _Variant implements Variant {
   /// The number of bit rates in the content.
   ///
   /// It may be null when content type is `application/x-mpegURL`.
-  int? get bitRate => throw _privateConstructorUsedError;
+  int? get bitRate;
   @override
 
   /// The content type.
-  String get contentType => throw _privateConstructorUsedError;
+  String get contentType;
   @override
 
   /// The url to the content.
-  String get url => throw _privateConstructorUsedError;
+  String get url;
   @override
   @JsonKey(ignore: true)
   _$$_VariantCopyWith<_$_Variant> get copyWith =>

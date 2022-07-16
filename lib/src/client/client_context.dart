@@ -6,6 +6,7 @@
 import 'package:http/http.dart' as http;
 
 // Project imports:
+import '../config/retry_config.dart';
 import 'oauth1_client.dart';
 import 'oauth2_client.dart';
 import 'oauth_tokens.dart';
@@ -17,11 +18,13 @@ abstract class ClientContext {
     required String bearerToken,
     OAuthTokens? oauthTokens,
     required Duration timeout,
+    RetryConfig? retryConfig,
   }) =>
       _ClientContext(
         bearerToken: bearerToken,
         oauthTokens: oauthTokens,
         timeout: timeout,
+        retryConfig: retryConfig,
       );
 
   Future<http.Response> get(UserContext userContext, Uri uri);
@@ -49,9 +52,6 @@ abstract class ClientContext {
     UserContext userContext,
     http.BaseRequest request,
   );
-
-  /// Returns true if this context has an OAuth 1.0a client, otherwise false.
-  bool get hasOAuth1Client;
 }
 
 class _ClientContext implements ClientContext {
@@ -59,6 +59,7 @@ class _ClientContext implements ClientContext {
     required String bearerToken,
     OAuthTokens? oauthTokens,
     required this.timeout,
+    this.retryConfig,
   })  : _oauth1Client = oauthTokens != null
             ? OAuth1Client(
                 consumerKey: oauthTokens.consumerKey,
@@ -78,12 +79,15 @@ class _ClientContext implements ClientContext {
   /// The timeout
   final Duration timeout;
 
+  /// The configuration of retry.
+  final RetryConfig? retryConfig;
+
   @override
   Future<http.Response> get(
     UserContext userContext,
     Uri uri,
   ) {
-    if (userContext == UserContext.oauth2OrOAuth1 && hasOAuth1Client) {
+    if (userContext == UserContext.oauth2OrOAuth1 && _hasOAuth1Client) {
       //! If an authentication token is set, the OAuth 1.0a method is given
       //! priority.
       return _oauth1Client!.get(uri, timeout: timeout);
@@ -97,7 +101,7 @@ class _ClientContext implements ClientContext {
     UserContext userContext,
     http.BaseRequest request,
   ) async {
-    if (userContext == UserContext.oauth2OrOAuth1 && hasOAuth1Client) {
+    if (userContext == UserContext.oauth2OrOAuth1 && _hasOAuth1Client) {
       //! If an authentication token is set, the OAuth 1.0a method is given
       //! priority.
       return _oauth1Client!.getStream(
@@ -119,7 +123,7 @@ class _ClientContext implements ClientContext {
     Map<String, String> headers = const {},
     body,
   }) {
-    if (userContext == UserContext.oauth2OrOAuth1 && hasOAuth1Client) {
+    if (userContext == UserContext.oauth2OrOAuth1 && _hasOAuth1Client) {
       //! If an authentication token is set, the OAuth 1.0a method is given
       //! priority.
       return _oauth1Client!.post(
@@ -143,7 +147,7 @@ class _ClientContext implements ClientContext {
     UserContext userContext,
     Uri uri,
   ) {
-    if (userContext == UserContext.oauth2OrOAuth1 && hasOAuth1Client) {
+    if (userContext == UserContext.oauth2OrOAuth1 && _hasOAuth1Client) {
       //! If an authentication token is set, the OAuth 1.0a method is given
       //! priority.
       return _oauth1Client!.delete(uri, timeout: timeout);
@@ -159,7 +163,7 @@ class _ClientContext implements ClientContext {
     Map<String, String> headers = const {},
     dynamic body,
   }) async {
-    if (userContext == UserContext.oauth2OrOAuth1 && hasOAuth1Client) {
+    if (userContext == UserContext.oauth2OrOAuth1 && _hasOAuth1Client) {
       //! If an authentication token is set, the OAuth 1.0a method is given
       //! priority.
       return _oauth1Client!.put(
@@ -178,6 +182,5 @@ class _ClientContext implements ClientContext {
     );
   }
 
-  @override
-  bool get hasOAuth1Client => _oauth1Client != null;
+  bool get _hasOAuth1Client => _oauth1Client != null;
 }

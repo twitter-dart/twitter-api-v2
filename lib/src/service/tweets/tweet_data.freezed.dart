@@ -1027,7 +1027,9 @@ class _$_TweetData implements _TweetData {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TweetDataToJson(this);
+    return _$$_TweetDataToJson(
+      this,
+    );
   }
 }
 
@@ -1069,7 +1071,7 @@ abstract class _TweetData implements TweetData {
   /// ## How It Can Be Used
   ///
   /// - Use this to programmatically retrieve a specific Tweet.
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
 
   /// The actual UTF-8 text of the Tweet. See [twitter-text](https://github.com/twitter/twitter-text/) for details on
@@ -1078,7 +1080,7 @@ abstract class _TweetData implements TweetData {
   /// ## How It Can Be Used
   ///
   /// - Keyword extraction and sentiment analysis/classification.
-  String get text => throw _privateConstructorUsedError;
+  String get text;
   @override
 
   /// Unique identifier of this user. This is returned as a string in order
@@ -1091,7 +1093,7 @@ abstract class _TweetData implements TweetData {
   /// ## How It Can Be Used
   ///
   /// - Hydrating User object, sharing dataset for peer review.
-  String? get authorId => throw _privateConstructorUsedError;
+  String? get authorId;
   @override
 
   /// If this Tweet is a Reply, indicates the user ID of the parent Tweet's
@@ -1104,7 +1106,7 @@ abstract class _TweetData implements TweetData {
   /// ## How It Can Be Used
   ///
   /// - Use this to determine if this Tweet was in reply to another Tweet.
-  String? get inReplyToUserId => throw _privateConstructorUsedError;
+  String? get inReplyToUserId;
   @override
 
   /// The Tweet ID of the original Tweet of the conversation (which includes
@@ -1116,7 +1118,7 @@ abstract class _TweetData implements TweetData {
   /// ## How It Can Be Used
   ///
   /// - Use this to reconstruct the conversation from a Tweet.
-  String? get conversationId => throw _privateConstructorUsedError;
+  String? get conversationId;
   @override
 
   /// A list of Tweets this Tweet refers to. For example, if the parent Tweet
@@ -1130,8 +1132,7 @@ abstract class _TweetData implements TweetData {
   ///
   /// - This field can be used to understand conversational aspects of
   ///   retweets etc.
-  List<ReferencedTweet>? get referencedTweets =>
-      throw _privateConstructorUsedError;
+  List<ReferencedTweet>? get referencedTweets;
   @override
 
   /// Contains context annotations for the Tweet.
@@ -1142,8 +1143,7 @@ abstract class _TweetData implements TweetData {
   /// ## How It Can Be Used
   ///
   /// - Entity recognition/extraction, topical analysis.
-  List<TweetContextAnnotationGroup>? get contextAnnotations =>
-      throw _privateConstructorUsedError;
+  List<TweetContextAnnotationGroup>? get contextAnnotations;
   @override
 
   /// Contains details about text that has a special meaning in a Tweet.
@@ -1159,7 +1159,7 @@ abstract class _TweetData implements TweetData {
   ///   all start indices are inclusive. The majority of end indices are
   ///   exclusive, except for entities.annotations.end, which is currently
   ///   inclusive.
-  TweetEntities? get entities => throw _privateConstructorUsedError;
+  TweetEntities? get entities;
   @override
 
   /// Specifies the type of attachments (if any) present in this Tweet.
@@ -1170,7 +1170,7 @@ abstract class _TweetData implements TweetData {
   /// ## How It Can Be Used
   ///
   /// - Understanding the objects returned for requested expansions
-  TweetAttachments? get attachments => throw _privateConstructorUsedError;
+  TweetAttachments? get attachments;
   @override
 
   /// Non-public engagement metrics for the Tweet at the time of the request.
@@ -1182,7 +1182,7 @@ abstract class _TweetData implements TweetData {
   /// - Use this to determine the total number of impressions generated for
   ///   the Tweet.
   @JsonKey(name: 'non_public_metrics')
-  PrivateTweetMetrics? get privateMetrics => throw _privateConstructorUsedError;
+  PrivateTweetMetrics? get privateMetrics;
   @override
 
   /// Engagement metrics, tracked in an organic context, for the Tweet at
@@ -1193,7 +1193,7 @@ abstract class _TweetData implements TweetData {
   /// ## How It Can Be Used
   ///
   /// - Use this to measure organic engagement for the Tweet.
-  OrganicTweetMetrics? get organicMetrics => throw _privateConstructorUsedError;
+  OrganicTweetMetrics? get organicMetrics;
   @override
 
   /// Engagement metrics, tracked in a promoted context, for the Tweet at the
@@ -1204,8 +1204,7 @@ abstract class _TweetData implements TweetData {
   /// ## How It Can Be Used
   ///
   /// - Use this to measure engagement for the Tweet when it was promoted.
-  PromotedTweetMetrics? get promotedMetrics =>
-      throw _privateConstructorUsedError;
+  PromotedTweetMetrics? get promotedMetrics;
   @override
 
   /// Engagement metrics for the Tweet at the time of the request.
@@ -1216,7 +1215,7 @@ abstract class _TweetData implements TweetData {
   /// ## How It Can Be Used
   ///
   /// - Use this to measure Tweet engagement.
-  PublicTweetMetrics? get publicMetrics => throw _privateConstructorUsedError;
+  PublicTweetMetrics? get publicMetrics;
   @override
 
   /// Contains details about the location tagged by the user in this Tweet,
@@ -1229,7 +1228,7 @@ abstract class _TweetData implements TweetData {
   ///
   /// - Determine if a Tweet is related to a named location with corresponding
   ///   geo coordinates.
-  Geo? get geo => throw _privateConstructorUsedError;
+  Geo? get geo;
   @override
 
   /// Language of the Tweet, if detected by Twitter. Returned as a BCP47
@@ -1241,7 +1240,7 @@ abstract class _TweetData implements TweetData {
   /// ## How It Can Be Used
   ///
   /// - Classify Tweets by spoken language.
-  TweetLanguage? get lang => throw _privateConstructorUsedError;
+  TweetLanguage? get lang;
   @override
 
   /// Indicates if this Tweet contains URLs marked as sensitive, for example
@@ -1254,7 +1253,7 @@ abstract class _TweetData implements TweetData {
   ///
   /// - Studying circulation of certain types of content.
   @JsonKey(name: 'possibly_sensitive')
-  bool? get isPossiblySensitive => throw _privateConstructorUsedError;
+  bool? get isPossiblySensitive;
   @override
 
   /// Shows who can reply to this Tweet. Fields returned are
@@ -1268,7 +1267,7 @@ abstract class _TweetData implements TweetData {
   /// - This field allows you to determine whether conversation reply settings
   /// have been set for the Tweet and if so, what settings have been set.
   @JsonKey(name: 'reply_settings')
-  ReplySetting? get replySetting => throw _privateConstructorUsedError;
+  ReplySetting? get replySetting;
   @override
 
   /// The name of the app the user Tweeted from.
@@ -1280,14 +1279,14 @@ abstract class _TweetData implements TweetData {
   ///
   /// - Determine if a Twitter user posted from the web, mobile device, or
   /// other app.
-  String? get source => throw _privateConstructorUsedError;
+  String? get source;
   @override
 
   /// Contains withholding details for [withheld content](https://help.twitter.com/en/rules-and-policies/tweet-withheld-by-country).
   ///
   /// To return this field, add `TweetField.withheld` in the request's query
   /// parameter.
-  TweetWithheld? get withheld => throw _privateConstructorUsedError;
+  TweetWithheld? get withheld;
   @override
 
   /// Creation time of the Tweet.
@@ -1299,7 +1298,7 @@ abstract class _TweetData implements TweetData {
   ///
   /// - This field can be used to understand when a Tweet was created and
   ///   used for time-series analysis etc.
-  DateTime? get createdAt => throw _privateConstructorUsedError;
+  DateTime? get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$_TweetDataCopyWith<_$_TweetData> get copyWith =>

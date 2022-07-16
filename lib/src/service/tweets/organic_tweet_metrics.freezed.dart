@@ -264,7 +264,9 @@ class _$_OrganicTweetMetrics implements _OrganicTweetMetrics {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OrganicTweetMetricsToJson(this);
+    return _$$_OrganicTweetMetricsToJson(
+      this,
+    );
   }
 }
 
@@ -287,32 +289,32 @@ abstract class _OrganicTweetMetrics implements OrganicTweetMetrics {
   /// A count of how many times the Tweet has been viewed
   /// (not unique by user). A view is counted if any part of the Tweet is
   /// visible on the screen.
-  int get impressionCount => throw _privateConstructorUsedError;
+  int get impressionCount;
   @override
 
   /// A count of how many times the Tweet has been liked.
-  int get likeCount => throw _privateConstructorUsedError;
+  int get likeCount;
   @override
 
   /// A count of how many times the Tweet has been Retweeted. Please note:
   /// This does not include Quote Tweets.
-  int get retweetCount => throw _privateConstructorUsedError;
+  int get retweetCount;
   @override
 
   /// A count of how many times the Tweet has been replied to.
-  int get replyCount => throw _privateConstructorUsedError;
+  int get replyCount;
   @override
 
   /// A count of the number of times a user clicks the following portions of
   /// a Tweet: display name, user name, profile picture.
   @JsonKey(name: 'user_profile_clicks')
-  int get profileClickCount => throw _privateConstructorUsedError;
+  int get profileClickCount;
   @override
 
   /// A count of the number of times a user clicks on a URL link or URL
   /// preview card in a Tweet.
   @JsonKey(name: 'url_link_clicks')
-  int get linkClickCount => throw _privateConstructorUsedError;
+  int get linkClickCount;
   @override
   @JsonKey(ignore: true)
   _$$_OrganicTweetMetricsCopyWith<_$_OrganicTweetMetrics> get copyWith =>

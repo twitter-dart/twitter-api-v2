@@ -580,7 +580,9 @@ class _$_UserData implements _UserData {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserDataToJson(this);
+    return _$$_UserDataToJson(
+      this,
+    );
   }
 }
 
@@ -611,25 +613,25 @@ abstract class _UserData implements UserData {
   ///
   /// - Use this to programmatically retrieve information about a specific
   ///   Twitter user.
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
 
   /// The name of the user, as they’ve defined it on their profile.
   /// Not necessarily a person’s name. Typically capped at 50 characters,
   /// but subject to change.
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
 
   /// The Twitter screen name, handle, or alias that this user identifies
   /// themselves with. Usernames are unique but subject to change. Typically
   ///  a maximum of 15 characters long, but some historical accounts may exist
   /// with longer names.
-  String get username => throw _privateConstructorUsedError;
+  String get username;
   @override
 
   /// The text of this user's profile description (also known as bio),
   /// if the user provided one.
-  String? get description => throw _privateConstructorUsedError;
+  String? get description;
   @override
 
   /// The URL specified in the user's profile, if present.
@@ -638,7 +640,7 @@ abstract class _UserData implements UserData {
   ///
   /// - A URL provided by a Twitter user in their profile.
   ///   This could be a homepage, but is not always the case.
-  String? get url => throw _privateConstructorUsedError;
+  String? get url;
   @override
 
   /// The URL to the profile image for this user, as shown on the user's
@@ -647,20 +649,20 @@ abstract class _UserData implements UserData {
   /// ## How It Can Be Used
   ///
   /// - Can be used to download this user's profile image.
-  String? get profileImageUrl => throw _privateConstructorUsedError;
+  String? get profileImageUrl;
   @override
 
   /// The location specified in the user's profile, if the user provided one.
   /// As this is a freeform value, it may not indicate a valid location,
   /// but it may be fuzzily evaluated when performing searches with
   /// location queries.
-  String? get location => throw _privateConstructorUsedError;
+  String? get location;
   @override
 
   /// Indicates if this user has chosen to protect their Tweets
   /// (in other words, if this user's Tweets are private).
   @JsonKey(name: 'protected')
-  bool? get isProtected => throw _privateConstructorUsedError;
+  bool? get isProtected;
   @override
 
   /// Indicates if this user is a verified Twitter User.
@@ -671,7 +673,7 @@ abstract class _UserData implements UserData {
   ///   A verified account lets people know that an account of public
   ///   interest is authentic.
   @JsonKey(name: 'verified')
-  bool? get isVerified => throw _privateConstructorUsedError;
+  bool? get isVerified;
   @override
 
   /// Unique identifier of this user's pinned Tweet.
@@ -680,7 +682,7 @@ abstract class _UserData implements UserData {
   ///
   /// - Determine the Tweet pinned to the top of the user’s profile.
   ///   Can potentially be used to determine the user’s language.
-  String? get pinnedTweetId => throw _privateConstructorUsedError;
+  String? get pinnedTweetId;
   @override
 
   /// Contains details about text that has a special meaning in the user's
@@ -693,7 +695,7 @@ abstract class _UserData implements UserData {
   ///   description. Reference each respective entity for further details. All
   ///   user start indices are inclusive, while all user end indices are
   ///   exclusive.
-  UserEntities? get entities => throw _privateConstructorUsedError;
+  UserEntities? get entities;
   @override
 
   /// Contains details about activity for this user.
@@ -703,7 +705,7 @@ abstract class _UserData implements UserData {
   /// - Can potentially be used to determine a Twitter user’s reach or
   ///   influence, quantify the user’s range of interests, and the user’s
   ///   level of engagement on Twitter.
-  PublicUserMetrics? get publicMetrics => throw _privateConstructorUsedError;
+  PublicUserMetrics? get publicMetrics;
   @override
 
   /// The UTC date time that the user account was created on Twitter.
@@ -711,11 +713,11 @@ abstract class _UserData implements UserData {
   /// ## How It Can Be Used
   ///
   /// - Can be used to determine how long a someone has been using Twitter.
-  DateTime? get createdAt => throw _privateConstructorUsedError;
+  DateTime? get createdAt;
   @override
 
   /// Contains withholding details for [withheld content](https://help.twitter.com/en/rules-and-policies/tweet-withheld-by-country), if applicable.
-  UserWithheld? get withheld => throw _privateConstructorUsedError;
+  UserWithheld? get withheld;
   @override
   @JsonKey(ignore: true)
   _$$_UserDataCopyWith<_$_UserData> get copyWith =>

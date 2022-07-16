@@ -183,7 +183,9 @@ class _$_TweetContextAnnotationGroup implements _TweetContextAnnotationGroup {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TweetContextAnnotationGroupToJson(this);
+    return _$$_TweetContextAnnotationGroupToJson(
+      this,
+    );
   }
 }
 
@@ -201,12 +203,12 @@ abstract class _TweetContextAnnotationGroup
 
   /// Contains elements which identify detailed information regarding the
   /// domain classification based on Tweet text.
-  TweetContextAnnotation get domain => throw _privateConstructorUsedError;
+  TweetContextAnnotation get domain;
   @override
 
   /// Contains elements which identify detailed information regarding the
   /// entity classification bases on Tweet text.
-  TweetContextAnnotation get entity => throw _privateConstructorUsedError;
+  TweetContextAnnotation get entity;
   @override
   @JsonKey(ignore: true)
   _$$_TweetContextAnnotationGroupCopyWith<_$_TweetContextAnnotationGroup>

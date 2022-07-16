@@ -169,7 +169,9 @@ class _$_TweetWithheld implements _TweetWithheld {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TweetWithheldToJson(this);
+    return _$$_TweetWithheldToJson(
+      this,
+    );
   }
 }
 
@@ -186,11 +188,11 @@ abstract class _TweetWithheld implements TweetWithheld {
   /// Indicates if the content is being withheld for on the basis of
   /// copyright infringement.
   @JsonKey(name: 'copyright')
-  bool get isCopyright => throw _privateConstructorUsedError;
+  bool get isCopyright;
   @override
 
   /// Provides a list of countries where this content is not available.
-  List<String> get countryCodes => throw _privateConstructorUsedError;
+  List<String> get countryCodes;
   @override
   @JsonKey(ignore: true)
   _$$_TweetWithheldCopyWith<_$_TweetWithheld> get copyWith =>

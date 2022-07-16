@@ -190,7 +190,9 @@ class _$_UserMeta implements _UserMeta {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserMetaToJson(this);
+    return _$$_UserMetaToJson(
+      this,
+    );
   }
 }
 
@@ -206,7 +208,7 @@ abstract class _UserMeta implements UserMeta {
 
   /// The number of users returned in this request. Note that this number
   /// may be lower than what was specified in the max_results query parameter.
-  int get resultCount => throw _privateConstructorUsedError;
+  int get resultCount;
   @override
 
   /// Pagination token for the next page of results. This value is returned
@@ -215,7 +217,7 @@ abstract class _UserMeta implements UserMeta {
   /// the value from this field in the pagination_token query parameter. When
   /// this field is not returned in the response, it means you've reached the
   /// last page of results, and that there are no further pages.
-  String? get nextToken => throw _privateConstructorUsedError;
+  String? get nextToken;
   @override
 
   /// Pagination token for the previous page of results. This value is
@@ -224,7 +226,7 @@ abstract class _UserMeta implements UserMeta {
   /// page, passing the value from this field in the pagination_token query
   /// parameter. When this field is not returned in the response, it means
   /// you are on the first page of results.
-  String? get previousToken => throw _privateConstructorUsedError;
+  String? get previousToken;
   @override
   @JsonKey(ignore: true)
   _$$_UserMetaCopyWith<_$_UserMeta> get copyWith =>

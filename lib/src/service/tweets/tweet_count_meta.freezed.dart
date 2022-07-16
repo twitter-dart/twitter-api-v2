@@ -158,7 +158,9 @@ class _$_TweetCountMeta implements _TweetCountMeta {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TweetCountMetaToJson(this);
+    return _$$_TweetCountMetaToJson(
+      this,
+    );
   }
 }
 
@@ -174,13 +176,13 @@ abstract class _TweetCountMeta implements TweetCountMeta {
 
   /// Total count of the Tweets that match the query.
   @JsonKey(name: 'total_tweet_count')
-  int get total => throw _privateConstructorUsedError;
+  int get total;
   @override
 
   /// This parameter is used to get the next `page` of results. The value
   /// used with the parameter is pulled directly from the response provided
   /// by the API, and should not be modified.
-  String? get nextToken => throw _privateConstructorUsedError;
+  String? get nextToken;
   @override
   @JsonKey(ignore: true)
   _$$_TweetCountMetaCopyWith<_$_TweetCountMeta> get copyWith =>

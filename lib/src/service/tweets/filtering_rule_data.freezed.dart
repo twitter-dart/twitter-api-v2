@@ -174,7 +174,9 @@ class _$_FilteringRuleData implements _FilteringRuleData {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_FilteringRuleDataToJson(this);
+    return _$$_FilteringRuleDataToJson(
+      this,
+    );
   }
 }
 
@@ -192,15 +194,15 @@ abstract class _FilteringRuleData implements FilteringRuleData {
   /// Unique identifier of this rule. This is returned as a string in order
   /// to avoid complications with languages and tools that cannot
   /// handle large integers.
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
 
   /// The rule text as submitted when creating the rule.
-  String get value => throw _privateConstructorUsedError;
+  String get value;
   @override
 
   /// The tag label as defined when creating the rule.
-  String? get tag => throw _privateConstructorUsedError;
+  String? get tag;
   @override
   @JsonKey(ignore: true)
   _$$_FilteringRuleDataCopyWith<_$_FilteringRuleData> get copyWith =>

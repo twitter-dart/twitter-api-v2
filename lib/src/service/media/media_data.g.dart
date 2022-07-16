@@ -72,7 +72,7 @@ _$_MediaData _$$_MediaDataFromJson(Map json) => $checkedCreate(
 Map<String, dynamic> _$$_MediaDataToJson(_$_MediaData instance) =>
     <String, dynamic>{
       'media_key': instance.key,
-      'type': _$MediaTypeEnumMap[instance.type],
+      'type': _$MediaTypeEnumMap[instance.type]!,
       'url': instance.url,
       'alt_text': instance.altText,
       'duration_ms': instance.durationMilliseconds,

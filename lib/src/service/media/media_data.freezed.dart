@@ -570,7 +570,9 @@ class _$_MediaData implements _MediaData {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MediaDataToJson(this);
+    return _$$_MediaDataToJson(
+      this,
+    );
   }
 }
 
@@ -604,7 +606,7 @@ abstract class _MediaData implements MediaData {
   ///
   /// - Can be used to programmatically retrieve media.
   @JsonKey(name: 'media_key')
-  String get key => throw _privateConstructorUsedError;
+  String get key;
   @override
 
   /// Type of content (animated_gif, photo, video).
@@ -612,7 +614,7 @@ abstract class _MediaData implements MediaData {
   /// ## How It Can Be Used
   ///
   /// - Classify the media as a photo, GIF, or video.
-  MediaType get type => throw _privateConstructorUsedError;
+  MediaType get type;
   @override
 
   /// A direct URL to the media file on Twitter.
@@ -620,7 +622,7 @@ abstract class _MediaData implements MediaData {
   /// ## How It Can Be Used
   ///
   /// - Returns a Media object with a URL field for photos.
-  String? get url => throw _privateConstructorUsedError;
+  String? get url;
   @override
 
   /// A description of an image to enable and support accessibility. Can be
@@ -631,20 +633,20 @@ abstract class _MediaData implements MediaData {
   ///
   /// - Can be used to provide a written description of an image in case a
   ///   user is visually impaired.
-  String? get altText => throw _privateConstructorUsedError;
+  String? get altText;
   @override
 
   /// Available when type is video. Duration in milliseconds of the video.
   @JsonKey(name: 'duration_ms')
-  int? get durationMilliseconds => throw _privateConstructorUsedError;
+  int? get durationMilliseconds;
   @override
 
   /// Height of this content in pixels.
-  int? get height => throw _privateConstructorUsedError;
+  int? get height;
   @override
 
   /// Width of this content in pixels.
-  int? get width => throw _privateConstructorUsedError;
+  int? get width;
   @override
 
   /// Non-public engagement metrics for the media content at the time of the
@@ -655,7 +657,7 @@ abstract class _MediaData implements MediaData {
   /// - Determine video engagement: how many users played through to each
   ///   quarter of the video.
   @JsonKey(name: 'non_public_metrics')
-  PrivateMediaMetrics? get privateMetrics => throw _privateConstructorUsedError;
+  PrivateMediaMetrics? get privateMetrics;
   @override
 
   /// Engagement metrics for the media content, tracked in an organic context,
@@ -664,11 +666,11 @@ abstract class _MediaData implements MediaData {
   /// ## How It Can Be Used
   ///
   /// - Determine organic media engagement.
-  OrganicMediaMetrics? get organicMetrics => throw _privateConstructorUsedError;
+  OrganicMediaMetrics? get organicMetrics;
   @override
 
   /// URL to the static placeholder preview of this content.
-  String? get previewImageUrl => throw _privateConstructorUsedError;
+  String? get previewImageUrl;
   @override
 
   /// Engagement metrics for the media content, tracked in a promoted context,
@@ -677,8 +679,7 @@ abstract class _MediaData implements MediaData {
   /// ## How It Can Be Used
   ///
   /// - Determine media engagement when the Tweet was promoted.
-  PromotedMediaMetrics? get promotedMetrics =>
-      throw _privateConstructorUsedError;
+  PromotedMediaMetrics? get promotedMetrics;
   @override
 
   /// Public engagement metrics for the media content at the time of the
@@ -687,7 +688,7 @@ abstract class _MediaData implements MediaData {
   /// ## How It Can Be Used
   ///
   /// - Determine total number of views for the video attached to the Tweet.
-  PublicMediaMetrics? get publicMetrics => throw _privateConstructorUsedError;
+  PublicMediaMetrics? get publicMetrics;
   @override
 
   /// Variants of media attached in the MediaObject.
@@ -696,7 +697,7 @@ abstract class _MediaData implements MediaData {
   ///
   /// - Each media object may have multiple display or playback variants,
   ///   with different resolutions or formats.
-  List<Variant>? get variants => throw _privateConstructorUsedError;
+  List<Variant>? get variants;
   @override
   @JsonKey(ignore: true)
   _$$_MediaDataCopyWith<_$_MediaData> get copyWith =>

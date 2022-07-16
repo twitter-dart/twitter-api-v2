@@ -167,7 +167,9 @@ class _$_GeoCoordinates implements _GeoCoordinates {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GeoCoordinatesToJson(this);
+    return _$$_GeoCoordinatesToJson(
+      this,
+    );
   }
 }
 
@@ -183,13 +185,13 @@ abstract class _GeoCoordinates implements GeoCoordinates {
 
   /// Describes the type of coordinate. The only value supported at present
   /// is Point.
-  String get type => throw _privateConstructorUsedError;
+  String get type;
   @override
 
   /// A pair of decimal values representing the precise location of the user
   /// (latitude, longitude). This value be `null` unless the user explicitly
   /// shared their precise location.
-  List<double> get coordinates => throw _privateConstructorUsedError;
+  List<double> get coordinates;
   @override
   @JsonKey(ignore: true)
   _$$_GeoCoordinatesCopyWith<_$_GeoCoordinates> get copyWith =>

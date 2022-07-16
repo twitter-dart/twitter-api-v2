@@ -331,7 +331,9 @@ class _$_ComplianceData implements _ComplianceData {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ComplianceDataToJson(this);
+    return _$$_ComplianceDataToJson(
+      this,
+    );
   }
 }
 
@@ -353,48 +355,48 @@ abstract class _ComplianceData implements ComplianceData {
   @override
 
   /// The unique identifier for this job.
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
 
   /// The type of the job, whether tweets or users.
-  JobType get type => throw _privateConstructorUsedError;
+  JobType get type;
   @override
 
   /// Current status of this job.
-  JobStatus get status => throw _privateConstructorUsedError;
+  JobStatus get status;
   @override
 
   /// Indicates this job is enabled the upload URL with support for resumable
   /// uploads.
-  bool get resumable => throw _privateConstructorUsedError;
+  bool get resumable;
   @override
 
   /// A URL representing the location where to upload IDs consumed by your
   /// app. This URL is already signed with an authentication key, so you
   /// will not need to pass any additional credentials or headers to
   /// authenticate the request.
-  String get uploadUrl => throw _privateConstructorUsedError;
+  String get uploadUrl;
   @override
 
   /// The predefined location where to download the results from the
   /// compliance job. This URL is already signed with an authentication key,
   /// so you will not need to pass any additional credential or header to
   /// authenticate the request.
-  String get downloadUrl => throw _privateConstructorUsedError;
+  String get downloadUrl;
   @override
 
   /// The date and time until which the upload URL will be available
   /// (usually 15 minutes from the request time).
-  DateTime get uploadExpiresAt => throw _privateConstructorUsedError;
+  DateTime get uploadExpiresAt;
   @override
 
   /// The date and time until which the download URL will be available
   /// (usually 7 days from the request time).
-  DateTime get downloadExpiresAt => throw _privateConstructorUsedError;
+  DateTime get downloadExpiresAt;
   @override
 
   /// The date and time when the job was created.
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$_ComplianceDataCopyWith<_$_ComplianceData> get copyWith =>

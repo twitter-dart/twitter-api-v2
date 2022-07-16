@@ -224,7 +224,9 @@ class _$_TweetMeta implements _TweetMeta {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TweetMetaToJson(this);
+    return _$$_TweetMetaToJson(
+      this,
+    );
   }
 }
 
@@ -242,25 +244,25 @@ abstract class _TweetMeta implements TweetMeta {
   @override
 
   /// The Tweet ID of the most recent Tweet returned in the response.
-  String? get newestId => throw _privateConstructorUsedError;
+  String? get newestId;
   @override
 
   /// The Tweet ID of the oldest Tweet returned in the response.
-  String? get oldestId => throw _privateConstructorUsedError;
+  String? get oldestId;
   @override
 
   /// The number of Tweet results returned in the response.
-  int? get resultCount => throw _privateConstructorUsedError;
+  int? get resultCount;
   @override
 
   /// A value that encodes the next 'page' of results that can be requested,
   /// via the `pagination_token` request parameter.
-  String? get nextToken => throw _privateConstructorUsedError;
+  String? get nextToken;
   @override
 
   /// A value that encodes the previous 'page' of results that can be
   /// requested, via the `pagination_token` request parameter.
-  String? get previousToken => throw _privateConstructorUsedError;
+  String? get previousToken;
   @override
   @JsonKey(ignore: true)
   _$$_TweetMetaCopyWith<_$_TweetMeta> get copyWith =>

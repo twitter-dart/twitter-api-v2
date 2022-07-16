@@ -198,7 +198,9 @@ class _$_PublicTweetMetrics implements _PublicTweetMetrics {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PublicTweetMetricsToJson(this);
+    return _$$_PublicTweetMetricsToJson(
+      this,
+    );
   }
 }
 
@@ -215,20 +217,20 @@ abstract class _PublicTweetMetrics implements PublicTweetMetrics {
   @override
 
   /// Number of Likes of this Tweet.
-  int get likeCount => throw _privateConstructorUsedError;
+  int get likeCount;
   @override
 
   /// Number of times this Tweet has been Retweeted.
-  int get retweetCount => throw _privateConstructorUsedError;
+  int get retweetCount;
   @override
 
   /// Number of Replies of this Tweet.
-  int get replyCount => throw _privateConstructorUsedError;
+  int get replyCount;
   @override
 
   /// Number of times this Tweet has been Retweeted with a comment
   /// (also known as Quote).
-  int get quoteCount => throw _privateConstructorUsedError;
+  int get quoteCount;
   @override
   @JsonKey(ignore: true)
   _$$_PublicTweetMetricsCopyWith<_$_PublicTweetMetrics> get copyWith =>

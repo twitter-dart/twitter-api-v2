@@ -198,7 +198,9 @@ class _$_Mention implements _Mention {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MentionToJson(this);
+    return _$$_MentionToJson(
+      this,
+    );
   }
 }
 
@@ -214,7 +216,7 @@ abstract class _Mention implements Mention {
   @override
 
   /// The user id that created the mentions.
-  String? get id => throw _privateConstructorUsedError;
+  String? get id;
   @override
 
   /// The part of text recognized as a user mention.
@@ -222,17 +224,17 @@ abstract class _Mention implements Mention {
   /// You can obtain the expanded object in includes.users by adding
   /// `TweetExpansion.entitiesMentionsUsername` in the request's query
   /// parameter.
-  String get username => throw _privateConstructorUsedError;
+  String get username;
   @override
 
   /// The start position (zero-based) of the recognized user mention within
   /// the Tweet. All start indices are inclusive.
-  int get start => throw _privateConstructorUsedError;
+  int get start;
   @override
 
   /// The end position (zero-based) of the recognized user mention within t
   /// he Tweet. This end index is exclusive.
-  int get end => throw _privateConstructorUsedError;
+  int get end;
   @override
   @JsonKey(ignore: true)
   _$$_MentionCopyWith<_$_Mention> get copyWith =>

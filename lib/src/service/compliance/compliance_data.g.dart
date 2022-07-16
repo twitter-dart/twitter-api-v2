@@ -42,8 +42,8 @@ _$_ComplianceData _$$_ComplianceDataFromJson(Map json) => $checkedCreate(
 Map<String, dynamic> _$$_ComplianceDataToJson(_$_ComplianceData instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'type': _$JobTypeEnumMap[instance.type],
-      'status': _$JobStatusEnumMap[instance.status],
+      'type': _$JobTypeEnumMap[instance.type]!,
+      'status': _$JobStatusEnumMap[instance.status]!,
       'resumable': instance.resumable,
       'upload_url': instance.uploadUrl,
       'download_url': instance.downloadUrl,
