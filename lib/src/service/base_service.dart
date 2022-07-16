@@ -13,6 +13,7 @@ import '../client/client_context.dart';
 import '../client/user_context.dart';
 import '../exception/rate_limit_exceeded_exception.dart';
 import '../exception/twitter_exception.dart';
+import '../exception/unauthorized_exception.dart';
 import 'common/includes.dart';
 import 'common/serializable.dart';
 import 'twitter_response.dart';
@@ -226,7 +227,7 @@ abstract class BaseService implements Service {
     );
   }
 
-  dynamic _jsonDecode(
+  dynamic _tryJsonDecode(
     final http.BaseResponse response,
     final String body,
   ) {
@@ -241,7 +242,33 @@ abstract class BaseService implements Service {
   }
 
   http.Response _checkResponseError(final http.Response response) {
-    final jsonBody = _jsonDecode(response, response.body);
+    if (response.statusCode == 401) {
+      throw UnauthorizedException('The specified access token is invalid.');
+    }
+
+    final jsonBody = _tryJsonDecode(response, response.body);
+
+    if (jsonBody.containsKey('errors')) {
+      final errors = jsonBody['errors'];
+      for (final error in errors) {
+        if (error['code'] == 88) {
+          throw RateLimitExceededException(error['message'] ?? '');
+        }
+      }
+    }
+
+    return response;
+  }
+
+  http.StreamedResponse _checkStreamedResponseError(
+    final http.StreamedResponse response,
+    final String event,
+  ) {
+    if (response.statusCode == 401) {
+      throw UnauthorizedException('The specified access token is invalid.');
+    }
+
+    final jsonBody = _tryJsonDecode(response, event);
 
     if (jsonBody.containsKey('errors')) {
       final errors = jsonBody['errors'];
@@ -256,7 +283,7 @@ abstract class BaseService implements Service {
   }
 
   Map<String, dynamic> _checkResponseBody(final http.Response response) {
-    final jsonBody = _jsonDecode(response, response.body);
+    final jsonBody = _tryJsonDecode(response, response.body);
 
     if (!jsonBody.containsKey('data')) {
       //! This occurs when the tweet to be processed has been deleted or
@@ -274,7 +301,10 @@ abstract class BaseService implements Service {
     final http.StreamedResponse response,
     final String event,
   ) {
-    final jsonBody = _jsonDecode(response, event);
+    final jsonBody = _tryJsonDecode(
+      _checkStreamedResponseError(response, event),
+      event,
+    );
 
     if (!jsonBody.containsKey('data')) {
       throw TwitterException(

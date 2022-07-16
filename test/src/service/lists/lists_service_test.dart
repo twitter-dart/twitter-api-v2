@@ -10,6 +10,7 @@ import 'package:test/test.dart';
 import 'package:twitter_api_v2/src/client/client_context.dart';
 import 'package:twitter_api_v2/src/client/user_context.dart';
 import 'package:twitter_api_v2/src/exception/twitter_exception.dart';
+import 'package:twitter_api_v2/src/exception/unauthorized_exception.dart';
 import 'package:twitter_api_v2/src/service/lists/list_data.dart';
 import 'package:twitter_api_v2/src/service/lists/list_meta.dart';
 import 'package:twitter_api_v2/src/service/lists/lists_service.dart';
@@ -40,7 +41,7 @@ void main() {
       expect(response.data.name, 'Official Twitter Accounts');
     });
 
-    test('throws TwitterException', () async {
+    test('throws UnauthorizedException', () async {
       final listsService = ListsService(
         context: ClientContext(
           bearerToken: '',
@@ -49,10 +50,10 @@ void main() {
       );
 
       expect(
-        () async =>
-            await listsService.lookupById(listId: 'Throw TwitterException'),
+        () async => await listsService.lookupById(
+            listId: 'Throw UnauthorizedException'),
         throwsA(
-          allOf(isA<TwitterException>(),
+          allOf(isA<UnauthorizedException>(),
               predicate((e) => e.toString().isNotEmpty)),
         ),
       );

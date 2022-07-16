@@ -10,6 +10,7 @@ import 'package:test/test.dart';
 import 'package:twitter_api_v2/src/client/client_context.dart';
 import 'package:twitter_api_v2/src/client/user_context.dart';
 import 'package:twitter_api_v2/src/exception/twitter_exception.dart';
+import 'package:twitter_api_v2/src/exception/unauthorized_exception.dart';
 import 'package:twitter_api_v2/src/service/spaces/space_data.dart';
 import 'package:twitter_api_v2/src/service/spaces/space_meta.dart';
 import 'package:twitter_api_v2/src/service/spaces/space_state.dart';
@@ -45,7 +46,7 @@ void main() {
       expect(response.meta!.resultCount, 2);
     });
 
-    test('throws TwitterException', () async {
+    test('throws UnauthorizedException', () async {
       final spacesService = SpacesService(
         context: ClientContext(
           bearerToken: '',
@@ -54,9 +55,10 @@ void main() {
       );
 
       expect(
-        () async => await spacesService.search(query: 'Throw TwitterException'),
+        () async =>
+            await spacesService.search(query: 'Throw UnauthorizedException'),
         throwsA(
-          allOf(isA<TwitterException>(),
+          allOf(isA<UnauthorizedException>(),
               predicate((e) => e.toString().isNotEmpty)),
         ),
       );

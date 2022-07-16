@@ -8,6 +8,7 @@ import 'package:test/test.dart';
 // Project imports:
 import 'package:twitter_api_v2/src/client/oauth_tokens.dart';
 import 'package:twitter_api_v2/src/exception/twitter_exception.dart';
+import 'package:twitter_api_v2/src/exception/unauthorized_exception.dart';
 import 'package:twitter_api_v2/src/service/compliance/compliance_service.dart';
 import 'package:twitter_api_v2/src/service/lists/lists_service.dart';
 import 'package:twitter_api_v2/src/service/spaces/spaces_service.dart';
@@ -70,7 +71,7 @@ void main() {
 
       expect(
         () async => await twitter.tweetsService.lookupById(tweetId: ''),
-        throwsA(isA<TwitterException>()),
+        throwsA(isA<UnauthorizedException>()),
       );
     });
 
@@ -127,7 +128,7 @@ void main() {
 
       expect(
         () async => await twitter.tweetsService.lookupById(tweetId: ''),
-        throwsA(isA<TwitterException>()),
+        throwsA(isA<UnauthorizedException>()),
       );
     });
 
@@ -144,7 +145,7 @@ void main() {
 
       expect(
         () async => await twitter.tweetsService.createTweet(text: ''),
-        throwsA(isA<TwitterException>()),
+        throwsA(isA<UnauthorizedException>()),
       );
     });
 
