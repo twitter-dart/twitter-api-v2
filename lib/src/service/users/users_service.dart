@@ -13,6 +13,7 @@ import 'user_expansion.dart';
 import 'user_field.dart';
 import 'user_meta.dart';
 
+/// This class provides methods to easily access endpoints based on User.
 abstract class UsersService {
   /// Returns the new instance of [UsersService].
   factory UsersService({required ClientContext context}) =>

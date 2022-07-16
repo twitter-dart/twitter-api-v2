@@ -38,6 +38,7 @@ import 'tweet_meta.dart';
 import 'tweet_poll_param.dart';
 import 'tweet_reply_param.dart';
 
+/// This class provides methods to easily access endpoints based on Tweet.
 abstract class TweetsService {
   /// Returns the new instance of [TweetsService].
   factory TweetsService({required ClientContext context}) =>
