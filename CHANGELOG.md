@@ -3,7 +3,7 @@
 ## v2.10.0
 
 - Fixed to raise `TwitterException` if response object cannot be converted to JSON. ([#347](https://github.com/twitter-dart/twitter-api-v2/issues/347))
-- Enforced the specification of access talk in `OAuth 2.0` or `OAuth 1.0a` method when creating an instance of `TwitterApi` object. If either access token is not passed, an `ArgumentError` will be thrown. ([#352](https://github.com/twitter-dart/twitter-api-v2/issues/352))
+- Enforced the specification of access token in `OAuth 2.0` or `OAuth 1.0a` method when creating an instance of `TwitterApi` object. If either access token is not passed, an `ArgumentError` will be thrown. ([#352](https://github.com/twitter-dart/twitter-api-v2/issues/352))
 
 ## v2.9.0
 
