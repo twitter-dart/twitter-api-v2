@@ -11,6 +11,7 @@ import 'compliance_data.dart';
 import 'job_status.dart';
 import 'job_type.dart';
 
+/// This class provides methods to easily access endpoints based on Compliance.
 abstract class ComplianceService {
   /// Returns the new instance of [ComplianceService].
   factory ComplianceService({required ClientContext context}) =>

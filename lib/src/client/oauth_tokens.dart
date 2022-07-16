@@ -2,6 +2,7 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+/// This class represents an access token used for OAuth 1.0a authentication.
 class OAuthTokens {
   /// Returns the new instance of [OAuthTokens].
   OAuthTokens({

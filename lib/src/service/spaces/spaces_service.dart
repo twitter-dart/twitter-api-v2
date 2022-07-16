@@ -24,6 +24,7 @@ import 'space_meta.dart';
 import 'space_state.dart';
 import 'topic_field.dart';
 
+/// This class provides methods to easily access endpoints based on Space.
 abstract class SpacesService {
   /// Returns the new instance of [SpacesService].
   factory SpacesService({required ClientContext context}) =>

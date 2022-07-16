@@ -20,6 +20,7 @@ import 'list_expansion.dart';
 import 'list_field.dart';
 import 'list_meta.dart';
 
+/// This class provides methods to easily access endpoints based on List.
 abstract class ListsService {
   /// Returns the new instance of [ListsService].
   factory ListsService({required ClientContext context}) =>
