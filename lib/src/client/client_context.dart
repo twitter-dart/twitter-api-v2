@@ -62,8 +62,8 @@ class _ClientContext implements ClientContext {
     required String bearerToken,
     OAuthTokens? oauthTokens,
     required this.timeout,
-    this.retryConfig,
-  }) : _clientResolver = _ClientResolver(
+    RetryConfig? retryConfig,
+  })  : _clientResolver = _ClientResolver(
           oauthTokens != null
               ? OAuth1Client(
                   consumerKey: oauthTokens.consumerKey,
@@ -73,23 +73,24 @@ class _ClientContext implements ClientContext {
                 )
               : null,
           OAuth2Client(bearerToken: bearerToken),
-        );
+        ),
+        _retryPolicy = _RetryPolicy(retryConfig);
 
   /// The timeout
   final Duration timeout;
 
-  /// The configuration of retry.
-  final RetryConfig? retryConfig;
-
   // The resolver of clients
   final _ClientResolver _clientResolver;
+
+  /// The policy of retry.
+  final _RetryPolicy _retryPolicy;
 
   @override
   Future<http.Response> get(
     UserContext userContext,
     Uri uri,
   ) async =>
-      await _perform(
+      await _performWithRetryIfNecessary(
         _clientResolver.execute(userContext),
         (client) async => await client.get(uri, timeout: timeout),
       );
@@ -99,7 +100,7 @@ class _ClientContext implements ClientContext {
     UserContext userContext,
     http.BaseRequest request,
   ) async =>
-      await _perform(
+      await _performWithRetryIfNecessary(
         _clientResolver.execute(userContext),
         (client) async => await client.getStream(request, timeout: timeout),
       );
@@ -111,7 +112,7 @@ class _ClientContext implements ClientContext {
     Map<String, String> headers = const {},
     body,
   }) async =>
-      await _perform(
+      await _performWithRetryIfNecessary(
         _clientResolver.execute(userContext),
         (client) async => await client.post(
           uri,
@@ -126,7 +127,7 @@ class _ClientContext implements ClientContext {
     UserContext userContext,
     Uri uri,
   ) async =>
-      await _perform(
+      await _performWithRetryIfNecessary(
         _clientResolver.execute(userContext),
         (client) async => await client.delete(uri, timeout: timeout),
       );
@@ -138,7 +139,7 @@ class _ClientContext implements ClientContext {
     Map<String, String> headers = const {},
     dynamic body,
   }) async =>
-      await _perform(
+      await _performWithRetryIfNecessary(
         _clientResolver.execute(userContext),
         (client) async => await client.put(
           uri,
@@ -148,7 +149,7 @@ class _ClientContext implements ClientContext {
         ),
       );
 
-  dynamic _perform(
+  dynamic _performWithRetryIfNecessary(
     final Client client,
     final dynamic Function(Client client) performer, {
     int retryCount = 0,
@@ -156,8 +157,10 @@ class _ClientContext implements ClientContext {
     try {
       return await performer.call(client);
     } on TimeoutException {
-      if (retryConfig != null && retryCount <= retryConfig!.maxAttempt) {
-        return await _perform(
+      if (_retryPolicy.shouldRetry(retryCount)) {
+        await _retryPolicy.waitWithBackOff(retryCount);
+
+        return await _performWithRetryIfNecessary(
           client,
           performer,
           retryCount: ++retryCount,
@@ -180,6 +183,7 @@ abstract class _ClientResolver {
         oauth2Client,
       );
 
+  /// Returns resolved http client.
   Client execute(UserContext userContext);
 }
 
@@ -203,4 +207,34 @@ class _$ClientResolver implements _ClientResolver {
   /// false.
   bool _shouldUseOauth1Client(final UserContext userContext) =>
       userContext == UserContext.oauth2OrOAuth1 && oauth1Client != null;
+}
+
+abstract class _RetryPolicy {
+  /// Returns the new instance of [_RetryPolicy].
+  factory _RetryPolicy(
+    final RetryConfig? retryConfig,
+  ) =>
+      _$RetryPolicy(retryConfig);
+
+  /// Returns true if the retry should be performed, otherwise false.
+  bool shouldRetry(final int retryCount);
+
+  Future waitWithBackOff(final int retryCount);
+}
+
+class _$RetryPolicy implements _RetryPolicy {
+  /// Returns the new instance of [_$RetryPolicy].
+  _$RetryPolicy(RetryConfig? retryConfig)
+      : _retryConfig = retryConfig ?? RetryConfig(maxAttempt: 0);
+
+  /// The configuration of retry.
+  final RetryConfig _retryConfig;
+
+  @override
+  bool shouldRetry(final int retryCount) =>
+      _retryConfig.maxAttempt < retryCount;
+
+  @override
+  Future waitWithBackOff(final int retryCount) async =>
+      await Future.delayed(_retryConfig.interval);
 }
