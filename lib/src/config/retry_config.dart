@@ -6,7 +6,7 @@ class RetryConfig {
   /// Returns the new instance of [RetryConfig].
   RetryConfig({
     required this.maxAttempt,
-    required this.interval,
+    this.interval = const Duration(seconds: 10),
     this.backOff,
     this.onRetry,
   });
