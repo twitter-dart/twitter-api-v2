@@ -49,6 +49,7 @@ class _RetryPolicy implements RetryPolicy {
 
     await Future.delayed(
       Duration(
+        //! intervalInSeconds + retryCount ^ 2
         seconds: _retryConfig!.intervalInSeconds + _computeBackOff(retryCount),
       ),
     );

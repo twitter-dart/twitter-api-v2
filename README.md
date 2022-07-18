@@ -151,6 +151,13 @@ void main() async {
       accessTokenSecret: 'YOUR_ACCESS_TOKEN_SECRET_HERE',
     ),
 
+    //! Automatic retry is available when a TimeoutException occurs when
+    //! communicating with the API.
+    retryConfig: v2.RetryConfig(
+      maxAttempts: 5,
+      intervalInSeconds: 3,
+    ),
+
     //! The default timeout is 10 seconds.
     timeout: Duration(seconds: 20),
   );
