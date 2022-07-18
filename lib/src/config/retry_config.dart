@@ -7,7 +7,7 @@
 /// The simplest way to specify automatic retries is to specify a fixed number
 /// of times at fixed intervals. For example, to automatically retry up to
 /// 5 times at 3 seconds intervals when a timeout occurs in the communication
-/// process with the API, use [RetryConfig.ofInterval] like following:
+/// process with the API, use [RetryConfig.interval] like following:
 ///
 /// ```dart
 /// import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
@@ -15,7 +15,7 @@
 /// void main() async {
 ///   final twitter = v2.TwitterApi(
 ///     bearerToken: 'YOUR_TOKEN_HERE',
-///     retryConfig: v2.RetryConfig.ofInterval(
+///     retryConfig: v2.RetryConfig.interval(
 ///       maxAttempts: 5,
 ///       intervalInSeconds: 3,
 ///     ),
@@ -33,7 +33,7 @@
 /// the **Exponential BackOff algorithm**. This is an algorithm that
 /// exponentially increases the retry interval based on the number of retries
 /// performed. This retry method is disabled by default, but can be enabled
-/// with the [RetryConfig.ofExponentialBackOff] constructor as follows:
+/// with the [RetryConfig.exponentialBackOff] constructor as follows:
 ///
 /// ```dart
 /// import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
@@ -41,7 +41,7 @@
 /// void main() async {
 ///   final twitter = v2.TwitterApi(
 ///     bearerToken: 'YOUR_TOKEN_HERE',
-///     retryConfig: v2.RetryConfig.ofExponentialBackOff(
+///     retryConfig: v2.RetryConfig.exponentialBackOff(
 ///       maxAttempts: 5,
 ///     ),
 ///     timeout: Duration(seconds: 20),
@@ -49,7 +49,7 @@
 /// ```
 ///
 /// The **Exponential BackOff algorithm** can be enabled by using the
-/// [RetryConfig.ofExponentialBackOff] constructor, as in the example above.
+/// [RetryConfig.exponentialBackOff] constructor, as in the example above.
 /// And the interval, which increases with the number of retries, is then
 /// calculated as follows:
 ///
@@ -58,8 +58,8 @@
 /// Also, please note that [ArgumentError] is always raised if a negative number
 /// is passed to the [maxAttempts] field of [RetryConfig].
 class RetryConfig {
-  /// Returns the new instance of [RetryConfig].
-  factory RetryConfig.ofInterval({
+  /// Returns the new instance of [RetryConfig] of interval.
+  factory RetryConfig.interval({
     required int maxAttempts,
     int intervalInSeconds = 2,
   }) =>
@@ -70,7 +70,7 @@ class RetryConfig {
       );
 
   /// Returns the new instance of [RetryConfig] of Exponential Back Off.
-  factory RetryConfig.ofExponentialBackOff({
+  factory RetryConfig.exponentialBackOff({
     required int maxAttempts,
   }) =>
       RetryConfig._(
