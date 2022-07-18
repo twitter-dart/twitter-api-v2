@@ -158,7 +158,9 @@ class _$_ReferencedTweet implements _ReferencedTweet {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ReferencedTweetToJson(this);
+    return _$$_ReferencedTweetToJson(
+      this,
+    );
   }
 }
 
@@ -173,7 +175,7 @@ abstract class _ReferencedTweet implements ReferencedTweet {
   @override
 
   /// The unique identifier of the referenced Tweet.
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
 
   /// Indicates the type of relationship between this Tweet and the Tweet
@@ -181,7 +183,7 @@ abstract class _ReferencedTweet implements ReferencedTweet {
   /// [TweetType.retweeted] (this Tweet is a Retweet),
   /// [TweetType.quoted] (a Retweet with comment, also known as Quoted Tweet),
   /// or [TweetType.repliedTo] (this Tweet is a reply).
-  TweetType get type => throw _privateConstructorUsedError;
+  TweetType get type;
   @override
   @JsonKey(ignore: true)
   _$$_ReferencedTweetCopyWith<_$_ReferencedTweet> get copyWith =>

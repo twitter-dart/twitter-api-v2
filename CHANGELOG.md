@@ -5,6 +5,7 @@
 - Fixed to raise `TwitterException` if response object cannot be converted to JSON. ([#347](https://github.com/twitter-dart/twitter-api-v2/issues/347))
 - Enforced the specification of access token in `OAuth 2.0` or `OAuth 1.0a` method when creating an instance of `TwitterApi` object. If either access token is not passed, an `ArgumentError` will be thrown. ([#352](https://github.com/twitter-dart/twitter-api-v2/issues/352))
 - Added `UnauthorizedException`. Thrown when unauthorized with the specified access token. ([#348](https://github.com/twitter-dart/twitter-api-v2/issues/348))
+- Added **Automatic Retry** feature. **Automatic retry** can be enabled by setting `RetryConfig` when creating the `TwitterApi` object. If `RetryConfig` is not passed to the `TwitterApi` object, automatic retry will not be triggered. The automatic retry supports retries at simple specified **intervals** and retries with the **Exponential BackOff algorithm**. ([#251](https://github.com/twitter-dart/twitter-api-v2/issues/251))
 
 ## v2.9.0
 

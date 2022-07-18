@@ -127,7 +127,9 @@ class _$_SpaceMeta implements _SpaceMeta {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SpaceMetaToJson(this);
+    return _$$_SpaceMetaToJson(
+      this,
+    );
   }
 }
 
@@ -140,7 +142,7 @@ abstract class _SpaceMeta implements SpaceMeta {
   @override
 
   /// The number of spaces returned in this request.
-  int? get resultCount => throw _privateConstructorUsedError;
+  int? get resultCount;
   @override
   @JsonKey(ignore: true)
   _$$_SpaceMetaCopyWith<_$_SpaceMeta> get copyWith =>

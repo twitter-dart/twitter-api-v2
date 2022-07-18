@@ -24,7 +24,7 @@ _$_ReferencedTweet _$$_ReferencedTweetFromJson(Map json) => $checkedCreate(
 Map<String, dynamic> _$$_ReferencedTweetToJson(_$_ReferencedTweet instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'type': _$TweetTypeEnumMap[instance.type],
+      'type': _$TweetTypeEnumMap[instance.type]!,
     };
 
 const _$TweetTypeEnumMap = {

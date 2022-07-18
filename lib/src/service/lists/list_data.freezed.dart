@@ -319,7 +319,9 @@ class _$_ListData implements _ListData {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ListDataToJson(this);
+    return _$$_ListDataToJson(
+      this,
+    );
   }
 }
 
@@ -344,15 +346,15 @@ abstract class _ListData implements ListData {
   ///
   /// - Use this to programmatically retrieve information about a specific
   ///   Twitter List.
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
 
   /// The name of the List, as defined when creating the List.
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
 
   /// A brief description to let users know about the List.
-  String? get description => throw _privateConstructorUsedError;
+  String? get description;
   @override
 
   /// Unique identifier of this List's owner.
@@ -362,20 +364,20 @@ abstract class _ListData implements ListData {
   /// - Returns the List owner ID. Can potentially be used to find out if
   ///   this specific user owns any other Lists. Can also be used to expand
   ///   user objects.
-  String? get ownerId => throw _privateConstructorUsedError;
+  String? get ownerId;
   @override
 
   /// Shows how many users follow this List.
-  int? get followerCount => throw _privateConstructorUsedError;
+  int? get followerCount;
   @override
 
   /// Shows how many members are part of this List.
-  int? get memberCount => throw _privateConstructorUsedError;
+  int? get memberCount;
   @override
 
   /// Indicates if the List is private.
   @JsonKey(name: 'private')
-  bool? get isPrivate => throw _privateConstructorUsedError;
+  bool? get isPrivate;
   @override
 
   /// The UTC date time that the List was created on Twitter.
@@ -383,7 +385,7 @@ abstract class _ListData implements ListData {
   /// ## How It Can Be Used
   ///
   /// - Can be used to determine how long a List has been on Twitter.
-  DateTime? get createdAt => throw _privateConstructorUsedError;
+  DateTime? get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$_ListDataCopyWith<_$_ListData> get copyWith =>

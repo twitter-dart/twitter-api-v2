@@ -176,7 +176,9 @@ class _$_FilteringRuleMeta implements _FilteringRuleMeta {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_FilteringRuleMetaToJson(this);
+    return _$$_FilteringRuleMetaToJson(
+      this,
+    );
   }
 }
 
@@ -192,13 +194,13 @@ abstract class _FilteringRuleMeta implements FilteringRuleMeta {
 
   /// The time when the request body was returned.
   @JsonKey(name: 'sent')
-  DateTime? get sentAt => throw _privateConstructorUsedError;
+  DateTime? get sentAt;
   @override
 
   /// Contains fields that describe whether you were successful or
   /// unsuccessful in creating or deleting the different rules that
   /// you passed in your request.
-  FilteringRuleSummary? get summary => throw _privateConstructorUsedError;
+  FilteringRuleSummary? get summary;
   @override
   @JsonKey(ignore: true)
   _$$_FilteringRuleMetaCopyWith<_$_FilteringRuleMeta> get copyWith =>

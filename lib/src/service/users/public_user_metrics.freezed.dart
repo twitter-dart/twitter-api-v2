@@ -205,7 +205,9 @@ class _$_PublicUserMetrics implements _PublicUserMetrics {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PublicUserMetricsToJson(this);
+    return _$$_PublicUserMetricsToJson(
+      this,
+    );
   }
 }
 
@@ -222,19 +224,19 @@ abstract class _PublicUserMetrics implements PublicUserMetrics {
   @override
 
   /// Number of users who follow this user.
-  int get followersCount => throw _privateConstructorUsedError;
+  int get followersCount;
   @override
 
   /// Number of users this user is following.
-  int get followingCount => throw _privateConstructorUsedError;
+  int get followingCount;
   @override
 
   /// Number of Tweets (including Retweets) posted by this user.
-  int get tweetCount => throw _privateConstructorUsedError;
+  int get tweetCount;
   @override
 
   /// Number of lists that include this user.
-  int get listedCount => throw _privateConstructorUsedError;
+  int get listedCount;
   @override
   @JsonKey(ignore: true)
   _$$_PublicUserMetricsCopyWith<_$_PublicUserMetrics> get copyWith =>

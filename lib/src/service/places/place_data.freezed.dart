@@ -366,7 +366,9 @@ class _$_PlaceData implements _PlaceData {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PlaceDataToJson(this);
+    return _$$_PlaceDataToJson(
+      this,
+    );
   }
 }
 
@@ -392,7 +394,7 @@ abstract class _PlaceData implements PlaceData {
   /// ## How It Can Be Used
   ///
   /// - Use this to programmatically retrieve a place.
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
 
   /// A longer-form detailed place name.
@@ -400,7 +402,7 @@ abstract class _PlaceData implements PlaceData {
   /// ## How It Can Be Used
   ///
   /// - Classify a Tweet by a specific place name.
-  String get fullName => throw _privateConstructorUsedError;
+  String get fullName;
   @override
 
   /// The short name of this place.
@@ -408,7 +410,7 @@ abstract class _PlaceData implements PlaceData {
   /// ## How It Can Be Used
   ///
   /// - Classify a Tweet by a specific place name
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
   @override
 
   /// Specified the particular type of information represented by this place
@@ -417,7 +419,7 @@ abstract class _PlaceData implements PlaceData {
   /// ## How It Can Be Used
   ///
   /// - Classify a Tweet by a specific type of place.
-  String? get placeType => throw _privateConstructorUsedError;
+  String? get placeType;
   @override
 
   /// The full-length name of the country this place belongs to.
@@ -425,7 +427,7 @@ abstract class _PlaceData implements PlaceData {
   /// ## How It Can Be Used
   ///
   /// - Classify a Tweet by country name.
-  String? get country => throw _privateConstructorUsedError;
+  String? get country;
   @override
 
   /// The ISO Alpha-2 country code this place belongs to.
@@ -433,16 +435,16 @@ abstract class _PlaceData implements PlaceData {
   /// ## How It Can Be Used
   ///
   /// - Classify a Tweet by country code.
-  String? get countryCode => throw _privateConstructorUsedError;
+  String? get countryCode;
   @override
 
   /// Contains place details in GeoJSON format.
-  PlaceGeo? get geo => throw _privateConstructorUsedError;
+  PlaceGeo? get geo;
   @override
 
   /// Returns the identifiers of known places that contain the referenced
   /// place.
-  List<String>? get containedWithin => throw _privateConstructorUsedError;
+  List<String>? get containedWithin;
   @override
   @JsonKey(ignore: true)
   _$$_PlaceDataCopyWith<_$_PlaceData> get copyWith =>

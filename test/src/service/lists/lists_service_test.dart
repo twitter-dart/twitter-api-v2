@@ -3,7 +3,6 @@
 // modification, are permitted provided the conditions.
 
 // Package imports:
-import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
 // Project imports:
@@ -76,23 +75,6 @@ void main() {
               predicate((e) => e.toString().isNotEmpty)),
         ),
       );
-    });
-
-    test('with OAuth1.0a', () async {
-      final clientContext = context.buildGetStub(
-        UserContext.oauth2OrOAuth1,
-        '/2/lists/5555',
-        'test/src/service/lists/data/lookup_by_id.json',
-        {},
-      );
-
-      when(clientContext.hasOAuth1Client).thenReturn(true);
-
-      final listsService = ListsService(context: clientContext);
-      final response = await listsService.lookupById(listId: '5555');
-
-      expect(response, isA<TwitterResponse>());
-      expect(response.data, isA<ListData>());
     });
   });
 

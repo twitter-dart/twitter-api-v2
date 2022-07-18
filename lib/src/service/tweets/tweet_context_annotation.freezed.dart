@@ -188,7 +188,9 @@ class _$_TweetContextAnnotation implements _TweetContextAnnotation {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TweetContextAnnotationToJson(this);
+    return _$$_TweetContextAnnotationToJson(
+      this,
+    );
   }
 }
 
@@ -207,19 +209,19 @@ abstract class _TweetContextAnnotation implements TweetContextAnnotation {
   ///
   /// Entity: Unique value which correlates to an explicitly mentioned Person,
   /// Place, Product or Organization
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
 
   /// Domain: Domain name based on the Tweet text.
   ///
   /// Entity: Name or reference of entity referenced in the Tweet.
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
 
   /// Domain: Long form description of domain classification.
   ///
   /// Entity: Additional information regarding referenced entity.
-  String? get description => throw _privateConstructorUsedError;
+  String? get description;
   @override
   @JsonKey(ignore: true)
   _$$_TweetContextAnnotationCopyWith<_$_TweetContextAnnotation> get copyWith =>

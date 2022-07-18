@@ -176,7 +176,9 @@ class _$_TweetCountData implements _TweetCountData {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TweetCountDataToJson(this);
+    return _$$_TweetCountDataToJson(
+      this,
+    );
   }
 }
 
@@ -193,16 +195,16 @@ abstract class _TweetCountData implements TweetCountData {
   @override
 
   /// Start time for the granularity.
-  DateTime get start => throw _privateConstructorUsedError;
+  DateTime get start;
   @override
 
   /// End time for the granularity.
-  DateTime get end => throw _privateConstructorUsedError;
+  DateTime get end;
   @override
 
   /// Count of the volume of Tweets that match the query.
   @JsonKey(name: 'tweet_count')
-  int get count => throw _privateConstructorUsedError;
+  int get count;
   @override
   @JsonKey(ignore: true)
   _$$_TweetCountDataCopyWith<_$_TweetCountData> get copyWith =>

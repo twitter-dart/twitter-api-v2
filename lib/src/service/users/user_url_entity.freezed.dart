@@ -136,7 +136,9 @@ class _$_UserUrlEntity implements _UserUrlEntity {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserUrlEntityToJson(this);
+    return _$$_UserUrlEntityToJson(
+      this,
+    );
   }
 }
 
@@ -150,7 +152,7 @@ abstract class _UserUrlEntity implements UserUrlEntity {
   @override
 
   /// Contains details about the user's profile website.
-  List<Url> get urls => throw _privateConstructorUsedError;
+  List<Url> get urls;
   @override
   @JsonKey(ignore: true)
   _$$_UserUrlEntityCopyWith<_$_UserUrlEntity> get copyWith =>

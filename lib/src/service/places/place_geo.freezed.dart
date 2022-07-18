@@ -183,7 +183,9 @@ class _$_PlaceGeo implements _PlaceGeo {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PlaceGeoToJson(this);
+    return _$$_PlaceGeoToJson(
+      this,
+    );
   }
 }
 
@@ -198,15 +200,15 @@ abstract class _PlaceGeo implements PlaceGeo {
   @override
 
   /// The place type.
-  String get type => throw _privateConstructorUsedError;
+  String get type;
   @override
 
   /// The bounding box.
-  List<double> get bbox => throw _privateConstructorUsedError;
+  List<double> get bbox;
   @override
 
   /// The place properties.
-  Map<String, dynamic> get properties => throw _privateConstructorUsedError;
+  Map<String, dynamic> get properties;
   @override
   @JsonKey(ignore: true)
   _$$_PlaceGeoCopyWith<_$_PlaceGeo> get copyWith =>

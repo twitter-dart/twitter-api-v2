@@ -239,7 +239,9 @@ class _$_UserDescriptionEntity implements _UserDescriptionEntity {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserDescriptionEntityToJson(this);
+    return _$$_UserDescriptionEntityToJson(
+      this,
+    );
   }
 }
 
@@ -256,19 +258,19 @@ abstract class _UserDescriptionEntity implements UserDescriptionEntity {
   @override
 
   /// Contains details about any URLs included in the user's description.
-  List<Url>? get urls => throw _privateConstructorUsedError;
+  List<Url>? get urls;
   @override
 
   /// Contains details about text recognized as a Hashtag.
-  List<Tag>? get hashtags => throw _privateConstructorUsedError;
+  List<Tag>? get hashtags;
   @override
 
   /// Contains details about text recognized as a Cashtag.
-  List<Tag>? get cashtags => throw _privateConstructorUsedError;
+  List<Tag>? get cashtags;
   @override
 
   /// Contains details about text recognized as a user mention.
-  List<Mention>? get mentions => throw _privateConstructorUsedError;
+  List<Mention>? get mentions;
   @override
   @JsonKey(ignore: true)
   _$$_UserDescriptionEntityCopyWith<_$_UserDescriptionEntity> get copyWith =>

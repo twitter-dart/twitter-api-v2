@@ -143,7 +143,9 @@ class _$_PublicMediaMetrics implements _PublicMediaMetrics {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PublicMediaMetricsToJson(this);
+    return _$$_PublicMediaMetricsToJson(
+      this,
+    );
   }
 }
 
@@ -163,7 +165,7 @@ abstract class _PublicMediaMetrics implements PublicMediaMetrics {
   /// the given video has been posted. That means that the metric includes
   /// the combined views from any instance where the video has been Retweeted
   /// or re-posted in separate Tweets.
-  int get viewCount => throw _privateConstructorUsedError;
+  int get viewCount;
   @override
   @JsonKey(ignore: true)
   _$$_PublicMediaMetricsCopyWith<_$_PublicMediaMetrics> get copyWith =>

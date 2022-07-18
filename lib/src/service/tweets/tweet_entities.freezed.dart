@@ -268,7 +268,9 @@ class _$_TweetEntities implements _TweetEntities {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TweetEntitiesToJson(this);
+    return _$$_TweetEntitiesToJson(
+      this,
+    );
   }
 }
 
@@ -286,23 +288,23 @@ abstract class _TweetEntities implements TweetEntities {
   @override
 
   /// Contains details about annotations relative to the text within a Tweet.
-  List<TweetAnnotation>? get annotations => throw _privateConstructorUsedError;
+  List<TweetAnnotation>? get annotations;
   @override
 
   /// Contains details about text recognized as a Hashtag.
-  List<Tag>? get hashtags => throw _privateConstructorUsedError;
+  List<Tag>? get hashtags;
   @override
 
   /// Contains details about text recognized as a Cashtag.
-  List<Tag>? get cashtags => throw _privateConstructorUsedError;
+  List<Tag>? get cashtags;
   @override
 
   /// Contains details about text recognized as a user mention.
-  List<Mention>? get mentions => throw _privateConstructorUsedError;
+  List<Mention>? get mentions;
   @override
 
   /// Contains details about text recognized as a URL.
-  List<Url>? get urls => throw _privateConstructorUsedError;
+  List<Url>? get urls;
   @override
   @JsonKey(ignore: true)
   _$$_TweetEntitiesCopyWith<_$_TweetEntities> get copyWith =>

@@ -268,7 +268,9 @@ class _$_PrivateMediaMetrics implements _PrivateMediaMetrics {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PrivateMediaMetricsToJson(this);
+    return _$$_PrivateMediaMetricsToJson(
+      this,
+    );
   }
 }
 
@@ -295,7 +297,7 @@ abstract class _PrivateMediaMetrics implements PrivateMediaMetrics {
   /// This reflects the number of quartile views across all Tweets in which
   /// the given video has been posted.
   @JsonKey(name: 'playback_0_count')
-  int get playback0Count => throw _privateConstructorUsedError;
+  int get playback0Count;
   @override
 
   /// The number of users who played through to each quartile in a video.
@@ -303,7 +305,7 @@ abstract class _PrivateMediaMetrics implements PrivateMediaMetrics {
   /// This reflects the number of quartile views across all Tweets in which
   /// the given video has been posted.
   @JsonKey(name: 'playback_25_count')
-  int get playback25Count => throw _privateConstructorUsedError;
+  int get playback25Count;
   @override
 
   /// The number of users who played through to each quartile in a video.
@@ -311,7 +313,7 @@ abstract class _PrivateMediaMetrics implements PrivateMediaMetrics {
   /// This reflects the number of quartile views across all Tweets in which
   /// the given video has been posted.
   @JsonKey(name: 'playback_50_count')
-  int get playback50Count => throw _privateConstructorUsedError;
+  int get playback50Count;
   @override
 
   /// The number of users who played through to each quartile in a video.
@@ -319,7 +321,7 @@ abstract class _PrivateMediaMetrics implements PrivateMediaMetrics {
   /// This reflects the number of quartile views across all Tweets in which
   /// the given video has been posted.
   @JsonKey(name: 'playback_75_count')
-  int get playback75Count => throw _privateConstructorUsedError;
+  int get playback75Count;
   @override
 
   /// The number of users who played through to each quartile in a video.
@@ -327,7 +329,7 @@ abstract class _PrivateMediaMetrics implements PrivateMediaMetrics {
   /// This reflects the number of quartile views across all Tweets in which
   /// the given video has been posted.
   @JsonKey(name: 'playback_100_count')
-  int get playback100Count => throw _privateConstructorUsedError;
+  int get playback100Count;
   @override
   @JsonKey(ignore: true)
   _$$_PrivateMediaMetricsCopyWith<_$_PrivateMediaMetrics> get copyWith =>

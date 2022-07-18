@@ -137,7 +137,9 @@ class _$_UserWithheld implements _UserWithheld {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserWithheldToJson(this);
+    return _$$_UserWithheldToJson(
+      this,
+    );
   }
 }
 
@@ -151,7 +153,7 @@ abstract class _UserWithheld implements UserWithheld {
   @override
 
   /// Provides a list of countries where this user is not available.
-  List<String> get countryCodes => throw _privateConstructorUsedError;
+  List<String> get countryCodes;
   @override
   @JsonKey(ignore: true)
   _$$_UserWithheldCopyWith<_$_UserWithheld> get copyWith =>

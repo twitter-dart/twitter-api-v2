@@ -151,7 +151,9 @@ class _$_MatchingRule implements _MatchingRule {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MatchingRuleToJson(this);
+    return _$$_MatchingRuleToJson(
+      this,
+    );
   }
 }
 
@@ -165,12 +167,12 @@ abstract class _MatchingRule implements MatchingRule {
   @override
 
   /// ID of the filter rule that matched against the Tweet delivered.
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
 
   /// The tag label of the filter rule that matched against the
   /// Tweet delivered.
-  String get tag => throw _privateConstructorUsedError;
+  String get tag;
   @override
   @JsonKey(ignore: true)
   _$$_MatchingRuleCopyWith<_$_MatchingRule> get copyWith =>

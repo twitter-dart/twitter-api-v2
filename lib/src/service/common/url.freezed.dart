@@ -265,7 +265,9 @@ class _$_Url implements _Url {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UrlToJson(this);
+    return _$$_UrlToJson(
+      this,
+    );
   }
 }
 
@@ -285,32 +287,32 @@ abstract class _Url implements Url {
 
   /// The start position (zero-based) of the recognized URL within the object.
   /// All start indices are inclusive.
-  int get start => throw _privateConstructorUsedError;
+  int get start;
   @override
 
   /// The end position (zero-based) of the recognized URL within the object.
   /// This end index is exclusive.
-  int get end => throw _privateConstructorUsedError;
+  int get end;
   @override
 
   /// The URL in the format posted by the user.
-  String get url => throw _privateConstructorUsedError;
+  String get url;
   @override
 
   /// The fully resolved URL.
-  String get expandedUrl => throw _privateConstructorUsedError;
+  String get expandedUrl;
   @override
 
   /// The URL as displayed in the Twitter client.
-  String get displayUrl => throw _privateConstructorUsedError;
+  String get displayUrl;
   @override
 
   /// The full destination URL.
-  String? get unwoundUrl => throw _privateConstructorUsedError;
+  String? get unwoundUrl;
   @override
 
   /// The unique key to the media.
-  String? get mediaKey => throw _privateConstructorUsedError;
+  String? get mediaKey;
   @override
   @JsonKey(ignore: true)
   _$$_UrlCopyWith<_$_Url> get copyWith => throw _privateConstructorUsedError;

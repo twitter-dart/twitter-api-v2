@@ -213,7 +213,9 @@ class _$_FilteringRuleSummary implements _FilteringRuleSummary {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_FilteringRuleSummaryToJson(this);
+    return _$$_FilteringRuleSummaryToJson(
+      this,
+    );
   }
 }
 
@@ -232,22 +234,22 @@ abstract class _FilteringRuleSummary implements FilteringRuleSummary {
 
   /// The count of created filtering rules.
   @JsonKey(name: 'created')
-  int? get createdCount => throw _privateConstructorUsedError;
+  int? get createdCount;
   @override
 
   /// The count of not created filtering rules.
   @JsonKey(name: 'not_created')
-  int? get notCreatedCount => throw _privateConstructorUsedError;
+  int? get notCreatedCount;
   @override
 
   /// The count of deleted filtering rules.
   @JsonKey(name: 'deleted')
-  int? get deletedCount => throw _privateConstructorUsedError;
+  int? get deletedCount;
   @override
 
   /// The count of not deleted filtering rules.
   @JsonKey(name: 'not_deleted')
-  int? get notDeletedCount => throw _privateConstructorUsedError;
+  int? get notDeletedCount;
   @override
   @JsonKey(ignore: true)
   _$$_FilteringRuleSummaryCopyWith<_$_FilteringRuleSummary> get copyWith =>

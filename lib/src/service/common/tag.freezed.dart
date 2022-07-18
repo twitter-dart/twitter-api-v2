@@ -165,7 +165,9 @@ class _$_Tag implements _Tag {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TagToJson(this);
+    return _$$_TagToJson(
+      this,
+    );
   }
 }
 
@@ -181,16 +183,16 @@ abstract class _Tag implements Tag {
 
   /// The start position (zero-based) of the recognized tag within the object.
   /// All start indices are inclusive.
-  int get start => throw _privateConstructorUsedError;
+  int get start;
   @override
 
   /// The end position (zero-based) of the recognized tag within the object.
   /// This end index is exclusive.
-  int get end => throw _privateConstructorUsedError;
+  int get end;
   @override
 
   /// The text of the tag.
-  String get tag => throw _privateConstructorUsedError;
+  String get tag;
   @override
   @JsonKey(ignore: true)
   _$$_TagCopyWith<_$_Tag> get copyWith => throw _privateConstructorUsedError;

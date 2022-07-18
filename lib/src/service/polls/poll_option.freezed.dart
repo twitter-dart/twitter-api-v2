@@ -158,7 +158,9 @@ class _$_PollOption implements _PollOption {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PollOptionToJson(this);
+    return _$$_PollOptionToJson(
+      this,
+    );
   }
 }
 
@@ -172,11 +174,11 @@ abstract class _PollOption implements PollOption {
       _$_PollOption.fromJson;
 
   @override
-  int get position => throw _privateConstructorUsedError;
+  int get position;
   @override
-  String get label => throw _privateConstructorUsedError;
+  String get label;
   @override
-  int get votes => throw _privateConstructorUsedError;
+  int get votes;
   @override
   @JsonKey(ignore: true)
   _$$_PollOptionCopyWith<_$_PollOption> get copyWith =>

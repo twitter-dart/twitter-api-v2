@@ -169,7 +169,9 @@ class _$_Geo implements _Geo {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GeoToJson(this);
+    return _$$_GeoToJson(
+      this,
+    );
   }
 }
 
@@ -186,12 +188,12 @@ abstract class _Geo implements Geo {
   ///
   /// You can obtain the expanded object in includes.places by adding
   /// `TweetExpansion.geoPlaceId` in the request's query parameter.
-  String? get placeId => throw _privateConstructorUsedError;
+  String? get placeId;
   @override
 
   /// Contains details about the coordinates of the location tagged by the
   /// user in this Tweet, if they specified one.
-  GeoCoordinates? get coordinates => throw _privateConstructorUsedError;
+  GeoCoordinates? get coordinates;
   @override
   @JsonKey(ignore: true)
   _$$_GeoCopyWith<_$_Geo> get copyWith => throw _privateConstructorUsedError;

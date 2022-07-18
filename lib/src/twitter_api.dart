@@ -5,6 +5,7 @@
 // Project imports:
 import 'client/client_context.dart';
 import 'client/oauth_tokens.dart';
+import 'config/retry_config.dart';
 import 'service/compliance/compliance_service.dart';
 import 'service/lists/lists_service.dart';
 import 'service/spaces/spaces_service.dart';
@@ -130,11 +131,13 @@ abstract class TwitterApi {
     required String bearerToken,
     OAuthTokens? oauthTokens,
     Duration timeout = const Duration(seconds: 10),
+    RetryConfig? retryConfig,
   }) =>
       _TwitterApi(
         bearerToken: bearerToken,
         oauthTokens: oauthTokens,
         timeout: timeout,
+        retryConfig: retryConfig,
       );
 
   /// Returns the tweets service.
@@ -158,11 +161,13 @@ class _TwitterApi implements TwitterApi {
     required String bearerToken,
     OAuthTokens? oauthTokens,
     required Duration timeout,
+    RetryConfig? retryConfig,
   }) : _twitterService = TwitterService(
           context: ClientContext(
             bearerToken: bearerToken,
             oauthTokens: oauthTokens,
             timeout: timeout,
+            retryConfig: retryConfig,
           ),
         ) {
     if (bearerToken.isEmpty && oauthTokens == null) {

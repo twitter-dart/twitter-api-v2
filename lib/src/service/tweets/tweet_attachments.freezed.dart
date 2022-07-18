@@ -200,7 +200,9 @@ class _$_TweetAttachments implements _TweetAttachments {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TweetAttachmentsToJson(this);
+    return _$$_TweetAttachmentsToJson(
+      this,
+    );
   }
 }
 
@@ -220,7 +222,7 @@ abstract class _TweetAttachments implements TweetAttachments {
   ///
   /// You can obtain the expanded object in includes.media by adding
   /// `TweetExpansion.attachmentsMediaKeys` in the request's query parameter.
-  List<String>? get mediaKeys => throw _privateConstructorUsedError;
+  List<String>? get mediaKeys;
   @override
 
   /// List of unique identifiers of polls present in the Tweets returned.
@@ -229,7 +231,7 @@ abstract class _TweetAttachments implements TweetAttachments {
   ///
   /// You can obtain the expanded object in includes.polls by adding
   /// `TweetExpansion.attachmentsPollIds` in the request's query parameter.
-  List<String>? get pollIds => throw _privateConstructorUsedError;
+  List<String>? get pollIds;
   @override
   @JsonKey(ignore: true)
   _$$_TweetAttachmentsCopyWith<_$_TweetAttachments> get copyWith =>

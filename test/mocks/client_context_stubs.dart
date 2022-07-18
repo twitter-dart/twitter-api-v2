@@ -33,9 +33,6 @@ MockClientContext buildGetStub(
     ),
   );
 
-  //! Override if you want to test with OAuth 1.0a.
-  when(mockClientContext.hasOAuth1Client).thenReturn(false);
-
   return mockClientContext;
 }
 
@@ -60,9 +57,6 @@ MockClientContext buildPostStub(
     ),
   );
 
-  //! Override if you want to test with OAuth 1.0a.
-  when(mockClientContext.hasOAuth1Client).thenReturn(false);
-
   return mockClientContext;
 }
 
@@ -82,9 +76,6 @@ MockClientContext buildDeleteStub(
       headers: {'content-type': 'application/json; charset=utf-8'},
     ),
   );
-
-  //! Override if you want to test with OAuth 1.0a.
-  when(mockClientContext.hasOAuth1Client).thenReturn(false);
 
   return mockClientContext;
 }
@@ -107,9 +98,6 @@ MockClientContext buildPutStub(
       headers: {'content-type': 'application/json; charset=utf-8'},
     ),
   );
-
-  //! Override if you want to test with OAuth 1.0a.
-  when(mockClientContext.hasOAuth1Client).thenReturn(false);
 
   return mockClientContext;
 }
@@ -143,9 +131,6 @@ MockClientContext buildSendStub(
       );
     },
   );
-
-  //! Override if you want to test with OAuth 1.0a.
-  when(mockClientContext.hasOAuth1Client).thenReturn(false);
 
   return mockClientContext;
 }

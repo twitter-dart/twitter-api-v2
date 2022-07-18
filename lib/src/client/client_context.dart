@@ -2,13 +2,20 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+// Dart imports:
+import 'dart:async';
+
 // Package imports:
 import 'package:http/http.dart' as http;
 
 // Project imports:
+import '../config/retry_config.dart';
+import 'client.dart';
+import 'client_resolver.dart';
 import 'oauth1_client.dart';
 import 'oauth2_client.dart';
 import 'oauth_tokens.dart';
+import 'retry_policy.dart';
 import 'user_context.dart';
 
 abstract class ClientContext {
@@ -17,11 +24,13 @@ abstract class ClientContext {
     required String bearerToken,
     OAuthTokens? oauthTokens,
     required Duration timeout,
+    RetryConfig? retryConfig,
   }) =>
       _ClientContext(
         bearerToken: bearerToken,
         oauthTokens: oauthTokens,
         timeout: timeout,
+        retryConfig: retryConfig,
       );
 
   Future<http.Response> get(UserContext userContext, Uri uri);
@@ -49,9 +58,6 @@ abstract class ClientContext {
     UserContext userContext,
     http.BaseRequest request,
   );
-
-  /// Returns true if this context has an OAuth 1.0a client, otherwise false.
-  bool get hasOAuth1Client;
 }
 
 class _ClientContext implements ClientContext {
@@ -59,21 +65,25 @@ class _ClientContext implements ClientContext {
     required String bearerToken,
     OAuthTokens? oauthTokens,
     required this.timeout,
-  })  : _oauth1Client = oauthTokens != null
-            ? OAuth1Client(
-                consumerKey: oauthTokens.consumerKey,
-                consumerSecret: oauthTokens.consumerSecret,
-                accessToken: oauthTokens.accessToken,
-                accessTokenSecret: oauthTokens.accessTokenSecret,
-              )
-            : null,
-        _oauth2Client = OAuth2Client(bearerToken: bearerToken);
+    RetryConfig? retryConfig,
+  })  : _clientResolver = ClientResolver(
+          oauthTokens != null
+              ? OAuth1Client(
+                  consumerKey: oauthTokens.consumerKey,
+                  consumerSecret: oauthTokens.consumerSecret,
+                  accessToken: oauthTokens.accessToken,
+                  accessTokenSecret: oauthTokens.accessTokenSecret,
+                )
+              : null,
+          OAuth2Client(bearerToken: bearerToken),
+        ),
+        _retryPolicy = RetryPolicy(retryConfig);
 
-  /// The OAuth 1.0a client
-  final OAuth1Client? _oauth1Client;
+  // The resolver of clients
+  final ClientResolver _clientResolver;
 
-  /// The OAuth 2.0 client
-  final OAuth2Client _oauth2Client;
+  /// The policy of retry.
+  final RetryPolicy _retryPolicy;
 
   /// The timeout
   final Duration timeout;
@@ -82,35 +92,21 @@ class _ClientContext implements ClientContext {
   Future<http.Response> get(
     UserContext userContext,
     Uri uri,
-  ) {
-    if (userContext == UserContext.oauth2OrOAuth1 && hasOAuth1Client) {
-      //! If an authentication token is set, the OAuth 1.0a method is given
-      //! priority.
-      return _oauth1Client!.get(uri, timeout: timeout);
-    }
-
-    return _oauth2Client.get(uri, timeout: timeout);
-  }
+  ) async =>
+      await _performWithRetryIfNecessary(
+        _clientResolver.execute(userContext),
+        (client) async => await client.get(uri, timeout: timeout),
+      );
 
   @override
   Future<http.StreamedResponse> getStream(
     UserContext userContext,
     http.BaseRequest request,
-  ) async {
-    if (userContext == UserContext.oauth2OrOAuth1 && hasOAuth1Client) {
-      //! If an authentication token is set, the OAuth 1.0a method is given
-      //! priority.
-      return _oauth1Client!.getStream(
-        request,
-        timeout: timeout,
+  ) async =>
+      await _performWithRetryIfNecessary(
+        _clientResolver.execute(userContext),
+        (client) async => await client.getStream(request, timeout: timeout),
       );
-    }
-
-    return _oauth2Client.getStream(
-      request,
-      timeout: timeout,
-    );
-  }
 
   @override
   Future<http.Response> post(
@@ -118,39 +114,26 @@ class _ClientContext implements ClientContext {
     Uri uri, {
     Map<String, String> headers = const {},
     body,
-  }) {
-    if (userContext == UserContext.oauth2OrOAuth1 && hasOAuth1Client) {
-      //! If an authentication token is set, the OAuth 1.0a method is given
-      //! priority.
-      return _oauth1Client!.post(
-        uri,
-        headers: headers,
-        body: body,
-        timeout: timeout,
+  }) async =>
+      await _performWithRetryIfNecessary(
+        _clientResolver.execute(userContext),
+        (client) async => await client.post(
+          uri,
+          headers: headers,
+          body: body,
+          timeout: timeout,
+        ),
       );
-    }
-
-    return _oauth2Client.post(
-      uri,
-      headers: headers,
-      body: body,
-      timeout: timeout,
-    );
-  }
 
   @override
   Future<http.Response> delete(
     UserContext userContext,
     Uri uri,
-  ) {
-    if (userContext == UserContext.oauth2OrOAuth1 && hasOAuth1Client) {
-      //! If an authentication token is set, the OAuth 1.0a method is given
-      //! priority.
-      return _oauth1Client!.delete(uri, timeout: timeout);
-    }
-
-    return _oauth2Client.delete(uri, timeout: timeout);
-  }
+  ) async =>
+      await _performWithRetryIfNecessary(
+        _clientResolver.execute(userContext),
+        (client) async => await client.delete(uri, timeout: timeout),
+      );
 
   @override
   Future<http.Response> put(
@@ -158,26 +141,36 @@ class _ClientContext implements ClientContext {
     Uri uri, {
     Map<String, String> headers = const {},
     dynamic body,
-  }) async {
-    if (userContext == UserContext.oauth2OrOAuth1 && hasOAuth1Client) {
-      //! If an authentication token is set, the OAuth 1.0a method is given
-      //! priority.
-      return _oauth1Client!.put(
-        uri,
-        headers: headers,
-        body: body,
-        timeout: timeout,
+  }) async =>
+      await _performWithRetryIfNecessary(
+        _clientResolver.execute(userContext),
+        (client) async => await client.put(
+          uri,
+          headers: headers,
+          body: body,
+          timeout: timeout,
+        ),
       );
+
+  dynamic _performWithRetryIfNecessary(
+    final Client client,
+    final dynamic Function(Client client) performer, {
+    int retryCount = 0,
+  }) async {
+    try {
+      return await performer.call(client);
+    } on TimeoutException {
+      if (_retryPolicy.shouldRetry(retryCount)) {
+        await _retryPolicy.waitWithExponentialBackOff(retryCount);
+
+        return await _performWithRetryIfNecessary(
+          client,
+          performer,
+          retryCount: ++retryCount,
+        );
+      }
+
+      rethrow;
     }
-
-    return _oauth2Client.put(
-      uri,
-      headers: headers,
-      body: body,
-      timeout: timeout,
-    );
   }
-
-  @override
-  bool get hasOAuth1Client => _oauth1Client != null;
 }

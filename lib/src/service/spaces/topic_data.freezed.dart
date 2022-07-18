@@ -167,7 +167,9 @@ class _$_TopicData implements _TopicData {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TopicDataToJson(this);
+    return _$$_TopicDataToJson(
+      this,
+    );
   }
 }
 
@@ -183,15 +185,15 @@ abstract class _TopicData implements TopicData {
   @override
 
   /// The id of this topic.
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
 
   /// The name of this topic.
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
 
   /// The description of this topic.
-  String get description => throw _privateConstructorUsedError;
+  String get description;
   @override
   @JsonKey(ignore: true)
   _$$_TopicDataCopyWith<_$_TopicData> get copyWith =>

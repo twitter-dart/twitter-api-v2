@@ -345,7 +345,9 @@ class _$_Includes implements _Includes {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_IncludesToJson(this);
+    return _$$_IncludesToJson(
+      this,
+    );
   }
 }
 
@@ -366,41 +368,41 @@ abstract class _Includes implements Includes {
   /// in the form of Tweet objects with their default fields and any
   /// additional fields requested using the `tweet.fields` parameter, assuming
   /// there is a referenced Tweet present in the returned Tweet(s).
-  List<TweetData>? get tweets => throw _privateConstructorUsedError;
+  List<TweetData>? get tweets;
   @override
 
   /// This includes a list of referenced Tweet authors in the form of user
   /// objects with their default fields and any additional fields requested
   /// using the user.fields parameter.
-  List<UserData>? get users => throw _privateConstructorUsedError;
+  List<UserData>? get users;
   @override
 
   /// This includes a list of images, videos, and GIFs included in Tweets in
   /// the form of media objects with their default fields and any additional
   /// fields requested using the media.fields parameter, assuming there is a
   /// media attachment present in the returned Tweet(s).
-  List<MediaData>? get media => throw _privateConstructorUsedError;
+  List<MediaData>? get media;
   @override
 
   /// This includes a list of referenced places in Tweets in the form of place
   /// objects with their default fields and any additional fields requested
   /// using the place.fields parameter, assuming there is a place present in
   /// the returned Tweet(s).
-  List<PlaceData>? get places => throw _privateConstructorUsedError;
+  List<PlaceData>? get places;
   @override
 
   /// This includes a list of polls that are attached to Tweets in the form
   /// of poll objects with their default fields and any additional fields
   /// requested using the poll.fields parameter, assuming there is a poll
   /// present in the returned Tweet(s).
-  List<PollData>? get polls => throw _privateConstructorUsedError;
+  List<PollData>? get polls;
   @override
 
   /// This includes a list of topics that are attached to Spaces in the form
   /// of topic objects with their default fields and any additional fields
   /// requested using the topic.fields parameter, assuming there is a topic
   /// present in the returned Space(s).
-  List<TopicData>? get topics => throw _privateConstructorUsedError;
+  List<TopicData>? get topics;
   @override
   @JsonKey(ignore: true)
   _$$_IncludesCopyWith<_$_Includes> get copyWith =>

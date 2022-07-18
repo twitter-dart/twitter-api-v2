@@ -232,7 +232,9 @@ class _$_TweetAnnotation implements _TweetAnnotation {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TweetAnnotationToJson(this);
+    return _$$_TweetAnnotationToJson(
+      this,
+    );
   }
 }
 
@@ -251,26 +253,26 @@ abstract class _TweetAnnotation implements TweetAnnotation {
 
   /// The start position (zero-based) of the text used to annotate the Tweet.
   /// All start indices are inclusive.
-  int get start => throw _privateConstructorUsedError;
+  int get start;
   @override
 
   /// The end position (zero based) of the text used to annotate the Tweet.
   /// While all other end indices are exclusive, this one is inclusive.
-  int get end => throw _privateConstructorUsedError;
+  int get end;
   @override
 
   /// The confidence score for the annotation as it correlates to the
   /// Tweet text.
-  double get probability => throw _privateConstructorUsedError;
+  double get probability;
   @override
 
   /// The description of the type of entity identified when the Tweet text
   /// was interpreted.
-  String get type => throw _privateConstructorUsedError;
+  String get type;
   @override
 
   /// The text used to determine the annotation type.
-  String get normalizedText => throw _privateConstructorUsedError;
+  String get normalizedText;
   @override
   @JsonKey(ignore: true)
   _$$_TweetAnnotationCopyWith<_$_TweetAnnotation> get copyWith =>

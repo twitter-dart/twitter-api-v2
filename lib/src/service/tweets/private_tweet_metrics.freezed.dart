@@ -194,7 +194,9 @@ class _$_PrivateTweetMetrics implements _PrivateTweetMetrics {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PrivateTweetMetricsToJson(this);
+    return _$$_PrivateTweetMetricsToJson(
+      this,
+    );
   }
 }
 
@@ -214,19 +216,19 @@ abstract class _PrivateTweetMetrics implements PrivateTweetMetrics {
   /// A count of how many times the Tweet has been viewed
   /// (not unique by user). A view is counted if any part of the Tweet is
   /// visible on the screen.
-  int get impressionCount => throw _privateConstructorUsedError;
+  int get impressionCount;
   @override
 
   /// A count of the number of times a user clicks the following portions of
   /// a Tweet: display name, user name, profile picture.
   @JsonKey(name: 'user_profile_clicks')
-  int get profileClickCount => throw _privateConstructorUsedError;
+  int get profileClickCount;
   @override
 
   /// A count of the number of times a user clicks on a URL link or URL
   /// preview card in a Tweet.
   @JsonKey(name: 'url_link_clicks')
-  int get linkClickCount => throw _privateConstructorUsedError;
+  int get linkClickCount;
   @override
   @JsonKey(ignore: true)
   _$$_PrivateTweetMetricsCopyWith<_$_PrivateTweetMetrics> get copyWith =>

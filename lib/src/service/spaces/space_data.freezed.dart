@@ -704,7 +704,9 @@ class _$_SpaceData implements _SpaceData {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SpaceDataToJson(this);
+    return _$$_SpaceDataToJson(
+      this,
+    );
   }
 }
 
@@ -738,7 +740,7 @@ abstract class _SpaceData implements SpaceData {
   /// ## How It Can Be Used
   ///
   /// - Uniquely identify a Space returned in the response.
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
 
   /// The title of the Space as specified by the creator.
@@ -747,7 +749,7 @@ abstract class _SpaceData implements SpaceData {
   ///
   /// - Determine the title of a Space, understand referenced keywords,
   ///   hashtags, and mentions.
-  String? get title => throw _privateConstructorUsedError;
+  String? get title;
   @override
 
   /// Indicates if the Space has started or will start in the future,
@@ -756,11 +758,11 @@ abstract class _SpaceData implements SpaceData {
   /// ## How It Can Be Used
   ///
   /// - Filter live or scheduled Spaces.
-  SpaceState? get state => throw _privateConstructorUsedError;
+  SpaceState? get state;
   @override
 
   /// The id of the Space creator.
-  String? get creatorId => throw _privateConstructorUsedError;
+  String? get creatorId;
   @override
 
   /// Language of the Space, if detected by Twitter. Returned as a BCP47
@@ -769,7 +771,7 @@ abstract class _SpaceData implements SpaceData {
   /// ## How It Can Be Used
   ///
   /// - Classify Spaces by inferred language.
-  SpaceLanguage? get lang => throw _privateConstructorUsedError;
+  SpaceLanguage? get lang;
   @override
 
   /// The unique identifier of the users who are hosting this Space.
@@ -777,7 +779,7 @@ abstract class _SpaceData implements SpaceData {
   /// ## How It Can Be Used
   ///
   /// - Expand User objects, understand engagement.
-  List<String>? get hostIds => throw _privateConstructorUsedError;
+  List<String>? get hostIds;
   @override
 
   /// A list of IDs of the topics selected by the creator of the Space.
@@ -786,7 +788,7 @@ abstract class _SpaceData implements SpaceData {
   ///
   /// - Determine the title of a Space, understand referenced keywords,
   ///   hashtags, and mentions.
-  List<String>? get topicIds => throw _privateConstructorUsedError;
+  List<String>? get topicIds;
   @override
 
   /// The list of users who were speaking at any point during the Space.
@@ -796,7 +798,7 @@ abstract class _SpaceData implements SpaceData {
   /// ## How It Can Be Used
   ///
   /// - Expand User objects, understand engagement.
-  List<String>? get speakerIds => throw _privateConstructorUsedError;
+  List<String>? get speakerIds;
   @override
 
   /// The list of user IDs that were invited to join as speakers. Usually,
@@ -805,7 +807,7 @@ abstract class _SpaceData implements SpaceData {
   /// ## How It Can Be Used
   ///
   /// - Expand User objects, understand engagement.
-  List<String>? get invitedUserIds => throw _privateConstructorUsedError;
+  List<String>? get invitedUserIds;
   @override
 
   /// The number of people who set a reminder to a Space.
@@ -815,7 +817,7 @@ abstract class _SpaceData implements SpaceData {
   /// - Understand how many people are interested in attending the event.
   ///   This metric is available for scheduled Spaces and Spaces scheduled in
   ///   the past that are currently live.
-  int? get subscriberCount => throw _privateConstructorUsedError;
+  int? get subscriberCount;
   @override
 
   /// The current number of users in the Space, including Hosts and Speakers.
@@ -824,7 +826,7 @@ abstract class _SpaceData implements SpaceData {
   ///
   /// - Understand engagement, and create reports and visualizations for
   ///   creators.
-  int? get participantCount => throw _privateConstructorUsedError;
+  int? get participantCount;
   @override
 
   /// Indicates is this is a ticketed Space.
@@ -832,7 +834,7 @@ abstract class _SpaceData implements SpaceData {
   /// ## How It Can Be Used
   ///
   /// - Create user experiences to highlight content of interest.
-  bool? get isTicketed => throw _privateConstructorUsedError;
+  bool? get isTicketed;
   @override
 
   /// Indicates the start time of a scheduled Space, as set by the creator
@@ -843,7 +845,7 @@ abstract class _SpaceData implements SpaceData {
   /// ## How It Can Be Used
   ///
   /// - Integrate with calendar notifications, filter and sort Spaces by time.
-  DateTime? get scheduledStart => throw _privateConstructorUsedError;
+  DateTime? get scheduledStart;
   @override
 
   /// Indicates the actual start time of a Space.
@@ -851,7 +853,7 @@ abstract class _SpaceData implements SpaceData {
   /// ## How It Can Be Used
   ///
   /// - Determine start time of a Space.
-  DateTime? get startedAt => throw _privateConstructorUsedError;
+  DateTime? get startedAt;
   @override
 
   /// Time when the Space was ended. Only available for ended Spaces.
@@ -860,7 +862,7 @@ abstract class _SpaceData implements SpaceData {
   ///
   /// - Understand when a live Space ended in order to compute
   ///   its runtime duration.
-  DateTime? get endedAt => throw _privateConstructorUsedError;
+  DateTime? get endedAt;
   @override
 
   /// Creation time of this Space.
@@ -869,7 +871,7 @@ abstract class _SpaceData implements SpaceData {
   ///
   /// - Understand when a Space was first created and sort Spaces by
   ///   creation time.
-  DateTime? get createdAt => throw _privateConstructorUsedError;
+  DateTime? get createdAt;
   @override
 
   /// Specifies the date and time of the last update to any of the Space's
@@ -878,7 +880,7 @@ abstract class _SpaceData implements SpaceData {
   /// ## How It Can Be Used
   ///
   /// - Keep information up to date.
-  DateTime? get updatedAt => throw _privateConstructorUsedError;
+  DateTime? get updatedAt;
   @override
   @JsonKey(ignore: true)
   _$$_SpaceDataCopyWith<_$_SpaceData> get copyWith =>
