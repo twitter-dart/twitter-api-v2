@@ -2,9 +2,6 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Dart imports:
-import 'dart:math' as math;
-
 // Package imports:
 import 'package:test/test.dart';
 
@@ -23,7 +20,7 @@ void main() {
 
     test('when max attempt is 0', () {
       final policy = RetryPolicy(
-        RetryConfig(maxAttempts: 0),
+        RetryConfig.ofInterval(maxAttempts: 0),
       );
 
       expect(policy.shouldRetry(0), isFalse);
@@ -32,7 +29,7 @@ void main() {
 
     test('when max attempt is 10', () {
       final policy = RetryPolicy(
-        RetryConfig(maxAttempts: 10),
+        RetryConfig.ofInterval(maxAttempts: 10),
       );
 
       expect(policy.shouldRetry(0), isTrue);
@@ -45,7 +42,7 @@ void main() {
 
     test('when retryCount is less than 0', () {
       final policy = RetryPolicy(
-        RetryConfig(maxAttempts: 10),
+        RetryConfig.ofInterval(maxAttempts: 10),
       );
 
       expect(
@@ -77,19 +74,19 @@ void main() {
 
     test('when RetryConfig is not null', () async {
       final policy = RetryPolicy(
-        RetryConfig(maxAttempts: 10),
+        RetryConfig.ofInterval(maxAttempts: 10),
       );
 
       final startAt = DateTime.now();
       await policy.waitWithExponentialBackOff(0);
       final endAt = DateTime.now();
 
-      expect(endAt.difference(startAt).inSeconds, 10);
+      expect(endAt.difference(startAt).inSeconds, 2);
     });
 
     test('when interval is 5 seconds', () async {
       final policy = RetryPolicy(
-        RetryConfig(
+        RetryConfig.ofInterval(
           maxAttempts: 10,
           intervalInSeconds: 5,
         ),
@@ -104,7 +101,7 @@ void main() {
 
     test('when retryCount is less than 0', () async {
       final policy = RetryPolicy(
-        RetryConfig(maxAttempts: 10),
+        RetryConfig.ofInterval(maxAttempts: 10),
       );
 
       expect(
@@ -123,7 +120,7 @@ void main() {
 
     test('when retryCount is 3 without exponential back off', () async {
       final policy = RetryPolicy(
-        RetryConfig(
+        RetryConfig.ofInterval(
           maxAttempts: 10,
           intervalInSeconds: 3,
         ),
@@ -138,28 +135,23 @@ void main() {
 
     test('when retryCount is 3 with exponential back off', () async {
       final policy = RetryPolicy(
-        RetryConfig(
+        RetryConfig.ofExponentialBackOff(
           maxAttempts: 10,
-          intervalInSeconds: 3,
-          useExponentialBackOff: true,
         ),
       );
 
       final startAt = DateTime.now();
-
-      //! intervalInSeconds(3) + retryCount(3) ^ 2 = 12
       await policy.waitWithExponentialBackOff(3);
-
       final endAt = DateTime.now();
 
-      expect(endAt.difference(startAt).inSeconds, 12);
+      expect(endAt.difference(startAt).inSeconds, 8);
     });
 
     test('with complex case without exponential back off', () async {
       final int intervalInSeconds = 3;
 
       final policy = RetryPolicy(
-        RetryConfig(
+        RetryConfig.ofInterval(
           maxAttempts: 10,
           intervalInSeconds: intervalInSeconds,
         ),
@@ -175,24 +167,22 @@ void main() {
     });
 
     test('with complex case with exponential back off', () async {
-      final int intervalInSeconds = 3;
-
       final policy = RetryPolicy(
-        RetryConfig(
+        RetryConfig.ofExponentialBackOff(
           maxAttempts: 10,
-          intervalInSeconds: intervalInSeconds,
-          useExponentialBackOff: true,
         ),
       );
 
-      for (int retryCount = 0; retryCount < 4; retryCount++) {
+      final expectedResults = <int>[1, 2, 4, 8];
+
+      for (int i = 0; i < 4; i++) {
         final startAt = DateTime.now();
-        await policy.waitWithExponentialBackOff(retryCount);
+        await policy.waitWithExponentialBackOff(i);
         final endAt = DateTime.now();
 
         expect(
           endAt.difference(startAt).inSeconds,
-          intervalInSeconds + math.pow(retryCount, 2),
+          expectedResults[i],
         );
       }
     });

@@ -47,11 +47,14 @@ class _RetryPolicy implements RetryPolicy {
       return;
     }
 
-    await Future.delayed(
-      Duration(
-        //! intervalInSeconds + retryCount ^ 2
-        seconds: _retryConfig!.intervalInSeconds + _computeBackOff(retryCount),
-      ),
+    if (_retryConfig!.useExponentialBackOff) {
+      return await Future.delayed(
+        Duration(seconds: _computeBackOff(retryCount)),
+      );
+    }
+
+    return await Future.delayed(
+      Duration(seconds: _retryConfig!.intervalInSeconds),
     );
   }
 
@@ -66,11 +69,5 @@ class _RetryPolicy implements RetryPolicy {
     }
   }
 
-  int _computeBackOff(final int retryCount) {
-    if (!_retryConfig!.useExponentialBackOff) {
-      return 0;
-    }
-
-    return math.pow(retryCount, 2).toInt();
-  }
+  int _computeBackOff(final int retryCount) => math.pow(2, retryCount).toInt();
 }

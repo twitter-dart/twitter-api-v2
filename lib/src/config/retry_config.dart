@@ -6,8 +6,8 @@
 ///
 /// The simplest way to specify automatic retries is to specify a fixed number
 /// of times at fixed intervals. For example, to automatically retry up to
-/// 5 times at 2 seconds intervals when a timeout occurs in the communication
-/// process with the API, define the following.
+/// 5 times at 3 seconds intervals when a timeout occurs in the communication
+/// process with the API, use [RetryConfig.ofInterval] like following:
 ///
 /// ```dart
 /// import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
@@ -15,9 +15,9 @@
 /// void main() async {
 ///   final twitter = v2.TwitterApi(
 ///     bearerToken: 'YOUR_TOKEN_HERE',
-///     retryConfig: v2.RetryConfig(
+///     retryConfig: v2.RetryConfig.ofInterval(
 ///       maxAttempts: 5,
-///       intervalInSeconds: 2,
+///       intervalInSeconds: 3,
 ///     ),
 ///     timeout: Duration(seconds: 20),
 ///   );
@@ -33,7 +33,7 @@
 /// the **Exponential BackOff algorithm**. This is an algorithm that
 /// exponentially increases the retry interval based on the number of retries
 /// performed. This retry method is disabled by default, but can be enabled
-/// with the [useExponentialBackOff] flag as follows:
+/// with the [RetryConfig.ofExponentialBackOff] constructor as follows:
 ///
 /// ```dart
 /// import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
@@ -41,31 +41,49 @@
 /// void main() async {
 ///   final twitter = v2.TwitterApi(
 ///     bearerToken: 'YOUR_TOKEN_HERE',
-///     retryConfig: v2.RetryConfig(
+///     retryConfig: v2.RetryConfig.ofExponentialBackOff(
 ///       maxAttempts: 5,
-///       intervalInSeconds: 2,
-///       // Enable the Exponential BackOff algorithm.
-///       useExponentialBackOff: true,
 ///     ),
 ///     timeout: Duration(seconds: 20),
 ///   );
 /// ```
 ///
-/// The Exponential BackOff algorithm can be enabled by setting the
-/// [useExponentialBackOff] flag to true, as in the example above. And the
-/// interval, which increases with the number of retries, is then calculated
-/// as follows.
+/// The **Exponential BackOff algorithm** can be enabled by using the
+/// [RetryConfig.ofExponentialBackOff] constructor, as in the example above.
+/// And the interval, which increases with the number of retries, is then
+/// calculated as follows:
 ///
-/// - **intervalInSeconds + retryCount ^ 2**
+/// - **2 ^ retryCount**
 ///
 /// Also, please note that [ArgumentError] is always raised if a negative number
 /// is passed to the [maxAttempts] field of [RetryConfig].
 class RetryConfig {
   /// Returns the new instance of [RetryConfig].
-  RetryConfig({
+  factory RetryConfig.ofInterval({
+    required int maxAttempts,
+    int intervalInSeconds = 2,
+  }) =>
+      RetryConfig._(
+        maxAttempts: maxAttempts,
+        intervalInSeconds: intervalInSeconds,
+        useExponentialBackOff: false,
+      );
+
+  /// Returns the new instance of [RetryConfig] of Exponential Back Off.
+  factory RetryConfig.ofExponentialBackOff({
+    required int maxAttempts,
+  }) =>
+      RetryConfig._(
+        maxAttempts: maxAttempts,
+        intervalInSeconds: 0,
+        useExponentialBackOff: true,
+      );
+
+  /// Returns the new instance of [RetryConfig].
+  RetryConfig._({
     required this.maxAttempts,
-    this.intervalInSeconds = 10,
-    this.useExponentialBackOff = false,
+    required this.intervalInSeconds,
+    required this.useExponentialBackOff,
   }) {
     if (maxAttempts < 0) {
       //! There is no use case where the number of retries is negative.

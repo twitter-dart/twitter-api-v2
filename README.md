@@ -153,7 +153,7 @@ void main() async {
 
     //! Automatic retry is available when a TimeoutException occurs when
     //! communicating with the API.
-    retryConfig: v2.RetryConfig(
+    retryConfig: v2.RetryConfig.ofInterval(
       maxAttempts: 5,
       intervalInSeconds: 3,
     ),
