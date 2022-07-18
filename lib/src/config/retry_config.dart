@@ -5,21 +5,27 @@
 class RetryConfig {
   /// Returns the new instance of [RetryConfig].
   RetryConfig({
-    required this.maxAttempt,
-    this.interval = const Duration(seconds: 10),
-    this.backOff,
-    this.onRetry,
-  });
+    required this.maxAttempts,
+    this.intervalInSeconds = 10,
+    this.useExponentialBackOff = false,
+  }) {
+    if (maxAttempts < 0) {
+      //! There is no use case where the number of retries is negative.
+      throw ArgumentError.value(
+        maxAttempts,
+        'maxAttempts',
+        'must be greater than or equal to 0',
+      );
+    }
+  }
 
   /// Maximum number of retry attempts.
-  final int maxAttempt;
+  final int maxAttempts;
 
-  /// Interval between retry attempts.
-  final Duration interval;
+  /// Interval time in seconds unit.
+  final int intervalInSeconds;
 
-  /// Back off strategy.
-  final Duration? backOff;
-
-  /// Callback when retry is performed.
-  final Function? onRetry;
+  /// A flag indicating whether to use an exponential back off algorithm.
+  /// The default is false.
+  final bool useExponentialBackOff;
 }

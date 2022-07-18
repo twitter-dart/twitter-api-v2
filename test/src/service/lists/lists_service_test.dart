@@ -3,7 +3,6 @@
 // modification, are permitted provided the conditions.
 
 // Package imports:
-import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
 // Project imports:
