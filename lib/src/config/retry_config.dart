@@ -113,5 +113,6 @@ class RetryConfig {
   /// The default is false.
   final bool useExponentialBackOff;
 
+  /// A callback function to be called when the retry is executed.
   final Function(RetryContext context)? onExecute;
 }
