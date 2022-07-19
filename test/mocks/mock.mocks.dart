@@ -11,6 +11,7 @@ import 'package:mockito/mockito.dart' as _i1;
 
 // Project imports:
 import 'package:twitter_api_v2/src/client/client_context.dart' as _i3;
+import 'package:twitter_api_v2/src/client/stream_request.dart' as _i6;
 import 'package:twitter_api_v2/src/client/user_context.dart' as _i5;
 
 // ignore_for_file: type=lint
@@ -64,7 +65,7 @@ class MockClientContext extends _i1.Mock implements _i3.ClientContext {
           as _i4.Future<_i2.Response>);
   @override
   _i4.Future<_i2.StreamedResponse> getStream(
-          _i5.UserContext? userContext, _i2.BaseRequest? request) =>
+          _i5.UserContext? userContext, _i6.StreamRequest? request) =>
       (super.noSuchMethod(Invocation.method(#getStream, [userContext, request]),
               returnValue:
                   Future<_i2.StreamedResponse>.value(_FakeStreamedResponse_1()))

@@ -119,7 +119,7 @@ import 'package:twitter_api_v2/twitter_api_v2';
 ### 1.1.3. ইমপ্লিমেনটেশন
 
 ```dart
-void main() async {
+Future<void> main() async {
   //! https://developer.twitter.com এই লিঙ্ক থেকে আপনার কী এবং টোকেন নিতে হবে।
   final twitter = v2.TwitterApi(
     //! পূর্বনির্ধারিতভাবে অথেনটিকেশন OAuth2.0 দিয়ে করা আছে।
@@ -435,7 +435,7 @@ void main() async {
 ```dart
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
 
-void main() async {
+Future<void> main() async {
   final bearerToken = await v2.OAuthUtils.generateAppOnlyBearerToken(
     consumerKey: 'YOUR_CONSUMER_KEY',
     consumerSecret: 'YOUR_CONSUMER_SECRET',
@@ -457,7 +457,7 @@ void main() async {
 ```dart
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
 
-void main() async {
+Future<void> main() async {
   final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
 
   await twitter.tweetsService.createTweet(
@@ -480,7 +480,7 @@ void main() async {
 ```dart
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
 
-void main() async {
+Future<void> main() async {
   final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
 
   try {
@@ -513,7 +513,7 @@ void main() async {
 ```dart
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
 
-void main() async {
+Future<void> main() async {
   final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
 
   try {

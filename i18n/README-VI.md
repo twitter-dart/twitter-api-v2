@@ -119,7 +119,7 @@ import 'package:twitter_api_v2/twitter_api_v2';
 ### 1.1.3. Implementation
 
 ```dart
-void main() async {
+Future<void> main() async {
   //! Bạn cần có các key và token ở trang https://developer.twitter.com
   final twitter = v2.TwitterApi(
     //! Xác thực (Authentication) với OAuth2.0 là mặc định.
@@ -437,7 +437,7 @@ void main() async {
 ```dart
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
 
-void main() async {
+Future<void> main() async {
   final bearerToken = await v2.OAuthUtils.generateAppOnlyBearerToken(
     consumerKey: 'YOUR_CONSUMER_KEY',
     consumerSecret: 'YOUR_CONSUMER_SECRET',
@@ -459,7 +459,7 @@ Ví dụ, các tham số được gán bằng null sẽ bị bỏ qua trong requ
 ```dart
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
 
-void main() async {
+Future<void> main() async {
   final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
 
   await twitter.tweetsService.createTweet(
@@ -482,7 +482,7 @@ Bạn có thể sử dụng `expansions` như bên dưới:
 ```dart
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
 
-void main() async {
+Future<void> main() async {
   final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
 
   try {
@@ -515,7 +515,7 @@ Bạn có thể sử dụng `fields` như bên dưới:
 ```dart
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
 
-void main() async {
+Future<void> main() async {
   final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
 
   try {

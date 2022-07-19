@@ -16,6 +16,7 @@ import 'oauth1_client.dart';
 import 'oauth2_client.dart';
 import 'oauth_tokens.dart';
 import 'retry_policy.dart';
+import 'stream_request.dart';
 import 'user_context.dart';
 
 abstract class ClientContext {
@@ -56,7 +57,7 @@ abstract class ClientContext {
 
   Future<http.StreamedResponse> getStream(
     UserContext userContext,
-    http.BaseRequest request,
+    StreamRequest request,
   );
 }
 
@@ -93,7 +94,7 @@ class _ClientContext implements ClientContext {
     UserContext userContext,
     Uri uri,
   ) async =>
-      await _performWithRetryIfNecessary(
+      await _challengeWithRetryIfNecessary(
         _clientResolver.execute(userContext),
         (client) async => await client.get(uri, timeout: timeout),
       );
@@ -101,11 +102,19 @@ class _ClientContext implements ClientContext {
   @override
   Future<http.StreamedResponse> getStream(
     UserContext userContext,
-    http.BaseRequest request,
+    StreamRequest request,
   ) async =>
-      await _performWithRetryIfNecessary(
+      await _challengeWithRetryIfNecessary(
         _clientResolver.execute(userContext),
-        (client) async => await client.getStream(request, timeout: timeout),
+        (client) async => await client.getStream(
+          //! A new BaseRequest must be generated when the request
+          //! to retrieve the Stream is sent again.
+          http.Request(
+            request.method,
+            request.uri,
+          ),
+          timeout: timeout,
+        ),
       );
 
   @override
@@ -115,7 +124,7 @@ class _ClientContext implements ClientContext {
     Map<String, String> headers = const {},
     body,
   }) async =>
-      await _performWithRetryIfNecessary(
+      await _challengeWithRetryIfNecessary(
         _clientResolver.execute(userContext),
         (client) async => await client.post(
           uri,
@@ -130,7 +139,7 @@ class _ClientContext implements ClientContext {
     UserContext userContext,
     Uri uri,
   ) async =>
-      await _performWithRetryIfNecessary(
+      await _challengeWithRetryIfNecessary(
         _clientResolver.execute(userContext),
         (client) async => await client.delete(uri, timeout: timeout),
       );
@@ -142,7 +151,7 @@ class _ClientContext implements ClientContext {
     Map<String, String> headers = const {},
     dynamic body,
   }) async =>
-      await _performWithRetryIfNecessary(
+      await _challengeWithRetryIfNecessary(
         _clientResolver.execute(userContext),
         (client) async => await client.put(
           uri,
@@ -152,20 +161,20 @@ class _ClientContext implements ClientContext {
         ),
       );
 
-  dynamic _performWithRetryIfNecessary(
+  dynamic _challengeWithRetryIfNecessary(
     final Client client,
-    final dynamic Function(Client client) performer, {
+    final dynamic Function(Client client) challenge, {
     int retryCount = 0,
   }) async {
     try {
-      return await performer.call(client);
+      return await challenge.call(client);
     } on TimeoutException {
       if (_retryPolicy.shouldRetry(retryCount)) {
-        await _retryPolicy.waitWithExponentialBackOff(retryCount);
+        await _retryPolicy.wait(retryCount);
 
-        return await _performWithRetryIfNecessary(
+        return await _challengeWithRetryIfNecessary(
           client,
-          performer,
+          challenge,
           retryCount: ++retryCount,
         );
       }
