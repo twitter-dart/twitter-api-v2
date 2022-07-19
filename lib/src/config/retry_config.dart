@@ -2,6 +2,9 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+// Project imports:
+import '../client/retry_context.dart';
+
 /// This class represents an automatic retry configuration.
 ///
 /// The simplest way to specify automatic retries is to specify a fixed number
@@ -62,21 +65,25 @@ class RetryConfig {
   factory RetryConfig.interval({
     required int maxAttempts,
     int intervalInSeconds = 2,
+    Function(RetryContext context)? onExecute,
   }) =>
       RetryConfig._(
         maxAttempts: maxAttempts,
         intervalInSeconds: intervalInSeconds,
         useExponentialBackOff: false,
+        onExecute: onExecute,
       );
 
   /// Returns the new instance of [RetryConfig] of Exponential Back Off.
   factory RetryConfig.exponentialBackOff({
     required int maxAttempts,
+    Function(RetryContext context)? onExecute,
   }) =>
       RetryConfig._(
         maxAttempts: maxAttempts,
         intervalInSeconds: 0,
         useExponentialBackOff: true,
+        onExecute: onExecute,
       );
 
   /// Returns the new instance of [RetryConfig].
@@ -84,6 +91,7 @@ class RetryConfig {
     required this.maxAttempts,
     required this.intervalInSeconds,
     required this.useExponentialBackOff,
+    required this.onExecute,
   }) {
     if (maxAttempts < 0) {
       //! There is no use case where the number of retries is negative.
@@ -104,4 +112,7 @@ class RetryConfig {
   /// A flag indicating whether to use an exponential back off algorithm.
   /// The default is false.
   final bool useExponentialBackOff;
+
+  /// A callback function to be called when the retry is executed.
+  final Function(RetryContext context)? onExecute;
 }

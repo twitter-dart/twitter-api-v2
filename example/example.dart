@@ -6,7 +6,7 @@ import 'dart:async';
 
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
 
-void main() async {
+Future<void> main() async {
   //! You need to get keys and tokens at https://developer.twitter.com
   final twitter = v2.TwitterApi(
     //! Authentication with OAuth2.0 is the default.

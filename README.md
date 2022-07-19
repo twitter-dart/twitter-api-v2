@@ -126,7 +126,7 @@ import 'dart:async';
 
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
 
-void main() async {
+Future<void> main() async {
   //! You need to get keys and tokens at https://developer.twitter.com
   final twitter = v2.TwitterApi(
     //! Authentication with OAuth2.0 is the default.
@@ -456,7 +456,7 @@ void main() async {
 ```dart
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
 
-void main() async {
+Future<void> main() async {
   final bearerToken = await v2.OAuthUtils.generateAppOnlyBearerToken(
     consumerKey: 'YOUR_CONSUMER_KEY',
     consumerSecret: 'YOUR_CONSUMER_SECRET',
@@ -478,7 +478,7 @@ For example, arguments specified with null are ignored in the following request.
 ```dart
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
 
-void main() async {
+Future<void> main() async {
   final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
 
   await twitter.tweetsService.createTweet(
@@ -501,7 +501,7 @@ You can use `expansions` like below:
 ```dart
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
 
-void main() async {
+Future<void> main() async {
   final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
 
   try {
@@ -534,7 +534,7 @@ You can use `fields` like below:
 ```dart
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
 
-void main() async {
+Future<void> main() async {
   final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
 
   try {

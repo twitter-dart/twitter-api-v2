@@ -10,6 +10,7 @@ import 'package:http/http.dart' as http;
 
 // Project imports:
 import '../client/client_context.dart';
+import '../client/stream_request.dart';
 import '../client/user_context.dart';
 import '../exception/rate_limit_exceeded_exception.dart';
 import '../exception/twitter_exception.dart';
@@ -102,8 +103,7 @@ abstract class BaseService implements Service {
   }) async {
     final streamedResponse = await _context.getStream(
       userContext,
-      http.Request(
-        'GET',
+      StreamRequest(
         Uri.https(
           _authority,
           unencodedPath,

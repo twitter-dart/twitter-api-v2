@@ -126,7 +126,7 @@ import 'dart:async';
 
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
 
-void main() async {
+Future<void> main() async {
   //! Die benötigten Keys und Tokens erhälst du unter https://developer.twitter.com
   final twitter = v2.TwitterApi(
     //! Die Autorisierung mit OAuth2.0 ist der Standard.
@@ -447,7 +447,7 @@ void main() async {
 ```dart
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
 
-void main() async {
+Future<void> main() async {
   final bearerToken = await v2.OAuthUtils.generateAppOnlyBearerToken(
     consumerKey: 'YOUR_CONSUMER_KEY',
     consumerSecret: 'YOUR_CONSUMER_SECRET',
@@ -467,7 +467,7 @@ In dem folgenden Request z.B. werden die Parameter `mediaIds` und `expansions` i
 ```dart
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
 
-void main() async {
+Future<void> main() async {
   final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
 
   await twitter.tweetsService.createTweet(
@@ -489,7 +489,7 @@ Du kannst `expansions` wie folgt verwenden:
 ```dart
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
 
-void main() async {
+Future<void> main() async {
   final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
 
   try {
@@ -522,7 +522,7 @@ Du kannst `fields` wie folgt verwenden:
 ```dart
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
 
-void main() async {
+Future<void> main() async {
   final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
 
   try {

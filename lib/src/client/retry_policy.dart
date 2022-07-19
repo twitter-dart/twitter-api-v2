@@ -7,6 +7,7 @@ import 'dart:math' as math;
 
 // Project imports:
 import '../config/retry_config.dart';
+import 'retry_context.dart';
 
 abstract class RetryPolicy {
   /// Returns the new instance of [RetryPolicy].
@@ -18,7 +19,7 @@ abstract class RetryPolicy {
   /// Returns true if the retry should be performed, otherwise false.
   bool shouldRetry(final int retryCount);
 
-  Future waitWithExponentialBackOff(final int retryCount);
+  Future wait(final int retryCount);
 }
 
 class _RetryPolicy implements RetryPolicy {
@@ -32,7 +33,7 @@ class _RetryPolicy implements RetryPolicy {
   bool shouldRetry(final int retryCount) {
     _checkRetryCount(retryCount);
 
-    if (_retryConfig == null) {
+    if (!_hasRetryConfig) {
       return false;
     }
 
@@ -40,21 +41,24 @@ class _RetryPolicy implements RetryPolicy {
   }
 
   @override
-  Future waitWithExponentialBackOff(final int retryCount) async {
+  Future wait(final int retryCount) async {
     _checkRetryCount(retryCount);
 
-    if (_retryConfig == null) {
+    if (!_hasRetryConfig) {
       return;
     }
 
-    if (_retryConfig!.useExponentialBackOff) {
-      return await Future.delayed(
-        Duration(seconds: _computeBackOff(retryCount)),
-      );
-    }
+    final int intervalInSeconds = _getWaitInterval(retryCount);
+
+    await _retryConfig!.onExecute?.call(
+      RetryContext(
+        retryCount: retryCount,
+        intervalInSeconds: intervalInSeconds,
+      ),
+    );
 
     return await Future.delayed(
-      Duration(seconds: _retryConfig!.intervalInSeconds),
+      Duration(seconds: intervalInSeconds),
     );
   }
 
@@ -69,5 +73,13 @@ class _RetryPolicy implements RetryPolicy {
     }
   }
 
-  int _computeBackOff(final int retryCount) => math.pow(2, retryCount).toInt();
+  bool get _hasRetryConfig => _retryConfig != null;
+
+  int _getWaitInterval(final int retryCount) =>
+      _retryConfig!.useExponentialBackOff
+          ? _computeExponentialBackOff(retryCount)
+          : _retryConfig!.intervalInSeconds;
+
+  int _computeExponentialBackOff(final int retryCount) =>
+      math.pow(2, retryCount).toInt();
 }

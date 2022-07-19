@@ -60,12 +60,12 @@ void main() {
     });
   });
 
-  group('.waitWithExponentialBackOff', () {
+  group('.wait', () {
     test('when RetryConfig is null', () async {
       final policy = RetryPolicy(null);
 
       final startAt = DateTime.now();
-      await policy.waitWithExponentialBackOff(0);
+      await policy.wait(0);
       final endAt = DateTime.now();
 
       // This means that waitWithBackOff was not executed.
@@ -78,7 +78,7 @@ void main() {
       );
 
       final startAt = DateTime.now();
-      await policy.waitWithExponentialBackOff(0);
+      await policy.wait(0);
       final endAt = DateTime.now();
 
       expect(endAt.difference(startAt).inSeconds, 2);
@@ -93,7 +93,7 @@ void main() {
       );
 
       final startAt = DateTime.now();
-      await policy.waitWithExponentialBackOff(0);
+      await policy.wait(0);
       final endAt = DateTime.now();
 
       expect(endAt.difference(startAt).inSeconds, 5);
@@ -105,7 +105,7 @@ void main() {
       );
 
       expect(
-        () => policy.waitWithExponentialBackOff(-1),
+        () => policy.wait(-1),
         throwsA(
           allOf(
             isA<ArgumentError>(),
@@ -127,7 +127,7 @@ void main() {
       );
 
       final startAt = DateTime.now();
-      await policy.waitWithExponentialBackOff(3);
+      await policy.wait(3);
       final endAt = DateTime.now();
 
       expect(endAt.difference(startAt).inSeconds, 3);
@@ -141,7 +141,7 @@ void main() {
       );
 
       final startAt = DateTime.now();
-      await policy.waitWithExponentialBackOff(3);
+      await policy.wait(3);
       final endAt = DateTime.now();
 
       expect(endAt.difference(startAt).inSeconds, 8);
@@ -159,7 +159,7 @@ void main() {
 
       for (int retryCount = 0; retryCount < 4; retryCount++) {
         final startAt = DateTime.now();
-        await policy.waitWithExponentialBackOff(retryCount);
+        await policy.wait(retryCount);
         final endAt = DateTime.now();
 
         expect(endAt.difference(startAt).inSeconds, intervalInSeconds);
@@ -177,7 +177,7 @@ void main() {
 
       for (int i = 0; i < 4; i++) {
         final startAt = DateTime.now();
-        await policy.waitWithExponentialBackOff(i);
+        await policy.wait(i);
         final endAt = DateTime.now();
 
         expect(
