@@ -33,7 +33,7 @@ Future<void> main() async {
 
     //! Automatic retry is available when a TimeoutException occurs when
     //! communicating with the API.
-    retryConfig: v2.RetryConfig.interval(
+    retryConfig: v2.RetryConfig.regularIntervals(
       maxAttempts: 5,
       intervalInSeconds: 3,
     ),

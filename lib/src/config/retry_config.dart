@@ -12,7 +12,7 @@ import '../client/retry_context.dart';
 /// The simplest way to specify automatic retries is to specify a fixed number
 /// of times at fixed intervals. For example, to automatically retry up to
 /// 5 times at 3 seconds intervals when a timeout occurs in the communication
-/// process with the API, use [RetryConfig.interval] like following.
+/// process with the API, use [RetryConfig.regularIntervals] like following.
 ///
 /// ```dart
 /// import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
@@ -20,7 +20,7 @@ import '../client/retry_context.dart';
 /// void main() async {
 ///   final twitter = v2.TwitterApi(
 ///     bearerToken: 'YOUR_TOKEN_HERE',
-///     retryConfig: v2.RetryConfig.interval(
+///     retryConfig: v2.RetryConfig.regularIntervals(
 ///       maxAttempts: 5,
 ///       intervalInSeconds: 3,
 ///     ),
@@ -102,8 +102,8 @@ import '../client/retry_context.dart';
 /// Please note that [ArgumentError] is always raised if a negative number
 /// is passed to the [maxAttempts] field of [RetryConfig].
 class RetryConfig {
-  /// Returns the new instance of [RetryConfig] of interval.
-  factory RetryConfig.interval({
+  /// Returns the new instance of [RetryConfig] of regular intervals.
+  factory RetryConfig.regularIntervals({
     required int maxAttempts,
     int intervalInSeconds = 2,
     Function(RetryContext context)? onExecute,
