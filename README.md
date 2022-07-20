@@ -624,10 +624,11 @@ Due to the nature of this library's communication with external systems, timeout
 
 When such timeouts occur, an effective countermeasure in many cases is to send the request again after a certain interval. And **twitter_api_v2** provides an **automatic retry** feature as a solution to this problem.
 
-There are two automatic retry methods provided by **twitter_api_v2**.
+There are 3 retry methods provided by **twitter_api_v2**.
 
-1. Retries at Regular Intervals
-2. Retry with Exponential Backoff Algorithm
+1. Regular Intervals
+2. Exponential Backoff
+3. Exponential Backoff and Jitter
 
 #### 1.4.8.1. Regular Intervals
 
@@ -653,9 +654,9 @@ Future<void> main() async {
 
 Although retries can be effective by simply performing them at regular intervals as in the above example, sending a large number of requests at regular intervals when the server to which the request is being sent is experiencing a failure is something that should be avoided. Even if the network or server is already down, the retry process can further aggravate the situation by adding to the load.
 
-The solution to these problems is to increase the interval exponentially for each retry. Furthermore, adding random numbers together will prevent the increased load on the server caused by simultaneous retry processing.
+The solution to these problems is to increase the interval exponentially for each retry. This is an algorithm called `Exponential Backoff` and **twitter_api_v2** supports a specification that allows easy use of this algorithm. 
 
-This is an algorithm called `Exponential Backoff` and **twitter_api_v2** supports a specification that allows easy use of this algorithm. The Exponential Backoff algorithm can be applied on retries by defining RetryConfig as follows.
+The **Exponential Backoff** algorithm can be applied on retries by defining **RetryConfig** as follows.
 
 ```dart
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
