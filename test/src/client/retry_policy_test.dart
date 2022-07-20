@@ -20,7 +20,7 @@ void main() {
 
     test('when max attempt is 0', () {
       final policy = RetryPolicy(
-        RetryConfig.interval(maxAttempts: 0),
+        RetryConfig.regularIntervals(maxAttempts: 0),
       );
 
       expect(policy.shouldRetry(0), isFalse);
@@ -29,7 +29,7 @@ void main() {
 
     test('when max attempt is 10', () {
       final policy = RetryPolicy(
-        RetryConfig.interval(maxAttempts: 10),
+        RetryConfig.regularIntervals(maxAttempts: 10),
       );
 
       expect(policy.shouldRetry(0), isTrue);
@@ -42,7 +42,7 @@ void main() {
 
     test('when retryCount is less than 0', () {
       final policy = RetryPolicy(
-        RetryConfig.interval(maxAttempts: 10),
+        RetryConfig.regularIntervals(maxAttempts: 10),
       );
 
       expect(
@@ -74,7 +74,7 @@ void main() {
 
     test('when RetryConfig is not null', () async {
       final policy = RetryPolicy(
-        RetryConfig.interval(maxAttempts: 10),
+        RetryConfig.regularIntervals(maxAttempts: 10),
       );
 
       final startAt = DateTime.now();
@@ -86,7 +86,7 @@ void main() {
 
     test('when interval is 5 seconds', () async {
       final policy = RetryPolicy(
-        RetryConfig.interval(
+        RetryConfig.regularIntervals(
           maxAttempts: 10,
           intervalInSeconds: 5,
         ),
@@ -101,7 +101,7 @@ void main() {
 
     test('when retryCount is less than 0', () async {
       final policy = RetryPolicy(
-        RetryConfig.interval(maxAttempts: 10),
+        RetryConfig.regularIntervals(maxAttempts: 10),
       );
 
       expect(
@@ -120,7 +120,7 @@ void main() {
 
     test('when retryCount is 3 without exponential back off', () async {
       final policy = RetryPolicy(
-        RetryConfig.interval(
+        RetryConfig.regularIntervals(
           maxAttempts: 10,
           intervalInSeconds: 3,
         ),
@@ -151,7 +151,7 @@ void main() {
       final int intervalInSeconds = 3;
 
       final policy = RetryPolicy(
-        RetryConfig.interval(
+        RetryConfig.regularIntervals(
           maxAttempts: 10,
           intervalInSeconds: intervalInSeconds,
         ),

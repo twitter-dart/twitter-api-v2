@@ -173,7 +173,7 @@ Future<void> main() async {
 
     //! Automatic retry is available when a TimeoutException occurs when
     //! communicating with the API.
-    retryConfig: v2.RetryConfig.interval(
+    retryConfig: v2.RetryConfig.regularIntervals(
       maxAttempts: 5,
       intervalInSeconds: 3,
     ),
@@ -641,7 +641,7 @@ Future<void> main() async {
     bearerToken: 'YOUR_TOKEN_HERE',
 
     //! Add these lines.
-    retryConfig: v2.RetryConfig.interval(
+    retryConfig: v2.RetryConfig.regularIntervals(
       maxAttempts: 3,
       intervalInSeconds: 5,
     ),
@@ -715,7 +715,7 @@ import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
 Future<void> main() async {
   final twitter = v2.TwitterApi(
     bearerToken: 'YOUR_TOKEN_HERE',
-    retryConfig: v2.RetryConfig.interval(
+    retryConfig: v2.RetryConfig.regularIntervals(
       maxAttempts: 3,
       intervalInSeconds: 5,
 
