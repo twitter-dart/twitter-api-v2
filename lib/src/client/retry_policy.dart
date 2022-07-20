@@ -26,6 +26,9 @@ class _RetryPolicy implements RetryPolicy {
   /// Returns the new instance of [_RetryPolicy].
   _RetryPolicy(RetryConfig? retryConfig) : _retryConfig = retryConfig;
 
+  /// The random generator.
+  static final _random = math.Random();
+
   /// The configuration of retry.
   final RetryConfig? _retryConfig;
 
@@ -77,8 +80,11 @@ class _RetryPolicy implements RetryPolicy {
 
   int _getWaitInterval(final int retryCount) =>
       _retryConfig!.useExponentialBackOff
-          ? _computeExponentialBackOff(retryCount)
+          ? _computeExponentialBackOff(retryCount) + _jitter
           : _retryConfig!.intervalInSeconds;
+
+  int get _jitter =>
+      _retryConfig!.useExponentialBackOffAndJitter ? _random.nextInt(4) : 0;
 
   int _computeExponentialBackOff(final int retryCount) =>
       math.pow(2, retryCount).toInt();
