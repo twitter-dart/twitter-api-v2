@@ -84,9 +84,10 @@
     - [1.4.6. OAuth 2.0 Authorization Code Flow with PKCE](#146-oauth-20-authorization-code-flow-with-pkce)
     - [1.4.7. Change the Timeout Duration](#147-change-the-timeout-duration)
     - [1.4.8. Retry When a Timeout Occurs](#148-retry-when-a-timeout-occurs)
-      - [1.4.8.1. Retries at Regular Intervals](#1481-retries-at-regular-intervals)
-      - [1.4.8.2. Retry with Exponential Backoff Algorithm](#1482-retry-with-exponential-backoff-algorithm)
-      - [1.4.8.3. Do Something on Retry](#1483-do-something-on-retry)
+      - [1.4.8.1. Regular Intervals](#1481-regular-intervals)
+      - [1.4.8.2. Exponential Backoff](#1482-exponential-backoff)
+      - [1.4.8.3. Exponential Backoff and Jitter](#1483-exponential-backoff-and-jitter)
+      - [1.4.8.4. Do Something on Retry](#1484-do-something-on-retry)
     - [1.4.9. Thrown Exceptions](#149-thrown-exceptions)
   - [1.5. Contribution 🏆](#15-contribution-)
   - [1.6. Contributors ✨](#16-contributors-)
@@ -628,7 +629,7 @@ There are two automatic retry methods provided by **twitter_api_v2**.
 1. Retries at Regular Intervals
 2. Retry with Exponential Backoff Algorithm
 
-#### 1.4.8.1. Retries at Regular Intervals
+#### 1.4.8.1. Regular Intervals
 
 It would be easy to imagine **retries at regular intervals**. For example, if a timeout occurs and the request is assumed to be retried 3 times, waiting for 5 seconds and then sending the request again, it can be defined as follows.
 
@@ -648,7 +649,7 @@ Future<void> main() async {
 }
 ```
 
-#### 1.4.8.2. Retry with Exponential Backoff Algorithm
+#### 1.4.8.2. Exponential Backoff
 
 Although retries can be effective by simply performing them at regular intervals as in the above example, sending a large number of requests at regular intervals when the server to which the request is being sent is experiencing a failure is something that should be avoided. Even if the network or server is already down, the retry process can further aggravate the situation by adding to the load.
 
@@ -671,9 +672,38 @@ Future<void> main() async {
 }
 ```
 
-In the above implementation, the interval increases exponentially for each retry count, which can be expressed by the formula `2 ^ retryCount`.
+In the above implementation, the interval increases exponentially for each retry count. It can be expressed by next formula.
 
-#### 1.4.8.3. Do Something on Retry
+> 2 ^ retryCount
+
+#### 1.4.8.3. Exponential Backoff and Jitter
+
+Although the algorithm introduced earlier that exponentially increases the retry interval is already powerful, some may believe that it is not yet sufficient to distribute the sensation of retries. It's more distributed than equally spaced retries, but retries still occur at static intervals.
+
+This problem can be solved by adding a random number called **Jitter**, and this method is called the **Exponential Backoff and Jitter** algorithm. By adding a random number to the exponentially increasing retry interval, the retry interval can be distributed more flexibly.
+
+Similar to the previous example, **twitter_api_v2** can be implemented as follows.
+
+```dart
+import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
+
+Future<void> main() async {
+  final twitter = v2.TwitterApi(
+    bearerToken: 'YOUR_TOKEN_HERE',
+
+    //! Add these lines.
+    retryConfig: v2.RetryConfig.exponentialBackOffAndJitter(
+      maxAttempts: 3,
+    ),
+  );
+}
+```
+
+In the above implementation, the interval increases exponentially for each retry count with jitter. It can be expressed by next formula.
+
+> **(2 ^ retryCount) + jitter(Random Number between 0 ~ 3)**
+
+#### 1.4.8.4. Do Something on Retry
 
 It would be useful to output logging on retries and a popup notifying the user that a retry has been executed. So **twitter_api_v2** provides callbacks that can perform arbitrary processing when retries are executed.
 
