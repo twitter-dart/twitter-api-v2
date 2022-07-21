@@ -3,7 +3,7 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
-import '../client/retry_context.dart';
+import '../client/retry_event.dart';
 import '../client/retry_strategy.dart';
 
 /// This class represents an automatic retry configuration.
@@ -107,7 +107,7 @@ class RetryConfig {
   factory RetryConfig.regularIntervals({
     required int maxAttempts,
     int intervalInSeconds = 2,
-    Function(RetryContext context)? onExecute,
+    Function(RetryEvent event)? onExecute,
   }) =>
       RetryConfig._(
         strategy: RetryStrategy.regularIntervals,
@@ -119,7 +119,7 @@ class RetryConfig {
   /// Returns the new instance of [RetryConfig] of Exponential Back Off.
   factory RetryConfig.exponentialBackOff({
     required int maxAttempts,
-    Function(RetryContext context)? onExecute,
+    Function(RetryEvent event)? onExecute,
   }) =>
       RetryConfig._(
         strategy: RetryStrategy.exponentialBackOff,
@@ -132,7 +132,7 @@ class RetryConfig {
   /// and Jitter.
   factory RetryConfig.exponentialBackOffAndJitter({
     required int maxAttempts,
-    Function(RetryContext context)? onExecute,
+    Function(RetryEvent event)? onExecute,
   }) =>
       RetryConfig._(
         strategy: RetryStrategy.exponentialBackOffAndJitter,
@@ -177,5 +177,5 @@ class RetryConfig {
   final int intervalInSeconds;
 
   /// A callback function to be called when the retry is executed.
-  final Function(RetryContext context)? onExecute;
+  final Function(RetryEvent event)? onExecute;
 }

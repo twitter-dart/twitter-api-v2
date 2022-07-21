@@ -723,13 +723,13 @@ Future<void> main() async {
       intervalInSeconds: 5,
 
       //! Add this line.
-      onExecute: (context) => print('Retrying... ${context.retryCount} times.'),
+      onExecute: (event) => print('Retrying... ${event.retryCount} times.'),
     ),
   );
 }
 ```
 
-The [RetryContext](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/RetryContext-class.html) passed to the callback contains information on retries.
+The [RetryEvent](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/RetryEvent-class.html) passed to the callback contains information on retries.
 
 ### 1.4.9. Thrown Exceptions
 
