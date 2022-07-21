@@ -626,9 +626,11 @@ When such timeouts occur, an effective countermeasure in many cases is to send t
 
 There are 3 retry methods provided by **twitter_api_v2**.
 
-1. Regular Intervals
-2. Exponential Backoff
-3. Exponential Backoff and Jitter
+| Retry Strategy                 | Constructor                             | Description                                                                                                             |
+| ------------------------------ | --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Regular Intervals              | RetryConfig.regularIntervals            | Retry at regular intervals.                                                                                             |
+| Exponential Backoff            | RetryConfig.exponentialBackOff          | The retry interval is increased exponentially according to the number of retries.                                       |
+| Exponential Backoff and Jitter | RetryConfig.exponentialBackOffAndJitter | A random number called Jitter is added to increase the retry interval exponentially according to the number of retries. |
 
 #### 1.4.8.1. Regular Intervals
 
@@ -654,7 +656,7 @@ Future<void> main() async {
 
 Although retries can be effective by simply performing them at regular intervals as in the above example, sending a large number of requests at regular intervals when the server to which the request is being sent is experiencing a failure is something that should be avoided. Even if the network or server is already down, the retry process can further aggravate the situation by adding to the load.
 
-The solution to these problems is to increase the interval exponentially for each retry. This is an algorithm called `Exponential Backoff` and **twitter_api_v2** supports a specification that allows easy use of this algorithm. 
+The solution to these problems is to increase the interval exponentially for each retry. This is an algorithm called `Exponential Backoff` and **twitter_api_v2** supports a specification that allows easy use of this algorithm.
 
 The **Exponential Backoff** algorithm can be applied on retries by defining **RetryConfig** as follows.
 

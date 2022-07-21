@@ -4,6 +4,7 @@
 
 // Project imports:
 import '../client/retry_context.dart';
+import '../client/retry_strategy.dart';
 
 /// This class represents an automatic retry configuration.
 ///
@@ -109,10 +110,9 @@ class RetryConfig {
     Function(RetryContext context)? onExecute,
   }) =>
       RetryConfig._(
+        strategy: RetryStrategy.regularIntervals,
         maxAttempts: maxAttempts,
         intervalInSeconds: intervalInSeconds,
-        useExponentialBackOff: false,
-        useExponentialBackOffAndJitter: false,
         onExecute: onExecute,
       );
 
@@ -122,10 +122,9 @@ class RetryConfig {
     Function(RetryContext context)? onExecute,
   }) =>
       RetryConfig._(
+        strategy: RetryStrategy.exponentialBackOff,
         maxAttempts: maxAttempts,
         intervalInSeconds: 0,
-        useExponentialBackOff: true,
-        useExponentialBackOffAndJitter: false,
         onExecute: onExecute,
       );
 
@@ -136,19 +135,17 @@ class RetryConfig {
     Function(RetryContext context)? onExecute,
   }) =>
       RetryConfig._(
+        strategy: RetryStrategy.exponentialBackOffAndJitter,
         maxAttempts: maxAttempts,
         intervalInSeconds: 0,
-        useExponentialBackOff: false,
-        useExponentialBackOffAndJitter: true,
         onExecute: onExecute,
       );
 
   /// Returns the new instance of [RetryConfig].
   RetryConfig._({
+    required this.strategy,
     required this.maxAttempts,
     required this.intervalInSeconds,
-    required this.useExponentialBackOff,
-    required this.useExponentialBackOffAndJitter,
     required this.onExecute,
   }) {
     if (maxAttempts < 0) {
@@ -159,23 +156,25 @@ class RetryConfig {
         'must be greater than or equal to 0',
       );
     }
+
+    if (intervalInSeconds < 0) {
+      //! There is no use case where the number of intervals is negative.
+      throw ArgumentError.value(
+        intervalInSeconds,
+        'intervalInSeconds',
+        'must be greater than or equal to 0',
+      );
+    }
   }
+
+  /// The strategy of retry.
+  final RetryStrategy strategy;
 
   /// Maximum number of retry attempts.
   final int maxAttempts;
 
   /// Interval time in seconds unit.
   final int intervalInSeconds;
-
-  /// A flag indicating whether to use an exponential back off algorithm.
-  /// The default is false.
-  final bool useExponentialBackOff;
-
-  /// A flag indicating whether to use an exponential back off and jitter
-  /// algorithm.
-  ///
-  /// The default is false.
-  final bool useExponentialBackOffAndJitter;
 
   /// A callback function to be called when the retry is executed.
   final Function(RetryContext context)? onExecute;

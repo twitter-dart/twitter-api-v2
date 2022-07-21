@@ -147,6 +147,22 @@ void main() {
       expect(endAt.difference(startAt).inSeconds, 8);
     });
 
+    test('when retryCount is 3 with exponential back off and jitter', () async {
+      final policy = RetryPolicy(
+        RetryConfig.exponentialBackOffAndJitter(
+          maxAttempts: 10,
+        ),
+      );
+
+      final startAt = DateTime.now();
+      await policy.wait(3);
+      final endAt = DateTime.now();
+
+      final int elapsedSeconds = endAt.difference(startAt).inSeconds;
+
+      expect(8 <= elapsedSeconds && elapsedSeconds <= 11, isTrue);
+    });
+
     test('with complex case without exponential back off', () async {
       final int intervalInSeconds = 3;
 
@@ -183,6 +199,30 @@ void main() {
         expect(
           endAt.difference(startAt).inSeconds,
           expectedResults[i],
+        );
+      }
+    });
+
+    test('with complex case with exponential back off and jitter', () async {
+      final policy = RetryPolicy(
+        RetryConfig.exponentialBackOffAndJitter(
+          maxAttempts: 10,
+        ),
+      );
+
+      final expectedResults = <int>[1, 2, 4, 8];
+
+      for (int i = 0; i < 4; i++) {
+        final startAt = DateTime.now();
+        await policy.wait(i);
+        final endAt = DateTime.now();
+
+        final int elapsedSeconds = endAt.difference(startAt).inSeconds;
+
+        expect(
+          expectedResults[i] <= elapsedSeconds &&
+              elapsedSeconds <= expectedResults[i] + 3,
+          isTrue,
         );
       }
     });
