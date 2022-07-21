@@ -8,6 +8,7 @@ import 'dart:math' as math;
 // Project imports:
 import '../config/retry_config.dart';
 import 'retry_context.dart';
+import 'retry_strategy.dart';
 
 abstract class RetryPolicy {
   /// Returns the new instance of [RetryPolicy].
@@ -51,7 +52,7 @@ class _RetryPolicy implements RetryPolicy {
       return;
     }
 
-    final int intervalInSeconds = _getWaitInterval(retryCount);
+    final int intervalInSeconds = _computeWaitIntervals(retryCount);
 
     await _retryConfig!.onExecute?.call(
       RetryContext(
@@ -78,14 +79,23 @@ class _RetryPolicy implements RetryPolicy {
 
   bool get _hasRetryConfig => _retryConfig != null;
 
-  int _getWaitInterval(final int retryCount) =>
-      _retryConfig!.useExponentialBackOff
-          ? _computeExponentialBackOff(retryCount) + _jitter
-          : _retryConfig!.intervalInSeconds;
+  int _computeWaitIntervals(final int retryCount) {
+    if (_retryConfig!.strategy == RetryStrategy.exponentialBackOff ||
+        _retryConfig!.strategy == RetryStrategy.exponentialBackOffAndJitter) {
+      return _computeExponentialBackOff(retryCount) + _jitter;
+    }
 
-  int get _jitter =>
-      _retryConfig!.useExponentialBackOffAndJitter ? _random.nextInt(4) : 0;
+    return _retryConfig!.intervalInSeconds;
+  }
 
   int _computeExponentialBackOff(final int retryCount) =>
       math.pow(2, retryCount).toInt();
+
+  int get _jitter {
+    if (_retryConfig!.strategy == RetryStrategy.exponentialBackOffAndJitter) {
+      return _random.nextInt(4);
+    }
+
+    return 0;
+  }
 }
