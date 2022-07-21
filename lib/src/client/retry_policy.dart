@@ -7,7 +7,7 @@ import 'dart:math' as math;
 
 // Project imports:
 import '../config/retry_config.dart';
-import 'retry_context.dart';
+import 'retry_event.dart';
 import 'retry_strategy.dart';
 
 abstract class RetryPolicy {
@@ -55,7 +55,7 @@ class _RetryPolicy implements RetryPolicy {
     final int intervalInSeconds = _computeWaitIntervals(retryCount);
 
     await _retryConfig!.onExecute?.call(
-      RetryContext(
+      RetryEvent(
         retryCount: retryCount,
         intervalInSeconds: intervalInSeconds,
       ),

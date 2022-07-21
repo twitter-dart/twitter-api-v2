@@ -2,10 +2,10 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-/// This class represents the context during the retry process.
-class RetryContext {
-  /// Returns the new instance of [RetryContext].
-  RetryContext({
+/// This class represents the event during the retry process.
+class RetryEvent {
+  /// Returns the new instance of [RetryEvent].
+  RetryEvent({
     required this.retryCount,
     required this.intervalInSeconds,
   });

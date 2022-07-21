@@ -4,7 +4,7 @@
 
 export 'package:twitter_api_v2/src/auth/oauth_utils.dart';
 export 'package:twitter_api_v2/src/client/oauth_tokens.dart';
-export 'package:twitter_api_v2/src/client/retry_context.dart';
+export 'package:twitter_api_v2/src/client/retry_event.dart';
 export 'package:twitter_api_v2/src/config/retry_config.dart';
 export 'package:twitter_api_v2/src/exception/rate_limit_exceeded_exception.dart';
 export 'package:twitter_api_v2/src/exception/twitter_exception.dart';
