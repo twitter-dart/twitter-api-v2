@@ -39,7 +39,7 @@
 <!-- TOC -->
 
 - [1. Guide 🌎](#1-guide-)
-  - [1.1. Features ✨](#11-features-)
+  - [1.1. Features 💎](#11-features-)
   - [1.2. Getting Started ⚡](#12-getting-started-)
     - [1.2.1. Install Library](#121-install-library)
     - [1.2.2. Import](#122-import)
@@ -105,7 +105,7 @@ This library provides the easiest way to use [Twitter API v2.0](https://develope
 
 We also provide [twitter_oauth2_pkce](https://pub.dev/packages/twitter_oauth2_pkce) for easy [OAuth 2.0 PKCE authentication](https://developer.twitter.com/en/docs/authentication/oauth-2-0/authorization-code) when using the Twitter API!
 
-## 1.1. Features ✨
+## 1.1. Features 💎
 
 ✅ The **wrapper library** for **[Twitter API v2.0](https://developer.twitter.com/en/docs/twitter-api)**. </br>
 ✅ **Easily integrates** with the **Dart** & **Flutter** apps. </br>
