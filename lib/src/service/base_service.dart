@@ -72,6 +72,9 @@ abstract class BaseService implements Service {
   /// The field name of meta
   static const _metaFieldName = 'meta';
 
+  /// The field name of errors
+  static const _errorsFieldName = 'errors';
+
   /// The twitter client
   final ClientContext _context;
 
@@ -248,8 +251,8 @@ abstract class BaseService implements Service {
 
     final jsonBody = _tryJsonDecode(response, response.body);
 
-    if (jsonBody.containsKey('errors')) {
-      final errors = jsonBody['errors'];
+    if (jsonBody.containsKey(_errorsFieldName)) {
+      final errors = jsonBody[_errorsFieldName];
       for (final error in errors) {
         if (error['code'] == 88) {
           throw RateLimitExceededException(error['message'] ?? '');
@@ -270,8 +273,8 @@ abstract class BaseService implements Service {
 
     final jsonBody = _tryJsonDecode(response, event);
 
-    if (jsonBody.containsKey('errors')) {
-      final errors = jsonBody['errors'];
+    if (jsonBody.containsKey(_errorsFieldName)) {
+      final errors = jsonBody[_errorsFieldName];
       for (final error in errors) {
         if (error['code'] == 88) {
           throw RateLimitExceededException(error['message'] ?? '');
@@ -285,7 +288,7 @@ abstract class BaseService implements Service {
   Map<String, dynamic> _checkResponseBody(final http.Response response) {
     final jsonBody = _tryJsonDecode(response, response.body);
 
-    if (!jsonBody.containsKey('data')) {
+    if (!jsonBody.containsKey(_dataFieldName)) {
       //! This occurs when the tweet to be processed has been deleted or
       //! when the target data does not exist at the time of search.
       throw TwitterException(
@@ -306,7 +309,7 @@ abstract class BaseService implements Service {
       event,
     );
 
-    if (!jsonBody.containsKey('data')) {
+    if (!jsonBody.containsKey(_dataFieldName)) {
       throw TwitterException(
         'No response data exists for the request.',
         response,
