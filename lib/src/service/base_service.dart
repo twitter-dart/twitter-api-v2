@@ -19,6 +19,20 @@ import 'common/includes.dart';
 import 'common/serializable.dart';
 import 'twitter_response.dart';
 
+enum _ResponseField {
+  /// `data`
+  data,
+
+  /// `includes`
+  includes,
+
+  /// `meta`
+  meta,
+
+  /// `errors`
+  errors
+}
+
 abstract class Service {
   Future<http.Response> get(UserContext userContext, String unencodedPath);
 
@@ -43,17 +57,19 @@ abstract class Service {
     Map<String, String> body = const {},
   });
 
-  Future<TwitterResponse<D, M>> buildResponse<D, M>(
+  Future<TwitterResponse<D, M>> transformSingleDataResponse<D, M>(
     http.Response response, {
     required D Function(Map<String, Object?> json) dataBuilder,
     M Function(Map<String, Object?> json)? metaBuilder,
   });
 
-  Future<TwitterResponse<List<D>, M>> buildMultiDataResponse<D, M>(
+  Future<TwitterResponse<List<D>, M>> transformMultiDataResponse<D, M>(
     http.Response response, {
     required D Function(Map<String, Object?> json) dataBuilder,
     M Function(Map<String, Object?> json)? metaBuilder,
   });
+
+  bool evaluateResponse(final http.Response response);
 }
 
 abstract class BaseService implements Service {
@@ -63,18 +79,6 @@ abstract class BaseService implements Service {
   /// The base url
   static const _authority = 'api.twitter.com';
 
-  /// The field name of data
-  static const _dataFieldName = 'data';
-
-  /// The field name of includes
-  static const _includesFieldName = 'includes';
-
-  /// The field name of meta
-  static const _metaFieldName = 'meta';
-
-  /// The field name of errors
-  static const _errorsFieldName = 'errors';
-
   /// The twitter client
   final ClientContext _context;
 
@@ -83,20 +87,17 @@ abstract class BaseService implements Service {
     final UserContext userContext,
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
-  }) async {
-    final response = _checkResponseError(
-      await _context.get(
-        userContext,
-        Uri.https(
-          _authority,
-          unencodedPath,
-          _convertQueryParameters(queryParameters),
+  }) async =>
+      await _checkResponse(
+        await _context.get(
+          userContext,
+          Uri.https(
+            _authority,
+            unencodedPath,
+            _convertQueryParameters(queryParameters),
+          ),
         ),
-      ),
-    );
-
-    return response;
-  }
+      );
 
   @override
   Future<Stream<Map<String, dynamic>>> getStream(
@@ -126,54 +127,119 @@ abstract class BaseService implements Service {
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
     dynamic body = const {},
-  }) async {
-    final response = _checkResponseError(
-      await _context.post(
-        userContext,
-        Uri.https(
-          _authority,
-          unencodedPath,
-          _convertQueryParameters(queryParameters),
+  }) async =>
+      await _checkResponse(
+        await _context.post(
+          userContext,
+          Uri.https(
+            _authority,
+            unencodedPath,
+            _convertQueryParameters(queryParameters),
+          ),
+          headers: {'Content-type': 'application/json'},
+          body: converter.jsonEncode(_removeNullParameters(body)),
         ),
-        headers: {'Content-type': 'application/json'},
-        body: converter.jsonEncode(_removeNullParameters(body)),
-      ),
-    );
-
-    return response;
-  }
+      );
 
   @override
   Future<http.Response> delete(
     final UserContext userContext,
     final String unencodedPath,
-  ) async {
-    final response = _checkResponseError(
-      await _context.delete(
-        userContext,
-        Uri.https(_authority, unencodedPath),
-      ),
-    );
-
-    return response;
-  }
+  ) async =>
+      await _checkResponse(
+        await _context.delete(
+          userContext,
+          Uri.https(_authority, unencodedPath),
+        ),
+      );
 
   @override
   Future<http.Response> put(
     final UserContext userContext,
     final String unencodedPath, {
     dynamic body = const {},
-  }) async {
-    final response = _checkResponseError(
-      await _context.put(
-        userContext,
-        Uri.https(_authority, unencodedPath),
-        headers: {'Content-type': 'application/json'},
-        body: converter.jsonEncode(_removeNullParameters(body)),
-      ),
-    );
+  }) async =>
+      await _checkResponse(
+        await _context.put(
+          userContext,
+          Uri.https(_authority, unencodedPath),
+          headers: {'Content-type': 'application/json'},
+          body: converter.jsonEncode(_removeNullParameters(body)),
+        ),
+      );
 
-    return response;
+  @override
+  Future<TwitterResponse<D, M>> transformSingleDataResponse<D, M>(
+    http.Response response, {
+    required D Function(Map<String, Object?> json) dataBuilder,
+    M Function(Map<String, Object?> json)? metaBuilder,
+  }) async {
+    final jsonBody = _checkResponseBody(response);
+    return TwitterResponse(
+      data: dataBuilder(jsonBody[_ResponseField.data.name]),
+      includes: jsonBody.containsKey(_ResponseField.includes.name)
+          ? Includes.fromJson(jsonBody[_ResponseField.includes.name])
+          : null,
+      meta:
+          jsonBody.containsKey(_ResponseField.meta.name) && metaBuilder != null
+              ? metaBuilder(jsonBody[_ResponseField.meta.name])
+              : null,
+    );
+  }
+
+  @override
+  Future<TwitterResponse<List<D>, M>> transformMultiDataResponse<D, M>(
+    http.Response response, {
+    required D Function(Map<String, Object?> json) dataBuilder,
+    M Function(Map<String, Object?> json)? metaBuilder,
+  }) async {
+    final jsonBody = _checkResponseBody(response);
+    return TwitterResponse(
+      data: jsonBody[_ResponseField.data.name]
+          .map<D>((tweet) => dataBuilder(tweet))
+          .toList(),
+      includes: jsonBody.containsKey(_ResponseField.includes.name)
+          ? Includes.fromJson(jsonBody[_ResponseField.includes.name])
+          : null,
+      meta:
+          jsonBody.containsKey(_ResponseField.meta.name) && metaBuilder != null
+              ? metaBuilder(jsonBody[_ResponseField.meta.name])
+              : null,
+    );
+  }
+
+  @override
+  bool evaluateResponse(final http.Response response) =>
+      _tryJsonDecode(response, response.body)
+          .contains(_ResponseField.errors.name);
+
+  dynamic _tryJsonDecode(
+    final http.BaseResponse response,
+    final String body,
+  ) {
+    try {
+      return converter.jsonDecode(body);
+    } on FormatException {
+      throw TwitterException(
+        'Failed to decode the response body as JSON.',
+        response,
+      );
+    }
+  }
+
+  Map<String, dynamic> _checkResponseBody(final http.Response response) {
+    final jsonBody = _tryJsonDecode(response, response.body);
+
+    if (!jsonBody.containsKey(_ResponseField.data.name)) {
+      //! This occurs when the tweet to be processed has been deleted or
+      //! when the target data does not exist at the time of search.
+      throw TwitterException(
+        'No response data exists for the request.',
+        response,
+      );
+    }
+
+    return jsonBody;
   }
 
   dynamic _removeNullParameters(final dynamic object) {
@@ -192,67 +258,17 @@ abstract class BaseService implements Service {
     return parameters.isNotEmpty ? parameters : null;
   }
 
-  @override
-  Future<TwitterResponse<D, M>> buildResponse<D, M>(
-    http.Response response, {
-    required D Function(Map<String, Object?> json) dataBuilder,
-    M Function(Map<String, Object?> json)? metaBuilder,
-  }) async {
-    final jsonBody = _checkResponseBody(response);
-    return TwitterResponse(
-      data: dataBuilder(jsonBody[_dataFieldName]),
-      includes: jsonBody.containsKey(_includesFieldName)
-          ? Includes.fromJson(jsonBody[_includesFieldName])
-          : null,
-      meta: jsonBody.containsKey(_metaFieldName) && metaBuilder != null
-          ? metaBuilder(jsonBody[_metaFieldName])
-          : null,
-    );
-  }
-
-  @override
-  Future<TwitterResponse<List<D>, M>> buildMultiDataResponse<D, M>(
-    http.Response response, {
-    required D Function(Map<String, Object?> json) dataBuilder,
-    M Function(Map<String, Object?> json)? metaBuilder,
-  }) async {
-    final jsonBody = _checkResponseBody(response);
-    return TwitterResponse(
-      data: jsonBody[_dataFieldName]
-          .map<D>((tweet) => dataBuilder(tweet))
-          .toList(),
-      includes: jsonBody.containsKey(_includesFieldName)
-          ? Includes.fromJson(jsonBody[_includesFieldName])
-          : null,
-      meta: jsonBody.containsKey(_metaFieldName) && metaBuilder != null
-          ? metaBuilder(jsonBody[_metaFieldName])
-          : null,
-    );
-  }
-
-  dynamic _tryJsonDecode(
-    final http.BaseResponse response,
-    final String body,
-  ) {
-    try {
-      return converter.jsonDecode(body);
-    } on FormatException {
-      throw TwitterException(
-        'Failed to decode the response body as JSON.',
-        response,
-      );
-    }
-  }
-
-  http.Response _checkResponseError(final http.Response response) {
+  Future<http.Response> _checkResponse(
+    final http.Response response,
+  ) async {
     if (response.statusCode == 401) {
       throw UnauthorizedException('The specified access token is invalid.');
     }
 
     final jsonBody = _tryJsonDecode(response, response.body);
 
-    if (jsonBody.containsKey(_errorsFieldName)) {
-      final errors = jsonBody[_errorsFieldName];
+    if (jsonBody.containsKey(_ResponseField.errors.name)) {
+      final errors = jsonBody[_ResponseField.errors.name];
       for (final error in errors) {
         if (error['code'] == 88) {
           throw RateLimitExceededException(error['message'] ?? '');
@@ -273,8 +289,8 @@ abstract class BaseService implements Service {
 
     final jsonBody = _tryJsonDecode(response, event);
 
-    if (jsonBody.containsKey(_errorsFieldName)) {
-      final errors = jsonBody[_errorsFieldName];
+    if (jsonBody.containsKey(_ResponseField.errors.name)) {
+      final errors = jsonBody[_ResponseField.errors.name];
       for (final error in errors) {
         if (error['code'] == 88) {
           throw RateLimitExceededException(error['message'] ?? '');
@@ -283,21 +299,6 @@ abstract class BaseService implements Service {
     }
 
     return response;
-  }
-
-  Map<String, dynamic> _checkResponseBody(final http.Response response) {
-    final jsonBody = _tryJsonDecode(response, response.body);
-
-    if (!jsonBody.containsKey(_dataFieldName)) {
-      //! This occurs when the tweet to be processed has been deleted or
-      //! when the target data does not exist at the time of search.
-      throw TwitterException(
-        'No response data exists for the request.',
-        response,
-      );
-    }
-
-    return jsonBody;
   }
 
   Map<String, dynamic> _checkStreamedResponse(
@@ -309,7 +310,7 @@ abstract class BaseService implements Service {
       event,
     );
 
-    if (!jsonBody.containsKey(_dataFieldName)) {
+    if (!jsonBody.containsKey(_ResponseField.data.name)) {
       throw TwitterException(
         'No response data exists for the request.',
         response,

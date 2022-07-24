@@ -994,7 +994,7 @@ class _ListsService extends BaseService implements ListsService {
     List<UserField>? userFields,
     List<ListField>? listFields,
   }) async =>
-      super.buildResponse(
+      super.transformSingleDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/lists/$listId',
@@ -1016,7 +1016,7 @@ class _ListsService extends BaseService implements ListsService {
     List<UserField>? userFields,
     List<ListField>? listFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/users/$userId/owned_lists',
@@ -1062,7 +1062,7 @@ class _ListsService extends BaseService implements ListsService {
     List<UserField>? userFields,
     List<ListField>? listFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/users/$userId/pinned_lists',
@@ -1085,7 +1085,7 @@ class _ListsService extends BaseService implements ListsService {
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/lists/$listId/tweets',
@@ -1184,7 +1184,7 @@ class _ListsService extends BaseService implements ListsService {
     List<UserExpansion>? expansions,
     List<UserField>? userFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/lists/$listId/followers',
@@ -1208,7 +1208,7 @@ class _ListsService extends BaseService implements ListsService {
     List<UserField>? userFields,
     List<ListField>? listFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/users/$userId/followed_lists',
@@ -1262,7 +1262,7 @@ class _ListsService extends BaseService implements ListsService {
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/lists/$listId/members',
@@ -1287,7 +1287,7 @@ class _ListsService extends BaseService implements ListsService {
     List<UserField>? userFields,
     List<ListField>? listFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/users/$userId/list_memberships',
@@ -1308,7 +1308,7 @@ class _ListsService extends BaseService implements ListsService {
     String? description,
     required bool private,
   }) async =>
-      super.buildResponse(
+      super.transformSingleDataResponse(
         await super.post(
           UserContext.oauth2OrOAuth1,
           '/2/lists',

@@ -529,7 +529,7 @@ class _SpacesService extends BaseService implements SpacesService {
     List<SpaceField>? spaceFields,
     List<TopicField>? topicFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2Only,
           '/2/spaces/search',
@@ -554,7 +554,7 @@ class _SpacesService extends BaseService implements SpacesService {
     List<SpaceField>? spaceFields,
     List<TopicField>? topicFields,
   }) async =>
-      super.buildResponse(
+      super.transformSingleDataResponse(
         await super.get(
           UserContext.oauth2Only,
           '/2/spaces/$spaceId',
@@ -576,7 +576,7 @@ class _SpacesService extends BaseService implements SpacesService {
     List<SpaceField>? spaceFields,
     List<TopicField>? topicFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2Only,
           '/2/spaces',
@@ -601,7 +601,7 @@ class _SpacesService extends BaseService implements SpacesService {
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2Only,
           '/2/spaces/$spaceId/buyers',
@@ -627,7 +627,7 @@ class _SpacesService extends BaseService implements SpacesService {
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2Only,
           '/2/spaces/$spaceId/tweets',
@@ -652,7 +652,7 @@ class _SpacesService extends BaseService implements SpacesService {
     List<SpaceField>? spaceFields,
     List<TopicField>? topicFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2Only,
           '/2/spaces/by/creator_ids',

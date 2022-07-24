@@ -2480,7 +2480,7 @@ class _TweetsService extends BaseService implements TweetsService {
     TweetPollParam? poll,
     TweetReplyParam? reply,
   }) async =>
-      super.buildResponse(
+      super.transformSingleDataResponse(
         await super.post(
           UserContext.oauth2OrOAuth1,
           '/2/tweets',
@@ -2590,7 +2590,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/tweets/$tweetId/liking_users',
@@ -2621,7 +2621,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/users/$userId/liked_tweets',
@@ -2652,7 +2652,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/tweets/$tweetId/retweeted_by',
@@ -2683,7 +2683,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/tweets/$tweetId/quote_tweets',
@@ -2719,7 +2719,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2Only,
           '/2/tweets/search/recent',
@@ -2761,7 +2761,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2Only,
           '/2/tweets/search/all',
@@ -2796,7 +2796,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
   }) async =>
-      super.buildResponse(
+      super.transformSingleDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/tweets/$tweetId',
@@ -2822,7 +2822,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/tweets',
@@ -2849,7 +2849,7 @@ class _TweetsService extends BaseService implements TweetsService {
     String? untilTweetId,
     TweetCountGranularity? granularity,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2Only,
           '/2/tweets/counts/recent',
@@ -2877,7 +2877,7 @@ class _TweetsService extends BaseService implements TweetsService {
     String? untilTweetId,
     TweetCountGranularity? granularity,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2Only,
           '/2/tweets/counts/all',
@@ -2932,7 +2932,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2Only,
           '/2/users/$userId/bookmarks',
@@ -2987,7 +2987,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/users/$userId/mentions',
@@ -3027,7 +3027,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/users/$userId/tweets',
@@ -3068,7 +3068,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/users/$userId/timelines/reverse_chronological',
@@ -3166,7 +3166,7 @@ class _TweetsService extends BaseService implements TweetsService {
   @override
   Future<TwitterResponse<List<FilteringRuleData>, FilteringRuleMeta>>
       lookupFilteringRules({List<String>? ruleIds}) async =>
-          super.buildMultiDataResponse(
+          super.transformMultiDataResponse(
             await super.get(
               UserContext.oauth2Only,
               '/2/tweets/search/stream/rules',
@@ -3184,7 +3184,7 @@ class _TweetsService extends BaseService implements TweetsService {
     required List<FilteringRuleParam> rules,
     bool? dryRun,
   }) async =>
-          super.buildMultiDataResponse(
+          super.transformMultiDataResponse(
             await super.post(
               UserContext.oauth2Only,
               '/2/tweets/search/stream/rules',
