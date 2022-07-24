@@ -994,7 +994,7 @@ class _ListsService extends BaseService implements ListsService {
     List<UserField>? userFields,
     List<ListField>? listFields,
   }) async =>
-      super.buildResponse(
+      super.transformSingleDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/lists/$listId',
@@ -1016,7 +1016,7 @@ class _ListsService extends BaseService implements ListsService {
     List<UserField>? userFields,
     List<ListField>? listFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/users/$userId/owned_lists',
@@ -1033,27 +1033,29 @@ class _ListsService extends BaseService implements ListsService {
       );
 
   @override
-  Future<bool> createPinnedList(
-      {required String userId, required String listId}) async {
-    await super.post(
-      UserContext.oauth2OrOAuth1,
-      '/2/users/$userId/pinned_lists',
-      body: {'list_id': listId},
-    );
-
-    return true;
-  }
+  Future<bool> createPinnedList({
+    required String userId,
+    required String listId,
+  }) async =>
+      super.evaluateResponse(
+        await super.post(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/$userId/pinned_lists',
+          body: {'list_id': listId},
+        ),
+      );
 
   @override
-  Future<bool> destroyPinnedList(
-      {required String userId, required String listId}) async {
-    await super.delete(
-      UserContext.oauth2OrOAuth1,
-      '/2/users/$userId/pinned_lists/$listId',
-    );
-
-    return true;
-  }
+  Future<bool> destroyPinnedList({
+    required String userId,
+    required String listId,
+  }) async =>
+      super.evaluateResponse(
+        await super.delete(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/$userId/pinned_lists/$listId',
+        ),
+      );
 
   @override
   Future<TwitterResponse<List<ListData>, ListMeta>> lookupPinnedLists({
@@ -1062,7 +1064,7 @@ class _ListsService extends BaseService implements ListsService {
     List<UserField>? userFields,
     List<ListField>? listFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/users/$userId/pinned_lists',
@@ -1085,7 +1087,7 @@ class _ListsService extends BaseService implements ListsService {
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/lists/$listId/tweets',
@@ -1102,24 +1104,35 @@ class _ListsService extends BaseService implements ListsService {
       );
 
   @override
-  Future<TwitterResponse<ListData, void>> createPublicList(
-          {required String name, String? description}) async =>
-      await _createList(name: name, description: description, private: false);
+  Future<TwitterResponse<ListData, void>> createPublicList({
+    required String name,
+    String? description,
+  }) async =>
+      await _createList(
+        name: name,
+        description: description,
+        private: false,
+      );
 
   @override
-  Future<TwitterResponse<ListData, void>> createPrivateList(
-          {required String name, String? description}) async =>
-      await _createList(name: name, description: description, private: true);
+  Future<TwitterResponse<ListData, void>> createPrivateList({
+    required String name,
+    String? description,
+  }) async =>
+      await _createList(
+        name: name,
+        description: description,
+        private: true,
+      );
 
   @override
-  Future<bool> destroyList({required String listId}) async {
-    await super.delete(
-      UserContext.oauth2OrOAuth1,
-      '/2/lists/$listId',
-    );
-
-    return true;
-  }
+  Future<bool> destroyList({required String listId}) async =>
+      super.evaluateResponse(
+        await super.delete(
+          UserContext.oauth2OrOAuth1,
+          '/2/lists/$listId',
+        ),
+      );
 
   @override
   Future<bool> updateListAsPublic({
@@ -1151,30 +1164,28 @@ class _ListsService extends BaseService implements ListsService {
   Future<bool> createFollow({
     required String userId,
     required String listId,
-  }) async {
-    await super.post(
-      UserContext.oauth2OrOAuth1,
-      '/2/users/$userId/followed_lists',
-      body: {
-        'list_id': listId,
-      },
-    );
-
-    return true;
-  }
+  }) async =>
+      super.evaluateResponse(
+        await super.post(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/$userId/followed_lists',
+          body: {
+            'list_id': listId,
+          },
+        ),
+      );
 
   @override
   Future<bool> destroyFollow({
     required String userId,
     required String listId,
-  }) async {
-    await super.delete(
-      UserContext.oauth2OrOAuth1,
-      '/2/users/$userId/followed_lists/$listId',
-    );
-
-    return true;
-  }
+  }) async =>
+      super.evaluateResponse(
+        await super.delete(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/$userId/followed_lists/$listId',
+        ),
+      );
 
   @override
   Future<TwitterResponse<List<UserData>, UserMeta>> lookupFollowers({
@@ -1184,7 +1195,7 @@ class _ListsService extends BaseService implements ListsService {
     List<UserExpansion>? expansions,
     List<UserField>? userFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/lists/$listId/followers',
@@ -1208,7 +1219,7 @@ class _ListsService extends BaseService implements ListsService {
     List<UserField>? userFields,
     List<ListField>? listFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/users/$userId/followed_lists',
@@ -1228,30 +1239,28 @@ class _ListsService extends BaseService implements ListsService {
   Future<bool> createMember({
     required String listId,
     required String userId,
-  }) async {
-    await super.post(
-      UserContext.oauth2OrOAuth1,
-      '/2/lists/$listId/members',
-      body: {
-        'user_id': userId,
-      },
-    );
-
-    return true;
-  }
+  }) async =>
+      super.evaluateResponse(
+        await super.post(
+          UserContext.oauth2OrOAuth1,
+          '/2/lists/$listId/members',
+          body: {
+            'user_id': userId,
+          },
+        ),
+      );
 
   @override
   Future<bool> destroyMember({
     required String listId,
     required String userId,
-  }) async {
-    await super.delete(
-      UserContext.oauth2OrOAuth1,
-      '/2/lists/$listId/members/$userId',
-    );
-
-    return true;
-  }
+  }) async =>
+      super.evaluateResponse(
+        await super.delete(
+          UserContext.oauth2OrOAuth1,
+          '/2/lists/$listId/members/$userId',
+        ),
+      );
 
   @override
   Future<TwitterResponse<List<UserData>, UserMeta>> lookupMembers({
@@ -1262,7 +1271,7 @@ class _ListsService extends BaseService implements ListsService {
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/lists/$listId/members',
@@ -1287,7 +1296,7 @@ class _ListsService extends BaseService implements ListsService {
     List<UserField>? userFields,
     List<ListField>? listFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/users/$userId/list_memberships',
@@ -1308,7 +1317,7 @@ class _ListsService extends BaseService implements ListsService {
     String? description,
     required bool private,
   }) async =>
-      super.buildResponse(
+      super.transformSingleDataResponse(
         await super.post(
           UserContext.oauth2OrOAuth1,
           '/2/lists',
@@ -1326,17 +1335,16 @@ class _ListsService extends BaseService implements ListsService {
     String? name,
     String? description,
     required bool private,
-  }) async {
-    await super.put(
-      UserContext.oauth2OrOAuth1,
-      '/2/lists/$listId',
-      body: {
-        'name': name,
-        'description': description,
-        'private': private,
-      },
-    );
-
-    return true;
-  }
+  }) async =>
+      super.evaluateResponse(
+        await super.put(
+          UserContext.oauth2OrOAuth1,
+          '/2/lists/$listId',
+          body: {
+            'name': name,
+            'description': description,
+            'private': private,
+          },
+        ),
+      );
 }

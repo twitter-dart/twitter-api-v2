@@ -872,28 +872,26 @@ class _UsersService extends BaseService implements UsersService {
   Future<bool> createFollow({
     required String userId,
     required String targetUserId,
-  }) async {
-    await super.post(
-      UserContext.oauth2OrOAuth1,
-      '/2/users/$userId/following',
-      body: {'target_user_id': targetUserId},
-    );
-
-    return true;
-  }
+  }) async =>
+      super.evaluateResponse(
+        await super.post(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/$userId/following',
+          body: {'target_user_id': targetUserId},
+        ),
+      );
 
   @override
   Future<bool> destroyFollow({
     required String userId,
     required String targetUserId,
-  }) async {
-    await super.delete(
-      UserContext.oauth2OrOAuth1,
-      '/2/users/$userId/following/$targetUserId',
-    );
-
-    return true;
-  }
+  }) async =>
+      super.evaluateResponse(
+        await super.delete(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/$userId/following/$targetUserId',
+        ),
+      );
 
   @override
   Future<TwitterResponse<List<UserData>, UserMeta>> lookupFollowers({
@@ -904,7 +902,7 @@ class _UsersService extends BaseService implements UsersService {
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/users/$userId/followers',
@@ -929,7 +927,7 @@ class _UsersService extends BaseService implements UsersService {
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/users/$userId/following',
@@ -952,7 +950,7 @@ class _UsersService extends BaseService implements UsersService {
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
   }) async =>
-      super.buildResponse(
+      super.transformSingleDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/users/$userId',
@@ -972,7 +970,7 @@ class _UsersService extends BaseService implements UsersService {
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/users',
@@ -993,7 +991,7 @@ class _UsersService extends BaseService implements UsersService {
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
   }) async =>
-      super.buildResponse(
+      super.transformSingleDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/users/by/username/$username',
@@ -1013,7 +1011,7 @@ class _UsersService extends BaseService implements UsersService {
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/users/by',
@@ -1032,7 +1030,7 @@ class _UsersService extends BaseService implements UsersService {
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
   }) async =>
-      super.buildResponse(
+      super.transformSingleDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/users/me',
@@ -1046,27 +1044,29 @@ class _UsersService extends BaseService implements UsersService {
       );
 
   @override
-  Future<bool> createMute(
-      {required String userId, required String targetUserId}) async {
-    await super.post(
-      UserContext.oauth2OrOAuth1,
-      '/2/users/$userId/muting',
-      body: {'target_user_id': targetUserId},
-    );
-
-    return true;
-  }
+  Future<bool> createMute({
+    required String userId,
+    required String targetUserId,
+  }) async =>
+      super.evaluateResponse(
+        await super.post(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/$userId/muting',
+          body: {'target_user_id': targetUserId},
+        ),
+      );
 
   @override
-  Future<bool> destroyMute(
-      {required String userId, required String targetUserId}) async {
-    await super.delete(
-      UserContext.oauth2OrOAuth1,
-      '/2/users/$userId/muting/$targetUserId',
-    );
-
-    return true;
-  }
+  Future<bool> destroyMute({
+    required String userId,
+    required String targetUserId,
+  }) async =>
+      super.evaluateResponse(
+        await super.delete(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/$userId/muting/$targetUserId',
+        ),
+      );
 
   @override
   Future<TwitterResponse<List<UserData>, UserMeta>> lookupMutingUsers({
@@ -1077,7 +1077,7 @@ class _UsersService extends BaseService implements UsersService {
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/users/$userId/muting',
@@ -1094,27 +1094,29 @@ class _UsersService extends BaseService implements UsersService {
       );
 
   @override
-  Future<bool> createBlock(
-      {required String userId, required String targetUserId}) async {
-    await super.post(
-      UserContext.oauth2OrOAuth1,
-      '/2/users/$userId/blocking',
-      body: {'target_user_id': targetUserId},
-    );
-
-    return true;
-  }
+  Future<bool> createBlock({
+    required String userId,
+    required String targetUserId,
+  }) async =>
+      super.evaluateResponse(
+        await super.post(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/$userId/blocking',
+          body: {'target_user_id': targetUserId},
+        ),
+      );
 
   @override
-  Future<bool> destroyBlock(
-      {required String userId, required String targetUserId}) async {
-    await super.delete(
-      UserContext.oauth2OrOAuth1,
-      '/2/users/$userId/blocking/$targetUserId',
-    );
-
-    return true;
-  }
+  Future<bool> destroyBlock({
+    required String userId,
+    required String targetUserId,
+  }) async =>
+      super.evaluateResponse(
+        await super.delete(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/$userId/blocking/$targetUserId',
+        ),
+      );
 
   @override
   Future<TwitterResponse<List<UserData>, UserMeta>> lookupBlockingUsers({
@@ -1125,7 +1127,7 @@ class _UsersService extends BaseService implements UsersService {
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
   }) async =>
-      super.buildMultiDataResponse(
+      super.transformMultiDataResponse(
         await super.get(
           UserContext.oauth2OrOAuth1,
           '/2/users/$userId/blocking',

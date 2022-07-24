@@ -8,9 +8,7 @@ import 'package:test/test.dart';
 // Project imports:
 import 'package:twitter_api_v2/src/client/client_context.dart';
 import 'package:twitter_api_v2/src/client/user_context.dart';
-import 'package:twitter_api_v2/src/exception/rate_limit_exceeded_exception.dart';
 import 'package:twitter_api_v2/src/exception/twitter_exception.dart';
-import 'package:twitter_api_v2/src/exception/unauthorized_exception.dart';
 import 'package:twitter_api_v2/src/service/filtered_stream_response.dart';
 import 'package:twitter_api_v2/src/service/tweets/exclude_tweet_type.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering_rule_data.dart';
@@ -32,6 +30,7 @@ import 'package:twitter_api_v2/src/service/twitter_response.dart';
 import 'package:twitter_api_v2/src/service/users/user_data.dart';
 import 'package:twitter_api_v2/src/service/users/user_meta.dart';
 import '../../../mocks/client_context_stubs.dart' as context;
+import '../common_expectations.dart';
 
 void main() {
   group('.createTweet', () {
@@ -58,7 +57,7 @@ void main() {
       expect(response.data.text, 'Hello, World!');
     });
 
-    test('throws UnauthorizedException', () async {
+    test('with invalid access token', () async {
       final tweetsService = TweetsService(
         context: ClientContext(
           bearerToken: '',
@@ -66,17 +65,14 @@ void main() {
         ),
       );
 
-      expect(
+      expectUnauthorizedException(
         () async => await tweetsService.createTweet(
-            text: 'Throw UnauthorizedException'),
-        throwsA(
-          allOf(isA<UnauthorizedException>(),
-              predicate((e) => e.toString().isNotEmpty)),
+          text: 'Throw UnauthorizedException',
         ),
       );
     });
 
-    test('throws TwitterException due to no data', () async {
+    test('with errors', () async {
       final tweetsService = TweetsService(
         context: context.buildPostStub(
           UserContext.oauth2OrOAuth1,
@@ -85,17 +81,14 @@ void main() {
         ),
       );
 
-      expect(
-        () async =>
-            await tweetsService.createTweet(text: 'Throw TwitterException'),
-        throwsA(
-          allOf(isA<TwitterException>(),
-              predicate((e) => e.toString().isNotEmpty)),
+      expectTwitterExceptionDueToNoData(
+        () async => await tweetsService.createTweet(
+          text: 'Throw TwitterException',
         ),
       );
     });
 
-    test('throws RateLimitExceededException', () async {
+    test('with rate limit exceeded error', () async {
       final tweetsService = TweetsService(
         context: context.buildPostStub(
           UserContext.oauth2OrOAuth1,
@@ -104,18 +97,25 @@ void main() {
         ),
       );
 
-      expect(
+      expectRateLimitExceededException(
         () async => await tweetsService.createTweet(
-            text: 'Throw RateLimitExceededException'),
-        throwsA(
-          allOf(
-            isA<RateLimitExceededException>(),
-            predicate(
-              (e) =>
-                  e.toString() ==
-                  'RateLimitExceededException: Rate limit exceeded',
-            ),
-          ),
+          text: 'Throw RateLimitExceededException',
+        ),
+      );
+    });
+
+    test('with no json', () async {
+      final tweetsService = TweetsService(
+        context: context.buildPostStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets',
+          'test/src/service/tweets/data/no_json.json',
+        ),
+      );
+
+      expectTwitterExceptionDueToNoJson(
+        () async => await tweetsService.createTweet(
+          text: 'Throw TwitterException',
         ),
       );
     });
@@ -135,164 +135,670 @@ void main() {
       expect(response, isA<bool>());
       expect(response, isTrue);
     });
+
+    test('with invalid access token', () async {
+      final tweetsService = TweetsService(
+        context: ClientContext(
+          bearerToken: '',
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await tweetsService.destroyTweet(
+          tweetId: '1111',
+        ),
+      );
+    });
+
+    test('with rate limit exceeded error', () async {
+      final tweetsService = TweetsService(
+        context: context.buildDeleteStub(
+          '/2/tweets/1111',
+          'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await tweetsService.destroyTweet(tweetId: '1111'),
+      );
+    });
+
+    test('with errors', () async {
+      final tweetsService = TweetsService(
+        context: context.buildDeleteStub(
+          '/2/tweets/1111',
+          'test/src/service/tweets/data/no_data.json',
+        ),
+      );
+
+      final response = await tweetsService.destroyTweet(tweetId: '1111');
+
+      expect(response, isA<bool>());
+      expect(response, isFalse);
+    });
   });
 
-  test('.createLike', () async {
-    final tweetsService = TweetsService(
-      context: context.buildPostStub(
-        UserContext.oauth2OrOAuth1,
-        '/2/users/0000/likes',
-        'test/src/service/tweets/data/create_like.json',
-      ),
-    );
+  group('.createLike', () {
+    test('normal case', () async {
+      final tweetsService = TweetsService(
+        context: context.buildPostStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/0000/likes',
+          'test/src/service/tweets/data/create_like.json',
+        ),
+      );
 
-    final response = await tweetsService.createLike(
-      userId: '0000',
-      tweetId: '1111',
-    );
+      final response = await tweetsService.createLike(
+        userId: '0000',
+        tweetId: '1111',
+      );
 
-    expect(response, isA<bool>());
-    expect(response, isTrue);
+      expect(response, isA<bool>());
+      expect(response, isTrue);
+    });
+
+    test('with invalid access token', () async {
+      final tweetsService = TweetsService(
+        context: ClientContext(
+          bearerToken: '',
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await tweetsService.createLike(
+          userId: '0000',
+          tweetId: '1111',
+        ),
+      );
+    });
+
+    test('with rate limit exceeded error', () async {
+      final tweetsService = TweetsService(
+        context: context.buildPostStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/0000/likes',
+          'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await tweetsService.createLike(
+          userId: '0000',
+          tweetId: '1111',
+        ),
+      );
+    });
+
+    test('with errors', () async {
+      final tweetsService = TweetsService(
+        context: context.buildPostStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/0000/likes',
+          'test/src/service/tweets/data/no_data.json',
+        ),
+      );
+
+      final response = await tweetsService.createLike(
+        userId: '0000',
+        tweetId: '1111',
+      );
+
+      expect(response, isA<bool>());
+      expect(response, isFalse);
+    });
   });
 
-  test('.destroyLike', () async {
-    final tweetsService = TweetsService(
-      context: context.buildDeleteStub(
-        '/2/users/0000/likes/1111',
-        'test/src/service/tweets/data/destroy_like.json',
-      ),
-    );
+  group('.destroyLike', () {
+    test('normal case', () async {
+      final tweetsService = TweetsService(
+        context: context.buildDeleteStub(
+          '/2/users/0000/likes/1111',
+          'test/src/service/tweets/data/destroy_like.json',
+        ),
+      );
 
-    final response = await tweetsService.destroyLike(
-      userId: '0000',
-      tweetId: '1111',
-    );
+      final response = await tweetsService.destroyLike(
+        userId: '0000',
+        tweetId: '1111',
+      );
 
-    expect(response, isA<bool>());
-    expect(response, isTrue);
+      expect(response, isA<bool>());
+      expect(response, isTrue);
+    });
+
+    test('with invalid access token', () async {
+      final tweetsService = TweetsService(
+        context: ClientContext(
+          bearerToken: '',
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await tweetsService.destroyLike(
+          userId: '0000',
+          tweetId: '1111',
+        ),
+      );
+    });
+
+    test('with rate limit exceeded error', () async {
+      final tweetsService = TweetsService(
+        context: context.buildDeleteStub(
+          '/2/users/0000/likes/1111',
+          'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await tweetsService.destroyLike(
+          userId: '0000',
+          tweetId: '1111',
+        ),
+      );
+    });
+
+    test('with errors', () async {
+      final tweetsService = TweetsService(
+        context: context.buildDeleteStub(
+          '/2/users/0000/likes/1111',
+          'test/src/service/tweets/data/no_data.json',
+        ),
+      );
+
+      final response = await tweetsService.destroyLike(
+        userId: '0000',
+        tweetId: '1111',
+      );
+
+      expect(response, isA<bool>());
+      expect(response, isFalse);
+    });
   });
 
-  test('.createRetweet', () async {
-    final tweetsService = TweetsService(
-      context: context.buildPostStub(
-        UserContext.oauth2OrOAuth1,
-        '/2/users/0000/retweets',
-        'test/src/service/tweets/data/create_retweet.json',
-      ),
-    );
+  group('.createRetweet', () {
+    test('normal case', () async {
+      final tweetsService = TweetsService(
+        context: context.buildPostStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/0000/retweets',
+          'test/src/service/tweets/data/create_retweet.json',
+        ),
+      );
 
-    final response = await tweetsService.createRetweet(
-      userId: '0000',
-      tweetId: '1111',
-    );
+      final response = await tweetsService.createRetweet(
+        userId: '0000',
+        tweetId: '1111',
+      );
 
-    expect(response, isA<bool>());
-    expect(response, isTrue);
+      expect(response, isA<bool>());
+      expect(response, isTrue);
+    });
+
+    test('with invalid access token', () async {
+      final tweetsService = TweetsService(
+        context: ClientContext(
+          bearerToken: '',
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await tweetsService.createRetweet(
+          userId: '0000',
+          tweetId: '1111',
+        ),
+      );
+    });
+
+    test('with rate limit exceeded error', () async {
+      final tweetsService = TweetsService(
+        context: context.buildPostStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/0000/retweets',
+          'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await tweetsService.createRetweet(
+          userId: '0000',
+          tweetId: '1111',
+        ),
+      );
+    });
+
+    test('with errors', () async {
+      final tweetsService = TweetsService(
+        context: context.buildPostStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/0000/retweets',
+          'test/src/service/tweets/data/no_data.json',
+        ),
+      );
+
+      final response = await tweetsService.createRetweet(
+        userId: '0000',
+        tweetId: '1111',
+      );
+
+      expect(response, isA<bool>());
+      expect(response, isFalse);
+    });
   });
 
-  test('.destroyRetweet', () async {
-    final tweetsService = TweetsService(
-      context: context.buildDeleteStub(
-        '/2/users/0000/retweets/1111',
-        'test/src/service/tweets/data/destroy_retweet.json',
-      ),
-    );
+  group('.destroyRetweet', () {
+    test('normal case', () async {
+      final tweetsService = TweetsService(
+        context: context.buildDeleteStub(
+          '/2/users/0000/retweets/1111',
+          'test/src/service/tweets/data/destroy_retweet.json',
+        ),
+      );
 
-    final response = await tweetsService.destroyRetweet(
-      userId: '0000',
-      tweetId: '1111',
-    );
+      final response = await tweetsService.destroyRetweet(
+        userId: '0000',
+        tweetId: '1111',
+      );
 
-    expect(response, isA<bool>());
-    expect(response, isTrue);
+      expect(response, isA<bool>());
+      expect(response, isTrue);
+    });
+
+    test('with invalid access token', () async {
+      final tweetsService = TweetsService(
+        context: ClientContext(
+          bearerToken: '',
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await tweetsService.destroyRetweet(
+          userId: '0000',
+          tweetId: '1111',
+        ),
+      );
+    });
+
+    test('with rate limit exceeded error', () async {
+      final tweetsService = TweetsService(
+        context: context.buildDeleteStub(
+          '/2/users/0000/retweets/1111',
+          'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await tweetsService.destroyRetweet(
+          userId: '0000',
+          tweetId: '1111',
+        ),
+      );
+    });
+
+    test('with errors', () async {
+      final tweetsService = TweetsService(
+        context: context.buildDeleteStub(
+          '/2/users/0000/retweets/1111',
+          'test/src/service/tweets/data/no_data.json',
+        ),
+      );
+
+      final response = await tweetsService.destroyRetweet(
+        userId: '0000',
+        tweetId: '1111',
+      );
+
+      expect(response, isA<bool>());
+      expect(response, isFalse);
+    });
   });
 
-  test('.lookupLikingUsers', () async {
-    final tweetsService = TweetsService(
-      context: context.buildGetStub(
-        UserContext.oauth2OrOAuth1,
-        '/2/tweets/1111/liking_users',
-        'test/src/service/tweets/data/lookup_liking_users.json',
-        {},
-      ),
-    );
+  group('.lookupLikingUsers', () {
+    test('normal case', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets/1111/liking_users',
+          'test/src/service/tweets/data/lookup_liking_users.json',
+          {},
+        ),
+      );
 
-    final response = await tweetsService.lookupLikingUsers(
-      tweetId: '1111',
-    );
+      final response = await tweetsService.lookupLikingUsers(
+        tweetId: '1111',
+      );
 
-    expect(response, isA<TwitterResponse>());
-    expect(response.data, isA<List<UserData>>());
-    expect(response.meta, isA<UserMeta>());
-    expect(response.data.length, 5);
-    expect(response.meta, isNotNull);
-    expect(response.meta!.resultCount, 5);
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<UserData>>());
+      expect(response.meta, isA<UserMeta>());
+      expect(response.data.length, 5);
+      expect(response.meta, isNotNull);
+      expect(response.meta!.resultCount, 5);
+    });
+
+    test('with invalid access token', () async {
+      final tweetsService = TweetsService(
+        context: ClientContext(
+          bearerToken: '',
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await tweetsService.lookupLikingUsers(
+          tweetId: '1111',
+        ),
+      );
+    });
+
+    test('with rate limit exceeded error', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets/1111/liking_users',
+          'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          {},
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await tweetsService.lookupLikingUsers(
+          tweetId: '1111',
+        ),
+      );
+    });
+
+    test('with errors', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets/1111/liking_users',
+          'test/src/service/tweets/data/no_data.json',
+          {},
+        ),
+      );
+
+      expectTwitterExceptionDueToNoData(
+        () async => await tweetsService.lookupLikingUsers(tweetId: '1111'),
+      );
+    });
+
+    test('with no json', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets/1111/liking_users',
+          'test/src/service/tweets/data/no_json.json',
+          {},
+        ),
+      );
+
+      expectTwitterExceptionDueToNoJson(
+        () async => await tweetsService.lookupLikingUsers(tweetId: '1111'),
+      );
+    });
   });
 
-  test('.lookupLikedTweets', () async {
-    final tweetsService = TweetsService(
-      context: context.buildGetStub(
-        UserContext.oauth2OrOAuth1,
-        '/2/users/0000/liked_tweets',
-        'test/src/service/tweets/data/lookup_liked_tweets.json',
-        {},
-      ),
-    );
+  group('.lookupLikedTweets', () {
+    test('normal case', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/0000/liked_tweets',
+          'test/src/service/tweets/data/lookup_liked_tweets.json',
+          {},
+        ),
+      );
 
-    final response = await tweetsService.lookupLikedTweets(
-      userId: '0000',
-    );
+      final response = await tweetsService.lookupLikedTweets(
+        userId: '0000',
+      );
 
-    expect(response, isA<TwitterResponse>());
-    expect(response.data, isA<List<TweetData>>());
-    expect(response.meta, isA<TweetMeta>());
-    expect(response.data.length, 5);
-    expect(response.meta, isNotNull);
-    expect(response.meta!.resultCount, 5);
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<TweetData>>());
+      expect(response.meta, isA<TweetMeta>());
+      expect(response.data.length, 5);
+      expect(response.meta, isNotNull);
+      expect(response.meta!.resultCount, 5);
+    });
+
+    test('with invalid access token', () async {
+      final tweetsService = TweetsService(
+        context: ClientContext(
+          bearerToken: '',
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await tweetsService.lookupLikedTweets(
+          userId: '0000',
+        ),
+      );
+    });
+
+    test('with rate limit exceeded error', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/0000/liked_tweets',
+          'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          {},
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await tweetsService.lookupLikedTweets(
+          userId: '0000',
+        ),
+      );
+    });
+
+    test('with errors', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/0000/liked_tweets',
+          'test/src/service/tweets/data/no_data.json',
+          {},
+        ),
+      );
+
+      expectTwitterExceptionDueToNoData(
+        () async => await tweetsService.lookupLikedTweets(userId: '0000'),
+      );
+    });
+
+    test('with no json', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets/1111/liking_users',
+          'test/src/service/tweets/data/no_json.json',
+          {},
+        ),
+      );
+
+      expectTwitterExceptionDueToNoJson(
+        () async => await tweetsService.lookupLikingUsers(tweetId: '1111'),
+      );
+    });
   });
 
-  test('.lookupRetweetedUsers', () async {
-    final tweetsService = TweetsService(
-      context: context.buildGetStub(
-        UserContext.oauth2OrOAuth1,
-        '/2/tweets/1111/retweeted_by',
-        'test/src/service/tweets/data/lookup_retweeted_users.json',
-        {},
-      ),
-    );
+  group('.lookupRetweetedUsers', () {
+    test('normal case', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets/1111/retweeted_by',
+          'test/src/service/tweets/data/lookup_retweeted_users.json',
+          {},
+        ),
+      );
 
-    final response = await tweetsService.lookupRetweetedUsers(
-      tweetId: '1111',
-    );
+      final response = await tweetsService.lookupRetweetedUsers(
+        tweetId: '1111',
+      );
 
-    expect(response, isA<TwitterResponse>());
-    expect(response.data, isA<List<UserData>>());
-    expect(response.meta, isA<UserMeta>());
-    expect(response.data.length, 3);
-    expect(response.meta, isNotNull);
-    expect(response.meta!.resultCount, 3);
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<UserData>>());
+      expect(response.meta, isA<UserMeta>());
+      expect(response.data.length, 3);
+      expect(response.meta, isNotNull);
+      expect(response.meta!.resultCount, 3);
+    });
+
+    test('with invalid access token', () async {
+      final tweetsService = TweetsService(
+        context: ClientContext(
+          bearerToken: '',
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await tweetsService.lookupRetweetedUsers(
+          tweetId: '1111',
+        ),
+      );
+    });
+
+    test('with rate limit exceeded error', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets/1111/retweeted_by',
+          'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          {},
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await tweetsService.lookupRetweetedUsers(
+          tweetId: '1111',
+        ),
+      );
+    });
+
+    test('with errors', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets/1111/retweeted_by',
+          'test/src/service/tweets/data/no_data.json',
+          {},
+        ),
+      );
+
+      expectTwitterExceptionDueToNoData(
+        () async => await tweetsService.lookupRetweetedUsers(tweetId: '1111'),
+      );
+    });
+
+    test('with no json', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets/1111/retweeted_by',
+          'test/src/service/tweets/data/no_json.json',
+          {},
+        ),
+      );
+
+      expectTwitterExceptionDueToNoJson(
+        () async => await tweetsService.lookupRetweetedUsers(tweetId: '1111'),
+      );
+    });
   });
 
-  test('.lookupQuoteTweets', () async {
-    final tweetsService = TweetsService(
-      context: context.buildGetStub(
-        UserContext.oauth2OrOAuth1,
-        '/2/tweets/1111/quote_tweets',
-        'test/src/service/tweets/data/lookup_quote_tweets.json',
-        {},
-      ),
-    );
+  group('.lookupQuoteTweets', () {
+    test('normal case', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets/1111/quote_tweets',
+          'test/src/service/tweets/data/lookup_quote_tweets.json',
+          {},
+        ),
+      );
 
-    final response = await tweetsService.lookupQuoteTweets(
-      tweetId: '1111',
-    );
+      final response = await tweetsService.lookupQuoteTweets(
+        tweetId: '1111',
+      );
 
-    expect(response, isA<TwitterResponse>());
-    expect(response.data, isA<List<TweetData>>());
-    expect(response.meta, isA<TweetMeta>());
-    expect(response.data.length, 10);
-    expect(response.meta, isNotNull);
-    expect(response.meta!.resultCount, 10);
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<TweetData>>());
+      expect(response.meta, isA<TweetMeta>());
+      expect(response.data.length, 10);
+      expect(response.meta, isNotNull);
+      expect(response.meta!.resultCount, 10);
+    });
+
+    test('with invalid access token', () async {
+      final tweetsService = TweetsService(
+        context: ClientContext(
+          bearerToken: '',
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await tweetsService.lookupQuoteTweets(
+          tweetId: '1111',
+        ),
+      );
+    });
+
+    test('with rate limit exceeded error', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets/1111/quote_tweets',
+          'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          {},
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await tweetsService.lookupQuoteTweets(
+          tweetId: '1111',
+        ),
+      );
+    });
+
+    test('with errors', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets/1111/quote_tweets',
+          'test/src/service/tweets/data/no_data.json',
+          {},
+        ),
+      );
+
+      expectTwitterExceptionDueToNoData(
+        () async => await tweetsService.lookupQuoteTweets(tweetId: '1111'),
+      );
+    });
+
+    test('with no json', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets/1111/quote_tweets',
+          'test/src/service/tweets/data/no_json.json',
+          {},
+        ),
+      );
+
+      expectTwitterExceptionDueToNoJson(
+        () async => await tweetsService.lookupQuoteTweets(tweetId: '1111'),
+      );
+    });
   });
 
   group('.searchRecent', () {
@@ -339,28 +845,154 @@ void main() {
       expect(response.meta, isNotNull);
       expect(response.meta!.resultCount, 6);
     });
+
+    test('with invalid access token', () async {
+      final tweetsService = TweetsService(
+        context: ClientContext(
+          bearerToken: '',
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await tweetsService.searchRecent(
+          query: '1111',
+        ),
+      );
+    });
+
+    test('with rate limit exceeded error', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2Only,
+          '/2/tweets/search/recent',
+          'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          {'query': 'hello'},
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await tweetsService.searchRecent(
+          query: 'hello',
+        ),
+      );
+    });
+
+    test('with errors', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2Only,
+          '/2/tweets/search/recent',
+          'test/src/service/tweets/data/no_data.json',
+          {'query': 'hello'},
+        ),
+      );
+
+      expectTwitterExceptionDueToNoData(
+        () async => await tweetsService.searchRecent(query: 'hello'),
+      );
+    });
+
+    test('with no json', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2Only,
+          '/2/tweets/search/recent',
+          'test/src/service/tweets/data/no_json.json',
+          {'query': 'hello'},
+        ),
+      );
+
+      expectTwitterExceptionDueToNoJson(
+        () async => await tweetsService.searchRecent(query: 'hello'),
+      );
+    });
   });
 
-  test('.searchAll', () async {
-    final tweetsService = TweetsService(
-      context: context.buildGetStub(
-        UserContext.oauth2Only,
-        '/2/tweets/search/all',
-        'test/src/service/tweets/data/search_all.json',
-        {'query': 'hello'},
-      ),
-    );
+  group('.searchAll', () {
+    test('normal case', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2Only,
+          '/2/tweets/search/all',
+          'test/src/service/tweets/data/search_all.json',
+          {'query': 'hello'},
+        ),
+      );
 
-    final response = await tweetsService.searchAll(
-      query: 'hello',
-    );
+      final response = await tweetsService.searchAll(
+        query: 'hello',
+      );
 
-    expect(response, isA<TwitterResponse>());
-    expect(response.data, isA<List<TweetData>>());
-    expect(response.meta, isA<TweetMeta>());
-    expect(response.data.length, 6);
-    expect(response.meta, isNotNull);
-    expect(response.meta!.resultCount, 6);
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<TweetData>>());
+      expect(response.meta, isA<TweetMeta>());
+      expect(response.data.length, 6);
+      expect(response.meta, isNotNull);
+      expect(response.meta!.resultCount, 6);
+    });
+
+    test('with invalid access token', () async {
+      final tweetsService = TweetsService(
+        context: ClientContext(
+          bearerToken: '',
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await tweetsService.searchAll(
+          query: '1111',
+        ),
+      );
+    });
+
+    test('with rate limit exceeded error', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2Only,
+          '/2/tweets/search/all',
+          'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          {'query': 'hello'},
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await tweetsService.searchAll(
+          query: 'hello',
+        ),
+      );
+    });
+
+    test('with errors', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2Only,
+          '/2/tweets/search/all',
+          'test/src/service/tweets/data/no_data.json',
+          {'query': 'hello'},
+        ),
+      );
+
+      expectTwitterExceptionDueToNoData(
+        () async => await tweetsService.searchAll(query: 'hello'),
+      );
+    });
+
+    test('with no json', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2Only,
+          '/2/tweets/search/all',
+          'test/src/service/tweets/data/no_json.json',
+          {'query': 'hello'},
+        ),
+      );
+
+      expectTwitterExceptionDueToNoJson(
+        () async => await tweetsService.searchAll(query: 'hello'),
+      );
+    });
   });
 
   group('.lookupById', () {
@@ -533,186 +1165,837 @@ void main() {
       expect(response.data, isA<TweetData>());
       expect(response.data.id, '1067094924124872705');
     });
+
+    test('with invalid access token', () async {
+      final tweetsService = TweetsService(
+        context: ClientContext(
+          bearerToken: '',
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await tweetsService.lookupById(
+          tweetId: '1111',
+        ),
+      );
+    });
+
+    test('with rate limit exceeded error', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets/1111',
+          'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          {},
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await tweetsService.lookupById(
+          tweetId: '1111',
+        ),
+      );
+    });
+
+    test('with errors', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets/1111',
+          'test/src/service/tweets/data/no_data.json',
+          {},
+        ),
+      );
+
+      expectTwitterExceptionDueToNoData(
+        () async => await tweetsService.lookupById(tweetId: '1111'),
+      );
+    });
+
+    test('with no json', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets/1111',
+          'test/src/service/tweets/data/no_json.json',
+          {},
+        ),
+      );
+
+      expectTwitterExceptionDueToNoJson(
+        () async => await tweetsService.lookupById(tweetId: '1111'),
+      );
+    });
   });
 
-  test('.lookupByIds', () async {
-    final tweetsService = TweetsService(
-      context: context.buildGetStub(
-        UserContext.oauth2OrOAuth1,
-        '/2/tweets',
-        'test/src/service/tweets/data/lookup_by_ids.json',
-        {'ids': '1261326399320715264,1278347468690915330'},
-      ),
-    );
+  group('.lookupByIds', () {
+    test('normal case', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets',
+          'test/src/service/tweets/data/lookup_by_ids.json',
+          {'ids': '1261326399320715264,1278347468690915330'},
+        ),
+      );
 
-    final response = await tweetsService.lookupByIds(
-      tweetIds: ['1261326399320715264', '1278347468690915330'],
-    );
+      final response = await tweetsService.lookupByIds(
+        tweetIds: ['1261326399320715264', '1278347468690915330'],
+      );
 
-    expect(response, isA<TwitterResponse>());
-    expect(response.data, isA<List<TweetData>>());
-    expect(response.data.length, 2);
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<TweetData>>());
+      expect(response.data.length, 2);
+    });
+
+    test('with invalid access token', () async {
+      final tweetsService = TweetsService(
+        context: ClientContext(
+          bearerToken: '',
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await tweetsService.lookupByIds(
+          tweetIds: ['1261326399320715264', '1278347468690915330'],
+        ),
+      );
+    });
+
+    test('with rate limit exceeded error', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets',
+          'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          {'ids': '1261326399320715264,1278347468690915330'},
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await tweetsService.lookupByIds(
+          tweetIds: ['1261326399320715264', '1278347468690915330'],
+        ),
+      );
+    });
+
+    test('with errors', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets',
+          'test/src/service/tweets/data/no_data.json',
+          {'ids': '1261326399320715264,1278347468690915330'},
+        ),
+      );
+
+      expectTwitterExceptionDueToNoData(
+        () async => await tweetsService.lookupByIds(
+          tweetIds: ['1261326399320715264', '1278347468690915330'],
+        ),
+      );
+    });
+
+    test('with no json', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets',
+          'test/src/service/tweets/data/no_json.json',
+          {'ids': '1261326399320715264,1278347468690915330'},
+        ),
+      );
+
+      expectTwitterExceptionDueToNoJson(
+        () async => await tweetsService.lookupByIds(
+          tweetIds: ['1261326399320715264', '1278347468690915330'],
+        ),
+      );
+    });
   });
 
-  test('.countRecent', () async {
-    final tweetsService = TweetsService(
-      context: context.buildGetStub(
-        UserContext.oauth2Only,
-        '/2/tweets/counts/recent',
-        'test/src/service/tweets/data/counts_recent.json',
-        {
-          'query': 'hello',
-          'since_id': '1111',
-          'until_id': '2222',
-        },
-      ),
-    );
+  group('.countRecent', () {
+    test('normal case', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2Only,
+          '/2/tweets/counts/recent',
+          'test/src/service/tweets/data/counts_recent.json',
+          {
+            'query': 'hello',
+            'since_id': '1111',
+            'until_id': '2222',
+          },
+        ),
+      );
 
-    final response = await tweetsService.countRecent(
-      query: 'hello',
-      sinceTweetId: '1111',
-      untilTweetId: '2222',
-    );
+      final response = await tweetsService.countRecent(
+        query: 'hello',
+        sinceTweetId: '1111',
+        untilTweetId: '2222',
+      );
 
-    expect(response, isA<TwitterResponse>());
-    expect(response.data, isA<List<TweetCountData>>());
-    expect(response.meta, isA<TweetCountMeta>());
-    expect(response.meta!.total, 744364);
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<TweetCountData>>());
+      expect(response.meta, isA<TweetCountMeta>());
+      expect(response.meta!.total, 744364);
+    });
+
+    test('with invalid access token', () async {
+      final tweetsService = TweetsService(
+        context: ClientContext(
+          bearerToken: '',
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await tweetsService.countRecent(
+          query: 'hello',
+        ),
+      );
+    });
+
+    test('with rate limit exceeded error', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2Only,
+          '/2/tweets/counts/recent',
+          'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          {
+            'query': 'hello',
+            'since_id': '1111',
+            'until_id': '2222',
+          },
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await tweetsService.countRecent(
+          query: 'hello',
+          sinceTweetId: '1111',
+          untilTweetId: '2222',
+        ),
+      );
+    });
+
+    test('with errors', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2Only,
+          '/2/tweets/counts/recent',
+          'test/src/service/tweets/data/no_data.json',
+          {
+            'query': 'hello',
+            'since_id': '1111',
+            'until_id': '2222',
+          },
+        ),
+      );
+
+      expectTwitterExceptionDueToNoData(
+        () async => await tweetsService.countRecent(
+          query: 'hello',
+          sinceTweetId: '1111',
+          untilTweetId: '2222',
+        ),
+      );
+    });
+
+    test('with no json', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2Only,
+          '/2/tweets/counts/recent',
+          'test/src/service/tweets/data/no_json.json',
+          {
+            'query': 'hello',
+            'since_id': '1111',
+            'until_id': '2222',
+          },
+        ),
+      );
+
+      expectTwitterExceptionDueToNoJson(
+        () async => await tweetsService.countRecent(
+          query: 'hello',
+          sinceTweetId: '1111',
+          untilTweetId: '2222',
+        ),
+      );
+    });
   });
 
-  test('.countAll', () async {
-    final tweetsService = TweetsService(
-      context: context.buildGetStub(
-        UserContext.oauth2Only,
-        '/2/tweets/counts/all',
-        'test/src/service/tweets/data/counts_all.json',
-        {
-          'query': 'hello',
-          'since_id': '1111',
-          'until_id': '2222',
-        },
-      ),
-    );
+  group('.countsAll', () {
+    test('normal case', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2Only,
+          '/2/tweets/counts/all',
+          'test/src/service/tweets/data/counts_all.json',
+          {
+            'query': 'hello',
+            'since_id': '1111',
+            'until_id': '2222',
+          },
+        ),
+      );
 
-    final response = await tweetsService.countAll(
-      query: 'hello',
-      sinceTweetId: '1111',
-      untilTweetId: '2222',
-    );
+      final response = await tweetsService.countAll(
+        query: 'hello',
+        sinceTweetId: '1111',
+        untilTweetId: '2222',
+      );
 
-    expect(response, isA<TwitterResponse>());
-    expect(response.data, isA<List<TweetCountData>>());
-    expect(response.meta, isA<TweetCountMeta>());
-    expect(response.meta!.total, 744364);
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<TweetCountData>>());
+      expect(response.meta, isA<TweetCountMeta>());
+      expect(response.meta!.total, 744364);
+    });
+
+    test('with invalid access token', () async {
+      final tweetsService = TweetsService(
+        context: ClientContext(
+          bearerToken: '',
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await tweetsService.countAll(
+          query: 'hello',
+        ),
+      );
+    });
+
+    test('with rate limit exceeded error', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2Only,
+          '/2/tweets/counts/all',
+          'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          {
+            'query': 'hello',
+            'since_id': '1111',
+            'until_id': '2222',
+          },
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await tweetsService.countAll(
+          query: 'hello',
+          sinceTweetId: '1111',
+          untilTweetId: '2222',
+        ),
+      );
+    });
+
+    test('with errors', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2Only,
+          '/2/tweets/counts/all',
+          'test/src/service/tweets/data/no_data.json',
+          {
+            'query': 'hello',
+            'since_id': '1111',
+            'until_id': '2222',
+          },
+        ),
+      );
+
+      expectTwitterExceptionDueToNoData(
+        () async => await tweetsService.countAll(
+          query: 'hello',
+          sinceTweetId: '1111',
+          untilTweetId: '2222',
+        ),
+      );
+    });
+
+    test('with no json', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2Only,
+          '/2/tweets/counts/all',
+          'test/src/service/tweets/data/no_json.json',
+          {
+            'query': 'hello',
+            'since_id': '1111',
+            'until_id': '2222',
+          },
+        ),
+      );
+
+      expectTwitterExceptionDueToNoJson(
+        () async => await tweetsService.countAll(
+          query: 'hello',
+          sinceTweetId: '1111',
+          untilTweetId: '2222',
+        ),
+      );
+    });
   });
 
-  test('.createBookmark', () async {
-    final tweetsService = TweetsService(
-      context: context.buildPostStub(
-        UserContext.oauth2OrOAuth1,
-        '/2/users/0000/bookmarks',
-        'test/src/service/tweets/data/create_bookmark.json',
-      ),
-    );
+  group('.createBookmark', () {
+    test('normal case', () async {
+      final tweetsService = TweetsService(
+        context: context.buildPostStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/0000/bookmarks',
+          'test/src/service/tweets/data/create_bookmark.json',
+        ),
+      );
 
-    final response = await tweetsService.createBookmark(
-      userId: '0000',
-      tweetId: '1111',
-    );
+      final response = await tweetsService.createBookmark(
+        userId: '0000',
+        tweetId: '1111',
+      );
 
-    expect(response, isA<bool>());
-    expect(response, isTrue);
+      expect(response, isA<bool>());
+      expect(response, isTrue);
+    });
+
+    test('with invalid access token', () async {
+      final tweetsService = TweetsService(
+        context: ClientContext(
+          bearerToken: '',
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await tweetsService.createBookmark(
+          userId: '0000',
+          tweetId: '1111',
+        ),
+      );
+    });
+
+    test('with rate limit exceeded error', () async {
+      final tweetsService = TweetsService(
+        context: context.buildPostStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/0000/bookmarks',
+          'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await tweetsService.createBookmark(
+          userId: '0000',
+          tweetId: '1111',
+        ),
+      );
+    });
+
+    test('with errors', () async {
+      final tweetsService = TweetsService(
+        context: context.buildPostStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/0000/bookmarks',
+          'test/src/service/tweets/data/no_data.json',
+        ),
+      );
+
+      final response = await tweetsService.createBookmark(
+        userId: '0000',
+        tweetId: '1111',
+      );
+
+      expect(response, isA<bool>());
+      expect(response, isFalse);
+    });
   });
 
-  test('.destroyBookmark', () async {
-    final tweetsService = TweetsService(
-      context: context.buildDeleteStub(
-        '/2/users/0000/bookmarks/1111',
-        'test/src/service/tweets/data/destroy_bookmark.json',
-      ),
-    );
+  group('.destroyBookmark', () {
+    test('normal case', () async {
+      final tweetsService = TweetsService(
+        context: context.buildDeleteStub(
+          '/2/users/0000/bookmarks/1111',
+          'test/src/service/tweets/data/destroy_bookmark.json',
+        ),
+      );
 
-    final response = await tweetsService.destroyBookmark(
-      userId: '0000',
-      tweetId: '1111',
-    );
+      final response = await tweetsService.destroyBookmark(
+        userId: '0000',
+        tweetId: '1111',
+      );
 
-    expect(response, isA<bool>());
-    expect(response, isTrue);
+      expect(response, isA<bool>());
+      expect(response, isTrue);
+    });
+
+    test('with invalid access token', () async {
+      final tweetsService = TweetsService(
+        context: ClientContext(
+          bearerToken: '',
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await tweetsService.destroyBookmark(
+          userId: '0000',
+          tweetId: '1111',
+        ),
+      );
+    });
+
+    test('with rate limit exceeded error', () async {
+      final tweetsService = TweetsService(
+        context: context.buildDeleteStub(
+          '/2/users/0000/bookmarks/1111',
+          'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await tweetsService.destroyBookmark(
+          userId: '0000',
+          tweetId: '1111',
+        ),
+      );
+    });
+
+    test('with errors', () async {
+      final tweetsService = TweetsService(
+        context: context.buildDeleteStub(
+          '/2/users/0000/bookmarks/1111',
+          'test/src/service/tweets/data/no_data.json',
+        ),
+      );
+
+      final response = await tweetsService.destroyBookmark(
+        userId: '0000',
+        tweetId: '1111',
+      );
+
+      expect(response, isA<bool>());
+      expect(response, isFalse);
+    });
   });
 
-  test('.lookupBookmarks', () async {
-    final tweetsService = TweetsService(
-      context: context.buildGetStub(
-        UserContext.oauth2Only,
-        '/2/users/0000/bookmarks',
-        'test/src/service/tweets/data/lookup_bookmarks.json',
-        {},
-      ),
-    );
+  group('.lookupBookmarks', () {
+    test('normal case', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2Only,
+          '/2/users/0000/bookmarks',
+          'test/src/service/tweets/data/lookup_bookmarks.json',
+          {},
+        ),
+      );
 
-    final response = await tweetsService.lookupBookmarks(userId: '0000');
+      final response = await tweetsService.lookupBookmarks(userId: '0000');
 
-    expect(response, isA<TwitterResponse>());
-    expect(response.data, isA<List<TweetData>>());
-    expect(response.meta, isA<TweetMeta>());
-    expect(response.data.length, 5);
-    expect(response.meta, isNotNull);
-    expect(response.meta!.resultCount, 5);
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<TweetData>>());
+      expect(response.meta, isA<TweetMeta>());
+      expect(response.data.length, 5);
+      expect(response.meta, isNotNull);
+      expect(response.meta!.resultCount, 5);
+    });
+
+    test('with invalid access token', () async {
+      final tweetsService = TweetsService(
+        context: ClientContext(
+          bearerToken: '',
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await tweetsService.lookupBookmarks(userId: '0000'),
+      );
+    });
+
+    test('with rate limit exceeded error', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2Only,
+          '/2/users/0000/bookmarks',
+          'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          {},
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await tweetsService.lookupBookmarks(
+          userId: '0000',
+        ),
+      );
+    });
+
+    test('with errors', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2Only,
+          '/2/users/0000/bookmarks',
+          'test/src/service/tweets/data/no_data.json',
+          {},
+        ),
+      );
+
+      expectTwitterExceptionDueToNoData(
+        () async => await tweetsService.lookupBookmarks(
+          userId: '0000',
+        ),
+      );
+    });
+
+    test('with no json', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2Only,
+          '/2/users/0000/bookmarks',
+          'test/src/service/tweets/data/no_json.json',
+          {},
+        ),
+      );
+
+      expectTwitterExceptionDueToNoJson(
+        () async => await tweetsService.lookupBookmarks(userId: '0000'),
+      );
+    });
   });
 
-  test('.createHiddenReply', () async {
-    final tweetsService = TweetsService(
-      context: context.buildPutStub(
-        '/2/tweets/0000/hidden',
-        'test/src/service/tweets/data/create_hidden_reply.json',
-      ),
-    );
+  group('.createHiddenReply', () {
+    test('normal case', () async {
+      final tweetsService = TweetsService(
+        context: context.buildPutStub(
+          '/2/tweets/0000/hidden',
+          'test/src/service/tweets/data/create_hidden_reply.json',
+        ),
+      );
 
-    final response = await tweetsService.createHiddenReply(tweetId: '0000');
+      final response = await tweetsService.createHiddenReply(tweetId: '0000');
 
-    expect(response, isA<bool>());
-    expect(response, isTrue);
+      expect(response, isA<bool>());
+      expect(response, isTrue);
+    });
+
+    test('with invalid access token', () async {
+      final tweetsService = TweetsService(
+        context: ClientContext(
+          bearerToken: '',
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await tweetsService.createHiddenReply(
+          tweetId: '0000',
+        ),
+      );
+    });
+
+    test('with rate limit exceeded error', () async {
+      final tweetsService = TweetsService(
+        context: context.buildPutStub(
+          '/2/tweets/0000/hidden',
+          'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await tweetsService.createHiddenReply(
+          tweetId: '0000',
+        ),
+      );
+    });
+
+    test('with errors', () async {
+      final tweetsService = TweetsService(
+        context: context.buildPutStub(
+          '/2/tweets/0000/hidden',
+          'test/src/service/tweets/data/no_data.json',
+        ),
+      );
+
+      final response = await tweetsService.createHiddenReply(
+        tweetId: '0000',
+      );
+
+      expect(response, isA<bool>());
+      expect(response, isFalse);
+    });
   });
 
-  test('.destroyHiddenReply', () async {
-    final tweetsService = TweetsService(
-      context: context.buildPutStub(
-        '/2/tweets/0000/hidden',
-        'test/src/service/tweets/data/destroy_hidden_reply.json',
-      ),
-    );
+  group('.destroyHiddenReply', () {
+    test('normal case', () async {
+      final tweetsService = TweetsService(
+        context: context.buildPutStub(
+          '/2/tweets/0000/hidden',
+          'test/src/service/tweets/data/destroy_hidden_reply.json',
+        ),
+      );
 
-    final response = await tweetsService.destroyHiddenReply(tweetId: '0000');
+      final response = await tweetsService.destroyHiddenReply(tweetId: '0000');
 
-    expect(response, isA<bool>());
-    expect(response, isTrue);
+      expect(response, isA<bool>());
+      expect(response, isTrue);
+    });
+
+    test('with invalid access token', () async {
+      final tweetsService = TweetsService(
+        context: ClientContext(
+          bearerToken: '',
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await tweetsService.destroyHiddenReply(
+          tweetId: '0000',
+        ),
+      );
+    });
+
+    test('with rate limit exceeded error', () async {
+      final tweetsService = TweetsService(
+        context: context.buildPutStub(
+          '/2/tweets/0000/hidden',
+          'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await tweetsService.destroyHiddenReply(
+          tweetId: '0000',
+        ),
+      );
+    });
+
+    test('with errors', () async {
+      final tweetsService = TweetsService(
+        context: context.buildPutStub(
+          '/2/tweets/0000/hidden',
+          'test/src/service/tweets/data/no_data.json',
+        ),
+      );
+
+      final response = await tweetsService.destroyHiddenReply(
+        tweetId: '0000',
+      );
+
+      expect(response, isA<bool>());
+      expect(response, isFalse);
+    });
   });
 
-  test('.lookupMentions', () async {
-    final tweetsService = TweetsService(
-      context: context.buildGetStub(
-        UserContext.oauth2OrOAuth1,
-        '/2/users/0000/mentions',
-        'test/src/service/tweets/data/lookup_mentions.json',
-        {
-          'max_results': '10',
-          'pagination_token': 'TOKEN',
-        },
-      ),
-    );
+  group('.lookupMentions', () {
+    test('normal case', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/0000/mentions',
+          'test/src/service/tweets/data/lookup_mentions.json',
+          {
+            'max_results': '10',
+            'pagination_token': 'TOKEN',
+          },
+        ),
+      );
 
-    final response = await tweetsService.lookupMentions(
-      userId: '0000',
-      maxResults: 10,
-      paginationToken: 'TOKEN',
-    );
+      final response = await tweetsService.lookupMentions(
+        userId: '0000',
+        maxResults: 10,
+        paginationToken: 'TOKEN',
+      );
 
-    expect(response, isA<TwitterResponse>());
-    expect(response.data, isA<List<TweetData>>());
-    expect(response.meta, isA<TweetMeta>());
-    expect(response.data.length, 5);
-    expect(response.meta!.resultCount, 5);
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<TweetData>>());
+      expect(response.meta, isA<TweetMeta>());
+      expect(response.data.length, 5);
+      expect(response.meta!.resultCount, 5);
+    });
+
+    test('with invalid access token', () async {
+      final tweetsService = TweetsService(
+        context: ClientContext(
+          bearerToken: '',
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await tweetsService.lookupMentions(
+          userId: '0000',
+          maxResults: 10,
+          paginationToken: 'TOKEN',
+        ),
+      );
+    });
+
+    test('with rate limit exceeded error', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/0000/mentions',
+          'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          {
+            'max_results': '10',
+            'pagination_token': 'TOKEN',
+          },
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await tweetsService.lookupMentions(
+          userId: '0000',
+          maxResults: 10,
+          paginationToken: 'TOKEN',
+        ),
+      );
+    });
+
+    test('with errors', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/0000/mentions',
+          'test/src/service/tweets/data/no_data.json',
+          {
+            'max_results': '10',
+            'pagination_token': 'TOKEN',
+          },
+        ),
+      );
+
+      expectTwitterExceptionDueToNoData(
+        () async => await tweetsService.lookupMentions(
+          userId: '0000',
+          maxResults: 10,
+          paginationToken: 'TOKEN',
+        ),
+      );
+    });
+
+    test('with no json', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/0000/mentions',
+          'test/src/service/tweets/data/no_json.json',
+          {
+            'max_results': '10',
+            'pagination_token': 'TOKEN',
+          },
+        ),
+      );
+
+      expectTwitterExceptionDueToNoJson(
+        () async => await tweetsService.lookupMentions(
+          userId: '0000',
+          maxResults: 10,
+          paginationToken: 'TOKEN',
+        ),
+      );
+    });
   });
 
   group('.lookupTweets', () {
@@ -827,32 +2110,200 @@ void main() {
       expect(response.data.length, 10);
       expect(response.meta!.resultCount, 10);
     });
+
+    test('with invalid access token', () async {
+      final tweetsService = TweetsService(
+        context: ClientContext(
+          bearerToken: '',
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await tweetsService.lookupTweets(
+          userId: '0000',
+          maxResults: 10,
+          paginationToken: 'TOKEN',
+        ),
+      );
+    });
+
+    test('with rate limit exceeded error', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/0000/tweets',
+          'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          {
+            'max_results': '10',
+            'pagination_token': 'TOKEN',
+          },
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await tweetsService.lookupTweets(
+          userId: '0000',
+          maxResults: 10,
+          paginationToken: 'TOKEN',
+        ),
+      );
+    });
+
+    test('with errors', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/0000/tweets',
+          'test/src/service/tweets/data/no_data.json',
+          {
+            'max_results': '10',
+            'pagination_token': 'TOKEN',
+          },
+        ),
+      );
+
+      expectTwitterExceptionDueToNoData(
+        () async => await tweetsService.lookupTweets(
+          userId: '0000',
+          maxResults: 10,
+          paginationToken: 'TOKEN',
+        ),
+      );
+    });
+
+    test('with no json', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/0000/tweets',
+          'test/src/service/tweets/data/no_json.json',
+          {
+            'max_results': '10',
+            'pagination_token': 'TOKEN',
+          },
+        ),
+      );
+
+      expectTwitterExceptionDueToNoJson(
+        () async => await tweetsService.lookupTweets(
+          userId: '0000',
+          maxResults: 10,
+          paginationToken: 'TOKEN',
+        ),
+      );
+    });
   });
 
-  test('.lookupHomeTimeline', () async {
-    final tweetsService = TweetsService(
-      context: context.buildGetStub(
-        UserContext.oauth2OrOAuth1,
-        '/2/users/0000/timelines/reverse_chronological',
-        'test/src/service/tweets/data/lookup_home_timeline.json',
-        {
-          'max_results': '5',
-          'pagination_token': 'TOKEN',
-        },
-      ),
-    );
+  group('.lookupHomeTimeline', () {
+    test('normal case', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/0000/timelines/reverse_chronological',
+          'test/src/service/tweets/data/lookup_home_timeline.json',
+          {
+            'max_results': '5',
+            'pagination_token': 'TOKEN',
+          },
+        ),
+      );
 
-    final response = await tweetsService.lookupHomeTimeline(
-      userId: '0000',
-      maxResults: 5,
-      paginationToken: 'TOKEN',
-    );
+      final response = await tweetsService.lookupHomeTimeline(
+        userId: '0000',
+        maxResults: 5,
+        paginationToken: 'TOKEN',
+      );
 
-    expect(response, isA<TwitterResponse>());
-    expect(response.data, isA<List<TweetData>>());
-    expect(response.meta, isA<TweetMeta>());
-    expect(response.data.length, 5);
-    expect(response.meta!.resultCount, 5);
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<TweetData>>());
+      expect(response.meta, isA<TweetMeta>());
+      expect(response.data.length, 5);
+      expect(response.meta!.resultCount, 5);
+    });
+
+    test('with invalid access token', () async {
+      final tweetsService = TweetsService(
+        context: ClientContext(
+          bearerToken: '',
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await tweetsService.lookupHomeTimeline(
+          userId: '0000',
+          maxResults: 10,
+          paginationToken: 'TOKEN',
+        ),
+      );
+    });
+
+    test('with rate limit exceeded error', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/0000/timelines/reverse_chronological',
+          'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          {
+            'max_results': '10',
+            'pagination_token': 'TOKEN',
+          },
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await tweetsService.lookupHomeTimeline(
+          userId: '0000',
+          maxResults: 10,
+          paginationToken: 'TOKEN',
+        ),
+      );
+    });
+
+    test('with errors', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/0000/timelines/reverse_chronological',
+          'test/src/service/tweets/data/no_data.json',
+          {
+            'max_results': '10',
+            'pagination_token': 'TOKEN',
+          },
+        ),
+      );
+
+      expectTwitterExceptionDueToNoData(
+        () async => await tweetsService.lookupHomeTimeline(
+          userId: '0000',
+          maxResults: 10,
+          paginationToken: 'TOKEN',
+        ),
+      );
+    });
+
+    test('with no json', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/0000/timelines/reverse_chronological',
+          'test/src/service/tweets/data/no_json.json',
+          {
+            'max_results': '5',
+            'pagination_token': 'TOKEN',
+          },
+        ),
+      );
+
+      expectTwitterExceptionDueToNoJson(
+        () async => await tweetsService.lookupHomeTimeline(
+          userId: '0000',
+          maxResults: 5,
+          paginationToken: 'TOKEN',
+        ),
+      );
+    });
   });
 
   group('.connectVolumeStream', () {
@@ -924,69 +2375,171 @@ void main() {
     expect(data.first.matchingRules.isNotEmpty, isTrue);
   });
 
-  test('.createFilteringRules', () async {
-    final tweetsService = TweetsService(
-      context: context.buildPostStub(
-        UserContext.oauth2Only,
-        '/2/tweets/search/stream/rules',
-        'test/src/service/tweets/data/create_filtering_rules.json',
-      ),
-    );
+  group('.createFilteringRules', () {
+    test('normal case', () async {
+      final tweetsService = TweetsService(
+        context: context.buildPostStub(
+          UserContext.oauth2Only,
+          '/2/tweets/search/stream/rules',
+          'test/src/service/tweets/data/create_filtering_rules.json',
+        ),
+      );
 
-    final response = await tweetsService.createFilteringRules(rules: [
-      FilteringRuleParam(value: 'test'),
-      FilteringRuleParam(value: 'hello'),
-    ]);
+      final response = await tweetsService.createFilteringRules(rules: [
+        FilteringRuleParam(value: 'test'),
+        FilteringRuleParam(value: 'hello'),
+      ]);
 
-    expect(
-      response,
-      isA<TwitterResponse<List<FilteringRuleData>, FilteringRuleMeta>>(),
-    );
-    expect(response.data, isA<List<FilteringRuleData>>());
-    expect(response.meta, isA<FilteringRuleMeta>());
-    expect(response.meta!.summary!.createdCount, 4);
-    expect(response.meta!.summary!.notCreatedCount, 0);
+      expect(
+        response,
+        isA<TwitterResponse<List<FilteringRuleData>, FilteringRuleMeta>>(),
+      );
+      expect(response.data, isA<List<FilteringRuleData>>());
+      expect(response.meta, isA<FilteringRuleMeta>());
+      expect(response.meta!.summary!.createdCount, 4);
+      expect(response.meta!.summary!.notCreatedCount, 0);
+    });
+
+    test('with invalid access token', () async {
+      final tweetsService = TweetsService(
+        context: ClientContext(
+          bearerToken: '',
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await tweetsService.createFilteringRules(rules: []),
+      );
+    });
   });
 
-  test('.destroyFilteringRules', () async {
-    final tweetsService = TweetsService(
-      context: context.buildPostStub(
-        UserContext.oauth2Only,
-        '/2/tweets/search/stream/rules',
-        'test/src/service/tweets/data/destroy_filtering_rules.json',
-      ),
-    );
+  group('.destroyFilteringRules', () {
+    test('normal case', () async {
+      final tweetsService = TweetsService(
+        context: context.buildPostStub(
+          UserContext.oauth2Only,
+          '/2/tweets/search/stream/rules',
+          'test/src/service/tweets/data/destroy_filtering_rules.json',
+        ),
+      );
 
-    final response = await tweetsService.destroyFilteringRules(
-      ruleIds: ['XXXX', 'YYYY'],
-    );
+      final response = await tweetsService.destroyFilteringRules(
+        ruleIds: ['XXXX', 'YYYY'],
+      );
 
-    expect(response, isA<FilteringRuleMeta>());
-    expect(response.summary!.deletedCount, 1);
-    expect(response.summary!.notDeletedCount, 0);
+      expect(response, isA<FilteringRuleMeta>());
+      expect(response.summary!.deletedCount, 1);
+      expect(response.summary!.notDeletedCount, 0);
+    });
+
+    test('with invalid access token', () async {
+      final tweetsService = TweetsService(
+        context: ClientContext(
+          bearerToken: '',
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await tweetsService.destroyFilteringRules(ruleIds: []),
+      );
+    });
   });
 
-  test('.lookupFilteringRules', () async {
-    final tweetsService = TweetsService(
-      context: context.buildGetStub(
-        UserContext.oauth2Only,
-        '/2/tweets/search/stream/rules',
-        'test/src/service/tweets/data/lookup_filtering_rules.json',
-        {
-          'ids': 'XXXX,YYYY',
-        },
-      ),
-    );
+  group('.lookupFilteringRules', () {
+    test('normal case', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2Only,
+          '/2/tweets/search/stream/rules',
+          'test/src/service/tweets/data/lookup_filtering_rules.json',
+          {
+            'ids': 'XXXX,YYYY',
+          },
+        ),
+      );
 
-    final response = await tweetsService.lookupFilteringRules(
-      ruleIds: ['XXXX', 'YYYY'],
-    );
+      final response = await tweetsService.lookupFilteringRules(
+        ruleIds: ['XXXX', 'YYYY'],
+      );
 
-    expect(
-      response,
-      isA<TwitterResponse<List<FilteringRuleData>, FilteringRuleMeta>>(),
-    );
-    expect(response.data, isA<List<FilteringRuleData>>());
-    expect(response.meta, isA<FilteringRuleMeta>());
+      expect(
+        response,
+        isA<TwitterResponse<List<FilteringRuleData>, FilteringRuleMeta>>(),
+      );
+      expect(response.data, isA<List<FilteringRuleData>>());
+      expect(response.meta, isA<FilteringRuleMeta>());
+    });
+
+    test('with invalid access token', () async {
+      final tweetsService = TweetsService(
+        context: ClientContext(
+          bearerToken: '',
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await tweetsService.lookupFilteringRules(ruleIds: []),
+      );
+    });
+
+    test('with rate limit exceeded error', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2Only,
+          '/2/tweets/search/stream/rules',
+          'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          {
+            'ids': 'XXXX,YYYY',
+          },
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await tweetsService.lookupFilteringRules(
+          ruleIds: ['XXXX', 'YYYY'],
+        ),
+      );
+    });
+
+    test('with errors', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2Only,
+          '/2/tweets/search/stream/rules',
+          'test/src/service/tweets/data/no_data.json',
+          {
+            'ids': 'XXXX,YYYY',
+          },
+        ),
+      );
+
+      expectTwitterExceptionDueToNoData(
+        () async => await tweetsService.lookupFilteringRules(
+          ruleIds: ['XXXX', 'YYYY'],
+        ),
+      );
+    });
+
+    test('with no json', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStub(
+          UserContext.oauth2Only,
+          '/2/tweets/search/stream/rules',
+          'test/src/service/tweets/data/no_json.json',
+          {
+            'ids': 'XXXX,YYYY',
+          },
+        ),
+      );
+
+      expectTwitterExceptionDueToNoJson(
+        () async => await tweetsService.lookupFilteringRules(
+          ruleIds: ['XXXX', 'YYYY'],
+        ),
+      );
+    });
   });
 }
