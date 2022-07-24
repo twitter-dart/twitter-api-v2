@@ -2,9 +2,6 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Dart imports:
-import 'dart:convert';
-
 // Project imports:
 import '../../client/client_context.dart';
 import '../../client/user_context.dart';
@@ -2460,7 +2457,7 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/api-reference/post-tweets-search-stream-rules
-  Future<FilteringRuleMeta> destroyFilteringRules({
+  Future<bool> destroyFilteringRules({
     required List<String> ruleIds,
   });
 }
@@ -3194,19 +3191,16 @@ class _TweetsService extends BaseService implements TweetsService {
           );
 
   @override
-  Future<FilteringRuleMeta> destroyFilteringRules({
+  Future<bool> destroyFilteringRules({
     required List<String> ruleIds,
-  }) async {
-    final response = await super.post(
-      UserContext.oauth2Only,
-      '/2/tweets/search/stream/rules',
-      body: {
-        'delete': {'ids': ruleIds},
-      },
-    );
-
-    return FilteringRuleMeta.fromJson(
-      jsonDecode(response.body)['meta'],
-    );
-  }
+  }) async =>
+      super.evaluateResponse(
+        await super.post(
+          UserContext.oauth2Only,
+          '/2/tweets/search/stream/rules',
+          body: {
+            'delete': {'ids': ruleIds},
+          },
+        ),
+      );
 }

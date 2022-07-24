@@ -2428,9 +2428,8 @@ void main() {
         ruleIds: ['XXXX', 'YYYY'],
       );
 
-      expect(response, isA<FilteringRuleMeta>());
-      expect(response.summary!.deletedCount, 1);
-      expect(response.summary!.notDeletedCount, 0);
+      expect(response, isA<bool>());
+      expect(response, isTrue);
     });
 
     test('with invalid access token', () async {
@@ -2444,6 +2443,39 @@ void main() {
       expectUnauthorizedException(
         () async => await tweetsService.destroyFilteringRules(ruleIds: []),
       );
+    });
+
+    test('with rate limit exceeded error', () async {
+      final tweetsService = TweetsService(
+        context: context.buildPostStub(
+          UserContext.oauth2Only,
+          '/2/tweets/search/stream/rules',
+          'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await tweetsService.destroyFilteringRules(
+          ruleIds: ['XXXX', 'YYYY'],
+        ),
+      );
+    });
+
+    test('with errors', () async {
+      final tweetsService = TweetsService(
+        context: context.buildPostStub(
+          UserContext.oauth2Only,
+          '/2/tweets/search/stream/rules',
+          'test/src/service/tweets/data/no_data.json',
+        ),
+      );
+
+      final response = await tweetsService.destroyFilteringRules(
+        ruleIds: ['XXXX', 'YYYY'],
+      );
+
+      expect(response, isA<bool>());
+      expect(response, isFalse);
     });
   });
 

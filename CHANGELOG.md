@@ -4,6 +4,10 @@
 
 - Improved specification of data returned from POST, DELETE, and PUT communication endpoints. The previous specification always returned true regardless of whether the process was successful or not, but now returns false if an `errors` object exists in the response. ([#381](https://github.com/twitter-dart/twitter-api-v2/issues/381))
 
+### Breaking Changes
+
+- Changed return type of `destroyFilteringRules` from `FilteringRuleMeta` to `bool`. This is because there is no use for the `FilteringRuleMeta` object that was returned after the deletion of a filtering rule in the previous specification. If the deletion succeeds, true is returned; if the deletion fails for some reason, false is returned. ([#382](https://github.com/twitter-dart/twitter-api-v2/issues/382))
+
 ## v2.10.0
 
 - Fixed to raise `TwitterException` if response object cannot be converted to JSON. ([#347](https://github.com/twitter-dart/twitter-api-v2/issues/347))
