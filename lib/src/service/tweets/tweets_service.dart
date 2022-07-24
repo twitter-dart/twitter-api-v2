@@ -14,6 +14,7 @@ import '../filtered_stream_response.dart';
 import '../media/media_field.dart';
 import '../places/place_field.dart';
 import '../polls/poll_field.dart';
+import '../response_field.dart';
 import '../twitter_response.dart';
 import '../users/user_data.dart';
 import '../users/user_expansion.dart';
@@ -3109,9 +3110,9 @@ class _TweetsService extends BaseService implements TweetsService {
 
     return stream.map(
       (event) => TwitterResponse(
-        data: TweetData.fromJson(event['data']),
-        includes: event.containsKey('includes')
-            ? Includes.fromJson(event['includes'])
+        data: TweetData.fromJson(event[ResponseField.data.value]),
+        includes: event.containsKey(ResponseField.includes.value)
+            ? Includes.fromJson(event[ResponseField.includes.value])
             : null,
       ),
     );
@@ -3143,11 +3144,11 @@ class _TweetsService extends BaseService implements TweetsService {
 
     return stream.map(
       (event) => FilteredStreamResponse(
-        data: TweetData.fromJson(event['data']),
-        includes: event.containsKey('includes')
-            ? Includes.fromJson(event['includes'])
+        data: TweetData.fromJson(event[ResponseField.data.value]),
+        includes: event.containsKey(ResponseField.includes.value)
+            ? Includes.fromJson(event[ResponseField.includes.value])
             : null,
-        matchingRules: (event['matching_rules'] as List)
+        matchingRules: (event[ResponseField.matchingRules.value] as List)
             .map((json) => MatchingRule.fromJson(json))
             .toList(),
       ),

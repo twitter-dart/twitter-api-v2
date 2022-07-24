@@ -17,21 +17,8 @@ import '../exception/twitter_exception.dart';
 import '../exception/unauthorized_exception.dart';
 import 'common/includes.dart';
 import 'common/serializable.dart';
+import 'response_field.dart';
 import 'twitter_response.dart';
-
-enum _ResponseField {
-  /// `data`
-  data,
-
-  /// `includes`
-  includes,
-
-  /// `meta`
-  meta,
-
-  /// `errors`
-  errors
-}
 
 abstract class Service {
   Future<http.Response> get(UserContext userContext, String unencodedPath);
@@ -176,13 +163,13 @@ abstract class BaseService implements Service {
   }) {
     final jsonBody = _checkResponseBody(response);
     return TwitterResponse(
-      data: dataBuilder(jsonBody[_ResponseField.data.name]),
-      includes: jsonBody.containsKey(_ResponseField.includes.name)
-          ? Includes.fromJson(jsonBody[_ResponseField.includes.name])
+      data: dataBuilder(jsonBody[ResponseField.data.value]),
+      includes: jsonBody.containsKey(ResponseField.includes.value)
+          ? Includes.fromJson(jsonBody[ResponseField.includes.value])
           : null,
       meta:
-          jsonBody.containsKey(_ResponseField.meta.name) && metaBuilder != null
-              ? metaBuilder(jsonBody[_ResponseField.meta.name])
+          jsonBody.containsKey(ResponseField.meta.value) && metaBuilder != null
+              ? metaBuilder(jsonBody[ResponseField.meta.value])
               : null,
     );
   }
@@ -195,15 +182,15 @@ abstract class BaseService implements Service {
   }) {
     final jsonBody = _checkResponseBody(response);
     return TwitterResponse(
-      data: jsonBody[_ResponseField.data.name]
+      data: jsonBody[ResponseField.data.value]
           .map<D>((tweet) => dataBuilder(tweet))
           .toList(),
-      includes: jsonBody.containsKey(_ResponseField.includes.name)
-          ? Includes.fromJson(jsonBody[_ResponseField.includes.name])
+      includes: jsonBody.containsKey(ResponseField.includes.value)
+          ? Includes.fromJson(jsonBody[ResponseField.includes.value])
           : null,
       meta:
-          jsonBody.containsKey(_ResponseField.meta.name) && metaBuilder != null
-              ? metaBuilder(jsonBody[_ResponseField.meta.name])
+          jsonBody.containsKey(ResponseField.meta.value) && metaBuilder != null
+              ? metaBuilder(jsonBody[ResponseField.meta.value])
               : null,
     );
   }
@@ -211,7 +198,7 @@ abstract class BaseService implements Service {
   @override
   bool evaluateResponse(final http.Response response) =>
       !_tryJsonDecode(response, response.body)
-          .containsKey(_ResponseField.errors.name);
+          .containsKey(ResponseField.errors.value);
 
   dynamic _tryJsonDecode(
     final http.BaseResponse response,
@@ -230,7 +217,7 @@ abstract class BaseService implements Service {
   Map<String, dynamic> _checkResponseBody(final http.Response response) {
     final jsonBody = _tryJsonDecode(response, response.body);
 
-    if (!jsonBody.containsKey(_ResponseField.data.name)) {
+    if (!jsonBody.containsKey(ResponseField.data.value)) {
       //! This occurs when the tweet to be processed has been deleted or
       //! when the target data does not exist at the time of search.
       throw TwitterException(
@@ -267,8 +254,8 @@ abstract class BaseService implements Service {
 
     final jsonBody = _tryJsonDecode(response, response.body);
 
-    if (jsonBody.containsKey(_ResponseField.errors.name)) {
-      final errors = jsonBody[_ResponseField.errors.name];
+    if (jsonBody.containsKey(ResponseField.errors.value)) {
+      final errors = jsonBody[ResponseField.errors.value];
       for (final error in errors) {
         if (error['code'] == 88) {
           throw RateLimitExceededException(error['message'] ?? '');
@@ -289,8 +276,8 @@ abstract class BaseService implements Service {
 
     final jsonBody = _tryJsonDecode(response, event);
 
-    if (jsonBody.containsKey(_ResponseField.errors.name)) {
-      final errors = jsonBody[_ResponseField.errors.name];
+    if (jsonBody.containsKey(ResponseField.errors.value)) {
+      final errors = jsonBody[ResponseField.errors.value];
       for (final error in errors) {
         if (error['code'] == 88) {
           throw RateLimitExceededException(error['message'] ?? '');
@@ -310,7 +297,7 @@ abstract class BaseService implements Service {
       event,
     );
 
-    if (!jsonBody.containsKey(_ResponseField.data.name)) {
+    if (!jsonBody.containsKey(ResponseField.data.value)) {
       throw TwitterException(
         'No response data exists for the request.',
         response,
