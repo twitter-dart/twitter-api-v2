@@ -57,13 +57,13 @@ abstract class Service {
     Map<String, String> body = const {},
   });
 
-  Future<TwitterResponse<D, M>> transformSingleDataResponse<D, M>(
+  TwitterResponse<D, M> transformSingleDataResponse<D, M>(
     http.Response response, {
     required D Function(Map<String, Object?> json) dataBuilder,
     M Function(Map<String, Object?> json)? metaBuilder,
   });
 
-  Future<TwitterResponse<List<D>, M>> transformMultiDataResponse<D, M>(
+  TwitterResponse<List<D>, M> transformMultiDataResponse<D, M>(
     http.Response response, {
     required D Function(Map<String, Object?> json) dataBuilder,
     M Function(Map<String, Object?> json)? metaBuilder,
@@ -88,7 +88,7 @@ abstract class BaseService implements Service {
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
   }) async =>
-      await _checkResponse(
+      _checkResponse(
         await _context.get(
           userContext,
           Uri.https(
@@ -128,7 +128,7 @@ abstract class BaseService implements Service {
     Map<String, dynamic> queryParameters = const {},
     dynamic body = const {},
   }) async =>
-      await _checkResponse(
+      _checkResponse(
         await _context.post(
           userContext,
           Uri.https(
@@ -146,7 +146,7 @@ abstract class BaseService implements Service {
     final UserContext userContext,
     final String unencodedPath,
   ) async =>
-      await _checkResponse(
+      _checkResponse(
         await _context.delete(
           userContext,
           Uri.https(_authority, unencodedPath),
@@ -159,7 +159,7 @@ abstract class BaseService implements Service {
     final String unencodedPath, {
     dynamic body = const {},
   }) async =>
-      await _checkResponse(
+      _checkResponse(
         await _context.put(
           userContext,
           Uri.https(_authority, unencodedPath),
@@ -169,11 +169,11 @@ abstract class BaseService implements Service {
       );
 
   @override
-  Future<TwitterResponse<D, M>> transformSingleDataResponse<D, M>(
+  TwitterResponse<D, M> transformSingleDataResponse<D, M>(
     http.Response response, {
     required D Function(Map<String, Object?> json) dataBuilder,
     M Function(Map<String, Object?> json)? metaBuilder,
-  }) async {
+  }) {
     final jsonBody = _checkResponseBody(response);
     return TwitterResponse(
       data: dataBuilder(jsonBody[_ResponseField.data.name]),
@@ -188,11 +188,11 @@ abstract class BaseService implements Service {
   }
 
   @override
-  Future<TwitterResponse<List<D>, M>> transformMultiDataResponse<D, M>(
+  TwitterResponse<List<D>, M> transformMultiDataResponse<D, M>(
     http.Response response, {
     required D Function(Map<String, Object?> json) dataBuilder,
     M Function(Map<String, Object?> json)? metaBuilder,
-  }) async {
+  }) {
     final jsonBody = _checkResponseBody(response);
     return TwitterResponse(
       data: jsonBody[_ResponseField.data.name]
@@ -210,8 +210,8 @@ abstract class BaseService implements Service {
 
   @override
   bool evaluateResponse(final http.Response response) =>
-      _tryJsonDecode(response, response.body)
-          .contains(_ResponseField.errors.name);
+      !_tryJsonDecode(response, response.body)
+          .containsKey(_ResponseField.errors.name);
 
   dynamic _tryJsonDecode(
     final http.BaseResponse response,
@@ -258,9 +258,9 @@ abstract class BaseService implements Service {
     return parameters.isNotEmpty ? parameters : null;
   }
 
-  Future<http.Response> _checkResponse(
+  http.Response _checkResponse(
     final http.Response response,
-  ) async {
+  ) {
     if (response.statusCode == 401) {
       throw UnauthorizedException('The specified access token is invalid.');
     }

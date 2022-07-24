@@ -118,8 +118,9 @@ class _ComplianceService extends BaseService implements ComplianceService {
   _ComplianceService({required super.context});
 
   @override
-  Future<TwitterResponse<ComplianceData, void>> lookupJob(
-          {required String jobId}) async =>
+  Future<TwitterResponse<ComplianceData, void>> lookupJob({
+    required String jobId,
+  }) async =>
       super.transformSingleDataResponse(
         await super.get(
           UserContext.oauth2Only,
@@ -146,8 +147,11 @@ class _ComplianceService extends BaseService implements ComplianceService {
       );
 
   @override
-  Future<TwitterResponse<ComplianceData, void>> createJob(
-          {required JobType jobType, String? jobName, bool? resumable}) async =>
+  Future<TwitterResponse<ComplianceData, void>> createJob({
+    required JobType jobType,
+    String? jobName,
+    bool? resumable,
+  }) async =>
       super.transformSingleDataResponse(
         await super.post(
           UserContext.oauth2Only,

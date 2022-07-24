@@ -2515,68 +2515,63 @@ class _TweetsService extends BaseService implements TweetsService {
       );
 
   @override
-  Future<bool> destroyTweet({required String tweetId}) async {
-    await super.delete(
-      UserContext.oauth2OrOAuth1,
-      '/2/tweets/$tweetId',
-    );
-
-    return true;
-  }
+  Future<bool> destroyTweet({required String tweetId}) async =>
+      super.evaluateResponse(
+        await super.delete(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets/$tweetId',
+        ),
+      );
 
   @override
   Future<bool> createLike({
     required String userId,
     required String tweetId,
-  }) async {
-    await super.post(
-      UserContext.oauth2OrOAuth1,
-      '/2/users/$userId/likes',
-      body: {'tweet_id': tweetId},
-    );
-
-    return true;
-  }
+  }) async =>
+      super.evaluateResponse(
+        await super.post(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/$userId/likes',
+          body: {'tweet_id': tweetId},
+        ),
+      );
 
   @override
   Future<bool> destroyLike({
     required String userId,
     required String tweetId,
-  }) async {
-    await super.delete(
-      UserContext.oauth2OrOAuth1,
-      '/2/users/$userId/likes/$tweetId',
-    );
-
-    return true;
-  }
+  }) async =>
+      super.evaluateResponse(
+        await super.delete(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/$userId/likes/$tweetId',
+        ),
+      );
 
   @override
   Future<bool> createRetweet({
     required String userId,
     required String tweetId,
-  }) async {
-    await super.post(
-      UserContext.oauth2OrOAuth1,
-      '/2/users/$userId/retweets',
-      body: {'tweet_id': tweetId},
-    );
-
-    return true;
-  }
+  }) async =>
+      super.evaluateResponse(
+        await super.post(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/$userId/retweets',
+          body: {'tweet_id': tweetId},
+        ),
+      );
 
   @override
   Future<bool> destroyRetweet({
     required String userId,
     required String tweetId,
-  }) async {
-    await super.delete(
-      UserContext.oauth2OrOAuth1,
-      '/2/users/$userId/retweets/$tweetId',
-    );
-
-    return true;
-  }
+  }) async =>
+      super.evaluateResponse(
+        await super.delete(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/$userId/retweets/$tweetId',
+        ),
+      );
 
   @override
   Future<TwitterResponse<List<UserData>, UserMeta>> lookupLikingUsers({
@@ -2899,28 +2894,26 @@ class _TweetsService extends BaseService implements TweetsService {
   Future<bool> createBookmark({
     required String userId,
     required String tweetId,
-  }) async {
-    await super.post(
-      UserContext.oauth2OrOAuth1,
-      '/2/users/$userId/bookmarks',
-      body: {'tweet_id': tweetId},
-    );
-
-    return true;
-  }
+  }) async =>
+      super.evaluateResponse(
+        await super.post(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/$userId/bookmarks',
+          body: {'tweet_id': tweetId},
+        ),
+      );
 
   @override
   Future<bool> destroyBookmark({
     required String userId,
     required String tweetId,
-  }) async {
-    await super.delete(
-      UserContext.oauth2OrOAuth1,
-      '/2/users/$userId/bookmarks/$tweetId',
-    );
-
-    return true;
-  }
+  }) async =>
+      super.evaluateResponse(
+        await super.delete(
+          UserContext.oauth2OrOAuth1,
+          '/2/users/$userId/bookmarks/$tweetId',
+        ),
+      );
 
   @override
   Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupBookmarks({
@@ -2950,26 +2943,24 @@ class _TweetsService extends BaseService implements TweetsService {
       );
 
   @override
-  Future<bool> createHiddenReply({required String tweetId}) async {
-    await super.put(
-      UserContext.oauth2OrOAuth1,
-      '/2/tweets/$tweetId/hidden',
-      body: {'hidden': true},
-    );
-
-    return true;
-  }
+  Future<bool> createHiddenReply({required String tweetId}) async =>
+      super.evaluateResponse(
+        await super.put(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets/$tweetId/hidden',
+          body: {'hidden': true},
+        ),
+      );
 
   @override
-  Future<bool> destroyHiddenReply({required String tweetId}) async {
-    await super.put(
-      UserContext.oauth2OrOAuth1,
-      '/2/tweets/$tweetId/hidden',
-      body: {'hidden': false},
-    );
-
-    return true;
-  }
+  Future<bool> destroyHiddenReply({required String tweetId}) async =>
+      super.evaluateResponse(
+        await super.put(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets/$tweetId/hidden',
+          body: {'hidden': false},
+        ),
+      );
 
   @override
   Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupMentions({

@@ -44,7 +44,7 @@ void main() {
 
       expect(
         await usersService.createFollow(userId: '', targetUserId: ''),
-        isTrue,
+        isFalse,
       );
     });
   });
