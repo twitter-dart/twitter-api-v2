@@ -88,7 +88,7 @@
       - [1.4.8.2. Exponential Backoff](#1482-exponential-backoff)
       - [1.4.8.3. Exponential Backoff and Jitter](#1483-exponential-backoff-and-jitter)
       - [1.4.8.4. Do Something on Retry](#1484-do-something-on-retry)
-    - [1.4.9. Boolean returned by the endpoint](#149-boolean-returned-by-the-endpoint)
+    - [1.4.9. Meaning of the Returned Boolean](#149-meaning-of-the-returned-boolean)
     - [1.4.10. Thrown Exceptions](#1410-thrown-exceptions)
   - [1.5. Contribution 🏆](#15-contribution-)
   - [1.6. Contributors ✨](#16-contributors-)
@@ -732,7 +732,7 @@ Future<void> main() async {
 
 The [RetryEvent](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/RetryEvent-class.html) passed to the callback contains information on retries.
 
-### 1.4.9. Boolean returned by the endpoint
+### 1.4.9. Meaning of the Returned Boolean
 
 A boolean value is returned from the endpoint when the communication is primarily POST, DELETE, or PUT.
 
