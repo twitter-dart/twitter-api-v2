@@ -88,7 +88,8 @@
       - [1.4.8.2. Exponential Backoff](#1482-exponential-backoff)
       - [1.4.8.3. Exponential Backoff and Jitter](#1483-exponential-backoff-and-jitter)
       - [1.4.8.4. Do Something on Retry](#1484-do-something-on-retry)
-    - [1.4.9. Thrown Exceptions](#149-thrown-exceptions)
+    - [1.4.9. Boolean returned by the endpoint](#149-boolean-returned-by-the-endpoint)
+    - [1.4.10. Thrown Exceptions](#1410-thrown-exceptions)
   - [1.5. Contribution 🏆](#15-contribution-)
   - [1.6. Contributors ✨](#16-contributors-)
   - [1.7. Support ❤️](#17-support-️)
@@ -731,7 +732,27 @@ Future<void> main() async {
 
 The [RetryEvent](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/RetryEvent-class.html) passed to the callback contains information on retries.
 
-### 1.4.9. Thrown Exceptions
+### 1.4.9. Boolean returned by the endpoint
+
+A boolean value is returned from the endpoint when the communication is primarily POST, DELETE, or PUT.
+
+For example, **twitter_api_v2** provides the [createRetweet](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/createRetweet.html) method for creating retweets. This method returns true if the request sent in generating the retweet was accepted, and false if an error occurred for whatever reason.
+
+If true is returned at this time, the reason is as follows.
+
+- The target tweet exists and the target tweet was successfully retweeted.
+
+Conversely, if false is returned, the reasons may be as follows.
+
+- The tweet to be retweeted did not exist.
+- The tweet subject to retweet was deleted by the author.
+- Miscellaneous errors.
+
+Note that this specification differs from the official [Twitter API v2.0](https://developer.twitter.com/en/docs/twitter-api). The official [Twitter API v2.0](https://developer.twitter.com/en/docs/twitter-api) consistently returns a flag indicating the state of the content after API communication when using endpoints that change the state of such content.
+
+However, as mentioned earlier in **twitter_api_v2**, for example if you use the [createRetweet](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/createRetweet.html) method, it will return a **flag indicating whether the process was successful or not**. This principle applies not only to the [createRetweet](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/createRetweet.html) method, but to all methods that return flags as a result of processing.
+
+### 1.4.10. Thrown Exceptions
 
 **twitter_api_v2** provides a convenient exception object for easy handling of exceptional responses and errors returned from [Twitter API v2.0](https://developer.twitter.com/en/docs/twitter-api/data-dictionary/introduction).
 
