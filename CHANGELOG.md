@@ -1,5 +1,9 @@
 # Release Note
 
+## v3.0.2
+
+- Fixed analyzing warnings. ([#403](https://github.com/twitter-dart/twitter-api-v2/issues/403))
+
 ## v3.0.1
 
 - Fixed repository link in pubspec.yaml. ([#396](https://github.com/twitter-dart/twitter-api-v2/issues/396))

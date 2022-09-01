@@ -1697,8 +1697,8 @@ abstract class TweetsService {
   ///                   (that is, more recent than) the specified 'since'
   ///                   Tweet ID. There are limits to the number of Tweets that
   ///                   can be accessed through the API. If the limit of Tweets
-  ///                   has occurred since the [tweetSinceId], the
-  ///                   [tweetSinceId] will be forced to the oldest ID
+  ///                   has occurred since the [sinceTweetId], the
+  ///                   [sinceTweetId] will be forced to the oldest ID
   ///                   available.
   ///
   /// - [untilTweetId]: Returns results with a Tweet ID less than
