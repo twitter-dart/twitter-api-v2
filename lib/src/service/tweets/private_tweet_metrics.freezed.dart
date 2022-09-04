@@ -33,7 +33,7 @@ mixin _$PrivateTweetMetrics {
   /// A count of the number of times a user clicks on a URL link or URL
   /// preview card in a Tweet.
   @JsonKey(name: 'url_link_clicks')
-  int get linkClickCount => throw _privateConstructorUsedError;
+  int? get linkClickCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,7 +49,7 @@ abstract class $PrivateTweetMetricsCopyWith<$Res> {
   $Res call(
       {int impressionCount,
       @JsonKey(name: 'user_profile_clicks') int profileClickCount,
-      @JsonKey(name: 'url_link_clicks') int linkClickCount});
+      @JsonKey(name: 'url_link_clicks') int? linkClickCount});
 }
 
 /// @nodoc
@@ -79,7 +79,7 @@ class _$PrivateTweetMetricsCopyWithImpl<$Res>
       linkClickCount: linkClickCount == freezed
           ? _value.linkClickCount
           : linkClickCount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -94,7 +94,7 @@ abstract class _$$_PrivateTweetMetricsCopyWith<$Res>
   $Res call(
       {int impressionCount,
       @JsonKey(name: 'user_profile_clicks') int profileClickCount,
-      @JsonKey(name: 'url_link_clicks') int linkClickCount});
+      @JsonKey(name: 'url_link_clicks') int? linkClickCount});
 }
 
 /// @nodoc
@@ -126,7 +126,7 @@ class __$$_PrivateTweetMetricsCopyWithImpl<$Res>
       linkClickCount: linkClickCount == freezed
           ? _value.linkClickCount
           : linkClickCount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -137,7 +137,7 @@ class _$_PrivateTweetMetrics implements _PrivateTweetMetrics {
   const _$_PrivateTweetMetrics(
       {required this.impressionCount,
       @JsonKey(name: 'user_profile_clicks') required this.profileClickCount,
-      @JsonKey(name: 'url_link_clicks') required this.linkClickCount});
+      @JsonKey(name: 'url_link_clicks') this.linkClickCount});
 
   factory _$_PrivateTweetMetrics.fromJson(Map<String, dynamic> json) =>
       _$$_PrivateTweetMetricsFromJson(json);
@@ -158,7 +158,7 @@ class _$_PrivateTweetMetrics implements _PrivateTweetMetrics {
   /// preview card in a Tweet.
   @override
   @JsonKey(name: 'url_link_clicks')
-  final int linkClickCount;
+  final int? linkClickCount;
 
   @override
   String toString() {
@@ -206,7 +206,7 @@ abstract class _PrivateTweetMetrics implements PrivateTweetMetrics {
       @JsonKey(name: 'user_profile_clicks')
           required final int profileClickCount,
       @JsonKey(name: 'url_link_clicks')
-          required final int linkClickCount}) = _$_PrivateTweetMetrics;
+          final int? linkClickCount}) = _$_PrivateTweetMetrics;
 
   factory _PrivateTweetMetrics.fromJson(Map<String, dynamic> json) =
       _$_PrivateTweetMetrics.fromJson;
@@ -228,7 +228,7 @@ abstract class _PrivateTweetMetrics implements PrivateTweetMetrics {
   /// A count of the number of times a user clicks on a URL link or URL
   /// preview card in a Tweet.
   @JsonKey(name: 'url_link_clicks')
-  int get linkClickCount;
+  int? get linkClickCount;
   @override
   @JsonKey(ignore: true)
   _$$_PrivateTweetMetricsCopyWith<_$_PrivateTweetMetrics> get copyWith =>

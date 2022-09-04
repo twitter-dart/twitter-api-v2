@@ -1,5 +1,12 @@
 # Release Note
 
+## v3.0.3
+
+- Fixed the `linkClickCount` field in the following metric objects to be nullable. ([#407](https://github.com/twitter-dart/twitter-api-v2/issues/407))
+  - `OrganicTweetMetrics`
+  - `PrivateTweetMetrics`
+  - `PromotedTweetMetrics`
+
 ## v3.0.2
 
 - Fixed analyzing warnings. ([#403](https://github.com/twitter-dart/twitter-api-v2/issues/403))

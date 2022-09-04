@@ -17,7 +17,7 @@ _$_PrivateTweetMetrics _$$_PrivateTweetMetricsFromJson(Map json) =>
           impressionCount: $checkedConvert('impression_count', (v) => v as int),
           profileClickCount:
               $checkedConvert('user_profile_clicks', (v) => v as int),
-          linkClickCount: $checkedConvert('url_link_clicks', (v) => v as int),
+          linkClickCount: $checkedConvert('url_link_clicks', (v) => v as int?),
         );
         return val;
       },

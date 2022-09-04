@@ -34,7 +34,7 @@ class OrganicTweetMetrics with _$OrganicTweetMetrics {
 
     /// A count of the number of times a user clicks on a URL link or URL
     /// preview card in a Tweet.
-    @JsonKey(name: 'url_link_clicks') required int linkClickCount,
+    @JsonKey(name: 'url_link_clicks') int? linkClickCount,
   }) = _OrganicTweetMetrics;
 
   factory OrganicTweetMetrics.fromJson(Map<String, Object?> json) =>

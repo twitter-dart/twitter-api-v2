@@ -20,7 +20,7 @@ _$_PromotedTweetMetrics _$$_PromotedTweetMetricsFromJson(Map json) =>
           replyCount: $checkedConvert('reply_count', (v) => v as int),
           profileClickCount:
               $checkedConvert('user_profile_clicks', (v) => v as int),
-          linkClickCount: $checkedConvert('url_link_clicks', (v) => v as int),
+          linkClickCount: $checkedConvert('url_link_clicks', (v) => v as int?),
         );
         return val;
       },
