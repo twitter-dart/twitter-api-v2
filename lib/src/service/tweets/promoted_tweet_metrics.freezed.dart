@@ -43,7 +43,7 @@ mixin _$PromotedTweetMetrics {
   /// A count of the number of times a user clicks on a URL link or URL
   /// preview card in a Tweet.
   @JsonKey(name: 'url_link_clicks')
-  int get linkClickCount => throw _privateConstructorUsedError;
+  int? get linkClickCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -62,7 +62,7 @@ abstract class $PromotedTweetMetricsCopyWith<$Res> {
       int retweetCount,
       int replyCount,
       @JsonKey(name: 'user_profile_clicks') int profileClickCount,
-      @JsonKey(name: 'url_link_clicks') int linkClickCount});
+      @JsonKey(name: 'url_link_clicks') int? linkClickCount});
 }
 
 /// @nodoc
@@ -107,7 +107,7 @@ class _$PromotedTweetMetricsCopyWithImpl<$Res>
       linkClickCount: linkClickCount == freezed
           ? _value.linkClickCount
           : linkClickCount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -125,7 +125,7 @@ abstract class _$$_PromotedTweetMetricsCopyWith<$Res>
       int retweetCount,
       int replyCount,
       @JsonKey(name: 'user_profile_clicks') int profileClickCount,
-      @JsonKey(name: 'url_link_clicks') int linkClickCount});
+      @JsonKey(name: 'url_link_clicks') int? linkClickCount});
 }
 
 /// @nodoc
@@ -172,7 +172,7 @@ class __$$_PromotedTweetMetricsCopyWithImpl<$Res>
       linkClickCount: linkClickCount == freezed
           ? _value.linkClickCount
           : linkClickCount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -186,7 +186,7 @@ class _$_PromotedTweetMetrics implements _PromotedTweetMetrics {
       required this.retweetCount,
       required this.replyCount,
       @JsonKey(name: 'user_profile_clicks') required this.profileClickCount,
-      @JsonKey(name: 'url_link_clicks') required this.linkClickCount});
+      @JsonKey(name: 'url_link_clicks') this.linkClickCount});
 
   factory _$_PromotedTweetMetrics.fromJson(Map<String, dynamic> json) =>
       _$$_PromotedTweetMetricsFromJson(json);
@@ -220,7 +220,7 @@ class _$_PromotedTweetMetrics implements _PromotedTweetMetrics {
   /// preview card in a Tweet.
   @override
   @JsonKey(name: 'url_link_clicks')
-  final int linkClickCount;
+  final int? linkClickCount;
 
   @override
   String toString() {
@@ -279,7 +279,7 @@ abstract class _PromotedTweetMetrics implements PromotedTweetMetrics {
       @JsonKey(name: 'user_profile_clicks')
           required final int profileClickCount,
       @JsonKey(name: 'url_link_clicks')
-          required final int linkClickCount}) = _$_PromotedTweetMetrics;
+          final int? linkClickCount}) = _$_PromotedTweetMetrics;
 
   factory _PromotedTweetMetrics.fromJson(Map<String, dynamic> json) =
       _$_PromotedTweetMetrics.fromJson;
@@ -314,7 +314,7 @@ abstract class _PromotedTweetMetrics implements PromotedTweetMetrics {
   /// A count of the number of times a user clicks on a URL link or URL
   /// preview card in a Tweet.
   @JsonKey(name: 'url_link_clicks')
-  int get linkClickCount;
+  int? get linkClickCount;
   @override
   @JsonKey(ignore: true)
   _$$_PromotedTweetMetricsCopyWith<_$_PromotedTweetMetrics> get copyWith =>
