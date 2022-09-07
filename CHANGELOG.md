@@ -1,5 +1,17 @@
 # Release Note
 
+## v3.0.4
+
+- The constructor of `RetryConfig` has been modified. ([#409](https://github.com/twitter-dart/twitter-api-v2/issues/409))
+  - **Deprecated**
+    - `regularIntervals`
+    - `exponentialBackOff`
+    - `exponentialBackOffAndJitter`
+  - **Use instead**
+    - `ofRegularIntervals`
+    - `ofExponentialBackOff`
+    - `ofExponentialBackOffAndJitter`
+
 ## v3.0.3
 
 - Fixed the `linkClickCount` field in the following metric objects to be nullable. ([#407](https://github.com/twitter-dart/twitter-api-v2/issues/407))
