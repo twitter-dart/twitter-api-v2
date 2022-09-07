@@ -158,6 +158,15 @@
         "doc",
         "translation"
       ]
+    },
+    {
+      "login": "MarkOSullivan94",
+      "name": "Mark O'Sullivan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6950843?v=4",
+      "profile": "http://markos.dev",
+      "contributions": [
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 5,
