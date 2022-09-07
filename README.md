@@ -174,7 +174,7 @@ Future<void> main() async {
 
     //! Automatic retry is available when a TimeoutException occurs when
     //! communicating with the API.
-    retryConfig: v2.RetryConfig.regularIntervals(
+    retryConfig: v2.RetryConfig.ofRegularIntervals(
       maxAttempts: 5,
       intervalInSeconds: 3,
     ),
@@ -627,11 +627,11 @@ When such timeouts occur, an effective countermeasure in many cases is to send t
 
 There are 3 retry methods provided by **twitter_api_v2**.
 
-| Retry Strategy                 | Constructor                             | Description                                                                                                             |
-| ------------------------------ | --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| Regular Intervals              | RetryConfig.regularIntervals            | Retry at regular intervals.                                                                                             |
-| Exponential Backoff            | RetryConfig.exponentialBackOff          | The retry interval is increased exponentially according to the number of retries.                                       |
-| Exponential Backoff and Jitter | RetryConfig.exponentialBackOffAndJitter | A random number called Jitter is added to increase the retry interval exponentially according to the number of retries. |
+| Retry Strategy                 | Constructor                               | Description                                                                                                             |
+| ------------------------------ | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Regular Intervals              | RetryConfig.ofRegularIntervals            | Retry at regular intervals.                                                                                             |
+| Exponential Backoff            | RetryConfig.ofExponentialBackOff          | The retry interval is increased exponentially according to the number of retries.                                       |
+| Exponential Backoff and Jitter | RetryConfig.ofExponentialBackOffAndJitter | A random number called Jitter is added to increase the retry interval exponentially according to the number of retries. |
 
 #### 1.4.8.1. Regular Intervals
 
@@ -645,7 +645,7 @@ Future<void> main() async {
     bearerToken: 'YOUR_TOKEN_HERE',
 
     //! Add these lines.
-    retryConfig: v2.RetryConfig.regularIntervals(
+    retryConfig: v2.RetryConfig.ofRegularIntervals(
       maxAttempts: 3,
       intervalInSeconds: 5,
     ),
@@ -667,9 +667,8 @@ import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
 Future<void> main() async {
   final twitter = v2.TwitterApi(
     bearerToken: 'YOUR_TOKEN_HERE',
-
     //! Add these lines.
-    retryConfig: v2.RetryConfig.exponentialBackOff(
+    retryConfig: v2.RetryConfig.ofExponentialBackOff(
       maxAttempts: 3,
     ),
   );
@@ -696,7 +695,7 @@ Future<void> main() async {
     bearerToken: 'YOUR_TOKEN_HERE',
 
     //! Add these lines.
-    retryConfig: v2.RetryConfig.exponentialBackOffAndJitter(
+    retryConfig: v2.RetryConfig.ofExponentialBackOffAndJitter(
       maxAttempts: 3,
     ),
   );
@@ -719,7 +718,7 @@ import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
 Future<void> main() async {
   final twitter = v2.TwitterApi(
     bearerToken: 'YOUR_TOKEN_HERE',
-    retryConfig: v2.RetryConfig.regularIntervals(
+    retryConfig: v2.RetryConfig.ofRegularIntervals(
       maxAttempts: 3,
       intervalInSeconds: 5,
 

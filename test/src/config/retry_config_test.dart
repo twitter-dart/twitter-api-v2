@@ -10,9 +10,9 @@ import 'package:twitter_api_v2/src/client/retry_strategy.dart';
 import 'package:twitter_api_v2/src/config/retry_config.dart';
 
 void main() {
-  group('regularIntervals', () {
+  group('.ofRegularIntervals', () {
     test('with default intervals', () {
-      final config = RetryConfig.regularIntervals(maxAttempts: 10);
+      final config = RetryConfig.ofRegularIntervals(maxAttempts: 10);
 
       expect(config.strategy, RetryStrategy.regularIntervals);
       expect(config.maxAttempts, 10);
@@ -21,7 +21,7 @@ void main() {
     });
 
     test('with specified intervals', () {
-      final config = RetryConfig.regularIntervals(
+      final config = RetryConfig.ofRegularIntervals(
         maxAttempts: 10,
         intervalInSeconds: 5,
       );
@@ -34,7 +34,7 @@ void main() {
 
     test('with negative maxAttempts', () {
       expect(
-        () => RetryConfig.regularIntervals(maxAttempts: -1),
+        () => RetryConfig.ofRegularIntervals(maxAttempts: -1),
         throwsA(
           allOf(
               isA<ArgumentError>(),
@@ -48,7 +48,7 @@ void main() {
 
     test('with negative intervals', () {
       expect(
-        () => RetryConfig.regularIntervals(
+        () => RetryConfig.ofRegularIntervals(
           maxAttempts: 10,
           intervalInSeconds: -1,
         ),
@@ -65,7 +65,7 @@ void main() {
 
     test('with negative maxAttempts and intervals', () {
       expect(
-        () => RetryConfig.regularIntervals(
+        () => RetryConfig.ofRegularIntervals(
           maxAttempts: -1,
           intervalInSeconds: -1,
         ),
@@ -82,7 +82,7 @@ void main() {
 
     test('with onExecute', () {
       expect(
-        () => RetryConfig.regularIntervals(
+        () => RetryConfig.ofRegularIntervals(
           maxAttempts: 5,
           onExecute: print,
         ),
@@ -91,9 +91,9 @@ void main() {
     });
   });
 
-  group('exponentialBackOff', () {
+  group('.ofExponentialBackOff', () {
     test('with specified attempts', () {
-      final config = RetryConfig.exponentialBackOff(
+      final config = RetryConfig.ofExponentialBackOff(
         maxAttempts: 10,
       );
 
@@ -105,7 +105,7 @@ void main() {
 
     test('with negative maxAttempts', () {
       expect(
-        () => RetryConfig.exponentialBackOff(maxAttempts: -1),
+        () => RetryConfig.ofExponentialBackOff(maxAttempts: -1),
         throwsA(
           allOf(
               isA<ArgumentError>(),
@@ -119,7 +119,7 @@ void main() {
 
     test('with onExecute', () {
       expect(
-        () => RetryConfig.exponentialBackOff(
+        () => RetryConfig.ofExponentialBackOff(
           maxAttempts: 5,
           onExecute: print,
         ),
@@ -128,9 +128,9 @@ void main() {
     });
   });
 
-  group('exponentialBackOffAndJitter', () {
+  group('.ofExponentialBackOffAndJitter', () {
     test('with specified attempts', () {
-      final config = RetryConfig.exponentialBackOffAndJitter(
+      final config = RetryConfig.ofExponentialBackOffAndJitter(
         maxAttempts: 10,
       );
 
@@ -142,7 +142,7 @@ void main() {
 
     test('with negative maxAttempts', () {
       expect(
-        () => RetryConfig.exponentialBackOffAndJitter(maxAttempts: -1),
+        () => RetryConfig.ofExponentialBackOffAndJitter(maxAttempts: -1),
         throwsA(
           allOf(
               isA<ArgumentError>(),
@@ -156,7 +156,7 @@ void main() {
 
     test('with onExecute', () {
       expect(
-        () => RetryConfig.exponentialBackOffAndJitter(
+        () => RetryConfig.ofExponentialBackOffAndJitter(
           maxAttempts: 5,
           onExecute: print,
         ),
