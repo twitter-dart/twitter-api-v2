@@ -148,6 +148,16 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "VinniciusJesus",
+      "name": "Marcos Vinícius",
+      "avatar_url": "https://avatars.githubusercontent.com/u/57817746?v=4",
+      "profile": "https://github.com/VinniciusJesus",
+      "contributions": [
+        "doc",
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 5,
