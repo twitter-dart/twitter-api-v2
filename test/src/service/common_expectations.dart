@@ -4,11 +4,9 @@
 
 // Package imports:
 import 'package:test/test.dart';
-
-// Project imports:
-import 'package:twitter_api_v2/src/exception/rate_limit_exceeded_exception.dart';
-import 'package:twitter_api_v2/src/exception/twitter_exception.dart';
-import 'package:twitter_api_v2/src/exception/unauthorized_exception.dart';
+import 'package:twitter_api_core/src/exception/rate_limit_exceeded_exception.dart';
+import 'package:twitter_api_core/src/exception/twitter_exception.dart';
+import 'package:twitter_api_core/src/exception/unauthorized_exception.dart';
 
 void expectUnauthorizedException(Function fn) {
   expect(

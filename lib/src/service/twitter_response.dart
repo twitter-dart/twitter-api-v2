@@ -8,7 +8,7 @@ import 'common/includes.dart';
 /// The class represents the response from Twitter API v2.
 class TwitterResponse<D, M> {
   /// Returns the new instance of [TwitterResponse].
-  TwitterResponse({required this.data, this.includes, this.meta});
+  const TwitterResponse({required this.data, this.includes, this.meta});
 
   /// The data field
   final D data;

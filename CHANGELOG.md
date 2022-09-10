@@ -1,5 +1,11 @@
 # Release Note
 
+## v3.1.0
+
+- The following refactoring was done for the internal processing of the package. There are no disruptive changes resulting from this refactoring. ([#419](https://github.com/twitter-dart/twitter-api-v2/issues/419))
+  - Generic features has been separated into a `core` package.
+  - `const` is now given to the constructors of all objects that do not require rebuilding after the instance has been created.
+
 ## v3.0.4
 
 - The constructor of `RetryConfig` has been modified. ([#409](https://github.com/twitter-dart/twitter-api-v2/issues/409))
