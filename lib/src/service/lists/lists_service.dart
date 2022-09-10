@@ -2,9 +2,10 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+// Package imports:
+import 'package:twitter_api_core/twitter_api_core.dart' as core;
+
 // Project imports:
-import '../../client/client_context.dart';
-import '../../client/user_context.dart';
 import '../base_service.dart';
 import '../tweets/tweet_data.dart';
 import '../tweets/tweet_expansion.dart';
@@ -23,7 +24,7 @@ import 'list_meta.dart';
 /// This class provides methods to easily access endpoints based on List.
 abstract class ListsService {
   /// Returns the new instance of [ListsService].
-  factory ListsService({required ClientContext context}) =>
+  factory ListsService({required core.ClientContext context}) =>
       _ListsService(context: context);
 
   /// Returns the details of a specified List.
@@ -996,7 +997,7 @@ class _ListsService extends BaseService implements ListsService {
   }) async =>
       super.transformSingleDataResponse(
         await super.get(
-          UserContext.oauth2OrOAuth1,
+          core.UserContext.oauth2OrOAuth1,
           '/2/lists/$listId',
           queryParameters: {
             'expansions': expansions,
@@ -1018,7 +1019,7 @@ class _ListsService extends BaseService implements ListsService {
   }) async =>
       super.transformMultiDataResponse(
         await super.get(
-          UserContext.oauth2OrOAuth1,
+          core.UserContext.oauth2OrOAuth1,
           '/2/users/$userId/owned_lists',
           queryParameters: {
             'max_results': maxResults,
@@ -1039,7 +1040,7 @@ class _ListsService extends BaseService implements ListsService {
   }) async =>
       super.evaluateResponse(
         await super.post(
-          UserContext.oauth2OrOAuth1,
+          core.UserContext.oauth2OrOAuth1,
           '/2/users/$userId/pinned_lists',
           body: {'list_id': listId},
         ),
@@ -1052,7 +1053,7 @@ class _ListsService extends BaseService implements ListsService {
   }) async =>
       super.evaluateResponse(
         await super.delete(
-          UserContext.oauth2OrOAuth1,
+          core.UserContext.oauth2OrOAuth1,
           '/2/users/$userId/pinned_lists/$listId',
         ),
       );
@@ -1066,7 +1067,7 @@ class _ListsService extends BaseService implements ListsService {
   }) async =>
       super.transformMultiDataResponse(
         await super.get(
-          UserContext.oauth2OrOAuth1,
+          core.UserContext.oauth2OrOAuth1,
           '/2/users/$userId/pinned_lists',
           queryParameters: {
             'expansions': expansions,
@@ -1089,7 +1090,7 @@ class _ListsService extends BaseService implements ListsService {
   }) async =>
       super.transformMultiDataResponse(
         await super.get(
-          UserContext.oauth2OrOAuth1,
+          core.UserContext.oauth2OrOAuth1,
           '/2/lists/$listId/tweets',
           queryParameters: {
             'max_results': maxResults,
@@ -1129,7 +1130,7 @@ class _ListsService extends BaseService implements ListsService {
   Future<bool> destroyList({required String listId}) async =>
       super.evaluateResponse(
         await super.delete(
-          UserContext.oauth2OrOAuth1,
+          core.UserContext.oauth2OrOAuth1,
           '/2/lists/$listId',
         ),
       );
@@ -1167,7 +1168,7 @@ class _ListsService extends BaseService implements ListsService {
   }) async =>
       super.evaluateResponse(
         await super.post(
-          UserContext.oauth2OrOAuth1,
+          core.UserContext.oauth2OrOAuth1,
           '/2/users/$userId/followed_lists',
           body: {
             'list_id': listId,
@@ -1182,7 +1183,7 @@ class _ListsService extends BaseService implements ListsService {
   }) async =>
       super.evaluateResponse(
         await super.delete(
-          UserContext.oauth2OrOAuth1,
+          core.UserContext.oauth2OrOAuth1,
           '/2/users/$userId/followed_lists/$listId',
         ),
       );
@@ -1197,7 +1198,7 @@ class _ListsService extends BaseService implements ListsService {
   }) async =>
       super.transformMultiDataResponse(
         await super.get(
-          UserContext.oauth2OrOAuth1,
+          core.UserContext.oauth2OrOAuth1,
           '/2/lists/$listId/followers',
           queryParameters: {
             'max_results': maxResults,
@@ -1221,7 +1222,7 @@ class _ListsService extends BaseService implements ListsService {
   }) async =>
       super.transformMultiDataResponse(
         await super.get(
-          UserContext.oauth2OrOAuth1,
+          core.UserContext.oauth2OrOAuth1,
           '/2/users/$userId/followed_lists',
           queryParameters: {
             'max_results': maxResults,
@@ -1242,7 +1243,7 @@ class _ListsService extends BaseService implements ListsService {
   }) async =>
       super.evaluateResponse(
         await super.post(
-          UserContext.oauth2OrOAuth1,
+          core.UserContext.oauth2OrOAuth1,
           '/2/lists/$listId/members',
           body: {
             'user_id': userId,
@@ -1257,7 +1258,7 @@ class _ListsService extends BaseService implements ListsService {
   }) async =>
       super.evaluateResponse(
         await super.delete(
-          UserContext.oauth2OrOAuth1,
+          core.UserContext.oauth2OrOAuth1,
           '/2/lists/$listId/members/$userId',
         ),
       );
@@ -1273,7 +1274,7 @@ class _ListsService extends BaseService implements ListsService {
   }) async =>
       super.transformMultiDataResponse(
         await super.get(
-          UserContext.oauth2OrOAuth1,
+          core.UserContext.oauth2OrOAuth1,
           '/2/lists/$listId/members',
           queryParameters: {
             'max_results': maxResults,
@@ -1298,7 +1299,7 @@ class _ListsService extends BaseService implements ListsService {
   }) async =>
       super.transformMultiDataResponse(
         await super.get(
-          UserContext.oauth2OrOAuth1,
+          core.UserContext.oauth2OrOAuth1,
           '/2/users/$userId/list_memberships',
           queryParameters: {
             'max_results': maxResults,
@@ -1319,7 +1320,7 @@ class _ListsService extends BaseService implements ListsService {
   }) async =>
       super.transformSingleDataResponse(
         await super.post(
-          UserContext.oauth2OrOAuth1,
+          core.UserContext.oauth2OrOAuth1,
           '/2/lists',
           body: {
             'name': name,
@@ -1338,7 +1339,7 @@ class _ListsService extends BaseService implements ListsService {
   }) async =>
       super.evaluateResponse(
         await super.put(
-          UserContext.oauth2OrOAuth1,
+          core.UserContext.oauth2OrOAuth1,
           '/2/lists/$listId',
           body: {
             'name': name,

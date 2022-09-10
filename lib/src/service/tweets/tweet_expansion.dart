@@ -2,8 +2,8 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Project imports:
-import '../common/serializable.dart';
+// Package imports:
+import 'package:twitter_api_core/twitter_api_core.dart';
 
 /// Represents an extensible field about Tweet.
 enum TweetExpansion implements Serializable {

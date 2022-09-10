@@ -2,44 +2,42 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Dart imports:
-import 'dart:convert' as converter;
-
 // Package imports:
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
+import 'package:twitter_api_core/twitter_api_core.dart' as core;
 
 // Project imports:
-import '../client/client_context.dart';
-import '../client/stream_request.dart';
-import '../client/user_context.dart';
-import '../exception/rate_limit_exceeded_exception.dart';
-import '../exception/twitter_exception.dart';
-import '../exception/unauthorized_exception.dart';
 import 'common/includes.dart';
-import 'common/serializable.dart';
 import 'response_field.dart';
 import 'twitter_response.dart';
 
 abstract class Service {
-  Future<http.Response> get(UserContext userContext, String unencodedPath);
+  Future<http.Response> get(
+    core.UserContext userContext,
+    String unencodedPath,
+  );
 
   Future<Stream<Map<String, dynamic>>> getStream(
-    final UserContext userContext,
+    final core.UserContext userContext,
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
   });
 
   Future<http.Response> post(
-    UserContext userContext,
+    core.UserContext userContext,
     String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
     Map<String, String> body = const {},
   });
 
-  Future<http.Response> delete(UserContext userContext, String unencodedPath);
+  Future<http.Response> delete(
+    core.UserContext userContext,
+    String unencodedPath,
+  );
 
   Future<http.Response> put(
-    UserContext userContext,
+    core.UserContext userContext,
     String unencodedPath, {
     Map<String, String> body = const {},
   });
@@ -61,98 +59,83 @@ abstract class Service {
 
 abstract class BaseService implements Service {
   /// Returns the new instance of [BaseService].
-  BaseService({required ClientContext context}) : _context = context;
+  BaseService({required core.ClientContext context})
+      : _helper = core.ServiceHelper(
+          authority: 'api.twitter.com',
+          context: context,
+        );
 
-  /// The base url
-  static const _authority = 'api.twitter.com';
-
-  /// The twitter client
-  final ClientContext _context;
+  final core.ServiceHelper _helper;
 
   @override
   Future<http.Response> get(
-    final UserContext userContext,
+    final core.UserContext userContext,
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
   }) async =>
-      _checkResponse(
-        await _context.get(
-          userContext,
-          Uri.https(
-            _authority,
-            unencodedPath,
-            _convertQueryParameters(queryParameters),
-          ),
-        ),
+      await _helper.get(
+        userContext,
+        unencodedPath,
+        queryParameters: queryParameters,
+        validate: _checkResponse,
       );
 
   @override
   Future<Stream<Map<String, dynamic>>> getStream(
-    final UserContext userContext,
+    final core.UserContext userContext,
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
-  }) async {
-    final streamedResponse = await _context.getStream(
-      userContext,
-      StreamRequest(
-        Uri.https(
-          _authority,
-          unencodedPath,
-          _convertQueryParameters(queryParameters),
-        ),
-      ),
-    );
-
-    return streamedResponse.stream
-        .transform(converter.utf8.decoder)
-        .map((event) => _checkStreamedResponse(streamedResponse, event));
-  }
+    Map<String, dynamic> Function(
+            StreamedResponse streamedResponse, String event)?
+        validate,
+  }) async =>
+      await _helper.getStream(
+        userContext,
+        unencodedPath,
+        queryParameters: queryParameters,
+        validate: _checkStreamedResponse,
+      );
 
   @override
   Future<http.Response> post(
-    final UserContext userContext,
+    final core.UserContext userContext,
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
     dynamic body = const {},
+    Response Function(Response response)? validate,
   }) async =>
-      _checkResponse(
-        await _context.post(
-          userContext,
-          Uri.https(
-            _authority,
-            unencodedPath,
-            _convertQueryParameters(queryParameters),
-          ),
-          headers: {'Content-type': 'application/json'},
-          body: converter.jsonEncode(_removeNullParameters(body)),
-        ),
+      await _helper.post(
+        userContext,
+        unencodedPath,
+        queryParameters: queryParameters,
+        body: body,
+        validate: _checkResponse,
       );
 
   @override
   Future<http.Response> delete(
-    final UserContext userContext,
-    final String unencodedPath,
-  ) async =>
-      _checkResponse(
-        await _context.delete(
-          userContext,
-          Uri.https(_authority, unencodedPath),
-        ),
+    final core.UserContext userContext,
+    final String unencodedPath, {
+    Response Function(Response response)? validate,
+  }) async =>
+      await _helper.delete(
+        userContext,
+        unencodedPath,
+        validate: _checkResponse,
       );
 
   @override
   Future<http.Response> put(
-    final UserContext userContext,
+    final core.UserContext userContext,
     final String unencodedPath, {
     dynamic body = const {},
+    Response Function(Response response)? validate,
   }) async =>
-      _checkResponse(
-        await _context.put(
-          userContext,
-          Uri.https(_authority, unencodedPath),
-          headers: {'Content-type': 'application/json'},
-          body: converter.jsonEncode(_removeNullParameters(body)),
-        ),
+      await _helper.put(
+        userContext,
+        unencodedPath,
+        body: body,
+        validate: _checkResponse,
       );
 
   @override
@@ -196,31 +179,17 @@ abstract class BaseService implements Service {
   }
 
   @override
-  bool evaluateResponse(final http.Response response) =>
-      !_tryJsonDecode(response, response.body)
-          .containsKey(ResponseField.errors.value);
-
-  dynamic _tryJsonDecode(
-    final http.BaseResponse response,
-    final String body,
-  ) {
-    try {
-      return converter.jsonDecode(body);
-    } on FormatException {
-      throw TwitterException(
-        'Failed to decode the response body as JSON.',
-        response,
-      );
-    }
-  }
+  bool evaluateResponse(final http.Response response) => !core
+      .tryJsonDecode(response, response.body)
+      .containsKey(ResponseField.errors.value);
 
   Map<String, dynamic> _checkResponseBody(final http.Response response) {
-    final jsonBody = _tryJsonDecode(response, response.body);
+    final jsonBody = core.tryJsonDecode(response, response.body);
 
     if (!jsonBody.containsKey(ResponseField.data.value)) {
       //! This occurs when the tweet to be processed has been deleted or
       //! when the target data does not exist at the time of search.
-      throw TwitterException(
+      throw core.TwitterException(
         'No response data exists for the request.',
         response,
       );
@@ -229,58 +198,21 @@ abstract class BaseService implements Service {
     return jsonBody;
   }
 
-  dynamic _removeNullParameters(final dynamic object) {
-    if (object is! Map) {
-      return object;
-    }
-
-    final parameters = <String, dynamic>{};
-    object.forEach((key, value) {
-      final newObject = _removeNullParameters(value);
-      if (newObject != null) {
-        parameters[key] = newObject;
-      }
-    });
-
-    return parameters.isNotEmpty ? parameters : null;
-  }
-
   http.Response _checkResponse(
     final http.Response response,
   ) {
     if (response.statusCode == 401) {
-      throw UnauthorizedException('The specified access token is invalid.');
+      throw core.UnauthorizedException(
+          'The specified access token is invalid.');
     }
 
-    final jsonBody = _tryJsonDecode(response, response.body);
+    final jsonBody = core.tryJsonDecode(response, response.body);
 
     if (jsonBody.containsKey(ResponseField.errors.value)) {
       final errors = jsonBody[ResponseField.errors.value];
       for (final error in errors) {
         if (error['code'] == 88) {
-          throw RateLimitExceededException(error['message'] ?? '');
-        }
-      }
-    }
-
-    return response;
-  }
-
-  http.StreamedResponse _checkStreamedResponseError(
-    final http.StreamedResponse response,
-    final String event,
-  ) {
-    if (response.statusCode == 401) {
-      throw UnauthorizedException('The specified access token is invalid.');
-    }
-
-    final jsonBody = _tryJsonDecode(response, event);
-
-    if (jsonBody.containsKey(ResponseField.errors.value)) {
-      final errors = jsonBody[ResponseField.errors.value];
-      for (final error in errors) {
-        if (error['code'] == 88) {
-          throw RateLimitExceededException(error['message'] ?? '');
+          throw core.RateLimitExceededException(error['message'] ?? '');
         }
       }
     }
@@ -292,13 +224,13 @@ abstract class BaseService implements Service {
     final http.StreamedResponse response,
     final String event,
   ) {
-    final jsonBody = _tryJsonDecode(
+    final jsonBody = core.tryJsonDecode(
       _checkStreamedResponseError(response, event),
       event,
     );
 
     if (!jsonBody.containsKey(ResponseField.data.value)) {
-      throw TwitterException(
+      throw core.TwitterException(
         'No response data exists for the request.',
         response,
         event,
@@ -308,41 +240,26 @@ abstract class BaseService implements Service {
     return jsonBody;
   }
 
-  Map<String, String> _convertQueryParameters(
-    final Map<String, dynamic> queryParameters,
+  http.StreamedResponse _checkStreamedResponseError(
+    final http.StreamedResponse response,
+    final String event,
   ) {
-    final serializedParameters = queryParameters.map((key, value) {
-      if (value is List<Serializable>?) {
-        return MapEntry(
-          key,
-          value?.toSet().map((e) => e.value).toList().join(','),
-        );
-      } else if (value is List<Enum>?) {
-        return MapEntry(
-          key,
-          value?.toSet().map((e) => e.name).join(','),
-        );
-      } else if (value is List?) {
-        return MapEntry(
-          key,
-          value?.toSet().join(','),
-        );
-      }
+    if (response.statusCode == 401) {
+      throw core.UnauthorizedException(
+          'The specified access token is invalid.');
+    }
 
-      return MapEntry(key, value);
-    });
+    final jsonBody = core.tryJsonDecode(response, event);
 
-    return Map.from(_removeNullParameters(serializedParameters) ?? {}).map(
-      //! Uri.https(...) needs iterable in the value for query params by
-      //! which it means a String in the value of the Map too. So you need
-      //! to convert it from Map<String, dynamic> to Map<String, String>
-      (key, value) {
-        if (value is DateTime) {
-          return MapEntry(key, value.toUtc().toIso8601String());
+    if (jsonBody.containsKey(ResponseField.errors.value)) {
+      final errors = jsonBody[ResponseField.errors.value];
+      for (final error in errors) {
+        if (error['code'] == 88) {
+          throw core.RateLimitExceededException(error['message'] ?? '');
         }
+      }
+    }
 
-        return MapEntry(key, value.toString());
-      },
-    );
+    return response;
   }
 }

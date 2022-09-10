@@ -2,8 +2,10 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+// Package imports:
+import 'package:twitter_api_core/twitter_api_core.dart';
+
 // Project imports:
-import '../client/client_context.dart';
 import 'compliance/compliance_service.dart';
 import 'lists/lists_service.dart';
 import 'spaces/spaces_service.dart';

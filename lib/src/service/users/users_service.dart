@@ -2,9 +2,10 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+// Package imports:
+import 'package:twitter_api_core/twitter_api_core.dart' as core;
+
 // Project imports:
-import '../../client/client_context.dart';
-import '../../client/user_context.dart';
 import '../base_service.dart';
 import '../tweets/tweet_field.dart';
 import '../twitter_response.dart';
@@ -16,7 +17,7 @@ import 'user_meta.dart';
 /// This class provides methods to easily access endpoints based on User.
 abstract class UsersService {
   /// Returns the new instance of [UsersService].
-  factory UsersService({required ClientContext context}) =>
+  factory UsersService({required core.ClientContext context}) =>
       _UsersService(context: context);
 
   /// Allows a user ID to follow another user.
@@ -875,7 +876,7 @@ class _UsersService extends BaseService implements UsersService {
   }) async =>
       super.evaluateResponse(
         await super.post(
-          UserContext.oauth2OrOAuth1,
+          core.UserContext.oauth2OrOAuth1,
           '/2/users/$userId/following',
           body: {'target_user_id': targetUserId},
         ),
@@ -888,7 +889,7 @@ class _UsersService extends BaseService implements UsersService {
   }) async =>
       super.evaluateResponse(
         await super.delete(
-          UserContext.oauth2OrOAuth1,
+          core.UserContext.oauth2OrOAuth1,
           '/2/users/$userId/following/$targetUserId',
         ),
       );
@@ -904,7 +905,7 @@ class _UsersService extends BaseService implements UsersService {
   }) async =>
       super.transformMultiDataResponse(
         await super.get(
-          UserContext.oauth2OrOAuth1,
+          core.UserContext.oauth2OrOAuth1,
           '/2/users/$userId/followers',
           queryParameters: {
             'max_results': maxResults,
@@ -929,7 +930,7 @@ class _UsersService extends BaseService implements UsersService {
   }) async =>
       super.transformMultiDataResponse(
         await super.get(
-          UserContext.oauth2OrOAuth1,
+          core.UserContext.oauth2OrOAuth1,
           '/2/users/$userId/following',
           queryParameters: {
             'max_results': maxResults,
@@ -952,7 +953,7 @@ class _UsersService extends BaseService implements UsersService {
   }) async =>
       super.transformSingleDataResponse(
         await super.get(
-          UserContext.oauth2OrOAuth1,
+          core.UserContext.oauth2OrOAuth1,
           '/2/users/$userId',
           queryParameters: {
             'expansions': expansions,
@@ -972,7 +973,7 @@ class _UsersService extends BaseService implements UsersService {
   }) async =>
       super.transformMultiDataResponse(
         await super.get(
-          UserContext.oauth2OrOAuth1,
+          core.UserContext.oauth2OrOAuth1,
           '/2/users',
           queryParameters: {
             'ids': userIds,
@@ -993,7 +994,7 @@ class _UsersService extends BaseService implements UsersService {
   }) async =>
       super.transformSingleDataResponse(
         await super.get(
-          UserContext.oauth2OrOAuth1,
+          core.UserContext.oauth2OrOAuth1,
           '/2/users/by/username/$username',
           queryParameters: {
             'expansions': expansions,
@@ -1013,7 +1014,7 @@ class _UsersService extends BaseService implements UsersService {
   }) async =>
       super.transformMultiDataResponse(
         await super.get(
-          UserContext.oauth2OrOAuth1,
+          core.UserContext.oauth2OrOAuth1,
           '/2/users/by',
           queryParameters: {
             'usernames': usernames,
@@ -1032,7 +1033,7 @@ class _UsersService extends BaseService implements UsersService {
   }) async =>
       super.transformSingleDataResponse(
         await super.get(
-          UserContext.oauth2OrOAuth1,
+          core.UserContext.oauth2OrOAuth1,
           '/2/users/me',
           queryParameters: {
             'expansions': expansions,
@@ -1050,7 +1051,7 @@ class _UsersService extends BaseService implements UsersService {
   }) async =>
       super.evaluateResponse(
         await super.post(
-          UserContext.oauth2OrOAuth1,
+          core.UserContext.oauth2OrOAuth1,
           '/2/users/$userId/muting',
           body: {'target_user_id': targetUserId},
         ),
@@ -1063,7 +1064,7 @@ class _UsersService extends BaseService implements UsersService {
   }) async =>
       super.evaluateResponse(
         await super.delete(
-          UserContext.oauth2OrOAuth1,
+          core.UserContext.oauth2OrOAuth1,
           '/2/users/$userId/muting/$targetUserId',
         ),
       );
@@ -1079,7 +1080,7 @@ class _UsersService extends BaseService implements UsersService {
   }) async =>
       super.transformMultiDataResponse(
         await super.get(
-          UserContext.oauth2OrOAuth1,
+          core.UserContext.oauth2OrOAuth1,
           '/2/users/$userId/muting',
           queryParameters: {
             'max_results': maxResults,
@@ -1100,7 +1101,7 @@ class _UsersService extends BaseService implements UsersService {
   }) async =>
       super.evaluateResponse(
         await super.post(
-          UserContext.oauth2OrOAuth1,
+          core.UserContext.oauth2OrOAuth1,
           '/2/users/$userId/blocking',
           body: {'target_user_id': targetUserId},
         ),
@@ -1113,7 +1114,7 @@ class _UsersService extends BaseService implements UsersService {
   }) async =>
       super.evaluateResponse(
         await super.delete(
-          UserContext.oauth2OrOAuth1,
+          core.UserContext.oauth2OrOAuth1,
           '/2/users/$userId/blocking/$targetUserId',
         ),
       );
@@ -1129,7 +1130,7 @@ class _UsersService extends BaseService implements UsersService {
   }) async =>
       super.transformMultiDataResponse(
         await super.get(
-          UserContext.oauth2OrOAuth1,
+          core.UserContext.oauth2OrOAuth1,
           '/2/users/$userId/blocking',
           queryParameters: {
             'max_results': maxResults,
