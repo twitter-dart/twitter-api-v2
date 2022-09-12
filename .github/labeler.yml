@@ -16,5 +16,8 @@ service/Lists:
 service/Compliance:
 - lib/src/service/compliance/*.dart
 
+service/Media:
+- lib/src/service/media/*.dart
+
 test:
 - test/**/*.dart
