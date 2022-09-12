@@ -60,6 +60,15 @@ class MockClientContext extends _i1.Mock implements _i3.ClientContext {
                   this, Invocation.method(#post, [userContext, uri], {#headers: headers, #body: body}))))
           as _i4.Future<_i2.Response>);
   @override
+  _i4.Future<_i2.Response> postMultipart(_i5.UserContext? userContext, Uri? uri,
+          {List<_i2.MultipartFile>? files = const []}) =>
+      (super
+          .noSuchMethod(Invocation.method(#postMultipart, [userContext, uri], {#files: files}),
+              returnValue: _i4.Future<_i2.Response>.value(_FakeResponse_0(
+                  this,
+                  Invocation.method(#postMultipart, [userContext, uri],
+                      {#files: files})))) as _i4.Future<_i2.Response>);
+  @override
   _i4.Future<_i2.Response> delete(_i5.UserContext? userContext, Uri? uri) =>
       (super.noSuchMethod(Invocation.method(#delete, [userContext, uri]),
               returnValue: _i4.Future<_i2.Response>.value(_FakeResponse_0(

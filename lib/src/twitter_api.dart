@@ -8,6 +8,7 @@ import 'package:twitter_api_core/twitter_api_core.dart' as core;
 // Project imports:
 import 'service/compliance/compliance_service.dart';
 import 'service/lists/lists_service.dart';
+import 'service/media/media_service.dart';
 import 'service/spaces/spaces_service.dart';
 import 'service/tweets/tweets_service.dart';
 import 'service/twitter_service.dart';
@@ -152,6 +153,9 @@ abstract class TwitterApi {
   /// Returns the lists service.
   ListsService get listsService;
 
+  /// Returns the media service
+  MediaService get mediaService;
+
   /// Returns the compliance service.
   ComplianceService get complianceService;
 }
@@ -191,6 +195,9 @@ class _TwitterApi implements TwitterApi {
 
   @override
   ListsService get listsService => _twitterService.listsService;
+
+  @override
+  MediaService get mediaService => _twitterService.mediaService;
 
   @override
   ComplianceService get complianceService => _twitterService.complianceService;
