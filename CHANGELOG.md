@@ -1,5 +1,9 @@
 # Release Note
 
+## v3.2.0
+
+- Added `MediaService`, and supported the feature for image upload. ([#406](https://github.com/twitter-dart/twitter-api-v2/issues/406))
+
 ## v3.1.0
 
 - The following refactoring was done for the internal processing of the package. There are no disruptive changes resulting from this refactoring. ([#419](https://github.com/twitter-dart/twitter-api-v2/issues/419))

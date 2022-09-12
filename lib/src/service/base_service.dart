@@ -12,7 +12,7 @@ import 'common/includes.dart';
 import 'response_field.dart';
 import 'twitter_response.dart';
 
-abstract class Service {
+abstract class _Service {
   Future<http.Response> get(
     core.UserContext userContext,
     String unencodedPath,
@@ -57,7 +57,7 @@ abstract class Service {
   bool evaluateResponse(final http.Response response);
 }
 
-abstract class BaseService implements Service {
+abstract class BaseService implements _Service {
   /// Returns the new instance of [BaseService].
   BaseService({required core.ClientContext context})
       : _helper = core.ServiceHelper(
@@ -77,7 +77,7 @@ abstract class BaseService implements Service {
         userContext,
         unencodedPath,
         queryParameters: queryParameters,
-        validate: _checkResponse,
+        validate: checkResponse,
       );
 
   @override
@@ -109,7 +109,7 @@ abstract class BaseService implements Service {
         unencodedPath,
         queryParameters: queryParameters,
         body: body,
-        validate: _checkResponse,
+        validate: checkResponse,
       );
 
   @override
@@ -121,7 +121,7 @@ abstract class BaseService implements Service {
       await _helper.delete(
         userContext,
         unencodedPath,
-        validate: _checkResponse,
+        validate: checkResponse,
       );
 
   @override
@@ -135,7 +135,7 @@ abstract class BaseService implements Service {
         userContext,
         unencodedPath,
         body: body,
-        validate: _checkResponse,
+        validate: checkResponse,
       );
 
   @override
@@ -198,12 +198,13 @@ abstract class BaseService implements Service {
     return jsonBody;
   }
 
-  http.Response _checkResponse(
+  http.Response checkResponse(
     final http.Response response,
   ) {
     if (response.statusCode == 401) {
       throw core.UnauthorizedException(
-          'The specified access token is invalid.');
+        'The specified access token is invalid.',
+      );
     }
 
     final jsonBody = core.tryJsonDecode(response, response.body);
