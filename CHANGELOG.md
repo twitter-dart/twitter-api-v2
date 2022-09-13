@@ -1,5 +1,9 @@
 # Release Note
 
+## v3.2.1
+
+- Renamed from `MediaService.uploadMedia` to `MediaService.uploadImage`. Also, renamed the parameter from `imageFile` to `file`. ([#427](https://github.com/twitter-dart/twitter-api-v2/issues/427))
+
 ## v3.2.0
 
 - Added `MediaService`, and supported the feature for image upload. ([#406](https://github.com/twitter-dart/twitter-api-v2/issues/406))

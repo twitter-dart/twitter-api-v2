@@ -44,7 +44,7 @@ abstract class MediaService {
   ///
   /// ## Parameters
   ///
-  /// - [imageFile]: The raw binary image content being uploaded.
+  /// - [file]: The raw binary image content being uploaded.
   ///
   /// - [additionalOwners]: A list of user IDs to set as additional owners
   ///                       allowed to use the returned media id in Tweets or
@@ -61,8 +61,8 @@ abstract class MediaService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/post-media-upload
-  Future<TwitterResponse<UploadedMediaData, void>> uploadMedia({
-    required File imageFile,
+  Future<TwitterResponse<UploadedMediaData, void>> uploadImage({
+    required File file,
     List<String>? additionalOwners,
   });
 }
@@ -72,8 +72,8 @@ class _MediaService extends BaseUploadService implements MediaService {
   _MediaService({required super.context});
 
   @override
-  Future<TwitterResponse<UploadedMediaData, void>> uploadMedia({
-    required File imageFile,
+  Future<TwitterResponse<UploadedMediaData, void>> uploadImage({
+    required File file,
     List<String>? additionalOwners,
   }) async {
     final response = await super.postMultipart(
@@ -82,7 +82,7 @@ class _MediaService extends BaseUploadService implements MediaService {
       files: [
         MultipartFile.fromBytes(
           'media',
-          imageFile.readAsBytesSync(),
+          file.readAsBytesSync(),
         ),
       ],
       queryParameters: {
