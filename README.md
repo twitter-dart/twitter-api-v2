@@ -73,8 +73,10 @@
       - [1.3.4.4. List Manage](#1344-list-manage)
       - [1.3.4.5. Follows](#1345-follows)
       - [1.3.4.6. Members](#1346-members)
-    - [1.3.5. Compliance Service](#135-compliance-service)
-      - [1.3.5.1. Batch Compliance](#1351-batch-compliance)
+    - [1.3.5. Media Service](#135-media-service)
+      - [1.3.5.1. Upload Image](#1351-upload-image)
+    - [1.3.6. Compliance Service](#136-compliance-service)
+      - [1.3.6.1. Batch Compliance](#1361-batch-compliance)
   - [1.4. Tips 🏄](#14-tips-)
     - [1.4.1. Method Names](#141-method-names)
     - [1.4.2. Generate App-Only Bearer Token](#142-generate-app-only-bearer-token)
@@ -444,9 +446,20 @@ Future<void> main() async {
 | [GET /2/lists/:id/members](https://developer.twitter.com/en/docs/twitter-api/lists/list-members/api-reference/get-lists-id-members)                        | [lookupMembers](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/lookupMembers.html)         |
 | [GET /2/users/:id/list_memberships](https://developer.twitter.com/en/docs/twitter-api/lists/list-members/api-reference/get-lists-id-members)               | [lookupMemberships](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/lookupMemberships.html) |
 
-### 1.3.5. Compliance Service
+### 1.3.5. Media Service
 
-#### 1.3.5.1. Batch Compliance
+> **Note**</br>
+> Twitter API v1.1 endpoint is used because Twitter Official does not yet release the Media endpoint for Twitter API v2.0. Therefore, this service may be changed in the future.
+
+#### 1.3.5.1. Upload Image
+
+| Endpoint                                                                                                                               | Method Name                                                                                                     |
+| -------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| [POST /1.1/media/upload.json](https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/post-media-upload) | [uploadImage](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/MediaService/uploadImage.html) |
+
+### 1.3.6. Compliance Service
+
+#### 1.3.6.1. Batch Compliance
 
 | Endpoint                                                                                                                                         | Method Name                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
@@ -469,6 +482,7 @@ Future<void> main() async {
 | **create**  | This prefix is attached to the endpoint performing the create state such as `Tweet` and `Follow`.  |
 | **destroy** | This prefix is attached to the endpoint performing the destroy state such as `Tweet` and `Follow`. |
 | **update**  | This prefix is attached to the endpoint performing the update state.                               |
+| **upload**  | This prefix is attached to the endpoint performing the media uploading.                            |
 
 ### 1.4.2. Generate App-Only Bearer Token
 
