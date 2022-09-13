@@ -1,5 +1,11 @@
 # Release Note
 
+## v3.2.2
+
+- Exposed objects below.
+  - `MediaService`
+  - `UploadedMediaData`
+
 ## v3.2.1
 
 - Renamed from `MediaService.uploadMedia` to `MediaService.uploadImage`. Also, renamed the parameter from `imageFile` to `file`. ([#427](https://github.com/twitter-dart/twitter-api-v2/issues/427))
