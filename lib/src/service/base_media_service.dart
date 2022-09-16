@@ -9,7 +9,7 @@ import 'package:twitter_api_core/twitter_api_core.dart' as core;
 // Project imports:
 import 'base_service.dart';
 
-abstract class _UploadService {
+abstract class _MediaService {
   Future<http.Response> postMultipart(
     final core.UserContext userContext,
     final String unencodedPath, {
@@ -18,9 +18,9 @@ abstract class _UploadService {
   });
 }
 
-abstract class BaseUploadService extends BaseService implements _UploadService {
-  /// Returns the new instance of [BaseUploadService].
-  BaseUploadService({required super.context})
+abstract class BaseMediaService extends BaseService implements _MediaService {
+  /// Returns the new instance of [BaseMediaService].
+  BaseMediaService({required super.context})
       : _helper = core.ServiceHelper(
           authority: 'upload.twitter.com',
           context: context,
