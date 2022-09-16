@@ -1,5 +1,9 @@
 # Release Note
 
+## v3.2.3
+
+- Refactored the internal process for `MediaService`.
+
 ## v3.2.2
 
 - Exposed objects below.

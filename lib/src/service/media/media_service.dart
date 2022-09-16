@@ -11,7 +11,7 @@ import 'package:http/http.dart';
 import 'package:twitter_api_core/twitter_api_core.dart' as core;
 
 // Project imports:
-import '../base_upload_service.dart';
+import '../base_media_service.dart';
 import '../twitter_response.dart';
 import 'uploaded_media_data.dart';
 
@@ -67,7 +67,7 @@ abstract class MediaService {
   });
 }
 
-class _MediaService extends BaseUploadService implements MediaService {
+class _MediaService extends BaseMediaService implements MediaService {
   /// Returns the new instance of [_MediaService].
   _MediaService({required super.context});
 
