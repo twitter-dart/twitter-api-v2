@@ -4,11 +4,20 @@
 
 // Project imports:
 import 'common/includes.dart';
+import 'common/rate_limit.dart';
 
 /// The class represents the response from Twitter API v2.
 class TwitterResponse<D, M> {
   /// Returns the new instance of [TwitterResponse].
-  const TwitterResponse({required this.data, this.includes, this.meta});
+  const TwitterResponse({
+    required this.rateLimit,
+    required this.data,
+    this.includes,
+    this.meta,
+  });
+
+  /// The rate limit
+  final RateLimit rateLimit;
 
   /// The data field
   final D data;
@@ -40,6 +49,15 @@ class TwitterResponse<D, M> {
       };
 
   @override
-  String toString() =>
-      'TwitterResponse(data: $data, includes: $includes, meta: $meta)';
+  String toString() {
+    final StringBuffer buffer = StringBuffer();
+    buffer.write('TwitterResponse(');
+    buffer.write('rateLimit: $rateLimit, ');
+    buffer.write('data: $data, ');
+    buffer.write('includes: $includes, ');
+    buffer.write('meta: $meta');
+    buffer.write(')');
+
+    return buffer.toString();
+  }
 }

@@ -174,7 +174,7 @@ Future<void> main() async {
 
     // উচ্চ ক্ষমতা সম্পন্ন ভলিউম স্ট্রীম এন্ডপয়েন্ট পাওয়া যায়।
     final volumeStream = await twitter.tweetsService.connectVolumeStream();
-    await for (final response in volumeStream.handleError(print)) {
+    await for (final response in volumeStream.stream.handleError(print)) {
       print(response);
     }
 
@@ -188,7 +188,7 @@ Future<void> main() async {
     );
 
     final filteredStream = await twitter.tweetsService.connectFilteredStream();
-    await for (final response in filteredStream.handleError(print)) {
+    await for (final response in filteredStream.stream.handleError(print)) {
       print(response.data);
       print(response.matchingRules);
     }

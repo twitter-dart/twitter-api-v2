@@ -15,6 +15,7 @@ import 'package:twitter_api_v2/src/service/spaces/spaces_service.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_data.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweets_service.dart';
 import 'package:twitter_api_v2/src/service/twitter_response.dart';
+import 'package:twitter_api_v2/src/service/twitter_stream_response.dart';
 import 'package:twitter_api_v2/src/service/users/users_service.dart';
 import 'package:twitter_api_v2/src/twitter_api.dart';
 
@@ -81,7 +82,8 @@ void main() {
 
       //! Stream does not raise an exception when retrieving.
       expect(response, isNotNull);
-      expect(response, isA<Stream<TwitterResponse<TweetData, void>>>());
+      expect(response,
+          isA<TwitterStreamResponse<TwitterResponse<TweetData, void>>>());
     });
 
     test('POST', () {

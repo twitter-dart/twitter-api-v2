@@ -27,6 +27,7 @@ import 'package:twitter_api_v2/src/service/tweets/tweet_poll_param.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_reply_param.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweets_service.dart';
 import 'package:twitter_api_v2/src/service/twitter_response.dart';
+import 'package:twitter_api_v2/src/service/twitter_stream_response.dart';
 import 'package:twitter_api_v2/src/service/users/user_data.dart';
 import 'package:twitter_api_v2/src/service/users/user_meta.dart';
 import '../../../mocks/client_context_stubs.dart' as context;
@@ -2320,9 +2321,10 @@ void main() {
         backfillMinutes: 5,
       );
 
-      final data = await response.toList();
+      final data = await response.stream.toList();
 
-      expect(response, isA<Stream<TwitterResponse<TweetData, void>>>());
+      expect(response,
+          isA<TwitterStreamResponse<TwitterResponse<TweetData, void>>>());
       expect(data, isA<List<TwitterResponse<TweetData, void>>>());
       expect(data.length, 70);
     });
@@ -2343,7 +2345,9 @@ void main() {
       final data = <TwitterResponse<TweetData, void>>[];
       final errors = <dynamic>[];
 
-      await for (final event in response.handleError(errors.add)) {
+      final stream = response.stream;
+
+      await for (final event in stream.handleError(errors.add)) {
         data.add(event);
       }
 
@@ -2366,9 +2370,9 @@ void main() {
       backfillMinutes: 5,
     );
 
-    final data = await response.toList();
+    final data = await response.stream.toList();
 
-    expect(response, isA<Stream<FilteredStreamResponse>>());
+    expect(response, isA<TwitterStreamResponse<FilteredStreamResponse>>());
     expect(data.first, isA<FilteredStreamResponse>());
     expect(data.first.data, isA<TweetData>());
     expect(data.first.matchingRules, isA<List<MatchingRule>>());

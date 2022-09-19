@@ -10,6 +10,7 @@ import 'twitter_response.dart';
 class FilteredStreamResponse extends TwitterResponse<TweetData, void> {
   /// Returns the new instance of [FilteredStreamResponse].
   const FilteredStreamResponse({
+    required super.rateLimit,
     required super.data,
     super.includes,
     required this.matchingRules,
@@ -19,7 +20,16 @@ class FilteredStreamResponse extends TwitterResponse<TweetData, void> {
   final List<MatchingRule> matchingRules;
 
   @override
-  String toString() =>
-      'FilteredStreamResponse(data: $data, includes: $includes, meta: null, '
-      'matchingRules: $matchingRules)';
+  String toString() {
+    final StringBuffer buffer = StringBuffer();
+    buffer.write('FilteredStreamResponse(');
+    buffer.write('rateLimit: $rateLimit, ');
+    buffer.write('data: $data, ');
+    buffer.write('includes: $includes, ');
+    buffer.write('meta: null, ');
+    buffer.write('matchingRules: $matchingRules');
+    buffer.write(')');
+
+    return buffer.toString();
+  }
 }

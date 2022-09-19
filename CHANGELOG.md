@@ -1,5 +1,59 @@
 # Release Note
 
+## v3.3.0
+
+### New Feature
+
+- Supported the feature for getting the rate limit of each endpoints from response. Now you can get `RateLimit` object from response and it has `limitCount`, `remainingCount` and `resetAt` fields. ([#440](https://github.com/twitter-dart/twitter-api-v2/issues/440))
+
+### Destructive Change
+
+- It was necessary to modify the response structure for endpoints that use `Stream` to include a `RateLimit` object in each endpoint response. The modified methods are following.
+  - `connectVolumeStream`
+  - `connectFilteredStream`
+
+And now the responses from the above 2 methods can be used as follows:
+
+```dart
+import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
+
+Future<void> main() async {
+  final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
+
+  try {
+    final response = await twitter.tweetsService.connectVolumeStream();
+    print(response.rateLimit);
+
+    final stream = response.stream;
+    await for (final response in stream.handleError(print)) {
+      print(response);
+    }
+  } on v2.TwitterException catch (e) {
+    print(e);
+  }
+}
+```
+
+```dart
+import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
+
+Future<void> main() async {
+  final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
+
+  try {
+    final response = await twitter.tweetsService.connectFilteredStream();
+    print(response.rateLimit);
+
+    final stream = response.stream;
+    await for (final response in stream.handleError(print)) {
+      print(response);
+    }
+  } on v2.TwitterException catch (e) {
+    print(e);
+  }
+}
+```
+
 ## v3.2.3
 
 - Refactored the internal process for `MediaService`.

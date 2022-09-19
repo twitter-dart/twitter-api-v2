@@ -8,12 +8,14 @@ import 'package:twitter_api_core/twitter_api_core.dart' as core;
 // Project imports:
 import '../base_service.dart';
 import '../common/includes.dart';
+import '../common/rate_limit.dart';
 import '../filtered_stream_response.dart';
 import '../media/media_field.dart';
 import '../places/place_field.dart';
 import '../polls/poll_field.dart';
 import '../response_field.dart';
 import '../twitter_response.dart';
+import '../twitter_stream_response.dart';
 import '../users/user_data.dart';
 import '../users/user_expansion.dart';
 import '../users/user_field.dart';
@@ -2239,7 +2241,8 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/volume-streams/api-reference/get-tweets-sample-stream
-  Future<Stream<TwitterResponse<TweetData, void>>> connectVolumeStream({
+  Future<TwitterStreamResponse<TwitterResponse<TweetData, void>>>
+      connectVolumeStream({
     int? backfillMinutes,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
@@ -2356,7 +2359,7 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/api-reference/get-tweets-search-stream
-  Future<Stream<FilteredStreamResponse>> connectFilteredStream({
+  Future<TwitterStreamResponse<FilteredStreamResponse>> connectFilteredStream({
     int? backfillMinutes,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
@@ -3083,7 +3086,8 @@ class _TweetsService extends BaseService implements TweetsService {
       );
 
   @override
-  Future<Stream<TwitterResponse<TweetData, void>>> connectVolumeStream({
+  Future<TwitterStreamResponse<TwitterResponse<TweetData, void>>>
+      connectVolumeStream({
     int? backfillMinutes,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
@@ -3106,18 +3110,24 @@ class _TweetsService extends BaseService implements TweetsService {
       },
     );
 
-    return stream.map(
-      (event) => TwitterResponse(
-        data: TweetData.fromJson(event[ResponseField.data.value]),
-        includes: event.containsKey(ResponseField.includes.value)
-            ? Includes.fromJson(event[ResponseField.includes.value])
-            : null,
+    final headers = super.headerConverter.convert(stream.headers);
+
+    return TwitterStreamResponse(
+      rateLimit: RateLimit.fromJson(headers),
+      stream: stream.body.map(
+        (event) => TwitterResponse(
+          rateLimit: RateLimit.fromJson(headers),
+          data: TweetData.fromJson(event[ResponseField.data.value]),
+          includes: event.containsKey(ResponseField.includes.value)
+              ? Includes.fromJson(event[ResponseField.includes.value])
+              : null,
+        ),
       ),
     );
   }
 
   @override
-  Future<Stream<FilteredStreamResponse>> connectFilteredStream({
+  Future<TwitterStreamResponse<FilteredStreamResponse>> connectFilteredStream({
     int? backfillMinutes,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
@@ -3140,15 +3150,21 @@ class _TweetsService extends BaseService implements TweetsService {
       },
     );
 
-    return stream.map(
-      (event) => FilteredStreamResponse(
-        data: TweetData.fromJson(event[ResponseField.data.value]),
-        includes: event.containsKey(ResponseField.includes.value)
-            ? Includes.fromJson(event[ResponseField.includes.value])
-            : null,
-        matchingRules: (event[ResponseField.matchingRules.value] as List)
-            .map((json) => MatchingRule.fromJson(json))
-            .toList(),
+    final headers = super.headerConverter.convert(stream.headers);
+
+    return TwitterStreamResponse(
+      rateLimit: RateLimit.fromJson(headers),
+      stream: stream.body.map(
+        (event) => FilteredStreamResponse(
+          rateLimit: RateLimit.fromJson(headers),
+          data: TweetData.fromJson(event[ResponseField.data.value]),
+          includes: event.containsKey(ResponseField.includes.value)
+              ? Includes.fromJson(event[ResponseField.includes.value])
+              : null,
+          matchingRules: (event[ResponseField.matchingRules.value] as List)
+              .map((json) => MatchingRule.fromJson(json))
+              .toList(),
+        ),
       ),
     );
   }

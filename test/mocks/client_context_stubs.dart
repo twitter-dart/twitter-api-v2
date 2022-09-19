@@ -53,7 +53,10 @@ MockClientContext buildPostStub(
     (_) async => http.Response(
       await File(resourcePath).readAsString(),
       200,
-      headers: {'content-type': 'application/json; charset=utf-8'},
+      headers: {
+        'content-type': 'application/json; charset=utf-8',
+        'x-rate-limit-limit': '150'
+      },
     ),
   );
 
