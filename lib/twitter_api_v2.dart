@@ -11,6 +11,7 @@ export 'package:twitter_api_core/src/exception/unauthorized_exception.dart';
 export 'package:twitter_api_core/src/util/oauth_utils.dart';
 export 'package:twitter_api_v2/src/service/common/includes.dart';
 export 'package:twitter_api_v2/src/service/common/mention.dart';
+export 'package:twitter_api_v2/src/service/common/rate_limit.dart';
 export 'package:twitter_api_v2/src/service/common/tag.dart';
 export 'package:twitter_api_v2/src/service/common/url.dart';
 export 'package:twitter_api_v2/src/service/compliance/compliance_data.dart';
