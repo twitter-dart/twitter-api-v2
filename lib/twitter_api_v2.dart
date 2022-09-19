@@ -81,6 +81,7 @@ export 'package:twitter_api_v2/src/service/tweets/tweet_type.dart';
 export 'package:twitter_api_v2/src/service/tweets/tweet_withheld.dart';
 export 'package:twitter_api_v2/src/service/tweets/tweets_service.dart';
 export 'package:twitter_api_v2/src/service/twitter_response.dart';
+export 'package:twitter_api_v2/src/service/twitter_stream_response.dart';
 export 'package:twitter_api_v2/src/service/users/user_data.dart';
 export 'package:twitter_api_v2/src/service/users/user_expansion.dart';
 export 'package:twitter_api_v2/src/service/users/user_field.dart';
