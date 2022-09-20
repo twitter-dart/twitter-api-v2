@@ -226,8 +226,8 @@ void main() {
         listId: '1111',
       );
 
-      expect(response, isA<bool>());
-      expect(response, isTrue);
+      expect(response, isA<TwitterResponse<bool, void>>());
+      expect(response.data, isTrue);
     });
 
     test('with invalid access token', () async {
@@ -277,8 +277,8 @@ void main() {
         listId: '1111',
       );
 
-      expect(response, isA<bool>());
-      expect(response, isFalse);
+      expect(response, isA<TwitterResponse<bool, void>>());
+      expect(response.data, isFalse);
     });
   });
 
@@ -296,8 +296,8 @@ void main() {
         listId: '1111',
       );
 
-      expect(response, isA<bool>());
-      expect(response, isTrue);
+      expect(response, isA<TwitterResponse<bool, void>>());
+      expect(response.data, isTrue);
     });
 
     test('with invalid access token', () async {
@@ -345,8 +345,8 @@ void main() {
         listId: '1111',
       );
 
-      expect(response, isA<bool>());
-      expect(response, isFalse);
+      expect(response, isA<TwitterResponse<bool, void>>());
+      expect(response.data, isFalse);
     });
   });
 
@@ -725,8 +725,8 @@ void main() {
 
       final response = await listsService.destroyList(listId: '1111');
 
-      expect(response, isA<bool>());
-      expect(response, isTrue);
+      expect(response, isA<TwitterResponse<bool, void>>());
+      expect(response.data, isTrue);
     });
 
     test('with invalid access token', () async {
@@ -765,8 +765,8 @@ void main() {
 
       final response = await listsService.destroyList(listId: '1111');
 
-      expect(response, isA<bool>());
-      expect(response, isFalse);
+      expect(response, isA<TwitterResponse<bool, void>>());
+      expect(response.data, isFalse);
     });
   });
 
@@ -785,8 +785,8 @@ void main() {
         description: 'test description',
       );
 
-      expect(response, isA<bool>());
-      expect(response, isTrue);
+      expect(response, isA<TwitterResponse<bool, void>>());
+      expect(response.data, isTrue);
     });
 
     test('with invalid access token', () async {
@@ -837,8 +837,8 @@ void main() {
         description: 'test description',
       );
 
-      expect(response, isA<bool>());
-      expect(response, isFalse);
+      expect(response, isA<TwitterResponse<bool, void>>());
+      expect(response.data, isFalse);
     });
   });
 
@@ -857,8 +857,8 @@ void main() {
         description: 'test description',
       );
 
-      expect(response, isA<bool>());
-      expect(response, isTrue);
+      expect(response, isA<TwitterResponse<bool, void>>());
+      expect(response.data, isTrue);
     });
 
     test('with invalid access token', () async {
@@ -909,8 +909,8 @@ void main() {
         description: 'test description',
       );
 
-      expect(response, isA<bool>());
-      expect(response, isFalse);
+      expect(response, isA<TwitterResponse<bool, void>>());
+      expect(response.data, isFalse);
     });
   });
 
@@ -929,8 +929,8 @@ void main() {
         listId: '2222',
       );
 
-      expect(response, isA<bool>());
-      expect(response, isTrue);
+      expect(response, isA<TwitterResponse<bool, void>>());
+      expect(response.data, isTrue);
     });
 
     test('with invalid access token', () async {
@@ -980,8 +980,8 @@ void main() {
         listId: '2222',
       );
 
-      expect(response, isA<bool>());
-      expect(response, isFalse);
+      expect(response, isA<TwitterResponse<bool, void>>());
+      expect(response.data, isFalse);
     });
   });
 
@@ -999,8 +999,8 @@ void main() {
         listId: '2222',
       );
 
-      expect(response, isA<bool>());
-      expect(response, isTrue);
+      expect(response, isA<TwitterResponse<bool, void>>());
+      expect(response.data, isTrue);
     });
 
     test('with invalid access token', () async {
@@ -1048,8 +1048,8 @@ void main() {
         listId: '2222',
       );
 
-      expect(response, isA<bool>());
-      expect(response, isFalse);
+      expect(response, isA<TwitterResponse<bool, void>>());
+      expect(response.data, isFalse);
     });
   });
 
@@ -1290,8 +1290,8 @@ void main() {
         userId: '1111',
       );
 
-      expect(response, isA<bool>());
-      expect(response, isTrue);
+      expect(response, isA<TwitterResponse<bool, void>>());
+      expect(response.data, isTrue);
     });
 
     test('with invalid access token', () async {
@@ -1341,8 +1341,8 @@ void main() {
         userId: '1111',
       );
 
-      expect(response, isA<bool>());
-      expect(response, isFalse);
+      expect(response, isA<TwitterResponse<bool, void>>());
+      expect(response.data, isFalse);
     });
   });
 
@@ -1360,8 +1360,8 @@ void main() {
         userId: '1111',
       );
 
-      expect(response, isA<bool>());
-      expect(response, isTrue);
+      expect(response, isA<TwitterResponse<bool, void>>());
+      expect(response.data, isTrue);
     });
 
     test('with invalid access token', () async {
@@ -1409,8 +1409,8 @@ void main() {
         userId: '1111',
       );
 
-      expect(response, isA<bool>());
-      expect(response, isFalse);
+      expect(response, isA<TwitterResponse<bool, void>>());
+      expect(response.data, isFalse);
     });
   });
 

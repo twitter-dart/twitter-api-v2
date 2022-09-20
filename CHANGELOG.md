@@ -1,6 +1,6 @@
 # Release Note
 
-## v3.3.0
+## v4.0.0
 
 ### New Feature
 
@@ -12,7 +12,9 @@
   - `connectVolumeStream`
   - `connectFilteredStream`
 
-And now the responses from the above 2 methods can be used as follows:
+- Also, methods that previously returned the result of processing as a `bool` have been modified to return a `TwitterResponse`. This is to have a `RateLimit` object as above. So, for example, the `createLike` method can also obtain a `RateLimit` object, and the `bool` value of the processing result can be obtained from the TwitterResponse's `data` field.
+
+And now the responses from the modified methods can be used as follows:
 
 ```dart
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
@@ -21,12 +23,12 @@ Future<void> main() async {
   final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
 
   try {
-    final response = await twitter.tweetsService.connectVolumeStream();
+    final response = await twitter.tweetsService.connectFilteredStream();
     print(response.rateLimit);
 
     final stream = response.stream;
-    await for (final response in stream.handleError(print)) {
-      print(response);
+    await for (final event in stream.handleError(print)) {
+      print(event);
     }
   } on v2.TwitterException catch (e) {
     print(e);
@@ -41,13 +43,16 @@ Future<void> main() async {
   final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
 
   try {
-    final response = await twitter.tweetsService.connectFilteredStream();
-    print(response.rateLimit);
+    final me = await twitter.usersService.lookupMe();
+    final tweets = await twitter.tweetsService.searchRecent(query: '#ElonMusk');
 
-    final stream = response.stream;
-    await for (final response in stream.handleError(print)) {
-      print(response);
-    }
+    final response = await twitter.tweetsService.createLike(
+      userId: me.data.id,
+      tweetId: tweets.data.first.id,
+    );
+
+    print(response.rateLimit);
+    print(response.data); // true or false
   } on v2.TwitterException catch (e) {
     print(e);
   }

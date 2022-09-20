@@ -56,7 +56,7 @@ abstract class _Service {
     M Function(Map<String, Object?> json)? metaBuilder,
   });
 
-  bool evaluateResponse(final http.Response response);
+  TwitterResponse<bool, void> evaluateResponse(final http.Response response);
 }
 
 abstract class BaseService implements _Service {
@@ -195,9 +195,15 @@ abstract class BaseService implements _Service {
   }
 
   @override
-  bool evaluateResponse(final http.Response response) => !core
-      .tryJsonDecode(response, response.body)
-      .containsKey(ResponseField.errors.value);
+  TwitterResponse<bool, void> evaluateResponse(final http.Response response) =>
+      TwitterResponse(
+        rateLimit: RateLimit.fromJson(
+          headerConverter.convert(response.headers),
+        ),
+        data: !core
+            .tryJsonDecode(response, response.body)
+            .containsKey(ResponseField.errors.value),
+      );
 
   Map<String, dynamic> _checkResponseBody(final http.Response response) {
     final jsonBody = core.tryJsonDecode(response, response.body);

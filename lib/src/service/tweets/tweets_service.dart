@@ -145,7 +145,7 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/manage-tweets/api-reference/delete-tweets-id
-  Future<bool> destroyTweet({required String tweetId});
+  Future<TwitterResponse<bool, void>> destroyTweet({required String tweetId});
 
   /// Causes the user ID identified in the path parameter to Like the target
   /// Tweet.
@@ -182,7 +182,8 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/likes/api-reference/post-users-id-likes
-  Future<bool> createLike({required String userId, required String tweetId});
+  Future<TwitterResponse<bool, void>> createLike(
+      {required String userId, required String tweetId});
 
   /// Allows a user or authenticated user ID to unlike a Tweet.
   ///
@@ -222,7 +223,8 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/likes/api-reference/delete-users-id-likes-tweet_id
-  Future<bool> destroyLike({required String userId, required String tweetId});
+  Future<TwitterResponse<bool, void>> destroyLike(
+      {required String userId, required String tweetId});
 
   /// Causes the user ID identified in the path parameter to Retweet the target
   /// Tweet.
@@ -260,7 +262,8 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/retweets/api-reference/post-users-id-retweets
-  Future<bool> createRetweet({required String userId, required String tweetId});
+  Future<TwitterResponse<bool, void>> createRetweet(
+      {required String userId, required String tweetId});
 
   /// Allows a user or authenticated user ID to remove the Retweet of a Tweet.
   ///
@@ -302,7 +305,7 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/retweets/api-reference/delete-users-id-retweets-tweet_id
-  Future<bool> destroyRetweet(
+  Future<TwitterResponse<bool, void>> destroyRetweet(
       {required String userId, required String tweetId});
 
   /// Allows you to get information about a Tweet’s liking users.
@@ -1446,7 +1449,7 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/bookmarks/api-reference/post-users-id-bookmarks
-  Future<bool> createBookmark(
+  Future<TwitterResponse<bool, void>> createBookmark(
       {required String userId, required String tweetId});
 
   /// Allows a user or authenticated user ID to remove a Bookmark of a Tweet.
@@ -1484,7 +1487,7 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/bookmarks/api-reference/delete-users-id-bookmarks-tweet_id
-  Future<bool> destroyBookmark(
+  Future<TwitterResponse<bool, void>> destroyBookmark(
       {required String userId, required String tweetId});
 
   /// Allows you to get information about a authenticated user’s 800 most recent
@@ -1615,7 +1618,8 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/hide-replies/api-reference/put-tweets-id-hidden
-  Future<bool> createHiddenReply({required String tweetId});
+  Future<TwitterResponse<bool, void>> createHiddenReply(
+      {required String tweetId});
 
   /// Unhides a reply to a Tweet.
   ///
@@ -1648,7 +1652,8 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/hide-replies/api-reference/put-tweets-id-hidden
-  Future<bool> destroyHiddenReply({required String tweetId});
+  Future<TwitterResponse<bool, void>> destroyHiddenReply(
+      {required String tweetId});
 
   /// Returns Tweets mentioning a single user specified by the requested user
   /// ID.
@@ -2461,7 +2466,7 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/api-reference/post-tweets-search-stream-rules
-  Future<bool> destroyFilteringRules({
+  Future<TwitterResponse<bool, void>> destroyFilteringRules({
     required List<String> ruleIds,
   });
 }
@@ -2517,7 +2522,9 @@ class _TweetsService extends BaseService implements TweetsService {
       );
 
   @override
-  Future<bool> destroyTweet({required String tweetId}) async =>
+  Future<TwitterResponse<bool, void>> destroyTweet({
+    required String tweetId,
+  }) async =>
       super.evaluateResponse(
         await super.delete(
           core.UserContext.oauth2OrOAuth1,
@@ -2526,7 +2533,7 @@ class _TweetsService extends BaseService implements TweetsService {
       );
 
   @override
-  Future<bool> createLike({
+  Future<TwitterResponse<bool, void>> createLike({
     required String userId,
     required String tweetId,
   }) async =>
@@ -2539,7 +2546,7 @@ class _TweetsService extends BaseService implements TweetsService {
       );
 
   @override
-  Future<bool> destroyLike({
+  Future<TwitterResponse<bool, void>> destroyLike({
     required String userId,
     required String tweetId,
   }) async =>
@@ -2551,7 +2558,7 @@ class _TweetsService extends BaseService implements TweetsService {
       );
 
   @override
-  Future<bool> createRetweet({
+  Future<TwitterResponse<bool, void>> createRetweet({
     required String userId,
     required String tweetId,
   }) async =>
@@ -2564,7 +2571,7 @@ class _TweetsService extends BaseService implements TweetsService {
       );
 
   @override
-  Future<bool> destroyRetweet({
+  Future<TwitterResponse<bool, void>> destroyRetweet({
     required String userId,
     required String tweetId,
   }) async =>
@@ -2893,7 +2900,7 @@ class _TweetsService extends BaseService implements TweetsService {
       );
 
   @override
-  Future<bool> createBookmark({
+  Future<TwitterResponse<bool, void>> createBookmark({
     required String userId,
     required String tweetId,
   }) async =>
@@ -2906,7 +2913,7 @@ class _TweetsService extends BaseService implements TweetsService {
       );
 
   @override
-  Future<bool> destroyBookmark({
+  Future<TwitterResponse<bool, void>> destroyBookmark({
     required String userId,
     required String tweetId,
   }) async =>
@@ -2945,7 +2952,8 @@ class _TweetsService extends BaseService implements TweetsService {
       );
 
   @override
-  Future<bool> createHiddenReply({required String tweetId}) async =>
+  Future<TwitterResponse<bool, void>> createHiddenReply(
+          {required String tweetId}) async =>
       super.evaluateResponse(
         await super.put(
           core.UserContext.oauth2OrOAuth1,
@@ -2955,7 +2963,8 @@ class _TweetsService extends BaseService implements TweetsService {
       );
 
   @override
-  Future<bool> destroyHiddenReply({required String tweetId}) async =>
+  Future<TwitterResponse<bool, void>> destroyHiddenReply(
+          {required String tweetId}) async =>
       super.evaluateResponse(
         await super.put(
           core.UserContext.oauth2OrOAuth1,
@@ -3208,7 +3217,7 @@ class _TweetsService extends BaseService implements TweetsService {
           );
 
   @override
-  Future<bool> destroyFilteringRules({
+  Future<TwitterResponse<bool, void>> destroyFilteringRules({
     required List<String> ruleIds,
   }) async =>
       super.evaluateResponse(
