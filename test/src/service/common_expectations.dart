@@ -24,6 +24,23 @@ void expectUnauthorizedException(Function fn) {
   );
 }
 
+void expectUnauthorizedExceptionForOAuth1(Function fn) {
+  expect(
+    () async => await fn.call(),
+    throwsA(
+      allOf(
+        isA<UnauthorizedException>(),
+        predicate(
+          (e) =>
+              e.toString() ==
+              'UnauthorizedException: Required tokens were not passed for an '
+                  'endpoint that requires OAuth 1.0a.',
+        ),
+      ),
+    ),
+  );
+}
+
 void expectRateLimitExceededException(Function fn) {
   expect(
     () async => fn.call(),
