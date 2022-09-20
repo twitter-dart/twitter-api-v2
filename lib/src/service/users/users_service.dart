@@ -61,7 +61,7 @@ abstract class UsersService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/users/follows/api-reference/post-users-source_user_id-following
-  Future<bool> createFollow(
+  Future<TwitterResponse<bool, void>> createFollow(
       {required String userId, required String targetUserId});
 
   /// Allows a user ID to unfollow another user.
@@ -101,7 +101,7 @@ abstract class UsersService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/users/follows/api-reference/delete-users-source_id-following
-  Future<bool> destroyFollow(
+  Future<TwitterResponse<bool, void>> destroyFollow(
       {required String userId, required String targetUserId});
 
   /// Returns a list of users who are followers of the specified user ID.
@@ -592,7 +592,7 @@ abstract class UsersService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/users/mutes/api-reference/post-users-user_id-muting
-  Future<bool> createMute(
+  Future<TwitterResponse<bool, void>> createMute(
       {required String userId, required String targetUserId});
 
   /// Allows an authenticated user ID to unmute the target user.
@@ -634,7 +634,7 @@ abstract class UsersService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/users/mutes/api-reference/delete-users-user_id-muting
-  Future<bool> destroyMute(
+  Future<TwitterResponse<bool, void>> destroyMute(
       {required String userId, required String targetUserId});
 
   /// Returns a list of users who are muted by the specified user ID.
@@ -748,7 +748,7 @@ abstract class UsersService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/users/blocks/api-reference/post-users-user_id-blocking
-  Future<bool> createBlock(
+  Future<TwitterResponse<bool, void>> createBlock(
       {required String userId, required String targetUserId});
 
   /// Allows a user or authenticated user ID to unblock another user.
@@ -789,7 +789,7 @@ abstract class UsersService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/users/blocks/api-reference/delete-users-user_id-blocking
-  Future<bool> destroyBlock(
+  Future<TwitterResponse<bool, void>> destroyBlock(
       {required String userId, required String targetUserId});
 
   /// Returns a list of users who are blocked by the specified user ID.
@@ -870,7 +870,7 @@ class _UsersService extends BaseService implements UsersService {
   _UsersService({required super.context});
 
   @override
-  Future<bool> createFollow({
+  Future<TwitterResponse<bool, void>> createFollow({
     required String userId,
     required String targetUserId,
   }) async =>
@@ -883,7 +883,7 @@ class _UsersService extends BaseService implements UsersService {
       );
 
   @override
-  Future<bool> destroyFollow({
+  Future<TwitterResponse<bool, void>> destroyFollow({
     required String userId,
     required String targetUserId,
   }) async =>
@@ -1045,7 +1045,7 @@ class _UsersService extends BaseService implements UsersService {
       );
 
   @override
-  Future<bool> createMute({
+  Future<TwitterResponse<bool, void>> createMute({
     required String userId,
     required String targetUserId,
   }) async =>
@@ -1058,7 +1058,7 @@ class _UsersService extends BaseService implements UsersService {
       );
 
   @override
-  Future<bool> destroyMute({
+  Future<TwitterResponse<bool, void>> destroyMute({
     required String userId,
     required String targetUserId,
   }) async =>
@@ -1095,7 +1095,7 @@ class _UsersService extends BaseService implements UsersService {
       );
 
   @override
-  Future<bool> createBlock({
+  Future<TwitterResponse<bool, void>> createBlock({
     required String userId,
     required String targetUserId,
   }) async =>
@@ -1108,7 +1108,7 @@ class _UsersService extends BaseService implements UsersService {
       );
 
   @override
-  Future<bool> destroyBlock({
+  Future<TwitterResponse<bool, void>> destroyBlock({
     required String userId,
     required String targetUserId,
   }) async =>

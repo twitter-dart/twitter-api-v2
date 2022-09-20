@@ -186,7 +186,7 @@ Future<void> main() async {
 
     // Ein hoch-performanter Volume Stream Endpunkt kann wie folgt verwendet werden:
     final volumeStream = await twitter.tweetsService.connectVolumeStream();
-    await for (final response in volumeStream.handleError(print)) {
+    await for (final response in volumeStream.stream.handleError(print)) {
       print(response);
     }
 
@@ -200,7 +200,7 @@ Future<void> main() async {
     );
 
     final filteredStream = await twitter.tweetsService.connectFilteredStream();
-    await for (final response in filteredStream.handleError(print)) {
+    await for (final response in filteredStream.stream.handleError(print)) {
       print(response.data);
       print(response.matchingRules);
     }

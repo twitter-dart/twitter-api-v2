@@ -3,12 +3,14 @@
 // modification, are permitted provided the conditions.
 
 // Package imports:
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:twitter_api_core/twitter_api_core.dart' as core;
 
 // Project imports:
 import 'common/includes.dart';
+import 'common/rate_limit.dart';
 import 'response_field.dart';
 import 'twitter_response.dart';
 
@@ -18,7 +20,7 @@ abstract class _Service {
     String unencodedPath,
   );
 
-  Future<Stream<Map<String, dynamic>>> getStream(
+  Future<core.StreamResponse> getStream(
     final core.UserContext userContext,
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
@@ -54,7 +56,7 @@ abstract class _Service {
     M Function(Map<String, Object?> json)? metaBuilder,
   });
 
-  bool evaluateResponse(final http.Response response);
+  TwitterResponse<bool, void> evaluateResponse(final http.Response response);
 }
 
 abstract class BaseService implements _Service {
@@ -66,6 +68,10 @@ abstract class BaseService implements _Service {
         );
 
   final core.ServiceHelper _helper;
+
+  @protected
+  final ResponseHeaderConverter headerConverter =
+      const ResponseHeaderConverter();
 
   @override
   Future<http.Response> get(
@@ -81,7 +87,7 @@ abstract class BaseService implements _Service {
       );
 
   @override
-  Future<Stream<Map<String, dynamic>>> getStream(
+  Future<core.StreamResponse> getStream(
     final core.UserContext userContext,
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
@@ -145,8 +151,14 @@ abstract class BaseService implements _Service {
     M Function(Map<String, Object?> json)? metaBuilder,
   }) {
     final jsonBody = _checkResponseBody(response);
+
     return TwitterResponse(
-      data: dataBuilder(jsonBody[ResponseField.data.value]),
+      rateLimit: RateLimit.fromJson(
+        headerConverter.convert(response.headers),
+      ),
+      data: dataBuilder(
+        jsonBody[ResponseField.data.value],
+      ),
       includes: jsonBody.containsKey(ResponseField.includes.value)
           ? Includes.fromJson(jsonBody[ResponseField.includes.value])
           : null,
@@ -164,7 +176,11 @@ abstract class BaseService implements _Service {
     M Function(Map<String, Object?> json)? metaBuilder,
   }) {
     final jsonBody = _checkResponseBody(response);
+
     return TwitterResponse(
+      rateLimit: RateLimit.fromJson(
+        headerConverter.convert(response.headers),
+      ),
       data: jsonBody[ResponseField.data.value]
           .map<D>((tweet) => dataBuilder(tweet))
           .toList(),
@@ -179,9 +195,15 @@ abstract class BaseService implements _Service {
   }
 
   @override
-  bool evaluateResponse(final http.Response response) => !core
-      .tryJsonDecode(response, response.body)
-      .containsKey(ResponseField.errors.value);
+  TwitterResponse<bool, void> evaluateResponse(final http.Response response) =>
+      TwitterResponse(
+        rateLimit: RateLimit.fromJson(
+          headerConverter.convert(response.headers),
+        ),
+        data: !core
+            .tryJsonDecode(response, response.body)
+            .containsKey(ResponseField.errors.value),
+      );
 
   Map<String, dynamic> _checkResponseBody(final http.Response response) {
     final jsonBody = core.tryJsonDecode(response, response.body);
@@ -262,5 +284,30 @@ abstract class BaseService implements _Service {
     }
 
     return response;
+  }
+}
+
+class ResponseHeaderConverter {
+  const ResponseHeaderConverter();
+
+  Map<String, dynamic> convert(final Map<String, String> input) => {
+        //! Although it rarely occurs, there is a case where the header does not
+        //! contain rate limiting information.
+        'x-rate-limit-limit': _getInt(input, 'x-rate-limit-limit'),
+        'x-rate-limit-remaining': _getInt(input, 'x-rate-limit-remaining'),
+        'x-rate-limit-reset': _getDateTimeString(input, 'x-rate-limit-reset'),
+      };
+
+  int _getInt(final Map<String, String> input, final String key) =>
+      input.containsKey(key) ? int.parse(input[key]!) : 0;
+
+  String _getDateTimeString(final Map<String, String> input, final String key) {
+    if (!input.containsKey(key)) {
+      return DateTime.fromMillisecondsSinceEpoch(0).toString();
+    }
+
+    return DateTime.fromMillisecondsSinceEpoch(
+      int.parse(input[key]!) * 1000,
+    ).toString();
   }
 }

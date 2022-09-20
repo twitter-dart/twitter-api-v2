@@ -7,12 +7,18 @@ import 'package:test/test.dart';
 
 // Project imports:
 import 'package:twitter_api_v2/src/service/common/includes.dart';
+import 'package:twitter_api_v2/src/service/common/rate_limit.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_data.dart';
 import 'package:twitter_api_v2/src/service/twitter_response.dart';
 
 void main() {
   test('.hasIncludes', () {
     final response = TwitterResponse<bool, bool>(
+      rateLimit: RateLimit(
+        limitCount: 0,
+        remainingCount: 0,
+        resetAt: DateTime.now(),
+      ),
       data: true,
       includes: Includes(),
       meta: false,
@@ -23,21 +29,42 @@ void main() {
   });
 
   test('.hasNotIncludes', () {
-    final response = TwitterResponse<bool, bool>(data: true, meta: null);
+    final response = TwitterResponse<bool, bool>(
+        rateLimit: RateLimit(
+          limitCount: 0,
+          remainingCount: 0,
+          resetAt: DateTime.now(),
+        ),
+        data: true,
+        meta: null);
 
     expect(response.hasNotIncludes, isTrue);
     expect(response.hasIncludes, isFalse);
   });
 
   test('.hasMeta', () {
-    final response = TwitterResponse<bool, bool>(data: true, meta: false);
+    final response = TwitterResponse<bool, bool>(
+        rateLimit: RateLimit(
+          limitCount: 0,
+          remainingCount: 0,
+          resetAt: DateTime.now(),
+        ),
+        data: true,
+        meta: false);
 
     expect(response.hasMeta, isTrue);
     expect(response.hasNotMeta, isFalse);
   });
 
   test('.hasNotMeta', () {
-    final response = TwitterResponse<bool, bool>(data: true, meta: null);
+    final response = TwitterResponse<bool, bool>(
+        rateLimit: RateLimit(
+          limitCount: 0,
+          remainingCount: 0,
+          resetAt: DateTime.now(),
+        ),
+        data: true,
+        meta: null);
 
     expect(response.hasNotMeta, isTrue);
     expect(response.hasMeta, isFalse);
@@ -46,6 +73,11 @@ void main() {
   group('.toJson', () {
     test('with multiple data', () {
       final response = TwitterResponse<TweetData, void>(
+        rateLimit: RateLimit(
+          limitCount: 0,
+          remainingCount: 0,
+          resetAt: DateTime.now(),
+        ),
         data: TweetData(id: 'test1', text: 'test2'),
         includes: Includes(
           tweets: [
@@ -137,6 +169,11 @@ void main() {
 
     test('with multiple data', () {
       final response = TwitterResponse<List<TweetData>, void>(
+        rateLimit: RateLimit(
+          limitCount: 0,
+          remainingCount: 0,
+          resetAt: DateTime.now(),
+        ),
         data: [
           TweetData(id: 'test1', text: 'test2'),
           TweetData(id: 'test3', text: 'test4')
@@ -198,7 +235,14 @@ void main() {
   });
 
   test('.toString', () {
+    final now = DateTime.now();
+
     final response = TwitterResponse<bool, bool>(
+      rateLimit: RateLimit(
+        limitCount: 0,
+        remainingCount: 0,
+        resetAt: now,
+      ),
       data: true,
       includes: Includes(),
       meta: false,
@@ -206,7 +250,9 @@ void main() {
 
     expect(
         response.toString(),
-        'TwitterResponse(data: true, '
+        'TwitterResponse('
+        'rateLimit: RateLimit(limitCount: 0, remainingCount: 0, '
+        'resetAt: $now), data: true, '
         'includes: Includes(tweets: null, users: null, '
         'media: null, places: null, polls: null, topics: null), '
         'meta: false)');

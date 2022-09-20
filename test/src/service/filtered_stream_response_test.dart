@@ -4,6 +4,7 @@
 
 // Package imports:
 import 'package:test/test.dart';
+import 'package:twitter_api_v2/src/service/common/rate_limit.dart';
 
 // Project imports:
 import 'package:twitter_api_v2/src/service/filtered_stream_response.dart';
@@ -12,7 +13,14 @@ import 'package:twitter_api_v2/src/service/tweets/tweet_data.dart';
 
 void main() {
   test('.toString', () {
+    final now = DateTime.now();
+
     final response = FilteredStreamResponse(
+      rateLimit: RateLimit(
+        limitCount: 0,
+        remainingCount: 0,
+        resetAt: now,
+      ),
       data: TweetData(id: '123', text: 'test'),
       matchingRules: [
         MatchingRule(id: '456', tag: 'test'),
@@ -21,7 +29,10 @@ void main() {
 
     expect(
         response.toString(),
-        'FilteredStreamResponse(data: TweetData(id: 123, text: test, '
+        'FilteredStreamResponse('
+        'rateLimit: RateLimit(limitCount: 0, remainingCount: 0, '
+        'resetAt: $now), '
+        'data: TweetData(id: 123, text: test, '
         'authorId: null, inReplyToUserId: null, conversationId: null, '
         'referencedTweets: null, contextAnnotations: null, entities: null, '
         'attachments: null, privateMetrics: null, organicMetrics: null, '
