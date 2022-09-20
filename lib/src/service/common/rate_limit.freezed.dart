@@ -20,10 +20,15 @@ RateLimit _$RateLimitFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$RateLimit {
+  /// The maximum number of calls allowed.
   @JsonKey(name: 'x-rate-limit-limit')
   int get limitCount => throw _privateConstructorUsedError;
+
+  /// The number of remaining calls allowed.
   @JsonKey(name: 'x-rate-limit-remaining')
   int get remainingCount => throw _privateConstructorUsedError;
+
+  /// The date time when the remaining number of calls will be reset.
   @JsonKey(name: 'x-rate-limit-reset')
   DateTime get resetAt => throw _privateConstructorUsedError;
 
@@ -121,21 +126,27 @@ class __$$_RateLimitCopyWithImpl<$Res> extends _$RateLimitCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_RateLimit implements _RateLimit {
+class _$_RateLimit extends _RateLimit {
   const _$_RateLimit(
       {@JsonKey(name: 'x-rate-limit-limit') required this.limitCount,
       @JsonKey(name: 'x-rate-limit-remaining') required this.remainingCount,
-      @JsonKey(name: 'x-rate-limit-reset') required this.resetAt});
+      @JsonKey(name: 'x-rate-limit-reset') required this.resetAt})
+      : super._();
 
   factory _$_RateLimit.fromJson(Map<String, dynamic> json) =>
       _$$_RateLimitFromJson(json);
 
+  /// The maximum number of calls allowed.
   @override
   @JsonKey(name: 'x-rate-limit-limit')
   final int limitCount;
+
+  /// The number of remaining calls allowed.
   @override
   @JsonKey(name: 'x-rate-limit-remaining')
   final int remainingCount;
+
+  /// The date time when the remaining number of calls will be reset.
   @override
   @JsonKey(name: 'x-rate-limit-reset')
   final DateTime resetAt;
@@ -178,7 +189,7 @@ class _$_RateLimit implements _RateLimit {
   }
 }
 
-abstract class _RateLimit implements RateLimit {
+abstract class _RateLimit extends RateLimit {
   const factory _RateLimit(
       {@JsonKey(name: 'x-rate-limit-limit')
           required final int limitCount,
@@ -186,17 +197,24 @@ abstract class _RateLimit implements RateLimit {
           required final int remainingCount,
       @JsonKey(name: 'x-rate-limit-reset')
           required final DateTime resetAt}) = _$_RateLimit;
+  const _RateLimit._() : super._();
 
   factory _RateLimit.fromJson(Map<String, dynamic> json) =
       _$_RateLimit.fromJson;
 
   @override
+
+  /// The maximum number of calls allowed.
   @JsonKey(name: 'x-rate-limit-limit')
   int get limitCount;
   @override
+
+  /// The number of remaining calls allowed.
   @JsonKey(name: 'x-rate-limit-remaining')
   int get remainingCount;
   @override
+
+  /// The date time when the remaining number of calls will be reset.
   @JsonKey(name: 'x-rate-limit-reset')
   DateTime get resetAt;
   @override

@@ -55,7 +55,31 @@ MockClientContext buildPostStub(
       200,
       headers: {
         'content-type': 'application/json; charset=utf-8',
-        'x-rate-limit-limit': '150'
+      },
+    ),
+  );
+
+  return mockClientContext;
+}
+
+MockClientContext buildPostMultipartStub(
+  final UserContext userContext,
+  final String unencodedPath,
+  final String resourcePath, {
+  Map<String, String> queryParameters = const {},
+}) {
+  final mockClientContext = MockClientContext();
+
+  when(mockClientContext.postMultipart(
+    userContext,
+    Uri.https('upload.twitter.com', unencodedPath, queryParameters),
+    files: anyNamed('files'),
+  )).thenAnswer(
+    (_) async => http.Response(
+      await File(resourcePath).readAsString(),
+      200,
+      headers: {
+        'content-type': 'application/json; charset=utf-8',
       },
     ),
   );
