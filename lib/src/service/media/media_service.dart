@@ -104,6 +104,7 @@ class _MediaService extends BaseMediaService implements MediaService {
           },
         }),
         response.statusCode,
+        headers: response.headers,
       ),
       dataBuilder: UploadedMediaData.fromJson,
     );
