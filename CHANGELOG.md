@@ -2,11 +2,11 @@
 
 ## v4.0.2
 
-- Fixed the process for response from the `uploadImage` method so that the rate limit is set correctly. [#447](https://github.com/twitter-dart/twitter-api-v2/issues/447))
+- Fixed the process for response from the `uploadImage` method so that the rate limit is set correctly. ([#447](https://github.com/twitter-dart/twitter-api-v2/issues/447))
 
 ## v4.0.1
 
-- The utility has been added to check if the rate has been exceeded or not. You can use these methods from `RateLimit` object. [#444](https://github.com/twitter-dart/twitter-api-v2/issues/444))
+- The utility has been added to check if the rate has been exceeded or not. You can use these methods from `RateLimit` object. ([#444](https://github.com/twitter-dart/twitter-api-v2/issues/444))
   - `isExceeded`
   - `isNotExceeded`
 
