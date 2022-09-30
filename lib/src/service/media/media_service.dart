@@ -65,11 +65,22 @@ abstract class MediaService {
     required File file,
     List<String>? additionalOwners,
   });
+
+  Future<TwitterResponse<UploadedMediaData, void>> uploadMedia({
+    required File file,
+    required String mediaType,
+    required String mediaCategory,
+    List<String>? additionalOwners,
+  });
 }
 
 class _MediaService extends BaseMediaService implements MediaService {
   /// Returns the new instance of [_MediaService].
   _MediaService({required super.context});
+
+  static const _byteCoefficient = 1024 * 1024;
+
+  static const _maxChunkSize = 500000;
 
   @override
   Future<TwitterResponse<UploadedMediaData, void>> uploadImage({
@@ -108,5 +119,197 @@ class _MediaService extends BaseMediaService implements MediaService {
       ),
       dataBuilder: UploadedMediaData.fromJson,
     );
+  }
+
+  @override
+  Future<TwitterResponse<UploadedMediaData, void>> uploadMedia({
+    required File file,
+    required String mediaType,
+    required String mediaCategory,
+    List<String>? additionalOwners,
+  }) async {
+    final mediaBytes = file.readAsBytesSync();
+
+    final initResponse = await _initUpload(
+      mediaBytes: mediaBytes,
+      mediaMimeType: _resolveMimeType(file),
+      additionalOwners: additionalOwners,
+    );
+
+    final initJson = core.tryJsonDecode(initResponse, initResponse.body);
+    final mediaId = initJson['media_id_string'];
+
+    final mediaChunks = splitMediaAsChunks(mediaBytes);
+
+    for (var index = 0; index < mediaChunks.length; index++) {
+      await _appendUploadMedia(
+        mediaId: mediaId,
+        media: mediaChunks[index],
+        segmentIndex: index,
+      );
+    }
+
+    final finalizedResponse = await _finalizeUpload(mediaId: mediaId);
+    final finalizedJson = core.tryJsonDecode(
+      finalizedResponse,
+      finalizedResponse.body,
+    );
+
+    final processingInfo = finalizedJson['processing_info'];
+
+    if (processingInfo['state'] == 'pending') {
+      await _waitForUploadCompletion(
+        mediaId: mediaId,
+        delaySeconds: processingInfo['check_after_secs'],
+      );
+    }
+
+    final json = core.tryJsonDecode(initResponse, initResponse.body);
+
+    return super.transformSingleDataResponse(
+      Response(
+        jsonEncode({
+          //! Convert to a data structure compliant with v2.0 specifications.
+          'data': <String, dynamic>{
+            'media_id_string': json['media_id_string'],
+            'expires_at': DateTime.now()
+                .add(Duration(seconds: json['expires_after_secs']))
+                .toIso8601String(),
+          },
+        }),
+        initResponse.statusCode,
+        headers: initResponse.headers,
+      ),
+      dataBuilder: UploadedMediaData.fromJson,
+    );
+  }
+
+  Future<Response> _initUpload({
+    required List<int> mediaBytes,
+    required String mediaMimeType,
+    List<String>? additionalOwners,
+  }) async =>
+      await super.post(
+        core.UserContext.oauth1Only,
+        '/1.1/media/upload.json',
+        queryParameters: {
+          'command': 'INIT',
+          'total_bytes': mediaBytes.length,
+          'media_type': mediaMimeType,
+          'media_category': _resolveMediaCategory(mediaMimeType),
+          'additional_owners': additionalOwners,
+        },
+      );
+
+  Future<Response> _appendUploadMedia({
+    required String mediaId,
+    required List<int> media,
+    required int segmentIndex,
+  }) async =>
+      await super.post(
+        core.UserContext.oauth1Only,
+        '/1.1/media/upload.json',
+        queryParameters: {
+          'command': 'APPEND',
+          'media_id': mediaId,
+          'media': media,
+          'segment_index': segmentIndex,
+        },
+      );
+
+  Future<Response> _finalizeUpload({
+    required String mediaId,
+  }) async =>
+      await super.post(
+        core.UserContext.oauth1Only,
+        '/1.1/media/upload.json',
+        queryParameters: {
+          'command': 'FINALIZE',
+          'media_id': mediaId,
+        },
+      );
+
+  Future<Response> _lookupUploadStatus({
+    required String mediaId,
+  }) async =>
+      await super.post(
+        core.UserContext.oauth1Only,
+        '/1.1/media/upload.json',
+        queryParameters: {
+          'command': 'STATUS',
+          'media_id': mediaId,
+        },
+      );
+
+  Future<Map<String, dynamic>> _waitForUploadCompletion({
+    required String mediaId,
+    required int delaySeconds,
+  }) async {
+    await Future<void>.delayed(Duration(seconds: delaySeconds));
+
+    final response = await _lookupUploadStatus(mediaId: mediaId);
+    final status = core.tryJsonDecode(response, response.body);
+
+    final processingInfo = status['processing_info'];
+    if (processingInfo!['state'] == 'failed') {
+      throw ArgumentError();
+    }
+
+    if (processingInfo!['state'] == 'in_progress') {
+      return _waitForUploadCompletion(
+        mediaId: mediaId,
+        delaySeconds: processingInfo['check_after_secs'],
+      );
+    }
+
+    return status;
+  }
+
+  List<List<int>> splitMediaAsChunks(final List<int> mediaBytes) {
+    final chunks = <List<int>>[];
+
+    Iterable<int> chunk;
+
+    do {
+      final remainingEntries = mediaBytes.sublist(
+        chunks.length * _maxChunkSize,
+      );
+
+      if (remainingEntries.isEmpty) {
+        break;
+      }
+
+      chunk = remainingEntries.take(_maxChunkSize);
+      chunks.add(List<int>.from(chunk));
+    } while (chunk.length == _maxChunkSize);
+
+    return chunks;
+  }
+
+  String _resolveMimeType(final File file) {
+    final mediaMimeType = core.lookupMimeType(file.path);
+
+    if (mediaMimeType == null) {
+      throw UnsupportedError('');
+    }
+
+    if (!mediaMimeType.startsWith('image') ||
+        !mediaMimeType.startsWith('video')) {
+      throw UnsupportedError('');
+    }
+
+    return mediaMimeType;
+  }
+
+  String _resolveMediaCategory(final String mediaMimeType) {
+    if (mediaMimeType.startsWith('image')) {
+      if (mediaMimeType.endsWith('gif')) {
+        return 'dm_gif';
+      }
+
+      return 'dm_image';
+    }
+
+    return 'dm_video';
   }
 }

@@ -29,6 +29,22 @@ abstract class BaseMediaService extends BaseService implements _MediaService {
   final core.ServiceHelper _helper;
 
   @override
+  Future<http.Response> post(
+    final core.UserContext userContext,
+    final String unencodedPath, {
+    Map<String, dynamic> queryParameters = const {},
+    dynamic body = const {},
+    http.Response Function(http.Response response)? validate,
+  }) async =>
+      await _helper.post(
+        userContext,
+        unencodedPath,
+        queryParameters: queryParameters,
+        body: body,
+        validate: checkResponse,
+      );
+
+  @override
   Future<http.Response> postMultipart(
     final core.UserContext userContext,
     final String unencodedPath, {

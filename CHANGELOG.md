@@ -1,5 +1,9 @@
 # Release Note
 
+## v4.1.0
+
+- Supported the upload media (GIF, Video...). ([#434](https://github.com/twitter-dart/twitter-api-v2/issues/434))
+
 ## v4.0.2
 
 - Fixed the process for response from the `uploadImage` method so that the rate limit is set correctly. ([#447](https://github.com/twitter-dart/twitter-api-v2/issues/447))
