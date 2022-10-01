@@ -68,8 +68,6 @@ abstract class MediaService {
 
   Future<TwitterResponse<UploadedMediaData, void>> uploadMedia({
     required File file,
-    required String mediaType,
-    required String mediaCategory,
     List<String>? additionalOwners,
   });
 }
@@ -77,8 +75,6 @@ abstract class MediaService {
 class _MediaService extends BaseMediaService implements MediaService {
   /// Returns the new instance of [_MediaService].
   _MediaService({required super.context});
-
-  static const _byteCoefficient = 1024 * 1024;
 
   static const _maxChunkSize = 500000;
 
@@ -124,8 +120,6 @@ class _MediaService extends BaseMediaService implements MediaService {
   @override
   Future<TwitterResponse<UploadedMediaData, void>> uploadMedia({
     required File file,
-    required String mediaType,
-    required String mediaCategory,
     List<String>? additionalOwners,
   }) async {
     final mediaBytes = file.readAsBytesSync();
@@ -142,6 +136,7 @@ class _MediaService extends BaseMediaService implements MediaService {
     final mediaChunks = splitMediaAsChunks(mediaBytes);
 
     for (var index = 0; index < mediaChunks.length; index++) {
+      print(index);
       await _appendUploadMedia(
         mediaId: mediaId,
         media: mediaChunks[index],
@@ -149,31 +144,20 @@ class _MediaService extends BaseMediaService implements MediaService {
       );
     }
 
-    final finalizedResponse = await _finalizeUpload(mediaId: mediaId);
-    final finalizedJson = core.tryJsonDecode(
-      finalizedResponse,
-      finalizedResponse.body,
+    final uploadedJson = await _pollingUploadStatus(
+      await _finalizeUpload(mediaId: mediaId),
     );
 
-    final processingInfo = finalizedJson['processing_info'];
-
-    if (processingInfo['state'] == 'pending') {
-      await _waitForUploadCompletion(
-        mediaId: mediaId,
-        delaySeconds: processingInfo['check_after_secs'],
-      );
-    }
-
-    final json = core.tryJsonDecode(initResponse, initResponse.body);
+    print(uploadedJson);
 
     return super.transformSingleDataResponse(
       Response(
         jsonEncode({
           //! Convert to a data structure compliant with v2.0 specifications.
           'data': <String, dynamic>{
-            'media_id_string': json['media_id_string'],
+            'media_id_string': uploadedJson['media_id_string'],
             'expires_at': DateTime.now()
-                .add(Duration(seconds: json['expires_after_secs']))
+                .add(Duration(seconds: uploadedJson['expires_after_secs']))
                 .toIso8601String(),
           },
         }),
@@ -206,15 +190,19 @@ class _MediaService extends BaseMediaService implements MediaService {
     required List<int> media,
     required int segmentIndex,
   }) async =>
-      await super.post(
+      await super.postMultipart(
         core.UserContext.oauth1Only,
         '/1.1/media/upload.json',
+        files: [
+          MultipartFile.fromBytes('media', media),
+        ],
         queryParameters: {
           'command': 'APPEND',
           'media_id': mediaId,
-          'media': media,
           'segment_index': segmentIndex,
         },
+        //! No BODY is returned from this endpoint.
+        checkJsonFormat: false,
       );
 
   Future<Response> _finalizeUpload({
@@ -241,7 +229,39 @@ class _MediaService extends BaseMediaService implements MediaService {
         },
       );
 
-  Future<Map<String, dynamic>> _waitForUploadCompletion({
+  Future<Map<String, dynamic>> _pollingUploadStatus(
+    final Response finalizedResponse,
+  ) async {
+    final finalizedJson = core.tryJsonDecode(
+      finalizedResponse,
+      finalizedResponse.body,
+    );
+
+    final processingInfo = finalizedJson['processing_info'];
+
+    //! Field set only if polling is required.
+    if (processingInfo != null) {
+      if (processingInfo['state'] == 'pending') {
+        final uploadedResponse = await _waitForUploadCompletion(
+          mediaId: finalizedJson['media_id_string'],
+          delaySeconds: processingInfo['check_after_secs'],
+        );
+
+        return core.tryJsonDecode(
+          uploadedResponse,
+          uploadedResponse.body,
+        );
+      }
+    }
+
+    //! The upload is completed when finalized is called.
+    return core.tryJsonDecode(
+      finalizedResponse,
+      finalizedResponse.body,
+    );
+  }
+
+  Future<Response> _waitForUploadCompletion({
     required String mediaId,
     required int delaySeconds,
   }) async {
@@ -251,18 +271,17 @@ class _MediaService extends BaseMediaService implements MediaService {
     final status = core.tryJsonDecode(response, response.body);
 
     final processingInfo = status['processing_info'];
-    if (processingInfo!['state'] == 'failed') {
-      throw ArgumentError();
+
+    if (processingInfo != null) {
+      if (processingInfo!['state'] == 'in_progress') {
+        return _waitForUploadCompletion(
+          mediaId: mediaId,
+          delaySeconds: processingInfo['check_after_secs'],
+        );
+      }
     }
 
-    if (processingInfo!['state'] == 'in_progress') {
-      return _waitForUploadCompletion(
-        mediaId: mediaId,
-        delaySeconds: processingInfo['check_after_secs'],
-      );
-    }
-
-    return status;
+    return response;
   }
 
   List<List<int>> splitMediaAsChunks(final List<int> mediaBytes) {
@@ -293,7 +312,7 @@ class _MediaService extends BaseMediaService implements MediaService {
       throw UnsupportedError('');
     }
 
-    if (!mediaMimeType.startsWith('image') ||
+    if (!mediaMimeType.startsWith('image') &&
         !mediaMimeType.startsWith('video')) {
       throw UnsupportedError('');
     }
