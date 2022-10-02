@@ -28,7 +28,7 @@ void main() {
 
       final response = await mediaService.uploadImage(
         file: File.fromUri(
-          Uri.file('test/src/service/media/data/upload_image.json'),
+          Uri.file('test/src/service/media/data/Dash.png'),
         ),
       );
 
@@ -47,7 +47,61 @@ void main() {
       expectUnauthorizedExceptionForOAuth1(
         () async => await mediaService.uploadImage(
           file: File.fromUri(
-            Uri.file('test/src/service/media/data/upload_image.json'),
+            Uri.file('test/src/service/media/data/Dash.png'),
+          ),
+        ),
+      );
+    });
+
+    test('with no content jpg', () async {
+      final mediaService = MediaService(
+        context: ClientContext(
+          bearerToken: 'xxxx',
+          timeout: const Duration(seconds: 10),
+        ),
+      );
+
+      expect(
+        () async => await mediaService.uploadImage(
+          file: File.fromUri(
+            Uri.file('test/src/service/media/data/no_content.jpg'),
+          ),
+        ),
+        throwsA(
+          allOf(
+            isA<TwitterUploadException>(),
+            predicate(
+              (dynamic e) =>
+                  e.message == 'Cannot upload because the file size is 0.',
+            ),
+          ),
+        ),
+      );
+    });
+
+    test('with video content', () async {
+      final mediaService = MediaService(
+        context: ClientContext(
+          bearerToken: 'xxxx',
+          timeout: const Duration(seconds: 10),
+        ),
+      );
+
+      expect(
+        () async => await mediaService.uploadImage(
+          file: File.fromUri(
+            Uri.file('test/src/service/media/data/video.mp4'),
+          ),
+        ),
+        throwsA(
+          allOf(
+            isA<TwitterUploadException>(),
+            predicate(
+              (dynamic e) =>
+                  e.message ==
+                  'Only image uploads are allowed from this endpoint. '
+                      'Use "uploadMedia" if you need to upload videos.',
+            ),
           ),
         ),
       );

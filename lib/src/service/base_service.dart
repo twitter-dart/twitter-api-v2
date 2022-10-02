@@ -221,21 +221,24 @@ abstract class BaseService implements _Service {
   }
 
   http.Response checkResponse(
-    final http.Response response,
-  ) {
+    final http.Response response, {
+    bool checkJsonFormat = true,
+  }) {
     if (response.statusCode == 401) {
       throw core.UnauthorizedException(
         'The specified access token is invalid.',
       );
     }
 
-    final jsonBody = core.tryJsonDecode(response, response.body);
+    if (checkJsonFormat) {
+      final jsonBody = core.tryJsonDecode(response, response.body);
 
-    if (jsonBody.containsKey(ResponseField.errors.value)) {
-      final errors = jsonBody[ResponseField.errors.value];
-      for (final error in errors) {
-        if (error['code'] == 88) {
-          throw core.RateLimitExceededException(error['message'] ?? '');
+      if (jsonBody.containsKey(ResponseField.errors.value)) {
+        final errors = jsonBody[ResponseField.errors.value];
+        for (final error in errors) {
+          if (error['code'] == 88) {
+            throw core.RateLimitExceededException(error['message'] ?? '');
+          }
         }
       }
     }

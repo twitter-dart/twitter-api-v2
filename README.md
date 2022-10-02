@@ -74,7 +74,7 @@
       - [1.3.4.5. Follows](#1345-follows)
       - [1.3.4.6. Members](#1346-members)
     - [1.3.5. Media Service](#135-media-service)
-      - [1.3.5.1. Upload Image](#1351-upload-image)
+      - [1.3.5.1. Upload Media](#1351-upload-media)
     - [1.3.6. Compliance Service](#136-compliance-service)
       - [1.3.6.1. Batch Compliance](#1361-batch-compliance)
   - [1.4. Tips 🏄](#14-tips-)
@@ -118,7 +118,8 @@ We also provide [twitter_oauth2_pkce](https://pub.dev/packages/twitter_oauth2_pk
 ✅ Supports **high-performance streaming** endpoints. </br>
 ✅ Supports **[expansions](https://developer.twitter.com/en/docs/twitter-api/expansions)** and **[fields](https://developer.twitter.com/en/docs/twitter-api/fields)** features. </br>
 ✅ **Well documented** and **well tested**.</br>
-✅ Supports the powerful **automatic retry**.
+✅ Supports the powerful **automatic retry**.</br>
+✅ Supports for **large media uploads (image, gif, video)**.
 
 ## 1.2. Getting Started ⚡
 
@@ -146,6 +147,7 @@ import 'package:twitter_api_v2/twitter_api_v2';
 
 ```dart
 import 'dart:async';
+import 'dart:io';
 
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
 
@@ -214,6 +216,19 @@ Future<void> main() async {
       tweetId: tweets.data.first.id,
     );
 
+    // You can upload media such as image, gif and video.
+    final uploadedResponse = await twitter.mediaService.uploadMedia(
+      file: File.fromUri(Uri.file('FILE_PATH')),
+    );
+
+    // You can easily post a tweet with the uploaded media.
+    await twitter.tweetsService.createTweet(
+      text: 'Tweet with uploaded media',
+      media: v2.TweetMediaParam(
+        mediaIds: [uploadedResponse.data.mediaId],
+      ),
+    );
+
     // High-performance Volume Stream endpoint is available.
     final volumeStream = await twitter.tweetsService.connectVolumeStream();
     await for (final response in volumeStream.stream.handleError(print)) {
@@ -239,6 +254,8 @@ Future<void> main() async {
   } on v2.UnauthorizedException catch (e) {
     print(e);
   } on v2.RateLimitExceededException catch (e) {
+    print(e);
+  } on v2.TwitterUploadException catch (e) {
     print(e);
   } on v2.TwitterException catch (e) {
     print(e.response.headers);
@@ -451,11 +468,12 @@ Future<void> main() async {
 > **Note**</br>
 > Twitter API v1.1 endpoint is used because Twitter Official does not yet release the Media endpoint for Twitter API v2.0. Therefore, this service may be changed in the future.
 
-#### 1.3.5.1. Upload Image
+#### 1.3.5.1. Upload Media
 
-| Endpoint                                                                                                                               | Method Name                                                                                                     |
-| -------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| [POST /1.1/media/upload.json](https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/post-media-upload) | [uploadImage](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/MediaService/uploadImage.html) |
+| Endpoint                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | Method Name                                                                                                     |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| [POST /1.1/media/upload.json](https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/post-media-upload)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | [uploadImage](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/MediaService/uploadImage.html) |
+| [POST /1.1/media/upload.json (INIT)](https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/post-media-upload-init)</br>[POST /1.1/media/upload.json (APPEND)](https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/post-media-upload-append)</br>[POST /1.1/media/upload.json (FINALIZE)](https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/post-media-upload-finalize)</br>[POST /1.1/media/upload.json (STATUS)](https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/get-media-upload-status)</br> | [uploadMedia](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/MediaService/uploadMedia.html) |
 
 ### 1.3.6. Compliance Service
 
@@ -769,11 +787,12 @@ However, as mentioned earlier in **twitter_api_v2**, for example if you use the 
 
 **twitter_api_v2** provides a convenient exception object for easy handling of exceptional responses and errors returned from [Twitter API v2.0](https://developer.twitter.com/en/docs/twitter-api/data-dictionary/introduction).
 
-| Exception                                                                                                                              | Description                                                                                                            |
-| -------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| [TwitterException](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TwitterException-class.html)                     | The most basic exception object. For example, it can be used to search for tweets that have already been deleted, etc. |
-| [UnauthorizedException](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UnauthorizedException-class.html)           | Thrown when authentication fails with the specified access token.                                                      |
-| [RateLimitExceededException](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/RateLimitExceededException-class.html) | Thrown when the request rate limit is exceeded.                                                                        |
+| Exception                                                                                                                                  | Description                                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| [TwitterException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/TwitterException-class.html)                     | The most basic exception object. For example, it can be used to search for tweets that have already been deleted, etc. |
+| [TwitterUploadException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/TwitterUploadException-class.html)         | Thrown when an exception occurs during media upload.                                                                   |
+| [UnauthorizedException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/UnauthorizedException-class.html)           | Thrown when authentication fails with the specified access token.                                                      |
+| [RateLimitExceededException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/RateLimitExceededException-class.html) | Thrown when the request rate limit is exceeded.                                                                        |
 
 ## 1.5. Contribution 🏆
 
