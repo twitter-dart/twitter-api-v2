@@ -3,6 +3,7 @@
 // modification, are permitted provided the conditions.
 
 import 'dart:async';
+import 'dart:io';
 
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
 
@@ -71,6 +72,19 @@ Future<void> main() async {
       tweetId: tweets.data.first.id,
     );
 
+    // You can upload media such as image, gif and video.
+    final uploadedResponse = await twitter.mediaService.uploadMedia(
+      file: File.fromUri(Uri.file('FILE_PATH')),
+    );
+
+    // You can easily post a tweet with the uploaded media.
+    await twitter.tweetsService.createTweet(
+      text: 'Tweet with uploaded media',
+      media: v2.TweetMediaParam(
+        mediaIds: [uploadedResponse.data.mediaId],
+      ),
+    );
+
     // High-performance Volume Stream endpoint is available.
     final volumeStream = await twitter.tweetsService.connectVolumeStream();
     await for (final response in volumeStream.stream.handleError(print)) {
@@ -96,6 +110,8 @@ Future<void> main() async {
   } on v2.UnauthorizedException catch (e) {
     print(e);
   } on v2.RateLimitExceededException catch (e) {
+    print(e);
+  } on v2.TwitterUploadException catch (e) {
     print(e);
   } on v2.TwitterException catch (e) {
     print(e.response.headers);

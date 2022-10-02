@@ -3,8 +3,8 @@
 // modification, are permitted provided the conditions.
 
 // Dart imports:
-import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 // Package imports:
 import 'package:http/http.dart';
@@ -13,6 +13,7 @@ import 'package:twitter_api_core/twitter_api_core.dart' as core;
 // Project imports:
 import '../base_media_service.dart';
 import '../twitter_response.dart';
+import 'media_category.dart';
 import 'uploaded_media_data.dart';
 
 abstract class MediaService {
@@ -22,11 +23,12 @@ abstract class MediaService {
 
   /// Use this endpoint to upload images to Twitter.
   ///
-  /// This endpoint returns a media id and media key. Twitter endpoints that
-  /// accept images.
+  /// This endpoint is suited for simple image uploads with small file sizes
+  /// and is faster than [uploadMedia]. However, this endpoint has restrictions
+  /// on upload size and format, so use [uploadMedia] when uploading large
+  /// files or videos.
   ///
-  /// For example, a media_id value can be used to create a Tweet with
-  /// an attached photo using the POST statuses/update endpoint.
+  /// Also, media with a file size of 0 cannot be uploaded.
   ///
   /// ## Caution
   ///
@@ -66,6 +68,43 @@ abstract class MediaService {
     List<String>? additionalOwners,
   });
 
+  /// The integrated endpoint for uploading images, GIFs, and videos to Twitter.
+  ///
+  /// This endpoint allows large files to be uploaded, divided into the
+  /// appropriate size and securely uploaded to Twitter. If the size of the file
+  /// to be uploaded is large, it may take some time for the upload to
+  /// complete, but this method internally polls for any waiting if it's
+  /// required, and the caller of this method does not need to be aware of the
+  /// status of the upload.
+  ///
+  /// ## Caution
+  ///
+  /// This method uses the v1.1 endpoint. Therefore, the arguments and returned
+  /// object of this method may change in the future when the v2.0 endpoint for
+  /// uploading images is released.
+  ///
+  /// ## Parameters
+  ///
+  /// - [file]: The raw binary media content (image, gif, video) being uploaded.
+  ///
+  /// - [additionalOwners]: A list of user IDs to set as additional owners
+  ///                       allowed to use the returned media id in Tweets or
+  ///                       Cards. Up to 100 additional owners may be specified.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://upload.twitter.com/1.1/media/upload.json
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 1.0a
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/post-media-upload-init
+  /// - https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/post-media-upload-append
+  /// - https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/post-media-upload-finalize
+  /// - https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/get-media-upload-status
   Future<TwitterResponse<UploadedMediaData, void>> uploadMedia({
     required File file,
     List<String>? additionalOwners,
@@ -76,14 +115,57 @@ class _MediaService extends BaseMediaService implements MediaService {
   /// Returns the new instance of [_MediaService].
   _MediaService({required super.context});
 
+  /// The maximum number of chunks per time (bytes).
   static const _maxChunkSize = 500000;
 
   @override
   Future<TwitterResponse<UploadedMediaData, void>> uploadImage({
     required File file,
     List<String>? additionalOwners,
+  }) async =>
+      super.transformUploadedDataResponse(
+        await _uploadImage(
+          file: file,
+          additionalOwners: additionalOwners,
+        ),
+        dataBuilder: UploadedMediaData.fromJson,
+      );
+
+  @override
+  Future<TwitterResponse<UploadedMediaData, void>> uploadMedia({
+    required File file,
+    List<String>? additionalOwners,
+  }) async =>
+      super.transformUploadedDataResponse(
+        await _uploadMedia(
+          file: file,
+          additionalOwners: additionalOwners,
+        ),
+        dataBuilder: UploadedMediaData.fromJson,
+      );
+
+  Future<Response> _uploadImage({
+    required File file,
+    List<String>? additionalOwners,
   }) async {
-    final response = await super.postMultipart(
+    final mediaBytes = file.readAsBytesSync();
+    if (mediaBytes.isEmpty) {
+      throw core.TwitterUploadException(
+        file,
+        'Cannot upload because the file size is 0.',
+      );
+    }
+
+    final mimeType = _resolveMimeType(file);
+    if (!mimeType.startsWith('image')) {
+      throw core.TwitterUploadException(
+        file,
+        'Only image uploads are allowed from this endpoint. '
+        'Use "uploadMedia" if you need to upload videos.',
+      );
+    }
+
+    return await super.postMultipart(
       core.UserContext.oauth1Only,
       '/1.1/media/upload.json',
       files: [
@@ -96,33 +178,19 @@ class _MediaService extends BaseMediaService implements MediaService {
         'additional_owners': additionalOwners,
       },
     );
-
-    final json = core.tryJsonDecode(response, response.body);
-
-    return super.transformSingleDataResponse(
-      Response(
-        jsonEncode({
-          //! Convert to a data structure compliant with v2.0 specifications.
-          'data': <String, dynamic>{
-            'media_id_string': json['media_id_string'],
-            'expires_at': DateTime.now()
-                .add(Duration(seconds: json['expires_after_secs']))
-                .toIso8601String(),
-          },
-        }),
-        response.statusCode,
-        headers: response.headers,
-      ),
-      dataBuilder: UploadedMediaData.fromJson,
-    );
   }
 
-  @override
-  Future<TwitterResponse<UploadedMediaData, void>> uploadMedia({
+  Future<Response> _uploadMedia({
     required File file,
     List<String>? additionalOwners,
   }) async {
     final mediaBytes = file.readAsBytesSync();
+    if (mediaBytes.isEmpty) {
+      throw core.TwitterUploadException(
+        file,
+        'Cannot upload because the file size is 0.',
+      );
+    }
 
     final initResponse = await _initUpload(
       mediaBytes: mediaBytes,
@@ -133,39 +201,29 @@ class _MediaService extends BaseMediaService implements MediaService {
     final initJson = core.tryJsonDecode(initResponse, initResponse.body);
     final mediaId = initJson['media_id_string'];
 
-    final mediaChunks = splitMediaAsChunks(mediaBytes);
+    await _appendChunkedUploadMedia(mediaBytes, mediaId);
 
-    for (var index = 0; index < mediaChunks.length; index++) {
-      print(index);
+    await _pollUploadStatus(
+      await _finalizeUpload(mediaId: mediaId),
+      file,
+    );
+
+    return initResponse;
+  }
+
+  Future<void> _appendChunkedUploadMedia(
+    final Uint8List mediaBytes,
+    final String mediaId,
+  ) async {
+    final chunkedMedia = splitMediaFile(mediaBytes);
+
+    for (var index = 0; index < chunkedMedia.length; index++) {
       await _appendUploadMedia(
         mediaId: mediaId,
-        media: mediaChunks[index],
+        media: chunkedMedia[index],
         segmentIndex: index,
       );
     }
-
-    final uploadedJson = await _pollingUploadStatus(
-      await _finalizeUpload(mediaId: mediaId),
-    );
-
-    print(uploadedJson);
-
-    return super.transformSingleDataResponse(
-      Response(
-        jsonEncode({
-          //! Convert to a data structure compliant with v2.0 specifications.
-          'data': <String, dynamic>{
-            'media_id_string': uploadedJson['media_id_string'],
-            'expires_at': DateTime.now()
-                .add(Duration(seconds: uploadedJson['expires_after_secs']))
-                .toIso8601String(),
-          },
-        }),
-        initResponse.statusCode,
-        headers: initResponse.headers,
-      ),
-      dataBuilder: UploadedMediaData.fromJson,
-    );
   }
 
   Future<Response> _initUpload({
@@ -180,7 +238,7 @@ class _MediaService extends BaseMediaService implements MediaService {
           'command': 'INIT',
           'total_bytes': mediaBytes.length,
           'media_type': mediaMimeType,
-          'media_category': _resolveMediaCategory(mediaMimeType),
+          'media_category': MediaCategory.fromMimeType(mediaMimeType),
           'additional_owners': additionalOwners,
         },
       );
@@ -220,7 +278,7 @@ class _MediaService extends BaseMediaService implements MediaService {
   Future<Response> _lookupUploadStatus({
     required String mediaId,
   }) async =>
-      await super.post(
+      await super.get(
         core.UserContext.oauth1Only,
         '/1.1/media/upload.json',
         queryParameters: {
@@ -229,8 +287,9 @@ class _MediaService extends BaseMediaService implements MediaService {
         },
       );
 
-  Future<Map<String, dynamic>> _pollingUploadStatus(
+  Future<Map<String, dynamic>> _pollUploadStatus(
     final Response finalizedResponse,
+    final File file,
   ) async {
     final finalizedJson = core.tryJsonDecode(
       finalizedResponse,
@@ -241,10 +300,20 @@ class _MediaService extends BaseMediaService implements MediaService {
 
     //! Field set only if polling is required.
     if (processingInfo != null) {
+      if (processingInfo['state'] == 'failed') {
+        throw core.TwitterUploadException(
+          file,
+          'Failed to upload a file. Please check the error message '
+          'in HTTP response.',
+          finalizedResponse,
+        );
+      }
+
       if (processingInfo['state'] == 'pending') {
         final uploadedResponse = await _waitForUploadCompletion(
           mediaId: finalizedJson['media_id_string'],
           delaySeconds: processingInfo['check_after_secs'],
+          file: file,
         );
 
         return core.tryJsonDecode(
@@ -261,10 +330,10 @@ class _MediaService extends BaseMediaService implements MediaService {
     );
   }
 
-  Future<Response> _waitForUploadCompletion({
-    required String mediaId,
-    required int delaySeconds,
-  }) async {
+  Future<Response> _waitForUploadCompletion(
+      {required String mediaId,
+      required int delaySeconds,
+      required File file}) async {
     await Future<void>.delayed(Duration(seconds: delaySeconds));
 
     final response = await _lookupUploadStatus(mediaId: mediaId);
@@ -273,10 +342,20 @@ class _MediaService extends BaseMediaService implements MediaService {
     final processingInfo = status['processing_info'];
 
     if (processingInfo != null) {
+      if (processingInfo['state'] == 'failed') {
+        throw core.TwitterUploadException(
+          file,
+          'Failed to upload a file. Please check the error message '
+          'in HTTP response.',
+          response,
+        );
+      }
+
       if (processingInfo!['state'] == 'in_progress') {
         return _waitForUploadCompletion(
           mediaId: mediaId,
           delaySeconds: processingInfo['check_after_secs'],
+          file: file,
         );
       }
     }
@@ -284,9 +363,8 @@ class _MediaService extends BaseMediaService implements MediaService {
     return response;
   }
 
-  List<List<int>> splitMediaAsChunks(final List<int> mediaBytes) {
+  List<List<int>> splitMediaFile(final List<int> mediaBytes) {
     final chunks = <List<int>>[];
-
     Iterable<int> chunk;
 
     do {
@@ -309,26 +387,20 @@ class _MediaService extends BaseMediaService implements MediaService {
     final mediaMimeType = core.lookupMimeType(file.path);
 
     if (mediaMimeType == null) {
-      throw UnsupportedError('');
+      throw core.TwitterUploadException(
+        file,
+        'Could not identify the Mime type of the file.',
+      );
     }
 
     if (!mediaMimeType.startsWith('image') &&
         !mediaMimeType.startsWith('video')) {
-      throw UnsupportedError('');
+      throw core.TwitterUploadException(
+        file,
+        'Unsupported Mime type [$mediaMimeType].',
+      );
     }
 
     return mediaMimeType;
-  }
-
-  String _resolveMediaCategory(final String mediaMimeType) {
-    if (mediaMimeType.startsWith('image')) {
-      if (mediaMimeType.endsWith('gif')) {
-        return 'dm_gif';
-      }
-
-      return 'dm_image';
-    }
-
-    return 'dm_video';
   }
 }
