@@ -118,7 +118,8 @@ We also provide [twitter_oauth2_pkce](https://pub.dev/packages/twitter_oauth2_pk
 ✅ Supports **high-performance streaming** endpoints. </br>
 ✅ Supports **[expansions](https://developer.twitter.com/en/docs/twitter-api/expansions)** and **[fields](https://developer.twitter.com/en/docs/twitter-api/fields)** features. </br>
 ✅ **Well documented** and **well tested**.</br>
-✅ Supports the powerful **automatic retry**.
+✅ Supports the powerful **automatic retry**.</br>
+✅ Supports for **large media uploads (image, gif, video)**.
 
 ## 1.2. Getting Started ⚡
 
