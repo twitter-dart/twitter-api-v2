@@ -215,7 +215,7 @@ class _MediaService extends BaseMediaService implements MediaService {
     final Uint8List mediaBytes,
     final String mediaId,
   ) async {
-    final chunkedMedia = splitMediaFile(mediaBytes);
+    final chunkedMedia = _splitMediaFile(mediaBytes);
 
     for (var index = 0; index < chunkedMedia.length; index++) {
       await _appendUploadMedia(
@@ -363,7 +363,7 @@ class _MediaService extends BaseMediaService implements MediaService {
     return response;
   }
 
-  List<List<int>> splitMediaFile(final List<int> mediaBytes) {
+  List<List<int>> _splitMediaFile(final List<int> mediaBytes) {
     final chunks = <List<int>>[];
     Iterable<int> chunk;
 
