@@ -5,7 +5,10 @@
 /// The object that contains filtering rule information.
 class FilteringRuleParam {
   /// Returns the new instance of [FilteringRuleParam].
-  FilteringRuleParam({required this.value, this.tag});
+  const FilteringRuleParam({
+    required this.value,
+    this.tag,
+  });
 
   /// The rule text.
   ///
@@ -20,4 +23,17 @@ class FilteringRuleParam {
   ///
   /// Tags can be the same across rules.
   final String? tag;
+
+  @override
+  String toString() => 'FilteringRuleParam(value: $value, tag: $tag)';
+
+  @override
+  bool operator ==(covariant FilteringRuleParam other) {
+    if (identical(this, other)) return true;
+
+    return other.value == value && other.tag == tag;
+  }
+
+  @override
+  int get hashCode => value.hashCode ^ tag.hashCode;
 }
