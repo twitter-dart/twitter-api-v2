@@ -219,6 +219,11 @@ Future<void> main() async {
     // You can upload media such as image, gif and video.
     final uploadedResponse = await twitter.mediaService.uploadMedia(
       file: File.fromUri(Uri.file('FILE_PATH')),
+
+      // You can check the upload progress.
+      onPolledUploadStatus: (event) => print(
+        '${event.progress}% has completed...',
+      ),
     );
 
     // You can easily post a tweet with the uploaded media.

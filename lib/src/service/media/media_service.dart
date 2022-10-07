@@ -14,6 +14,8 @@ import 'package:twitter_api_core/twitter_api_core.dart' as core;
 import '../base_media_service.dart';
 import '../twitter_response.dart';
 import 'media_category.dart';
+import 'upload_event.dart';
+import 'upload_state.dart';
 import 'uploaded_media_data.dart';
 
 abstract class MediaService {
@@ -91,6 +93,12 @@ abstract class MediaService {
   ///                       allowed to use the returned media id in Tweets or
   ///                       Cards. Up to 100 additional owners may be specified.
   ///
+  /// - [onProgress]: This callback function allows the user to check the
+  ///                 progress of an upload when a large volume of media is
+  ///                 uploaded. This callback function is called each time after
+  ///                 polling the Twitter upload server. If the upload fails,
+  ///                 this callback function is not called.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://upload.twitter.com/1.1/media/upload.json
@@ -108,6 +116,7 @@ abstract class MediaService {
   Future<TwitterResponse<UploadedMediaData, void>> uploadMedia({
     required File file,
     List<String>? additionalOwners,
+    Function(UploadEvent event)? onProgress,
   });
 }
 
@@ -135,11 +144,13 @@ class _MediaService extends BaseMediaService implements MediaService {
   Future<TwitterResponse<UploadedMediaData, void>> uploadMedia({
     required File file,
     List<String>? additionalOwners,
+    Function(UploadEvent event)? onProgress,
   }) async =>
       super.transformUploadedDataResponse(
         await _uploadMedia(
           file: file,
           additionalOwners: additionalOwners,
+          onProgress: onProgress,
         ),
         dataBuilder: UploadedMediaData.fromJson,
       );
@@ -183,6 +194,7 @@ class _MediaService extends BaseMediaService implements MediaService {
   Future<Response> _uploadMedia({
     required File file,
     List<String>? additionalOwners,
+    Function(UploadEvent event)? onProgress,
   }) async {
     final mediaBytes = file.readAsBytesSync();
     if (mediaBytes.isEmpty) {
@@ -206,6 +218,7 @@ class _MediaService extends BaseMediaService implements MediaService {
     await _pollUploadStatus(
       await _finalizeUpload(mediaId: mediaId),
       file,
+      onProgress,
     );
 
     return initResponse;
@@ -290,6 +303,7 @@ class _MediaService extends BaseMediaService implements MediaService {
   Future<Map<String, dynamic>> _pollUploadStatus(
     final Response finalizedResponse,
     final File file,
+    final Function(UploadEvent event)? onProgress,
   ) async {
     final finalizedJson = core.tryJsonDecode(
       finalizedResponse,
@@ -314,6 +328,7 @@ class _MediaService extends BaseMediaService implements MediaService {
           mediaId: finalizedJson['media_id_string'],
           delaySeconds: processingInfo['check_after_secs'],
           file: file,
+          onProgress: onProgress,
         );
 
         return core.tryJsonDecode(
@@ -330,10 +345,12 @@ class _MediaService extends BaseMediaService implements MediaService {
     );
   }
 
-  Future<Response> _waitForUploadCompletion(
-      {required String mediaId,
-      required int delaySeconds,
-      required File file}) async {
+  Future<Response> _waitForUploadCompletion({
+    required String mediaId,
+    required int delaySeconds,
+    required File file,
+    required Function(UploadEvent event)? onProgress,
+  }) async {
     await Future<void>.delayed(Duration(seconds: delaySeconds));
 
     final response = await _lookupUploadStatus(mediaId: mediaId);
@@ -351,11 +368,21 @@ class _MediaService extends BaseMediaService implements MediaService {
         );
       }
 
-      if (processingInfo!['state'] == 'in_progress') {
+      final state = processingInfo['state'];
+
+      await onProgress?.call(
+        UploadEvent(
+          UploadStateExtension.valueOf(state),
+          processingInfo['progress_percent'],
+        ),
+      );
+
+      if (state == 'in_progress') {
         return _waitForUploadCompletion(
           mediaId: mediaId,
           delaySeconds: processingInfo['check_after_secs'],
           file: file,
+          onProgress: onProgress,
         );
       }
     }
