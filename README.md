@@ -221,7 +221,7 @@ Future<void> main() async {
       file: File.fromUri(Uri.file('FILE_PATH')),
 
       // You can check the upload progress.
-      onPolledUploadStatus: (event) => print(
+      onProgress: (event) => print(
         '${event.progress}% has completed...',
       ),
     );
