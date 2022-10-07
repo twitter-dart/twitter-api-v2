@@ -1,5 +1,9 @@
 # Release Note
 
+## v4.1.1
+
+- Added a callback function to check the progress of uploading large media from `uploadMedia`. You can get the `state` of the upload and the `progress` in percent from the `UploadEvent` object passed from the callback function. ([#454](https://github.com/twitter-dart/twitter-api-v2/issues/454))
+
 ## v4.1.0
 
 - Supported the upload media (GIF, Video...). ([#434](https://github.com/twitter-dart/twitter-api-v2/issues/434))
