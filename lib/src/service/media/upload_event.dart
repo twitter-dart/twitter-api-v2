@@ -32,3 +32,8 @@ class UploadEvent {
   @override
   int get hashCode => state.hashCode ^ progress.hashCode;
 }
+
+extension UploadEventExtension on UploadEvent {
+  /// Returns the new instance of preparing [UploadEvent].
+  static UploadEvent ofPreparing() => UploadEvent(UploadState.preparing, 0);
+}
