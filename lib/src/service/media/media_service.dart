@@ -327,8 +327,7 @@ class _MediaService extends BaseMediaService implements MediaService {
       if (processingInfo['state'] == 'failed') {
         throw core.TwitterUploadException(
           file,
-          'Failed to upload a file. Please check the error message '
-          'in HTTP response.',
+          'The media file is in an invalid format.',
           finalizedResponse,
         );
       }
@@ -372,8 +371,7 @@ class _MediaService extends BaseMediaService implements MediaService {
       if (processingInfo['state'] == 'failed') {
         throw core.TwitterUploadException(
           file,
-          'Failed to upload a file. Please check the error message '
-          'in HTTP response.',
+          'The media file is in an invalid format.',
           response,
         );
       }
