@@ -73,17 +73,13 @@ abstract class BaseMediaService extends BaseService implements _MediaService {
     final String unencodedPath, {
     List<http.MultipartFile> files = const [],
     Map<String, dynamic> queryParameters = const {},
-    bool checkJsonFormat = true,
   }) async =>
       await _helper.postMultipart(
         userContext,
         unencodedPath,
         files: files,
         queryParameters: queryParameters,
-        validate: (response) => checkResponse(
-          response,
-          checkJsonFormat: checkJsonFormat,
-        ),
+        validate: checkResponse,
       );
 
   @override

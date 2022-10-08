@@ -272,8 +272,6 @@ class _MediaService extends BaseMediaService implements MediaService {
           'media_id': mediaId,
           'segment_index': segmentIndex,
         },
-        //! No BODY is returned from this endpoint.
-        checkJsonFormat: false,
       );
 
   Future<Response> _finalizeUpload({
