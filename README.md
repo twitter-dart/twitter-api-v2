@@ -92,6 +92,8 @@
       - [1.4.8.4. Do Something on Retry](#1484-do-something-on-retry)
     - [1.4.9. Meaning of the Returned Boolean](#149-meaning-of-the-returned-boolean)
     - [1.4.10. Thrown Exceptions](#1410-thrown-exceptions)
+    - [1.4.11. Upload Media](#1411-upload-media)
+    - [1.4.12. Check the Progress of Media Upload](#1412-check-the-progress-of-media-upload)
   - [1.5. Contribution 🏆](#15-contribution-)
   - [1.6. Contributors ✨](#16-contributors-)
   - [1.7. Support ❤️](#17-support-️)
@@ -798,6 +800,116 @@ However, as mentioned earlier in **twitter_api_v2**, for example if you use the 
 | [TwitterUploadException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/TwitterUploadException-class.html)         | Thrown when an exception occurs during media upload.                                                                   |
 | [UnauthorizedException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/UnauthorizedException-class.html)           | Thrown when authentication fails with the specified access token.                                                      |
 | [RateLimitExceededException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/RateLimitExceededException-class.html) | Thrown when the request rate limit is exceeded.                                                                        |
+
+### 1.4.11. Upload Media
+
+Uploading media on Twitter and sharing it with various people is a very interesting activity. Also, from a business perspective, accompanying tweets with media will attract even more interest from people.
+
+**twitter_api_v2** provides strong support for this very high demand specification. All you have to do is prepare the media file to be uploaded and pass it to the methods, and specifically the following methods are available.
+
+| Method Name                                                                                                     | Description                                                                       |
+| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| [uploadImage](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/MediaService/uploadImage.html) | Low capacity images can be uploaded, such as PNG and GIF.                         |
+| [uploadMedia](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/MediaService/uploadMedia.html) | In addition to images, you can upload large media such as video. **(Preferable)** |
+
+**Both methods are very easy to use.**
+
+All the difficult uploading process is capsuled, and as noted earlier, all you have to do is simply pass the prepared media file to the method. For example, if you want to upload a large video to Twitter you can implement the following.
+
+```dart
+import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
+
+Future<void> main() async {
+  final twitter = v2.TwitterApi(
+    bearerToken: 'NO_NEED_BEARER_TOKEN_BECAUSE_IT_IS_V1.1_ENDPOINT',
+
+    //! You need to set OAuth 1.0a tokens,
+    //! because this is the v1.1 endpoint.
+    oauthTokens: v2.OAuthTokens(
+      consumerKey: 'YOUR_CONSUMER_KEY_HERE',
+      consumerSecret: 'YOUR_CONSUMER_SECRET_HERE',
+      accessToken: 'YOUR_ACCESS_TOKEN_HERE',
+      accessTokenSecret: 'YOUR_ACCESS_TOKEN_SECRET_HERE',
+    ),
+  );
+
+  try {
+    final uploadedResponse = await twitter.mediaService.uploadMedia(
+      file: File.fromUri(
+        Uri.file('FILE_PATH'),
+      ),
+    );
+
+    print(uploadedResponse);
+  } on v2.TwitterUploadException catch (e) {
+    print(e);
+  }
+}
+```
+
+This upload process works very safely, but note that [TwitterUploadException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/TwitterUploadException-class.html) will be thrown if media in a format not supported by Twitter is specified.
+
+> **Note**</br>
+> Also note that the v1.1 endpoint is used to achieve this specification in twitter_api_v2. This is because the official Twitter API v2.0 does not yet support media uploads. While I'm trying to keep the implementation as non-disruptive as possible in the future, there may be disruptive changes when media uploads are supported by the official Twitter API v2.0.
+
+### 1.4.12. Check the Progress of Media Upload
+
+Uploading small images to Twitter does not take long, but uploading large videos takes longer to complete. At that time, it would be very useful if you could show users how far along we are in the uploading process.
+
+**twitter_api_v2** supports this specification and can be easily implemented as follows.
+
+```dart
+import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
+
+Future<void> main() async {
+  final twitter = v2.TwitterApi(
+    bearerToken: 'NO_NEED_BEARER_TOKEN_BECAUSE_IT_IS_V1.1',
+
+    //! You need to set OAuth 1.0a tokens,
+    //! because this is the v1.1 endpoint.
+    oauthTokens: v2.OAuthTokens(
+      consumerKey: 'YOUR_CONSUMER_KEY_HERE',
+      consumerSecret: 'YOUR_CONSUMER_SECRET_HERE',
+      accessToken: 'YOUR_ACCESS_TOKEN_HERE',
+      accessTokenSecret: 'YOUR_ACCESS_TOKEN_SECRET_HERE',
+    ),
+  );
+
+  try {
+    final uploadedResponse = await twitter.mediaService.uploadMedia(
+      file: File.fromUri(
+        Uri.file('FILE_PATH'),
+      ),
+
+      //! Add this callback function.
+      onProgress: (event) => print('Completed ${event.progress}%...'),
+    );
+
+    print(uploadedResponse);
+  } on v2.TwitterUploadException catch (e) {
+    print(e);
+  }
+}
+```
+
+You can add processing when there is upload progress by specifying an `onProgress` callback for `uploadMedia`, as shown above.
+
+The argument passed to this callback function is an `UploadEvent` object, which holds the **status** and **progress rate of the upload** at the time the callback function is called.</br>
+Importantly, there are 3 upload statuses, which transition from top to bottom during the upload process
+
+| Status         | Description                                                                                                                                                                             |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **preparing**  | This indicates the start of the media upload process, up to the point where the media to be uploaded is sent to Twitter. The progress rate is always 0 at this point.                   |
+| **inProgress** | This indicates that the media upload process is in progress on Twitter's server. This library polls Twitter's server at regular intervals to obtain the progress rate of media uploads. |
+| **completed**  | This indicates that the media upload has been successfully completed.                                                                                                                   |
+
+And the trigger that calls the `onProgress` callback is as follows. But if the media upload completes immediately and no polling is required, the `inProgress` status will not occur.
+
+1. When the upload status becomes `preparing` (**only once**)
+2. When the upload status becomes `inProgress` (**per polling**)
+3. When the upload status becomes `completed` (**only once**)
+
+Note that media uploads may also fail for reasons such as broken media. In such cases, [TwitterUploadException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/TwitterUploadException-class.html) is always thrown.
 
 ## 1.5. Contribution 🏆
 
