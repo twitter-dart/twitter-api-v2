@@ -38,13 +38,18 @@ abstract class MediaService {
   /// object of this method may change in the future when the v2.0 endpoint for
   /// uploading images is released.
   ///
+  /// If an error occurs when uploading media, [core.TwitterUploadException] is
+  /// always thrown.
+  ///
   /// ## Usage
   ///
-  /// **This is a simple image upload endpoint** with a limited set of features.
+  /// This is a simple image upload endpoint with a limited set of features.
   /// The preferred alternative is the chunked upload endpoint which supports
   /// both images and videos, provides better reliability, allows resumption of
   /// file uploads, and other important features. In the future, new features
   /// will only be supported for the chunked upload endpoint.
+  ///
+  /// - See [uploadMedia] for the chunked upload.
   ///
   /// ## Parameters
   ///
@@ -78,6 +83,9 @@ abstract class MediaService {
   /// complete, but this method internally polls for any waiting if it's
   /// required, and the caller of this method does not need to be aware of the
   /// status of the upload.
+  ///
+  /// If an error occurs when uploading media, [core.TwitterUploadException] is
+  /// always thrown.
   ///
   /// ## Caution
   ///
