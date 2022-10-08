@@ -213,6 +213,10 @@ class _MediaService extends BaseMediaService implements MediaService {
     final initJson = core.tryJsonDecode(initResponse, initResponse.body);
     final mediaId = initJson['media_id_string'];
 
+    await onProgress?.call(
+      UploadEventExtension.ofPreparing(),
+    );
+
     await _appendChunkedUploadMedia(mediaBytes, mediaId);
 
     await _pollUploadStatus(
