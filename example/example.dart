@@ -75,6 +75,7 @@ Future<void> main() async {
     // You can upload media such as image, gif and video.
     final uploadedResponse = await twitter.mediaService.uploadMedia(
       file: File.fromUri(Uri.file('FILE_PATH')),
+      altText: 'This is alt text.',
 
       // You can check the upload progress.
       onProgress: (event) {
