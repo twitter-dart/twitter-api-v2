@@ -14,34 +14,4 @@ void main() {
     expect(UploadState.inProgress.name, 'inProgress');
     expect(UploadState.completed.name, 'completed');
   });
-
-  group('.valueOf', () {
-    test('with "in_progress" value', () {
-      final actual = UploadStateExtension.valueOf('in_progress');
-
-      expect(actual, UploadState.inProgress);
-    });
-
-    test('with "succeeded" value', () {
-      final actual = UploadStateExtension.valueOf('succeeded');
-
-      expect(actual, UploadState.completed);
-    });
-
-    test('with unsupported value', () {
-      expect(
-        () => UploadStateExtension.valueOf('test'),
-        throwsA(
-          allOf(
-            isA<UnsupportedError>(),
-            predicate(
-              (e) =>
-                  e.toString() ==
-                  'Unsupported operation: Unsupported state [test] is passed.',
-            ),
-          ),
-        ),
-      );
-    });
-  });
 }

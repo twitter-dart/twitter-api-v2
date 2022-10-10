@@ -15,7 +15,6 @@ import '../base_media_service.dart';
 import '../twitter_response.dart';
 import 'media_category.dart';
 import 'upload_event.dart';
-import 'upload_state.dart';
 import 'uploaded_media_data.dart';
 
 abstract class MediaService {
@@ -233,6 +232,10 @@ class _MediaService extends BaseMediaService implements MediaService {
       onProgress,
     );
 
+    await onProgress?.call(
+      UploadEventExtension.ofCompleted(),
+    );
+
     return initResponse;
   }
 
@@ -376,16 +379,13 @@ class _MediaService extends BaseMediaService implements MediaService {
         );
       }
 
-      final state = processingInfo['state'];
+      if (processingInfo['state'] == 'in_progress') {
+        await onProgress?.call(
+          UploadEventExtension.ofInProgress(
+            processingInfo['progress_percent'],
+          ),
+        );
 
-      await onProgress?.call(
-        UploadEvent(
-          UploadStateExtension.valueOf(state),
-          processingInfo['progress_percent'],
-        ),
-      );
-
-      if (state == 'in_progress') {
         return _waitForUploadCompletion(
           mediaId: mediaId,
           delaySeconds: processingInfo['check_after_secs'],
