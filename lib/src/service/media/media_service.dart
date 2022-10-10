@@ -15,7 +15,6 @@ import '../base_media_service.dart';
 import '../twitter_response.dart';
 import 'media_category.dart';
 import 'upload_event.dart';
-import 'upload_state.dart';
 import 'uploaded_media_data.dart';
 
 abstract class MediaService {
