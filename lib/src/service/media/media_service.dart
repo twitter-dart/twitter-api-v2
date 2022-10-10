@@ -55,6 +55,9 @@ abstract class MediaService {
   ///
   /// - [file]: The raw binary image content being uploaded.
   ///
+  /// - [altText]: Additional descriptive text to be added to images and GIFs.
+  ///              The text must be <= 1000 chars.
+  ///
   /// - [additionalOwners]: A list of user IDs to set as additional owners
   ///                       allowed to use the returned media id in Tweets or
   ///                       Cards. Up to 100 additional owners may be specified.
@@ -72,6 +75,7 @@ abstract class MediaService {
   /// - https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/post-media-upload
   Future<TwitterResponse<UploadedMediaData, void>> uploadImage({
     required File file,
+    String? altText,
     List<String>? additionalOwners,
   });
 
@@ -96,6 +100,12 @@ abstract class MediaService {
   /// ## Parameters
   ///
   /// - [file]: The raw binary media content (image, gif, video) being uploaded.
+  ///
+  /// - [altText]: Additional descriptive text to be added to images and GIFs.
+  ///              Currently, this option is available only for images and GIFs;
+  ///              if the media file being uploaded is a video, this option
+  ///              will be ignored at runtime. Also, the text must be <= 1000
+  ///              chars.
   ///
   /// - [additionalOwners]: A list of user IDs to set as additional owners
   ///                       allowed to use the returned media id in Tweets or
@@ -126,6 +136,7 @@ abstract class MediaService {
   /// - https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/get-media-upload-status
   Future<TwitterResponse<UploadedMediaData, void>> uploadMedia({
     required File file,
+    String? altText,
     List<String>? additionalOwners,
     Function(UploadEvent event)? onProgress,
     Function(UploadError error)? onFailed,
@@ -142,19 +153,32 @@ class _MediaService extends BaseMediaService implements MediaService {
   @override
   Future<TwitterResponse<UploadedMediaData, void>> uploadImage({
     required File file,
+    String? altText,
     List<String>? additionalOwners,
-  }) async =>
-      super.transformUploadedDataResponse(
-        await _uploadImage(
-          file: file,
-          additionalOwners: additionalOwners,
-        ),
-        dataBuilder: UploadedMediaData.fromJson,
+  }) async {
+    final response = super.transformUploadedDataResponse(
+      await _uploadImage(
+        file: file,
+        altText: altText,
+        additionalOwners: additionalOwners,
+      ),
+      dataBuilder: UploadedMediaData.fromJson,
+    );
+
+    if (altText?.isNotEmpty ?? false) {
+      await _createMetaData(
+        mediaId: response.data.mediaId,
+        altText: altText!,
       );
+    }
+
+    return response;
+  }
 
   @override
   Future<TwitterResponse<UploadedMediaData, void>> uploadMedia({
     required File file,
+    String? altText,
     List<String>? additionalOwners,
     Function(UploadEvent event)? onProgress,
     Function(UploadError error)? onFailed,
@@ -162,6 +186,7 @@ class _MediaService extends BaseMediaService implements MediaService {
       super.transformUploadedDataResponse(
         await _uploadMedia(
           file: file,
+          altText: altText,
           additionalOwners: additionalOwners,
           onProgress: onProgress,
           onFailed: onFailed,
@@ -171,13 +196,19 @@ class _MediaService extends BaseMediaService implements MediaService {
 
   Future<Response> _uploadImage({
     required File file,
+    String? altText,
     List<String>? additionalOwners,
   }) async {
     final mediaBytes = file.readAsBytesSync();
     if (mediaBytes.isEmpty) {
-      throw core.TwitterUploadException(
-        file,
-        'Cannot upload because the file size is 0.',
+      throw ArgumentError('Cannot upload because the file size is 0.');
+    }
+
+    if (altText != null && altText.length > 1000) {
+      throw ArgumentError.value(
+        altText.length,
+        'altText.length',
+        'Alt text must be <= 1000 chars.',
       );
     }
 
@@ -207,21 +238,29 @@ class _MediaService extends BaseMediaService implements MediaService {
 
   Future<Response> _uploadMedia({
     required File file,
+    String? altText,
     List<String>? additionalOwners,
     Function(UploadEvent event)? onProgress,
     Function(UploadError error)? onFailed,
   }) async {
     final mediaBytes = file.readAsBytesSync();
     if (mediaBytes.isEmpty) {
-      throw core.TwitterUploadException(
-        file,
-        'Cannot upload because the file size is 0.',
+      throw ArgumentError('Cannot upload because the file size is 0.');
+    }
+
+    if (altText != null && altText.length > 1000) {
+      throw ArgumentError.value(
+        altText.length,
+        'altText.length',
+        'Alt text must be <= 1000 chars.',
       );
     }
 
+    final mimeType = _resolveMimeType(file);
+
     final initResponse = await _initUpload(
       mediaBytes: mediaBytes,
-      mediaMimeType: _resolveMimeType(file),
+      mediaMimeType: mimeType,
       additionalOwners: additionalOwners,
     );
 
@@ -240,6 +279,14 @@ class _MediaService extends BaseMediaService implements MediaService {
       onProgress,
       onFailed,
     );
+
+    //! Only supports for Images and GIFs.
+    if (mimeType.startsWith('image') && (altText?.isNotEmpty ?? false)) {
+      await _createMetaData(
+        mediaId: mediaId,
+        altText: altText!,
+      );
+    }
 
     await onProgress?.call(
       UploadEventExtension.ofCompleted(),
@@ -319,6 +366,21 @@ class _MediaService extends BaseMediaService implements MediaService {
         queryParameters: {
           'command': 'STATUS',
           'media_id': mediaId,
+        },
+      );
+
+  Future<Response> _createMetaData({
+    required String mediaId,
+    required String altText,
+  }) async =>
+      super.post(
+        core.UserContext.oauth1Only,
+        '/1.1/media/metadata/create.json',
+        body: {
+          'media_id': mediaId,
+          'alt_text': {
+            'text': altText,
+          }
         },
       );
 

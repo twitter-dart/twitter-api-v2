@@ -234,6 +234,11 @@ abstract class BaseService implements _Service {
       return response;
     }
 
+    if (response.statusCode == 200 && response.body.isEmpty) {
+      //! No JSON in response but okay, it's succeeded.
+      return response;
+    }
+
     final jsonBody = core.tryJsonDecode(response, response.body);
 
     if (jsonBody.containsKey(ResponseField.errors.value)) {

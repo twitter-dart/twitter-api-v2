@@ -1,5 +1,11 @@
 # Release Note
 
+## v4.1.3
+
+- Added the feature to set Alt Text when uploading media. Please set the Alt Text you want to set to the argument `altText` of the following method within 1000 characters. However, Alt Text can be set only for images and GIFs. Alt Text for videos will be ignored. ([#435](https://github.com/twitter-dart/twitter-api-v2/issues/435))
+  - `uploadImage`
+  - `uploadMedia`
+
 ## v4.1.2
 
 - Improved handling of `uploadMedia` method when using the `onProgress` callback. In previous versions, if the media upload was completed immediately, the `completed` event would not be notified, but from this version you will always get a `completed` event at the end of process. ([#466](https://github.com/twitter-dart/twitter-api-v2/issues/466))
