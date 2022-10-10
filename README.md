@@ -917,7 +917,8 @@ Future<void> main() async {
 
 You can add processing when there is upload progress by specifying an `onProgress` callback for `uploadMedia`, as shown above.
 
-The argument passed to this callback function is an `UploadEvent` object, which holds the **status** and **progress rate of the upload** at the time the callback function is called.</br>
+The argument passed to this callback function is an `UploadEvent` object, which holds the **status** and **progress rate of the upload** at the time the callback function is called.
+
 Importantly, there are 3 upload statuses, which transition from top to bottom during the upload process
 
 | Status         | Description                                                                                                                                                                             |
@@ -928,9 +929,9 @@ Importantly, there are 3 upload statuses, which transition from top to bottom du
 
 And the trigger that calls the `onProgress` callback is as follows. But if the media upload completes immediately and no polling is required, the `inProgress` status will not occur.
 
-1. When the upload status becomes `preparing` (**only once**)
-2. When the upload status becomes `inProgress` (**per polling**)
-3. When the upload status becomes `completed` (**only once**)
+1. When the upload status becomes `preparing` (**Always called once at the start of processing**)
+2. When the upload status becomes `inProgress` (**Per polling, and it's not called if polling is not required**)
+3. When the upload status becomes `completed` (**Always called once at the end of processing**)
 
 Note that media uploads may also fail for reasons such as broken media. In such cases, [TwitterUploadException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/TwitterUploadException-class.html) is always thrown.
 
