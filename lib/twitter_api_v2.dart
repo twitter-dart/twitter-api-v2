@@ -33,6 +33,7 @@ export 'package:twitter_api_v2/src/service/media/organic_media_metrics.dart';
 export 'package:twitter_api_v2/src/service/media/private_media_metrics.dart';
 export 'package:twitter_api_v2/src/service/media/promoted_media_metrics.dart';
 export 'package:twitter_api_v2/src/service/media/public_media_metrics.dart';
+export 'package:twitter_api_v2/src/service/media/upload_error.dart';
 export 'package:twitter_api_v2/src/service/media/upload_event.dart'
     show UploadEvent;
 export 'package:twitter_api_v2/src/service/media/upload_state.dart';

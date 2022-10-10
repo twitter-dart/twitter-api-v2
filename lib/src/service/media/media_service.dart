@@ -14,6 +14,7 @@ import 'package:twitter_api_core/twitter_api_core.dart' as core;
 import '../base_media_service.dart';
 import '../twitter_response.dart';
 import 'media_category.dart';
+import 'upload_error.dart';
 import 'upload_event.dart';
 import 'uploaded_media_data.dart';
 
@@ -106,6 +107,9 @@ abstract class MediaService {
   ///                 polling the Twitter upload server. If the upload fails,
   ///                 this callback function is not called.
   ///
+  /// - [onFailed]: This callback function is called when the progress of
+  ///               a media upload is polled and the media upload has failed.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://upload.twitter.com/1.1/media/upload.json
@@ -124,6 +128,7 @@ abstract class MediaService {
     required File file,
     List<String>? additionalOwners,
     Function(UploadEvent event)? onProgress,
+    Function(UploadError error)? onFailed,
   });
 }
 
@@ -152,12 +157,14 @@ class _MediaService extends BaseMediaService implements MediaService {
     required File file,
     List<String>? additionalOwners,
     Function(UploadEvent event)? onProgress,
+    Function(UploadError error)? onFailed,
   }) async =>
       super.transformUploadedDataResponse(
         await _uploadMedia(
           file: file,
           additionalOwners: additionalOwners,
           onProgress: onProgress,
+          onFailed: onFailed,
         ),
         dataBuilder: UploadedMediaData.fromJson,
       );
@@ -202,6 +209,7 @@ class _MediaService extends BaseMediaService implements MediaService {
     required File file,
     List<String>? additionalOwners,
     Function(UploadEvent event)? onProgress,
+    Function(UploadError error)? onFailed,
   }) async {
     final mediaBytes = file.readAsBytesSync();
     if (mediaBytes.isEmpty) {
@@ -230,6 +238,7 @@ class _MediaService extends BaseMediaService implements MediaService {
       await _finalizeUpload(mediaId: mediaId),
       file,
       onProgress,
+      onFailed,
     );
 
     await onProgress?.call(
@@ -317,6 +326,7 @@ class _MediaService extends BaseMediaService implements MediaService {
     final Response finalizedResponse,
     final File file,
     final Function(UploadEvent event)? onProgress,
+    final Function(UploadError error)? onFailed,
   ) async {
     final finalizedJson = core.tryJsonDecode(
       finalizedResponse,
@@ -328,6 +338,12 @@ class _MediaService extends BaseMediaService implements MediaService {
     //! Field set only if polling is required.
     if (processingInfo != null) {
       if (processingInfo['state'] == 'failed') {
+        await onFailed?.call(
+          UploadError.fromJson(
+            processingInfo['error'],
+          ),
+        );
+
         throw core.TwitterUploadException(
           file,
           'The media file is in an invalid format.',
@@ -341,6 +357,7 @@ class _MediaService extends BaseMediaService implements MediaService {
           delaySeconds: processingInfo['check_after_secs'],
           file: file,
           onProgress: onProgress,
+          onFailed: onFailed,
         );
 
         return core.tryJsonDecode(
@@ -362,6 +379,7 @@ class _MediaService extends BaseMediaService implements MediaService {
     required int delaySeconds,
     required File file,
     required Function(UploadEvent event)? onProgress,
+    required Function(UploadError error)? onFailed,
   }) async {
     await Future<void>.delayed(Duration(seconds: delaySeconds));
 
@@ -372,6 +390,12 @@ class _MediaService extends BaseMediaService implements MediaService {
 
     if (processingInfo != null) {
       if (processingInfo['state'] == 'failed') {
+        await onFailed?.call(
+          UploadError.fromJson(
+            processingInfo['error'],
+          ),
+        );
+
         throw core.TwitterUploadException(
           file,
           'The media file is in an invalid format.',
@@ -391,6 +415,7 @@ class _MediaService extends BaseMediaService implements MediaService {
           delaySeconds: processingInfo['check_after_secs'],
           file: file,
           onProgress: onProgress,
+          onFailed: onFailed,
         );
       }
     }
