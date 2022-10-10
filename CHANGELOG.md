@@ -1,5 +1,9 @@
 # Release Note
 
+## v4.1.2
+
+- Improved handling of `uploadMedia` method when using the `onProgress` callback. In previous versions, if the media upload was completed immediately, the `completed` event would not be notified, but from this version you will always get a `completed` event at the end of process. ([#466](https://github.com/twitter-dart/twitter-api-v2/issues/466))
+
 ## v4.1.1
 
 - Added a callback function to check the progress of uploading large media from `uploadMedia`. You can get the `state` of the upload and the `progress` in percent from the `UploadEvent` object passed from the callback function. ([#454](https://github.com/twitter-dart/twitter-api-v2/issues/454))

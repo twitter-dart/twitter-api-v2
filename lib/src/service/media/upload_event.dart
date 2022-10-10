@@ -34,6 +34,16 @@ class UploadEvent {
 }
 
 extension UploadEventExtension on UploadEvent {
+  static const _preparingUploadEvent = UploadEvent(UploadState.preparing, 0);
+  static const _completedUploadEvent = UploadEvent(UploadState.completed, 100);
+
   /// Returns the new instance of preparing [UploadEvent].
-  static UploadEvent ofPreparing() => UploadEvent(UploadState.preparing, 0);
+  static UploadEvent ofPreparing() => _preparingUploadEvent;
+
+  /// Returns the new instance of completed [UploadEvent].
+  static UploadEvent ofInProgress(final int progress) =>
+      UploadEvent(UploadState.inProgress, progress);
+
+  /// Returns the new instance of completed [UploadEvent].
+  static UploadEvent ofCompleted() => _completedUploadEvent;
 }
