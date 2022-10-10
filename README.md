@@ -223,9 +223,20 @@ Future<void> main() async {
       file: File.fromUri(Uri.file('FILE_PATH')),
 
       // You can check the upload progress.
-      onProgress: (event) => print(
-        '${event.progress}% has completed...',
-      ),
+      onProgress: (event) {
+        switch (event.state) {
+          case v2.UploadState.preparing:
+            print('Upload is preparing...');
+            break;
+          case v2.UploadState.inProgress:
+            print('${event.progress}% completed...');
+            break;
+          case v2.UploadState.completed:
+            print('Upload has completed!');
+            break;
+        }
+      },
+      onFailed: (error) => print('Upload failed due to "${error.message}"'),
     );
 
     // You can easily post a tweet with the uploaded media.
@@ -882,7 +893,19 @@ Future<void> main() async {
       ),
 
       //! Add this callback function.
-      onProgress: (event) => print('Completed ${event.progress}%...'),
+      onProgress: (event) {
+        switch (event.state) {
+          case v2.UploadState.preparing:
+            print('Upload is preparing...');
+            break;
+          case v2.UploadState.inProgress:
+            print('${event.progress}% completed...');
+            break;
+          case v2.UploadState.completed:
+            print('Upload has completed!');
+            break;
+        }
+      },
     );
 
     print(uploadedResponse);
