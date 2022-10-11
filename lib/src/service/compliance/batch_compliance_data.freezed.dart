@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'compliance_data.dart';
+part of 'batch_compliance_data.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-ComplianceData _$ComplianceDataFromJson(Map<String, dynamic> json) {
-  return _ComplianceData.fromJson(json);
+BatchComplianceData _$BatchComplianceDataFromJson(Map<String, dynamic> json) {
+  return _BatchComplianceData.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ComplianceData {
+mixin _$BatchComplianceData {
   /// The unique identifier for this job.
   String get id => throw _privateConstructorUsedError;
 
@@ -58,15 +58,15 @@ mixin _$ComplianceData {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ComplianceDataCopyWith<ComplianceData> get copyWith =>
+  $BatchComplianceDataCopyWith<BatchComplianceData> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ComplianceDataCopyWith<$Res> {
-  factory $ComplianceDataCopyWith(
-          ComplianceData value, $Res Function(ComplianceData) then) =
-      _$ComplianceDataCopyWithImpl<$Res>;
+abstract class $BatchComplianceDataCopyWith<$Res> {
+  factory $BatchComplianceDataCopyWith(
+          BatchComplianceData value, $Res Function(BatchComplianceData) then) =
+      _$BatchComplianceDataCopyWithImpl<$Res>;
   $Res call(
       {String id,
       JobType type,
@@ -80,13 +80,13 @@ abstract class $ComplianceDataCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ComplianceDataCopyWithImpl<$Res>
-    implements $ComplianceDataCopyWith<$Res> {
-  _$ComplianceDataCopyWithImpl(this._value, this._then);
+class _$BatchComplianceDataCopyWithImpl<$Res>
+    implements $BatchComplianceDataCopyWith<$Res> {
+  _$BatchComplianceDataCopyWithImpl(this._value, this._then);
 
-  final ComplianceData _value;
+  final BatchComplianceData _value;
   // ignore: unused_field
-  final $Res Function(ComplianceData) _then;
+  final $Res Function(BatchComplianceData) _then;
 
   @override
   $Res call({
@@ -142,11 +142,11 @@ class _$ComplianceDataCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$$_ComplianceDataCopyWith<$Res>
-    implements $ComplianceDataCopyWith<$Res> {
-  factory _$$_ComplianceDataCopyWith(
-          _$_ComplianceData value, $Res Function(_$_ComplianceData) then) =
-      __$$_ComplianceDataCopyWithImpl<$Res>;
+abstract class _$$_BatchComplianceDataCopyWith<$Res>
+    implements $BatchComplianceDataCopyWith<$Res> {
+  factory _$$_BatchComplianceDataCopyWith(_$_BatchComplianceData value,
+          $Res Function(_$_BatchComplianceData) then) =
+      __$$_BatchComplianceDataCopyWithImpl<$Res>;
   @override
   $Res call(
       {String id,
@@ -161,15 +161,15 @@ abstract class _$$_ComplianceDataCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ComplianceDataCopyWithImpl<$Res>
-    extends _$ComplianceDataCopyWithImpl<$Res>
-    implements _$$_ComplianceDataCopyWith<$Res> {
-  __$$_ComplianceDataCopyWithImpl(
-      _$_ComplianceData _value, $Res Function(_$_ComplianceData) _then)
-      : super(_value, (v) => _then(v as _$_ComplianceData));
+class __$$_BatchComplianceDataCopyWithImpl<$Res>
+    extends _$BatchComplianceDataCopyWithImpl<$Res>
+    implements _$$_BatchComplianceDataCopyWith<$Res> {
+  __$$_BatchComplianceDataCopyWithImpl(_$_BatchComplianceData _value,
+      $Res Function(_$_BatchComplianceData) _then)
+      : super(_value, (v) => _then(v as _$_BatchComplianceData));
 
   @override
-  _$_ComplianceData get _value => super._value as _$_ComplianceData;
+  _$_BatchComplianceData get _value => super._value as _$_BatchComplianceData;
 
   @override
   $Res call({
@@ -183,7 +183,7 @@ class __$$_ComplianceDataCopyWithImpl<$Res>
     Object? downloadExpiresAt = freezed,
     Object? createdAt = freezed,
   }) {
-    return _then(_$_ComplianceData(
+    return _then(_$_BatchComplianceData(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -226,8 +226,8 @@ class __$$_ComplianceDataCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ComplianceData implements _ComplianceData {
-  const _$_ComplianceData(
+class _$_BatchComplianceData implements _BatchComplianceData {
+  const _$_BatchComplianceData(
       {required this.id,
       required this.type,
       required this.status,
@@ -238,8 +238,8 @@ class _$_ComplianceData implements _ComplianceData {
       required this.downloadExpiresAt,
       required this.createdAt});
 
-  factory _$_ComplianceData.fromJson(Map<String, dynamic> json) =>
-      _$$_ComplianceDataFromJson(json);
+  factory _$_BatchComplianceData.fromJson(Map<String, dynamic> json) =>
+      _$$_BatchComplianceDataFromJson(json);
 
   /// The unique identifier for this job.
   @override
@@ -288,14 +288,14 @@ class _$_ComplianceData implements _ComplianceData {
 
   @override
   String toString() {
-    return 'ComplianceData(id: $id, type: $type, status: $status, resumable: $resumable, uploadUrl: $uploadUrl, downloadUrl: $downloadUrl, uploadExpiresAt: $uploadExpiresAt, downloadExpiresAt: $downloadExpiresAt, createdAt: $createdAt)';
+    return 'BatchComplianceData(id: $id, type: $type, status: $status, resumable: $resumable, uploadUrl: $uploadUrl, downloadUrl: $downloadUrl, uploadExpiresAt: $uploadExpiresAt, downloadExpiresAt: $downloadExpiresAt, createdAt: $createdAt)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ComplianceData &&
+            other is _$_BatchComplianceData &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.type, type) &&
             const DeepCollectionEquality().equals(other.status, status) &&
@@ -326,19 +326,20 @@ class _$_ComplianceData implements _ComplianceData {
 
   @JsonKey(ignore: true)
   @override
-  _$$_ComplianceDataCopyWith<_$_ComplianceData> get copyWith =>
-      __$$_ComplianceDataCopyWithImpl<_$_ComplianceData>(this, _$identity);
+  _$$_BatchComplianceDataCopyWith<_$_BatchComplianceData> get copyWith =>
+      __$$_BatchComplianceDataCopyWithImpl<_$_BatchComplianceData>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ComplianceDataToJson(
+    return _$$_BatchComplianceDataToJson(
       this,
     );
   }
 }
 
-abstract class _ComplianceData implements ComplianceData {
-  const factory _ComplianceData(
+abstract class _BatchComplianceData implements BatchComplianceData {
+  const factory _BatchComplianceData(
       {required final String id,
       required final JobType type,
       required final JobStatus status,
@@ -347,10 +348,10 @@ abstract class _ComplianceData implements ComplianceData {
       required final String downloadUrl,
       required final DateTime uploadExpiresAt,
       required final DateTime downloadExpiresAt,
-      required final DateTime createdAt}) = _$_ComplianceData;
+      required final DateTime createdAt}) = _$_BatchComplianceData;
 
-  factory _ComplianceData.fromJson(Map<String, dynamic> json) =
-      _$_ComplianceData.fromJson;
+  factory _BatchComplianceData.fromJson(Map<String, dynamic> json) =
+      _$_BatchComplianceData.fromJson;
 
   @override
 
@@ -399,6 +400,6 @@ abstract class _ComplianceData implements ComplianceData {
   DateTime get createdAt;
   @override
   @JsonKey(ignore: true)
-  _$$_ComplianceDataCopyWith<_$_ComplianceData> get copyWith =>
+  _$$_BatchComplianceDataCopyWith<_$_BatchComplianceData> get copyWith =>
       throw _privateConstructorUsedError;
 }

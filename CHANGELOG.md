@@ -1,5 +1,9 @@
 # Release Note
 
+## v4.1.4
+
+- Renamed object from `ComplianceData` to `BatchComplianceData`. If you are using the object name `ComplianceData` explicitly, modify it to `BatchComplianceData`. ([#462](https://github.com/twitter-dart/twitter-api-v2/issues/462))
+
 ## v4.1.3
 
 - Added the feature to set Alt Text when uploading media. Please set the Alt Text you want to set to the argument `altText` of the following method within 1000 characters. However, Alt Text can be set only for images and GIFs. Alt Text for videos will be ignored. ([#435](https://github.com/twitter-dart/twitter-api-v2/issues/435))

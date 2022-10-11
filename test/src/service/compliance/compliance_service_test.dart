@@ -10,7 +10,7 @@ import 'package:twitter_api_core/src/exception/twitter_exception.dart';
 import 'package:twitter_api_core/src/exception/unauthorized_exception.dart';
 
 // Project imports:
-import 'package:twitter_api_v2/src/service/compliance/compliance_data.dart';
+import 'package:twitter_api_v2/src/service/compliance/batch_compliance_data.dart';
 import 'package:twitter_api_v2/src/service/compliance/compliance_service.dart';
 import 'package:twitter_api_v2/src/service/compliance/job_status.dart';
 import 'package:twitter_api_v2/src/service/compliance/job_type.dart';
@@ -32,7 +32,7 @@ void main() {
       final response = await complianceService.lookupJob(jobId: '5555');
 
       expect(response, isA<TwitterResponse>());
-      expect(response.data, isA<ComplianceData>());
+      expect(response.data, isA<BatchComplianceData>());
     });
 
     test('throws UnauthorizedException', () async {
@@ -89,7 +89,7 @@ void main() {
     );
 
     expect(response, isA<TwitterResponse>());
-    expect(response.data, isA<List<ComplianceData>>());
+    expect(response.data, isA<List<BatchComplianceData>>());
     expect(response.data.length, 2);
   });
 
@@ -109,6 +109,6 @@ void main() {
     );
 
     expect(response, isA<TwitterResponse>());
-    expect(response.data, isA<ComplianceData>());
+    expect(response.data, isA<BatchComplianceData>());
   });
 }
