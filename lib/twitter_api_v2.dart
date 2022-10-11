@@ -15,7 +15,7 @@ export 'package:twitter_api_v2/src/service/common/mention.dart';
 export 'package:twitter_api_v2/src/service/common/rate_limit.dart';
 export 'package:twitter_api_v2/src/service/common/tag.dart';
 export 'package:twitter_api_v2/src/service/common/url.dart';
-export 'package:twitter_api_v2/src/service/compliance/compliance_data.dart';
+export 'package:twitter_api_v2/src/service/compliance/batch_compliance_data.dart';
 export 'package:twitter_api_v2/src/service/compliance/compliance_service.dart';
 export 'package:twitter_api_v2/src/service/compliance/job_status.dart';
 export 'package:twitter_api_v2/src/service/compliance/job_type.dart';

@@ -8,7 +8,7 @@ import 'package:twitter_api_core/twitter_api_core.dart' as core;
 // Project imports:
 import '../base_service.dart';
 import '../twitter_response.dart';
-import 'compliance_data.dart';
+import 'batch_compliance_data.dart';
 import 'job_status.dart';
 import 'job_type.dart';
 
@@ -41,7 +41,7 @@ abstract class ComplianceService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/compliance/batch-compliance/api-reference/get-compliance-jobs-id
-  Future<TwitterResponse<ComplianceData, void>> lookupJob(
+  Future<TwitterResponse<BatchComplianceData, void>> lookupJob(
       {required String jobId});
 
   /// Returns a list of recent compliance jobs.
@@ -71,7 +71,7 @@ abstract class ComplianceService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/compliance/batch-compliance/api-reference/get-compliance-jobs
-  Future<TwitterResponse<List<ComplianceData>, void>> lookupJobs(
+  Future<TwitterResponse<List<BatchComplianceData>, void>> lookupJobs(
       {required JobType jobType, JobStatus? jobStatus});
 
   /// Creates a new compliance job for Tweet IDs or user IDs.
@@ -110,7 +110,7 @@ abstract class ComplianceService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/compliance/batch-compliance/api-reference/post-compliance-jobs
-  Future<TwitterResponse<ComplianceData, void>> createJob(
+  Future<TwitterResponse<BatchComplianceData, void>> createJob(
       {required JobType jobType, String? jobName, bool? resumable});
 }
 
@@ -119,7 +119,7 @@ class _ComplianceService extends BaseService implements ComplianceService {
   _ComplianceService({required super.context});
 
   @override
-  Future<TwitterResponse<ComplianceData, void>> lookupJob({
+  Future<TwitterResponse<BatchComplianceData, void>> lookupJob({
     required String jobId,
   }) async =>
       super.transformSingleDataResponse(
@@ -127,11 +127,11 @@ class _ComplianceService extends BaseService implements ComplianceService {
           core.UserContext.oauth2Only,
           '/2/compliance/jobs/$jobId',
         ),
-        dataBuilder: ComplianceData.fromJson,
+        dataBuilder: BatchComplianceData.fromJson,
       );
 
   @override
-  Future<TwitterResponse<List<ComplianceData>, void>> lookupJobs({
+  Future<TwitterResponse<List<BatchComplianceData>, void>> lookupJobs({
     required JobType jobType,
     JobStatus? jobStatus,
   }) async =>
@@ -144,11 +144,11 @@ class _ComplianceService extends BaseService implements ComplianceService {
             'status': jobStatus?.name,
           },
         ),
-        dataBuilder: ComplianceData.fromJson,
+        dataBuilder: BatchComplianceData.fromJson,
       );
 
   @override
-  Future<TwitterResponse<ComplianceData, void>> createJob({
+  Future<TwitterResponse<BatchComplianceData, void>> createJob({
     required JobType jobType,
     String? jobName,
     bool? resumable,
@@ -163,6 +163,6 @@ class _ComplianceService extends BaseService implements ComplianceService {
             'resumable': resumable,
           },
         ),
-        dataBuilder: ComplianceData.fromJson,
+        dataBuilder: BatchComplianceData.fromJson,
       );
 }
