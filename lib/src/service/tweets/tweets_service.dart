@@ -11,6 +11,8 @@ import '../common/includes.dart';
 import '../common/rate_limit.dart';
 import '../filtered_stream_response.dart';
 import '../media/media_field.dart';
+import '../pagination/bidirectional_pagination.dart';
+import '../pagination_response.dart';
 import '../places/place_field.dart';
 import '../polls/poll_field.dart';
 import '../response_field.dart';
@@ -2141,6 +2143,7 @@ abstract class TweetsService {
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
+    Paging<List<TweetData>, TweetMeta>? onPaging,
   });
 
   /// Streams about 1% of all Tweets in real-time.
@@ -3069,27 +3072,46 @@ class _TweetsService extends BaseService implements TweetsService {
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
-  }) async =>
-      super.transformMultiDataResponse(
-        await super.get(
-          core.UserContext.oauth2OrOAuth1,
-          '/2/users/$userId/timelines/reverse_chronological',
-          queryParameters: {
-            'max_results': maxResults,
-            'pagination_token': paginationToken,
-            'start_time': startTime,
-            'end_time': endTime,
-            'since_id': sinceTweetId,
-            'until_id': untilTweetId,
-            'exclude': excludes,
-            'expansions': expansions,
-            'tweet.fields': tweetFields,
-            'user.fields': userFields,
-            'place.fields': placeFields,
-            'poll.fields': pollFields,
-            'media.fields': mediaFields,
-          },
-        ),
+    Paging<List<TweetData>, TweetMeta>? onPaging,
+  }) async {
+    final rootPage = await _lookupHomeTimeline(
+      '/2/users/$userId/timelines/reverse_chronological',
+      {
+        'max_results': maxResults,
+        'pagination_token': paginationToken,
+        'start_time': startTime,
+        'end_time': endTime,
+        'since_id': sinceTweetId,
+        'until_id': untilTweetId,
+        'exclude': excludes,
+        'expansions': expansions,
+        'tweet.fields': tweetFields,
+        'user.fields': userFields,
+        'place.fields': placeFields,
+        'poll.fields': pollFields,
+        'media.fields': mediaFields,
+      },
+    );
+
+    if (onPaging != null) {
+      await BidirectionalPagination(
+        rootPage,
+        onPaging: onPaging,
+        flipper: _lookupHomeTimeline,
+      ).execute();
+    }
+
+    return rootPage;
+  }
+
+  Future<PaginationResponse<List<TweetData>, TweetMeta>> _lookupHomeTimeline(
+    String unencodedPath,
+    Map<String, dynamic> queryParameters,
+  ) async =>
+      await super.getPage(
+        core.UserContext.oauth2OrOAuth1,
+        unencodedPath,
+        queryParameters: queryParameters,
         dataBuilder: TweetData.fromJson,
         metaBuilder: TweetMeta.fromJson,
       );

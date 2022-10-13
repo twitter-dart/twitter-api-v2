@@ -2,23 +2,26 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+// Dart imports:
+import 'dart:async';
+
 // Package imports:
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
 import 'package:twitter_api_core/twitter_api_core.dart' as core;
 
 // Project imports:
 import 'common/includes.dart';
 import 'common/rate_limit.dart';
+import 'pagination_response.dart';
 import 'response_field.dart';
 import 'twitter_response.dart';
 
 abstract class _Service {
   Future<http.Response> get(
     core.UserContext userContext,
-    String unencodedPath,
-  );
+    String unencodedPath, {
+    Map<String, dynamic> queryParameters = const {},
+  });
 
   Future<core.StreamResponse> getStream(
     final core.UserContext userContext,
@@ -56,6 +59,14 @@ abstract class _Service {
     M Function(Map<String, Object?> json)? metaBuilder,
   });
 
+  Future<PaginationResponse<List<D>, M>> getPage<D, M>(
+    core.UserContext userContext,
+    String unencodedPath, {
+    Map<String, dynamic> queryParameters = const {},
+    required D Function(Map<String, Object?> json) dataBuilder,
+    M Function(Map<String, Object?> json)? metaBuilder,
+  });
+
   TwitterResponse<bool, void> evaluateResponse(final http.Response response);
 }
 
@@ -69,7 +80,6 @@ abstract class BaseService implements _Service {
 
   final core.ServiceHelper _helper;
 
-  @protected
   final ResponseHeaderConverter headerConverter =
       const ResponseHeaderConverter();
 
@@ -92,7 +102,7 @@ abstract class BaseService implements _Service {
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
     Map<String, dynamic> Function(
-            StreamedResponse streamedResponse, String event)?
+            http.StreamedResponse streamedResponse, String event)?
         validate,
   }) async =>
       await _helper.getStream(
@@ -108,7 +118,7 @@ abstract class BaseService implements _Service {
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
     dynamic body = const {},
-    Response Function(Response response)? validate,
+    http.Response Function(http.Response response)? validate,
   }) async =>
       await _helper.post(
         userContext,
@@ -122,7 +132,7 @@ abstract class BaseService implements _Service {
   Future<http.Response> delete(
     final core.UserContext userContext,
     final String unencodedPath, {
-    Response Function(Response response)? validate,
+    http.Response Function(http.Response response)? validate,
   }) async =>
       await _helper.delete(
         userContext,
@@ -135,7 +145,7 @@ abstract class BaseService implements _Service {
     final core.UserContext userContext,
     final String unencodedPath, {
     dynamic body = const {},
-    Response Function(Response response)? validate,
+    http.Response Function(http.Response response)? validate,
   }) async =>
       await _helper.put(
         userContext,
@@ -178,6 +188,42 @@ abstract class BaseService implements _Service {
     final jsonBody = _checkResponseBody(response);
 
     return TwitterResponse(
+      rateLimit: RateLimit.fromJson(
+        headerConverter.convert(response.headers),
+      ),
+      data: jsonBody[ResponseField.data.value]
+          .map<D>((tweet) => dataBuilder(tweet))
+          .toList(),
+      includes: jsonBody.containsKey(ResponseField.includes.value)
+          ? Includes.fromJson(jsonBody[ResponseField.includes.value])
+          : null,
+      meta:
+          jsonBody.containsKey(ResponseField.meta.value) && metaBuilder != null
+              ? metaBuilder(jsonBody[ResponseField.meta.value])
+              : null,
+    );
+  }
+
+  @override
+  Future<PaginationResponse<List<D>, M>> getPage<D, M>(
+    core.UserContext userContext,
+    String unencodedPath, {
+    Map<String, dynamic> queryParameters = const {},
+    required D Function(Map<String, Object?> json) dataBuilder,
+    M Function(Map<String, Object?> json)? metaBuilder,
+  }) async {
+    final response = await get(
+      userContext,
+      unencodedPath,
+      queryParameters: queryParameters,
+    );
+
+    final jsonBody = _checkResponseBody(response);
+
+    return PaginationResponse(
+      userContext: userContext,
+      unencodedPath: unencodedPath,
+      queryParameters: queryParameters,
       rateLimit: RateLimit.fromJson(
         headerConverter.convert(response.headers),
       ),
