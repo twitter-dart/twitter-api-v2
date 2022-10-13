@@ -38,6 +38,7 @@ export 'package:twitter_api_v2/src/service/media/upload_event.dart'
     show UploadEvent;
 export 'package:twitter_api_v2/src/service/media/upload_state.dart';
 export 'package:twitter_api_v2/src/service/media/uploaded_media_data.dart';
+export 'package:twitter_api_v2/src/service/pagination/paging_control.dart';
 export 'package:twitter_api_v2/src/service/places/place_data.dart';
 export 'package:twitter_api_v2/src/service/places/place_field.dart';
 export 'package:twitter_api_v2/src/service/places/place_geo.dart';

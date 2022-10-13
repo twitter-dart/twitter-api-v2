@@ -9,9 +9,9 @@ import 'dart:async';
 import '../pagination_response.dart';
 import 'pageable.dart';
 import 'pagination.dart';
-import 'paging_direction.dart';
+import 'paging_control.dart';
 
-typedef Paging<D, M extends Pageable> = FutureOr<PagingDirection>? Function(
+typedef Paging<D, M extends Pageable> = FutureOr<PagingControl> Function(
   PaginationResponse<D, M> response,
 );
 
@@ -34,33 +34,31 @@ class BidirectionalPagination<D, M extends Pageable> extends Pagination<D, M> {
   @override
   Future<void> execute() async {
     var thisPage = rootPage;
-    var direction = await onPaging.call(rootPage);
+    var control = await onPaging.call(thisPage);
 
     do {
       //! Do not edit map directly.
       final newQueryParameters = Map<String, dynamic>.from(
-        rootPage.queryParameters,
+        thisPage.queryParameters,
       );
 
-      if (direction == PagingDirection.forward) {
-        _updatePaginationToken(
-          newQueryParameters,
-          thisPage.meta!.nextToken,
-        );
-      } else {
-        _updatePaginationToken(
-          newQueryParameters,
-          thisPage.meta!.previousToken,
-        );
+      if (!_updatePaginationToken(
+        newQueryParameters,
+        control == PagingControl.forward
+            ? thisPage.meta!.nextToken
+            : thisPage.meta!.previousToken,
+      )) {
+        //! There is no more next page.
+        break;
       }
 
       thisPage = await flipper.call(
-        rootPage.unencodedPath,
+        thisPage.unencodedPath,
         newQueryParameters,
       );
 
-      direction = await onPaging.call(thisPage);
-    } while (direction != null);
+      control = await onPaging.call(thisPage);
+    } while (control != PagingControl.stop);
   }
 
   /// Update pagination token based on [nextToken].
@@ -71,7 +69,7 @@ class BidirectionalPagination<D, M extends Pageable> extends Pagination<D, M> {
     final String? nextToken,
   ) {
     if (nextToken?.isEmpty ?? true) {
-      //! There is no next (or previous) page.
+      //! There is no more next (or previous) page.
       return false;
     }
 

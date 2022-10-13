@@ -9,8 +9,9 @@ import 'dart:async';
 import '../pagination_response.dart';
 import 'pageable.dart';
 import 'pagination.dart';
+import 'paging_control.dart';
 
-typedef ForwardPaging<D, M extends Pageable> = dynamic Function(
+typedef ForwardPaging<D, M extends Pageable> = FutureOr<PagingControl> Function(
   PaginationResponse<D, M> response,
 );
 
@@ -32,12 +33,12 @@ class UnidirectionalPagination<D, M extends Pageable> extends Pagination<D, M> {
   @override
   Future<void> execute() async {
     var thisPage = rootPage;
-    var direction = await onPaging.call(rootPage);
+    var control = await onPaging.call(thisPage);
 
     do {
       //! Do not edit map directly.
       final newQueryParameters = Map<String, dynamic>.from(
-        rootPage.queryParameters,
+        thisPage.queryParameters,
       );
 
       final nextToken = thisPage.meta!.nextToken;
@@ -49,11 +50,11 @@ class UnidirectionalPagination<D, M extends Pageable> extends Pagination<D, M> {
       newQueryParameters['next_token'] = nextToken;
 
       thisPage = await flipper.call(
-        rootPage.unencodedPath,
+        thisPage.unencodedPath,
         newQueryParameters,
       );
 
       await onPaging.call(thisPage);
-    } while (direction != null);
+    } while (control != PagingControl.stop);
   }
 }

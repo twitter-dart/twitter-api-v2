@@ -905,6 +905,7 @@ abstract class TweetsService {
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
+    Paging<List<TweetData>, TweetMeta>? paging,
   });
 
   /// This endpoint is only available to those users who have been approved for
@@ -2143,7 +2144,7 @@ abstract class TweetsService {
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
-    Paging<List<TweetData>, TweetMeta>? onPaging,
+    Paging<List<TweetData>, TweetMeta>? paging,
   });
 
   /// Streams about 1% of all Tweets in real-time.
@@ -2725,28 +2726,47 @@ class _TweetsService extends BaseService implements TweetsService {
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
-  }) async =>
-      super.transformMultiDataResponse(
-        await super.get(
-          core.UserContext.oauth2Only,
-          '/2/tweets/search/recent',
-          queryParameters: {
-            'query': query,
-            'max_results': maxResults,
-            'next_token': nextToken,
-            'sort_order': sortOrder?.name,
-            'start_time': startTime,
-            'end_time': endTime,
-            'since_id': sinceTweetId,
-            'until_id': untilTweetId,
-            'expansions': expansions,
-            'tweet.fields': tweetFields,
-            'user.fields': userFields,
-            'place.fields': placeFields,
-            'poll.fields': pollFields,
-            'media.fields': mediaFields,
-          },
-        ),
+    Paging<List<TweetData>, TweetMeta>? paging,
+  }) async {
+    final rootPage = await _searchRecent(
+      '/2/tweets/search/recent',
+      {
+        'query': query,
+        'max_results': maxResults,
+        'next_token': nextToken,
+        'sort_order': sortOrder?.name,
+        'start_time': startTime,
+        'end_time': endTime,
+        'since_id': sinceTweetId,
+        'until_id': untilTweetId,
+        'expansions': expansions,
+        'tweet.fields': tweetFields,
+        'user.fields': userFields,
+        'place.fields': placeFields,
+        'poll.fields': pollFields,
+        'media.fields': mediaFields,
+      },
+    );
+
+    if (paging != null) {
+      await super.executeBidirectionalPagination(
+        rootPage: rootPage,
+        onPaging: paging,
+        flipper: _searchRecent,
+      );
+    }
+
+    return rootPage;
+  }
+
+  Future<PaginationResponse<List<TweetData>, TweetMeta>> _searchRecent(
+    String unencodedPath,
+    Map<String, dynamic> queryParameters,
+  ) async =>
+      super.getPage(
+        core.UserContext.oauth2Only,
+        unencodedPath,
+        queryParameters: queryParameters,
         dataBuilder: TweetData.fromJson,
         metaBuilder: TweetMeta.fromJson,
       );
@@ -3072,7 +3092,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
-    Paging<List<TweetData>, TweetMeta>? onPaging,
+    Paging<List<TweetData>, TweetMeta>? paging,
   }) async {
     final rootPage = await _lookupHomeTimeline(
       '/2/users/$userId/timelines/reverse_chronological',
@@ -3093,12 +3113,12 @@ class _TweetsService extends BaseService implements TweetsService {
       },
     );
 
-    if (onPaging != null) {
-      await BidirectionalPagination(
-        rootPage,
-        onPaging: onPaging,
+    if (paging != null) {
+      await super.executeBidirectionalPagination(
+        rootPage: rootPage,
+        onPaging: paging,
         flipper: _lookupHomeTimeline,
-      ).execute();
+      );
     }
 
     return rootPage;

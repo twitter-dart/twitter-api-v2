@@ -12,6 +12,9 @@ import 'package:twitter_api_core/twitter_api_core.dart' as core;
 // Project imports:
 import 'common/includes.dart';
 import 'common/rate_limit.dart';
+import 'pagination/bidirectional_pagination.dart';
+import 'pagination/pageable.dart';
+import 'pagination/pagination.dart';
 import 'pagination_response.dart';
 import 'response_field.dart';
 import 'twitter_response.dart';
@@ -65,6 +68,12 @@ abstract class _Service {
     Map<String, dynamic> queryParameters = const {},
     required D Function(Map<String, Object?> json) dataBuilder,
     M Function(Map<String, Object?> json)? metaBuilder,
+  });
+
+  Future<void> executeBidirectionalPagination<D, M extends Pageable>({
+    required PaginationResponse<D, M> rootPage,
+    required Paging<D, M> onPaging,
+    required PageFlipper<D, M> flipper,
   });
 
   TwitterResponse<bool, void> evaluateResponse(final http.Response response);
@@ -239,6 +248,18 @@ abstract class BaseService implements _Service {
               : null,
     );
   }
+
+  @override
+  Future<void> executeBidirectionalPagination<D, M extends Pageable>({
+    required PaginationResponse<D, M> rootPage,
+    required Paging<D, M> onPaging,
+    required PageFlipper<D, M> flipper,
+  }) async =>
+      await BidirectionalPagination(
+        rootPage,
+        onPaging: onPaging,
+        flipper: flipper,
+      ).execute();
 
   @override
   TwitterResponse<bool, void> evaluateResponse(final http.Response response) =>
