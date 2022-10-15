@@ -10,6 +10,7 @@ import 'package:twitter_api_core/src/exception/twitter_exception.dart';
 
 // Project imports:
 import 'package:twitter_api_v2/src/service/filtered_stream_response.dart';
+import 'package:twitter_api_v2/src/service/tweets/decahose_partition.dart';
 import 'package:twitter_api_v2/src/service/tweets/exclude_tweet_type.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering_rule_data.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering_rule_meta.dart';
@@ -2339,6 +2340,64 @@ void main() {
       );
 
       final response = await tweetsService.connectSampleStream(
+        backfillMinutes: 5,
+      );
+
+      final data = <TwitterResponse<TweetData, void>>[];
+      final errors = <dynamic>[];
+
+      final stream = response.stream;
+
+      await for (final event in stream.handleError(errors.add)) {
+        data.add(event);
+      }
+
+      expect(data.length, 5);
+      expect(errors.length, 1);
+      expect(errors.single, isA<TwitterException>());
+    });
+  });
+
+  group('.connectSample10Stream', () {
+    test('normal case', () async {
+      final tweetsService = TweetsService(
+        context: context.buildSendStub(
+          UserContext.oauth2Only,
+          'test/src/service/tweets/data/connect_sample10_stream.json',
+          const {
+            'partition': '1',
+            'backfill_minutes': '5',
+          },
+        ),
+      );
+
+      final response = await tweetsService.connectSample10Stream(
+        partition: DecahosePartition.section1,
+        backfillMinutes: 5,
+      );
+
+      final data = await response.stream.toList();
+
+      expect(response,
+          isA<TwitterStreamResponse<TwitterResponse<TweetData, void>>>());
+      expect(data, isA<List<TwitterResponse<TweetData, void>>>());
+      expect(data.length, 70);
+    });
+
+    test('with error', () async {
+      final tweetsService = TweetsService(
+        context: context.buildSendStub(
+          UserContext.oauth2Only,
+          'test/src/service/tweets/data/connect_sample10_stream_with_error.json',
+          const {
+            'partition': '2',
+            'backfill_minutes': '5',
+          },
+        ),
+      );
+
+      final response = await tweetsService.connectSample10Stream(
+        partition: DecahosePartition.section2,
         backfillMinutes: 5,
       );
 

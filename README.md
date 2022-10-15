@@ -364,9 +364,10 @@ Future<void> main() async {
 
 #### 1.3.1.11. Volume Stream
 
-| Endpoint                                                                                                                                      | Method Name                                                                                                                      |
-| --------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| [GET /2/tweets/sample/stream](https://developer.twitter.com/en/docs/twitter-api/tweets/volume-streams/api-reference/get-tweets-sample-stream) | [connectSampleStream](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/connectSampleStream.html) |
+| Endpoint                                                                                                                                          | Method Name                                                                                                                          |
+| ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| [GET /2/tweets/sample/stream](https://developer.twitter.com/en/docs/twitter-api/tweets/volume-streams/api-reference/get-tweets-sample-stream)     | [connectSampleStream](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/connectSampleStream.html)     |
+| [GET /2/tweets/sample10/stream](https://developer.twitter.com/en/docs/twitter-api/tweets/volume-streams/api-reference/get-tweets-sample10-stream) | [connectSample10Stream](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/connectSample10Stream.html) |
 
 #### 1.3.1.12. Filtered Stream
 
