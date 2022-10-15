@@ -53,6 +53,7 @@ export 'package:twitter_api_v2/src/service/spaces/space_state.dart';
 export 'package:twitter_api_v2/src/service/spaces/spaces_service.dart';
 export 'package:twitter_api_v2/src/service/spaces/topic_data.dart';
 export 'package:twitter_api_v2/src/service/spaces/topic_field.dart';
+export 'package:twitter_api_v2/src/service/tweets/decahose_partition.dart';
 export 'package:twitter_api_v2/src/service/tweets/exclude_tweet_type.dart';
 export 'package:twitter_api_v2/src/service/tweets/filtering_rule_data.dart';
 export 'package:twitter_api_v2/src/service/tweets/filtering_rule_meta.dart';
