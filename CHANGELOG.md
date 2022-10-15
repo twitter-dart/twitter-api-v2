@@ -3,6 +3,7 @@
 ## v4.1.4
 
 - Renamed object from `ComplianceData` to `BatchComplianceData`. If you are using the object name `ComplianceData` explicitly, modify it to `BatchComplianceData`. ([#462](https://github.com/twitter-dart/twitter-api-v2/issues/462))
+- Deprecated `connectVolumeStream` and added `connectSampleStream` instead. Please replace method name from `connectVolumeStream` to `connectSampleStream`. ([#479](https://github.com/twitter-dart/twitter-api-v2/issues/479))
 
 ## v4.1.3
 

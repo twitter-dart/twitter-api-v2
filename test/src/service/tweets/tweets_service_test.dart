@@ -2307,17 +2307,17 @@ void main() {
     });
   });
 
-  group('.connectVolumeStream', () {
+  group('.connectSampleStream', () {
     test('normal case', () async {
       final tweetsService = TweetsService(
         context: context.buildSendStub(
           UserContext.oauth2Only,
-          'test/src/service/tweets/data/connect_volume_stream.json',
+          'test/src/service/tweets/data/connect_sample_stream.json',
           const {'backfill_minutes': '5'},
         ),
       );
 
-      final response = await tweetsService.connectVolumeStream(
+      final response = await tweetsService.connectSampleStream(
         backfillMinutes: 5,
       );
 
@@ -2333,12 +2333,12 @@ void main() {
       final tweetsService = TweetsService(
         context: context.buildSendStub(
           UserContext.oauth2Only,
-          'test/src/service/tweets/data/connect_volume_stream_with_error.json',
+          'test/src/service/tweets/data/connect_sample_stream_with_error.json',
           const {'backfill_minutes': '5'},
         ),
       );
 
-      final response = await tweetsService.connectVolumeStream(
+      final response = await tweetsService.connectSampleStream(
         backfillMinutes: 5,
       );
 

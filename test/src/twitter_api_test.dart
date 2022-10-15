@@ -78,7 +78,7 @@ void main() {
 
     test('GET Stream', () async {
       final twitter = TwitterApi(bearerToken: 'XXX');
-      final response = await twitter.tweetsService.connectVolumeStream();
+      final response = await twitter.tweetsService.connectSampleStream();
 
       //! Stream does not raise an exception when retrieving.
       expect(response, isNotNull);
