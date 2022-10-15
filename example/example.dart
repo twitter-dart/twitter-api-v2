@@ -103,8 +103,8 @@ Future<void> main() async {
     );
 
     // High-performance Volume Stream endpoint is available.
-    final volumeStream = await twitter.tweetsService.connectVolumeStream();
-    await for (final response in volumeStream.stream.handleError(print)) {
+    final sampleStream = await twitter.tweetsService.connectSampleStream();
+    await for (final response in sampleStream.stream.handleError(print)) {
       print(response);
     }
 

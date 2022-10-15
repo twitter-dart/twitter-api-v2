@@ -185,8 +185,8 @@ Future<void> main() async {
     );
 
     // Ein hoch-performanter Volume Stream Endpunkt kann wie folgt verwendet werden:
-    final volumeStream = await twitter.tweetsService.connectVolumeStream();
-    await for (final response in volumeStream.stream.handleError(print)) {
+    final sampleStream = await twitter.tweetsService.connectSampleStream();
+    await for (final response in sampleStream.stream.handleError(print)) {
       print(response);
     }
 
@@ -298,7 +298,7 @@ Future<void> main() async {
 
 | Endpunkt                                                                                                                                      | Methoden Name                                                                                                                    |
 | --------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| [GET /2/tweets/sample/stream](https://developer.twitter.com/en/docs/twitter-api/tweets/volume-streams/api-reference/get-tweets-sample-stream) | [connectVolumeStream](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/connectVolumeStream.html) |
+| [GET /2/tweets/sample/stream](https://developer.twitter.com/en/docs/twitter-api/tweets/volume-streams/api-reference/get-tweets-sample-stream) | [connectSampleStream](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/connectSampleStream.html) |
 
 #### 1.2.1.12. Gefilterter Stream
 
