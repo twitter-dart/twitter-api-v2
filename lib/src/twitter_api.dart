@@ -18,12 +18,12 @@ import 'service/users/users_service.dart';
 ///
 /// ## Supported Services
 ///
-/// - Tweets service: [tweetsService]
-/// - Users service: [usersService]
-/// - Spaces service: [spacesService]
-/// - Lists service: [listsService]
-/// - Media service: [mediaService]
-/// - Compliance service: [complianceService]
+/// - Tweets service: [tweets]
+/// - Users service: [users]
+/// - Spaces service: [spaces]
+/// - Lists service: [lists]
+/// - Media service: [media]
+/// - Compliance service: [compliance]
 ///
 /// ## Authentication
 ///
@@ -62,7 +62,7 @@ import 'service/users/users_service.dart';
 /// ```dart
 /// final twitter = TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
 ///
-/// await twitter.tweetsService.searchRecent(query: '#ElonMusk');
+/// await twitter.tweets.searchRecent(query: '#ElonMusk');
 /// ```
 ///
 /// ## User Context
@@ -144,22 +144,46 @@ abstract class TwitterApi {
       );
 
   /// Returns the tweets service.
+  @Deprecated('Use "tweets" property instead. Will be removed in v4.5.0')
   TweetsService get tweetsService;
 
   /// Returns the users service.
+  @Deprecated('Use "users" property instead. Will be removed in v4.5.0')
   UsersService get usersService;
 
   /// Returns the spaces service.
+  @Deprecated('Use "spaces" property instead. Will be removed in v4.5.0')
   SpacesService get spacesService;
 
   /// Returns the lists service.
+  @Deprecated('Use "lists" property instead. Will be removed in v4.5.0')
   ListsService get listsService;
 
   /// Returns the media service
+  @Deprecated('Use "media" property instead. Will be removed in v4.5.0')
   MediaService get mediaService;
 
   /// Returns the compliance service.
+  @Deprecated('Use "compliance" property instead. Will be removed in v4.5.0')
   ComplianceService get complianceService;
+
+  /// Returns the tweets service.
+  TweetsService get tweets;
+
+  /// Returns the users service.
+  UsersService get users;
+
+  /// Returns the spaces service.
+  SpacesService get spaces;
+
+  /// Returns the lists service.
+  ListsService get lists;
+
+  /// Returns the media service
+  MediaService get media;
+
+  /// Returns the compliance service.
+  ComplianceService get compliance;
 }
 
 class _TwitterApi implements TwitterApi {
@@ -203,4 +227,22 @@ class _TwitterApi implements TwitterApi {
 
   @override
   ComplianceService get complianceService => _twitterService.complianceService;
+
+  @override
+  TweetsService get tweets => _twitterService.tweetsService;
+
+  @override
+  UsersService get users => _twitterService.usersService;
+
+  @override
+  SpacesService get spaces => _twitterService.spacesService;
+
+  @override
+  ListsService get lists => _twitterService.listsService;
+
+  @override
+  MediaService get media => _twitterService.mediaService;
+
+  @override
+  ComplianceService get compliance => _twitterService.complianceService;
 }
