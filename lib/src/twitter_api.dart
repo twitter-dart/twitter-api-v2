@@ -144,27 +144,27 @@ abstract class TwitterApi {
       );
 
   /// Returns the tweets service.
-  @Deprecated('Use "tweets" property instead. Will be removed in v4.5.0')
+  @Deprecated('Use "tweets" property instead. Will be removed in v5.0.0')
   TweetsService get tweetsService;
 
   /// Returns the users service.
-  @Deprecated('Use "users" property instead. Will be removed in v4.5.0')
+  @Deprecated('Use "users" property instead. Will be removed in v5.0.0')
   UsersService get usersService;
 
   /// Returns the spaces service.
-  @Deprecated('Use "spaces" property instead. Will be removed in v4.5.0')
+  @Deprecated('Use "spaces" property instead. Will be removed in v5.0.0')
   SpacesService get spacesService;
 
   /// Returns the lists service.
-  @Deprecated('Use "lists" property instead. Will be removed in v4.5.0')
+  @Deprecated('Use "lists" property instead. Will be removed in v5.0.0')
   ListsService get listsService;
 
   /// Returns the media service
-  @Deprecated('Use "media" property instead. Will be removed in v4.5.0')
+  @Deprecated('Use "media" property instead. Will be removed in v5.0.0')
   MediaService get mediaService;
 
   /// Returns the compliance service.
-  @Deprecated('Use "compliance" property instead. Will be removed in v4.5.0')
+  @Deprecated('Use "compliance" property instead. Will be removed in v5.0.0')
   ComplianceService get complianceService;
 
   /// Returns the tweets service.
