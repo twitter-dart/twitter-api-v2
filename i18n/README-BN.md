@@ -145,9 +145,9 @@ Future<void> main() async {
 
   try {
     // অথেনটিকেটেড ইউজার এর প্রোফাইল পেতে হলে।
-    final me = await twitter.usersService.lookupMe();
+    final me = await twitter.users.lookupMe();
     // সার্চ কোয়েরি সম্পৃক্ত টুইটস পেতে হলে।
-    final tweets = await twitter.tweetsService.searchRecent(
+    final tweets = await twitter.tweets.searchRecent(
       query: '#ElonMusk',
       maxResults: 20,
       // আপনি সার্চ রেজাল্ট বৃদ্ধি করতে পারবেন।
@@ -167,19 +167,19 @@ Future<void> main() async {
       ],
     );
 
-    await twitter.tweetsService.createLike(
+    await twitter.tweets.createLike(
       userId: me.data.id,
       tweetId: tweets.data.first.id,
     );
 
     // উচ্চ ক্ষমতা সম্পন্ন ভলিউম স্ট্রীম এন্ডপয়েন্ট পাওয়া যায়।
-    final sampleStream = await twitter.tweetsService.connectSampleStream();
+    final sampleStream = await twitter.tweets.connectSampleStream();
     await for (final response in sampleStream.stream.handleError(print)) {
       print(response);
     }
 
     // আরও উচ্চ ক্ষমতা সম্পন্ন ফিল্টার্ড স্ট্রীম এন্ডপয়েন্ট পাওয়া যায়।
-    await twitter.tweetsService.createFilteringRules(
+    await twitter.tweets.createFilteringRules(
       rules: [
         v2.FilteringRuleParam(value: '#ElonMusk'),
         v2.FilteringRuleParam(value: '#Tesla'),
@@ -187,7 +187,7 @@ Future<void> main() async {
       ],
     );
 
-    final filteredStream = await twitter.tweetsService.connectFilteredStream();
+    final filteredStream = await twitter.tweets.connectFilteredStream();
     await for (final response in filteredStream.stream.handleError(print)) {
       print(response.data);
       print(response.matchingRules);
@@ -460,7 +460,7 @@ import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
 Future<void> main() async {
   final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
 
-  await twitter.tweetsService.createTweet(
+  await twitter.tweets.createTweet(
     text: 'Hello, World!',
     // এই প্যারামিটারগুলো রিকোয়েস্ট পাঠানোর সময় বাতিল হিসাবে গণ্য হয় কারণ তাদের মান হচ্ছে নাল।
     mediaIds: null,
@@ -484,7 +484,7 @@ Future<void> main() async {
   final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
 
   try {
-    final tweets = await twitter.tweetsService.searchRecent(
+    final tweets = await twitter.tweets.searchRecent(
       query: '#ElonMusk',
       // আপনার প্রয়োজনীয় ফিল্ডগুলো নির্দিষ্ট করুন!
       expansions: [
@@ -517,7 +517,7 @@ Future<void> main() async {
   final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
 
   try {
-    final tweets = await twitter.tweetsService.searchRecent(
+    final tweets = await twitter.tweets.searchRecent(
       query: '#ElonMusk',
       maxResults: 20,
       expansions: v2.TweetExpansion.values,
