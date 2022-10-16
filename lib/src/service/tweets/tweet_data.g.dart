@@ -80,6 +80,12 @@ _$_TweetData _$$_TweetDataFromJson(Map json) => $checkedCreate(
           replySetting: $checkedConvert('reply_settings',
               (v) => $enumDecodeNullable(_$ReplySettingEnumMap, v)),
           source: $checkedConvert('source', (v) => v as String?),
+          editControls: $checkedConvert(
+              'edit_controls',
+              (v) => v == null
+                  ? null
+                  : TweetEditControls.fromJson(
+                      Map<String, Object?>.from(v as Map))),
           withheld: $checkedConvert(
               'withheld',
               (v) => v == null
@@ -103,6 +109,7 @@ _$_TweetData _$$_TweetDataFromJson(Map json) => $checkedCreate(
         'publicMetrics': 'public_metrics',
         'isPossiblySensitive': 'possibly_sensitive',
         'replySetting': 'reply_settings',
+        'editControls': 'edit_controls',
         'createdAt': 'created_at'
       },
     );
@@ -129,6 +136,7 @@ Map<String, dynamic> _$$_TweetDataToJson(_$_TweetData instance) =>
       'possibly_sensitive': instance.isPossiblySensitive,
       'reply_settings': _$ReplySettingEnumMap[instance.replySetting],
       'source': instance.source,
+      'edit_controls': instance.editControls?.toJson(),
       'withheld': instance.withheld?.toJson(),
       'created_at': instance.createdAt?.toIso8601String(),
     };

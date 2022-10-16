@@ -204,6 +204,7 @@ Future<void> main() async {
       tweetFields: [
         v2.TweetField.conversationId,
         v2.TweetField.publicMetrics,
+        v2.TweetField.editControls,
       ],
       userFields: [
         v2.UserField.location,

@@ -75,6 +75,7 @@ export 'package:twitter_api_v2/src/service/tweets/tweet_count_data.dart';
 export 'package:twitter_api_v2/src/service/tweets/tweet_count_granularity.dart';
 export 'package:twitter_api_v2/src/service/tweets/tweet_count_meta.dart';
 export 'package:twitter_api_v2/src/service/tweets/tweet_data.dart';
+export 'package:twitter_api_v2/src/service/tweets/tweet_edit_controls.dart';
 export 'package:twitter_api_v2/src/service/tweets/tweet_entities.dart';
 export 'package:twitter_api_v2/src/service/tweets/tweet_expansion.dart';
 export 'package:twitter_api_v2/src/service/tweets/tweet_field.dart';

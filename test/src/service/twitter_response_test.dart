@@ -107,6 +107,7 @@ void main() {
           'possibly_sensitive': null,
           'reply_settings': null,
           'source': null,
+          'edit_controls': null,
           'withheld': null,
           'created_at': null
         },
@@ -131,6 +132,7 @@ void main() {
               'possibly_sensitive': null,
               'reply_settings': null,
               'source': null,
+              'edit_controls': null,
               'withheld': null,
               'created_at': null
             },
@@ -153,6 +155,7 @@ void main() {
               'possibly_sensitive': null,
               'reply_settings': null,
               'source': null,
+              'edit_controls': null,
               'withheld': null,
               'created_at': null
             }
@@ -202,6 +205,7 @@ void main() {
             'possibly_sensitive': null,
             'reply_settings': null,
             'source': null,
+            'edit_controls': null,
             'withheld': null,
             'created_at': null
           },
@@ -224,6 +228,7 @@ void main() {
             'possibly_sensitive': null,
             'reply_settings': null,
             'source': null,
+            'edit_controls': null,
             'withheld': null,
             'created_at': null
           }

@@ -17,6 +17,7 @@ import 'referenced_tweet.dart';
 import 'reply_setting.dart';
 import 'tweet_attachments.dart';
 import 'tweet_context_annotation_group.dart';
+import 'tweet_edit_controls.dart';
 import 'tweet_entities.dart';
 import 'tweet_language.dart';
 import 'tweet_withheld.dart';
@@ -239,6 +240,13 @@ class TweetData with _$TweetData {
     /// - Determine if a Twitter user posted from the web, mobile device, or
     /// other app.
     String? source,
+
+    /// Indicates if a Tweet is eligible for edit, how long it is editable for,
+    /// and the number of remaining edits.
+    ///
+    /// Editable Tweets can be edited for the first 30 minutes after
+    /// creation and can be edited up to five times.
+    TweetEditControls? editControls,
 
     /// Contains withholding details for [withheld content](https://help.twitter.com/en/rules-and-policies/tweet-withheld-by-country).
     ///

@@ -1015,6 +1015,14 @@ void main() {
       expect(response, isA<TwitterResponse>());
       expect(response.data, isA<TweetData>());
       expect(response.data.id, '1067094924124872705');
+
+      final editControls = response.data.editControls!;
+
+      expect(editControls.toJson(), {
+        'is_edit_eligible': true,
+        'edits_remaining': '4',
+        'editable_until': '2022-08-21T09:35:20.311'
+      });
     });
 
     test('with expansions', () async {
