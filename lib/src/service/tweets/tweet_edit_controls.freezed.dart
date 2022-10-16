@@ -30,6 +30,7 @@ mixin _$TweetEditControls {
   ///
   /// Tweet can be edited up to 5 times.
   @JsonKey(name: 'edits_remaining')
+  @_RemainingCountConverter()
   int get remainingCount => throw _privateConstructorUsedError;
 
   /// Indicates when the permission to edit tweets will expire.
@@ -48,9 +49,13 @@ abstract class $TweetEditControlsCopyWith<$Res> {
           TweetEditControls value, $Res Function(TweetEditControls) then) =
       _$TweetEditControlsCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'is_edit_eligible') bool isEditable,
-      @JsonKey(name: 'edits_remaining') int remainingCount,
-      @JsonKey(name: 'editable_until') DateTime expireAt});
+      {@JsonKey(name: 'is_edit_eligible')
+          bool isEditable,
+      @JsonKey(name: 'edits_remaining')
+      @_RemainingCountConverter()
+          int remainingCount,
+      @JsonKey(name: 'editable_until')
+          DateTime expireAt});
 }
 
 /// @nodoc
@@ -93,9 +98,13 @@ abstract class _$$_TweetEditControlsCopyWith<$Res>
       __$$_TweetEditControlsCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'is_edit_eligible') bool isEditable,
-      @JsonKey(name: 'edits_remaining') int remainingCount,
-      @JsonKey(name: 'editable_until') DateTime expireAt});
+      {@JsonKey(name: 'is_edit_eligible')
+          bool isEditable,
+      @JsonKey(name: 'edits_remaining')
+      @_RemainingCountConverter()
+          int remainingCount,
+      @JsonKey(name: 'editable_until')
+          DateTime expireAt});
 }
 
 /// @nodoc
@@ -136,9 +145,13 @@ class __$$_TweetEditControlsCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_TweetEditControls implements _TweetEditControls {
   const _$_TweetEditControls(
-      {@JsonKey(name: 'is_edit_eligible') required this.isEditable,
-      @JsonKey(name: 'edits_remaining') required this.remainingCount,
-      @JsonKey(name: 'editable_until') required this.expireAt});
+      {@JsonKey(name: 'is_edit_eligible')
+          required this.isEditable,
+      @JsonKey(name: 'edits_remaining')
+      @_RemainingCountConverter()
+          required this.remainingCount,
+      @JsonKey(name: 'editable_until')
+          required this.expireAt});
 
   factory _$_TweetEditControls.fromJson(Map<String, dynamic> json) =>
       _$$_TweetEditControlsFromJson(json);
@@ -155,6 +168,7 @@ class _$_TweetEditControls implements _TweetEditControls {
   /// Tweet can be edited up to 5 times.
   @override
   @JsonKey(name: 'edits_remaining')
+  @_RemainingCountConverter()
   final int remainingCount;
 
   /// Indicates when the permission to edit tweets will expire.
@@ -203,10 +217,13 @@ class _$_TweetEditControls implements _TweetEditControls {
 
 abstract class _TweetEditControls implements TweetEditControls {
   const factory _TweetEditControls(
-          {@JsonKey(name: 'is_edit_eligible') required final bool isEditable,
-          @JsonKey(name: 'edits_remaining') required final int remainingCount,
-          @JsonKey(name: 'editable_until') required final DateTime expireAt}) =
-      _$_TweetEditControls;
+      {@JsonKey(name: 'is_edit_eligible')
+          required final bool isEditable,
+      @JsonKey(name: 'edits_remaining')
+      @_RemainingCountConverter()
+          required final int remainingCount,
+      @JsonKey(name: 'editable_until')
+          required final DateTime expireAt}) = _$_TweetEditControls;
 
   factory _TweetEditControls.fromJson(Map<String, dynamic> json) =
       _$_TweetEditControls.fromJson;
@@ -224,6 +241,7 @@ abstract class _TweetEditControls implements TweetEditControls {
   ///
   /// Tweet can be edited up to 5 times.
   @JsonKey(name: 'edits_remaining')
+  @_RemainingCountConverter()
   int get remainingCount;
   @override
 

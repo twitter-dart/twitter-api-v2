@@ -21,7 +21,9 @@ class TweetEditControls with _$TweetEditControls {
     /// A number indicating how many more tweets will be allowed to be edited.
     ///
     /// Tweet can be edited up to 5 times.
-    @JsonKey(name: 'edits_remaining') required int remainingCount,
+    @JsonKey(name: 'edits_remaining')
+    @_RemainingCountConverter()
+        required int remainingCount,
 
     /// Indicates when the permission to edit tweets will expire.
     @JsonKey(name: 'editable_until') required DateTime expireAt,
@@ -29,4 +31,15 @@ class TweetEditControls with _$TweetEditControls {
 
   factory TweetEditControls.fromJson(Map<String, Object?> json) =>
       _$TweetEditControlsFromJson(json);
+}
+
+class _RemainingCountConverter implements JsonConverter<int, String> {
+  /// Returns the new instance of [_RemainingCountConverter].
+  const _RemainingCountConverter();
+
+  @override
+  int fromJson(String value) => int.parse(value);
+
+  @override
+  String toJson(int value) => value.toString();
 }

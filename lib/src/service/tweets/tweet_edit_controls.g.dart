@@ -14,7 +14,8 @@ _$_TweetEditControls _$$_TweetEditControlsFromJson(Map json) => $checkedCreate(
       ($checkedConvert) {
         final val = _$_TweetEditControls(
           isEditable: $checkedConvert('is_edit_eligible', (v) => v as bool),
-          remainingCount: $checkedConvert('edits_remaining', (v) => v as int),
+          remainingCount: $checkedConvert('edits_remaining',
+              (v) => const _RemainingCountConverter().fromJson(v as String)),
           expireAt: $checkedConvert(
               'editable_until', (v) => DateTime.parse(v as String)),
         );
@@ -31,6 +32,7 @@ Map<String, dynamic> _$$_TweetEditControlsToJson(
         _$_TweetEditControls instance) =>
     <String, dynamic>{
       'is_edit_eligible': instance.isEditable,
-      'edits_remaining': instance.remainingCount,
+      'edits_remaining':
+          const _RemainingCountConverter().toJson(instance.remainingCount),
       'editable_until': instance.expireAt.toIso8601String(),
     };
