@@ -22,6 +22,7 @@ import 'service/users/users_service.dart';
 /// - Users service: [usersService]
 /// - Spaces service: [spacesService]
 /// - Lists service: [listsService]
+/// - Media service: [mediaService]
 /// - Compliance service: [complianceService]
 ///
 /// ## Authentication
@@ -116,9 +117,10 @@ import 'service/users/users_service.dart';
 /// The following exceptions may be thrown by this object.
 ///
 /// - [TimeoutException](https://api.dart.dev/stable/2.17.6/dart-async/TimeoutException-class.html): If the request takes longer than the specified timeout.
-/// - [UnauthorizedException](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UnauthorizedException-class.html): When the access token is invalid.
-/// - [RateLimitExceededException](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/RateLimitExceededException-class.html): When the rate limit is exceeded.
-/// - [TwitterException](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TwitterException-class.html): When the response body is not a valid JSON and etc.
+/// - [UnauthorizedException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/UnauthorizedException-class.html): When the access token is invalid.
+/// - [RateLimitExceededException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/RateLimitExceededException-class.html): When the rate limit is exceeded.
+/// - [TwitterUploadException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/TwitterUploadException-class.html): When the upload is failed for some reasons.
+/// - [TwitterException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/TwitterException-class.html): When the response body is not a valid JSON and etc.
 ///
 /// ## More Information
 ///
