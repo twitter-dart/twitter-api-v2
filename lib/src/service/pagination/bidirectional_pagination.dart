@@ -10,9 +10,10 @@ import '../pagination_response.dart';
 import 'pageable.dart';
 import 'pagination.dart';
 import 'paging_control.dart';
+import 'paging_event.dart';
 
 typedef Paging<D, M extends Pageable> = FutureOr<PagingControl> Function(
-  PaginationResponse<D, M> response,
+  PagingEvent<D, M> event,
 );
 
 /// This class is an object representing bidirectional
@@ -20,21 +21,22 @@ typedef Paging<D, M extends Pageable> = FutureOr<PagingControl> Function(
 class BidirectionalPagination<D, M extends Pageable> extends Pagination<D, M> {
   /// Returns the new instance of [BidirectionalPagination].
   const BidirectionalPagination(
-    super.rootPage, {
-    required this.onPaging,
-    required this.flipper,
-  });
+    super.rootPage,
+    this.onPaging,
+    super.flipper,
+  );
 
   /// The paging callback
   final Paging<D, M> onPaging;
 
-  /// The flipper for next page.
-  final PageFlipper<D, M> flipper;
-
   @override
   Future<void> execute() async {
-    var thisPage = rootPage;
-    var control = await onPaging.call(thisPage);
+    PaginationResponse<D, M> thisPage = rootPage;
+    int count = 1;
+
+    PagingControl control = await onPaging.call(
+      PagingEvent<D, M>(count, thisPage),
+    );
 
     do {
       //! Do not edit map directly.
@@ -57,7 +59,9 @@ class BidirectionalPagination<D, M extends Pageable> extends Pagination<D, M> {
         newQueryParameters,
       );
 
-      control = await onPaging.call(thisPage);
+      control = await onPaging.call(
+        PagingEvent<D, M>(++count, thisPage),
+      );
     } while (control != PagingControl.stop);
   }
 

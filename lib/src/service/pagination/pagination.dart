@@ -17,10 +17,16 @@ typedef PageFlipper<D, M extends Pageable> = Future<PaginationResponse<D, M>>
 
 abstract class Pagination<D, M extends Pageable> {
   /// Returns the new instance of [Pagination].
-  const Pagination(this.rootPage);
+  const Pagination(
+    this.rootPage,
+    this.flipper,
+  );
 
-  /// The root page for this paging process
+  /// The root page
   final PaginationResponse<D, M> rootPage;
+
+  /// The flipper for next page.
+  final PageFlipper<D, M> flipper;
 
   /// Executes the paging process.
   Future<void> execute();

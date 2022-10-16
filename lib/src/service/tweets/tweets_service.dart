@@ -2727,37 +2727,28 @@ class _TweetsService extends BaseService implements TweetsService {
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
     Paging<List<TweetData>, TweetMeta>? paging,
-  }) async {
-    final rootPage = await _searchRecent(
-      '/2/tweets/search/recent',
-      {
-        'query': query,
-        'max_results': maxResults,
-        'next_token': nextToken,
-        'sort_order': sortOrder?.name,
-        'start_time': startTime,
-        'end_time': endTime,
-        'since_id': sinceTweetId,
-        'until_id': untilTweetId,
-        'expansions': expansions,
-        'tweet.fields': tweetFields,
-        'user.fields': userFields,
-        'place.fields': placeFields,
-        'poll.fields': pollFields,
-        'media.fields': mediaFields,
-      },
-    );
-
-    if (paging != null) {
-      await super.executeBidirectionalPagination(
-        rootPage: rootPage,
+  }) async =>
+      await super.executePaginationIfNecessary(
+        '/2/tweets/search/recent',
+        {
+          'query': query,
+          'max_results': maxResults,
+          'next_token': nextToken,
+          'sort_order': sortOrder?.name,
+          'start_time': startTime,
+          'end_time': endTime,
+          'since_id': sinceTweetId,
+          'until_id': untilTweetId,
+          'expansions': expansions,
+          'tweet.fields': tweetFields,
+          'user.fields': userFields,
+          'place.fields': placeFields,
+          'poll.fields': pollFields,
+          'media.fields': mediaFields,
+        },
         onPaging: paging,
         flipper: _searchRecent,
       );
-    }
-
-    return rootPage;
-  }
 
   Future<PaginationResponse<List<TweetData>, TweetMeta>> _searchRecent(
     String unencodedPath,
@@ -3093,36 +3084,27 @@ class _TweetsService extends BaseService implements TweetsService {
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
     Paging<List<TweetData>, TweetMeta>? paging,
-  }) async {
-    final rootPage = await _lookupHomeTimeline(
-      '/2/users/$userId/timelines/reverse_chronological',
-      {
-        'max_results': maxResults,
-        'pagination_token': paginationToken,
-        'start_time': startTime,
-        'end_time': endTime,
-        'since_id': sinceTweetId,
-        'until_id': untilTweetId,
-        'exclude': excludes,
-        'expansions': expansions,
-        'tweet.fields': tweetFields,
-        'user.fields': userFields,
-        'place.fields': placeFields,
-        'poll.fields': pollFields,
-        'media.fields': mediaFields,
-      },
-    );
-
-    if (paging != null) {
-      await super.executeBidirectionalPagination(
-        rootPage: rootPage,
+  }) async =>
+      await super.executePaginationIfNecessary(
+        '/2/users/$userId/timelines/reverse_chronological',
+        {
+          'max_results': maxResults,
+          'pagination_token': paginationToken,
+          'start_time': startTime,
+          'end_time': endTime,
+          'since_id': sinceTweetId,
+          'until_id': untilTweetId,
+          'exclude': excludes,
+          'expansions': expansions,
+          'tweet.fields': tweetFields,
+          'user.fields': userFields,
+          'place.fields': placeFields,
+          'poll.fields': pollFields,
+          'media.fields': mediaFields,
+        },
         onPaging: paging,
         flipper: _lookupHomeTimeline,
       );
-    }
-
-    return rootPage;
-  }
 
   Future<PaginationResponse<List<TweetData>, TweetMeta>> _lookupHomeTimeline(
     String unencodedPath,

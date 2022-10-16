@@ -15,6 +15,7 @@ import 'common/rate_limit.dart';
 import 'pagination/bidirectional_pagination.dart';
 import 'pagination/pageable.dart';
 import 'pagination/pagination.dart';
+import 'pagination/pagination_context.dart';
 import 'pagination_response.dart';
 import 'response_field.dart';
 import 'twitter_response.dart';
@@ -70,8 +71,9 @@ abstract class _Service {
     M Function(Map<String, Object?> json)? metaBuilder,
   });
 
-  Future<void> executeBidirectionalPagination<D, M extends Pageable>({
-    required PaginationResponse<D, M> rootPage,
+  Future<void> executePaginationIfNecessary<D, M extends Pageable>(
+    String unencodedPath,
+    Map<String, dynamic> queryParameters, {
     required Paging<D, M> onPaging,
     required PageFlipper<D, M> flipper,
   });
@@ -250,16 +252,29 @@ abstract class BaseService implements _Service {
   }
 
   @override
-  Future<void> executeBidirectionalPagination<D, M extends Pageable>({
-    required PaginationResponse<D, M> rootPage,
-    required Paging<D, M> onPaging,
+  Future<PaginationResponse<D, M>>
+      executePaginationIfNecessary<D, M extends Pageable>(
+    String unencodedPath,
+    Map<String, dynamic> queryParameters, {
+    //! Paging or ForwardPaging
+    required dynamic onPaging,
     required PageFlipper<D, M> flipper,
-  }) async =>
-      await BidirectionalPagination(
+  }) async {
+    final rootPage = await flipper.call(
+      unencodedPath,
+      queryParameters,
+    );
+
+    if (onPaging != null) {
+      await PaginationContext<D, M>(
         rootPage,
-        onPaging: onPaging,
-        flipper: flipper,
+        onPaging!,
+        flipper,
       ).execute();
+    }
+
+    return rootPage;
+  }
 
   @override
   TwitterResponse<bool, void> evaluateResponse(final http.Response response) =>

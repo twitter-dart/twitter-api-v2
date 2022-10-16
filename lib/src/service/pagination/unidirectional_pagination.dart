@@ -19,21 +19,19 @@ typedef ForwardPaging<D, M extends Pageable> = FutureOr<PagingControl> Function(
 class UnidirectionalPagination<D, M extends Pageable> extends Pagination<D, M> {
   /// Returns the new instance of [UnidirectionalPagination].
   const UnidirectionalPagination(
-    super.rootPage, {
-    required this.onPaging,
-    required this.flipper,
-  });
+    super.rootPage,
+    this.onPaging,
+    super.flipper,
+  );
 
   /// The paging callback
   final ForwardPaging<D, M> onPaging;
 
-  /// The flipper for next page.
-  final PageFlipper<D, M> flipper;
-
   @override
   Future<void> execute() async {
-    var thisPage = rootPage;
-    var control = await onPaging.call(thisPage);
+    PaginationResponse<D, M> thisPage = rootPage;
+
+    PagingControl control = await onPaging.call(thisPage);
 
     do {
       //! Do not edit map directly.
