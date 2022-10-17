@@ -7,12 +7,14 @@ import 'dart:async';
 
 // Project imports:
 import '../pagination_response.dart';
+import 'base_pagination_control.dart';
 import 'pageable.dart';
 import 'pagination.dart';
-import 'paging_control.dart';
+import 'pagination_control.dart';
+import 'pagination_control_type.dart';
 import 'paging_event.dart';
 
-typedef Paging<D, M extends Pageable> = FutureOr<PagingControl> Function(
+typedef Paging<D, M extends Pageable> = FutureOr<PaginationControl> Function(
   PagingEvent<D, M> event,
 );
 
@@ -22,63 +24,35 @@ class BidirectionalPagination<D, M extends Pageable> extends Pagination<D, M> {
   /// Returns the new instance of [BidirectionalPagination].
   const BidirectionalPagination(
     super.rootPage,
-    this.onPaging,
+    this.paging,
     super.flipper,
   );
 
   /// The paging callback
-  final Paging<D, M> onPaging;
+  final Paging<D, M> paging;
 
   @override
-  Future<void> execute() async {
-    PaginationResponse<D, M> thisPage = rootPage;
-    int count = 1;
+  String? getNextToken(
+    final BasePaginationControl control,
+    final Pageable? pageableMeta,
+  ) =>
+      control.type.isForward
+          ? pageableMeta?.nextToken
+          : pageableMeta?.previousToken;
 
-    PagingControl control = await onPaging.call(
-      PagingEvent<D, M>(count, thisPage),
-    );
-
-    do {
-      //! Do not edit map directly.
-      final newQueryParameters = Map<String, dynamic>.from(
-        thisPage.queryParameters,
+  @override
+  Future<BasePaginationControl> invokePaging(
+    final int count,
+    final PaginationResponse<D, M> page,
+  ) async =>
+      await paging.call(
+        PagingEvent(count, page),
       );
 
-      if (!_updatePaginationToken(
-        newQueryParameters,
-        control == PagingControl.forward
-            ? thisPage.meta!.nextToken
-            : thisPage.meta!.previousToken,
-      )) {
-        //! There is no more next page.
-        break;
-      }
-
-      thisPage = await flipper.call(
-        thisPage.unencodedPath,
-        newQueryParameters,
-      );
-
-      control = await onPaging.call(
-        PagingEvent<D, M>(++count, thisPage),
-      );
-    } while (control != PagingControl.stop);
-  }
-
-  /// Update pagination token based on [nextToken].
-  ///
-  /// Also it returns true if there is a next page, otherwise false.
-  bool _updatePaginationToken(
+  @override
+  void updatePaginationToken(
     final Map<String, dynamic> queryParameters,
     final String? nextToken,
-  ) {
-    if (nextToken?.isEmpty ?? true) {
-      //! There is no more next (or previous) page.
-      return false;
-    }
-
-    queryParameters['pagination_token'] = nextToken;
-
-    return true;
-  }
+  ) =>
+      queryParameters['pagination_token'] = nextToken;
 }

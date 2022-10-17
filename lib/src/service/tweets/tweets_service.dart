@@ -12,6 +12,7 @@ import '../common/rate_limit.dart';
 import '../filtered_stream_response.dart';
 import '../media/media_field.dart';
 import '../pagination/bidirectional_pagination.dart';
+import '../pagination/unidirectional_pagination.dart';
 import '../pagination_response.dart';
 import '../places/place_field.dart';
 import '../polls/poll_field.dart';
@@ -905,7 +906,7 @@ abstract class TweetsService {
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
-    Paging<List<TweetData>, TweetMeta>? paging,
+    ForwardPaging<List<TweetData>, TweetMeta>? paging,
   });
 
   /// This endpoint is only available to those users who have been approved for
@@ -2726,7 +2727,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
-    Paging<List<TweetData>, TweetMeta>? paging,
+    ForwardPaging<List<TweetData>, TweetMeta>? paging,
   }) async =>
       await super.executePaginationIfNecessary(
         '/2/tweets/search/recent',

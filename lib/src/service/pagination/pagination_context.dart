@@ -12,12 +12,12 @@ import 'unidirectional_pagination.dart';
 abstract class PaginationContext<D, M extends Pageable> {
   factory PaginationContext(
     final PaginationResponse<D, M> rootPage,
-    final dynamic onPaging,
+    final dynamic paging,
     final PageFlipper<D, M> flipper,
   ) =>
       _PaginationContext(
         rootPage,
-        onPaging,
+        paging,
         flipper,
       );
 
@@ -29,25 +29,25 @@ class _PaginationContext<D, M extends Pageable>
   /// Returns the new instance of [_PaginationContext].
   const _PaginationContext(
     this.rootPage,
-    this.onPaging,
+    this.paging,
     this.flipper,
-  ) : assert(onPaging is Paging<D, M> || onPaging is ForwardPaging<D, M>);
+  ) : assert(paging is Paging<D, M> || paging is ForwardPaging<D, M>);
 
   /// The root page
   final PaginationResponse<D, M> rootPage;
 
   /// The paging callback
-  final dynamic onPaging;
+  final dynamic paging;
 
   /// The flipper for next page.
   final PageFlipper<D, M> flipper;
 
   @override
   Future<void> execute() async {
-    if (onPaging is Paging<D, M>) {
+    if (paging is Paging<D, M>) {
       await BidirectionalPagination<D, M>(
         rootPage,
-        onPaging,
+        paging,
         flipper,
       ).execute();
 
@@ -56,7 +56,7 @@ class _PaginationContext<D, M extends Pageable>
 
     await UnidirectionalPagination<D, M>(
       rootPage,
-      onPaging,
+      paging,
       flipper,
     ).execute();
   }

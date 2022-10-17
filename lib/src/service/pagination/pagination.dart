@@ -7,7 +7,9 @@ import 'dart:async';
 
 // Project imports:
 import '../pagination_response.dart';
+import 'base_pagination_control.dart';
 import 'pageable.dart';
+import 'pagination_control_type.dart';
 
 typedef PageFlipper<D, M extends Pageable> = Future<PaginationResponse<D, M>>
     Function(
@@ -28,6 +30,61 @@ abstract class Pagination<D, M extends Pageable> {
   /// The flipper for next page.
   final PageFlipper<D, M> flipper;
 
+  /// Returns the next token.
+  String? getNextToken(
+    final BasePaginationControl control,
+    final Pageable? pageableMeta,
+  );
+
+  /// Executes the process on paging.
+  Future<BasePaginationControl> invokePaging(
+    final int count,
+    final PaginationResponse<D, M> page,
+  );
+
+  /// Updates the pagination token for next page.
+  void updatePaginationToken(
+    final Map<String, dynamic> queryParameters,
+    final String? nextToken,
+  );
+
   /// Executes the paging process.
-  Future<void> execute();
+  Future<void> execute() async {
+    PaginationResponse<D, M> thisPage = rootPage;
+    int count = 1;
+
+    BasePaginationControl control = await invokePaging(
+      count,
+      thisPage,
+    );
+
+    do {
+      //! Do not edit map directly.
+      final newQueryParameters = Map<String, dynamic>.from(
+        thisPage.queryParameters,
+      );
+
+      final nextToken = getNextToken(control, thisPage.meta);
+
+      if (nextToken?.isEmpty ?? true) {
+        //! There is no more pages.
+        break;
+      }
+
+      updatePaginationToken(
+        newQueryParameters,
+        nextToken,
+      );
+
+      thisPage = await flipper.call(
+        thisPage.unencodedPath,
+        newQueryParameters,
+      );
+
+      control = await invokePaging(
+        ++count,
+        thisPage,
+      );
+    } while (control.type.isNotStop);
+  }
 }
