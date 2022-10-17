@@ -4,27 +4,15 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
-import '../response/twitter_response.dart';
+import 'forward_paging_event.dart';
 import 'pageable.dart';
 
-class PagingEvent<D, M extends Pageable> {
+class PagingEvent<D, M extends Pageable> extends ForwardPagingEvent<D, M> {
   /// Returns the new instance of [PagingEvent].
   const PagingEvent(
-    this.count,
-    this.response,
+    super.count,
+    super.response,
   );
-
-  /// Indicates the number of cases where paging has occurred.
-  ///
-  /// Note that this number does not indicate how many pages out of all the
-  /// pages, but rather how many times paging has occurred from the root page.
-  final int count;
-
-  /// The root page for this paging process
-  final TwitterResponse<D, M> response;
-
-  /// Returns true if there is a next page, otherwise false.
-  bool get hasNextPage => response.meta?.nextToken?.isNotEmpty ?? false;
 
   /// Returns true if there is a previous page, otherwise false.
   bool get hasPreviousPage => response.meta?.previousToken?.isNotEmpty ?? false;

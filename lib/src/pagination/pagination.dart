@@ -37,7 +37,7 @@ abstract class Pagination<D, M extends Pageable> {
   /// Returns the next token.
   String? getNextToken(
     final BasePaginationControl control,
-    final Pageable? pageableMeta,
+    final Pageable? meta,
   );
 
   /// Executes the process on paging.

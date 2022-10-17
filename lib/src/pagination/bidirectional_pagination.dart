@@ -34,11 +34,9 @@ class BidirectionalPagination<D, M extends Pageable> extends Pagination<D, M> {
   @override
   String? getNextToken(
     final BasePaginationControl control,
-    final Pageable? pageableMeta,
+    final Pageable? meta,
   ) =>
-      control.type.isForward
-          ? pageableMeta?.nextToken
-          : pageableMeta?.previousToken;
+      control.type.isForward ? meta?.nextToken : meta?.previousToken;
 
   @override
   Future<BasePaginationControl> invokePaging(

@@ -9,13 +9,13 @@ import 'dart:async';
 import '../response/pagination_response.dart';
 import 'base_pagination_control.dart';
 import 'forward_pagination_control.dart';
+import 'forward_paging_event.dart';
 import 'pageable.dart';
 import 'pagination.dart';
-import 'paging_event.dart';
 
 typedef ForwardPaging<D, M extends Pageable>
     = FutureOr<ForwardPaginationControl> Function(
-  PagingEvent<D, M> event,
+  ForwardPagingEvent<D, M> event,
 );
 
 /// This class is an object representing unidirectional paging.
@@ -33,9 +33,9 @@ class UnidirectionalPagination<D, M extends Pageable> extends Pagination<D, M> {
   @override
   String? getNextToken(
     final BasePaginationControl control,
-    final Pageable? pageableMeta,
+    final Pageable? meta,
   ) =>
-      pageableMeta?.nextToken;
+      meta?.nextToken;
 
   @override
   Future<BasePaginationControl> invokePaging(
@@ -43,7 +43,7 @@ class UnidirectionalPagination<D, M extends Pageable> extends Pagination<D, M> {
     final PaginationResponse<D, M> page,
   ) async =>
       await paging.call(
-        PagingEvent(count, page),
+        ForwardPagingEvent<D, M>(count, page),
       );
 
   @override

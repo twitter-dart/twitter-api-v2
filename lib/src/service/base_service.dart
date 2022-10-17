@@ -78,12 +78,12 @@ abstract class _Service {
   });
 
   Future<PaginationResponse<List<D>, M>>
-      getPage<D extends Data, M extends Pageable>(
+      getPage<D extends Data, M extends Meta>(
     core.UserContext userContext,
     String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
     required DataBuilder<D> dataBuilder,
-    required PageableMetaBuilder<M> metaBuilder,
+    required MetaBuilder<M> metaBuilder,
   });
 
   Future<void> executePaginationIfNecessary<D extends Data, M extends Pageable>(
@@ -236,12 +236,12 @@ abstract class BaseService implements _Service {
 
   @override
   Future<PaginationResponse<List<D>, M>>
-      getPage<D extends Data, M extends Pageable>(
+      getPage<D extends Data, M extends Meta>(
     core.UserContext userContext,
     String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
     required DataBuilder<D> dataBuilder,
-    required PageableMetaBuilder<M> metaBuilder,
+    required MetaBuilder<M> metaBuilder,
   }) async {
     final response = await get(
       userContext,
