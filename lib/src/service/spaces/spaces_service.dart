@@ -6,6 +6,7 @@
 import 'package:twitter_api_core/twitter_api_core.dart' as core;
 
 // Project imports:
+import '../../response/twitter_response.dart';
 import '../base_service.dart';
 import '../media/media_field.dart';
 import '../places/place_field.dart';
@@ -14,7 +15,6 @@ import '../tweets/tweet_data.dart';
 import '../tweets/tweet_expansion.dart';
 import '../tweets/tweet_field.dart';
 import '../tweets/tweet_meta.dart';
-import '../twitter_response.dart';
 import '../users/user_data.dart';
 import '../users/user_expansion.dart';
 import '../users/user_field.dart';

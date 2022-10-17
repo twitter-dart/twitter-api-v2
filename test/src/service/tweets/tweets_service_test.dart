@@ -9,7 +9,9 @@ import 'package:twitter_api_core/src/client/user_context.dart';
 import 'package:twitter_api_core/src/exception/twitter_exception.dart';
 
 // Project imports:
-import 'package:twitter_api_v2/src/service/filtered_stream_response.dart';
+import 'package:twitter_api_v2/src/response/filtered_stream_response.dart';
+import 'package:twitter_api_v2/src/response/twitter_response.dart';
+import 'package:twitter_api_v2/src/response/twitter_stream_response.dart';
 import 'package:twitter_api_v2/src/service/tweets/exclude_tweet_type.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering_rule_data.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering_rule_meta.dart';
@@ -26,8 +28,6 @@ import 'package:twitter_api_v2/src/service/tweets/tweet_meta.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_poll_param.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_reply_param.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweets_service.dart';
-import 'package:twitter_api_v2/src/service/twitter_response.dart';
-import 'package:twitter_api_v2/src/service/twitter_stream_response.dart';
 import 'package:twitter_api_v2/src/service/users/user_data.dart';
 import 'package:twitter_api_v2/src/service/users/user_meta.dart';
 import '../../../mocks/client_context_stubs.dart' as context;

@@ -3,7 +3,7 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
-import '../pagination_response.dart';
+import '../response/pagination_response.dart';
 import 'bidirectional_pagination.dart';
 import 'pageable.dart';
 import 'pagination.dart';

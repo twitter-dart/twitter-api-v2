@@ -4,7 +4,7 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
-import '../twitter_response.dart';
+import '../response/twitter_response.dart';
 import 'pageable.dart';
 
 class PagingEvent<D, M extends Pageable> {

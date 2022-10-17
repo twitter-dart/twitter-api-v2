@@ -6,10 +6,10 @@
 import 'package:test/test.dart';
 
 // Project imports:
+import 'package:twitter_api_v2/src/response/twitter_response.dart';
 import 'package:twitter_api_v2/src/service/common/includes.dart';
 import 'package:twitter_api_v2/src/service/common/rate_limit.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_data.dart';
-import 'package:twitter_api_v2/src/service/twitter_response.dart';
 
 void main() {
   test('.hasIncludes', () {

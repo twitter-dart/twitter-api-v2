@@ -2,7 +2,8 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-import '../common/meta.dart';
+// Project imports:
+import '../service/common/meta.dart';
 
 abstract class Pageable implements Meta {
   const Pageable();

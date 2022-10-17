@@ -3,7 +3,7 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
-import 'common/rate_limit.dart';
+import '../service/common/rate_limit.dart';
 
 class TwitterStreamResponse<T> {
   /// Returns the new instance of [TwitterStreamResponse].

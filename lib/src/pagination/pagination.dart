@@ -9,7 +9,7 @@ import 'dart:async';
 import 'package:twitter_api_core/twitter_api_core.dart';
 
 // Project imports:
-import '../pagination_response.dart';
+import '../response/pagination_response.dart';
 import 'base_pagination_control.dart';
 import 'pageable.dart';
 import 'pagination_control_type.dart';
