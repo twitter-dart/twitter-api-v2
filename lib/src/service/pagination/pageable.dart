@@ -2,7 +2,9 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-abstract class Pageable {
+import '../common/meta.dart';
+
+abstract class Pageable implements Meta {
   const Pageable();
 
   /// Returns the token for next page.

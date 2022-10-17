@@ -6,14 +6,13 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import '../common/meta.dart';
 import '../pagination/pageable.dart';
 
 part 'user_meta.freezed.dart';
 part 'user_meta.g.dart';
 
 @freezed
-class UserMeta with _$UserMeta implements Meta, Pageable {
+class UserMeta with _$UserMeta implements Pageable {
   const factory UserMeta({
     /// The number of users returned in this request. Note that this number
     /// may be lower than what was specified in the max_results query parameter.
