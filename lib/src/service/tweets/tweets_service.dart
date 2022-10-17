@@ -13,7 +13,6 @@ import '../filtered_stream_response.dart';
 import '../media/media_field.dart';
 import '../pagination/bidirectional_pagination.dart';
 import '../pagination/unidirectional_pagination.dart';
-import '../pagination_response.dart';
 import '../places/place_field.dart';
 import '../polls/poll_field.dart';
 import '../response_field.dart';
@@ -2730,6 +2729,7 @@ class _TweetsService extends BaseService implements TweetsService {
     ForwardPaging<List<TweetData>, TweetMeta>? paging,
   }) async =>
       await super.executePaginationIfNecessary(
+        core.UserContext.oauth2Only,
         '/2/tweets/search/recent',
         {
           'query': query,
@@ -2747,18 +2747,7 @@ class _TweetsService extends BaseService implements TweetsService {
           'poll.fields': pollFields,
           'media.fields': mediaFields,
         },
-        onPaging: paging,
-        flipper: _searchRecent,
-      );
-
-  Future<PaginationResponse<List<TweetData>, TweetMeta>> _searchRecent(
-    String unencodedPath,
-    Map<String, dynamic> queryParameters,
-  ) async =>
-      super.getPage(
-        core.UserContext.oauth2Only,
-        unencodedPath,
-        queryParameters: queryParameters,
+        paging: paging,
         dataBuilder: TweetData.fromJson,
         metaBuilder: TweetMeta.fromJson,
       );
@@ -3087,6 +3076,7 @@ class _TweetsService extends BaseService implements TweetsService {
     Paging<List<TweetData>, TweetMeta>? paging,
   }) async =>
       await super.executePaginationIfNecessary(
+        core.UserContext.oauth2OrOAuth1,
         '/2/users/$userId/timelines/reverse_chronological',
         {
           'max_results': maxResults,
@@ -3103,18 +3093,7 @@ class _TweetsService extends BaseService implements TweetsService {
           'poll.fields': pollFields,
           'media.fields': mediaFields,
         },
-        onPaging: paging,
-        flipper: _lookupHomeTimeline,
-      );
-
-  Future<PaginationResponse<List<TweetData>, TweetMeta>> _lookupHomeTimeline(
-    String unencodedPath,
-    Map<String, dynamic> queryParameters,
-  ) async =>
-      await super.getPage(
-        core.UserContext.oauth2OrOAuth1,
-        unencodedPath,
-        queryParameters: queryParameters,
+        paging: paging,
         dataBuilder: TweetData.fromJson,
         metaBuilder: TweetMeta.fromJson,
       );

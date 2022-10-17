@@ -12,6 +12,8 @@ import 'package:twitter_api_core/twitter_api_core.dart' as core;
 
 // Project imports:
 import 'base_service.dart';
+import 'common/data.dart';
+import 'common/meta.dart';
 import 'twitter_response.dart';
 
 abstract class _MediaService {
@@ -22,9 +24,10 @@ abstract class _MediaService {
     Map<String, dynamic> queryParameters = const {},
   });
 
-  TwitterResponse<D, M> transformUploadedDataResponse<D, M>(
+  TwitterResponse<D, M>
+      transformUploadedDataResponse<D extends Data, M extends Meta>(
     http.Response response, {
-    required D Function(Map<String, Object?> json) dataBuilder,
+    required DataBuilder<D> dataBuilder,
   });
 }
 
@@ -83,9 +86,10 @@ abstract class BaseMediaService extends BaseService implements _MediaService {
       );
 
   @override
-  TwitterResponse<D, M> transformUploadedDataResponse<D, M>(
+  TwitterResponse<D, M>
+      transformUploadedDataResponse<D extends Data, M extends Meta>(
     http.Response response, {
-    required D Function(Map<String, Object?> json) dataBuilder,
+    required DataBuilder<D> dataBuilder,
   }) {
     final json = core.tryJsonDecode(response, response.body);
 

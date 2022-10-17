@@ -5,6 +5,9 @@
 // Dart imports:
 import 'dart:async';
 
+// Package imports:
+import 'package:twitter_api_core/twitter_api_core.dart';
+
 // Project imports:
 import '../pagination_response.dart';
 import 'base_pagination_control.dart';
@@ -13,6 +16,7 @@ import 'pagination_control_type.dart';
 
 typedef PageFlipper<D, M extends Pageable> = Future<PaginationResponse<D, M>>
     Function(
+  UserContext userContext,
   String unencodedPath,
   Map<String, dynamic> queryParameters,
 );
@@ -77,6 +81,7 @@ abstract class Pagination<D, M extends Pageable> {
       );
 
       thisPage = await flipper.call(
+        thisPage.userContext,
         thisPage.unencodedPath,
         newQueryParameters,
       );

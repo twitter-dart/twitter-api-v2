@@ -5,11 +5,14 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+// Project imports:
+import '../common/data.dart';
+
 part 'filtering_rule_data.freezed.dart';
 part 'filtering_rule_data.g.dart';
 
 @freezed
-class FilteringRuleData with _$FilteringRuleData {
+class FilteringRuleData with _$FilteringRuleData implements Data {
   const factory FilteringRuleData({
     /// Unique identifier of this rule. This is returned as a string in order
     /// to avoid complications with languages and tools that cannot

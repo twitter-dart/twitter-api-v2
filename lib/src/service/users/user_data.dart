@@ -8,6 +8,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
+import '../common/data.dart';
 import 'public_user_metrics.dart';
 import 'user_entities.dart';
 import 'user_withheld.dart';
@@ -29,7 +30,7 @@ part 'user_data.g.dart';
 /// parameter: user.fields when requesting additional fields to complete the
 /// object.
 @freezed
-class UserData with _$UserData {
+class UserData with _$UserData implements Data {
   const factory UserData({
     /// The unique identifier of this user.
     ///

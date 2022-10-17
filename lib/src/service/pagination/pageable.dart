@@ -3,6 +3,8 @@
 // modification, are permitted provided the conditions.
 
 abstract class Pageable {
+  const Pageable();
+
   /// Returns the token for next page.
   String? get nextToken;
 
