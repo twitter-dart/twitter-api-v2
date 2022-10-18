@@ -17,6 +17,9 @@ class PagingEvent<D, M extends Pageable> extends ForwardPagingEvent<D, M> {
   /// Returns true if there is a previous page, otherwise false.
   bool get hasPreviousPage => response.meta?.previousToken?.isNotEmpty ?? false;
 
+  /// Returns true if there is not a previous page, otherwise false.
+  bool get hasNotPreviousPage => !hasPreviousPage;
+
   @override
   String toString() => 'PagingEvent(count: $count, response: $response)';
 }

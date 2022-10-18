@@ -26,6 +26,9 @@ class ForwardPagingEvent<D, M extends ForwardPageable> {
   /// Returns true if there is a next page, otherwise false.
   bool get hasNextPage => response.meta?.nextToken?.isNotEmpty ?? false;
 
+  /// Returns true if there is not a next page, otherwise false.
+  bool get hasNotNextPage => !hasNextPage;
+
   @override
   String toString() => 'ForwardPagingEvent(count: $count, response: $response)';
 }
