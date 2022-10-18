@@ -9,6 +9,7 @@ import 'package:twitter_api_core/twitter_api_core.dart' as core;
 import 'twitter_response.dart';
 
 class PaginationResponse<D, M> extends TwitterResponse<D, M> {
+  /// Returns the new instance of [PaginationResponse].
   const PaginationResponse({
     required this.userContext,
     required this.unencodedPath,
@@ -19,7 +20,12 @@ class PaginationResponse<D, M> extends TwitterResponse<D, M> {
     super.meta,
   });
 
+  /// The user context of this page
   final core.UserContext userContext;
+
+  /// The unencoded path of this page
   final String unencodedPath;
+
+  /// The query parameters of this page
   final Map<String, dynamic> queryParameters;
 }
