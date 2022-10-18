@@ -2,12 +2,7 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-import 'logical_operator.dart';
-
-class Or extends LogicalOperator {
-  /// Returns the new instance of [Or].
-  const Or() : super(false);
-
-  @override
-  String format() => ' OR ';
+abstract class FilteringRuleSyntax {
+  /// Returns the new instance of [FilteringRuleSyntax].
+  const FilteringRuleSyntax();
 }

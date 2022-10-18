@@ -6,7 +6,7 @@ import 'logical_operator.dart';
 
 class And extends LogicalOperator {
   /// Returns the new instance of [And].
-  const And();
+  const And() : super(false);
 
   @override
   String format() => ' ';

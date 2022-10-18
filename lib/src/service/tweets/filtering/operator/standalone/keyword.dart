@@ -12,7 +12,7 @@ class Keyword extends StandaloneOperator {
     bool negated = false,
   }) : super(negated);
 
-  factory Keyword.not(final String value) => Keyword(value, negated: true);
+  factory Keyword.negated(final String value) => Keyword(value, negated: true);
 
   /// The value
   final String value;

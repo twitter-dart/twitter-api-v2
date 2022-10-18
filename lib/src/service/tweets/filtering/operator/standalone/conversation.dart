@@ -5,24 +5,24 @@
 import '../validation_result.dart';
 import 'standalone_operator.dart';
 
-class TweetFrom extends StandaloneOperator {
-  /// Returns the new instance of [TweetFrom].
-  const TweetFrom(
-    this.username, {
+class Conversation extends StandaloneOperator {
+  /// Returns the new instance of [Conversation].
+  const Conversation(
+    this.tweetId, {
     bool negated = false,
   }) : super(negated);
 
-  factory TweetFrom.negated(final String value) =>
-      TweetFrom(value, negated: true);
+  factory Conversation.negated(final String tweetId) =>
+      Conversation(tweetId, negated: true);
 
-  /// The username
-  final String username;
+  /// The tweet id
+  final String tweetId;
 
   @override
   ValidationResult validate() {
-    if (username.isEmpty) {
+    if (tweetId.isEmpty) {
       return ValidationResult.failed(
-        'The username must not be an empty string.',
+        'The tweet id must not be an empty string.',
       );
     }
 
@@ -30,5 +30,5 @@ class TweetFrom extends StandaloneOperator {
   }
 
   @override
-  String format() => 'from:$username';
+  String format() => 'conversation_id:$tweetId';
 }

@@ -8,24 +8,25 @@ import 'standalone_operator.dart';
 class Username extends StandaloneOperator {
   /// Returns the new instance of [Username].
   const Username(
-    this.username, {
+    this.value, {
     bool negated = false,
   }) : super(negated);
 
-  factory Username.not(final String value) => Username(value, negated: true);
+  factory Username.negated(final String value) =>
+      Username(value, negated: true);
 
   /// The username
-  final String username;
+  final String value;
 
   @override
   ValidationResult validate() {
-    if (username.startsWith('@') && username.length == 1) {
+    if (value.startsWith('@') && value.length == 1) {
       return ValidationResult.failed(
         'The symbol "@" was specified but the username value does not exist.',
       );
     }
 
-    if (username.isEmpty) {
+    if (value.isEmpty) {
       return ValidationResult.failed(
         'The username must not be an empty string.',
       );
@@ -36,10 +37,10 @@ class Username extends StandaloneOperator {
 
   @override
   String format() {
-    if (username.startsWith('@')) {
-      return username;
+    if (value.startsWith('@')) {
+      return value;
     }
 
-    return '@$username';
+    return '@$value';
   }
 }

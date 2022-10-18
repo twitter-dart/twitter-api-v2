@@ -2,7 +2,90 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-import 'entry_operation.dart';
+import 'conclusion.dart';
+import 'filtering_rule_buffer.dart';
+import 'filtering_rule_syntax.dart';
+import 'logical_channel.dart';
 
-/// Returns the new instance of entry to create filtering rules.
-EntryOperation filteringRuleBuilder({String tag = ''}) => EntryOperation(tag);
+FilteringRuleBuilder get newFilteringRule => FilteringRuleBuilder();
+
+class FilteringRuleBuilder implements FilteringRuleSyntax {
+  /// Returns the new instance of [FilteringRuleBuilder].
+  FilteringRuleBuilder() : _buffer = FilteringRuleBuffer();
+
+  /// The tray for filtering operators.
+  final FilteringRuleBuffer _buffer;
+
+  /// Matches a keyword within the body of a Tweet.
+  ///
+  /// This is a tokenized match, meaning that your keyword string will be
+  /// matched against the tokenized text of the Tweet body. Tokenization splits
+  /// words based on punctuation, symbols, and Unicode basic plane separator
+  /// characters.
+  LogicalChannel matchKeyword(final String value) =>
+      _buffer.appendKeyword(value);
+
+  LogicalChannel notMatchKeyword(final String value) =>
+      _buffer.appendNegatedKeyword(value);
+
+  /// Matches any Tweet containing a recognized hashtag, if the hashtag is a
+  /// recognized entity in a Tweet.
+  ///
+  /// This operator performs an exact match, NOT a tokenized match, meaning
+  /// the rule #CocaCola will match posts with the exact hashtag #CocaCola,
+  /// but not those with the hashtag #CocaCola.
+  ///
+  /// The string passed to this method does not need to be prefixed with
+  /// the symbol "#" to indicate a hashtag. However, if you pass a string
+  /// prefixed with "#", it will still work.
+  LogicalChannel matchHashtag(final String value) =>
+      _buffer.appendHashtag(value);
+
+  /// Matches any Tweet that contains the specified ‘cashtag’
+  /// (where the leading character of the token is the ‘$’ character).
+  ///
+  /// Note that the cashtag operator relies on Twitter’s ‘symbols’ entity
+  /// extraction to match cashtags, rather than trying to extract the cashtag
+  /// from the body itself.
+  ///
+  /// The string passed to this method does not need to be prefixed with
+  /// the symbol "$" to indicate a cashtag. However, if you pass a string
+  /// prefixed with "$", it will still work.
+  LogicalChannel matchCashtag(final String value) =>
+      _buffer.appendCashtag(value);
+
+  /// Matches any Tweet that mentions the given username, if the username
+  /// is a recognized entity.
+  ///
+  /// The string passed to this method does not need to be prefixed with
+  /// the symbol "@" to indicate a username. However, if you pass a string
+  /// prefixed with "@", it will still work.
+  LogicalChannel matchUsername(final String username) =>
+      _buffer.appendUsername(username);
+
+  /// Matches any Tweet from a specific user.
+  ///
+  /// The value can be either the username (excluding the @ character) or
+  /// the user’s numeric user ID.
+  ///
+  /// You can only pass a single username/ID.
+  LogicalChannel matchTweetFrom(final String username) =>
+      _buffer.appendTweetFrom(username);
+
+  /// Matches any Tweet that is in reply to a particular user.
+  ///
+  /// The value can be either the username
+  /// (excluding the @ character) or the user’s numeric user ID.
+  ///
+  ///You can only pass a single username/ID.
+  LogicalChannel matchTweetTo(final String username) =>
+      _buffer.appendTweetTo(username);
+
+  /// Add grouped rules.
+  LogicalChannel group(final Conclusion conclusion) =>
+      _buffer.appendGroup(conclusion);
+
+  /// Add negated grouped rules.
+  LogicalChannel negatedGroup(final Conclusion conclusion) =>
+      _buffer.appendNegatedGroup(conclusion);
+}

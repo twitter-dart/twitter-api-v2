@@ -3,6 +3,7 @@
 // modification, are permitted provided the conditions.
 
 class InvalidFilteringRuleException implements Exception {
+  /// Returns the new instance of [InvalidFilteringRuleException].
   const InvalidFilteringRuleException(this.message);
 
   /// The error message.

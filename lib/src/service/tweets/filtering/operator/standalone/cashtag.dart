@@ -12,7 +12,7 @@ class Cashtag extends StandaloneOperator {
     bool negated = false,
   }) : super(negated);
 
-  factory Cashtag.not(final String value) => Cashtag(value, negated: true);
+  factory Cashtag.negated(final String value) => Cashtag(value, negated: true);
 
   /// The value
   final String value;

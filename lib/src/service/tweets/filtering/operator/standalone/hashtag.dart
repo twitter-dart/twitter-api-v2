@@ -12,7 +12,7 @@ class Hashtag extends StandaloneOperator {
     bool negated = false,
   }) : super(negated);
 
-  factory Hashtag.not(final String value) => Hashtag(value, negated: true);
+  factory Hashtag.negated(final String value) => Hashtag(value, negated: true);
 
   /// The value
   final String value;

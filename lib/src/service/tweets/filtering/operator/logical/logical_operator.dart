@@ -6,5 +6,5 @@ import '../filtering_rule_operator.dart';
 
 abstract class LogicalOperator extends FilteringRuleOperator {
   /// Returns the new instance of [LogicalOperator].
-  const LogicalOperator() : super(false);
+  const LogicalOperator(super.negated);
 }

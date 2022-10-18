@@ -5,15 +5,15 @@
 import '../validation_result.dart';
 import 'standalone_operator.dart';
 
-class TweetFrom extends StandaloneOperator {
-  /// Returns the new instance of [TweetFrom].
-  const TweetFrom(
+class RetweetsOf extends StandaloneOperator {
+  /// Returns the new instance of [RetweetsOf].
+  const RetweetsOf(
     this.username, {
     bool negated = false,
   }) : super(negated);
 
-  factory TweetFrom.negated(final String value) =>
-      TweetFrom(value, negated: true);
+  factory RetweetsOf.negated(final String username) =>
+      RetweetsOf(username, negated: true);
 
   /// The username
   final String username;
@@ -30,5 +30,5 @@ class TweetFrom extends StandaloneOperator {
   }
 
   @override
-  String format() => 'from:$username';
+  String format() => 'retweets_of:$username';
 }

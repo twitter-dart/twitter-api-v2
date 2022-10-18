@@ -12,7 +12,7 @@ class TweetTo extends StandaloneOperator {
     bool negated = false,
   }) : super(negated);
 
-  factory TweetTo.not(final String value) => TweetTo(value, negated: true);
+  factory TweetTo.negated(final String value) => TweetTo(value, negated: true);
 
   /// The username
   final String username;

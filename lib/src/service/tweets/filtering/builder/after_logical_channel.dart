@@ -2,12 +2,14 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+import 'conclusion.dart';
 import 'filtering_rule_buffer.dart';
-import 'logical_operation.dart';
+import 'filtering_rule_syntax.dart';
+import 'logical_channel.dart';
 
-class AfterNegateOperation {
-  /// Returns the new instance of [AfterNegateOperation].
-  const AfterNegateOperation(this._buffer);
+class AfterLogicalChannel implements FilteringRuleSyntax {
+  /// Returns the new instance of [AfterLogicalChannel].
+  const AfterLogicalChannel(this._buffer);
 
   /// The tray for filtering operators.
   final FilteringRuleBuffer _buffer;
@@ -18,7 +20,7 @@ class AfterNegateOperation {
   /// matched against the tokenized text of the Tweet body. Tokenization splits
   /// words based on punctuation, symbols, and Unicode basic plane separator
   /// characters.
-  LogicalOperation matchKeyword(final String value) =>
+  LogicalChannel matchKeyword(final String value) =>
       _buffer.appendKeyword(value);
 
   /// Matches any Tweet containing a recognized hashtag, if the hashtag is a
@@ -31,7 +33,7 @@ class AfterNegateOperation {
   /// The string passed to this method does not need to be prefixed with
   /// the symbol "#" to indicate a hashtag. However, if you pass a string
   /// prefixed with "#", it will still work.
-  LogicalOperation matchHashtag(final String value) =>
+  LogicalChannel matchHashtag(final String value) =>
       _buffer.appendHashtag(value);
 
   /// Matches any Tweet that contains the specified ‘cashtag’
@@ -44,7 +46,7 @@ class AfterNegateOperation {
   /// The string passed to this method does not need to be prefixed with
   /// the symbol "$" to indicate a cashtag. However, if you pass a string
   /// prefixed with "$", it will still work.
-  LogicalOperation matchCashtag(final String value) =>
+  LogicalChannel matchCashtag(final String value) =>
       _buffer.appendCashtag(value);
 
   /// Matches any Tweet that mentions the given username, if the username
@@ -53,7 +55,7 @@ class AfterNegateOperation {
   /// The string passed to this method does not need to be prefixed with
   /// the symbol "@" to indicate a username. However, if you pass a string
   /// prefixed with "@", it will still work.
-  LogicalOperation matchUsername(final String username) =>
+  LogicalChannel matchUsername(final String username) =>
       _buffer.appendUsername(username);
 
   /// Matches any Tweet from a specific user.
@@ -62,7 +64,7 @@ class AfterNegateOperation {
   /// the user’s numeric user ID.
   ///
   /// You can only pass a single username/ID.
-  LogicalOperation matchTweetFrom(final String username) =>
+  LogicalChannel matchTweetFrom(final String username) =>
       _buffer.appendTweetFrom(username);
 
   /// Matches any Tweet that is in reply to a particular user.
@@ -71,7 +73,7 @@ class AfterNegateOperation {
   /// (excluding the @ character) or the user’s numeric user ID.
   ///
   ///You can only pass a single username/ID.
-  LogicalOperation matchTweetTo(final String username) =>
+  LogicalChannel matchTweetTo(final String username) =>
       _buffer.appendTweetTo(username);
 
   // FilteringRuleBuilder matchUrl(final String url) =>
@@ -220,6 +222,10 @@ class AfterNegateOperation {
   // FilteringRuleBuilder _sample(final int percent) =>
   //     _appendToken('$percent', prefix: 'sample:');
 
-  LogicalOperation group(final LogicalOperation logicalRoute) =>
-      _buffer.appendGroup(logicalRoute);
+  LogicalChannel group(final Conclusion conclusion) =>
+      _buffer.appendGroup(conclusion);
+
+  /// Add negated grouped rules.
+  LogicalChannel negatedGroup(final Conclusion conclusion) =>
+      _buffer.appendNegatedGroup(conclusion);
 }

@@ -5,24 +5,24 @@
 import '../validation_result.dart';
 import 'standalone_operator.dart';
 
-class TweetFrom extends StandaloneOperator {
-  /// Returns the new instance of [TweetFrom].
-  const TweetFrom(
-    this.username, {
+class UserBioLocation extends StandaloneOperator {
+  /// Returns the new instance of [UserBioLocation].
+  const UserBioLocation(
+    this.value, {
     bool negated = false,
   }) : super(negated);
 
-  factory TweetFrom.negated(final String value) =>
-      TweetFrom(value, negated: true);
+  factory UserBioLocation.negated(final String value) =>
+      UserBioLocation(value, negated: true);
 
-  /// The username
-  final String username;
+  /// The bio location
+  final String value;
 
   @override
   ValidationResult validate() {
-    if (username.isEmpty) {
+    if (value.isEmpty) {
       return ValidationResult.failed(
-        'The username must not be an empty string.',
+        'The bio location must not be an empty string.',
       );
     }
 
@@ -30,5 +30,5 @@ class TweetFrom extends StandaloneOperator {
   }
 
   @override
-  String format() => 'from:$username';
+  String format() => 'bio_location:${toExactPhraseIfNecessary(value)}';
 }

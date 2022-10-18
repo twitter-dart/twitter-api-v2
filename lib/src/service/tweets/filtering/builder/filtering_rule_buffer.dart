@@ -2,74 +2,87 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-import '../../filtering_rule_param.dart';
-import '../operator/logical/and.dart';
-import '../operator/logical/logical_operator.dart';
-import '../operator/logical/or.dart';
-import '../operator/standalone/cashtag.dart';
-import '../operator/standalone/hashtag.dart';
-import '../operator/standalone/keyword.dart';
+import '../operation/logical_operation.dart';
+import '../operation/standalone_operation.dart';
+import '../operator/conjunction/conjunction_required_operator.dart';
+import '../operator/filtering_rule_operator.dart';
 import '../operator/standalone/standalone_operator.dart';
-import '../operator/standalone/tweet_from.dart';
-import '../operator/standalone/tweet_to.dart';
-import '../operator/standalone/username.dart';
-import 'after_logical_operation.dart';
-import 'logical_operation.dart';
+import 'after_logical_channel.dart';
+import 'conclusion.dart';
+import 'logical_channel.dart';
 
 class FilteringRuleBuffer {
   /// Returns the new instance of [FilteringRuleBuffer].
-  FilteringRuleBuffer(this.tag) {
-    _logicalRoute = LogicalOperation(this);
-    _afterLogicalRoute = AfterLogicalOperation(this);
+  FilteringRuleBuffer() {
+    _logicalChannel = LogicalChannel(this);
+    _afterLogicalChannel = AfterLogicalChannel(this);
   }
 
-  static const _and = And();
-  static const _or = Or();
-
-  /// The tag for this rule.
-  final String tag;
+  static const _logicalOperation = LogicalOperation();
+  static const _standaloneOperation = StandaloneOperation();
 
   /// The operators.
-  final _operators = <dynamic>[];
+  final _operators = <FilteringRuleOperator>[];
 
-  late LogicalOperation _logicalRoute;
-  late AfterLogicalOperation _afterLogicalRoute;
+  late LogicalChannel _logicalChannel;
+  late AfterLogicalChannel _afterLogicalChannel;
 
-  LogicalOperation appendKeyword(final String value) =>
-      _appendStandaloneOperator(Keyword(value));
+  LogicalChannel appendKeyword(final String value) => _appendStandaloneOperator(
+        _standaloneOperation.createKeyword(value),
+      );
 
-  LogicalOperation appendNegatedKeyword(final String value) =>
-      _appendStandaloneOperator(Keyword.not(value));
+  LogicalChannel appendNegatedKeyword(final String value) =>
+      _appendStandaloneOperator(
+        _standaloneOperation.createNegatedKeyword(value),
+      );
 
-  LogicalOperation appendHashtag(final String value) =>
-      _appendStandaloneOperator(Hashtag(value));
+  LogicalChannel appendHashtag(final String value) => _appendStandaloneOperator(
+        _standaloneOperation.createHashtag(value),
+      );
 
-  LogicalOperation appendNegatedHashtag(final String value) =>
-      _appendStandaloneOperator(Hashtag.not(value));
+  LogicalChannel appendNegatedHashtag(final String value) =>
+      _appendStandaloneOperator(
+        _standaloneOperation.createNegatedHashtag(value),
+      );
 
-  LogicalOperation appendCashtag(final String value) =>
-      _appendStandaloneOperator(Cashtag(value));
+  LogicalChannel appendCashtag(final String value) => _appendStandaloneOperator(
+        _standaloneOperation.createCashtag(value),
+      );
 
-  LogicalOperation appendNegatedCashtag(final String value) =>
-      _appendStandaloneOperator(Cashtag.not(value));
+  LogicalChannel appendNegatedCashtag(final String value) =>
+      _appendStandaloneOperator(
+        _standaloneOperation.createNegatedCashtag(value),
+      );
 
-  LogicalOperation appendUsername(final String username) =>
-      _appendStandaloneOperator(Username(username));
+  LogicalChannel appendUsername(final String username) =>
+      _appendStandaloneOperator(
+        _standaloneOperation.createUsername(username),
+      );
 
-  LogicalOperation appendNegatedUsername(final String username) =>
-      _appendStandaloneOperator(Username.not(username));
+  LogicalChannel appendNegatedUsername(final String username) =>
+      _appendStandaloneOperator(
+        _standaloneOperation.createNegatedUsername(username),
+      );
 
-  LogicalOperation appendTweetFrom(final String username) =>
-      _appendStandaloneOperator(TweetFrom(username));
+  LogicalChannel appendTweetFrom(final String username) =>
+      _appendStandaloneOperator(
+        _standaloneOperation.createTweetFrom(username),
+      );
 
-  LogicalOperation appendNegatedFrom(final String username) =>
-      _appendStandaloneOperator(TweetFrom.not(username));
+  LogicalChannel appendNegatedFrom(final String username) =>
+      _appendStandaloneOperator(
+        _standaloneOperation.createNegatedTweetFrom(username),
+      );
 
-  LogicalOperation appendTweetTo(final String username) =>
-      _appendStandaloneOperator(TweetTo(username));
+  LogicalChannel appendTweetTo(final String username) =>
+      _appendStandaloneOperator(
+        _standaloneOperation.createTweetTo(username),
+      );
 
-  LogicalOperation appendNegatedTweetTo(final String username) =>
-      _appendStandaloneOperator(TweetTo.not(username));
+  LogicalChannel appendNegatedTweetTo(final String username) =>
+      _appendStandaloneOperator(
+        _standaloneOperation.createNegatedTweetTo(username),
+      );
 
   // FilteringRuleBuilder matchUrl(final String url) =>
   //     _appendToken(url, prefix: 'url:');
@@ -208,49 +221,65 @@ class FilteringRuleBuffer {
   // FilteringRuleBuilder matchRetweetOf(final String tweetId) =>
   //     _appendToken(tweetId, prefix: 'retweets_of_tweet_id:');
 
-  LogicalOperation _appendStandaloneOperator(
+  LogicalChannel _appendStandaloneOperator(
     final StandaloneOperator operator,
   ) {
     _operators.add(operator);
-    return _logicalRoute;
+
+    return _logicalChannel;
   }
 
-  AfterLogicalOperation appendAndOperator() {
-    _operators.add(_and);
-    return _afterLogicalRoute;
-  }
-
-  AfterLogicalOperation appendOrOperator() {
-    _operators.add(_or);
-    return _afterLogicalRoute;
-  }
-
-  LogicalOperation appendGroup(
-    final LogicalOperation logicalRoute,
+  LogicalChannel _appendConjunctionRequiredOperator(
+    final ConjunctionRequiredOperator operator,
   ) {
-    if (_operators.isNotEmpty && _operators.last is! LogicalOperator) {
-      appendAndOperator();
-    }
+    _operators.add(operator);
 
-    _operators.add(logicalRoute);
-
-    return _logicalRoute;
+    return _logicalChannel;
   }
 
-  FilteringRuleParam build() {
+  AfterLogicalChannel appendAndOperator() {
+    _operators.add(
+      _logicalOperation.createAnd(),
+    );
+
+    return _afterLogicalChannel;
+  }
+
+  AfterLogicalChannel appendOrOperator() {
+    _operators.add(
+      _logicalOperation.createOr(),
+    );
+
+    return _afterLogicalChannel;
+  }
+
+  LogicalChannel appendGroup(
+    final Conclusion conclusion,
+  ) {
+    _operators.add(
+      _logicalOperation.createGroup(conclusion),
+    );
+
+    return _logicalChannel;
+  }
+
+  LogicalChannel appendNegatedGroup(
+    final Conclusion conclusion,
+  ) {
+    _operators.add(
+      _logicalOperation.createNegatedGroup(conclusion),
+    );
+
+    return _logicalChannel;
+  }
+
+  String build() {
     final buffer = StringBuffer();
 
     for (final operator in _operators) {
-      if (operator is LogicalOperation) {
-        buffer.write('(${operator.build().value})');
-      } else {
-        buffer.write(operator.toString());
-      }
+      buffer.write(operator.toString());
     }
 
-    return FilteringRuleParam(
-      value: buffer.toString(),
-      tag: tag,
-    );
+    return buffer.toString();
   }
 }
