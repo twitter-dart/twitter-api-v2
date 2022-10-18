@@ -15,14 +15,12 @@ _$_TweetCountMeta _$$_TweetCountMetaFromJson(Map json) => $checkedCreate(
         final val = _$_TweetCountMeta(
           total: $checkedConvert('total_tweet_count', (v) => v as int),
           nextToken: $checkedConvert('next_token', (v) => v as String?),
-          previousToken: $checkedConvert('previous_token', (v) => v as String?),
         );
         return val;
       },
       fieldKeyMap: const {
         'total': 'total_tweet_count',
-        'nextToken': 'next_token',
-        'previousToken': 'previous_token'
+        'nextToken': 'next_token'
       },
     );
 
@@ -30,5 +28,4 @@ Map<String, dynamic> _$$_TweetCountMetaToJson(_$_TweetCountMeta instance) =>
     <String, dynamic>{
       'total_tweet_count': instance.total,
       'next_token': instance.nextToken,
-      'previous_token': instance.previousToken,
     };

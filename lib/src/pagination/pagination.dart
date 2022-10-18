@@ -11,17 +11,17 @@ import 'package:twitter_api_core/twitter_api_core.dart';
 // Project imports:
 import '../response/pagination_response.dart';
 import 'base_pagination_control.dart';
-import 'pageable.dart';
+import 'forward_pageable.dart';
 import 'pagination_control_type.dart';
 
-typedef PageFlipper<D, M extends Pageable> = Future<PaginationResponse<D, M>>
-    Function(
+typedef PageFlipper<D, M extends ForwardPageable>
+    = Future<PaginationResponse<D, M>> Function(
   UserContext userContext,
   String unencodedPath,
   Map<String, dynamic> queryParameters,
 );
 
-abstract class Pagination<D, M extends Pageable> {
+abstract class Pagination<D, M extends ForwardPageable> {
   /// Returns the new instance of [Pagination].
   const Pagination(
     this.rootPage,
@@ -37,7 +37,9 @@ abstract class Pagination<D, M extends Pageable> {
   /// Returns the next token.
   String? getNextToken(
     final BasePaginationControl control,
-    final Pageable? meta,
+    //! The type system of Dart makes it difficult to express
+    //! "Pageable or ForwardPageable", so it's assumed to be dynamic.
+    final dynamic meta,
   );
 
   /// Executes the process on paging.

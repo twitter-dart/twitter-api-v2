@@ -3,13 +3,10 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
-import '../service/common/meta.dart';
+import 'forward_pageable.dart';
 
-abstract class Pageable implements Meta {
+abstract class Pageable implements ForwardPageable {
   const Pageable();
-
-  /// Returns the token for next page.
-  String? get nextToken;
 
   /// Returns the token for previous page.
   String? get previousToken;

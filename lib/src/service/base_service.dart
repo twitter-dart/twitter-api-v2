@@ -11,8 +11,8 @@ import 'package:twitter_api_core/twitter_api_core.dart' as core;
 
 // Project imports:
 import '../pagination/bidirectional_pagination.dart';
+import '../pagination/forward_pageable.dart';
 import '../pagination/pageable.dart';
-import '../pagination/pagination_context.dart';
 import '../pagination/unidirectional_pagination.dart';
 import '../response/pagination_response.dart';
 import '../response/response_field.dart';
@@ -27,10 +27,6 @@ typedef DataBuilder<D extends Data> = D Function(Map<String, Object?> json);
 
 /// The callback function for building meta object from response.
 typedef MetaBuilder<M extends Meta> = M Function(Map<String, Object?> json);
-
-/// The callback function for building pageable meta object from response.
-typedef PageableMetaBuilder<M extends Pageable> = M Function(
-    Map<String, Object?> json);
 
 abstract class _Service {
   Future<http.Response> get(
@@ -90,9 +86,19 @@ abstract class _Service {
     core.UserContext userContext,
     String unencodedPath,
     Map<String, dynamic> queryParameters, {
-    required dynamic paging,
+    required Paging<List<D>, M>? paging,
     required DataBuilder<D> dataBuilder,
-    required PageableMetaBuilder<M> metaBuilder,
+    required MetaBuilder<M> metaBuilder,
+  });
+
+  Future<void> executeForwardPaginationIfNecessary<D extends Data,
+      M extends ForwardPageable>(
+    core.UserContext userContext,
+    String unencodedPath,
+    Map<String, dynamic> queryParameters, {
+    required ForwardPaging<List<D>, M>? paging,
+    required DataBuilder<D> dataBuilder,
+    required MetaBuilder<M> metaBuilder,
   });
 
   TwitterResponse<bool, void> evaluateResponse(final http.Response response);
@@ -276,9 +282,9 @@ abstract class BaseService implements _Service {
     core.UserContext userContext,
     String unencodedPath,
     Map<String, dynamic> queryParameters, {
-    required dynamic paging,
+    required Paging<List<D>, M>? paging,
     required DataBuilder<D> dataBuilder,
-    required PageableMetaBuilder<M> metaBuilder,
+    required MetaBuilder<M> metaBuilder,
   }) async {
     final rootPage = await getPage<D, M>(
       userContext,
@@ -289,12 +295,45 @@ abstract class BaseService implements _Service {
     );
 
     if (paging != null) {
-      //! Paging callback must be "Paging" or "ForwardPaging".
-      assert(paging is Paging<D, M> || paging is ForwardPaging<D, M>);
-
-      await PaginationContext<List<D>, M>(
+      await BidirectionalPagination(
         rootPage,
-        paging!,
+        paging,
+        (userContext, unencodedPath, queryParameters) async =>
+            await getPage<D, M>(
+          userContext,
+          unencodedPath,
+          queryParameters: queryParameters,
+          dataBuilder: dataBuilder,
+          metaBuilder: metaBuilder,
+        ),
+      ).execute();
+    }
+
+    return rootPage;
+  }
+
+  @override
+  Future<PaginationResponse<List<D>, M>> executeForwardPaginationIfNecessary<
+      D extends Data, M extends ForwardPageable>(
+    core.UserContext userContext,
+    String unencodedPath,
+    Map<String, dynamic> queryParameters, {
+    required ForwardPaging<List<D>, M>? paging,
+    required DataBuilder<D> dataBuilder,
+    required MetaBuilder<M> metaBuilder,
+  }) async {
+    final rootPage = await getPage<D, M>(
+      userContext,
+      unencodedPath,
+      queryParameters: queryParameters,
+      dataBuilder: dataBuilder,
+      metaBuilder: metaBuilder,
+    );
+
+    if (paging != null) {
+      await UnidirectionalPagination<List<D>, M>(
+        rootPage,
+        paging,
         (userContext, unencodedPath, queryParameters) async =>
             await getPage<D, M>(
           userContext,

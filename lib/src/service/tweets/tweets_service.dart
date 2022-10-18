@@ -2975,7 +2975,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<MediaField>? mediaFields,
     ForwardPaging<List<TweetData>, TweetMeta>? paging,
   }) async =>
-      await super.executePaginationIfNecessary(
+      await super.executeForwardPaginationIfNecessary(
         core.UserContext.oauth2Only,
         '/2/tweets/search/recent',
         {
@@ -3017,7 +3017,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<MediaField>? mediaFields,
     ForwardPaging<List<TweetData>, TweetMeta>? paging,
   }) async =>
-      super.executePaginationIfNecessary(
+      super.executeForwardPaginationIfNecessary(
         core.UserContext.oauth2Only,
         '/2/tweets/search/all',
         {
@@ -3105,7 +3105,7 @@ class _TweetsService extends BaseService implements TweetsService {
     TweetCountGranularity? granularity,
     ForwardPaging<List<TweetCountData>, TweetCountMeta>? paging,
   }) async =>
-      super.executePaginationIfNecessary(
+      super.executeForwardPaginationIfNecessary(
         core.UserContext.oauth2Only,
         '/2/tweets/counts/recent',
         {
@@ -3133,7 +3133,7 @@ class _TweetsService extends BaseService implements TweetsService {
     TweetCountGranularity? granularity,
     ForwardPaging<List<TweetCountData>, TweetCountMeta>? paging,
   }) async =>
-      super.executePaginationIfNecessary(
+      super.executeForwardPaginationIfNecessary(
         core.UserContext.oauth2Only,
         '/2/tweets/counts/all',
         {

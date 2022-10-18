@@ -29,10 +29,6 @@ mixin _$TweetCountMeta {
   /// by the API, and should not be modified.
   String? get nextToken => throw _privateConstructorUsedError;
 
-  /// A value that encodes the previous 'page' of results that can be
-  /// requested, via the `pagination_token` request parameter.
-  String? get previousToken => throw _privateConstructorUsedError;
-
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $TweetCountMetaCopyWith<TweetCountMeta> get copyWith =>
@@ -44,10 +40,7 @@ abstract class $TweetCountMetaCopyWith<$Res> {
   factory $TweetCountMetaCopyWith(
           TweetCountMeta value, $Res Function(TweetCountMeta) then) =
       _$TweetCountMetaCopyWithImpl<$Res>;
-  $Res call(
-      {@JsonKey(name: 'total_tweet_count') int total,
-      String? nextToken,
-      String? previousToken});
+  $Res call({@JsonKey(name: 'total_tweet_count') int total, String? nextToken});
 }
 
 /// @nodoc
@@ -63,7 +56,6 @@ class _$TweetCountMetaCopyWithImpl<$Res>
   $Res call({
     Object? total = freezed,
     Object? nextToken = freezed,
-    Object? previousToken = freezed,
   }) {
     return _then(_value.copyWith(
       total: total == freezed
@@ -73,10 +65,6 @@ class _$TweetCountMetaCopyWithImpl<$Res>
       nextToken: nextToken == freezed
           ? _value.nextToken
           : nextToken // ignore: cast_nullable_to_non_nullable
-              as String?,
-      previousToken: previousToken == freezed
-          ? _value.previousToken
-          : previousToken // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -89,10 +77,7 @@ abstract class _$$_TweetCountMetaCopyWith<$Res>
           _$_TweetCountMeta value, $Res Function(_$_TweetCountMeta) then) =
       __$$_TweetCountMetaCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {@JsonKey(name: 'total_tweet_count') int total,
-      String? nextToken,
-      String? previousToken});
+  $Res call({@JsonKey(name: 'total_tweet_count') int total, String? nextToken});
 }
 
 /// @nodoc
@@ -110,7 +95,6 @@ class __$$_TweetCountMetaCopyWithImpl<$Res>
   $Res call({
     Object? total = freezed,
     Object? nextToken = freezed,
-    Object? previousToken = freezed,
   }) {
     return _then(_$_TweetCountMeta(
       total: total == freezed
@@ -121,10 +105,6 @@ class __$$_TweetCountMetaCopyWithImpl<$Res>
           ? _value.nextToken
           : nextToken // ignore: cast_nullable_to_non_nullable
               as String?,
-      previousToken: previousToken == freezed
-          ? _value.previousToken
-          : previousToken // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -134,8 +114,7 @@ class __$$_TweetCountMetaCopyWithImpl<$Res>
 class _$_TweetCountMeta implements _TweetCountMeta {
   const _$_TweetCountMeta(
       {@JsonKey(name: 'total_tweet_count') required this.total,
-      this.nextToken,
-      this.previousToken});
+      this.nextToken});
 
   factory _$_TweetCountMeta.fromJson(Map<String, dynamic> json) =>
       _$$_TweetCountMetaFromJson(json);
@@ -151,14 +130,9 @@ class _$_TweetCountMeta implements _TweetCountMeta {
   @override
   final String? nextToken;
 
-  /// A value that encodes the previous 'page' of results that can be
-  /// requested, via the `pagination_token` request parameter.
-  @override
-  final String? previousToken;
-
   @override
   String toString() {
-    return 'TweetCountMeta(total: $total, nextToken: $nextToken, previousToken: $previousToken)';
+    return 'TweetCountMeta(total: $total, nextToken: $nextToken)';
   }
 
   @override
@@ -167,9 +141,7 @@ class _$_TweetCountMeta implements _TweetCountMeta {
         (other.runtimeType == runtimeType &&
             other is _$_TweetCountMeta &&
             const DeepCollectionEquality().equals(other.total, total) &&
-            const DeepCollectionEquality().equals(other.nextToken, nextToken) &&
-            const DeepCollectionEquality()
-                .equals(other.previousToken, previousToken));
+            const DeepCollectionEquality().equals(other.nextToken, nextToken));
   }
 
   @JsonKey(ignore: true)
@@ -177,8 +149,7 @@ class _$_TweetCountMeta implements _TweetCountMeta {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(total),
-      const DeepCollectionEquality().hash(nextToken),
-      const DeepCollectionEquality().hash(previousToken));
+      const DeepCollectionEquality().hash(nextToken));
 
   @JsonKey(ignore: true)
   @override
@@ -196,8 +167,7 @@ class _$_TweetCountMeta implements _TweetCountMeta {
 abstract class _TweetCountMeta implements TweetCountMeta {
   const factory _TweetCountMeta(
       {@JsonKey(name: 'total_tweet_count') required final int total,
-      final String? nextToken,
-      final String? previousToken}) = _$_TweetCountMeta;
+      final String? nextToken}) = _$_TweetCountMeta;
 
   factory _TweetCountMeta.fromJson(Map<String, dynamic> json) =
       _$_TweetCountMeta.fromJson;
@@ -213,11 +183,6 @@ abstract class _TweetCountMeta implements TweetCountMeta {
   /// used with the parameter is pulled directly from the response provided
   /// by the API, and should not be modified.
   String? get nextToken;
-  @override
-
-  /// A value that encodes the previous 'page' of results that can be
-  /// requested, via the `pagination_token` request parameter.
-  String? get previousToken;
   @override
   @JsonKey(ignore: true)
   _$$_TweetCountMetaCopyWith<_$_TweetCountMeta> get copyWith =>

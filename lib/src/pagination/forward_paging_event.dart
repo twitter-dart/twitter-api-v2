@@ -5,9 +5,9 @@
 
 // Project imports:
 import '../response/twitter_response.dart';
-import 'pageable.dart';
+import 'forward_pageable.dart';
 
-class ForwardPagingEvent<D, M extends Pageable> {
+class ForwardPagingEvent<D, M extends ForwardPageable> {
   /// Returns the new instance of [ForwardPagingEvent].
   const ForwardPagingEvent(
     this.count,

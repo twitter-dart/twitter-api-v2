@@ -8,18 +8,19 @@ import 'dart:async';
 // Project imports:
 import '../response/pagination_response.dart';
 import 'base_pagination_control.dart';
+import 'forward_pageable.dart';
 import 'forward_pagination_control.dart';
 import 'forward_paging_event.dart';
-import 'pageable.dart';
 import 'pagination.dart';
 
-typedef ForwardPaging<D, M extends Pageable>
+typedef ForwardPaging<D, M extends ForwardPageable>
     = FutureOr<ForwardPaginationControl> Function(
   ForwardPagingEvent<D, M> event,
 );
 
 /// This class is an object representing unidirectional paging.
-class UnidirectionalPagination<D, M extends Pageable> extends Pagination<D, M> {
+class UnidirectionalPagination<D, M extends ForwardPageable>
+    extends Pagination<D, M> {
   /// Returns the new instance of [UnidirectionalPagination].
   const UnidirectionalPagination(
     super.rootPage,
@@ -33,7 +34,7 @@ class UnidirectionalPagination<D, M extends Pageable> extends Pagination<D, M> {
   @override
   String? getNextToken(
     final BasePaginationControl control,
-    final Pageable? meta,
+    final dynamic meta,
   ) =>
       meta?.nextToken;
 
