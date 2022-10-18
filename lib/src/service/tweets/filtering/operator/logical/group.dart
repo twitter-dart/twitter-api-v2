@@ -2,7 +2,8 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-import '../../builder/conclusion.dart';
+// Project imports:
+import '../../syntax/conclusion.dart';
 import 'logical_operator.dart';
 
 class Group extends LogicalOperator {

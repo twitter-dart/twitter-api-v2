@@ -2,10 +2,11 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-import '../builder/conclusion.dart';
+// Project imports:
 import '../operator/logical/and.dart';
 import '../operator/logical/group.dart';
 import '../operator/logical/or.dart';
+import '../syntax/conclusion.dart';
 
 class LogicalOperation {
   /// Returns the new instance of [LogicalOperation].

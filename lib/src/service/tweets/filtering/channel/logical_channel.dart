@@ -2,24 +2,31 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-import 'after_logical_channel.dart';
-import 'conclusion.dart';
-import 'filtering_rule_buffer.dart';
+// Project imports:
+import '../filtering_rule_buffer.dart';
+import '../operation/logical_operation.dart';
+import '../syntax/conclusion.dart';
+import 'post_logical_channel.dart';
 
 class LogicalChannel implements Conclusion {
   /// Returns the new instance of [LogicalChannel].
   const LogicalChannel(this._buffer);
 
+  static const _logicalOperation = LogicalOperation();
+
   /// The tray for filtering operators
   final FilteringRuleBuffer _buffer;
 
   /// Append "And" rule.
-  AfterLogicalChannel and() => _buffer.appendAndOperator();
+  PostLogicalChannel and() => _buffer.appendLogicalOperator(
+        _logicalOperation.createAnd(),
+      );
 
   /// Append "Or" rule.
-  AfterLogicalChannel or() => _buffer.appendOrOperator();
+  PostLogicalChannel or() => _buffer.appendLogicalOperator(
+        _logicalOperation.createOr(),
+      );
 
-  /// Returns the built filtering rule.
   @override
   String build() => _buffer.build();
 }

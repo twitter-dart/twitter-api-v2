@@ -2,18 +2,20 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-import 'conclusion.dart';
-import 'filtering_rule_buffer.dart';
-import 'filtering_rule_syntax.dart';
-import 'logical_channel.dart';
+// Project imports:
+import '../channel/logical_channel.dart';
+import '../filtering_rule_buffer.dart';
+import '../operation/standalone_operation.dart';
+import 'group_syntax.dart';
 
-FilteringRuleBuilder get newFilteringRule => FilteringRuleBuilder();
+abstract class StandaloneSyntax extends GroupSyntax {
+  /// Returns the new instance of [StandaloneSyntax].
+  const StandaloneSyntax(super.buffer) : _buffer = buffer;
 
-class FilteringRuleBuilder implements FilteringRuleSyntax {
-  /// Returns the new instance of [FilteringRuleBuilder].
-  FilteringRuleBuilder() : _buffer = FilteringRuleBuffer();
+  /// The standalone operation
+  static const _standaloneOperation = StandaloneOperation();
 
-  /// The tray for filtering operators.
+  /// The buffer
   final FilteringRuleBuffer _buffer;
 
   /// Matches a keyword within the body of a Tweet.
@@ -23,10 +25,14 @@ class FilteringRuleBuilder implements FilteringRuleSyntax {
   /// words based on punctuation, symbols, and Unicode basic plane separator
   /// characters.
   LogicalChannel matchKeyword(final String value) =>
-      _buffer.appendKeyword(value);
+      _buffer.appendStandaloneOperator(
+        _standaloneOperation.createKeyword(value),
+      );
 
   LogicalChannel notMatchKeyword(final String value) =>
-      _buffer.appendNegatedKeyword(value);
+      _buffer.appendStandaloneOperator(
+        _standaloneOperation.createNegatedKeyword(value),
+      );
 
   /// Matches any Tweet containing a recognized hashtag, if the hashtag is a
   /// recognized entity in a Tweet.
@@ -39,7 +45,9 @@ class FilteringRuleBuilder implements FilteringRuleSyntax {
   /// the symbol "#" to indicate a hashtag. However, if you pass a string
   /// prefixed with "#", it will still work.
   LogicalChannel matchHashtag(final String value) =>
-      _buffer.appendHashtag(value);
+      _buffer.appendStandaloneOperator(
+        _standaloneOperation.createHashtag(value),
+      );
 
   /// Matches any Tweet that contains the specified ‘cashtag’
   /// (where the leading character of the token is the ‘$’ character).
@@ -52,7 +60,9 @@ class FilteringRuleBuilder implements FilteringRuleSyntax {
   /// the symbol "$" to indicate a cashtag. However, if you pass a string
   /// prefixed with "$", it will still work.
   LogicalChannel matchCashtag(final String value) =>
-      _buffer.appendCashtag(value);
+      _buffer.appendStandaloneOperator(
+        _standaloneOperation.createCashtag(value),
+      );
 
   /// Matches any Tweet that mentions the given username, if the username
   /// is a recognized entity.
@@ -61,7 +71,9 @@ class FilteringRuleBuilder implements FilteringRuleSyntax {
   /// the symbol "@" to indicate a username. However, if you pass a string
   /// prefixed with "@", it will still work.
   LogicalChannel matchUsername(final String username) =>
-      _buffer.appendUsername(username);
+      _buffer.appendStandaloneOperator(
+        _standaloneOperation.createUsername(username),
+      );
 
   /// Matches any Tweet from a specific user.
   ///
@@ -70,7 +82,9 @@ class FilteringRuleBuilder implements FilteringRuleSyntax {
   ///
   /// You can only pass a single username/ID.
   LogicalChannel matchTweetFrom(final String username) =>
-      _buffer.appendTweetFrom(username);
+      _buffer.appendStandaloneOperator(
+        _standaloneOperation.createTweetFrom(username),
+      );
 
   /// Matches any Tweet that is in reply to a particular user.
   ///
@@ -79,13 +93,7 @@ class FilteringRuleBuilder implements FilteringRuleSyntax {
   ///
   ///You can only pass a single username/ID.
   LogicalChannel matchTweetTo(final String username) =>
-      _buffer.appendTweetTo(username);
-
-  /// Add grouped rules.
-  LogicalChannel group(final Conclusion conclusion) =>
-      _buffer.appendGroup(conclusion);
-
-  /// Add negated grouped rules.
-  LogicalChannel negatedGroup(final Conclusion conclusion) =>
-      _buffer.appendNegatedGroup(conclusion);
+      _buffer.appendStandaloneOperator(
+        _standaloneOperation.createTweetTo(username),
+      );
 }

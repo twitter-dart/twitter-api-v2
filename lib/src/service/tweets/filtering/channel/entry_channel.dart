@@ -3,12 +3,9 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
-import 'logical_operator.dart';
+import '../syntax/standalone_syntax.dart';
 
-class And extends LogicalOperator {
-  /// Returns the new instance of [And].
-  const And() : super(false);
-
-  @override
-  String format() => ' ';
+class EntryChannel extends StandaloneSyntax {
+  /// Returns the new instance of [EntryChannel].
+  const EntryChannel(super.buffer);
 }

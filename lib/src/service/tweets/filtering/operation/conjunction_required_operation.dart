@@ -2,4 +2,7 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-class ConjunctionRequiredOperation {}
+class ConjunctionRequiredOperation {
+  /// Returns the new instance of [ConjunctionRequiredOperation].
+  const ConjunctionRequiredOperation();
+}

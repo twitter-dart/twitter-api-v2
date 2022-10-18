@@ -2,11 +2,10 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-enum DistanceUnit {
-  kilometers('km'),
-  miles('mi');
+// Project imports:
+import 'filtering_rule_syntax.dart';
 
-  final String value;
-
-  const DistanceUnit(this.value);
+abstract class Conclusion implements FilteringRuleSyntax {
+  /// Returns the built filtering rule.
+  String build();
 }
