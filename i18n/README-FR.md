@@ -144,9 +144,9 @@ Future<void> main() async {
 
   try {
     // Get the authenticated user's profile.
-    final me = await twitter.usersService.lookupMe();
+    final me = await twitter.users.lookupMe();
     // Get the tweets associated with the search query.
-    final tweets = await twitter.tweetsService.searchRecent(
+    final tweets = await twitter.tweets.searchRecent(
       query: '#ElonMusk',
       maxResults: 20,
       // You can expand the search result.
@@ -166,19 +166,19 @@ Future<void> main() async {
       ],
     );
 
-    await twitter.tweetsService.createLike(
+    await twitter.tweets.createLike(
       userId: me.data.id,
       tweetId: tweets.data.first.id,
     );
 
     // High-performance Volume Stream endpoint is available.
-    final sampleStream = await twitter.tweetsService.connectSampleStream();
+    final sampleStream = await twitter.tweets.connectSampleStream();
     await for (final response in sampleStream.stream.handleError(print)) {
       print(response);
     }
 
     // Also high-performance Filtered Stream endpoint is available.
-    await twitter.tweetsService.createFilteringRules(
+    await twitter.tweets.createFilteringRules(
       rules: [
         v2.FilteringRuleParam(value: '#ElonMusk'),
         v2.FilteringRuleParam(value: '#Tesla'),
@@ -186,7 +186,7 @@ Future<void> main() async {
       ],
     );
 
-    final filteredStream = await twitter.tweetsService.connectFilteredStream();
+    final filteredStream = await twitter.tweets.connectFilteredStream();
     await for (final response in filteredStream.stream.handleError(print)) {
       print(response.data);
       print(response.matchingRules);
@@ -458,7 +458,7 @@ import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
 Future<void> main() async {
   final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
 
-  await twitter.tweetsService.createTweet(
+  await twitter.tweets.createTweet(
     text: 'Hello, World!',
     // These parameters are ignored at request because they are null.
     mediaIds: null,
@@ -482,7 +482,7 @@ Future<void> main() async {
   final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
 
   try {
-    final tweets = await twitter.tweetsService.searchRecent(
+    final tweets = await twitter.tweets.searchRecent(
       query: '#ElonMusk',
       // Specify fields you need!
       expansions: [
@@ -515,7 +515,7 @@ Future<void> main() async {
   final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
 
   try {
-    final tweets = await twitter.tweetsService.searchRecent(
+    final tweets = await twitter.tweets.searchRecent(
       query: '#ElonMusk',
       maxResults: 20,
       expansions: v2.TweetExpansion.values,
