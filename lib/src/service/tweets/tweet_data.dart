@@ -248,6 +248,14 @@ class TweetData with _$TweetData {
     /// creation and can be edited up to five times.
     TweetEditControls? editControls,
 
+    /// Unique identifiers indicating all versions of an edited Tweet.
+    ///
+    /// For Tweets with no edits, there will be one ID. For Tweets with an edit
+    /// history, there will be multiple IDs, arranged in ascending order
+    /// reflecting the order of edit, with the most recent version in the last
+    /// position of the array.
+    List<String>? editHistoryTweetIds,
+
     /// Contains withholding details for [withheld content](https://help.twitter.com/en/rules-and-policies/tweet-withheld-by-country).
     ///
     /// To return this field, add `TweetField.withheld` in the request's query
