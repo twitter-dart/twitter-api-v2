@@ -13,6 +13,7 @@
 ## v4.1.5
 
 - Added `TweetEditControls` object. This object holds information about the editing of tweets. You can use it from `TweetData.editControls`, and also you must pass the `editControls` element to `tweetFields`. ([#472](https://github.com/twitter-dart/twitter-api-v2/issues/472))
+- Added `editHistoryTweetIds` field in `TweetData`. ([#471](https://github.com/twitter-dart/twitter-api-v2/issues/471))
 
 ## v4.1.4
 

@@ -86,6 +86,8 @@ _$_TweetData _$$_TweetDataFromJson(Map json) => $checkedCreate(
                   ? null
                   : TweetEditControls.fromJson(
                       Map<String, Object?>.from(v as Map))),
+          editHistoryTweetIds: $checkedConvert('edit_history_tweet_ids',
+              (v) => (v as List<dynamic>?)?.map((e) => e as String).toList()),
           withheld: $checkedConvert(
               'withheld',
               (v) => v == null
@@ -110,6 +112,7 @@ _$_TweetData _$$_TweetDataFromJson(Map json) => $checkedCreate(
         'isPossiblySensitive': 'possibly_sensitive',
         'replySetting': 'reply_settings',
         'editControls': 'edit_controls',
+        'editHistoryTweetIds': 'edit_history_tweet_ids',
         'createdAt': 'created_at'
       },
     );
@@ -137,6 +140,7 @@ Map<String, dynamic> _$$_TweetDataToJson(_$_TweetData instance) =>
       'reply_settings': _$ReplySettingEnumMap[instance.replySetting],
       'source': instance.source,
       'edit_controls': instance.editControls?.toJson(),
+      'edit_history_tweet_ids': instance.editHistoryTweetIds,
       'withheld': instance.withheld?.toJson(),
       'created_at': instance.createdAt?.toIso8601String(),
     };

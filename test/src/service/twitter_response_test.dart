@@ -108,6 +108,7 @@ void main() {
           'reply_settings': null,
           'source': null,
           'edit_controls': null,
+          'edit_history_tweet_ids': null,
           'withheld': null,
           'created_at': null
         },
@@ -133,6 +134,7 @@ void main() {
               'reply_settings': null,
               'source': null,
               'edit_controls': null,
+              'edit_history_tweet_ids': null,
               'withheld': null,
               'created_at': null
             },
@@ -156,6 +158,7 @@ void main() {
               'reply_settings': null,
               'source': null,
               'edit_controls': null,
+              'edit_history_tweet_ids': null,
               'withheld': null,
               'created_at': null
             }
@@ -206,6 +209,7 @@ void main() {
             'reply_settings': null,
             'source': null,
             'edit_controls': null,
+            'edit_history_tweet_ids': null,
             'withheld': null,
             'created_at': null
           },
@@ -229,6 +233,7 @@ void main() {
             'reply_settings': null,
             'source': null,
             'edit_controls': null,
+            'edit_history_tweet_ids': null,
             'withheld': null,
             'created_at': null
           }
