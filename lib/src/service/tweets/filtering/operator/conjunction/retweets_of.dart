@@ -4,26 +4,26 @@
 
 // Project imports:
 import '../validation_result.dart';
-import 'standalone_operator.dart';
+import 'conjunction_required_operator.dart';
 
-class RetweetsOf extends StandaloneOperator {
+class RetweetsOf extends ConjunctionRequiredOperator {
   /// Returns the new instance of [RetweetsOf].
   const RetweetsOf(
-    this.username, {
+    this.tweetId, {
     bool negated = false,
   }) : super(negated);
 
-  factory RetweetsOf.negated(final String username) =>
-      RetweetsOf(username, negated: true);
+  factory RetweetsOf.negated(final String tweetId) =>
+      RetweetsOf(tweetId, negated: true);
 
-  /// The username
-  final String username;
+  /// The value
+  final String tweetId;
 
   @override
   ValidationResult validate() {
-    if (username.isEmpty) {
+    if (tweetId.isEmpty) {
       return ValidationResult.failed(
-        'The username must not be an empty string.',
+        'The tweet id must not be an empty string.',
       );
     }
 
@@ -31,5 +31,5 @@ class RetweetsOf extends StandaloneOperator {
   }
 
   @override
-  String format() => 'retweets_of:$username';
+  String format() => 'retweets_of_tweet_id:$tweetId}';
 }

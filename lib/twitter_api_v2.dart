@@ -12,6 +12,7 @@ export 'package:twitter_api_core/src/exception/unauthorized_exception.dart';
 export 'package:twitter_api_core/src/util/oauth_utils.dart';
 export 'package:twitter_api_v2/src/service/common/includes.dart';
 export 'package:twitter_api_v2/src/service/common/mention.dart';
+export 'package:twitter_api_v2/src/service/common/range.dart';
 export 'package:twitter_api_v2/src/service/common/rate_limit.dart';
 export 'package:twitter_api_v2/src/service/common/tag.dart';
 export 'package:twitter_api_v2/src/service/common/url.dart';
@@ -49,6 +50,7 @@ export 'package:twitter_api_v2/src/service/spaces/space_state.dart';
 export 'package:twitter_api_v2/src/service/spaces/spaces_service.dart';
 export 'package:twitter_api_v2/src/service/spaces/topic_data.dart';
 export 'package:twitter_api_v2/src/service/spaces/topic_field.dart';
+export 'package:twitter_api_v2/src/service/tweets/distance_unit.dart';
 export 'package:twitter_api_v2/src/service/tweets/exclude_tweet_type.dart';
 export 'package:twitter_api_v2/src/service/tweets/filtering/filtering_rule_buffer.dart'
     show newFilteringRule;

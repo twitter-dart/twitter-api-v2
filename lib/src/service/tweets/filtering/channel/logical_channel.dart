@@ -4,8 +4,9 @@
 
 // Project imports:
 import '../syntax/logical_syntax.dart';
+import 'filtering_rule_channel.dart';
 
-class LogicalChannel extends LogicalSyntax {
+class LogicalChannel extends LogicalSyntax implements FilteringRuleChannel {
   /// Returns the new instance of [LogicalChannel].
   const LogicalChannel(super.buffer);
 }

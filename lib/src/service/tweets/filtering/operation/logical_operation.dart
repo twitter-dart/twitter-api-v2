@@ -18,10 +18,10 @@ class LogicalOperation {
   /// Returns the new instance of [Or].
   Or createOr() => Or();
 
-  /// Returns the new instance of [Group].
+  /// Returns the new instance of [Group] based on [conclusion].
   Group createGroup(final Conclusion conclusion) => Group(conclusion);
 
-  /// Returns the new instance of negated [Group].
+  /// Returns the new instance of negated [Group] based on [conclusion].
   Group createNegatedGroup(final Conclusion conclusion) =>
       Group.negated(conclusion);
 }

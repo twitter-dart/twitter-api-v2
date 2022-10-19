@@ -3,6 +3,7 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
+import '../../../common/range.dart';
 import '../invalid_filtering_rule_exception.dart';
 import 'validation_result.dart';
 
@@ -26,6 +27,14 @@ abstract class FilteringRuleOperator {
     }
 
     return value;
+  }
+
+  String toRangeString(final Range range) {
+    if (range.isPoint) {
+      return '${range.to}';
+    }
+
+    return '${range.from}..${range.to}';
   }
 
   @override

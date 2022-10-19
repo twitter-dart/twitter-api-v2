@@ -4,8 +4,10 @@
 
 // Project imports:
 import '../syntax/conjunction_required_syntax.dart';
+import 'filtering_rule_channel.dart';
 
-class PostLogicalChannel extends ConjunctionRequiredSyntax {
+class PostLogicalChannel extends ConjunctionRequiredSyntax
+    implements FilteringRuleChannel {
   /// Returns the new instance of [PostLogicalChannel].
   const PostLogicalChannel(super.buffer);
 }
