@@ -11,6 +11,9 @@ class Range {
   factory Range.point(final int value) => Range._(value, value);
 
   /// Obtains a range with the specified minimum and maximum values.
+  ///
+  /// The `from` parameter must be less than `to` parameter,
+  /// otherwise [ArgumentError] will be thrown.
   factory Range.between(final int from, final int to) {
     if (from > to) {
       throw ArgumentError('The "from" parameter must be less than "to".');
@@ -27,4 +30,17 @@ class Range {
 
   /// Returns true if this range is the point, otherwise false.
   bool get isPoint => from == to;
+
+  @override
+  String toString() => 'Range(from: $from, to: $to)';
+
+  @override
+  bool operator ==(covariant Range other) {
+    if (identical(this, other)) return true;
+
+    return other.from == from && other.to == to;
+  }
+
+  @override
+  int get hashCode => from.hashCode ^ to.hashCode;
 }

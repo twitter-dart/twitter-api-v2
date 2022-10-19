@@ -3,11 +3,14 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
+import '../../distance_unit.dart';
+import '../operator/standalone/bounding_box.dart';
 import '../operator/standalone/cashtag.dart';
 import '../operator/standalone/conversation.dart';
 import '../operator/standalone/hashtag.dart';
 import '../operator/standalone/keyword.dart';
 import '../operator/standalone/place.dart';
+import '../operator/standalone/point_radius.dart';
 import '../operator/standalone/retweeted_by.dart';
 import '../operator/standalone/tweet_from.dart';
 import '../operator/standalone/tweet_to.dart';
@@ -107,4 +110,60 @@ class StandaloneOperation {
 
   /// Returns the new instance of negated [Place] based on [value].
   Place createNegatedPlace(final String value) => Place.negated(value);
+
+  /// Returns the new instance of [PointRadius].
+  PointRadius createPointRadius(
+    final DistanceUnit distanceUnit,
+    final double longitude,
+    final double latitude,
+    final double radius,
+  ) =>
+      PointRadius(
+        distanceUnit,
+        longitude,
+        latitude,
+        radius,
+      );
+
+  /// Returns the new instance of negated [PointRadius].
+  PointRadius createNegatedPointRadius(
+    final DistanceUnit distanceUnit,
+    final double longitude,
+    final double latitude,
+    final double radius,
+  ) =>
+      PointRadius.negated(
+        distanceUnit,
+        longitude,
+        latitude,
+        radius,
+      );
+
+  /// Returns the new instance of [BoundingBox].
+  BoundingBox createBoundingBox(
+    final double westLongitude,
+    final double southLatitude,
+    final double eastLongitude,
+    final double northLatitude,
+  ) =>
+      BoundingBox(
+        westLongitude,
+        southLatitude,
+        eastLongitude,
+        northLatitude,
+      );
+
+  /// Returns the new instance of negated [BoundingBox].
+  BoundingBox createNegatedBoundingBox(
+    final double westLongitude,
+    final double southLatitude,
+    final double eastLongitude,
+    final double northLatitude,
+  ) =>
+      BoundingBox.negated(
+        westLongitude,
+        southLatitude,
+        eastLongitude,
+        northLatitude,
+      );
 }
