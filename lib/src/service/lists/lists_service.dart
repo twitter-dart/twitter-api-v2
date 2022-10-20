@@ -7,6 +7,7 @@ import 'package:twitter_api_core/twitter_api_core.dart' as core;
 
 // Project imports:
 import '../base_service.dart';
+import '../pagination/bidirectional_pagination.dart';
 import '../response/twitter_response.dart';
 import '../tweets/tweet_data.dart';
 import '../tweets/tweet_expansion.dart';
@@ -91,6 +92,11 @@ abstract class ListsService {
 
   /// Returns all Lists owned by the specified user.
   ///
+  /// The value returned when the [paging] callback is specified is
+  /// the first object obtained that started the paging process. The value
+  /// obtained in the paging process is passed to the [paging] callback
+  /// function as a `PagingEvent` object.
+  ///
   /// ## Parameters
   ///
   /// - [userId]: The user ID whose owned Lists you would like to retrieve.
@@ -128,6 +134,23 @@ abstract class ListsService {
   ///                 List fields will display directly in the List data
   ///                 objects.
   ///
+  /// - [paging]: If this callback function is specified, paging is
+  ///             performed continuously until certain conditions are met.
+  ///             This paging function is bi-directional,
+  ///             both forward and backward, and allows for safe paging.
+  ///             The response and other metadata obtained when paging is
+  ///             performed is passed to the callback function as
+  ///             `PagingEvent` object. So you can get the result of paging
+  ///             from `PagingEvent` object. Also, the direction and continuity
+  ///             of paging can be controlled by returning
+  ///             `PaginationControl` object in the `paging` callback function.
+  ///             Please use `PaginationControl.forward()` to continue paging
+  ///             and move forward, or use `PaginationControl.backward()`
+  ///             to move backward. And be sure to return
+  ///             `PaginationControl.stop()` to terminate paging on
+  ///             arbitrary conditions, otherwise paging continues until the
+  ///             next page runs out.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/owned_lists
@@ -162,6 +185,7 @@ abstract class ListsService {
     List<ListExpansion>? expansions,
     List<UserField>? userFields,
     List<ListField>? listFields,
+    Paging<List<ListData>, ListMeta>? paging,
   });
 
   /// Enables the authenticated user to pin a List.
@@ -302,6 +326,11 @@ abstract class ListsService {
 
   /// Returns a list of Tweets from the specified List.
   ///
+  /// The value returned when the [paging] callback is specified is
+  /// the first object obtained that started the paging process. The value
+  /// obtained in the paging process is passed to the [paging] callback
+  /// function as a `PagingEvent` object.
+  ///
   /// ## Parameters
   ///
   /// - [listId]: The ID of the List whose Tweets you would like to retrieve.
@@ -340,6 +369,23 @@ abstract class ListsService {
   ///                 specified user fields will display directly in the user
   ///                 data objects.
   ///
+  /// - [paging]: If this callback function is specified, paging is
+  ///             performed continuously until certain conditions are met.
+  ///             This paging function is bi-directional,
+  ///             both forward and backward, and allows for safe paging.
+  ///             The response and other metadata obtained when paging is
+  ///             performed is passed to the callback function as
+  ///             `PagingEvent` object. So you can get the result of paging
+  ///             from `PagingEvent` object. Also, the direction and continuity
+  ///             of paging can be controlled by returning
+  ///             `PaginationControl` object in the `paging` callback function.
+  ///             Please use `PaginationControl.forward()` to continue paging
+  ///             and move forward, or use `PaginationControl.backward()`
+  ///             to move backward. And be sure to return
+  ///             `PaginationControl.stop()` to terminate paging on
+  ///             arbitrary conditions, otherwise paging continues until the
+  ///             next page runs out.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/lists/:id/tweets
@@ -374,6 +420,7 @@ abstract class ListsService {
     List<TweetExpansion> expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
+    Paging<List<TweetData>, TweetMeta>? paging,
   });
 
   /// Enables the authenticated user to create a public List.
@@ -626,6 +673,11 @@ abstract class ListsService {
 
   /// Returns a list of users who are followers of the specified List.
   ///
+  /// The value returned when the [paging] callback is specified is
+  /// the first object obtained that started the paging process. The value
+  /// obtained in the paging process is passed to the [paging] callback
+  /// function as a `PagingEvent` object.
+  ///
   /// ## Parameters
   ///
   /// - [listId]: The ID of the List whose followers you would like to retrieve.
@@ -654,6 +706,23 @@ abstract class ListsService {
   ///                 user fields will deliver with each returned users objects.
   ///                 These specified user fields will display directly in the
   ///                 user data objects.
+  ///
+  /// - [paging]: If this callback function is specified, paging is
+  ///             performed continuously until certain conditions are met.
+  ///             This paging function is bi-directional,
+  ///             both forward and backward, and allows for safe paging.
+  ///             The response and other metadata obtained when paging is
+  ///             performed is passed to the callback function as
+  ///             `PagingEvent` object. So you can get the result of paging
+  ///             from `PagingEvent` object. Also, the direction and continuity
+  ///             of paging can be controlled by returning
+  ///             `PaginationControl` object in the `paging` callback function.
+  ///             Please use `PaginationControl.forward()` to continue paging
+  ///             and move forward, or use `PaginationControl.backward()`
+  ///             to move backward. And be sure to return
+  ///             `PaginationControl.stop()` to terminate paging on
+  ///             arbitrary conditions, otherwise paging continues until the
+  ///             next page runs out.
   ///
   /// ## Endpoint Url
   ///
@@ -688,9 +757,15 @@ abstract class ListsService {
     String? paginationToken,
     List<UserExpansion> expansions,
     List<UserField> userFields,
+    Paging<List<UserData>, UserMeta>? paging,
   });
 
   /// Returns all Lists a specified user follows.
+  ///
+  /// The value returned when the [paging] callback is specified is
+  /// the first object obtained that started the paging process. The value
+  /// obtained in the paging process is passed to the [paging] callback
+  /// function as a `PagingEvent` object.
   ///
   /// ## Parameters
   ///
@@ -730,6 +805,24 @@ abstract class ListsService {
   ///                 List fields will display directly in the List data
   ///                 objects.
   ///
+  /// - [paging]: If this callback function is specified, paging is
+  ///             performed continuously until certain conditions are met.
+  ///             This paging function is bi-directional,
+  ///             both forward and backward, and allows for safe paging.
+  ///             The response and other metadata obtained when paging is
+  ///             performed is passed to the callback function as
+  ///             `PagingEvent` object. So you can get the result of paging
+  ///             from `PagingEvent` object. Also, the direction and continuity
+  ///             of paging can be controlled by returning
+  ///             `PaginationControl` object in the `paging` callback function.
+  ///             Please use `PaginationControl.forward()` to continue paging
+  ///             and move forward, or use `PaginationControl.backward()`
+  ///             to move backward. And be sure to return
+  ///             `PaginationControl.stop()` to terminate paging on
+  ///             arbitrary conditions, otherwise paging continues until the
+  ///             next page runs out.
+
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/followed_lists
@@ -764,6 +857,7 @@ abstract class ListsService {
     List<ListExpansion>? expansions,
     List<UserField>? userFields,
     List<ListField>? listFields,
+    Paging<List<ListData>, ListMeta>? paging,
   });
 
   /// Enables the authenticated user to add a member to a List they own.
@@ -837,6 +931,11 @@ abstract class ListsService {
 
   /// Returns a list of users who are members of the specified List.
   ///
+  /// The value returned when the [paging] callback is specified is
+  /// the first object obtained that started the paging process. The value
+  /// obtained in the paging process is passed to the [paging] callback
+  /// function as a `PagingEvent` object.
+  ///
   /// ## Parameters
   ///
   /// - [listId]: The ID of the List whose members you would like to retrieve.
@@ -875,6 +974,23 @@ abstract class ListsService {
   ///                 These specified user fields will display directly in the
   ///                 user data objects.
   ///
+  /// - [paging]: If this callback function is specified, paging is
+  ///             performed continuously until certain conditions are met.
+  ///             This paging function is bi-directional,
+  ///             both forward and backward, and allows for safe paging.
+  ///             The response and other metadata obtained when paging is
+  ///             performed is passed to the callback function as
+  ///             `PagingEvent` object. So you can get the result of paging
+  ///             from `PagingEvent` object. Also, the direction and continuity
+  ///             of paging can be controlled by returning
+  ///             `PaginationControl` object in the `paging` callback function.
+  ///             Please use `PaginationControl.forward()` to continue paging
+  ///             and move forward, or use `PaginationControl.backward()`
+  ///             to move backward. And be sure to return
+  ///             `PaginationControl.stop()` to terminate paging on
+  ///             arbitrary conditions, otherwise paging continues until the
+  ///             next page runs out.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/lists/:id/members
@@ -909,9 +1025,15 @@ abstract class ListsService {
     List<UserExpansion> expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
+    Paging<List<UserData>, UserMeta>? paging,
   });
 
   /// Returns all Lists a specified user is a member of.
+  ///
+  /// The value returned when the [paging] callback is specified is
+  /// the first object obtained that started the paging process. The value
+  /// obtained in the paging process is passed to the [paging] callback
+  /// function as a `PagingEvent` object.
   ///
   /// ## Parameters
   ///
@@ -951,6 +1073,23 @@ abstract class ListsService {
   ///                 List fields will display directly in the List data
   ///                 objects.
   ///
+  /// - [paging]: If this callback function is specified, paging is
+  ///             performed continuously until certain conditions are met.
+  ///             This paging function is bi-directional,
+  ///             both forward and backward, and allows for safe paging.
+  ///             The response and other metadata obtained when paging is
+  ///             performed is passed to the callback function as
+  ///             `PagingEvent` object. So you can get the result of paging
+  ///             from `PagingEvent` object. Also, the direction and continuity
+  ///             of paging can be controlled by returning
+  ///             `PaginationControl` object in the `paging` callback function.
+  ///             Please use `PaginationControl.forward()` to continue paging
+  ///             and move forward, or use `PaginationControl.backward()`
+  ///             to move backward. And be sure to return
+  ///             `PaginationControl.stop()` to terminate paging on
+  ///             arbitrary conditions, otherwise paging continues until the
+  ///             next page runs out.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/list_memberships
@@ -985,6 +1124,7 @@ abstract class ListsService {
     List<ListExpansion>? expansions,
     List<UserField>? userFields,
     List<ListField>? listFields,
+    Paging<List<ListData>, ListMeta>? paging,
   });
 }
 
@@ -1020,19 +1160,19 @@ class _ListsService extends BaseService implements ListsService {
     List<ListExpansion>? expansions,
     List<UserField>? userFields,
     List<ListField>? listFields,
+    Paging<List<ListData>, ListMeta>? paging,
   }) async =>
-      super.transformMultiDataResponse(
-        await super.get(
-          core.UserContext.oauth2OrOAuth1,
-          '/2/users/$userId/owned_lists',
-          queryParameters: {
-            'max_results': maxResults,
-            'pagination_token': paginationToken,
-            'expansions': expansions,
-            'user.fields': userFields,
-            'list.fields': listFields,
-          },
-        ),
+      await super.executePaginationIfNecessary(
+        core.UserContext.oauth2OrOAuth1,
+        '/2/users/$userId/owned_lists',
+        {
+          'max_results': maxResults,
+          'pagination_token': paginationToken,
+          'expansions': expansions,
+          'user.fields': userFields,
+          'list.fields': listFields,
+        },
+        paging: paging,
         dataBuilder: ListData.fromJson,
         metaBuilder: ListMeta.fromJson,
       );
@@ -1091,19 +1231,19 @@ class _ListsService extends BaseService implements ListsService {
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
+    Paging<List<TweetData>, TweetMeta>? paging,
   }) async =>
-      super.transformMultiDataResponse(
-        await super.get(
-          core.UserContext.oauth2OrOAuth1,
-          '/2/lists/$listId/tweets',
-          queryParameters: {
-            'max_results': maxResults,
-            'pagination_token': paginationToken,
-            'expansions': expansions,
-            'tweet.fields': tweetFields,
-            'user.fields': userFields,
-          },
-        ),
+      await super.executePaginationIfNecessary(
+        core.UserContext.oauth2OrOAuth1,
+        '/2/lists/$listId/tweets',
+        {
+          'max_results': maxResults,
+          'pagination_token': paginationToken,
+          'expansions': expansions,
+          'tweet.fields': tweetFields,
+          'user.fields': userFields,
+        },
+        paging: paging,
         dataBuilder: TweetData.fromJson,
         metaBuilder: TweetMeta.fromJson,
       );
@@ -1200,18 +1340,18 @@ class _ListsService extends BaseService implements ListsService {
     String? paginationToken,
     List<UserExpansion>? expansions,
     List<UserField>? userFields,
+    Paging<List<UserData>, UserMeta>? paging,
   }) async =>
-      super.transformMultiDataResponse(
-        await super.get(
-          core.UserContext.oauth2OrOAuth1,
-          '/2/lists/$listId/followers',
-          queryParameters: {
-            'max_results': maxResults,
-            'pagination_token': paginationToken,
-            'expansions': expansions,
-            'user.fields': userFields,
-          },
-        ),
+      await super.executePaginationIfNecessary(
+        core.UserContext.oauth2OrOAuth1,
+        '/2/lists/$listId/followers',
+        {
+          'max_results': maxResults,
+          'pagination_token': paginationToken,
+          'expansions': expansions,
+          'user.fields': userFields,
+        },
+        paging: paging,
         dataBuilder: UserData.fromJson,
         metaBuilder: UserMeta.fromJson,
       );
@@ -1224,19 +1364,19 @@ class _ListsService extends BaseService implements ListsService {
     List<ListExpansion>? expansions,
     List<UserField>? userFields,
     List<ListField>? listFields,
+    Paging<List<ListData>, ListMeta>? paging,
   }) async =>
-      super.transformMultiDataResponse(
-        await super.get(
-          core.UserContext.oauth2OrOAuth1,
-          '/2/users/$userId/followed_lists',
-          queryParameters: {
-            'max_results': maxResults,
-            'pagination_token': paginationToken,
-            'expansions': expansions,
-            'user.fields': userFields,
-            'list.fields': listFields,
-          },
-        ),
+      await super.executePaginationIfNecessary(
+        core.UserContext.oauth2OrOAuth1,
+        '/2/users/$userId/followed_lists',
+        {
+          'max_results': maxResults,
+          'pagination_token': paginationToken,
+          'expansions': expansions,
+          'user.fields': userFields,
+          'list.fields': listFields,
+        },
+        paging: paging,
         dataBuilder: ListData.fromJson,
         metaBuilder: ListMeta.fromJson,
       );
@@ -1276,19 +1416,19 @@ class _ListsService extends BaseService implements ListsService {
     List<UserExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
+    Paging<List<UserData>, UserMeta>? paging,
   }) async =>
-      super.transformMultiDataResponse(
-        await super.get(
-          core.UserContext.oauth2OrOAuth1,
-          '/2/lists/$listId/members',
-          queryParameters: {
-            'max_results': maxResults,
-            'pagination_token': paginationToken,
-            'expansions': expansions,
-            'tweet.fields': tweetFields,
-            'user.fields': userFields,
-          },
-        ),
+      await super.executePaginationIfNecessary(
+        core.UserContext.oauth2OrOAuth1,
+        '/2/lists/$listId/members',
+        {
+          'max_results': maxResults,
+          'pagination_token': paginationToken,
+          'expansions': expansions,
+          'tweet.fields': tweetFields,
+          'user.fields': userFields,
+        },
+        paging: paging,
         dataBuilder: UserData.fromJson,
         metaBuilder: UserMeta.fromJson,
       );
@@ -1301,19 +1441,19 @@ class _ListsService extends BaseService implements ListsService {
     List<ListExpansion>? expansions,
     List<UserField>? userFields,
     List<ListField>? listFields,
+    Paging<List<ListData>, ListMeta>? paging,
   }) async =>
-      super.transformMultiDataResponse(
-        await super.get(
-          core.UserContext.oauth2OrOAuth1,
-          '/2/users/$userId/list_memberships',
-          queryParameters: {
-            'max_results': maxResults,
-            'pagination_token': paginationToken,
-            'expansions': expansions,
-            'user.fields': userFields,
-            'list.fields': listFields,
-          },
-        ),
+      await super.executePaginationIfNecessary(
+        core.UserContext.oauth2OrOAuth1,
+        '/2/users/$userId/list_memberships',
+        {
+          'max_results': maxResults,
+          'pagination_token': paginationToken,
+          'expansions': expansions,
+          'user.fields': userFields,
+          'list.fields': listFields,
+        },
+        paging: paging,
         dataBuilder: ListData.fromJson,
         metaBuilder: ListMeta.fromJson,
       );
