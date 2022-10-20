@@ -9,7 +9,12 @@ import 'package:twitter_api_core/src/client/user_context.dart';
 import 'package:twitter_api_core/src/exception/twitter_exception.dart';
 
 // Project imports:
-import 'package:twitter_api_v2/src/service/filtered_stream_response.dart';
+import 'package:twitter_api_v2/src/service/pagination/forward_pagination_control.dart';
+import 'package:twitter_api_v2/src/service/pagination/pagination_control.dart';
+import 'package:twitter_api_v2/src/service/response/filtered_stream_response.dart';
+import 'package:twitter_api_v2/src/service/response/pagination_response.dart';
+import 'package:twitter_api_v2/src/service/response/twitter_response.dart';
+import 'package:twitter_api_v2/src/service/response/twitter_stream_response.dart';
 import 'package:twitter_api_v2/src/service/tweets/decahose_partition.dart';
 import 'package:twitter_api_v2/src/service/tweets/exclude_tweet_type.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering_rule_data.dart';
@@ -27,8 +32,6 @@ import 'package:twitter_api_v2/src/service/tweets/tweet_meta.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_poll_param.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_reply_param.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweets_service.dart';
-import 'package:twitter_api_v2/src/service/twitter_response.dart';
-import 'package:twitter_api_v2/src/service/twitter_stream_response.dart';
 import 'package:twitter_api_v2/src/service/users/user_data.dart';
 import 'package:twitter_api_v2/src/service/users/user_meta.dart';
 import '../../../mocks/client_context_stubs.dart' as context;
@@ -543,6 +546,104 @@ void main() {
         () async => await tweetsService.lookupLikingUsers(tweetId: '1111'),
       );
     });
+
+    test('with paging', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStubWithAnyUriAndMultiResources(
+          UserContext.oauth2OrOAuth1,
+          [
+            'test/src/service/pagination/data/users/dataset_1.json',
+            'test/src/service/pagination/data/users/dataset_2.json',
+            'test/src/service/pagination/data/users/dataset_3.json',
+            'test/src/service/pagination/data/users/dataset_4.json',
+          ],
+        ),
+      );
+
+      int count = 1;
+      final response = await tweetsService.lookupLikingUsers(
+        tweetId: '1111',
+        paging: (event) {
+          expect(event.count, count);
+          expect(event.hasNextPage, isTrue);
+          expect(event.hasPreviousPage, isFalse);
+          expect(event.hasNotNextPage, isFalse);
+          expect(event.hasNotPreviousPage, isTrue);
+
+          expect(event.response, isA<PaginationResponse>());
+          expect(event.response.data, isA<List<UserData>>());
+          expect(event.response.meta, isA<UserMeta>());
+          expect(event.response.data.length, 5);
+          expect(event.response.meta, isNotNull);
+          expect(event.response.meta!.resultCount, 5);
+
+          if (event.count == 3) {
+            return PaginationControl.stop();
+          }
+
+          count++;
+
+          return PaginationControl.forward();
+        },
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<UserData>>());
+      expect(response.meta, isA<UserMeta>());
+      expect(response.data.length, 5);
+      expect(response.meta, isNotNull);
+      expect(response.meta!.resultCount, 5);
+    });
+
+    test('with paging and no more next pages', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStubWithAnyUriAndMultiResources(
+          UserContext.oauth2OrOAuth1,
+          [
+            'test/src/service/pagination/data/users/dataset_1.json',
+            'test/src/service/pagination/data/users/dataset_2.json',
+            'test/src/service/pagination/data/users/dataset_3.json',
+            'test/src/service/pagination/data/users/dataset_4.json',
+          ],
+        ),
+      );
+
+      int count = 1;
+      final response = await tweetsService.lookupLikingUsers(
+        tweetId: '1111',
+        paging: (event) {
+          expect(event.count, count);
+          expect(event.hasPreviousPage, isFalse);
+          expect(event.hasNotPreviousPage, isTrue);
+
+          if (event.count < 4) {
+            expect(event.hasNextPage, isTrue);
+            expect(event.hasNotNextPage, isFalse);
+          } else {
+            expect(event.hasNextPage, isFalse);
+            expect(event.hasNotNextPage, isTrue);
+          }
+
+          expect(event.response, isA<PaginationResponse>());
+          expect(event.response.data, isA<List<UserData>>());
+          expect(event.response.meta, isA<UserMeta>());
+          expect(event.response.data.length, 5);
+          expect(event.response.meta, isNotNull);
+          expect(event.response.meta!.resultCount, 5);
+
+          count++;
+
+          return PaginationControl.forward();
+        },
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<UserData>>());
+      expect(response.meta, isA<UserMeta>());
+      expect(response.data.length, 5);
+      expect(response.meta, isNotNull);
+      expect(response.meta!.resultCount, 5);
+    });
   });
 
   group('.lookupLikedTweets', () {
@@ -628,6 +729,104 @@ void main() {
       expectTwitterExceptionDueToNoJson(
         () async => await tweetsService.lookupLikingUsers(tweetId: '1111'),
       );
+    });
+
+    test('with paging', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStubWithAnyUriAndMultiResources(
+          UserContext.oauth2OrOAuth1,
+          [
+            'test/src/service/pagination/data/tweets/dataset_1.json',
+            'test/src/service/pagination/data/tweets/dataset_2.json',
+            'test/src/service/pagination/data/tweets/dataset_3.json',
+            'test/src/service/pagination/data/tweets/dataset_4.json',
+          ],
+        ),
+      );
+
+      int count = 1;
+      final response = await tweetsService.lookupLikedTweets(
+        userId: '1111',
+        paging: (event) {
+          expect(event.count, count);
+          expect(event.hasNextPage, isTrue);
+          expect(event.hasPreviousPage, isFalse);
+          expect(event.hasNotNextPage, isFalse);
+          expect(event.hasNotPreviousPage, isTrue);
+
+          expect(event.response, isA<PaginationResponse>());
+          expect(event.response.data, isA<List<TweetData>>());
+          expect(event.response.meta, isA<TweetMeta>());
+          expect(event.response.data.length, 5);
+          expect(event.response.meta, isNotNull);
+          expect(event.response.meta!.resultCount, 5);
+
+          if (event.count == 3) {
+            return PaginationControl.stop();
+          }
+
+          count++;
+
+          return PaginationControl.forward();
+        },
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<TweetData>>());
+      expect(response.meta, isA<TweetMeta>());
+      expect(response.data.length, 5);
+      expect(response.meta, isNotNull);
+      expect(response.meta!.resultCount, 5);
+    });
+
+    test('with paging and no more next pages', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStubWithAnyUriAndMultiResources(
+          UserContext.oauth2OrOAuth1,
+          [
+            'test/src/service/pagination/data/tweets/dataset_1.json',
+            'test/src/service/pagination/data/tweets/dataset_2.json',
+            'test/src/service/pagination/data/tweets/dataset_3.json',
+            'test/src/service/pagination/data/tweets/dataset_4.json',
+          ],
+        ),
+      );
+
+      int count = 1;
+      final response = await tweetsService.lookupLikedTweets(
+        userId: '1111',
+        paging: (event) {
+          expect(event.count, count);
+          expect(event.hasPreviousPage, isFalse);
+          expect(event.hasNotPreviousPage, isTrue);
+
+          if (event.count < 4) {
+            expect(event.hasNextPage, isTrue);
+            expect(event.hasNotNextPage, isFalse);
+          } else {
+            expect(event.hasNextPage, isFalse);
+            expect(event.hasNotNextPage, isTrue);
+          }
+
+          expect(event.response, isA<PaginationResponse>());
+          expect(event.response.data, isA<List<TweetData>>());
+          expect(event.response.meta, isA<TweetMeta>());
+          expect(event.response.data.length, 5);
+          expect(event.response.meta, isNotNull);
+          expect(event.response.meta!.resultCount, 5);
+
+          count++;
+
+          return PaginationControl.forward();
+        },
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<TweetData>>());
+      expect(response.meta, isA<TweetMeta>());
+      expect(response.data.length, 5);
+      expect(response.meta, isNotNull);
+      expect(response.meta!.resultCount, 5);
     });
   });
 
@@ -715,6 +914,104 @@ void main() {
         () async => await tweetsService.lookupRetweetedUsers(tweetId: '1111'),
       );
     });
+
+    test('with paging', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStubWithAnyUriAndMultiResources(
+          UserContext.oauth2OrOAuth1,
+          [
+            'test/src/service/pagination/data/users/dataset_1.json',
+            'test/src/service/pagination/data/users/dataset_2.json',
+            'test/src/service/pagination/data/users/dataset_3.json',
+            'test/src/service/pagination/data/users/dataset_4.json',
+          ],
+        ),
+      );
+
+      int count = 1;
+      final response = await tweetsService.lookupRetweetedUsers(
+        tweetId: '1111',
+        paging: (event) {
+          expect(event.count, count);
+          expect(event.hasNextPage, isTrue);
+          expect(event.hasPreviousPage, isFalse);
+          expect(event.hasNotNextPage, isFalse);
+          expect(event.hasNotPreviousPage, isTrue);
+
+          expect(event.response, isA<PaginationResponse>());
+          expect(event.response.data, isA<List<UserData>>());
+          expect(event.response.meta, isA<UserMeta>());
+          expect(event.response.data.length, 5);
+          expect(event.response.meta, isNotNull);
+          expect(event.response.meta!.resultCount, 5);
+
+          if (event.count == 3) {
+            return PaginationControl.stop();
+          }
+
+          count++;
+
+          return PaginationControl.forward();
+        },
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<UserData>>());
+      expect(response.meta, isA<UserMeta>());
+      expect(response.data.length, 5);
+      expect(response.meta, isNotNull);
+      expect(response.meta!.resultCount, 5);
+    });
+
+    test('with paging and no more next pages', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStubWithAnyUriAndMultiResources(
+          UserContext.oauth2OrOAuth1,
+          [
+            'test/src/service/pagination/data/users/dataset_1.json',
+            'test/src/service/pagination/data/users/dataset_2.json',
+            'test/src/service/pagination/data/users/dataset_3.json',
+            'test/src/service/pagination/data/users/dataset_4.json',
+          ],
+        ),
+      );
+
+      int count = 1;
+      final response = await tweetsService.lookupRetweetedUsers(
+        tweetId: '1111',
+        paging: (event) {
+          expect(event.count, count);
+          expect(event.hasPreviousPage, isFalse);
+          expect(event.hasNotPreviousPage, isTrue);
+
+          if (event.count < 4) {
+            expect(event.hasNextPage, isTrue);
+            expect(event.hasNotNextPage, isFalse);
+          } else {
+            expect(event.hasNextPage, isFalse);
+            expect(event.hasNotNextPage, isTrue);
+          }
+
+          expect(event.response, isA<PaginationResponse>());
+          expect(event.response.data, isA<List<UserData>>());
+          expect(event.response.meta, isA<UserMeta>());
+          expect(event.response.data.length, 5);
+          expect(event.response.meta, isNotNull);
+          expect(event.response.meta!.resultCount, 5);
+
+          count++;
+
+          return PaginationControl.forward();
+        },
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<UserData>>());
+      expect(response.meta, isA<UserMeta>());
+      expect(response.data.length, 5);
+      expect(response.meta, isNotNull);
+      expect(response.meta!.resultCount, 5);
+    });
   });
 
   group('.lookupQuoteTweets', () {
@@ -800,6 +1097,104 @@ void main() {
       expectTwitterExceptionDueToNoJson(
         () async => await tweetsService.lookupQuoteTweets(tweetId: '1111'),
       );
+    });
+
+    test('with paging', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStubWithAnyUriAndMultiResources(
+          UserContext.oauth2OrOAuth1,
+          [
+            'test/src/service/pagination/data/tweets/dataset_1.json',
+            'test/src/service/pagination/data/tweets/dataset_2.json',
+            'test/src/service/pagination/data/tweets/dataset_3.json',
+            'test/src/service/pagination/data/tweets/dataset_4.json',
+          ],
+        ),
+      );
+
+      int count = 1;
+      final response = await tweetsService.lookupQuoteTweets(
+        tweetId: '1111',
+        paging: (event) {
+          expect(event.count, count);
+          expect(event.hasNextPage, isTrue);
+          expect(event.hasPreviousPage, isFalse);
+          expect(event.hasNotNextPage, isFalse);
+          expect(event.hasNotPreviousPage, isTrue);
+
+          expect(event.response, isA<PaginationResponse>());
+          expect(event.response.data, isA<List<TweetData>>());
+          expect(event.response.meta, isA<TweetMeta>());
+          expect(event.response.data.length, 5);
+          expect(event.response.meta, isNotNull);
+          expect(event.response.meta!.resultCount, 5);
+
+          if (event.count == 3) {
+            return PaginationControl.stop();
+          }
+
+          count++;
+
+          return PaginationControl.forward();
+        },
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<TweetData>>());
+      expect(response.meta, isA<TweetMeta>());
+      expect(response.data.length, 5);
+      expect(response.meta, isNotNull);
+      expect(response.meta!.resultCount, 5);
+    });
+
+    test('with paging and no more next pages', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStubWithAnyUriAndMultiResources(
+          UserContext.oauth2OrOAuth1,
+          [
+            'test/src/service/pagination/data/tweets/dataset_1.json',
+            'test/src/service/pagination/data/tweets/dataset_2.json',
+            'test/src/service/pagination/data/tweets/dataset_3.json',
+            'test/src/service/pagination/data/tweets/dataset_4.json',
+          ],
+        ),
+      );
+
+      int count = 1;
+      final response = await tweetsService.lookupQuoteTweets(
+        tweetId: '1111',
+        paging: (event) {
+          expect(event.count, count);
+          expect(event.hasPreviousPage, isFalse);
+          expect(event.hasNotPreviousPage, isTrue);
+
+          if (event.count < 4) {
+            expect(event.hasNextPage, isTrue);
+            expect(event.hasNotNextPage, isFalse);
+          } else {
+            expect(event.hasNextPage, isFalse);
+            expect(event.hasNotNextPage, isTrue);
+          }
+
+          expect(event.response, isA<PaginationResponse>());
+          expect(event.response.data, isA<List<TweetData>>());
+          expect(event.response.meta, isA<TweetMeta>());
+          expect(event.response.data.length, 5);
+          expect(event.response.meta, isNotNull);
+          expect(event.response.meta!.resultCount, 5);
+
+          count++;
+
+          return PaginationControl.forward();
+        },
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<TweetData>>());
+      expect(response.meta, isA<TweetMeta>());
+      expect(response.data.length, 5);
+      expect(response.meta, isNotNull);
+      expect(response.meta!.resultCount, 5);
     });
   });
 
@@ -909,6 +1304,100 @@ void main() {
         () async => await tweetsService.searchRecent(query: 'hello'),
       );
     });
+
+    test('with paging', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStubWithAnyUriAndMultiResources(
+          UserContext.oauth2Only,
+          [
+            'test/src/service/pagination/data/tweets/dataset_1.json',
+            'test/src/service/pagination/data/tweets/dataset_2.json',
+            'test/src/service/pagination/data/tweets/dataset_3.json',
+            'test/src/service/pagination/data/tweets/dataset_4.json',
+          ],
+        ),
+      );
+
+      int count = 1;
+      final response = await tweetsService.searchRecent(
+        query: '1111',
+        paging: (event) {
+          expect(event.count, count);
+          expect(event.hasNextPage, isTrue);
+          expect(event.hasNotNextPage, isFalse);
+
+          expect(event.response, isA<PaginationResponse>());
+          expect(event.response.data, isA<List<TweetData>>());
+          expect(event.response.meta, isA<TweetMeta>());
+          expect(event.response.data.length, 5);
+          expect(event.response.meta, isNotNull);
+          expect(event.response.meta!.resultCount, 5);
+
+          if (event.count == 3) {
+            return ForwardPaginationControl.stop();
+          }
+
+          count++;
+
+          return ForwardPaginationControl.next();
+        },
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<TweetData>>());
+      expect(response.meta, isA<TweetMeta>());
+      expect(response.data.length, 5);
+      expect(response.meta, isNotNull);
+      expect(response.meta!.resultCount, 5);
+    });
+
+    test('with paging and no more next pages', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStubWithAnyUriAndMultiResources(
+          UserContext.oauth2Only,
+          [
+            'test/src/service/pagination/data/tweets/dataset_1.json',
+            'test/src/service/pagination/data/tweets/dataset_2.json',
+            'test/src/service/pagination/data/tweets/dataset_3.json',
+            'test/src/service/pagination/data/tweets/dataset_4.json',
+          ],
+        ),
+      );
+
+      int count = 1;
+      final response = await tweetsService.searchRecent(
+        query: '1111',
+        paging: (event) {
+          expect(event.count, count);
+
+          if (event.count < 4) {
+            expect(event.hasNextPage, isTrue);
+            expect(event.hasNotNextPage, isFalse);
+          } else {
+            expect(event.hasNextPage, isFalse);
+            expect(event.hasNotNextPage, isTrue);
+          }
+
+          expect(event.response, isA<PaginationResponse>());
+          expect(event.response.data, isA<List<TweetData>>());
+          expect(event.response.meta, isA<TweetMeta>());
+          expect(event.response.data.length, 5);
+          expect(event.response.meta, isNotNull);
+          expect(event.response.meta!.resultCount, 5);
+
+          count++;
+
+          return ForwardPaginationControl.next();
+        },
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<TweetData>>());
+      expect(response.meta, isA<TweetMeta>());
+      expect(response.data.length, 5);
+      expect(response.meta, isNotNull);
+      expect(response.meta!.resultCount, 5);
+    });
   });
 
   group('.searchAll', () {
@@ -994,6 +1483,100 @@ void main() {
       expectTwitterExceptionDueToNoJson(
         () async => await tweetsService.searchAll(query: 'hello'),
       );
+    });
+
+    test('with paging', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStubWithAnyUriAndMultiResources(
+          UserContext.oauth2Only,
+          [
+            'test/src/service/pagination/data/tweets/dataset_1.json',
+            'test/src/service/pagination/data/tweets/dataset_2.json',
+            'test/src/service/pagination/data/tweets/dataset_3.json',
+            'test/src/service/pagination/data/tweets/dataset_4.json',
+          ],
+        ),
+      );
+
+      int count = 1;
+      final response = await tweetsService.searchAll(
+        query: '1111',
+        paging: (event) {
+          expect(event.count, count);
+          expect(event.hasNextPage, isTrue);
+          expect(event.hasNotNextPage, isFalse);
+
+          expect(event.response, isA<PaginationResponse>());
+          expect(event.response.data, isA<List<TweetData>>());
+          expect(event.response.meta, isA<TweetMeta>());
+          expect(event.response.data.length, 5);
+          expect(event.response.meta, isNotNull);
+          expect(event.response.meta!.resultCount, 5);
+
+          if (event.count == 3) {
+            return ForwardPaginationControl.stop();
+          }
+
+          count++;
+
+          return ForwardPaginationControl.next();
+        },
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<TweetData>>());
+      expect(response.meta, isA<TweetMeta>());
+      expect(response.data.length, 5);
+      expect(response.meta, isNotNull);
+      expect(response.meta!.resultCount, 5);
+    });
+
+    test('with paging and no more next pages', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStubWithAnyUriAndMultiResources(
+          UserContext.oauth2Only,
+          [
+            'test/src/service/pagination/data/tweets/dataset_1.json',
+            'test/src/service/pagination/data/tweets/dataset_2.json',
+            'test/src/service/pagination/data/tweets/dataset_3.json',
+            'test/src/service/pagination/data/tweets/dataset_4.json',
+          ],
+        ),
+      );
+
+      int count = 1;
+      final response = await tweetsService.searchAll(
+        query: '1111',
+        paging: (event) {
+          expect(event.count, count);
+
+          if (event.count < 4) {
+            expect(event.hasNextPage, isTrue);
+            expect(event.hasNotNextPage, isFalse);
+          } else {
+            expect(event.hasNextPage, isFalse);
+            expect(event.hasNotNextPage, isTrue);
+          }
+
+          expect(event.response, isA<PaginationResponse>());
+          expect(event.response.data, isA<List<TweetData>>());
+          expect(event.response.meta, isA<TweetMeta>());
+          expect(event.response.data.length, 5);
+          expect(event.response.meta, isNotNull);
+          expect(event.response.meta!.resultCount, 5);
+
+          count++;
+
+          return ForwardPaginationControl.next();
+        },
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<TweetData>>());
+      expect(response.meta, isA<TweetMeta>());
+      expect(response.data.length, 5);
+      expect(response.meta, isNotNull);
+      expect(response.meta!.resultCount, 5);
     });
   });
 
@@ -1548,6 +2131,100 @@ void main() {
         ),
       );
     });
+
+    test('with paging', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStubWithAnyUriAndMultiResources(
+          UserContext.oauth2Only,
+          [
+            'test/src/service/pagination/data/tweets/count_dataset_1.json',
+            'test/src/service/pagination/data/tweets/count_dataset_2.json',
+            'test/src/service/pagination/data/tweets/count_dataset_3.json',
+            'test/src/service/pagination/data/tweets/count_dataset_4.json',
+          ],
+        ),
+      );
+
+      int count = 1;
+      final response = await tweetsService.countAll(
+        query: '1111',
+        paging: (event) {
+          expect(event.count, count);
+          expect(event.hasNextPage, isTrue);
+          expect(event.hasNotNextPage, isFalse);
+
+          expect(event.response, isA<PaginationResponse>());
+          expect(event.response.data, isA<List<TweetCountData>>());
+          expect(event.response.meta, isA<TweetCountMeta>());
+          expect(event.response.data.length, 169);
+          expect(event.response.meta, isNotNull);
+          expect(event.response.meta!.total, 744364);
+
+          if (event.count == 3) {
+            return ForwardPaginationControl.stop();
+          }
+
+          count++;
+
+          return ForwardPaginationControl.next();
+        },
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<TweetCountData>>());
+      expect(response.meta, isA<TweetCountMeta>());
+      expect(response.data.length, 169);
+      expect(response.meta, isNotNull);
+      expect(response.meta!.total, 744364);
+    });
+
+    test('with paging and no more next pages', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStubWithAnyUriAndMultiResources(
+          UserContext.oauth2Only,
+          [
+            'test/src/service/pagination/data/tweets/count_dataset_1.json',
+            'test/src/service/pagination/data/tweets/count_dataset_2.json',
+            'test/src/service/pagination/data/tweets/count_dataset_3.json',
+            'test/src/service/pagination/data/tweets/count_dataset_4.json',
+          ],
+        ),
+      );
+
+      int count = 1;
+      final response = await tweetsService.countAll(
+        query: '1111',
+        paging: (event) {
+          expect(event.count, count);
+
+          if (event.count < 4) {
+            expect(event.hasNextPage, isTrue);
+            expect(event.hasNotNextPage, isFalse);
+          } else {
+            expect(event.hasNextPage, isFalse);
+            expect(event.hasNotNextPage, isTrue);
+          }
+
+          expect(event.response, isA<PaginationResponse>());
+          expect(event.response.data, isA<List<TweetCountData>>());
+          expect(event.response.meta, isA<TweetCountMeta>());
+          expect(event.response.data.length, 169);
+          expect(event.response.meta, isNotNull);
+          expect(event.response.meta!.total, 744364);
+
+          count++;
+
+          return ForwardPaginationControl.next();
+        },
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<TweetCountData>>());
+      expect(response.meta, isA<TweetCountMeta>());
+      expect(response.data.length, 169);
+      expect(response.meta, isNotNull);
+      expect(response.meta!.total, 744364);
+    });
   });
 
   group('.createBookmark', () {
@@ -2006,6 +2683,100 @@ void main() {
         ),
       );
     });
+
+    test('with paging', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStubWithAnyUriAndMultiResources(
+          UserContext.oauth2OrOAuth1,
+          [
+            'test/src/service/pagination/data/tweets/dataset_1.json',
+            'test/src/service/pagination/data/tweets/dataset_2.json',
+            'test/src/service/pagination/data/tweets/dataset_3.json',
+            'test/src/service/pagination/data/tweets/dataset_4.json',
+          ],
+        ),
+      );
+
+      int count = 1;
+      final response = await tweetsService.lookupMentions(
+        userId: '1111',
+        paging: (event) {
+          expect(event.count, count);
+          expect(event.hasNextPage, isTrue);
+          expect(event.hasNotNextPage, isFalse);
+
+          expect(event.response, isA<PaginationResponse>());
+          expect(event.response.data, isA<List<TweetData>>());
+          expect(event.response.meta, isA<TweetMeta>());
+          expect(event.response.data.length, 5);
+          expect(event.response.meta, isNotNull);
+          expect(event.response.meta!.resultCount, 5);
+
+          if (event.count == 3) {
+            return PaginationControl.stop();
+          }
+
+          count++;
+
+          return PaginationControl.forward();
+        },
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<TweetData>>());
+      expect(response.meta, isA<TweetMeta>());
+      expect(response.data.length, 5);
+      expect(response.meta, isNotNull);
+      expect(response.meta!.resultCount, 5);
+    });
+
+    test('with paging and no more next pages', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStubWithAnyUriAndMultiResources(
+          UserContext.oauth2OrOAuth1,
+          [
+            'test/src/service/pagination/data/tweets/dataset_1.json',
+            'test/src/service/pagination/data/tweets/dataset_2.json',
+            'test/src/service/pagination/data/tweets/dataset_3.json',
+            'test/src/service/pagination/data/tweets/dataset_4.json',
+          ],
+        ),
+      );
+
+      int count = 1;
+      final response = await tweetsService.lookupMentions(
+        userId: '1111',
+        paging: (event) {
+          expect(event.count, count);
+
+          if (event.count < 4) {
+            expect(event.hasNextPage, isTrue);
+            expect(event.hasNotNextPage, isFalse);
+          } else {
+            expect(event.hasNextPage, isFalse);
+            expect(event.hasNotNextPage, isTrue);
+          }
+
+          expect(event.response, isA<PaginationResponse>());
+          expect(event.response.data, isA<List<TweetData>>());
+          expect(event.response.meta, isA<TweetMeta>());
+          expect(event.response.data.length, 5);
+          expect(event.response.meta, isNotNull);
+          expect(event.response.meta!.resultCount, 5);
+
+          count++;
+
+          return PaginationControl.forward();
+        },
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<TweetData>>());
+      expect(response.meta, isA<TweetMeta>());
+      expect(response.data.length, 5);
+      expect(response.meta, isNotNull);
+      expect(response.meta!.resultCount, 5);
+    });
   });
 
   group('.lookupTweets', () {
@@ -2203,6 +2974,100 @@ void main() {
         ),
       );
     });
+
+    test('with paging', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStubWithAnyUriAndMultiResources(
+          UserContext.oauth2OrOAuth1,
+          [
+            'test/src/service/pagination/data/tweets/dataset_1.json',
+            'test/src/service/pagination/data/tweets/dataset_2.json',
+            'test/src/service/pagination/data/tweets/dataset_3.json',
+            'test/src/service/pagination/data/tweets/dataset_4.json',
+          ],
+        ),
+      );
+
+      int count = 1;
+      final response = await tweetsService.lookupTweets(
+        userId: '1111',
+        paging: (event) {
+          expect(event.count, count);
+          expect(event.hasNextPage, isTrue);
+          expect(event.hasNotNextPage, isFalse);
+
+          expect(event.response, isA<PaginationResponse>());
+          expect(event.response.data, isA<List<TweetData>>());
+          expect(event.response.meta, isA<TweetMeta>());
+          expect(event.response.data.length, 5);
+          expect(event.response.meta, isNotNull);
+          expect(event.response.meta!.resultCount, 5);
+
+          if (event.count == 3) {
+            return PaginationControl.stop();
+          }
+
+          count++;
+
+          return PaginationControl.forward();
+        },
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<TweetData>>());
+      expect(response.meta, isA<TweetMeta>());
+      expect(response.data.length, 5);
+      expect(response.meta, isNotNull);
+      expect(response.meta!.resultCount, 5);
+    });
+
+    test('with paging and no more next pages', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStubWithAnyUriAndMultiResources(
+          UserContext.oauth2OrOAuth1,
+          [
+            'test/src/service/pagination/data/tweets/dataset_1.json',
+            'test/src/service/pagination/data/tweets/dataset_2.json',
+            'test/src/service/pagination/data/tweets/dataset_3.json',
+            'test/src/service/pagination/data/tweets/dataset_4.json',
+          ],
+        ),
+      );
+
+      int count = 1;
+      final response = await tweetsService.lookupTweets(
+        userId: '1111',
+        paging: (event) {
+          expect(event.count, count);
+
+          if (event.count < 4) {
+            expect(event.hasNextPage, isTrue);
+            expect(event.hasNotNextPage, isFalse);
+          } else {
+            expect(event.hasNextPage, isFalse);
+            expect(event.hasNotNextPage, isTrue);
+          }
+
+          expect(event.response, isA<PaginationResponse>());
+          expect(event.response.data, isA<List<TweetData>>());
+          expect(event.response.meta, isA<TweetMeta>());
+          expect(event.response.data.length, 5);
+          expect(event.response.meta, isNotNull);
+          expect(event.response.meta!.resultCount, 5);
+
+          count++;
+
+          return PaginationControl.forward();
+        },
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<TweetData>>());
+      expect(response.meta, isA<TweetMeta>());
+      expect(response.data.length, 5);
+      expect(response.meta, isNotNull);
+      expect(response.meta!.resultCount, 5);
+    });
   });
 
   group('.lookupHomeTimeline', () {
@@ -2313,6 +3178,100 @@ void main() {
           paginationToken: 'TOKEN',
         ),
       );
+    });
+
+    test('with paging', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStubWithAnyUriAndMultiResources(
+          UserContext.oauth2OrOAuth1,
+          [
+            'test/src/service/pagination/data/tweets/dataset_1.json',
+            'test/src/service/pagination/data/tweets/dataset_2.json',
+            'test/src/service/pagination/data/tweets/dataset_3.json',
+            'test/src/service/pagination/data/tweets/dataset_4.json',
+          ],
+        ),
+      );
+
+      int count = 1;
+      final response = await tweetsService.lookupHomeTimeline(
+        userId: '1111',
+        paging: (event) {
+          expect(event.count, count);
+          expect(event.hasNextPage, isTrue);
+          expect(event.hasNotNextPage, isFalse);
+
+          expect(event.response, isA<PaginationResponse>());
+          expect(event.response.data, isA<List<TweetData>>());
+          expect(event.response.meta, isA<TweetMeta>());
+          expect(event.response.data.length, 5);
+          expect(event.response.meta, isNotNull);
+          expect(event.response.meta!.resultCount, 5);
+
+          if (event.count == 3) {
+            return PaginationControl.stop();
+          }
+
+          count++;
+
+          return PaginationControl.forward();
+        },
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<TweetData>>());
+      expect(response.meta, isA<TweetMeta>());
+      expect(response.data.length, 5);
+      expect(response.meta, isNotNull);
+      expect(response.meta!.resultCount, 5);
+    });
+
+    test('with paging and no more next pages', () async {
+      final tweetsService = TweetsService(
+        context: context.buildGetStubWithAnyUriAndMultiResources(
+          UserContext.oauth2OrOAuth1,
+          [
+            'test/src/service/pagination/data/tweets/dataset_1.json',
+            'test/src/service/pagination/data/tweets/dataset_2.json',
+            'test/src/service/pagination/data/tweets/dataset_3.json',
+            'test/src/service/pagination/data/tweets/dataset_4.json',
+          ],
+        ),
+      );
+
+      int count = 1;
+      final response = await tweetsService.lookupHomeTimeline(
+        userId: '1111',
+        paging: (event) {
+          expect(event.count, count);
+
+          if (event.count < 4) {
+            expect(event.hasNextPage, isTrue);
+            expect(event.hasNotNextPage, isFalse);
+          } else {
+            expect(event.hasNextPage, isFalse);
+            expect(event.hasNotNextPage, isTrue);
+          }
+
+          expect(event.response, isA<PaginationResponse>());
+          expect(event.response.data, isA<List<TweetData>>());
+          expect(event.response.meta, isA<TweetMeta>());
+          expect(event.response.data.length, 5);
+          expect(event.response.meta, isNotNull);
+          expect(event.response.meta!.resultCount, 5);
+
+          count++;
+
+          return PaginationControl.forward();
+        },
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<List<TweetData>>());
+      expect(response.meta, isA<TweetMeta>());
+      expect(response.data.length, 5);
+      expect(response.meta, isNotNull);
+      expect(response.meta!.resultCount, 5);
     });
   });
 

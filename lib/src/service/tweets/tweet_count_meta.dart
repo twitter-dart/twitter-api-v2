@@ -7,11 +7,14 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+// Project imports:
+import '../pagination/forward_pageable.dart';
+
 part 'tweet_count_meta.freezed.dart';
 part 'tweet_count_meta.g.dart';
 
 @freezed
-class TweetCountMeta with _$TweetCountMeta {
+class TweetCountMeta with _$TweetCountMeta implements ForwardPageable {
   const factory TweetCountMeta({
     /// Total count of the Tweets that match the query.
     @JsonKey(name: 'total_tweet_count') required int total,

@@ -12,7 +12,7 @@ import 'package:twitter_api_core/twitter_api_core.dart' as core;
 
 // Project imports:
 import '../base_media_service.dart';
-import '../twitter_response.dart';
+import '../response/twitter_response.dart';
 import 'media_category.dart';
 import 'upload_error.dart';
 import 'upload_event.dart';

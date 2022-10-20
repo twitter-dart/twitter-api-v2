@@ -7,7 +7,7 @@ import 'package:twitter_api_core/twitter_api_core.dart' as core;
 
 // Project imports:
 import '../base_service.dart';
-import '../twitter_response.dart';
+import '../response/twitter_response.dart';
 import 'batch_compliance_data.dart';
 import 'job_status.dart';
 import 'job_type.dart';

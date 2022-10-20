@@ -6,6 +6,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
+import '../common/data.dart';
 import 'job_status.dart';
 import 'job_type.dart';
 
@@ -13,7 +14,7 @@ part 'batch_compliance_data.freezed.dart';
 part 'batch_compliance_data.g.dart';
 
 @freezed
-class BatchComplianceData with _$BatchComplianceData {
+class BatchComplianceData with _$BatchComplianceData implements Data {
   const factory BatchComplianceData({
     /// The unique identifier for this job.
     required String id,

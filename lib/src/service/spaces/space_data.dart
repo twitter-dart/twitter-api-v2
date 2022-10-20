@@ -6,6 +6,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
+import '../common/data.dart';
 import 'space_language.dart';
 import 'space_state.dart';
 
@@ -29,7 +30,7 @@ part 'space_data.g.dart';
 /// The Spaces lookup endpoints can help you ensure you respect the users’
 /// expectations and intent.
 @freezed
-class SpaceData with _$SpaceData {
+class SpaceData with _$SpaceData implements Data {
   const factory SpaceData({
     /// The unique identifier of the requested Space.
     ///

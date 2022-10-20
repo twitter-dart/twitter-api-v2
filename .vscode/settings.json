@@ -10,6 +10,7 @@
     "hmac",
     "Kato",
     "mockito",
+    "Pageable",
     "PKCE",
     "Shinya",
     "sublist",

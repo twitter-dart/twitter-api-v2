@@ -7,7 +7,7 @@ import 'package:test/test.dart';
 
 // Project imports:
 import 'package:twitter_api_v2/src/service/common/rate_limit.dart';
-import 'package:twitter_api_v2/src/service/filtered_stream_response.dart';
+import 'package:twitter_api_v2/src/service/response/filtered_stream_response.dart';
 import 'package:twitter_api_v2/src/service/tweets/matching_rule.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_data.dart';
 

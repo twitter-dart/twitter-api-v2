@@ -8,6 +8,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
+import '../common/data.dart';
 import 'geo.dart';
 import 'organic_tweet_metrics.dart';
 import 'private_tweet_metrics.dart';
@@ -41,7 +42,7 @@ part 'tweet_data.g.dart';
 /// with only default fields. Use the expansion with the field parameter:
 /// tweet.fields when requesting additional fields to complete the object.
 @freezed
-class TweetData with _$TweetData {
+class TweetData with _$TweetData implements Data {
   const factory TweetData({
     /// Unique identifier of this Tweet. This is returned as a string in order
     /// to avoid complications with languages and tools that cannot handle

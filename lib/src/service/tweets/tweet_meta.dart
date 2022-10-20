@@ -5,11 +5,14 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+// Project imports:
+import '../pagination/pageable.dart';
+
 part 'tweet_meta.freezed.dart';
 part 'tweet_meta.g.dart';
 
 @freezed
-class TweetMeta with _$TweetMeta {
+class TweetMeta with _$TweetMeta implements Pageable {
   const factory TweetMeta({
     /// The Tweet ID of the most recent Tweet returned in the response.
     String? newestId,

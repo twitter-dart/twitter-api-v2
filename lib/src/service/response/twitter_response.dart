@@ -3,8 +3,8 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
-import 'common/includes.dart';
-import 'common/rate_limit.dart';
+import '../common/includes.dart';
+import '../common/rate_limit.dart';
 
 /// The class represents the response from Twitter API v2.
 class TwitterResponse<D, M> {

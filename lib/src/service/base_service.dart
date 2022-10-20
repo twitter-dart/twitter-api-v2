@@ -2,23 +2,38 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+// Dart imports:
+import 'dart:async';
+
 // Package imports:
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
 import 'package:twitter_api_core/twitter_api_core.dart' as core;
 
 // Project imports:
+import 'common/data.dart';
 import 'common/includes.dart';
+import 'common/meta.dart';
 import 'common/rate_limit.dart';
-import 'response_field.dart';
-import 'twitter_response.dart';
+import 'pagination/bidirectional_pagination.dart';
+import 'pagination/forward_pageable.dart';
+import 'pagination/pageable.dart';
+import 'pagination/unidirectional_pagination.dart';
+import 'response/pagination_response.dart';
+import 'response/response_field.dart';
+import 'response/twitter_response.dart';
+
+/// The callback function for building data object from response.
+typedef DataBuilder<D extends Data> = D Function(Map<String, Object?> json);
+
+/// The callback function for building meta object from response.
+typedef MetaBuilder<M extends Meta> = M Function(Map<String, Object?> json);
 
 abstract class _Service {
   Future<http.Response> get(
     core.UserContext userContext,
-    String unencodedPath,
-  );
+    String unencodedPath, {
+    Map<String, dynamic> queryParameters = const {},
+  });
 
   Future<core.StreamResponse> getStream(
     final core.UserContext userContext,
@@ -44,16 +59,46 @@ abstract class _Service {
     Map<String, String> body = const {},
   });
 
-  TwitterResponse<D, M> transformSingleDataResponse<D, M>(
+  TwitterResponse<D, M>
+      transformSingleDataResponse<D extends Data, M extends Meta>(
     http.Response response, {
-    required D Function(Map<String, Object?> json) dataBuilder,
-    M Function(Map<String, Object?> json)? metaBuilder,
+    required DataBuilder<D> dataBuilder,
+    MetaBuilder<M>? metaBuilder,
   });
 
-  TwitterResponse<List<D>, M> transformMultiDataResponse<D, M>(
+  TwitterResponse<List<D>, M>
+      transformMultiDataResponse<D extends Data, M extends Meta>(
     http.Response response, {
-    required D Function(Map<String, Object?> json) dataBuilder,
-    M Function(Map<String, Object?> json)? metaBuilder,
+    required DataBuilder<D> dataBuilder,
+    MetaBuilder<M>? metaBuilder,
+  });
+
+  Future<PaginationResponse<List<D>, M>>
+      getPage<D extends Data, M extends Meta>(
+    core.UserContext userContext,
+    String unencodedPath, {
+    Map<String, dynamic> queryParameters = const {},
+    required DataBuilder<D> dataBuilder,
+    required MetaBuilder<M> metaBuilder,
+  });
+
+  Future<void> executePaginationIfNecessary<D extends Data, M extends Pageable>(
+    core.UserContext userContext,
+    String unencodedPath,
+    Map<String, dynamic> queryParameters, {
+    required Paging<List<D>, M>? paging,
+    required DataBuilder<D> dataBuilder,
+    required MetaBuilder<M> metaBuilder,
+  });
+
+  Future<void> executeForwardPaginationIfNecessary<D extends Data,
+      M extends ForwardPageable>(
+    core.UserContext userContext,
+    String unencodedPath,
+    Map<String, dynamic> queryParameters, {
+    required ForwardPaging<List<D>, M>? paging,
+    required DataBuilder<D> dataBuilder,
+    required MetaBuilder<M> metaBuilder,
   });
 
   TwitterResponse<bool, void> evaluateResponse(final http.Response response);
@@ -69,7 +114,6 @@ abstract class BaseService implements _Service {
 
   final core.ServiceHelper _helper;
 
-  @protected
   final ResponseHeaderConverter headerConverter =
       const ResponseHeaderConverter();
 
@@ -92,7 +136,7 @@ abstract class BaseService implements _Service {
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
     Map<String, dynamic> Function(
-            StreamedResponse streamedResponse, String event)?
+            http.StreamedResponse streamedResponse, String event)?
         validate,
   }) async =>
       await _helper.getStream(
@@ -108,7 +152,7 @@ abstract class BaseService implements _Service {
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
     dynamic body = const {},
-    Response Function(Response response)? validate,
+    http.Response Function(http.Response response)? validate,
   }) async =>
       await _helper.post(
         userContext,
@@ -122,7 +166,7 @@ abstract class BaseService implements _Service {
   Future<http.Response> delete(
     final core.UserContext userContext,
     final String unencodedPath, {
-    Response Function(Response response)? validate,
+    http.Response Function(http.Response response)? validate,
   }) async =>
       await _helper.delete(
         userContext,
@@ -135,7 +179,7 @@ abstract class BaseService implements _Service {
     final core.UserContext userContext,
     final String unencodedPath, {
     dynamic body = const {},
-    Response Function(Response response)? validate,
+    http.Response Function(http.Response response)? validate,
   }) async =>
       await _helper.put(
         userContext,
@@ -145,10 +189,11 @@ abstract class BaseService implements _Service {
       );
 
   @override
-  TwitterResponse<D, M> transformSingleDataResponse<D, M>(
+  TwitterResponse<D, M>
+      transformSingleDataResponse<D extends Data, M extends Meta>(
     http.Response response, {
-    required D Function(Map<String, Object?> json) dataBuilder,
-    M Function(Map<String, Object?> json)? metaBuilder,
+    required DataBuilder<D> dataBuilder,
+    MetaBuilder<M>? metaBuilder,
   }) {
     final jsonBody = _checkResponseBody(response);
 
@@ -170,10 +215,11 @@ abstract class BaseService implements _Service {
   }
 
   @override
-  TwitterResponse<List<D>, M> transformMultiDataResponse<D, M>(
+  TwitterResponse<List<D>, M>
+      transformMultiDataResponse<D extends Data, M extends Meta>(
     http.Response response, {
-    required D Function(Map<String, Object?> json) dataBuilder,
-    M Function(Map<String, Object?> json)? metaBuilder,
+    required DataBuilder<D> dataBuilder,
+    MetaBuilder<M>? metaBuilder,
   }) {
     final jsonBody = _checkResponseBody(response);
 
@@ -192,6 +238,114 @@ abstract class BaseService implements _Service {
               ? metaBuilder(jsonBody[ResponseField.meta.value])
               : null,
     );
+  }
+
+  @override
+  Future<PaginationResponse<List<D>, M>>
+      getPage<D extends Data, M extends Meta>(
+    core.UserContext userContext,
+    String unencodedPath, {
+    Map<String, dynamic> queryParameters = const {},
+    required DataBuilder<D> dataBuilder,
+    required MetaBuilder<M> metaBuilder,
+  }) async {
+    final response = await get(
+      userContext,
+      unencodedPath,
+      queryParameters: queryParameters,
+    );
+
+    final jsonBody = _checkResponseBody(response);
+
+    return PaginationResponse(
+      userContext: userContext,
+      unencodedPath: unencodedPath,
+      queryParameters: queryParameters,
+      rateLimit: RateLimit.fromJson(
+        headerConverter.convert(response.headers),
+      ),
+      data: jsonBody[ResponseField.data.value]
+          .map<D>((tweet) => dataBuilder(tweet))
+          .toList(),
+      includes: jsonBody.containsKey(ResponseField.includes.value)
+          ? Includes.fromJson(jsonBody[ResponseField.includes.value])
+          : null,
+      meta: jsonBody.containsKey(ResponseField.meta.value)
+          ? metaBuilder(jsonBody[ResponseField.meta.value])
+          : null,
+    );
+  }
+
+  @override
+  Future<PaginationResponse<List<D>, M>>
+      executePaginationIfNecessary<D extends Data, M extends Pageable>(
+    core.UserContext userContext,
+    String unencodedPath,
+    Map<String, dynamic> queryParameters, {
+    required Paging<List<D>, M>? paging,
+    required DataBuilder<D> dataBuilder,
+    required MetaBuilder<M> metaBuilder,
+  }) async {
+    final rootPage = await getPage<D, M>(
+      userContext,
+      unencodedPath,
+      queryParameters: queryParameters,
+      dataBuilder: dataBuilder,
+      metaBuilder: metaBuilder,
+    );
+
+    if (paging != null) {
+      await BidirectionalPagination(
+        rootPage,
+        paging,
+        (userContext, unencodedPath, queryParameters) async =>
+            await getPage<D, M>(
+          userContext,
+          unencodedPath,
+          queryParameters: queryParameters,
+          dataBuilder: dataBuilder,
+          metaBuilder: metaBuilder,
+        ),
+      ).execute();
+    }
+
+    return rootPage;
+  }
+
+  @override
+  Future<PaginationResponse<List<D>, M>> executeForwardPaginationIfNecessary<
+      D extends Data, M extends ForwardPageable>(
+    core.UserContext userContext,
+    String unencodedPath,
+    Map<String, dynamic> queryParameters, {
+    required ForwardPaging<List<D>, M>? paging,
+    required DataBuilder<D> dataBuilder,
+    required MetaBuilder<M> metaBuilder,
+  }) async {
+    final rootPage = await getPage<D, M>(
+      userContext,
+      unencodedPath,
+      queryParameters: queryParameters,
+      dataBuilder: dataBuilder,
+      metaBuilder: metaBuilder,
+    );
+
+    if (paging != null) {
+      await UnidirectionalPagination<List<D>, M>(
+        rootPage,
+        paging,
+        (userContext, unencodedPath, queryParameters) async =>
+            await getPage<D, M>(
+          userContext,
+          unencodedPath,
+          queryParameters: queryParameters,
+          dataBuilder: dataBuilder,
+          metaBuilder: metaBuilder,
+        ),
+      ).execute();
+    }
+
+    return rootPage;
   }
 
   @override

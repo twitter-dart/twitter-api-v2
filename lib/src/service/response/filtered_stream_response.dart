@@ -3,8 +3,8 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
-import 'tweets/matching_rule.dart';
-import 'tweets/tweet_data.dart';
+import '../tweets/matching_rule.dart';
+import '../tweets/tweet_data.dart';
 import 'twitter_response.dart';
 
 class FilteredStreamResponse extends TwitterResponse<TweetData, void> {

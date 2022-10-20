@@ -9,13 +9,15 @@ import 'package:twitter_api_core/twitter_api_core.dart' as core;
 import '../base_service.dart';
 import '../common/includes.dart';
 import '../common/rate_limit.dart';
-import '../filtered_stream_response.dart';
 import '../media/media_field.dart';
+import '../pagination/bidirectional_pagination.dart';
+import '../pagination/unidirectional_pagination.dart';
 import '../places/place_field.dart';
 import '../polls/poll_field.dart';
-import '../response_field.dart';
-import '../twitter_response.dart';
-import '../twitter_stream_response.dart';
+import '../response/filtered_stream_response.dart';
+import '../response/response_field.dart';
+import '../response/twitter_response.dart';
+import '../response/twitter_stream_response.dart';
 import '../users/user_data.dart';
 import '../users/user_expansion.dart';
 import '../users/user_field.dart';
@@ -311,6 +313,11 @@ abstract class TweetsService {
 
   /// Allows you to get information about a Tweet’s liking users.
   ///
+  /// The value returned when the [paging] callback is specified is
+  /// the first object obtained that started the paging process. The value
+  /// obtained in the paging process is passed to the [paging] callback
+  /// function as a `PagingEvent` object.
+  ///
   /// ## Parameters
   ///
   /// - [tweetId]: Tweet ID of the Tweet to request liking users of.
@@ -381,6 +388,23 @@ abstract class TweetsService {
   ///                  Tweet object, you will find this ID and all additional
   ///                  media fields in the `includes` data object.
   ///
+  /// - [paging]: If this callback function is specified, paging is
+  ///             performed continuously until certain conditions are met.
+  ///             This paging function is bi-directional,
+  ///             both forward and backward, and allows for safe paging.
+  ///             The response and other metadata obtained when paging is
+  ///             performed is passed to the callback function as
+  ///             `PagingEvent` object. So you can get the result of paging
+  ///             from `PagingEvent` object. Also, the direction and continuity
+  ///             of paging can be controlled by returning
+  ///             `PaginationControl` object in the `paging` callback function.
+  ///             Please use `PaginationControl.forward()` to continue paging
+  ///             and move forward, or use `PaginationControl.backward()`
+  ///             to move backward. And be sure to return
+  ///             `PaginationControl.stop()` to terminate paging on
+  ///             arbitrary conditions, otherwise paging continues until the
+  ///             next page runs out.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/:id/liking_users
@@ -418,9 +442,15 @@ abstract class TweetsService {
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
+    Paging<List<UserData>, UserMeta>? paging,
   });
 
   /// Allows you to get information about a user’s liked Tweets.
+  ///
+  /// The value returned when the [paging] callback is specified is
+  /// the first object obtained that started the paging process. The value
+  /// obtained in the paging process is passed to the [paging] callback
+  /// function as a `PagingEvent` object.
   ///
   /// ## Parameters
   ///
@@ -494,6 +524,23 @@ abstract class TweetsService {
   ///                  Tweet object, you will find this ID and all additional
   ///                  media fields in the `includes` data object.
   ///
+  /// - [paging]: If this callback function is specified, paging is
+  ///             performed continuously until certain conditions are met.
+  ///             This paging function is bi-directional,
+  ///             both forward and backward, and allows for safe paging.
+  ///             The response and other metadata obtained when paging is
+  ///             performed is passed to the callback function as
+  ///             `PagingEvent` object. So you can get the result of paging
+  ///             from `PagingEvent` object. Also, the direction and continuity
+  ///             of paging can be controlled by returning
+  ///             `PaginationControl` object in the `paging` callback function.
+  ///             Please use `PaginationControl.forward()` to continue paging
+  ///             and move forward, or use `PaginationControl.backward()`
+  ///             to move backward. And be sure to return
+  ///             `PaginationControl.stop()` to terminate paging on
+  ///             arbitrary conditions, otherwise paging continues until the
+  ///             next page runs out.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/liked_tweets
@@ -531,9 +578,15 @@ abstract class TweetsService {
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
+    Paging<List<TweetData>, TweetMeta>? paging,
   });
 
   /// Allows you to get information about who has Retweeted a Tweet.
+  ///
+  /// The value returned when the [paging] callback is specified is
+  /// the first object obtained that started the paging process. The value
+  /// obtained in the paging process is passed to the [paging] callback
+  /// function as a `PagingEvent` object.
   ///
   /// ## Parameters
   ///
@@ -604,6 +657,23 @@ abstract class TweetsService {
   ///                  Tweet object, you will find this ID and all additional
   ///                  media fields in the `includes` data object.
   ///
+  /// - [paging]: If this callback function is specified, paging is
+  ///             performed continuously until certain conditions are met.
+  ///             This paging function is bi-directional,
+  ///             both forward and backward, and allows for safe paging.
+  ///             The response and other metadata obtained when paging is
+  ///             performed is passed to the callback function as
+  ///             `PagingEvent` object. So you can get the result of paging
+  ///             from `PagingEvent` object. Also, the direction and continuity
+  ///             of paging can be controlled by returning
+  ///             `PaginationControl` object in the `paging` callback function.
+  ///             Please use `PaginationControl.forward()` to continue paging
+  ///             and move forward, or use `PaginationControl.backward()`
+  ///             to move backward. And be sure to return
+  ///             `PaginationControl.stop()` to terminate paging on
+  ///             arbitrary conditions, otherwise paging continues until the
+  ///             next page runs out.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/:id/retweeted_by
@@ -640,12 +710,18 @@ abstract class TweetsService {
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
+    Paging<List<UserData>, UserMeta>? paging,
   });
 
   /// Returns Quote Tweets for a Tweet specified by the requested Tweet ID.
   ///
   /// The Tweets returned by this endpoint count towards the Project-level Tweet
   /// cap.
+  ///
+  /// The value returned when the [paging] callback is specified is
+  /// the first object obtained that started the paging process. The value
+  /// obtained in the paging process is passed to the [paging] callback
+  /// function as a `PagingEvent` object.
   ///
   /// ## Parameters
   ///
@@ -721,6 +797,23 @@ abstract class TweetsService {
   ///                  Tweet object, you will find this ID and all additional
   ///                  media fields in the `includes` data object.
   ///
+  /// - [paging]: If this callback function is specified, paging is
+  ///             performed continuously until certain conditions are met.
+  ///             This paging function is bi-directional,
+  ///             both forward and backward, and allows for safe paging.
+  ///             The response and other metadata obtained when paging is
+  ///             performed is passed to the callback function as
+  ///             `PagingEvent` object. So you can get the result of paging
+  ///             from `PagingEvent` object. Also, the direction and continuity
+  ///             of paging can be controlled by returning
+  ///             `PaginationControl` object in the `paging` callback function.
+  ///             Please use `PaginationControl.forward()` to continue paging
+  ///             and move forward, or use `PaginationControl.backward()`
+  ///             to move backward. And be sure to return
+  ///             `PaginationControl.stop()` to terminate paging on
+  ///             arbitrary conditions, otherwise paging continues until the
+  ///             next page runs out.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/:id/quote_tweets
@@ -757,6 +850,7 @@ abstract class TweetsService {
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
+    Paging<List<TweetData>, TweetMeta>? paging,
   });
 
   /// The recent search endpoint returns Tweets from the last seven days that
@@ -764,6 +858,11 @@ abstract class TweetsService {
   ///
   /// The Tweets returned by this endpoint count towards the Project-level Tweet
   /// cap.
+  ///
+  /// The value returned when the [paging] callback is specified is
+  /// the first object obtained that started the paging process. The value
+  /// obtained in the paging process is passed to the [paging] callback
+  /// function as a `PagingEvent` object.
   ///
   /// ## Parameters
   ///
@@ -870,6 +969,22 @@ abstract class TweetsService {
   ///                  Tweet object, you will find this ID and all additional
   ///                  media fields in the `includes` data object.
   ///
+  /// - [paging]: If this callback function is specified, paging is
+  ///             performed continuously until certain conditions are met.
+  ///             This paging function is uni-directional,
+  ///             only forward, and allows for safe paging.
+  ///             The response and other metadata obtained when paging is
+  ///             performed is passed to the callback function as
+  ///             `PagingEvent` object. So you can get the result of paging
+  ///             from `PagingEvent` object. Also, the direction and continuity
+  ///             of paging can be controlled by returning
+  ///             `PaginationControl` object in the `paging` callback function.
+  ///             Please use `PaginationControl.next()` to continue paging
+  ///             and move forward. And be sure to return
+  ///             `PaginationControl.stop()` to terminate paging on
+  ///             arbitrary conditions, otherwise paging continues until the
+  ///             next page runs out.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/search/recent
@@ -904,6 +1019,7 @@ abstract class TweetsService {
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
+    ForwardPaging<List<TweetData>, TweetMeta>? paging,
   });
 
   /// This endpoint is only available to those users who have been approved for
@@ -915,6 +1031,11 @@ abstract class TweetsService {
   ///
   /// The Tweets returned by this endpoint count towards the Project-level Tweet
   /// cap.
+  ///
+  /// The value returned when the [paging] callback is specified is
+  /// the first object obtained that started the paging process. The value
+  /// obtained in the paging process is passed to the [paging] callback
+  /// function as a `PagingEvent` object.
   ///
   /// ## Parameters
   ///
@@ -1020,6 +1141,22 @@ abstract class TweetsService {
   ///                  Tweet object, you will find this ID and all additional
   ///                  media fields in the `includes` data object.
   ///
+  /// - [paging]: If this callback function is specified, paging is
+  ///             performed continuously until certain conditions are met.
+  ///             This paging function is uni-directional,
+  ///             only forward, and allows for safe paging.
+  ///             The response and other metadata obtained when paging is
+  ///             performed is passed to the callback function as
+  ///             `PagingEvent` object. So you can get the result of paging
+  ///             from `PagingEvent` object. Also, the direction and continuity
+  ///             of paging can be controlled by returning
+  ///             `PaginationControl` object in the `paging` callback function.
+  ///             Please use `PaginationControl.next()` to continue paging
+  ///             and move forward. And be sure to return
+  ///             `PaginationControl.stop()` to terminate paging on
+  ///             arbitrary conditions, otherwise paging continues until the
+  ///             next page runs out.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/search/all
@@ -1054,6 +1191,7 @@ abstract class TweetsService {
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
+    ForwardPaging<List<TweetData>, TweetMeta>? paging,
   });
 
   /// Returns a variety of information about a single Tweet specified by the
@@ -1343,6 +1481,11 @@ abstract class TweetsService {
   /// match your query from the complete history of public Tweets;
   /// since the first Tweet was created March 26, 2006.
   ///
+  /// The value returned when the [paging] callback is specified is
+  /// the first object obtained that started the paging process. The value
+  /// obtained in the paging process is passed to the [paging] callback
+  /// function as a `PagingEvent` object.
+  ///
   /// ## Parameters
   ///
   /// - [query]: One query for matching Tweets.
@@ -1388,6 +1531,22 @@ abstract class TweetsService {
   ///                  `minute`, `hour`, or `day` granularity. The default
   ///                  granularity, if not specified is `hour`.
   ///
+  /// - [paging]: If this callback function is specified, paging is
+  ///             performed continuously until certain conditions are met.
+  ///             This paging function is uni-directional,
+  ///             only forward, and allows for safe paging.
+  ///             The response and other metadata obtained when paging is
+  ///             performed is passed to the callback function as
+  ///             `PagingEvent` object. So you can get the result of paging
+  ///             from `PagingEvent` object. Also, the direction and continuity
+  ///             of paging can be controlled by returning
+  ///             `PaginationControl` object in the `paging` callback function.
+  ///             Please use `PaginationControl.next()` to continue paging
+  ///             and move forward. And be sure to return
+  ///             `PaginationControl.stop()` to terminate paging on
+  ///             arbitrary conditions, otherwise paging continues until the
+  ///             next page runs out.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/counts/all
@@ -1412,6 +1571,7 @@ abstract class TweetsService {
     String? sinceTweetId,
     String? untilTweetId,
     TweetCountGranularity? granularity,
+    ForwardPaging<List<TweetCountData>, TweetCountMeta>? paging,
   });
 
   /// Causes the user ID of an authenticated user identified in the path
@@ -1665,6 +1825,11 @@ abstract class TweetsService {
   /// The Tweets returned by this endpoint count towards the Project-level
   /// Tweet cap.
   ///
+  /// The value returned when the [paging] callback is specified is
+  /// the first object obtained that started the paging process. The value
+  /// obtained in the paging process is passed to the [paging] callback
+  /// function as a `PagingEvent` object.
+  ///
   /// ## Parameters
   ///
   /// - [userId]: Unique identifier of the user for whom to return Tweets
@@ -1774,6 +1939,23 @@ abstract class TweetsService {
   ///                  Tweet object, you will find this ID and all additional
   ///                  media fields in the `includes` data object.
   ///
+  /// - [paging]: If this callback function is specified, paging is
+  ///             performed continuously until certain conditions are met.
+  ///             This paging function is bi-directional,
+  ///             both forward and backward, and allows for safe paging.
+  ///             The response and other metadata obtained when paging is
+  ///             performed is passed to the callback function as
+  ///             `PagingEvent` object. So you can get the result of paging
+  ///             from `PagingEvent` object. Also, the direction and continuity
+  ///             of paging can be controlled by returning
+  ///             `PaginationControl` object in the `paging` callback function.
+  ///             Please use `PaginationControl.forward()` to continue paging
+  ///             and move forward, or use `PaginationControl.backward()`
+  ///             to move backward. And be sure to return
+  ///             `PaginationControl.stop()` to terminate paging on
+  ///             arbitrary conditions, otherwise paging continues until the
+  ///             next page runs out.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/mentions
@@ -1817,6 +1999,7 @@ abstract class TweetsService {
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
+    Paging<List<TweetData>, TweetMeta>? paging,
   });
 
   /// Returns Tweets composed by a single user, specified by the requested user
@@ -1827,6 +2010,11 @@ abstract class TweetsService {
   ///
   /// The Tweets returned by this endpoint count towards the Project-level Tweet
   /// cap.
+  ///
+  /// The value returned when the [paging] callback is specified is
+  /// the first object obtained that started the paging process. The value
+  /// obtained in the paging process is passed to the [paging] callback
+  /// function as a `PagingEvent` object.
   ///
   /// ## Parameters
   ///
@@ -1944,6 +2132,23 @@ abstract class TweetsService {
   ///                  Tweet object, you will find this ID and all additional
   ///                  media fields in the `includes` data object.
   ///
+  /// - [paging]: If this callback function is specified, paging is
+  ///             performed continuously until certain conditions are met.
+  ///             This paging function is bi-directional,
+  ///             both forward and backward, and allows for safe paging.
+  ///             The response and other metadata obtained when paging is
+  ///             performed is passed to the callback function as
+  ///             `PagingEvent` object. So you can get the result of paging
+  ///             from `PagingEvent` object. Also, the direction and continuity
+  ///             of paging can be controlled by returning
+  ///             `PaginationControl` object in the `paging` callback function.
+  ///             Please use `PaginationControl.forward()` to continue paging
+  ///             and move forward, or use `PaginationControl.backward()`
+  ///             to move backward. And be sure to return
+  ///             `PaginationControl.stop()` to terminate paging on
+  ///             arbitrary conditions, otherwise paging continues until the
+  ///             next page runs out.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/tweets
@@ -1988,11 +2193,17 @@ abstract class TweetsService {
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
+    Paging<List<TweetData>, TweetMeta>? paging,
   });
 
   /// Allows you to retrieve a collection of the most recent Tweets and Retweets
   /// posted by you and users you follow. This endpoint returns up to the last
   /// 3200 Tweets.
+  ///
+  /// The value returned when the [paging] callback is specified is
+  /// the first object obtained that started the paging process. The value
+  /// obtained in the paging process is passed to the [paging] callback
+  /// function as a `PagingEvent` object.
   ///
   /// ## Parameters
   ///
@@ -2105,6 +2316,23 @@ abstract class TweetsService {
   ///                  Tweet object, you will find this ID and all additional
   ///                  media fields in the `includes` data object.
   ///
+  /// - [paging]: If this callback function is specified, paging is
+  ///             performed continuously until certain conditions are met.
+  ///             This paging function is bi-directional,
+  ///             both forward and backward, and allows for safe paging.
+  ///             The response and other metadata obtained when paging is
+  ///             performed is passed to the callback function as
+  ///             `PagingEvent` object. So you can get the result of paging
+  ///             from `PagingEvent` object. Also, the direction and continuity
+  ///             of paging can be controlled by returning
+  ///             `PaginationControl` object in the `paging` callback function.
+  ///             Please use `PaginationControl.forward()` to continue paging
+  ///             and move forward, or use `PaginationControl.backward()`
+  ///             to move backward. And be sure to return
+  ///             `PaginationControl.stop()` to terminate paging on
+  ///             arbitrary conditions, otherwise paging continues until the
+  ///             next page runs out.
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/users/:id/timelines/reverse_chronological
@@ -2142,6 +2370,7 @@ abstract class TweetsService {
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
+    Paging<List<TweetData>, TweetMeta>? paging,
   });
 
   /// Streams about 1% of all Tweets in real-time.
@@ -2832,22 +3061,22 @@ class _TweetsService extends BaseService implements TweetsService {
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
+    Paging<List<UserData>, UserMeta>? paging,
   }) async =>
-      super.transformMultiDataResponse(
-        await super.get(
-          core.UserContext.oauth2OrOAuth1,
-          '/2/tweets/$tweetId/liking_users',
-          queryParameters: {
-            'max_results': maxResults,
-            'pagination_token': paginationToken,
-            'expansions': expansions,
-            'tweet.fields': tweetFields,
-            'user.fields': userFields,
-            'place.fields': placeFields,
-            'poll.fields': pollFields,
-            'media.fields': mediaFields,
-          },
-        ),
+      await super.executePaginationIfNecessary(
+        core.UserContext.oauth2OrOAuth1,
+        '/2/tweets/$tweetId/liking_users',
+        {
+          'max_results': maxResults,
+          'pagination_token': paginationToken,
+          'expansions': expansions,
+          'tweet.fields': tweetFields,
+          'user.fields': userFields,
+          'place.fields': placeFields,
+          'poll.fields': pollFields,
+          'media.fields': mediaFields,
+        },
+        paging: paging,
         dataBuilder: UserData.fromJson,
         metaBuilder: UserMeta.fromJson,
       );
@@ -2863,22 +3092,22 @@ class _TweetsService extends BaseService implements TweetsService {
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
+    Paging<List<TweetData>, TweetMeta>? paging,
   }) async =>
-      super.transformMultiDataResponse(
-        await super.get(
-          core.UserContext.oauth2OrOAuth1,
-          '/2/users/$userId/liked_tweets',
-          queryParameters: {
-            'max_results': maxResults,
-            'pagination_token': paginationToken,
-            'expansions': expansions,
-            'tweet.fields': tweetFields,
-            'user.fields': userFields,
-            'place.fields': placeFields,
-            'poll.fields': pollFields,
-            'media.fields': mediaFields,
-          },
-        ),
+      await super.executePaginationIfNecessary(
+        core.UserContext.oauth2OrOAuth1,
+        '/2/users/$userId/liked_tweets',
+        {
+          'max_results': maxResults,
+          'pagination_token': paginationToken,
+          'expansions': expansions,
+          'tweet.fields': tweetFields,
+          'user.fields': userFields,
+          'place.fields': placeFields,
+          'poll.fields': pollFields,
+          'media.fields': mediaFields,
+        },
+        paging: paging,
         dataBuilder: TweetData.fromJson,
         metaBuilder: TweetMeta.fromJson,
       );
@@ -2894,22 +3123,22 @@ class _TweetsService extends BaseService implements TweetsService {
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
+    Paging<List<UserData>, UserMeta>? paging,
   }) async =>
-      super.transformMultiDataResponse(
-        await super.get(
-          core.UserContext.oauth2OrOAuth1,
-          '/2/tweets/$tweetId/retweeted_by',
-          queryParameters: {
-            'max_results': maxResults,
-            'pagination_token': paginationToken,
-            'expansions': expansions,
-            'tweet.fields': tweetFields,
-            'user.fields': userFields,
-            'place.fields': placeFields,
-            'poll.fields': pollFields,
-            'media.fields': mediaFields,
-          },
-        ),
+      await super.executePaginationIfNecessary(
+        core.UserContext.oauth2OrOAuth1,
+        '/2/tweets/$tweetId/retweeted_by',
+        {
+          'max_results': maxResults,
+          'pagination_token': paginationToken,
+          'expansions': expansions,
+          'tweet.fields': tweetFields,
+          'user.fields': userFields,
+          'place.fields': placeFields,
+          'poll.fields': pollFields,
+          'media.fields': mediaFields,
+        },
+        paging: paging,
         dataBuilder: UserData.fromJson,
         metaBuilder: UserMeta.fromJson,
       );
@@ -2925,22 +3154,22 @@ class _TweetsService extends BaseService implements TweetsService {
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
+    Paging<List<TweetData>, TweetMeta>? paging,
   }) async =>
-      super.transformMultiDataResponse(
-        await super.get(
-          core.UserContext.oauth2OrOAuth1,
-          '/2/tweets/$tweetId/quote_tweets',
-          queryParameters: {
-            'max_results': maxResults,
-            'pagination_token': paginationToken,
-            'expansions': expansions,
-            'tweet.fields': tweetFields,
-            'user.fields': userFields,
-            'place.fields': placeFields,
-            'poll.fields': pollFields,
-            'media.fields': mediaFields,
-          },
-        ),
+      await super.executePaginationIfNecessary(
+        core.UserContext.oauth2OrOAuth1,
+        '/2/tweets/$tweetId/quote_tweets',
+        {
+          'max_results': maxResults,
+          'pagination_token': paginationToken,
+          'expansions': expansions,
+          'tweet.fields': tweetFields,
+          'user.fields': userFields,
+          'place.fields': placeFields,
+          'poll.fields': pollFields,
+          'media.fields': mediaFields,
+        },
+        paging: paging,
         dataBuilder: TweetData.fromJson,
         metaBuilder: TweetMeta.fromJson,
       );
@@ -2961,28 +3190,28 @@ class _TweetsService extends BaseService implements TweetsService {
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
+    ForwardPaging<List<TweetData>, TweetMeta>? paging,
   }) async =>
-      super.transformMultiDataResponse(
-        await super.get(
-          core.UserContext.oauth2Only,
-          '/2/tweets/search/recent',
-          queryParameters: {
-            'query': query,
-            'max_results': maxResults,
-            'next_token': nextToken,
-            'sort_order': sortOrder?.name,
-            'start_time': startTime,
-            'end_time': endTime,
-            'since_id': sinceTweetId,
-            'until_id': untilTweetId,
-            'expansions': expansions,
-            'tweet.fields': tweetFields,
-            'user.fields': userFields,
-            'place.fields': placeFields,
-            'poll.fields': pollFields,
-            'media.fields': mediaFields,
-          },
-        ),
+      await super.executeForwardPaginationIfNecessary(
+        core.UserContext.oauth2Only,
+        '/2/tweets/search/recent',
+        {
+          'query': query,
+          'max_results': maxResults,
+          'next_token': nextToken,
+          'sort_order': sortOrder?.name,
+          'start_time': startTime,
+          'end_time': endTime,
+          'since_id': sinceTweetId,
+          'until_id': untilTweetId,
+          'expansions': expansions,
+          'tweet.fields': tweetFields,
+          'user.fields': userFields,
+          'place.fields': placeFields,
+          'poll.fields': pollFields,
+          'media.fields': mediaFields,
+        },
+        paging: paging,
         dataBuilder: TweetData.fromJson,
         metaBuilder: TweetMeta.fromJson,
       );
@@ -3003,28 +3232,28 @@ class _TweetsService extends BaseService implements TweetsService {
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
+    ForwardPaging<List<TweetData>, TweetMeta>? paging,
   }) async =>
-      super.transformMultiDataResponse(
-        await super.get(
-          core.UserContext.oauth2Only,
-          '/2/tweets/search/all',
-          queryParameters: {
-            'query': query,
-            'max_results': maxResults,
-            'next_token': nextToken,
-            'sort_order': sortOrder?.name,
-            'start_time': startTime,
-            'end_time': endTime,
-            'since_id': sinceTweetId,
-            'until_id': untilTweetId,
-            'expansions': expansions,
-            'tweet.fields': tweetFields,
-            'user.fields': userFields,
-            'place.fields': placeFields,
-            'poll.fields': pollFields,
-            'media.fields': mediaFields,
-          },
-        ),
+      await super.executeForwardPaginationIfNecessary(
+        core.UserContext.oauth2Only,
+        '/2/tweets/search/all',
+        {
+          'query': query,
+          'max_results': maxResults,
+          'next_token': nextToken,
+          'sort_order': sortOrder?.name,
+          'start_time': startTime,
+          'end_time': endTime,
+          'since_id': sinceTweetId,
+          'until_id': untilTweetId,
+          'expansions': expansions,
+          'tweet.fields': tweetFields,
+          'user.fields': userFields,
+          'place.fields': placeFields,
+          'poll.fields': pollFields,
+          'media.fields': mediaFields,
+        },
+        paging: paging,
         dataBuilder: TweetData.fromJson,
         metaBuilder: TweetMeta.fromJson,
       );
@@ -3119,21 +3348,21 @@ class _TweetsService extends BaseService implements TweetsService {
     String? sinceTweetId,
     String? untilTweetId,
     TweetCountGranularity? granularity,
+    ForwardPaging<List<TweetCountData>, TweetCountMeta>? paging,
   }) async =>
-      super.transformMultiDataResponse(
-        await super.get(
-          core.UserContext.oauth2Only,
-          '/2/tweets/counts/all',
-          queryParameters: {
-            'query': query,
-            'next_token': nextToken,
-            'start_time': startTime,
-            'end_time': endTime,
-            'since_id': sinceTweetId,
-            'until_id': untilTweetId,
-            'granularity': granularity?.name,
-          },
-        ),
+      await super.executeForwardPaginationIfNecessary(
+        core.UserContext.oauth2Only,
+        '/2/tweets/counts/all',
+        {
+          'query': query,
+          'next_token': nextToken,
+          'start_time': startTime,
+          'end_time': endTime,
+          'since_id': sinceTweetId,
+          'until_id': untilTweetId,
+          'granularity': granularity?.name,
+        },
+        paging: paging,
         dataBuilder: TweetCountData.fromJson,
         metaBuilder: TweetCountMeta.fromJson,
       );
@@ -3227,26 +3456,26 @@ class _TweetsService extends BaseService implements TweetsService {
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
+    Paging<List<TweetData>, TweetMeta>? paging,
   }) async =>
-      super.transformMultiDataResponse(
-        await super.get(
-          core.UserContext.oauth2OrOAuth1,
-          '/2/users/$userId/mentions',
-          queryParameters: {
-            'max_results': maxResults,
-            'pagination_token': paginationToken,
-            'start_time': startTime,
-            'end_time': endTime,
-            'since_id': sinceTweetId,
-            'until_id': untilTweetId,
-            'expansions': expansions,
-            'tweet.fields': tweetFields,
-            'user.fields': userFields,
-            'place.fields': placeFields,
-            'poll.fields': pollFields,
-            'media.fields': mediaFields,
-          },
-        ),
+      await super.executePaginationIfNecessary(
+        core.UserContext.oauth2OrOAuth1,
+        '/2/users/$userId/mentions',
+        {
+          'max_results': maxResults,
+          'pagination_token': paginationToken,
+          'start_time': startTime,
+          'end_time': endTime,
+          'since_id': sinceTweetId,
+          'until_id': untilTweetId,
+          'expansions': expansions,
+          'tweet.fields': tweetFields,
+          'user.fields': userFields,
+          'place.fields': placeFields,
+          'poll.fields': pollFields,
+          'media.fields': mediaFields,
+        },
+        paging: paging,
         dataBuilder: TweetData.fromJson,
         metaBuilder: TweetMeta.fromJson,
       );
@@ -3267,27 +3496,27 @@ class _TweetsService extends BaseService implements TweetsService {
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
+    Paging<List<TweetData>, TweetMeta>? paging,
   }) async =>
-      super.transformMultiDataResponse(
-        await super.get(
-          core.UserContext.oauth2OrOAuth1,
-          '/2/users/$userId/tweets',
-          queryParameters: {
-            'max_results': maxResults,
-            'pagination_token': paginationToken,
-            'start_time': startTime,
-            'end_time': endTime,
-            'since_id': sinceTweetId,
-            'until_id': untilTweetId,
-            'exclude': excludes,
-            'expansions': expansions,
-            'tweet.fields': tweetFields,
-            'user.fields': userFields,
-            'place.fields': placeFields,
-            'poll.fields': pollFields,
-            'media.fields': mediaFields,
-          },
-        ),
+      await super.executePaginationIfNecessary(
+        core.UserContext.oauth2OrOAuth1,
+        '/2/users/$userId/tweets',
+        {
+          'max_results': maxResults,
+          'pagination_token': paginationToken,
+          'start_time': startTime,
+          'end_time': endTime,
+          'since_id': sinceTweetId,
+          'until_id': untilTweetId,
+          'exclude': excludes,
+          'expansions': expansions,
+          'tweet.fields': tweetFields,
+          'user.fields': userFields,
+          'place.fields': placeFields,
+          'poll.fields': pollFields,
+          'media.fields': mediaFields,
+        },
+        paging: paging,
         dataBuilder: TweetData.fromJson,
         metaBuilder: TweetMeta.fromJson,
       );
@@ -3308,27 +3537,27 @@ class _TweetsService extends BaseService implements TweetsService {
     List<PlaceField>? placeFields,
     List<PollField>? pollFields,
     List<MediaField>? mediaFields,
+    Paging<List<TweetData>, TweetMeta>? paging,
   }) async =>
-      super.transformMultiDataResponse(
-        await super.get(
-          core.UserContext.oauth2OrOAuth1,
-          '/2/users/$userId/timelines/reverse_chronological',
-          queryParameters: {
-            'max_results': maxResults,
-            'pagination_token': paginationToken,
-            'start_time': startTime,
-            'end_time': endTime,
-            'since_id': sinceTweetId,
-            'until_id': untilTweetId,
-            'exclude': excludes,
-            'expansions': expansions,
-            'tweet.fields': tweetFields,
-            'user.fields': userFields,
-            'place.fields': placeFields,
-            'poll.fields': pollFields,
-            'media.fields': mediaFields,
-          },
-        ),
+      await super.executePaginationIfNecessary(
+        core.UserContext.oauth2OrOAuth1,
+        '/2/users/$userId/timelines/reverse_chronological',
+        {
+          'max_results': maxResults,
+          'pagination_token': paginationToken,
+          'start_time': startTime,
+          'end_time': endTime,
+          'since_id': sinceTweetId,
+          'until_id': untilTweetId,
+          'exclude': excludes,
+          'expansions': expansions,
+          'tweet.fields': tweetFields,
+          'user.fields': userFields,
+          'place.fields': placeFields,
+          'poll.fields': pollFields,
+          'media.fields': mediaFields,
+        },
+        paging: paging,
         dataBuilder: TweetData.fromJson,
         metaBuilder: TweetMeta.fromJson,
       );
