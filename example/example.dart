@@ -44,9 +44,9 @@ Future<void> main() async {
   );
 
   try {
-    // Get the authenticated user's profile.
+    //! Get the authenticated user's profile.
     final me = await twitter.users.lookupMe();
-    // Get the tweets associated with the search query.
+    //! Get the tweets associated with the search query.
     final tweets = await twitter.tweets.searchRecent(
       query: '#ElonMusk',
       maxResults: 20,
@@ -66,6 +66,17 @@ Future<void> main() async {
         v2.UserField.entities,
         v2.UserField.publicMetrics,
       ],
+
+      //! Safe paging is easy to implement.
+      paging: (event) {
+        print(event.response);
+
+        if (event.count == 3) {
+          return v2.ForwardPaginationControl.stop();
+        }
+
+        return v2.ForwardPaginationControl.next();
+      },
     );
 
     await twitter.tweets.createLike(
@@ -73,12 +84,12 @@ Future<void> main() async {
       tweetId: tweets.data.first.id,
     );
 
-    // You can upload media such as image, gif and video.
+    //! You can upload media such as image, gif and video.
     final uploadedResponse = await twitter.media.uploadMedia(
       file: File.fromUri(Uri.file('FILE_PATH')),
       altText: 'This is alt text.',
 
-      // You can check the upload progress.
+      //! You can check the upload progress.
       onProgress: (event) {
         switch (event.state) {
           case v2.UploadState.preparing:
@@ -95,7 +106,7 @@ Future<void> main() async {
       onFailed: (error) => print('Upload failed due to "${error.message}"'),
     );
 
-    // You can easily post a tweet with the uploaded media.
+    //! You can easily post a tweet with the uploaded media.
     await twitter.tweets.createTweet(
       text: 'Tweet with uploaded media',
       media: v2.TweetMediaParam(
@@ -103,13 +114,13 @@ Future<void> main() async {
       ),
     );
 
-    // High-performance Volume Stream endpoint is available.
+    //! High-performance Volume Stream endpoint is available.
     final sampleStream = await twitter.tweets.connectSampleStream();
     await for (final response in sampleStream.stream.handleError(print)) {
       print(response);
     }
 
-    // Also high-performance Filtered Stream endpoint is available.
+    //! Also high-performance Filtered Stream endpoint is available.
     await twitter.tweets.createFilteringRules(
       rules: [
         v2.FilteringRuleParam(value: '#ElonMusk'),
