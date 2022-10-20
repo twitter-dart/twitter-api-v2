@@ -36,6 +36,27 @@ MockClientContext buildGetStub(
   return mockClientContext;
 }
 
+/// This stub is used to test paging feature mainly.
+MockClientContext buildGetStubWithAnyUriAndMultiResources(
+  final UserContext userContext,
+  final List<String> resourcePaths,
+) {
+  final mockClientContext = MockClientContext();
+
+  when(mockClientContext.get(
+    userContext,
+    any,
+  )).thenAnswer(
+    (_) async => http.Response(
+      await File(resourcePaths.removeAt(0)).readAsString(),
+      200,
+      headers: {'content-type': 'application/json; charset=utf-8'},
+    ),
+  );
+
+  return mockClientContext;
+}
+
 MockClientContext buildPostStub(
   final UserContext userContext,
   final String unencodedPath,

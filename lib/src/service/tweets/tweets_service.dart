@@ -1398,11 +1398,6 @@ abstract class TweetsService {
   /// The recent Tweet counts endpoint returns count of Tweets from the last
   /// seven days that match a query.
   ///
-  /// The value returned when the [paging] callback is specified is
-  /// the first object obtained that started the paging process. The value
-  /// obtained in the paging process is passed to the [paging] callback
-  /// function as a `PagingEvent` object.
-  ///
   /// ## Parameters
   ///
   /// - [query]: One query for matching Tweets. You can learn how to build
@@ -1453,22 +1448,6 @@ abstract class TweetsService {
   ///                  `minute`, `hour`, or `day` granularity. The default
   ///                  granularity, if not specified is `hour`.
   ///
-  /// - [paging]: If this callback function is specified, paging is
-  ///             performed continuously until certain conditions are met.
-  ///             This paging function is uni-directional,
-  ///             only forward, and allows for safe paging.
-  ///             The response and other metadata obtained when paging is
-  ///             performed is passed to the callback function as
-  ///             `PagingEvent` object. So you can get the result of paging
-  ///             from `PagingEvent` object. Also, the direction and continuity
-  ///             of paging can be controlled by returning
-  ///             `PaginationControl` object in the `paging` callback function.
-  ///             Please use `PaginationControl.next()` to continue paging
-  ///             and move forward. And be sure to return
-  ///             `PaginationControl.stop()` to terminate paging on
-  ///             arbitrary conditions, otherwise paging continues until the
-  ///             next page runs out.
-  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/2/tweets/counts/recent
@@ -1493,7 +1472,6 @@ abstract class TweetsService {
     String? sinceTweetId,
     String? untilTweetId,
     TweetCountGranularity? granularity,
-    ForwardPaging<List<TweetCountData>, TweetCountMeta>? paging,
   });
 
   /// This endpoint is only available to those users who have been approved
@@ -3342,21 +3320,21 @@ class _TweetsService extends BaseService implements TweetsService {
     String? sinceTweetId,
     String? untilTweetId,
     TweetCountGranularity? granularity,
-    ForwardPaging<List<TweetCountData>, TweetCountMeta>? paging,
   }) async =>
-      await super.executeForwardPaginationIfNecessary(
-        core.UserContext.oauth2Only,
-        '/2/tweets/counts/recent',
-        {
-          'query': query,
-          'next_token': nextToken,
-          'start_time': startTime,
-          'end_time': endTime,
-          'since_id': sinceTweetId,
-          'until_id': untilTweetId,
-          'granularity': granularity?.name,
-        },
-        paging: paging,
+      super.transformMultiDataResponse(
+        await super.get(
+          core.UserContext.oauth2Only,
+          '/2/tweets/counts/recent',
+          queryParameters: {
+            'query': query,
+            'next_token': nextToken,
+            'start_time': startTime,
+            'end_time': endTime,
+            'since_id': sinceTweetId,
+            'until_id': untilTweetId,
+            'granularity': granularity?.name,
+          },
+        ),
         dataBuilder: TweetCountData.fromJson,
         metaBuilder: TweetCountMeta.fromJson,
       );
