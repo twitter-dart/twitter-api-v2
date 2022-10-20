@@ -9,9 +9,9 @@ import 'package:twitter_api_core/src/client/user_context.dart';
 import 'package:twitter_api_core/src/exception/twitter_exception.dart';
 
 // Project imports:
-import 'package:twitter_api_v2/src/response/filtered_stream_response.dart';
-import 'package:twitter_api_v2/src/response/twitter_response.dart';
-import 'package:twitter_api_v2/src/response/twitter_stream_response.dart';
+import 'package:twitter_api_v2/src/service/response/filtered_stream_response.dart';
+import 'package:twitter_api_v2/src/service/response/twitter_response.dart';
+import 'package:twitter_api_v2/src/service/response/twitter_stream_response.dart';
 import 'package:twitter_api_v2/src/service/tweets/decahose_partition.dart';
 import 'package:twitter_api_v2/src/service/tweets/exclude_tweet_type.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering_rule_data.dart';

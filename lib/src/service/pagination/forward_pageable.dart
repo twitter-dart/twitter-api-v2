@@ -3,7 +3,7 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
-import '../service/common/meta.dart';
+import '../common/meta.dart';
 
 abstract class ForwardPageable implements Meta {
   /// Returns the new instance of [ForwardPageable].

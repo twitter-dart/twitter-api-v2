@@ -6,11 +6,11 @@
 import 'package:twitter_api_core/twitter_api_core.dart' as core;
 
 // Project imports:
-import '../../response/twitter_response.dart';
 import '../base_service.dart';
 import '../media/media_field.dart';
 import '../places/place_field.dart';
 import '../polls/poll_field.dart';
+import '../response/twitter_response.dart';
 import '../tweets/tweet_data.dart';
 import '../tweets/tweet_expansion.dart';
 import '../tweets/tweet_field.dart';

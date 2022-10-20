@@ -11,10 +11,10 @@ import 'package:http/http.dart';
 import 'package:twitter_api_core/twitter_api_core.dart' as core;
 
 // Project imports:
-import '../response/twitter_response.dart';
 import 'base_service.dart';
 import 'common/data.dart';
 import 'common/meta.dart';
+import 'response/twitter_response.dart';
 
 abstract class _MediaService {
   Future<http.Response> postMultipart(

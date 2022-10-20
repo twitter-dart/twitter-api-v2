@@ -6,7 +6,7 @@
 import 'package:test/test.dart';
 
 // Project imports:
-import 'package:twitter_api_v2/src/response/response_field.dart';
+import 'package:twitter_api_v2/src/service/response/response_field.dart';
 
 void main() {
   test('.name', () {

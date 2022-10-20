@@ -6,8 +6,8 @@
 import 'package:twitter_api_core/twitter_api_core.dart' as core;
 
 // Project imports:
-import '../../response/twitter_response.dart';
 import '../base_service.dart';
+import '../response/twitter_response.dart';
 import '../tweets/tweet_field.dart';
 import 'user_data.dart';
 import 'user_expansion.dart';

@@ -8,7 +8,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import '../../pagination/forward_pageable.dart';
+import '../pagination/forward_pageable.dart';
 
 part 'tweet_count_meta.freezed.dart';
 part 'tweet_count_meta.g.dart';

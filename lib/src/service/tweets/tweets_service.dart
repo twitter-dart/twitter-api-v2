@@ -6,18 +6,18 @@
 import 'package:twitter_api_core/twitter_api_core.dart' as core;
 
 // Project imports:
-import '../../pagination/bidirectional_pagination.dart';
-import '../../pagination/unidirectional_pagination.dart';
-import '../../response/filtered_stream_response.dart';
-import '../../response/response_field.dart';
-import '../../response/twitter_response.dart';
-import '../../response/twitter_stream_response.dart';
 import '../base_service.dart';
 import '../common/includes.dart';
 import '../common/rate_limit.dart';
 import '../media/media_field.dart';
+import '../pagination/bidirectional_pagination.dart';
+import '../pagination/unidirectional_pagination.dart';
 import '../places/place_field.dart';
 import '../polls/poll_field.dart';
+import '../response/filtered_stream_response.dart';
+import '../response/response_field.dart';
+import '../response/twitter_response.dart';
+import '../response/twitter_stream_response.dart';
 import '../users/user_data.dart';
 import '../users/user_expansion.dart';
 import '../users/user_field.dart';

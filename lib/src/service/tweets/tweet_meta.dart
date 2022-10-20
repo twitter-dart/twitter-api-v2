@@ -6,7 +6,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import '../../pagination/pageable.dart';
+import '../pagination/pageable.dart';
 
 part 'tweet_meta.freezed.dart';
 part 'tweet_meta.g.dart';

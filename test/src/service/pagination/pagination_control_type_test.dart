@@ -6,7 +6,7 @@
 import 'package:test/test.dart';
 
 // Project imports:
-import 'package:twitter_api_v2/src/pagination/pagination_control_type.dart';
+import 'package:twitter_api_v2/src/service/pagination/pagination_control_type.dart';
 
 void main() {
   test('.name', () {
