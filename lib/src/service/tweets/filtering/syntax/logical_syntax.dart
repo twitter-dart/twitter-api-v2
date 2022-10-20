@@ -4,7 +4,7 @@
 
 // Project imports:
 import '../channel/post_logical_channel.dart';
-import '../filtering_rule_buffer.dart';
+import '../filtering_rule_group.dart';
 import '../operation/logical_operation.dart';
 import 'conclusion.dart';
 
@@ -15,7 +15,7 @@ abstract class LogicalSyntax implements Conclusion {
   static const _logicalOperation = LogicalOperation();
 
   /// The tray for filtering operators
-  final FilteringRuleBuffer _buffer;
+  final FilteringRuleGroup _buffer;
 
   /// Append "And" rule.
   PostLogicalChannel and() => _buffer.appendLogicalOperator(

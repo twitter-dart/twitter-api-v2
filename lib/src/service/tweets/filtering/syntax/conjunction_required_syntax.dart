@@ -3,7 +3,8 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
-import '../filtering_rule_buffer.dart';
+import '../channel/logical_channel.dart';
+import '../filtering_rule_group.dart';
 import '../operation/conjunction_required_operation.dart';
 import 'standalone_syntax.dart';
 
@@ -15,5 +16,105 @@ abstract class ConjunctionRequiredSyntax extends StandaloneSyntax {
   static const _conjunctionRequiredOperation = ConjunctionRequiredOperation();
 
   /// The buffer
-  final FilteringRuleBuffer _buffer;
+  final FilteringRuleGroup _buffer;
+
+  LogicalChannel matchRetweet() => _buffer.appendSingletonOperator(
+        _conjunctionRequiredOperation.createIsRetweet(),
+      );
+
+  LogicalChannel notMatchRetweet() => _buffer.appendSingletonOperator(
+        _conjunctionRequiredOperation.createNegatedIsRetweet(),
+      );
+
+  LogicalChannel matchReply() => _buffer.appendSingletonOperator(
+        _conjunctionRequiredOperation.createIsReply(),
+      );
+
+  LogicalChannel notMatchReply() => _buffer.appendSingletonOperator(
+        _conjunctionRequiredOperation.createNegatedIsReply(),
+      );
+
+  LogicalChannel matchQuote() => _buffer.appendSingletonOperator(
+        _conjunctionRequiredOperation.createIsQuote(),
+      );
+
+  LogicalChannel notMatchQuote() => _buffer.appendSingletonOperator(
+        _conjunctionRequiredOperation.createNegatedIsQuote(),
+      );
+
+  LogicalChannel matchVerifiedAuthor() => _buffer.appendSingletonOperator(
+        _conjunctionRequiredOperation.createIsVerified(),
+      );
+
+  LogicalChannel notMatchVerifiedAuthor() => _buffer.appendSingletonOperator(
+        _conjunctionRequiredOperation.createNegatedIsVerified(),
+      );
+
+  LogicalChannel notMatchNullcast() => _buffer.appendSingletonOperator(
+        _conjunctionRequiredOperation.createNegatedIsNullCast(),
+      );
+
+  LogicalChannel matchWithHashtags() => _buffer.appendSingletonOperator(
+        _conjunctionRequiredOperation.createHasHashtags(),
+      );
+
+  LogicalChannel notMatchWithHashtags() => _buffer.appendSingletonOperator(
+        _conjunctionRequiredOperation.createNegatedHasHashtags(),
+      );
+
+  LogicalChannel matchWithCashtags() => _buffer.appendSingletonOperator(
+        _conjunctionRequiredOperation.createHasCashtags(),
+      );
+
+  LogicalChannel notMatchWithCashtags() => _buffer.appendSingletonOperator(
+        _conjunctionRequiredOperation.createNegatedHasCashtags(),
+      );
+
+  LogicalChannel matchWithLinks() => _buffer.appendSingletonOperator(
+        _conjunctionRequiredOperation.createHasLinks(),
+      );
+
+  LogicalChannel notMatchWithLinks() => _buffer.appendSingletonOperator(
+        _conjunctionRequiredOperation.createNegatedHasLinks(),
+      );
+
+  LogicalChannel matchWithMentions() => _buffer.appendSingletonOperator(
+        _conjunctionRequiredOperation.createHasMentions(),
+      );
+
+  LogicalChannel notMatchWithMentions() => _buffer.appendSingletonOperator(
+        _conjunctionRequiredOperation.createNegatedHasMentions(),
+      );
+
+  LogicalChannel matchWithMedia() => _buffer.appendSingletonOperator(
+        _conjunctionRequiredOperation.createHasMedia(),
+      );
+
+  LogicalChannel notMatchWithMedia() => _buffer.appendSingletonOperator(
+        _conjunctionRequiredOperation.createNegatedHasMedia(),
+      );
+
+  LogicalChannel matchWithImages() => _buffer.appendSingletonOperator(
+        _conjunctionRequiredOperation.createHasImages(),
+      );
+
+  LogicalChannel notMatchWithImages() => _buffer.appendSingletonOperator(
+        _conjunctionRequiredOperation.createNegatedHasImages(),
+      );
+
+  LogicalChannel matchWithVideoLinks() => _buffer.appendSingletonOperator(
+        _conjunctionRequiredOperation.createHasVideoLinks(),
+      );
+
+  LogicalChannel notMatchWithVideoLinks() => _buffer.appendSingletonOperator(
+        _conjunctionRequiredOperation.createNegatedHasVideoLinks(),
+      );
+
+  LogicalChannel matchWithGeo() => _buffer.appendSingletonOperator(
+        _conjunctionRequiredOperation.createHasGeo(),
+      );
+
+  LogicalChannel notMatchWithGeo() => _buffer.appendSingletonOperator(
+        _conjunctionRequiredOperation.createNegatedHasGeo(),
+      );
 }

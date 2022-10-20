@@ -4,7 +4,7 @@
 
 // Project imports:
 import '../channel/logical_channel.dart';
-import '../filtering_rule_buffer.dart';
+import '../filtering_rule_group.dart';
 import '../operation/standalone_operation.dart';
 import 'group_syntax.dart';
 
@@ -16,7 +16,7 @@ abstract class StandaloneSyntax extends GroupSyntax {
   static const _standaloneOperation = StandaloneOperation();
 
   /// The buffer
-  final FilteringRuleBuffer _buffer;
+  final FilteringRuleGroup _buffer;
 
   /// Matches a keyword within the body of a Tweet.
   ///

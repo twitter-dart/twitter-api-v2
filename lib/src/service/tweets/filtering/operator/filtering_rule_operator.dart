@@ -4,7 +4,6 @@
 
 // Project imports:
 import '../../../common/range.dart';
-import '../invalid_filtering_rule_exception.dart';
 import 'validation_result.dart';
 
 abstract class FilteringRuleOperator {
@@ -42,7 +41,7 @@ abstract class FilteringRuleOperator {
     final result = validate();
 
     if (result.hasError) {
-      throw InvalidFilteringRuleException(result.message);
+      throw ArgumentError(result.message);
     }
 
     if (negated) {

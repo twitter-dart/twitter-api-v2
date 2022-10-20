@@ -63,8 +63,7 @@ export 'package:twitter_api_v2/src/service/spaces/topic_field.dart';
 export 'package:twitter_api_v2/src/service/tweets/decahose_partition.dart';
 export 'package:twitter_api_v2/src/service/tweets/distance_unit.dart';
 export 'package:twitter_api_v2/src/service/tweets/exclude_tweet_type.dart';
-export 'package:twitter_api_v2/src/service/tweets/filtering/filtering_rule_buffer.dart'
-    show newFilteringRule;
+export 'package:twitter_api_v2/src/service/tweets/filtering/filtering_rule.dart';
 export 'package:twitter_api_v2/src/service/tweets/filtering_rule_data.dart';
 export 'package:twitter_api_v2/src/service/tweets/filtering_rule_meta.dart';
 export 'package:twitter_api_v2/src/service/tweets/filtering_rule_param.dart';

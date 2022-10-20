@@ -4,7 +4,7 @@
 
 // Project imports:
 import '../channel/logical_channel.dart';
-import '../filtering_rule_buffer.dart';
+import '../filtering_rule_group.dart';
 import '../operation/logical_operation.dart';
 import 'conclusion.dart';
 import 'filtering_rule_syntax.dart';
@@ -16,7 +16,7 @@ abstract class GroupSyntax implements FilteringRuleSyntax {
   static const _logicalOperation = LogicalOperation();
 
   /// The buffer
-  final FilteringRuleBuffer _buffer;
+  final FilteringRuleGroup _buffer;
 
   /// Add grouped rules.
   LogicalChannel group(final Conclusion conclusion) => _buffer.appendGroup(

@@ -4,9 +4,9 @@
 
 // Project imports:
 import '../validation_result.dart';
-import 'conjunction_required_operator.dart';
+import 'singleton_operator.dart';
 
-class Sample extends ConjunctionRequiredOperator {
+class Sample extends SingletonOperator {
   /// Returns the new instance of [Sample].
   const Sample(
     this.value, {
