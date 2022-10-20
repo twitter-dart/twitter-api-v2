@@ -30,5 +30,5 @@ class UserBio extends StandaloneOperator {
   }
 
   @override
-  String format() => 'user_bio:${toExactPhraseIfNecessary(value)}';
+  String format() => 'bio:${toExactPhraseIfNecessary(value)}';
 }
