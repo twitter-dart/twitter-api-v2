@@ -157,9 +157,9 @@ Future<void> main() async {
 
   try {
     // Erhalte das eingeloggte User Objekt
-    final me = await twitter.usersService.lookupMe();
+    final me = await twitter.users.lookupMe();
     // Erhalte die mit der Suche assoziierten Tweets
-    final tweets = await twitter.tweetsService.searchRecent(
+    final tweets = await twitter.tweets.searchRecent(
       query: '#ElonMusk',
       maxResults: 20,
       // Du kannst die Suche wie folgt erweitern:
@@ -179,19 +179,19 @@ Future<void> main() async {
       ],
     );
 
-    await twitter.tweetsService.createLike(
+    await twitter.tweets.createLike(
       userId: me.data.id,
       tweetId: tweets.data.first.id,
     );
 
     // Ein hoch-performanter Volume Stream Endpunkt kann wie folgt verwendet werden:
-    final volumeStream = await twitter.tweetsService.connectVolumeStream();
-    await for (final response in volumeStream.stream.handleError(print)) {
+    final sampleStream = await twitter.tweets.connectSampleStream();
+    await for (final response in sampleStream.stream.handleError(print)) {
       print(response);
     }
 
     // Ein hoch-performanter gefilterter Stream kann wie folgt verwendet werden:
-    await twitter.tweetsService.createFilteringRules(
+    await twitter.tweets.createFilteringRules(
       rules: [
         v2.FilteringRuleParam(value: '#ElonMusk'),
         v2.FilteringRuleParam(value: '#Tesla'),
@@ -199,7 +199,7 @@ Future<void> main() async {
       ],
     );
 
-    final filteredStream = await twitter.tweetsService.connectFilteredStream();
+    final filteredStream = await twitter.tweets.connectFilteredStream();
     await for (final response in filteredStream.stream.handleError(print)) {
       print(response.data);
       print(response.matchingRules);
@@ -298,7 +298,7 @@ Future<void> main() async {
 
 | Endpunkt                                                                                                                                      | Methoden Name                                                                                                                    |
 | --------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| [GET /2/tweets/sample/stream](https://developer.twitter.com/en/docs/twitter-api/tweets/volume-streams/api-reference/get-tweets-sample-stream) | [connectVolumeStream](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/connectVolumeStream.html) |
+| [GET /2/tweets/sample/stream](https://developer.twitter.com/en/docs/twitter-api/tweets/volume-streams/api-reference/get-tweets-sample-stream) | [connectSampleStream](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/connectSampleStream.html) |
 
 #### 1.2.1.12. Gefilterter Stream
 
@@ -470,7 +470,7 @@ import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
 Future<void> main() async {
   final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
 
-  await twitter.tweetsService.createTweet(
+  await twitter.tweets.createTweet(
     text: 'Hello, World!',
     mediaIds: null,
     expansions: null,
@@ -493,7 +493,7 @@ Future<void> main() async {
   final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
 
   try {
-    final tweets = await twitter.tweetsService.searchRecent(
+    final tweets = await twitter.tweets.searchRecent(
       query: '#ElonMusk',
       // Spezifiziere die Felder, die du benötigst:
       expansions: [
@@ -526,7 +526,7 @@ Future<void> main() async {
   final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
 
   try {
-    final tweets = await twitter.tweetsService.searchRecent(
+    final tweets = await twitter.tweets.searchRecent(
       query: '#ElonMusk',
       maxResults: 20,
       expansions: v2.TweetExpansion.values,

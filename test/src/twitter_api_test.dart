@@ -28,39 +28,39 @@ void main() {
   });
 
   group('services', () {
-    test('.tweetsService', () {
+    test('.tweets', () {
       final twitter = TwitterApi(bearerToken: 'XXX');
 
-      expect(twitter.tweetsService, isNotNull);
-      expect(twitter.tweetsService, isA<TweetsService>());
+      expect(twitter.tweets, isNotNull);
+      expect(twitter.tweets, isA<TweetsService>());
     });
 
-    test('.usersService', () {
+    test('.users', () {
       final twitter = TwitterApi(bearerToken: 'XXX');
 
-      expect(twitter.usersService, isNotNull);
-      expect(twitter.usersService, isA<UsersService>());
+      expect(twitter.users, isNotNull);
+      expect(twitter.users, isA<UsersService>());
     });
 
-    test('.spacesService', () {
+    test('.spaces', () {
       final twitter = TwitterApi(bearerToken: 'XXX');
 
-      expect(twitter.spacesService, isNotNull);
-      expect(twitter.spacesService, isA<SpacesService>());
+      expect(twitter.spaces, isNotNull);
+      expect(twitter.spaces, isA<SpacesService>());
     });
 
-    test('.listsService', () {
+    test('.lists', () {
       final twitter = TwitterApi(bearerToken: 'XXX');
 
-      expect(twitter.listsService, isNotNull);
-      expect(twitter.listsService, isA<ListsService>());
+      expect(twitter.lists, isNotNull);
+      expect(twitter.lists, isA<ListsService>());
     });
 
-    test('.complianceService', () {
+    test('.compliance', () {
       final twitter = TwitterApi(bearerToken: 'XXX');
 
-      expect(twitter.complianceService, isNotNull);
-      expect(twitter.complianceService, isA<ComplianceService>());
+      expect(twitter.compliance, isNotNull);
+      expect(twitter.compliance, isA<ComplianceService>());
     });
   });
 
@@ -71,14 +71,14 @@ void main() {
       final twitter = TwitterApi(bearerToken: 'XXX');
 
       expect(
-        () async => await twitter.tweetsService.lookupById(tweetId: ''),
+        () async => await twitter.tweets.lookupById(tweetId: ''),
         throwsA(isA<UnauthorizedException>()),
       );
     });
 
     test('GET Stream', () async {
       final twitter = TwitterApi(bearerToken: 'XXX');
-      final response = await twitter.tweetsService.connectVolumeStream();
+      final response = await twitter.tweets.connectSampleStream();
 
       //! Stream does not raise an exception when retrieving.
       expect(response, isNotNull);
@@ -90,7 +90,7 @@ void main() {
       final twitter = TwitterApi(bearerToken: 'XXX');
 
       expect(
-        () async => await twitter.tweetsService.createTweet(text: ''),
+        () async => await twitter.tweets.createTweet(text: ''),
         throwsA(isA<TwitterException>()),
       );
     });
@@ -99,7 +99,7 @@ void main() {
       final twitter = TwitterApi(bearerToken: 'XXX');
 
       expect(
-        () async => await twitter.tweetsService.destroyTweet(tweetId: ''),
+        () async => await twitter.tweets.destroyTweet(tweetId: ''),
         throwsA(isA<TwitterException>()),
       );
     });
@@ -108,7 +108,7 @@ void main() {
       final twitter = TwitterApi(bearerToken: 'XXX');
 
       expect(
-        () async => await twitter.listsService.updateListAsPrivate(listId: ''),
+        () async => await twitter.lists.updateListAsPrivate(listId: ''),
         throwsA(isA<TwitterException>()),
       );
     });
@@ -129,7 +129,7 @@ void main() {
       );
 
       expect(
-        () async => await twitter.tweetsService.lookupById(tweetId: ''),
+        () async => await twitter.tweets.lookupById(tweetId: ''),
         throwsA(isA<UnauthorizedException>()),
       );
     });
@@ -146,7 +146,7 @@ void main() {
       );
 
       expect(
-        () async => await twitter.tweetsService.createTweet(text: ''),
+        () async => await twitter.tweets.createTweet(text: ''),
         throwsA(isA<UnauthorizedException>()),
       );
     });
@@ -163,7 +163,7 @@ void main() {
       );
 
       expect(
-        () async => await twitter.tweetsService.destroyTweet(tweetId: ''),
+        () async => await twitter.tweets.destroyTweet(tweetId: ''),
         throwsA(isA<TwitterException>()),
       );
     });
@@ -180,7 +180,7 @@ void main() {
       );
 
       expect(
-        () async => await twitter.listsService.updateListAsPrivate(listId: ''),
+        () async => await twitter.lists.updateListAsPrivate(listId: ''),
         throwsA(isA<TwitterException>()),
       );
     });

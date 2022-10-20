@@ -63,6 +63,9 @@ enum TweetField implements Serializable {
   /// `text`
   text('text'),
 
+  /// `edit_controls`
+  editControls('edit_controls'),
+
   /// `withheld`
   withheld('withheld');
 

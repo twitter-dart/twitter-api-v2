@@ -45,9 +45,9 @@ Future<void> main() async {
 
   try {
     // Get the authenticated user's profile.
-    final me = await twitter.usersService.lookupMe();
+    final me = await twitter.users.lookupMe();
     // Get the tweets associated with the search query.
-    final tweets = await twitter.tweetsService.searchRecent(
+    final tweets = await twitter.tweets.searchRecent(
       query: '#ElonMusk',
       maxResults: 20,
       // You can expand the search result.
@@ -58,6 +58,7 @@ Future<void> main() async {
       tweetFields: [
         v2.TweetField.conversationId,
         v2.TweetField.publicMetrics,
+        v2.TweetField.editControls,
       ],
       userFields: [
         v2.UserField.location,
@@ -67,13 +68,13 @@ Future<void> main() async {
       ],
     );
 
-    await twitter.tweetsService.createLike(
+    await twitter.tweets.createLike(
       userId: me.data.id,
       tweetId: tweets.data.first.id,
     );
 
     // You can upload media such as image, gif and video.
-    final uploadedResponse = await twitter.mediaService.uploadMedia(
+    final uploadedResponse = await twitter.media.uploadMedia(
       file: File.fromUri(Uri.file('FILE_PATH')),
       altText: 'This is alt text.',
 
@@ -95,7 +96,7 @@ Future<void> main() async {
     );
 
     // You can easily post a tweet with the uploaded media.
-    await twitter.tweetsService.createTweet(
+    await twitter.tweets.createTweet(
       text: 'Tweet with uploaded media',
       media: v2.TweetMediaParam(
         mediaIds: [uploadedResponse.data.mediaId],
@@ -103,13 +104,13 @@ Future<void> main() async {
     );
 
     // High-performance Volume Stream endpoint is available.
-    final volumeStream = await twitter.tweetsService.connectVolumeStream();
-    await for (final response in volumeStream.stream.handleError(print)) {
+    final sampleStream = await twitter.tweets.connectSampleStream();
+    await for (final response in sampleStream.stream.handleError(print)) {
       print(response);
     }
 
     // Also high-performance Filtered Stream endpoint is available.
-    await twitter.tweetsService.createFilteringRules(
+    await twitter.tweets.createFilteringRules(
       rules: [
         v2.FilteringRuleParam(value: '#ElonMusk'),
         v2.FilteringRuleParam(value: '#Tesla'),
@@ -117,7 +118,7 @@ Future<void> main() async {
       ],
     );
 
-    final filteredStream = await twitter.tweetsService.connectFilteredStream();
+    final filteredStream = await twitter.tweets.connectFilteredStream();
     await for (final response in filteredStream.stream.handleError(print)) {
       print(response.data);
       print(response.matchingRules);
