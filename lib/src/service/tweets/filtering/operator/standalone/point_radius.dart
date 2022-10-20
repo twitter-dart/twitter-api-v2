@@ -78,6 +78,7 @@ class PointRadius extends StandaloneOperator {
             'The radius must be less than 40 in kilometers.',
           );
         }
+
         break;
     }
 
@@ -86,7 +87,7 @@ class PointRadius extends StandaloneOperator {
 
   @override
   String format() =>
-      'point_radius:[$longitude $latitude $radius{$_distanceUnitName}]';
+      'point_radius:[$longitude $latitude $radius$_distanceUnitName]';
 
   /// Returns the name of distance unit.
   String get _distanceUnitName {
