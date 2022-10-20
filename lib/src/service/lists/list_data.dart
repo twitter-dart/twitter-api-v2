@@ -7,6 +7,9 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+// Project imports:
+import '../common/data.dart';
+
 part 'list_data.freezed.dart';
 part 'list_data.g.dart';
 
@@ -26,7 +29,7 @@ part 'list_data.g.dart';
 /// additional fields to complete the primary List object and `user.fields` to
 /// complete the expansion object.
 @freezed
-class ListData with _$ListData {
+class ListData with _$ListData implements Data {
   const factory ListData({
     /// The unique identifier of this List.
     ///

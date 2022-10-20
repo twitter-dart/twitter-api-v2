@@ -5,11 +5,14 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+// Project imports:
+import '../common/meta.dart';
+
 part 'space_meta.freezed.dart';
 part 'space_meta.g.dart';
 
 @freezed
-class SpaceMeta with _$SpaceMeta {
+class SpaceMeta with _$SpaceMeta implements Meta {
   const factory SpaceMeta({
     /// The number of spaces returned in this request.
     required int? resultCount,

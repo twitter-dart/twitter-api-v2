@@ -69,7 +69,7 @@ void main() {
         ),
         throwsA(
           allOf(
-            isA<TwitterUploadException>(),
+            isA<ArgumentError>(),
             predicate(
               (dynamic e) =>
                   e.message == 'Cannot upload because the file size is 0.',

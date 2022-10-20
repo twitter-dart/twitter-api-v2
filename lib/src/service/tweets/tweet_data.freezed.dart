@@ -223,6 +223,21 @@ mixin _$TweetData {
   /// other app.
   String? get source => throw _privateConstructorUsedError;
 
+  /// Indicates if a Tweet is eligible for edit, how long it is editable for,
+  /// and the number of remaining edits.
+  ///
+  /// Editable Tweets can be edited for the first 30 minutes after
+  /// creation and can be edited up to five times.
+  TweetEditControls? get editControls => throw _privateConstructorUsedError;
+
+  /// Unique identifiers indicating all versions of an edited Tweet.
+  ///
+  /// For Tweets with no edits, there will be one ID. For Tweets with an edit
+  /// history, there will be multiple IDs, arranged in ascending order
+  /// reflecting the order of edit, with the most recent version in the last
+  /// position of the array.
+  List<String>? get editHistoryTweetIds => throw _privateConstructorUsedError;
+
   /// Contains withholding details for [withheld content](https://help.twitter.com/en/rules-and-policies/tweet-withheld-by-country).
   ///
   /// To return this field, add `TweetField.withheld` in the request's query
@@ -269,6 +284,8 @@ abstract class $TweetDataCopyWith<$Res> {
       @JsonKey(name: 'possibly_sensitive') bool? isPossiblySensitive,
       @JsonKey(name: 'reply_settings') ReplySetting? replySetting,
       String? source,
+      TweetEditControls? editControls,
+      List<String>? editHistoryTweetIds,
       TweetWithheld? withheld,
       DateTime? createdAt});
 
@@ -279,6 +296,7 @@ abstract class $TweetDataCopyWith<$Res> {
   $PromotedTweetMetricsCopyWith<$Res>? get promotedMetrics;
   $PublicTweetMetricsCopyWith<$Res>? get publicMetrics;
   $GeoCopyWith<$Res>? get geo;
+  $TweetEditControlsCopyWith<$Res>? get editControls;
   $TweetWithheldCopyWith<$Res>? get withheld;
 }
 
@@ -310,6 +328,8 @@ class _$TweetDataCopyWithImpl<$Res> implements $TweetDataCopyWith<$Res> {
     Object? isPossiblySensitive = freezed,
     Object? replySetting = freezed,
     Object? source = freezed,
+    Object? editControls = freezed,
+    Object? editHistoryTweetIds = freezed,
     Object? withheld = freezed,
     Object? createdAt = freezed,
   }) {
@@ -386,6 +406,14 @@ class _$TweetDataCopyWithImpl<$Res> implements $TweetDataCopyWith<$Res> {
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
               as String?,
+      editControls: editControls == freezed
+          ? _value.editControls
+          : editControls // ignore: cast_nullable_to_non_nullable
+              as TweetEditControls?,
+      editHistoryTweetIds: editHistoryTweetIds == freezed
+          ? _value.editHistoryTweetIds
+          : editHistoryTweetIds // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
       withheld: withheld == freezed
           ? _value.withheld
           : withheld // ignore: cast_nullable_to_non_nullable
@@ -476,6 +504,17 @@ class _$TweetDataCopyWithImpl<$Res> implements $TweetDataCopyWith<$Res> {
   }
 
   @override
+  $TweetEditControlsCopyWith<$Res>? get editControls {
+    if (_value.editControls == null) {
+      return null;
+    }
+
+    return $TweetEditControlsCopyWith<$Res>(_value.editControls!, (value) {
+      return _then(_value.copyWith(editControls: value));
+    });
+  }
+
+  @override
   $TweetWithheldCopyWith<$Res>? get withheld {
     if (_value.withheld == null) {
       return null;
@@ -512,6 +551,8 @@ abstract class _$$_TweetDataCopyWith<$Res> implements $TweetDataCopyWith<$Res> {
       @JsonKey(name: 'possibly_sensitive') bool? isPossiblySensitive,
       @JsonKey(name: 'reply_settings') ReplySetting? replySetting,
       String? source,
+      TweetEditControls? editControls,
+      List<String>? editHistoryTweetIds,
       TweetWithheld? withheld,
       DateTime? createdAt});
 
@@ -529,6 +570,8 @@ abstract class _$$_TweetDataCopyWith<$Res> implements $TweetDataCopyWith<$Res> {
   $PublicTweetMetricsCopyWith<$Res>? get publicMetrics;
   @override
   $GeoCopyWith<$Res>? get geo;
+  @override
+  $TweetEditControlsCopyWith<$Res>? get editControls;
   @override
   $TweetWithheldCopyWith<$Res>? get withheld;
 }
@@ -563,6 +606,8 @@ class __$$_TweetDataCopyWithImpl<$Res> extends _$TweetDataCopyWithImpl<$Res>
     Object? isPossiblySensitive = freezed,
     Object? replySetting = freezed,
     Object? source = freezed,
+    Object? editControls = freezed,
+    Object? editHistoryTweetIds = freezed,
     Object? withheld = freezed,
     Object? createdAt = freezed,
   }) {
@@ -639,6 +684,14 @@ class __$$_TweetDataCopyWithImpl<$Res> extends _$TweetDataCopyWithImpl<$Res>
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
               as String?,
+      editControls: editControls == freezed
+          ? _value.editControls
+          : editControls // ignore: cast_nullable_to_non_nullable
+              as TweetEditControls?,
+      editHistoryTweetIds: editHistoryTweetIds == freezed
+          ? _value._editHistoryTweetIds
+          : editHistoryTweetIds // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
       withheld: withheld == freezed
           ? _value.withheld
           : withheld // ignore: cast_nullable_to_non_nullable
@@ -673,10 +726,13 @@ class _$_TweetData implements _TweetData {
       @JsonKey(name: 'possibly_sensitive') this.isPossiblySensitive,
       @JsonKey(name: 'reply_settings') this.replySetting,
       this.source,
+      this.editControls,
+      final List<String>? editHistoryTweetIds,
       this.withheld,
       this.createdAt})
       : _referencedTweets = referencedTweets,
-        _contextAnnotations = contextAnnotations;
+        _contextAnnotations = contextAnnotations,
+        _editHistoryTweetIds = editHistoryTweetIds;
 
   factory _$_TweetData.fromJson(Map<String, dynamic> json) =>
       _$$_TweetDataFromJson(json);
@@ -932,6 +988,36 @@ class _$_TweetData implements _TweetData {
   @override
   final String? source;
 
+  /// Indicates if a Tweet is eligible for edit, how long it is editable for,
+  /// and the number of remaining edits.
+  ///
+  /// Editable Tweets can be edited for the first 30 minutes after
+  /// creation and can be edited up to five times.
+  @override
+  final TweetEditControls? editControls;
+
+  /// Unique identifiers indicating all versions of an edited Tweet.
+  ///
+  /// For Tweets with no edits, there will be one ID. For Tweets with an edit
+  /// history, there will be multiple IDs, arranged in ascending order
+  /// reflecting the order of edit, with the most recent version in the last
+  /// position of the array.
+  final List<String>? _editHistoryTweetIds;
+
+  /// Unique identifiers indicating all versions of an edited Tweet.
+  ///
+  /// For Tweets with no edits, there will be one ID. For Tweets with an edit
+  /// history, there will be multiple IDs, arranged in ascending order
+  /// reflecting the order of edit, with the most recent version in the last
+  /// position of the array.
+  @override
+  List<String>? get editHistoryTweetIds {
+    final value = _editHistoryTweetIds;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   /// Contains withholding details for [withheld content](https://help.twitter.com/en/rules-and-policies/tweet-withheld-by-country).
   ///
   /// To return this field, add `TweetField.withheld` in the request's query
@@ -953,7 +1039,7 @@ class _$_TweetData implements _TweetData {
 
   @override
   String toString() {
-    return 'TweetData(id: $id, text: $text, authorId: $authorId, inReplyToUserId: $inReplyToUserId, conversationId: $conversationId, referencedTweets: $referencedTweets, contextAnnotations: $contextAnnotations, entities: $entities, attachments: $attachments, privateMetrics: $privateMetrics, organicMetrics: $organicMetrics, promotedMetrics: $promotedMetrics, publicMetrics: $publicMetrics, geo: $geo, lang: $lang, isPossiblySensitive: $isPossiblySensitive, replySetting: $replySetting, source: $source, withheld: $withheld, createdAt: $createdAt)';
+    return 'TweetData(id: $id, text: $text, authorId: $authorId, inReplyToUserId: $inReplyToUserId, conversationId: $conversationId, referencedTweets: $referencedTweets, contextAnnotations: $contextAnnotations, entities: $entities, attachments: $attachments, privateMetrics: $privateMetrics, organicMetrics: $organicMetrics, promotedMetrics: $promotedMetrics, publicMetrics: $publicMetrics, geo: $geo, lang: $lang, isPossiblySensitive: $isPossiblySensitive, replySetting: $replySetting, source: $source, editControls: $editControls, editHistoryTweetIds: $editHistoryTweetIds, withheld: $withheld, createdAt: $createdAt)';
   }
 
   @override
@@ -990,6 +1076,10 @@ class _$_TweetData implements _TweetData {
             const DeepCollectionEquality()
                 .equals(other.replySetting, replySetting) &&
             const DeepCollectionEquality().equals(other.source, source) &&
+            const DeepCollectionEquality()
+                .equals(other.editControls, editControls) &&
+            const DeepCollectionEquality()
+                .equals(other._editHistoryTweetIds, _editHistoryTweetIds) &&
             const DeepCollectionEquality().equals(other.withheld, withheld) &&
             const DeepCollectionEquality().equals(other.createdAt, createdAt));
   }
@@ -1016,6 +1106,8 @@ class _$_TweetData implements _TweetData {
         const DeepCollectionEquality().hash(isPossiblySensitive),
         const DeepCollectionEquality().hash(replySetting),
         const DeepCollectionEquality().hash(source),
+        const DeepCollectionEquality().hash(editControls),
+        const DeepCollectionEquality().hash(_editHistoryTweetIds),
         const DeepCollectionEquality().hash(withheld),
         const DeepCollectionEquality().hash(createdAt)
       ]);
@@ -1056,6 +1148,8 @@ abstract class _TweetData implements TweetData {
       @JsonKey(name: 'reply_settings')
           final ReplySetting? replySetting,
       final String? source,
+      final TweetEditControls? editControls,
+      final List<String>? editHistoryTweetIds,
       final TweetWithheld? withheld,
       final DateTime? createdAt}) = _$_TweetData;
 
@@ -1280,6 +1374,23 @@ abstract class _TweetData implements TweetData {
   /// - Determine if a Twitter user posted from the web, mobile device, or
   /// other app.
   String? get source;
+  @override
+
+  /// Indicates if a Tweet is eligible for edit, how long it is editable for,
+  /// and the number of remaining edits.
+  ///
+  /// Editable Tweets can be edited for the first 30 minutes after
+  /// creation and can be edited up to five times.
+  TweetEditControls? get editControls;
+  @override
+
+  /// Unique identifiers indicating all versions of an edited Tweet.
+  ///
+  /// For Tweets with no edits, there will be one ID. For Tweets with an edit
+  /// history, there will be multiple IDs, arranged in ascending order
+  /// reflecting the order of edit, with the most recent version in the last
+  /// position of the array.
+  List<String>? get editHistoryTweetIds;
   @override
 
   /// Contains withholding details for [withheld content](https://help.twitter.com/en/rules-and-policies/tweet-withheld-by-country).

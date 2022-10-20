@@ -7,11 +7,14 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+// Project imports:
+import '../common/data.dart';
+
 part 'tweet_count_data.freezed.dart';
 part 'tweet_count_data.g.dart';
 
 @freezed
-class TweetCountData with _$TweetCountData {
+class TweetCountData with _$TweetCountData implements Data {
   const factory TweetCountData({
     /// Start time for the granularity.
     required DateTime start,

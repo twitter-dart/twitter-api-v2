@@ -147,9 +147,9 @@ Future<void> main() async {
 
   try {
     // Lấy về hồ sơ (profile) của người dùng đã xác thực
-    final me = await twitter.usersService.lookupMe();
+    final me = await twitter.users.lookupMe();
     // Lấy về các tweet với truy vấn tìm kiếm (query) tương ứng.
-    final tweets = await twitter.tweetsService.searchRecent(
+    final tweets = await twitter.tweets.searchRecent(
       query: '#ElonMusk',
       maxResults: 20,
       // Bạn có thể mở rộng kết quả tìm kiếm.
@@ -169,19 +169,19 @@ Future<void> main() async {
       ],
     );
 
-    await twitter.tweetsService.createLike(
+    await twitter.tweets.createLike(
       userId: me.data.id,
       tweetId: tweets.data.first.id,
     );
 
     // Stream endpoint với High-performance Volume thì có sẵn.
-    final volumeStream = await twitter.tweetsService.connectVolumeStream();
-    await for (final response in volumeStream.stream.handleError(print)) {
+    final sampleStream = await twitter.tweets.connectSampleStream();
+    await for (final response in sampleStream.stream.handleError(print)) {
       print(response);
     }
 
     // Stream endpoint với hiệu suất lọc cao cũng có sẵn.
-    await twitter.tweetsService.createFilteringRules(
+    await twitter.tweets.createFilteringRules(
       rules: [
         v2.FilteringRuleParam(value: '#ElonMusk'),
         v2.FilteringRuleParam(value: '#Tesla'),
@@ -189,7 +189,7 @@ Future<void> main() async {
       ],
     );
 
-    final filteredStream = await twitter.tweetsService.connectFilteredStream();
+    final filteredStream = await twitter.tweets.connectFilteredStream();
     await for (final response in filteredStream.stream.handleError(print)) {
       print(response.data);
       print(response.matchingRules);
@@ -288,7 +288,7 @@ Future<void> main() async {
 
 | Endpoint                                                                                                                                      | Tên Phương Thức                                                                                                                  |
 | --------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| [GET /2/tweets/sample/stream](https://developer.twitter.com/en/docs/twitter-api/tweets/volume-streams/api-reference/get-tweets-sample-stream) | [connectVolumeStream](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/connectVolumeStream.html) |
+| [GET /2/tweets/sample/stream](https://developer.twitter.com/en/docs/twitter-api/tweets/volume-streams/api-reference/get-tweets-sample-stream) | [connectSampleStream](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/connectSampleStream.html) |
 
 #### 1.2.1.12. Stream đã được lọc
 
@@ -462,7 +462,7 @@ import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
 Future<void> main() async {
   final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
 
-  await twitter.tweetsService.createTweet(
+  await twitter.tweets.createTweet(
     text: 'Hello, World!',
     // Các tham số này bị bỏ qua khi request vì chúng null.
     mediaIds: null,
@@ -486,7 +486,7 @@ Future<void> main() async {
   final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
 
   try {
-    final tweets = await twitter.tweetsService.searchRecent(
+    final tweets = await twitter.tweets.searchRecent(
       query: '#ElonMusk',
       // Chỉ định các trường bạn cần!
       expansions: [
@@ -519,7 +519,7 @@ Future<void> main() async {
   final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
 
   try {
-    final tweets = await twitter.tweetsService.searchRecent(
+    final tweets = await twitter.tweets.searchRecent(
       query: '#ElonMusk',
       maxResults: 20,
       expansions: v2.TweetExpansion.values,

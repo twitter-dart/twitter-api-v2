@@ -7,7 +7,7 @@ import 'package:test/test.dart';
 
 // Project imports:
 import 'package:twitter_api_v2/src/service/common/rate_limit.dart';
-import 'package:twitter_api_v2/src/service/filtered_stream_response.dart';
+import 'package:twitter_api_v2/src/service/response/filtered_stream_response.dart';
 import 'package:twitter_api_v2/src/service/tweets/matching_rule.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_data.dart';
 
@@ -38,7 +38,8 @@ void main() {
         'attachments: null, privateMetrics: null, organicMetrics: null, '
         'promotedMetrics: null, publicMetrics: null, geo: null, lang: null, '
         'isPossiblySensitive: null, replySetting: null, source: null, '
-        'withheld: null, createdAt: null), includes: null, meta: null, '
+        'editControls: null, editHistoryTweetIds: null, withheld: null, '
+        'createdAt: null), includes: null, meta: null, '
         'matchingRules: [MatchingRule(id: 456, tag: test)])');
   });
 }

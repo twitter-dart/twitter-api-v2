@@ -44,10 +44,10 @@ Future<void> main() async {
   );
 
   try {
-    // Get the authenticated user's profile.
-    final me = await twitter.usersService.lookupMe();
-    // Get the tweets associated with the search query.
-    final tweets = await twitter.tweetsService.searchRecent(
+    //! Get the authenticated user's profile.
+    final me = await twitter.users.lookupMe();
+    //! Get the tweets associated with the search query.
+    final tweets = await twitter.tweets.searchRecent(
       query: '#ElonMusk',
       maxResults: 20,
       // You can expand the search result.
@@ -58,6 +58,7 @@ Future<void> main() async {
       tweetFields: [
         v2.TweetField.conversationId,
         v2.TweetField.publicMetrics,
+        v2.TweetField.editControls,
       ],
       userFields: [
         v2.UserField.location,
@@ -65,34 +66,62 @@ Future<void> main() async {
         v2.UserField.entities,
         v2.UserField.publicMetrics,
       ],
+
+      //! Safe paging is easy to implement.
+      paging: (event) {
+        print(event.response);
+
+        if (event.count == 3) {
+          return v2.ForwardPaginationControl.stop();
+        }
+
+        return v2.ForwardPaginationControl.next();
+      },
     );
 
-    await twitter.tweetsService.createLike(
+    await twitter.tweets.createLike(
       userId: me.data.id,
       tweetId: tweets.data.first.id,
     );
 
-    // You can upload media such as image, gif and video.
-    final uploadedResponse = await twitter.mediaService.uploadMedia(
+    //! You can upload media such as image, gif and video.
+    final uploadedResponse = await twitter.media.uploadMedia(
       file: File.fromUri(Uri.file('FILE_PATH')),
+      altText: 'This is alt text.',
+
+      //! You can check the upload progress.
+      onProgress: (event) {
+        switch (event.state) {
+          case v2.UploadState.preparing:
+            print('Upload is preparing...');
+            break;
+          case v2.UploadState.inProgress:
+            print('${event.progress}% completed...');
+            break;
+          case v2.UploadState.completed:
+            print('Upload has completed!');
+            break;
+        }
+      },
+      onFailed: (error) => print('Upload failed due to "${error.message}"'),
     );
 
-    // You can easily post a tweet with the uploaded media.
-    await twitter.tweetsService.createTweet(
+    //! You can easily post a tweet with the uploaded media.
+    await twitter.tweets.createTweet(
       text: 'Tweet with uploaded media',
       media: v2.TweetMediaParam(
         mediaIds: [uploadedResponse.data.mediaId],
       ),
     );
 
-    // High-performance Volume Stream endpoint is available.
-    final volumeStream = await twitter.tweetsService.connectVolumeStream();
-    await for (final response in volumeStream.stream.handleError(print)) {
+    //! High-performance Volume Stream endpoint is available.
+    final sampleStream = await twitter.tweets.connectSampleStream();
+    await for (final response in sampleStream.stream.handleError(print)) {
       print(response);
     }
 
-    // Also high-performance Filtered Stream endpoint is available.
-    await twitter.tweetsService.createFilteringRules(
+    //! Also high-performance Filtered Stream endpoint is available.
+    await twitter.tweets.createFilteringRules(
       rules: [
         v2.FilteringRuleParam(value: '#ElonMusk'),
         v2.FilteringRuleParam(value: '#Tesla'),
@@ -100,7 +129,7 @@ Future<void> main() async {
       ],
     );
 
-    final filteredStream = await twitter.tweetsService.connectFilteredStream();
+    final filteredStream = await twitter.tweets.connectFilteredStream();
     await for (final response in filteredStream.stream.handleError(print)) {
       print(response.data);
       print(response.matchingRules);

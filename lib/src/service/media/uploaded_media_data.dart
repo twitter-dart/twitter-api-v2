@@ -7,12 +7,15 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+// Project imports:
+import '../common/data.dart';
+
 part 'uploaded_media_data.freezed.dart';
 part 'uploaded_media_data.g.dart';
 
 /// This object represents uploaded media data.
 @freezed
-class UploadedMediaData with _$UploadedMediaData {
+class UploadedMediaData with _$UploadedMediaData implements Data {
   const factory UploadedMediaData({
     /// The identifier for the uploaded media.
     @JsonKey(name: 'media_id_string') required String mediaId,

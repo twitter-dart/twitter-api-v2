@@ -6,15 +6,16 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
+import '../common/data.dart';
 import 'job_status.dart';
 import 'job_type.dart';
 
-part 'compliance_data.freezed.dart';
-part 'compliance_data.g.dart';
+part 'batch_compliance_data.freezed.dart';
+part 'batch_compliance_data.g.dart';
 
 @freezed
-class ComplianceData with _$ComplianceData {
-  const factory ComplianceData({
+class BatchComplianceData with _$BatchComplianceData implements Data {
+  const factory BatchComplianceData({
     /// The unique identifier for this job.
     required String id,
 
@@ -50,8 +51,8 @@ class ComplianceData with _$ComplianceData {
 
     /// The date and time when the job was created.
     required DateTime createdAt,
-  }) = _ComplianceData;
+  }) = _BatchComplianceData;
 
-  factory ComplianceData.fromJson(Map<String, Object?> json) =>
-      _$ComplianceDataFromJson(json);
+  factory BatchComplianceData.fromJson(Map<String, Object?> json) =>
+      _$BatchComplianceDataFromJson(json);
 }

@@ -8,6 +8,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
+import '../common/data.dart';
 import 'geo.dart';
 import 'organic_tweet_metrics.dart';
 import 'private_tweet_metrics.dart';
@@ -17,6 +18,7 @@ import 'referenced_tweet.dart';
 import 'reply_setting.dart';
 import 'tweet_attachments.dart';
 import 'tweet_context_annotation_group.dart';
+import 'tweet_edit_controls.dart';
 import 'tweet_entities.dart';
 import 'tweet_language.dart';
 import 'tweet_withheld.dart';
@@ -40,7 +42,7 @@ part 'tweet_data.g.dart';
 /// with only default fields. Use the expansion with the field parameter:
 /// tweet.fields when requesting additional fields to complete the object.
 @freezed
-class TweetData with _$TweetData {
+class TweetData with _$TweetData implements Data {
   const factory TweetData({
     /// Unique identifier of this Tweet. This is returned as a string in order
     /// to avoid complications with languages and tools that cannot handle
@@ -239,6 +241,21 @@ class TweetData with _$TweetData {
     /// - Determine if a Twitter user posted from the web, mobile device, or
     /// other app.
     String? source,
+
+    /// Indicates if a Tweet is eligible for edit, how long it is editable for,
+    /// and the number of remaining edits.
+    ///
+    /// Editable Tweets can be edited for the first 30 minutes after
+    /// creation and can be edited up to five times.
+    TweetEditControls? editControls,
+
+    /// Unique identifiers indicating all versions of an edited Tweet.
+    ///
+    /// For Tweets with no edits, there will be one ID. For Tweets with an edit
+    /// history, there will be multiple IDs, arranged in ascending order
+    /// reflecting the order of edit, with the most recent version in the last
+    /// position of the array.
+    List<String>? editHistoryTweetIds,
 
     /// Contains withholding details for [withheld content](https://help.twitter.com/en/rules-and-policies/tweet-withheld-by-country).
     ///

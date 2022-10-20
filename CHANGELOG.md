@@ -1,5 +1,65 @@
 # Release Note
 
+## v4.2.0
+
+- Deprecated properties in `TwitterApi` below and added new properties. It will be removed in v5.0.0, so please replace them to new property names. ([#483](https://github.com/twitter-dart/twitter-api-v2/issues/483))
+  - From `tweetsService` to `tweets`
+  - From `usersService` to `users`
+  - From `spacesService` to `spaces`
+  - From `listsService` to `lists`
+  - From `mediaService` to `media`
+  - From `complianceService` to `compliance`
+- For endpoints that can be paged, a callback function has been added to allow safe paging. Bidirectional or unidirectional paging can be performed by specifying the `paging` callback function in the following methods. ([#477](https://github.com/twitter-dart/twitter-api-v2/issues/477))
+  - `Tweets Service`
+    - [lookupLikingUsers](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupLikingUsers.html)
+    - [lookupLikedTweets](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupLikedTweets.html)
+    - [lookupRetweetedUsers](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupRetweetedUsers.html)
+    - [lookupQuoteTweets](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupQuoteTweets.html)
+    - [lookupMentions](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupMentions.html)
+    - [lookupTweets](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupTweets.html)
+    - [lookupHomeTimeline](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupHomeTimeline.html)
+    - [searchRecent](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/searchRecent.html)
+    - [searchAll](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/searchAll.html)
+    - [countAll](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/countAll.html)
+  - `Users Service`
+    - [lookupFollowers](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/lookupFollowers.html)
+    - [lookupFollowings](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/lookupFollowings.html)
+    - [lookupMutingUsers](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/lookupMutingUsers.html)
+    - [lookupBlockingUsers](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/lookupBlockingUsers.html)
+  - `Lists Service`
+    - [lookupOwnedBy](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/lookupOwnedBy.html)
+    - [lookupTweets](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/lookupTweets.html)
+    - [lookupFollowers](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/lookupFollowers.html)
+    - [lookupFollowedLists](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/lookupFollowedLists.html)
+    - [lookupMembers](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/lookupMembers.html)
+    - [lookupMemberships](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/lookupMemberships.html)
+
+## v4.1.5
+
+- Added `TweetEditControls` object. This object holds information about the editing of tweets. You can use it from `TweetData.editControls`, and also you must pass the `editControls` element to `tweetFields`. ([#472](https://github.com/twitter-dart/twitter-api-v2/issues/472))
+- Added `editHistoryTweetIds` field in `TweetData`. ([#471](https://github.com/twitter-dart/twitter-api-v2/issues/471))
+
+## v4.1.4
+
+- Renamed object from `ComplianceData` to `BatchComplianceData`. If you are using the object name `ComplianceData` explicitly, modify it to `BatchComplianceData`. ([#462](https://github.com/twitter-dart/twitter-api-v2/issues/462))
+- Deprecated `connectVolumeStream` and added `connectSampleStream` instead. Please replace method name from `connectVolumeStream` to `connectSampleStream`. ([#479](https://github.com/twitter-dart/twitter-api-v2/issues/479))
+- Supported `connectSample10Stream` in Tweets Service. This feature is available to Enterprise levels of access. Also, this is commonly referred to as the **Decahose**. ([#473](https://github.com/twitter-dart/twitter-api-v2/issues/473))
+
+## v4.1.3
+
+- Added the feature to set Alt Text when uploading media. Please set the Alt Text you want to set to the argument `altText` of the following method within 1000 characters. However, Alt Text can be set only for images and GIFs. Alt Text for videos will be ignored. ([#435](https://github.com/twitter-dart/twitter-api-v2/issues/435))
+  - `uploadImage`
+  - `uploadMedia`
+
+## v4.1.2
+
+- Improved handling of `uploadMedia` method when using the `onProgress` callback. In previous versions, if the media upload was completed immediately, the `completed` event would not be notified, but from this version you will always get a `completed` event at the end of process. ([#466](https://github.com/twitter-dart/twitter-api-v2/issues/466))
+- Added `onFailed` callback to `uploadMedia` method. You can check error information when upload is failed. ([#456](https://github.com/twitter-dart/twitter-api-v2/issues/456))
+
+## v4.1.1
+
+- Added a callback function to check the progress of uploading large media from `uploadMedia`. You can get the `state` of the upload and the `progress` in percent from the `UploadEvent` object passed from the callback function. ([#454](https://github.com/twitter-dart/twitter-api-v2/issues/454))
+
 ## v4.1.0
 
 - Supported the upload media (GIF, Video...). ([#434](https://github.com/twitter-dart/twitter-api-v2/issues/434))

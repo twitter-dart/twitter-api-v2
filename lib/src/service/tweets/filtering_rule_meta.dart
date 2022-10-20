@@ -8,13 +8,14 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
+import '../common/meta.dart';
 import 'filtering_rule_summary.dart';
 
 part 'filtering_rule_meta.freezed.dart';
 part 'filtering_rule_meta.g.dart';
 
 @freezed
-class FilteringRuleMeta with _$FilteringRuleMeta {
+class FilteringRuleMeta with _$FilteringRuleMeta implements Meta {
   const factory FilteringRuleMeta({
     /// The time when the request body was returned.
     @JsonKey(name: 'sent') DateTime? sentAt,

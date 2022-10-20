@@ -2,17 +2,18 @@
 
 // ignore_for_file: non_constant_identifier_names
 
-part of 'compliance_data.dart';
+part of 'batch_compliance_data.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ComplianceData _$$_ComplianceDataFromJson(Map json) => $checkedCreate(
-      r'_$_ComplianceData',
+_$_BatchComplianceData _$$_BatchComplianceDataFromJson(Map json) =>
+    $checkedCreate(
+      r'_$_BatchComplianceData',
       json,
       ($checkedConvert) {
-        final val = _$_ComplianceData(
+        final val = _$_BatchComplianceData(
           id: $checkedConvert('id', (v) => v as String),
           type:
               $checkedConvert('type', (v) => $enumDecode(_$JobTypeEnumMap, v)),
@@ -39,7 +40,8 @@ _$_ComplianceData _$$_ComplianceDataFromJson(Map json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$$_ComplianceDataToJson(_$_ComplianceData instance) =>
+Map<String, dynamic> _$$_BatchComplianceDataToJson(
+        _$_BatchComplianceData instance) =>
     <String, dynamic>{
       'id': instance.id,
       'type': _$JobTypeEnumMap[instance.type]!,
