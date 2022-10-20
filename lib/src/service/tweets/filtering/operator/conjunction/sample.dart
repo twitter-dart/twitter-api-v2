@@ -8,21 +8,16 @@ import 'singleton_operator.dart';
 
 class Sample extends SingletonOperator {
   /// Returns the new instance of [Sample].
-  const Sample(
-    this.value, {
-    bool negated = false,
-  }) : super(negated);
+  const Sample(this.percent) : super(false);
 
-  factory Sample.negated(final int value) => Sample(value, negated: true);
-
-  /// The value
-  final int value;
+  /// The percent
+  final int percent;
 
   @override
   ValidationResult validate() {
-    if (!(1 <= value || value <= 100)) {
+    if (!(1 <= percent || percent <= 100)) {
       return ValidationResult.failed(
-        'The sample must be from 1 to 100.',
+        'The percent must be from 1 to 100.',
       );
     }
 
@@ -30,5 +25,5 @@ class Sample extends SingletonOperator {
   }
 
   @override
-  String format() => 'sample:$value';
+  String format() => 'sample:$percent';
 }

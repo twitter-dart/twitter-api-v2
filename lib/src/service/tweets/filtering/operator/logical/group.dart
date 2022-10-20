@@ -8,16 +8,7 @@ import 'logical_operator.dart';
 
 class Group extends LogicalOperator {
   /// Returns the new instance of [Group].
-  const Group(
-    this.conclusion, {
-    bool negated = false,
-  }) : super(negated);
-
-  /// Returns the new instance of negated [Group] object.
-  factory Group.negated(final Conclusion conclusion) => Group(
-        conclusion,
-        negated: true,
-      );
+  const Group(this.conclusion) : super(false);
 
   /// The conclusion of rule
   final Conclusion conclusion;

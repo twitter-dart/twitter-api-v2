@@ -2,10 +2,24 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+// Project imports:
+import '../../../common/range.dart';
+import '../../tweet_language.dart';
+import '../operator/conjunction/followers_count.dart';
+import '../operator/conjunction/following_count.dart';
 import '../operator/conjunction/has_operator.dart';
 import '../operator/conjunction/has_operator_type.dart';
 import '../operator/conjunction/is_operator.dart';
 import '../operator/conjunction/is_operator_type.dart';
+import '../operator/conjunction/listed_count.dart';
+import '../operator/conjunction/replies_of.dart';
+import '../operator/conjunction/retweets_of.dart';
+import '../operator/conjunction/source.dart';
+import '../operator/conjunction/tweet_lang.dart';
+import '../operator/conjunction/tweets_count.dart';
+import '../operator/conjunction/url_contains.dart';
+import '../operator/conjunction/url_description.dart';
+import '../operator/conjunction/url_title.dart';
 
 class ConjunctionRequiredOperation {
   /// Returns the new instance of [ConjunctionRequiredOperation].
@@ -181,4 +195,94 @@ class ConjunctionRequiredOperation {
   /// Returns the new instance of negated [HasOperator]
   /// based on [HasOperatorType.geo].
   HasOperator createNegatedHasGeo() => _hasNotGeo;
+
+  /// Returns the new instance of [TweetLang] based on [language].
+  TweetLang createTweetLang(final TweetLanguage language) =>
+      TweetLang(language);
+
+  /// Returns the new instance of negated [TweetLang]
+  /// based on [language].
+  TweetLang createNegatedTweetLang(final TweetLanguage language) =>
+      TweetLang.negated(language);
+
+  /// Returns the new instance of [FollowersCount] based on [range].
+  FollowersCount createFollowersCount(final Range range) =>
+      FollowersCount(range);
+
+  /// Returns the new instance of negated [FollowersCount]
+  /// based on [range].
+  FollowersCount createNegatedFollowersCount(final Range range) =>
+      FollowersCount.negated(range);
+
+  /// Returns the new instance of [TweetsCount] based on [range].
+  TweetsCount createTweetsCount(final Range range) => TweetsCount(range);
+
+  /// Returns the new instance of negated [TweetsCount]
+  /// based on [range].
+  TweetsCount createNegatedTweetsCount(final Range range) =>
+      TweetsCount.negated(range);
+
+  /// Returns the new instance of [FollowingCount] based on [range].
+  FollowingCount createFollowingCount(final Range range) =>
+      FollowingCount(range);
+
+  /// Returns the new instance of negated [FollowingCount]
+  /// based on [range].
+  FollowingCount createNegatedFollowingCount(final Range range) =>
+      FollowingCount.negated(range);
+
+  /// Returns the new instance of [ListedCount] based on [range].
+  ListedCount createListedCount(final Range range) => ListedCount(range);
+
+  /// Returns the new instance of negated [ListedCount]
+  /// based on [range].
+  ListedCount createNegatedListedCount(final Range range) =>
+      ListedCount.negated(range);
+
+  /// Returns the new instance of [UrlTitle] based on [value].
+  UrlTitle createUrlTitle(final String value) => UrlTitle(value);
+
+  /// Returns the new instance of negated [UrlTitle]
+  /// based on [value].
+  UrlTitle createNegatedUrlTitle(final String value) => UrlTitle.negated(value);
+
+  /// Returns the new instance of [UrlDescription] based on [value].
+  UrlDescription createUrlDescription(final String value) =>
+      UrlDescription(value);
+
+  /// Returns the new instance of negated [UrlDescription]
+  /// based on [value].
+  UrlDescription createNegatedUrlDescription(final String value) =>
+      UrlDescription.negated(value);
+
+  /// Returns the new instance of [UrlContains] based on [value].
+  UrlContains createUrlContains(final String value) => UrlContains(value);
+
+  /// Returns the new instance of negated [UrlContains]
+  /// based on [value].
+  UrlContains createNegatedUrlContains(final String value) =>
+      UrlContains.negated(value);
+
+  /// Returns the new instance of [Source] based on [value].
+  Source createSource(final String value) => Source(value);
+
+  /// Returns the new instance of negated [Source]
+  /// based on [value].
+  Source createNegatedSource(final String value) => Source.negated(value);
+
+  /// Returns the new instance of [RepliesOf] based on [tweetId].
+  RepliesOf createRepliesOf(final String tweetId) => RepliesOf(tweetId);
+
+  /// Returns the new instance of negated [RepliesOf]
+  /// based on [tweetId].
+  RepliesOf createNegatedRepliesOf(final String tweetId) =>
+      RepliesOf.negated(tweetId);
+
+  /// Returns the new instance of [RetweetsOf] based on [tweetId].
+  RetweetsOf createRetweetsOf(final String tweetId) => RetweetsOf(tweetId);
+
+  /// Returns the new instance of negated [RetweetsOf]
+  /// based on [tweetId].
+  RetweetsOf createNegatedRetweetsOf(final String tweetId) =>
+      RetweetsOf.negated(tweetId);
 }

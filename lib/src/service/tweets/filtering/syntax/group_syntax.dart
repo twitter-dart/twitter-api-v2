@@ -22,10 +22,4 @@ abstract class GroupSyntax implements FilteringRuleSyntax {
   LogicalChannel group(final Conclusion conclusion) => _buffer.appendGroup(
         _logicalOperation.createGroup(conclusion),
       );
-
-  /// Add negated grouped rules.
-  LogicalChannel negatedGroup(final Conclusion conclusion) =>
-      _buffer.appendGroup(
-        _logicalOperation.createNegatedGroup(conclusion),
-      );
 }
