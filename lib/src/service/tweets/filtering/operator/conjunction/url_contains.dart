@@ -31,5 +31,5 @@ class UrlContains extends ConjunctionRequiredOperator {
   }
 
   @override
-  String format() => 'url_contains:${toExactPhraseIfNecessary(value)}';
+  String format() => 'url_contains:$value';
 }

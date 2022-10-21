@@ -15,7 +15,7 @@ class Sample extends SingletonOperator {
 
   @override
   ValidationResult validate() {
-    if (!(1 <= percent || percent <= 100)) {
+    if (!(1 <= percent && percent <= 100)) {
       return ValidationResult.failed(
         'The percent must be from 1 to 100.',
       );

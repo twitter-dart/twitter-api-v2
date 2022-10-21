@@ -22,7 +22,7 @@ class FollowersCount extends ConjunctionRequiredOperator {
 
   @override
   ValidationResult validate() {
-    if (range.from.isNegative || range.to.isNegative) {
+    if (range.from.isNegative) {
       return ValidationResult.failed(
         'The range must not be negative.',
       );

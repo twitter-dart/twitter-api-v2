@@ -6,24 +6,24 @@
 import 'package:test/test.dart';
 
 // Project imports:
-import 'package:twitter_api_v2/src/service/tweets/filtering/operator/standalone/user_bio_name.dart';
+import 'package:twitter_api_v2/src/service/tweets/filtering/operator/conjunction/url_contains.dart';
 
 void main() {
   group('.toString', () {
     test('normal case', () {
-      final actual = UserBioName('Me');
+      final actual = UrlContains('twitter');
 
-      expect(actual.toString(), 'bio_name:Me');
+      expect(actual.toString(), 'url_contains:twitter');
     });
 
     test('when negated', () {
-      final actual = UserBioName.negated('Me');
+      final actual = UrlContains.negated('twitter');
 
-      expect(actual.toString(), '-bio_name:Me');
+      expect(actual.toString(), '-url_contains:twitter');
     });
 
     test('when value is empty', () {
-      final actual = UserBioName('');
+      final actual = UrlContains('');
 
       expect(
         () => actual.toString(),
@@ -32,7 +32,7 @@ void main() {
             isA<ArgumentError>(),
             predicate(
               (dynamic e) =>
-                  e.message == 'The bio name must not be an empty string.',
+                  e.message == 'The value must not be an empty string.',
             ),
           ),
         ),

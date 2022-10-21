@@ -9,7 +9,7 @@ enum HasOperatorType {
   mentions('mentions'),
   media('media'),
   images('images'),
-  videoLink('videoLink'),
+  videoLink('video_link'),
   geo('geo');
 
   /// The value

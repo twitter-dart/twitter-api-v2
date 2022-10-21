@@ -31,5 +31,5 @@ class RepliesOf extends ConjunctionRequiredOperator {
   }
 
   @override
-  String format() => 'in_reply_to_tweet_id:$tweetId}';
+  String format() => 'in_reply_to_tweet_id:$tweetId';
 }

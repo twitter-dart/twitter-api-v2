@@ -22,7 +22,7 @@ class Source extends ConjunctionRequiredOperator {
   ValidationResult validate() {
     if (value.isEmpty) {
       return ValidationResult.failed(
-        'The value must be an empty string.',
+        'The source must not be an empty string.',
       );
     }
 

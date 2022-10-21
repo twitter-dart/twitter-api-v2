@@ -31,5 +31,5 @@ class RetweetsOf extends ConjunctionRequiredOperator {
   }
 
   @override
-  String format() => 'retweets_of_tweet_id:$tweetId}';
+  String format() => 'retweets_of_tweet_id:$tweetId';
 }
