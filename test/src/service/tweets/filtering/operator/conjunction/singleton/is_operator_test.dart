@@ -6,8 +6,8 @@
 import 'package:test/test.dart';
 
 // Project imports:
-import 'package:twitter_api_v2/src/service/tweets/filtering/operator/conjunction/is_operator.dart';
-import 'package:twitter_api_v2/src/service/tweets/filtering/operator/conjunction/is_operator_type.dart';
+import 'package:twitter_api_v2/src/service/tweets/filtering/operator/conjunction/singleton/is_operator.dart';
+import 'package:twitter_api_v2/src/service/tweets/filtering/operator/conjunction/singleton/is_operator_type.dart';
 
 void main() {
   group('.toString', () {

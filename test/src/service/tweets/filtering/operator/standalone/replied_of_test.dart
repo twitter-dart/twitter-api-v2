@@ -6,7 +6,7 @@
 import 'package:test/test.dart';
 
 // Project imports:
-import 'package:twitter_api_v2/src/service/tweets/filtering/operator/conjunction/replies_of.dart';
+import 'package:twitter_api_v2/src/service/tweets/filtering/operator/standalone/replies_of.dart';
 
 void main() {
   group('.toString', () {

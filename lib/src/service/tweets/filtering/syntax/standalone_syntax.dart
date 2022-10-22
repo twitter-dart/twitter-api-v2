@@ -3,6 +3,7 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
+import '../../../common/range.dart';
 import '../channel/logical_channel.dart';
 import '../filtering_rule_group.dart';
 import '../operation/standalone_operation.dart';
@@ -95,5 +96,95 @@ abstract class StandaloneSyntax extends GroupSyntax {
   LogicalChannel matchTweetTo(final String username) =>
       _buffer.appendStandaloneOperator(
         _standaloneOperation.createTweetTo(username),
+      );
+
+  LogicalChannel matchFollowersCount(final Range range) =>
+      _buffer.appendStandaloneOperator(
+        _standaloneOperation.createFollowersCount(range),
+      );
+
+  LogicalChannel notMatchFollowersCount(final Range range) =>
+      _buffer.appendStandaloneOperator(
+        _standaloneOperation.createNegatedFollowersCount(range),
+      );
+
+  LogicalChannel matchTweetsCount(final Range range) =>
+      _buffer.appendStandaloneOperator(
+        _standaloneOperation.createTweetsCount(range),
+      );
+
+  LogicalChannel notMatchTweetsCount(final Range range) =>
+      _buffer.appendStandaloneOperator(
+        _standaloneOperation.createNegatedTweetsCount(range),
+      );
+
+  LogicalChannel matchFollowingCount(final Range range) =>
+      _buffer.appendStandaloneOperator(
+        _standaloneOperation.createFollowingCount(range),
+      );
+
+  LogicalChannel notMatchFollowingCount(final Range range) =>
+      _buffer.appendStandaloneOperator(
+        _standaloneOperation.createNegatedFollowingCount(range),
+      );
+
+  LogicalChannel matchListedCount(final Range range) =>
+      _buffer.appendStandaloneOperator(
+        _standaloneOperation.createListedCount(range),
+      );
+
+  LogicalChannel notMatchListedCount(final Range range) =>
+      _buffer.appendStandaloneOperator(
+        _standaloneOperation.createNegatedListedCount(range),
+      );
+
+  LogicalChannel matchUrlTitle(final String value) =>
+      _buffer.appendStandaloneOperator(
+        _standaloneOperation.createUrlTitle(value),
+      );
+
+  LogicalChannel notMatchUrlTitle(final String value) =>
+      _buffer.appendStandaloneOperator(
+        _standaloneOperation.createNegatedUrlTitle(value),
+      );
+
+  LogicalChannel matchUrlDescription(final String value) =>
+      _buffer.appendStandaloneOperator(
+        _standaloneOperation.createUrlDescription(value),
+      );
+
+  LogicalChannel notMatchUrlDescription(final String value) =>
+      _buffer.appendStandaloneOperator(
+        _standaloneOperation.createNegatedUrlDescription(value),
+      );
+
+  LogicalChannel matchUrlPartially(final String value) =>
+      _buffer.appendStandaloneOperator(
+        _standaloneOperation.createUrlContains(value),
+      );
+
+  LogicalChannel notMatchUrlPartially(final String value) =>
+      _buffer.appendStandaloneOperator(
+        _standaloneOperation.createNegatedUrlContains(value),
+      );
+
+  LogicalChannel matchRepliesOf(final String tweetId) =>
+      _buffer.appendStandaloneOperator(
+        _standaloneOperation.createRepliesOf(tweetId),
+      );
+
+  LogicalChannel notMatchRepliesOf(final String tweetId) =>
+      _buffer.appendStandaloneOperator(
+        _standaloneOperation.createNegatedRepliesOf(tweetId),
+      );
+
+  LogicalChannel matchRetweetOf(final String tweetId) =>
+      _buffer.appendStandaloneOperator(
+        _standaloneOperation.createRetweetsOf(tweetId),
+      );
+
+  LogicalChannel notMatchRetweetOf(final String tweetId) =>
+      _buffer.appendStandaloneOperator(
+        _standaloneOperation.createNegatedRetweetsOf(tweetId),
       );
 }

@@ -3,21 +3,13 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
-import '../../../common/range.dart';
 import '../../tweet_language.dart';
-import '../operator/conjunction/has_operator.dart';
-import '../operator/conjunction/has_operator_type.dart';
-import '../operator/conjunction/is_operator.dart';
-import '../operator/conjunction/is_operator_type.dart';
-import '../operator/conjunction/range_operator.dart';
-import '../operator/conjunction/range_operator_type.dart';
-import '../operator/conjunction/replies_of.dart';
-import '../operator/conjunction/retweets_of.dart';
+import '../operator/conjunction/singleton/has_operator.dart';
+import '../operator/conjunction/singleton/has_operator_type.dart';
+import '../operator/conjunction/singleton/is_operator.dart';
+import '../operator/conjunction/singleton/is_operator_type.dart';
 import '../operator/conjunction/source.dart';
 import '../operator/conjunction/tweet_lang.dart';
-import '../operator/conjunction/url_contains.dart';
-import '../operator/conjunction/url_description.dart';
-import '../operator/conjunction/url_title.dart';
 
 class ConjunctionRequiredOperation {
   /// Returns the new instance of [ConjunctionRequiredOperation].
@@ -203,86 +195,10 @@ class ConjunctionRequiredOperation {
   TweetLang createNegatedTweetLang(final TweetLanguage language) =>
       TweetLang.negated(language);
 
-  /// Returns the new instance of [RangeOperator] based on [range].
-  RangeOperator createFollowersCount(final Range range) =>
-      RangeOperator(RangeOperatorType.followersCount, range);
-
-  /// Returns the new instance of negated [RangeOperator]
-  /// based on [range].
-  RangeOperator createNegatedFollowersCount(final Range range) =>
-      RangeOperator.negated(RangeOperatorType.followersCount, range);
-
-  /// Returns the new instance of [RangeOperator] based on [range].
-  RangeOperator createTweetsCount(final Range range) =>
-      RangeOperator(RangeOperatorType.tweetsCount, range);
-
-  /// Returns the new instance of negated [RangeOperator]
-  /// based on [range].
-  RangeOperator createNegatedTweetsCount(final Range range) =>
-      RangeOperator.negated(RangeOperatorType.tweetsCount, range);
-
-  /// Returns the new instance of [RangeOperator] based on [range].
-  RangeOperator createFollowingCount(final Range range) =>
-      RangeOperator(RangeOperatorType.followingCount, range);
-
-  /// Returns the new instance of negated [RangeOperator]
-  /// based on [range].
-  RangeOperator createNegatedFollowingCount(final Range range) =>
-      RangeOperator.negated(RangeOperatorType.followingCount, range);
-
-  /// Returns the new instance of [RangeOperator] based on [range].
-  RangeOperator createListedCount(final Range range) =>
-      RangeOperator(RangeOperatorType.listedCount, range);
-
-  /// Returns the new instance of negated [RangeOperator]
-  /// based on [range].
-  RangeOperator createNegatedListedCount(final Range range) =>
-      RangeOperator.negated(RangeOperatorType.listedCount, range);
-
-  /// Returns the new instance of [UrlTitle] based on [value].
-  UrlTitle createUrlTitle(final String value) => UrlTitle(value);
-
-  /// Returns the new instance of negated [UrlTitle]
-  /// based on [value].
-  UrlTitle createNegatedUrlTitle(final String value) => UrlTitle.negated(value);
-
-  /// Returns the new instance of [UrlDescription] based on [value].
-  UrlDescription createUrlDescription(final String value) =>
-      UrlDescription(value);
-
-  /// Returns the new instance of negated [UrlDescription]
-  /// based on [value].
-  UrlDescription createNegatedUrlDescription(final String value) =>
-      UrlDescription.negated(value);
-
-  /// Returns the new instance of [UrlContains] based on [value].
-  UrlContains createUrlContains(final String value) => UrlContains(value);
-
-  /// Returns the new instance of negated [UrlContains]
-  /// based on [value].
-  UrlContains createNegatedUrlContains(final String value) =>
-      UrlContains.negated(value);
-
   /// Returns the new instance of [Source] based on [value].
   Source createSource(final String value) => Source(value);
 
   /// Returns the new instance of negated [Source]
   /// based on [value].
   Source createNegatedSource(final String value) => Source.negated(value);
-
-  /// Returns the new instance of [RepliesOf] based on [tweetId].
-  RepliesOf createRepliesOf(final String tweetId) => RepliesOf(tweetId);
-
-  /// Returns the new instance of negated [RepliesOf]
-  /// based on [tweetId].
-  RepliesOf createNegatedRepliesOf(final String tweetId) =>
-      RepliesOf.negated(tweetId);
-
-  /// Returns the new instance of [RetweetsOf] based on [tweetId].
-  RetweetsOf createRetweetsOf(final String tweetId) => RetweetsOf(tweetId);
-
-  /// Returns the new instance of negated [RetweetsOf]
-  /// based on [tweetId].
-  RetweetsOf createNegatedRetweetsOf(final String tweetId) =>
-      RetweetsOf.negated(tweetId);
 }

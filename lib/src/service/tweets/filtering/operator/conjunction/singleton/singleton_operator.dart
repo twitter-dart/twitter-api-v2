@@ -3,7 +3,7 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
-import 'conjunction_required_operator.dart';
+import '../conjunction_required_operator.dart';
 
 abstract class SingletonOperator extends ConjunctionRequiredOperator {
   /// Returns the new instance of [SingletonOperator].

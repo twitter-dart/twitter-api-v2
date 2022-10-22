@@ -5,10 +5,10 @@
 // Project imports:
 import '../../../../common/range.dart';
 import '../validation_result.dart';
-import 'conjunction_required_operator.dart';
 import 'range_operator_type.dart';
+import 'standalone_operator.dart';
 
-class RangeOperator extends ConjunctionRequiredOperator {
+class RangeOperator extends StandaloneOperator {
   /// Returns the new instance of [RangeOperator].
   const RangeOperator(
     this.type,

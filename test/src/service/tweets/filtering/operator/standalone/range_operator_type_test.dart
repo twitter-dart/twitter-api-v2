@@ -2,8 +2,11 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+// Package imports:
 import 'package:test/test.dart';
-import 'package:twitter_api_v2/src/service/tweets/filtering/operator/conjunction/range_operator_type.dart';
+
+// Project imports:
+import 'package:twitter_api_v2/src/service/tweets/filtering/operator/standalone/range_operator_type.dart';
 
 void main() {
   test('.name', () {

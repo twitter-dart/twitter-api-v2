@@ -4,17 +4,17 @@
 
 // Project imports:
 import '../validation_result.dart';
-import 'conjunction_required_operator.dart';
+import 'standalone_operator.dart';
 
-class RetweetsOf extends ConjunctionRequiredOperator {
-  /// Returns the new instance of [RetweetsOf].
-  const RetweetsOf(
+class RepliesOf extends StandaloneOperator {
+  /// Returns the new instance of [RepliesOf].
+  const RepliesOf(
     this.tweetId, {
     bool negated = false,
   }) : super(negated);
 
-  factory RetweetsOf.negated(final String tweetId) =>
-      RetweetsOf(tweetId, negated: true);
+  factory RepliesOf.negated(final String tweetId) =>
+      RepliesOf(tweetId, negated: true);
 
   /// The value
   final String tweetId;
@@ -31,5 +31,5 @@ class RetweetsOf extends ConjunctionRequiredOperator {
   }
 
   @override
-  String format() => 'retweets_of_tweet_id:$tweetId';
+  String format() => 'in_reply_to_tweet_id:$tweetId';
 }

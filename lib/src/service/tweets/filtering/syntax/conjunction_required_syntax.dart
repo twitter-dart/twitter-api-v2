@@ -3,7 +3,6 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
-import '../../../common/range.dart';
 import '../../tweet_language.dart';
 import '../channel/logical_channel.dart';
 import '../filtering_rule_group.dart';
@@ -130,76 +129,6 @@ abstract class ConjunctionRequiredSyntax extends StandaloneSyntax {
         _conjunctionRequiredOperation.createNegatedTweetLang(language),
       );
 
-  LogicalChannel matchFollowersCount(final Range range) =>
-      _buffer.appendConjunctionRequiredOperator(
-        _conjunctionRequiredOperation.createFollowersCount(range),
-      );
-
-  LogicalChannel notMatchFollowersCount(final Range range) =>
-      _buffer.appendConjunctionRequiredOperator(
-        _conjunctionRequiredOperation.createNegatedFollowersCount(range),
-      );
-
-  LogicalChannel matchTweetsCount(final Range range) =>
-      _buffer.appendConjunctionRequiredOperator(
-        _conjunctionRequiredOperation.createTweetsCount(range),
-      );
-
-  LogicalChannel notMatchTweetsCount(final Range range) =>
-      _buffer.appendConjunctionRequiredOperator(
-        _conjunctionRequiredOperation.createNegatedTweetsCount(range),
-      );
-
-  LogicalChannel matchFollowingCount(final Range range) =>
-      _buffer.appendConjunctionRequiredOperator(
-        _conjunctionRequiredOperation.createFollowingCount(range),
-      );
-
-  LogicalChannel notMatchFollowingCount(final Range range) =>
-      _buffer.appendConjunctionRequiredOperator(
-        _conjunctionRequiredOperation.createNegatedFollowingCount(range),
-      );
-
-  LogicalChannel matchListedCount(final Range range) =>
-      _buffer.appendConjunctionRequiredOperator(
-        _conjunctionRequiredOperation.createListedCount(range),
-      );
-
-  LogicalChannel notMatchListedCount(final Range range) =>
-      _buffer.appendConjunctionRequiredOperator(
-        _conjunctionRequiredOperation.createNegatedListedCount(range),
-      );
-
-  LogicalChannel matchUrlTitle(final String value) =>
-      _buffer.appendConjunctionRequiredOperator(
-        _conjunctionRequiredOperation.createUrlTitle(value),
-      );
-
-  LogicalChannel notMatchUrlTitle(final String value) =>
-      _buffer.appendConjunctionRequiredOperator(
-        _conjunctionRequiredOperation.createNegatedUrlTitle(value),
-      );
-
-  LogicalChannel matchUrlDescription(final String value) =>
-      _buffer.appendConjunctionRequiredOperator(
-        _conjunctionRequiredOperation.createUrlDescription(value),
-      );
-
-  LogicalChannel notMatchUrlDescription(final String value) =>
-      _buffer.appendConjunctionRequiredOperator(
-        _conjunctionRequiredOperation.createNegatedUrlDescription(value),
-      );
-
-  LogicalChannel matchUrlPartially(final String value) =>
-      _buffer.appendConjunctionRequiredOperator(
-        _conjunctionRequiredOperation.createUrlContains(value),
-      );
-
-  LogicalChannel notMatchUrlPartially(final String value) =>
-      _buffer.appendConjunctionRequiredOperator(
-        _conjunctionRequiredOperation.createNegatedUrlContains(value),
-      );
-
   LogicalChannel matchSource(final String value) =>
       _buffer.appendConjunctionRequiredOperator(
         _conjunctionRequiredOperation.createSource(value),
@@ -208,25 +137,5 @@ abstract class ConjunctionRequiredSyntax extends StandaloneSyntax {
   LogicalChannel notMatchSource(final String value) =>
       _buffer.appendConjunctionRequiredOperator(
         _conjunctionRequiredOperation.createNegatedSource(value),
-      );
-
-  LogicalChannel matchRepliesOf(final String tweetId) =>
-      _buffer.appendConjunctionRequiredOperator(
-        _conjunctionRequiredOperation.createRepliesOf(tweetId),
-      );
-
-  LogicalChannel notMatchRepliesOf(final String tweetId) =>
-      _buffer.appendConjunctionRequiredOperator(
-        _conjunctionRequiredOperation.createNegatedRepliesOf(tweetId),
-      );
-
-  LogicalChannel matchRetweetOf(final String tweetId) =>
-      _buffer.appendConjunctionRequiredOperator(
-        _conjunctionRequiredOperation.createRetweetsOf(tweetId),
-      );
-
-  LogicalChannel notMatchRetweetOf(final String tweetId) =>
-      _buffer.appendConjunctionRequiredOperator(
-        _conjunctionRequiredOperation.createNegatedRetweetsOf(tweetId),
       );
 }

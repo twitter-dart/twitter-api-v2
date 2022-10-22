@@ -3,6 +3,7 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
+import '../../../common/range.dart';
 import '../../distance_unit.dart';
 import '../operator/standalone/bounding_box.dart';
 import '../operator/standalone/cashtag.dart';
@@ -11,10 +12,17 @@ import '../operator/standalone/hashtag.dart';
 import '../operator/standalone/keyword.dart';
 import '../operator/standalone/place.dart';
 import '../operator/standalone/point_radius.dart';
+import '../operator/standalone/range_operator.dart';
+import '../operator/standalone/range_operator_type.dart';
+import '../operator/standalone/replies_of.dart';
 import '../operator/standalone/retweeted_by.dart';
+import '../operator/standalone/retweets_of.dart';
 import '../operator/standalone/tweet_from.dart';
 import '../operator/standalone/tweet_to.dart';
 import '../operator/standalone/url.dart';
+import '../operator/standalone/url_contains.dart';
+import '../operator/standalone/url_description.dart';
+import '../operator/standalone/url_title.dart';
 import '../operator/standalone/user_bio.dart';
 import '../operator/standalone/user_bio_location.dart';
 import '../operator/standalone/user_bio_name.dart';
@@ -166,4 +174,80 @@ class StandaloneOperation {
         eastLongitude,
         northLatitude,
       );
+
+  /// Returns the new instance of [RangeOperator] based on [range].
+  RangeOperator createFollowersCount(final Range range) =>
+      RangeOperator(RangeOperatorType.followersCount, range);
+
+  /// Returns the new instance of negated [RangeOperator]
+  /// based on [range].
+  RangeOperator createNegatedFollowersCount(final Range range) =>
+      RangeOperator.negated(RangeOperatorType.followersCount, range);
+
+  /// Returns the new instance of [RangeOperator] based on [range].
+  RangeOperator createTweetsCount(final Range range) =>
+      RangeOperator(RangeOperatorType.tweetsCount, range);
+
+  /// Returns the new instance of negated [RangeOperator]
+  /// based on [range].
+  RangeOperator createNegatedTweetsCount(final Range range) =>
+      RangeOperator.negated(RangeOperatorType.tweetsCount, range);
+
+  /// Returns the new instance of [RangeOperator] based on [range].
+  RangeOperator createFollowingCount(final Range range) =>
+      RangeOperator(RangeOperatorType.followingCount, range);
+
+  /// Returns the new instance of negated [RangeOperator]
+  /// based on [range].
+  RangeOperator createNegatedFollowingCount(final Range range) =>
+      RangeOperator.negated(RangeOperatorType.followingCount, range);
+
+  /// Returns the new instance of [RangeOperator] based on [range].
+  RangeOperator createListedCount(final Range range) =>
+      RangeOperator(RangeOperatorType.listedCount, range);
+
+  /// Returns the new instance of negated [RangeOperator]
+  /// based on [range].
+  RangeOperator createNegatedListedCount(final Range range) =>
+      RangeOperator.negated(RangeOperatorType.listedCount, range);
+
+  /// Returns the new instance of [UrlTitle] based on [value].
+  UrlTitle createUrlTitle(final String value) => UrlTitle(value);
+
+  /// Returns the new instance of negated [UrlTitle]
+  /// based on [value].
+  UrlTitle createNegatedUrlTitle(final String value) => UrlTitle.negated(value);
+
+  /// Returns the new instance of [UrlDescription] based on [value].
+  UrlDescription createUrlDescription(final String value) =>
+      UrlDescription(value);
+
+  /// Returns the new instance of negated [UrlDescription]
+  /// based on [value].
+  UrlDescription createNegatedUrlDescription(final String value) =>
+      UrlDescription.negated(value);
+
+  /// Returns the new instance of [UrlContains] based on [value].
+  UrlContains createUrlContains(final String value) => UrlContains(value);
+
+  /// Returns the new instance of negated [UrlContains]
+  /// based on [value].
+  UrlContains createNegatedUrlContains(final String value) =>
+      UrlContains.negated(value);
+
+  /// Returns the new instance of [RepliesOf] based on [tweetId].
+  RepliesOf createRepliesOf(final String tweetId) => RepliesOf(tweetId);
+
+  /// Returns the new instance of negated [RepliesOf]
+  /// based on [tweetId].
+  RepliesOf createNegatedRepliesOf(final String tweetId) =>
+      RepliesOf.negated(tweetId);
+
+  /// Returns the new instance of [RetweetsOf] based on [tweetId].
+  RetweetsOf createRetweetsOf(final String tweetId) => RetweetsOf(tweetId);
+
+  /// Returns the new instance of negated [RetweetsOf]
+  /// based on [tweetId].
+  RetweetsOf createNegatedRetweetsOf(final String tweetId) =>
+      RetweetsOf.negated(tweetId);
 }

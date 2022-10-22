@@ -6,24 +6,24 @@
 import 'package:test/test.dart';
 
 // Project imports:
-import 'package:twitter_api_v2/src/service/tweets/filtering/operator/conjunction/retweets_of.dart';
+import 'package:twitter_api_v2/src/service/tweets/filtering/operator/standalone/url_description.dart';
 
 void main() {
   group('.toString', () {
     test('normal case', () {
-      final actual = RetweetsOf('1234');
+      final actual = UrlDescription('twitter');
 
-      expect(actual.toString(), 'retweets_of_tweet_id:1234');
+      expect(actual.toString(), 'url_description:twitter');
     });
 
     test('when negated', () {
-      final actual = RetweetsOf.negated('1234');
+      final actual = UrlDescription.negated('twitter');
 
-      expect(actual.toString(), '-retweets_of_tweet_id:1234');
+      expect(actual.toString(), '-url_description:twitter');
     });
 
     test('when value is empty', () {
-      final actual = RetweetsOf('');
+      final actual = UrlDescription('');
 
       expect(
         () => actual.toString(),
@@ -32,7 +32,8 @@ void main() {
             isA<ArgumentError>(),
             predicate(
               (dynamic e) =>
-                  e.message == 'The tweet id must not be an empty string.',
+                  e.message ==
+                  'The url description must not be an empty string.',
             ),
           ),
         ),

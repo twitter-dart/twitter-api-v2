@@ -7,8 +7,8 @@ import 'package:test/test.dart';
 
 // Project imports:
 import 'package:twitter_api_v2/src/service/common/range.dart';
-import 'package:twitter_api_v2/src/service/tweets/filtering/operator/conjunction/range_operator.dart';
-import 'package:twitter_api_v2/src/service/tweets/filtering/operator/conjunction/range_operator_type.dart';
+import 'package:twitter_api_v2/src/service/tweets/filtering/operator/standalone/range_operator.dart';
+import 'package:twitter_api_v2/src/service/tweets/filtering/operator/standalone/range_operator_type.dart';
 
 void main() {
   group('.toString', () {

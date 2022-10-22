@@ -4,17 +4,17 @@
 
 // Project imports:
 import '../validation_result.dart';
-import 'conjunction_required_operator.dart';
+import 'standalone_operator.dart';
 
-class UrlDescription extends ConjunctionRequiredOperator {
-  /// Returns the new instance of [UrlDescription].
-  const UrlDescription(
+class UrlContains extends StandaloneOperator {
+  /// Returns the new instance of [UrlContains].
+  const UrlContains(
     this.value, {
     bool negated = false,
   }) : super(negated);
 
-  factory UrlDescription.negated(final String value) =>
-      UrlDescription(value, negated: true);
+  factory UrlContains.negated(final String value) =>
+      UrlContains(value, negated: true);
 
   /// The value
   final String value;
@@ -23,7 +23,7 @@ class UrlDescription extends ConjunctionRequiredOperator {
   ValidationResult validate() {
     if (value.isEmpty) {
       return ValidationResult.failed(
-        'The url description must not be an empty string.',
+        'The value must not be an empty string.',
       );
     }
 
@@ -31,5 +31,5 @@ class UrlDescription extends ConjunctionRequiredOperator {
   }
 
   @override
-  String format() => 'url_description:$value';
+  String format() => 'url_contains:$value';
 }

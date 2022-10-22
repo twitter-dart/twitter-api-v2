@@ -3,7 +3,7 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
-import '../validation_result.dart';
+import '../../validation_result.dart';
 import 'singleton_operator.dart';
 
 class Sample extends SingletonOperator {
