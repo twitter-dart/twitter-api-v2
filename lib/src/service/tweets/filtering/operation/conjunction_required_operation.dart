@@ -5,18 +5,16 @@
 // Project imports:
 import '../../../common/range.dart';
 import '../../tweet_language.dart';
-import '../operator/conjunction/followers_count.dart';
-import '../operator/conjunction/following_count.dart';
 import '../operator/conjunction/has_operator.dart';
 import '../operator/conjunction/has_operator_type.dart';
 import '../operator/conjunction/is_operator.dart';
 import '../operator/conjunction/is_operator_type.dart';
-import '../operator/conjunction/listed_count.dart';
+import '../operator/conjunction/range_operator.dart';
+import '../operator/conjunction/range_operator_type.dart';
 import '../operator/conjunction/replies_of.dart';
 import '../operator/conjunction/retweets_of.dart';
 import '../operator/conjunction/source.dart';
 import '../operator/conjunction/tweet_lang.dart';
-import '../operator/conjunction/tweets_count.dart';
 import '../operator/conjunction/url_contains.dart';
 import '../operator/conjunction/url_description.dart';
 import '../operator/conjunction/url_title.dart';
@@ -205,39 +203,41 @@ class ConjunctionRequiredOperation {
   TweetLang createNegatedTweetLang(final TweetLanguage language) =>
       TweetLang.negated(language);
 
-  /// Returns the new instance of [FollowersCount] based on [range].
-  FollowersCount createFollowersCount(final Range range) =>
-      FollowersCount(range);
+  /// Returns the new instance of [RangeOperator] based on [range].
+  RangeOperator createFollowersCount(final Range range) =>
+      RangeOperator(RangeOperatorType.followersCount, range);
 
-  /// Returns the new instance of negated [FollowersCount]
+  /// Returns the new instance of negated [RangeOperator]
   /// based on [range].
-  FollowersCount createNegatedFollowersCount(final Range range) =>
-      FollowersCount.negated(range);
+  RangeOperator createNegatedFollowersCount(final Range range) =>
+      RangeOperator.negated(RangeOperatorType.followersCount, range);
 
-  /// Returns the new instance of [TweetsCount] based on [range].
-  TweetsCount createTweetsCount(final Range range) => TweetsCount(range);
+  /// Returns the new instance of [RangeOperator] based on [range].
+  RangeOperator createTweetsCount(final Range range) =>
+      RangeOperator(RangeOperatorType.tweetsCount, range);
 
-  /// Returns the new instance of negated [TweetsCount]
+  /// Returns the new instance of negated [RangeOperator]
   /// based on [range].
-  TweetsCount createNegatedTweetsCount(final Range range) =>
-      TweetsCount.negated(range);
+  RangeOperator createNegatedTweetsCount(final Range range) =>
+      RangeOperator.negated(RangeOperatorType.tweetsCount, range);
 
-  /// Returns the new instance of [FollowingCount] based on [range].
-  FollowingCount createFollowingCount(final Range range) =>
-      FollowingCount(range);
+  /// Returns the new instance of [RangeOperator] based on [range].
+  RangeOperator createFollowingCount(final Range range) =>
+      RangeOperator(RangeOperatorType.followingCount, range);
 
-  /// Returns the new instance of negated [FollowingCount]
+  /// Returns the new instance of negated [RangeOperator]
   /// based on [range].
-  FollowingCount createNegatedFollowingCount(final Range range) =>
-      FollowingCount.negated(range);
+  RangeOperator createNegatedFollowingCount(final Range range) =>
+      RangeOperator.negated(RangeOperatorType.followingCount, range);
 
-  /// Returns the new instance of [ListedCount] based on [range].
-  ListedCount createListedCount(final Range range) => ListedCount(range);
+  /// Returns the new instance of [RangeOperator] based on [range].
+  RangeOperator createListedCount(final Range range) =>
+      RangeOperator(RangeOperatorType.listedCount, range);
 
-  /// Returns the new instance of negated [ListedCount]
+  /// Returns the new instance of negated [RangeOperator]
   /// based on [range].
-  ListedCount createNegatedListedCount(final Range range) =>
-      ListedCount.negated(range);
+  RangeOperator createNegatedListedCount(final Range range) =>
+      RangeOperator.negated(RangeOperatorType.listedCount, range);
 
   /// Returns the new instance of [UrlTitle] based on [value].
   UrlTitle createUrlTitle(final String value) => UrlTitle(value);

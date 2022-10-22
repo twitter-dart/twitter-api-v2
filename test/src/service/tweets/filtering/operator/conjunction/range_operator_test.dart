@@ -7,30 +7,37 @@ import 'package:test/test.dart';
 
 // Project imports:
 import 'package:twitter_api_v2/src/service/common/range.dart';
-import 'package:twitter_api_v2/src/service/tweets/filtering/operator/conjunction/tweets_count.dart';
+import 'package:twitter_api_v2/src/service/tweets/filtering/operator/conjunction/range_operator.dart';
+import 'package:twitter_api_v2/src/service/tweets/filtering/operator/conjunction/range_operator_type.dart';
 
 void main() {
   group('.toString', () {
     test('when range is the point', () {
-      final actual = TweetsCount(Range.point(10));
+      final actual = RangeOperator(
+        RangeOperatorType.followersCount,
+        Range.point(10),
+      );
 
-      expect(actual.toString(), 'tweets_count:10');
+      expect(actual.toString(), 'followers_count:10');
     });
 
     test('when range is not the point', () {
-      final actual = TweetsCount(Range.between(10, 15));
+      final actual = RangeOperator(
+          RangeOperatorType.followersCount, Range.between(10, 15));
 
-      expect(actual.toString(), 'tweets_count:10..15');
+      expect(actual.toString(), 'followers_count:10..15');
     });
 
     test('when negated', () {
-      final actual = TweetsCount.negated(Range.point(10));
+      final actual = RangeOperator.negated(
+          RangeOperatorType.followersCount, Range.point(10));
 
-      expect(actual.toString(), '-tweets_count:10');
+      expect(actual.toString(), '-followers_count:10');
     });
 
     test('when "from" in range is negative', () {
-      final actual = TweetsCount(Range.between(-1, 5));
+      final actual =
+          RangeOperator(RangeOperatorType.followersCount, Range.between(-1, 5));
 
       expect(
         () => actual.toString(),

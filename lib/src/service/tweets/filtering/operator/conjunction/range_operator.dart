@@ -6,23 +6,31 @@
 import '../../../../common/range.dart';
 import '../validation_result.dart';
 import 'conjunction_required_operator.dart';
+import 'range_operator_type.dart';
 
-class FollowersCount extends ConjunctionRequiredOperator {
-  /// Returns the new instance of [FollowersCount].
-  const FollowersCount(
+class RangeOperator extends ConjunctionRequiredOperator {
+  /// Returns the new instance of [RangeOperator].
+  const RangeOperator(
+    this.type,
     this.range, {
     bool negated = false,
   }) : super(negated);
 
-  factory FollowersCount.negated(final Range range) =>
-      FollowersCount(range, negated: true);
+  factory RangeOperator.negated(
+    final RangeOperatorType type,
+    final Range range,
+  ) =>
+      RangeOperator(type, range, negated: true);
+
+  /// The range type
+  final RangeOperatorType type;
 
   /// The range
   final Range range;
 
   @override
   ValidationResult validate() {
-    if (range.from.isNegative) {
+    if (range.from.isNegative || range.to.isNegative) {
       return ValidationResult.failed(
         'The range must not be negative.',
       );
@@ -32,5 +40,5 @@ class FollowersCount extends ConjunctionRequiredOperator {
   }
 
   @override
-  String format() => 'followers_count:${toRangeString(range)}';
+  String format() => '${type.value}:${toRangeString(range)}';
 }
