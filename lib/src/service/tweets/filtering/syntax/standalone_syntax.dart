@@ -4,6 +4,7 @@
 
 // Project imports:
 import '../../../common/range.dart';
+import '../../distance_unit.dart';
 import '../channel/logical_channel.dart';
 import '../filtering_rule_group.dart';
 import '../operation/standalone_operation.dart';
@@ -47,6 +48,10 @@ abstract class StandaloneSyntax extends GroupSyntax {
         _standaloneOperation.createHashtag(value),
       );
 
+  LogicalChannel notMatchHashtag(final String value) => _buffer.appendOperator(
+        _standaloneOperation.createNegatedHashtag(value),
+      );
+
   /// Matches any Tweet that contains the specified ‘cashtag’
   /// (where the leading character of the token is the ‘$’ character).
   ///
@@ -61,6 +66,10 @@ abstract class StandaloneSyntax extends GroupSyntax {
         _standaloneOperation.createCashtag(value),
       );
 
+  LogicalChannel notMatchCashtag(final String value) => _buffer.appendOperator(
+        _standaloneOperation.createNegatedCashtag(value),
+      );
+
   /// Matches any Tweet that mentions the given username, if the username
   /// is a recognized entity.
   ///
@@ -69,6 +78,11 @@ abstract class StandaloneSyntax extends GroupSyntax {
   /// prefixed with "@", it will still work.
   LogicalChannel matchUsername(final String username) => _buffer.appendOperator(
         _standaloneOperation.createUsername(username),
+      );
+
+  LogicalChannel notMatchUsername(final String username) =>
+      _buffer.appendOperator(
+        _standaloneOperation.createNegatedUsername(username),
       );
 
   /// Matches any Tweet from a specific user.
@@ -82,6 +96,11 @@ abstract class StandaloneSyntax extends GroupSyntax {
         _standaloneOperation.createTweetFrom(username),
       );
 
+  LogicalChannel notMatchTweetFrom(final String username) =>
+      _buffer.appendOperator(
+        _standaloneOperation.createNegatedTweetFrom(username),
+      );
+
   /// Matches any Tweet that is in reply to a particular user.
   ///
   /// The value can be either the username
@@ -92,6 +111,159 @@ abstract class StandaloneSyntax extends GroupSyntax {
         _standaloneOperation.createTweetTo(username),
       );
 
+  LogicalChannel notMatchTweetTo(final String username) =>
+      _buffer.appendOperator(
+        _standaloneOperation.createNegatedTweetTo(username),
+      );
+
+  LogicalChannel matchUrl(final String value) => _buffer.appendOperator(
+        _standaloneOperation.createUrl(value),
+      );
+
+  LogicalChannel notMatchUrl(final String value) => _buffer.appendOperator(
+        _standaloneOperation.createNegatedUrl(value),
+      );
+
+  LogicalChannel matchRetweetedBy(final String username) =>
+      _buffer.appendOperator(
+        _standaloneOperation.createRetweetedBy(username),
+      );
+
+  LogicalChannel notMatchRetweetedBy(final String username) =>
+      _buffer.appendOperator(
+        _standaloneOperation.createNegatedRetweetedBy(username),
+      );
+
+  LogicalChannel matchConversation(final String tweetId) =>
+      _buffer.appendOperator(
+        _standaloneOperation.createConversation(tweetId),
+      );
+
+  LogicalChannel notMatchConversation(final String tweetId) =>
+      _buffer.appendOperator(
+        _standaloneOperation.createNegatedConversation(tweetId),
+      );
+
+  LogicalChannel matchUserBio(final String value) => _buffer.appendOperator(
+        _standaloneOperation.createUserBio(value),
+      );
+
+  LogicalChannel notMatchUserBio(final String value) => _buffer.appendOperator(
+        _standaloneOperation.createNegatedUserBio(value),
+      );
+
+  LogicalChannel matchUserBioName(final String value) => _buffer.appendOperator(
+        _standaloneOperation.createUserBioName(value),
+      );
+
+  LogicalChannel notMatchUserBioName(final String value) =>
+      _buffer.appendOperator(
+        _standaloneOperation.createNegatedUserBioName(value),
+      );
+
+  LogicalChannel matchUserBioLocation(final String value) =>
+      _buffer.appendOperator(
+        _standaloneOperation.createUserBioLocation(value),
+      );
+
+  LogicalChannel notMatchUserBioLocation(final String value) =>
+      _buffer.appendOperator(
+        _standaloneOperation.createNegatedUserBioLocation(value),
+      );
+
+  LogicalChannel matchPlace(final String value) => _buffer.appendOperator(
+        _standaloneOperation.createPlace(value),
+      );
+
+  LogicalChannel notMatchPlace(final String value) => _buffer.appendOperator(
+        _standaloneOperation.createNegatedPlace(value),
+      );
+
+  LogicalChannel matchPointRadiusInMiles({
+    required double longitude,
+    required double latitude,
+    required double radius,
+  }) =>
+      _buffer.appendOperator(
+        _standaloneOperation.createPointRadius(
+          DistanceUnit.miles,
+          longitude,
+          latitude,
+          radius,
+        ),
+      );
+
+  LogicalChannel notMatchPointRadiusInMiles({
+    required double longitude,
+    required double latitude,
+    required double radius,
+  }) =>
+      _buffer.appendOperator(
+        _standaloneOperation.createNegatedPointRadius(
+          DistanceUnit.miles,
+          longitude,
+          latitude,
+          radius,
+        ),
+      );
+
+  LogicalChannel matchPointRadiusInKilometers({
+    required double longitude,
+    required double latitude,
+    required double radius,
+  }) =>
+      _buffer.appendOperator(
+        _standaloneOperation.createPointRadius(
+          DistanceUnit.kilometers,
+          longitude,
+          latitude,
+          radius,
+        ),
+      );
+
+  LogicalChannel notMatchPointRadiusInKilometers({
+    required double longitude,
+    required double latitude,
+    required double radius,
+  }) =>
+      _buffer.appendOperator(
+        _standaloneOperation.createNegatedPointRadius(
+          DistanceUnit.kilometers,
+          longitude,
+          latitude,
+          radius,
+        ),
+      );
+
+  LogicalChannel matchBoundingBox({
+    required double westLongitude,
+    required double southLatitude,
+    required double eastLongitude,
+    required double northLatitude,
+  }) =>
+      _buffer.appendOperator(
+        _standaloneOperation.createBoundingBox(
+          westLongitude,
+          southLatitude,
+          eastLongitude,
+          northLatitude,
+        ),
+      );
+
+  LogicalChannel notMatchBoundingBox({
+    required double westLongitude,
+    required double southLatitude,
+    required double eastLongitude,
+    required double northLatitude,
+  }) =>
+      _buffer.appendOperator(
+        _standaloneOperation.createNegatedBoundingBox(
+          westLongitude,
+          southLatitude,
+          eastLongitude,
+          northLatitude,
+        ),
+      );
   LogicalChannel matchFollowersCount(final Range range) =>
       _buffer.appendOperator(
         _standaloneOperation.createFollowersCount(range),
