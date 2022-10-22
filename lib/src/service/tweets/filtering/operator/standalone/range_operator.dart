@@ -4,11 +4,11 @@
 
 // Project imports:
 import '../../../../common/range.dart';
+import '../operator.dart';
 import '../validation_result.dart';
 import 'range_operator_type.dart';
-import 'standalone_operator.dart';
 
-class RangeOperator extends StandaloneOperator {
+class RangeOperator extends Operator {
   /// Returns the new instance of [RangeOperator].
   const RangeOperator(
     this.type,

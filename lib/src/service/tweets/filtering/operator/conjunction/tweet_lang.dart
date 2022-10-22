@@ -4,9 +4,9 @@
 
 // Project imports:
 import '../../../tweet_language.dart';
-import 'conjunction_required_operator.dart';
+import '../operator.dart';
 
-class TweetLang extends ConjunctionRequiredOperator {
+class TweetLang extends Operator {
   /// Returns the new instance of [TweetLang].
   const TweetLang(
     this.language, {

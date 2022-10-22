@@ -3,10 +3,10 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
+import '../operator.dart';
 import '../validation_result.dart';
-import 'standalone_operator.dart';
 
-class UserBioName extends StandaloneOperator {
+class UserBioName extends Operator {
   /// Returns the new instance of [UserBioName].
   const UserBioName(
     this.value, {

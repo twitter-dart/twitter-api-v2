@@ -3,10 +3,10 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
+import '../operator.dart';
 import '../validation_result.dart';
-import 'standalone_operator.dart';
 
-class TweetFrom extends StandaloneOperator {
+class TweetFrom extends Operator {
   /// Returns the new instance of [TweetFrom].
   const TweetFrom(
     this.username, {

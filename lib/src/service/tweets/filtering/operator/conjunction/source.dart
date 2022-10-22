@@ -3,10 +3,10 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
+import '../operator.dart';
 import '../validation_result.dart';
-import 'conjunction_required_operator.dart';
 
-class Source extends ConjunctionRequiredOperator {
+class Source extends Operator {
   /// Returns the new instance of [Source].
   const Source(
     this.value, {

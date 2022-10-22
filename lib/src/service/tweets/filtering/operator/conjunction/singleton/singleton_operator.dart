@@ -3,9 +3,9 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
-import '../conjunction_required_operator.dart';
+import '../../filtering_rule_operator.dart';
 
-abstract class SingletonOperator extends ConjunctionRequiredOperator {
+abstract class SingletonOperator extends FilteringRuleOperator {
   /// Returns the new instance of [SingletonOperator].
   const SingletonOperator(super.negated);
 }

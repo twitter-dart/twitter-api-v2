@@ -25,13 +25,11 @@ abstract class StandaloneSyntax extends GroupSyntax {
   /// matched against the tokenized text of the Tweet body. Tokenization splits
   /// words based on punctuation, symbols, and Unicode basic plane separator
   /// characters.
-  LogicalChannel matchKeyword(final String value) =>
-      _buffer.appendStandaloneOperator(
+  LogicalChannel matchKeyword(final String value) => _buffer.appendOperator(
         _standaloneOperation.createKeyword(value),
       );
 
-  LogicalChannel notMatchKeyword(final String value) =>
-      _buffer.appendStandaloneOperator(
+  LogicalChannel notMatchKeyword(final String value) => _buffer.appendOperator(
         _standaloneOperation.createNegatedKeyword(value),
       );
 
@@ -45,8 +43,7 @@ abstract class StandaloneSyntax extends GroupSyntax {
   /// The string passed to this method does not need to be prefixed with
   /// the symbol "#" to indicate a hashtag. However, if you pass a string
   /// prefixed with "#", it will still work.
-  LogicalChannel matchHashtag(final String value) =>
-      _buffer.appendStandaloneOperator(
+  LogicalChannel matchHashtag(final String value) => _buffer.appendOperator(
         _standaloneOperation.createHashtag(value),
       );
 
@@ -60,8 +57,7 @@ abstract class StandaloneSyntax extends GroupSyntax {
   /// The string passed to this method does not need to be prefixed with
   /// the symbol "$" to indicate a cashtag. However, if you pass a string
   /// prefixed with "$", it will still work.
-  LogicalChannel matchCashtag(final String value) =>
-      _buffer.appendStandaloneOperator(
+  LogicalChannel matchCashtag(final String value) => _buffer.appendOperator(
         _standaloneOperation.createCashtag(value),
       );
 
@@ -71,8 +67,7 @@ abstract class StandaloneSyntax extends GroupSyntax {
   /// The string passed to this method does not need to be prefixed with
   /// the symbol "@" to indicate a username. However, if you pass a string
   /// prefixed with "@", it will still work.
-  LogicalChannel matchUsername(final String username) =>
-      _buffer.appendStandaloneOperator(
+  LogicalChannel matchUsername(final String username) => _buffer.appendOperator(
         _standaloneOperation.createUsername(username),
       );
 
@@ -83,7 +78,7 @@ abstract class StandaloneSyntax extends GroupSyntax {
   ///
   /// You can only pass a single username/ID.
   LogicalChannel matchTweetFrom(final String username) =>
-      _buffer.appendStandaloneOperator(
+      _buffer.appendOperator(
         _standaloneOperation.createTweetFrom(username),
       );
 
@@ -93,98 +88,91 @@ abstract class StandaloneSyntax extends GroupSyntax {
   /// (excluding the @ character) or the user’s numeric user ID.
   ///
   ///You can only pass a single username/ID.
-  LogicalChannel matchTweetTo(final String username) =>
-      _buffer.appendStandaloneOperator(
+  LogicalChannel matchTweetTo(final String username) => _buffer.appendOperator(
         _standaloneOperation.createTweetTo(username),
       );
 
   LogicalChannel matchFollowersCount(final Range range) =>
-      _buffer.appendStandaloneOperator(
+      _buffer.appendOperator(
         _standaloneOperation.createFollowersCount(range),
       );
 
   LogicalChannel notMatchFollowersCount(final Range range) =>
-      _buffer.appendStandaloneOperator(
+      _buffer.appendOperator(
         _standaloneOperation.createNegatedFollowersCount(range),
       );
 
-  LogicalChannel matchTweetsCount(final Range range) =>
-      _buffer.appendStandaloneOperator(
+  LogicalChannel matchTweetsCount(final Range range) => _buffer.appendOperator(
         _standaloneOperation.createTweetsCount(range),
       );
 
   LogicalChannel notMatchTweetsCount(final Range range) =>
-      _buffer.appendStandaloneOperator(
+      _buffer.appendOperator(
         _standaloneOperation.createNegatedTweetsCount(range),
       );
 
   LogicalChannel matchFollowingCount(final Range range) =>
-      _buffer.appendStandaloneOperator(
+      _buffer.appendOperator(
         _standaloneOperation.createFollowingCount(range),
       );
 
   LogicalChannel notMatchFollowingCount(final Range range) =>
-      _buffer.appendStandaloneOperator(
+      _buffer.appendOperator(
         _standaloneOperation.createNegatedFollowingCount(range),
       );
 
-  LogicalChannel matchListedCount(final Range range) =>
-      _buffer.appendStandaloneOperator(
+  LogicalChannel matchListedCount(final Range range) => _buffer.appendOperator(
         _standaloneOperation.createListedCount(range),
       );
 
   LogicalChannel notMatchListedCount(final Range range) =>
-      _buffer.appendStandaloneOperator(
+      _buffer.appendOperator(
         _standaloneOperation.createNegatedListedCount(range),
       );
 
-  LogicalChannel matchUrlTitle(final String value) =>
-      _buffer.appendStandaloneOperator(
+  LogicalChannel matchUrlTitle(final String value) => _buffer.appendOperator(
         _standaloneOperation.createUrlTitle(value),
       );
 
-  LogicalChannel notMatchUrlTitle(final String value) =>
-      _buffer.appendStandaloneOperator(
+  LogicalChannel notMatchUrlTitle(final String value) => _buffer.appendOperator(
         _standaloneOperation.createNegatedUrlTitle(value),
       );
 
   LogicalChannel matchUrlDescription(final String value) =>
-      _buffer.appendStandaloneOperator(
+      _buffer.appendOperator(
         _standaloneOperation.createUrlDescription(value),
       );
 
   LogicalChannel notMatchUrlDescription(final String value) =>
-      _buffer.appendStandaloneOperator(
+      _buffer.appendOperator(
         _standaloneOperation.createNegatedUrlDescription(value),
       );
 
   LogicalChannel matchUrlPartially(final String value) =>
-      _buffer.appendStandaloneOperator(
+      _buffer.appendOperator(
         _standaloneOperation.createUrlContains(value),
       );
 
   LogicalChannel notMatchUrlPartially(final String value) =>
-      _buffer.appendStandaloneOperator(
+      _buffer.appendOperator(
         _standaloneOperation.createNegatedUrlContains(value),
       );
 
-  LogicalChannel matchRepliesOf(final String tweetId) =>
-      _buffer.appendStandaloneOperator(
+  LogicalChannel matchRepliesOf(final String tweetId) => _buffer.appendOperator(
         _standaloneOperation.createRepliesOf(tweetId),
       );
 
   LogicalChannel notMatchRepliesOf(final String tweetId) =>
-      _buffer.appendStandaloneOperator(
+      _buffer.appendOperator(
         _standaloneOperation.createNegatedRepliesOf(tweetId),
       );
 
-  LogicalChannel matchRetweetOf(final String tweetId) =>
-      _buffer.appendStandaloneOperator(
+  LogicalChannel matchRetweetOf(final String tweetId) => _buffer.appendOperator(
         _standaloneOperation.createRetweetsOf(tweetId),
       );
 
   LogicalChannel notMatchRetweetOf(final String tweetId) =>
-      _buffer.appendStandaloneOperator(
+      _buffer.appendOperator(
         _standaloneOperation.createNegatedRetweetsOf(tweetId),
       );
 }

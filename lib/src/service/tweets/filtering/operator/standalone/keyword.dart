@@ -3,10 +3,10 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
+import '../operator.dart';
 import '../validation_result.dart';
-import 'standalone_operator.dart';
 
-class Keyword extends StandaloneOperator {
+class Keyword extends Operator {
   /// Returns the new instance of [Keyword].
   const Keyword(
     this.value, {

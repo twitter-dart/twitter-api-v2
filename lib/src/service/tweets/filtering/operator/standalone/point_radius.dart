@@ -4,10 +4,10 @@
 
 // Project imports:
 import '../../../distance_unit.dart';
+import '../operator.dart';
 import '../validation_result.dart';
-import 'standalone_operator.dart';
 
-class PointRadius extends StandaloneOperator {
+class PointRadius extends Operator {
   /// Returns the new instance of [PointRadius].
   const PointRadius(
     this.distanceUnit,

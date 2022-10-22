@@ -6,7 +6,6 @@
 import 'channel/entry_channel.dart';
 import 'channel/logical_channel.dart';
 import 'channel/post_logical_channel.dart';
-import 'operator/conjunction/conjunction_required_operator.dart';
 import 'operator/conjunction/singleton/has_operator.dart';
 import 'operator/conjunction/singleton/is_operator.dart';
 import 'operator/conjunction/singleton/sample.dart';
@@ -15,7 +14,7 @@ import 'operator/filtering_rule_operator.dart';
 import 'operator/logical/and.dart';
 import 'operator/logical/group.dart';
 import 'operator/logical/logical_operator.dart';
-import 'operator/standalone/standalone_operator.dart';
+import 'operator/operator.dart';
 
 class FilteringRuleGroup {
   /// Returns the new instance of [FilteringRuleGroup].
@@ -52,16 +51,8 @@ use in nested groups or outside of groups.
   /// Returns the entry channel.
   EntryChannel get entryChannel => _entryChannel;
 
-  LogicalChannel appendStandaloneOperator(
-    final StandaloneOperator operator,
-  ) {
-    _operators.add(operator);
-
-    return _logicalChannel;
-  }
-
-  LogicalChannel appendConjunctionRequiredOperator(
-    final ConjunctionRequiredOperator operator,
+  LogicalChannel appendOperator(
+    final Operator operator,
   ) {
     _operators.add(operator);
 

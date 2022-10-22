@@ -120,22 +120,20 @@ abstract class ConjunctionRequiredSyntax extends StandaloneSyntax {
       );
 
   LogicalChannel matchLanguage(final TweetLanguage language) =>
-      _buffer.appendConjunctionRequiredOperator(
+      _buffer.appendOperator(
         _conjunctionRequiredOperation.createTweetLang(language),
       );
 
   LogicalChannel notMatchLanguage(final TweetLanguage language) =>
-      _buffer.appendConjunctionRequiredOperator(
+      _buffer.appendOperator(
         _conjunctionRequiredOperation.createNegatedTweetLang(language),
       );
 
-  LogicalChannel matchSource(final String value) =>
-      _buffer.appendConjunctionRequiredOperator(
+  LogicalChannel matchSource(final String value) => _buffer.appendOperator(
         _conjunctionRequiredOperation.createSource(value),
       );
 
-  LogicalChannel notMatchSource(final String value) =>
-      _buffer.appendConjunctionRequiredOperator(
+  LogicalChannel notMatchSource(final String value) => _buffer.appendOperator(
         _conjunctionRequiredOperation.createNegatedSource(value),
       );
 }
