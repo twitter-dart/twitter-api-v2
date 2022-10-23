@@ -273,6 +273,24 @@ Future<void> main() async {
         v2.FilteringRuleParam(value: '#ElonMusk'),
         v2.FilteringRuleParam(value: '#Tesla'),
         v2.FilteringRuleParam(value: '#SpaceX'),
+
+
+        //! You can easily build filtering rule using by "FilteringRule" object.
+        v2.FilteringRuleParam(
+          //! => #ElonMusk has:links has:media OR (#Tesla has:images) sample:50
+          value: v2.FilteringRule.sampleOf(percent: 50)
+              .matchHashtag('ElonMusk')
+              .and()
+              .matchWithLinks()
+              .and()
+              .matchWithMedia()
+              .or()
+              .group(v2.FilteringRule.of()
+                  .matchHashtag('Tesla')
+                  .and()
+                  .matchWithImages())
+              .build(),
+        ),
       ],
     );
 
