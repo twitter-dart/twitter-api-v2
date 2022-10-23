@@ -18,8 +18,8 @@ import 'operator/operator.dart';
 
 class FilteringRuleGroup {
   /// Returns the new instance of [FilteringRuleGroup].
-  FilteringRuleGroup([int samplePercent = 100])
-      : _sample = Sample(samplePercent) {
+  FilteringRuleGroup([int? samplePercent])
+      : _sample = samplePercent != null ? Sample(samplePercent) : null {
     _entryChannel = EntryChannel(this);
     _logicalChannel = LogicalChannel(this);
     _postLogicalChannel = PostLogicalChannel(this);
@@ -42,7 +42,7 @@ use in nested groups or outside of groups.
   final _operators = <FilteringRuleOperator>[];
 
   /// The sample
-  final Sample _sample;
+  final Sample? _sample;
 
   late EntryChannel _entryChannel;
   late LogicalChannel _logicalChannel;
@@ -97,9 +97,11 @@ use in nested groups or outside of groups.
   }
 
   String build() {
-    //! Add sampling rule
-    appendLogicalOperator(And());
-    appendSingletonOperator(_sample);
+    if (_sample != null) {
+      //! Add sampling rule
+      appendLogicalOperator(And());
+      appendSingletonOperator(_sample!);
+    }
 
     final buffer = StringBuffer();
 
