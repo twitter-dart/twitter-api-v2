@@ -264,6 +264,7 @@ abstract class StandaloneSyntax extends GroupSyntax {
           northLatitude,
         ),
       );
+
   LogicalChannel matchFollowersCount(final Range range) =>
       _buffer.appendOperator(
         _standaloneOperation.createFollowersCount(range),
