@@ -656,4 +656,162 @@ void main() {
       expect(actual, isA<PostLogicalChannel>());
     });
   });
+
+  group('singleton operators', () {
+    test('when there are no duplicates in IsOperator', () {
+      final actual = FilteringRule.of()
+          .matchKeyword('test')
+          .or()
+          .matchRetweet()
+          .or()
+          .matchQuote();
+
+      expect(actual.build(), 'test OR is:retweet OR is:quote');
+    });
+
+    test('when there are no duplicates in HasOperator', () {
+      final actual = FilteringRule.of()
+          .matchKeyword('test')
+          .or()
+          .matchWithCashtags()
+          .or()
+          .matchWithHashtags();
+
+      expect(actual.build(), 'test OR has:cashtags OR has:hashtags');
+    });
+
+    test('when there are duplicates in IsOperator', () {
+      expect(
+        () => FilteringRule.of()
+            .matchKeyword('test')
+            .or()
+            .matchRetweet()
+            .or()
+            .matchRetweet(),
+        throwsA(
+          allOf(
+            isA<UnsupportedError>(),
+            predicate(
+              (dynamic e) =>
+                  e.message ==
+                  '''
+The same singleton operators cannot be used within a single group.
+
+If you want to use multiple combinations of the same singleton operator,
+use in nested groups or outside of groups.
+
+❌ You Should Not
+#TwitterDev has:retweet OR #TwitterAPI -has:retweet
+
+✅ Instead, You Should
+(#TwitterDev has:retweet) OR (#TwitterAPI -has:retweet)
+            ''',
+            ),
+          ),
+        ),
+      );
+    });
+
+    test('when there are duplicates in HasOperator', () {
+      expect(
+        () => FilteringRule.of()
+            .matchKeyword('test')
+            .or()
+            .matchWithGeo()
+            .or()
+            .matchWithGeo(),
+        throwsA(
+          allOf(
+            isA<UnsupportedError>(),
+            predicate(
+              (dynamic e) =>
+                  e.message ==
+                  '''
+The same singleton operators cannot be used within a single group.
+
+If you want to use multiple combinations of the same singleton operator,
+use in nested groups or outside of groups.
+
+❌ You Should Not
+#TwitterDev has:retweet OR #TwitterAPI -has:retweet
+
+✅ Instead, You Should
+(#TwitterDev has:retweet) OR (#TwitterAPI -has:retweet)
+            ''',
+            ),
+          ),
+        ),
+      );
+    });
+
+    test('when there are duplicates in negated IsOperator', () {
+      expect(
+        () => FilteringRule.of()
+            .matchKeyword('test')
+            .or()
+            .matchRetweet()
+            .or()
+            .notMatchRetweet(),
+        throwsA(
+          allOf(
+            isA<UnsupportedError>(),
+            predicate(
+              (dynamic e) =>
+                  e.message ==
+                  '''
+The same singleton operators cannot be used within a single group.
+
+If you want to use multiple combinations of the same singleton operator,
+use in nested groups or outside of groups.
+
+❌ You Should Not
+#TwitterDev has:retweet OR #TwitterAPI -has:retweet
+
+✅ Instead, You Should
+(#TwitterDev has:retweet) OR (#TwitterAPI -has:retweet)
+            ''',
+            ),
+          ),
+        ),
+      );
+    });
+
+    test('when there are duplicates in negated HasOperator', () {
+      expect(
+        () => FilteringRule.of()
+            .matchKeyword('test')
+            .or()
+            .matchWithGeo()
+            .or()
+            .notMatchWithGeo(),
+        throwsA(
+          allOf(
+            isA<UnsupportedError>(),
+            predicate(
+              (dynamic e) =>
+                  e.message ==
+                  '''
+The same singleton operators cannot be used within a single group.
+
+If you want to use multiple combinations of the same singleton operator,
+use in nested groups or outside of groups.
+
+❌ You Should Not
+#TwitterDev has:retweet OR #TwitterAPI -has:retweet
+
+✅ Instead, You Should
+(#TwitterDev has:retweet) OR (#TwitterAPI -has:retweet)
+            ''',
+            ),
+          ),
+        ),
+      );
+    });
+  });
+
+  test('.sampleOf', () {
+    final actual = FilteringRule.sampleOf(percent: 70).matchKeyword('test');
+
+    expect(actual.build(), 'test sample:70');
+  });
 }

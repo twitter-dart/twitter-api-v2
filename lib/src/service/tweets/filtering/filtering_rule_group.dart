@@ -68,10 +68,6 @@ use in nested groups or outside of groups.
         if (($operator as dynamic).type == (operator as dynamic).type) {
           throw _singletonError;
         }
-      } else {
-        if ($operator.runtimeType == operator.runtimeType) {
-          throw _singletonError;
-        }
       }
     }
 
