@@ -814,4 +814,77 @@ use in nested groups or outside of groups.
 
     expect(actual.build(), 'test sample:70');
   });
+
+  group('patterns', () {
+    test('test is:verified', () {
+      final actual =
+          FilteringRule.of().matchKeyword('test').and().matchVerifiedUser();
+
+      expect(actual.build(), 'test is:verified');
+    });
+
+    test('test is:verified OR (test has:hashtags)', () {
+      final actual = FilteringRule.of()
+          .matchKeyword('test')
+          .and()
+          .matchVerifiedUser()
+          .or()
+          .group(
+            FilteringRule.of().matchKeyword('test').and().matchWithHashtags(),
+          );
+
+      expect(actual.build(), 'test is:verified OR (test has:hashtags)');
+    });
+
+    test('(test is:verified) OR (test has:hashtags)', () {
+      final actual = FilteringRule.of()
+          .group(
+              FilteringRule.of().matchKeyword('test').and().matchVerifiedUser())
+          .or()
+          .group(
+            FilteringRule.of().matchKeyword('test').and().matchWithHashtags(),
+          );
+
+      expect(actual.build(), '(test is:verified) OR (test has:hashtags)');
+    });
+
+    test('(test is:verified) OR test has:hashtags', () {
+      final actual = FilteringRule.of()
+          .group(
+              FilteringRule.of().matchKeyword('test').and().matchVerifiedUser())
+          .or()
+          .matchKeyword('test')
+          .and()
+          .matchWithHashtags();
+
+      expect(actual.build(), '(test is:verified) OR test has:hashtags');
+    });
+
+    test('(test OR is:verified) OR test has:hashtags', () {
+      final actual = FilteringRule.of()
+          .group(
+              FilteringRule.of().matchKeyword('test').or().matchVerifiedUser())
+          .or()
+          .matchKeyword('test')
+          .and()
+          .matchWithHashtags();
+
+      expect(actual.build(), '(test OR is:verified) OR test has:hashtags');
+    });
+
+    test('(test is:verified) OR (test -has:hashtags)', () {
+      final actual = FilteringRule.of()
+          .group(
+              FilteringRule.of().matchKeyword('test').and().matchVerifiedUser())
+          .or()
+          .group(
+            FilteringRule.of()
+                .matchKeyword('test')
+                .and()
+                .notMatchWithHashtags(),
+          );
+
+      expect(actual.build(), '(test is:verified) OR (test -has:hashtags)');
+    });
+  });
 }
