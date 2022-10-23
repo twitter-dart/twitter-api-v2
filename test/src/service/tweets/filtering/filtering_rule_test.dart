@@ -2,10 +2,15 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+// Package imports:
 import 'package:test/test.dart';
+
+// Project imports:
 import 'package:twitter_api_v2/src/service/common/range.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering/channel/logical_channel.dart';
+import 'package:twitter_api_v2/src/service/tweets/filtering/channel/post_logical_channel.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering/filtering_rule.dart';
+import 'package:twitter_api_v2/src/service/tweets/tweet_language.dart';
 
 void main() {
   group('standalone syntaxes', () {
@@ -399,6 +404,256 @@ void main() {
 
       expect(actual, isA<LogicalChannel>());
       expect(actual.build(), '-retweets_of_tweet_id:1234');
+    });
+  });
+
+  group('conjunction required syntaxes', () {
+    test('.matchRetweet', () {
+      final actual =
+          FilteringRule.of().matchKeyword('test').and().matchRetweet();
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'test is:retweet');
+    });
+
+    test('.notMatchRetweet', () {
+      final actual =
+          FilteringRule.of().matchKeyword('test').and().notMatchRetweet();
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'test -is:retweet');
+    });
+
+    test('.matchReply', () {
+      final actual = FilteringRule.of().matchKeyword('test').and().matchReply();
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'test is:reply');
+    });
+
+    test('.notMatchReply', () {
+      final actual =
+          FilteringRule.of().matchKeyword('test').and().notMatchReply();
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'test -is:reply');
+    });
+
+    test('.matchQuote', () {
+      final actual = FilteringRule.of().matchKeyword('test').and().matchQuote();
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'test is:quote');
+    });
+
+    test('.notMatchQuote', () {
+      final actual =
+          FilteringRule.of().matchKeyword('test').and().notMatchQuote();
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'test -is:quote');
+    });
+
+    test('.matchVerifiedUser', () {
+      final actual =
+          FilteringRule.of().matchKeyword('test').and().matchVerifiedUser();
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'test is:verified');
+    });
+
+    test('.notMatchVerifiedUser', () {
+      final actual =
+          FilteringRule.of().matchKeyword('test').and().notMatchVerifiedUser();
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'test -is:verified');
+    });
+
+    test('.notMatchNullcast', () {
+      final actual =
+          FilteringRule.of().matchKeyword('test').and().notMatchNullcast();
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'test -is:nullcast');
+    });
+
+    test('.matchWithHashtags', () {
+      final actual =
+          FilteringRule.of().matchKeyword('test').and().matchWithHashtags();
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'test has:hashtags');
+    });
+
+    test('.notMatchWithHashtags', () {
+      final actual =
+          FilteringRule.of().matchKeyword('test').and().notMatchWithHashtags();
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'test -has:hashtags');
+    });
+
+    test('.matchWithCashtags', () {
+      final actual =
+          FilteringRule.of().matchKeyword('test').and().matchWithCashtags();
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'test has:cashtags');
+    });
+
+    test('.notMatchWithCashtags', () {
+      final actual =
+          FilteringRule.of().matchKeyword('test').and().notMatchWithCashtags();
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'test -has:cashtags');
+    });
+
+    test('.matchWithLinks', () {
+      final actual =
+          FilteringRule.of().matchKeyword('test').and().matchWithLinks();
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'test has:links');
+    });
+
+    test('.notMatchWithLinks', () {
+      final actual =
+          FilteringRule.of().matchKeyword('test').and().notMatchWithLinks();
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'test -has:links');
+    });
+
+    test('.matchWithMentions', () {
+      final actual =
+          FilteringRule.of().matchKeyword('test').and().matchWithMentions();
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'test has:mentions');
+    });
+
+    test('.notMatchWithMentions', () {
+      final actual =
+          FilteringRule.of().matchKeyword('test').and().notMatchWithMentions();
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'test -has:mentions');
+    });
+
+    test('.matchWithMedia', () {
+      final actual =
+          FilteringRule.of().matchKeyword('test').and().matchWithMedia();
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'test has:media');
+    });
+
+    test('.notMatchWithMedia', () {
+      final actual =
+          FilteringRule.of().matchKeyword('test').and().notMatchWithMedia();
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'test -has:media');
+    });
+
+    test('.matchWithImages', () {
+      final actual =
+          FilteringRule.of().matchKeyword('test').and().matchWithImages();
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'test has:images');
+    });
+
+    test('.notMatchWithImages', () {
+      final actual =
+          FilteringRule.of().matchKeyword('test').and().notMatchWithImages();
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'test -has:images');
+    });
+
+    test('.matchWithVideoLinks', () {
+      final actual =
+          FilteringRule.of().matchKeyword('test').and().matchWithVideoLink();
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'test has:video_link');
+    });
+
+    test('.notMatchWithVideoLinks', () {
+      final actual =
+          FilteringRule.of().matchKeyword('test').and().notMatchWithVideoLink();
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'test -has:video_link');
+    });
+
+    test('.matchWithGeo', () {
+      final actual =
+          FilteringRule.of().matchKeyword('test').and().matchWithGeo();
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'test has:geo');
+    });
+
+    test('.notMatchWithGeo', () {
+      final actual =
+          FilteringRule.of().matchKeyword('test').and().notMatchWithGeo();
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'test -has:geo');
+    });
+
+    test('.matchLanguage', () {
+      final actual =
+          FilteringRule.of().matchKeyword('test').and().matchLanguage(
+                TweetLanguage.amharic,
+              );
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'test lang:am');
+    });
+
+    test('.notMatchLanguage', () {
+      final actual =
+          FilteringRule.of().matchKeyword('test').and().notMatchLanguage(
+                TweetLanguage.amharic,
+              );
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'test -lang:am');
+    });
+
+    test('.matchSource', () {
+      final actual =
+          FilteringRule.of().matchKeyword('test').and().matchSource('test');
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'test source:test');
+    });
+
+    test('.notMatchSource', () {
+      final actual =
+          FilteringRule.of().matchKeyword('test').and().notMatchSource('test');
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'test -source:test');
+    });
+  });
+
+  group('logical syntaxes', () {
+    test('.and', () {
+      final actual = FilteringRule.of().matchKeyword('test').and();
+
+      expect(actual, isA<PostLogicalChannel>());
+    });
+
+    test('.or', () {
+      final actual = FilteringRule.of().matchKeyword('test').or();
+
+      expect(actual, isA<PostLogicalChannel>());
     });
   });
 }

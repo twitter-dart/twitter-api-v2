@@ -43,11 +43,11 @@ abstract class ConjunctionRequiredSyntax extends StandaloneSyntax {
         _conjunctionRequiredOperation.createNegatedIsQuote(),
       );
 
-  LogicalChannel matchVerifiedAuthor() => _buffer.appendSingletonOperator(
+  LogicalChannel matchVerifiedUser() => _buffer.appendSingletonOperator(
         _conjunctionRequiredOperation.createIsVerified(),
       );
 
-  LogicalChannel notMatchVerifiedAuthor() => _buffer.appendSingletonOperator(
+  LogicalChannel notMatchVerifiedUser() => _buffer.appendSingletonOperator(
         _conjunctionRequiredOperation.createNegatedIsVerified(),
       );
 
@@ -103,12 +103,12 @@ abstract class ConjunctionRequiredSyntax extends StandaloneSyntax {
         _conjunctionRequiredOperation.createNegatedHasImages(),
       );
 
-  LogicalChannel matchWithVideoLinks() => _buffer.appendSingletonOperator(
-        _conjunctionRequiredOperation.createHasVideoLinks(),
+  LogicalChannel matchWithVideoLink() => _buffer.appendSingletonOperator(
+        _conjunctionRequiredOperation.createHasVideoLink(),
       );
 
-  LogicalChannel notMatchWithVideoLinks() => _buffer.appendSingletonOperator(
-        _conjunctionRequiredOperation.createNegatedHasVideoLinks(),
+  LogicalChannel notMatchWithVideoLink() => _buffer.appendSingletonOperator(
+        _conjunctionRequiredOperation.createNegatedHasVideoLink(),
       );
 
   LogicalChannel matchWithGeo() => _buffer.appendSingletonOperator(

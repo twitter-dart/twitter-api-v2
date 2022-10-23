@@ -2,7 +2,10 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+// Package imports:
 import 'package:test/test.dart';
+
+// Project imports:
 import 'package:twitter_api_v2/src/service/common/range.dart';
 import 'package:twitter_api_v2/src/service/tweets/distance_unit.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering/operation/standalone_operation.dart';

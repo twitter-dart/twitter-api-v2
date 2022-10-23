@@ -17,5 +17,5 @@ class HasOperator extends SingletonOperator {
   final HasOperatorType type;
 
   @override
-  String format() => 'has:${type.name}';
+  String format() => 'has:${type.value}';
 }

@@ -173,11 +173,11 @@ class ConjunctionRequiredOperation {
   HasOperator createNegatedHasImages() => _hasNotImages;
 
   /// Returns the new instance of [HasOperator] as [HasOperatorType.videoLink].
-  HasOperator createHasVideoLinks() => _hasVideoLink;
+  HasOperator createHasVideoLink() => _hasVideoLink;
 
   /// Returns the new instance of negated [HasOperator]
   /// based on [HasOperatorType.videoLink].
-  HasOperator createNegatedHasVideoLinks() => _hasNotVideoLink;
+  HasOperator createNegatedHasVideoLink() => _hasNotVideoLink;
 
   /// Returns the new instance of [HasOperator] as [HasOperatorType.geo].
   HasOperator createHasGeo() => _hasGeo;

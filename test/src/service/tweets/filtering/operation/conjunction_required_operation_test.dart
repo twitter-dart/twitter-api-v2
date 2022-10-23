@@ -184,16 +184,16 @@ void main() {
     expect(actual.type, HasOperatorType.images);
   });
 
-  test('.createHasVideoLinks', () {
-    final actual = ConjunctionRequiredOperation().createHasVideoLinks();
+  test('.createHasVideoLink', () {
+    final actual = ConjunctionRequiredOperation().createHasVideoLink();
 
     expect(actual, isA<HasOperator>());
     expect(actual.negated, isFalse);
     expect(actual.type, HasOperatorType.videoLink);
   });
 
-  test('.createNegatedHasVideoLinks', () {
-    final actual = ConjunctionRequiredOperation().createNegatedHasVideoLinks();
+  test('.createNegatedHasVideoLink', () {
+    final actual = ConjunctionRequiredOperation().createNegatedHasVideoLink();
 
     expect(actual, isA<HasOperator>());
     expect(actual.negated, isTrue);
