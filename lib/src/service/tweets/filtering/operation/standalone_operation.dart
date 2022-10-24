@@ -2,12 +2,16 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+// Package imports:
+import 'package:twitter_api_core/twitter_api_core.dart' as core;
+
 // Project imports:
 import '../../../common/range.dart';
 import '../../distance_unit.dart';
 import '../operator/standalone/bounding_box.dart';
 import '../operator/standalone/cashtag.dart';
 import '../operator/standalone/conversation.dart';
+import '../operator/standalone/country.dart';
 import '../operator/standalone/hashtag.dart';
 import '../operator/standalone/keyword.dart';
 import '../operator/standalone/place.dart';
@@ -118,6 +122,14 @@ class StandaloneOperation {
 
   /// Returns the new instance of negated [Place] based on [value].
   Place createNegatedPlace(final String value) => Place.negated(value);
+
+  /// Returns the new instance of [Country] based on [country].
+  Country createCountry(final core.ISOAlpha2Country country) =>
+      Country(country);
+
+  /// Returns the new instance of negated [Place] based on [country].
+  Country createNegatedCountry(final core.ISOAlpha2Country country) =>
+      Country.negated(country);
 
   /// Returns the new instance of [PointRadius].
   PointRadius createPointRadius(

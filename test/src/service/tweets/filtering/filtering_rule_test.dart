@@ -196,6 +196,22 @@ void main() {
       expect(actual.build(), '-place:test');
     });
 
+    test('.matchCountry', () {
+      final actual =
+          FilteringRule.of().matchCountry(ISOAlpha2Country.afghanistan);
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'place_country:AF');
+    });
+
+    test('.notMatchCountry', () {
+      final actual =
+          FilteringRule.of().notMatchCountry(ISOAlpha2Country.afghanistan);
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), '-place_country:AF');
+    });
+
     test('.matchPointRadiusInMiles', () {
       final actual = FilteringRule.of().matchPointRadiusInMiles(
         longitude: 10.0,

@@ -2,6 +2,9 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+// Package imports:
+import 'package:twitter_api_core/twitter_api_core.dart' as core;
+
 // Project imports:
 import '../../../common/range.dart';
 import '../../distance_unit.dart';
@@ -177,6 +180,16 @@ abstract class StandaloneSyntax extends GroupSyntax {
 
   LogicalChannel notMatchPlace(final String value) => _buffer.appendOperator(
         _standaloneOperation.createNegatedPlace(value),
+      );
+
+  LogicalChannel matchCountry(final core.ISOAlpha2Country country) =>
+      _buffer.appendOperator(
+        _standaloneOperation.createCountry(country),
+      );
+
+  LogicalChannel notMatchCountry(core.ISOAlpha2Country country) =>
+      _buffer.appendOperator(
+        _standaloneOperation.createNegatedCountry(country),
       );
 
   LogicalChannel matchPointRadiusInMiles({

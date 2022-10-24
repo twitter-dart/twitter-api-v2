@@ -4,6 +4,7 @@
 
 // Package imports:
 import 'package:test/test.dart';
+import 'package:twitter_api_core/twitter_api_core.dart';
 
 // Project imports:
 import 'package:twitter_api_v2/src/service/common/range.dart';
@@ -12,6 +13,7 @@ import 'package:twitter_api_v2/src/service/tweets/filtering/operation/standalone
 import 'package:twitter_api_v2/src/service/tweets/filtering/operator/standalone/bounding_box.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering/operator/standalone/cashtag.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering/operator/standalone/conversation.dart';
+import 'package:twitter_api_v2/src/service/tweets/filtering/operator/standalone/country.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering/operator/standalone/hashtag.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering/operator/standalone/keyword.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering/operator/standalone/place.dart';
@@ -212,6 +214,22 @@ void main() {
     final actual = StandaloneOperation().createNegatedPlace('test');
 
     expect(actual, isA<Place>());
+    expect(actual.negated, isTrue);
+  });
+
+  test('.createCountry', () {
+    final actual =
+        StandaloneOperation().createCountry(ISOAlpha2Country.afghanistan);
+
+    expect(actual, isA<Country>());
+    expect(actual.negated, isFalse);
+  });
+
+  test('.createNegatedCountry', () {
+    final actual = StandaloneOperation()
+        .createNegatedCountry(ISOAlpha2Country.afghanistan);
+
+    expect(actual, isA<Country>());
     expect(actual.negated, isTrue);
   });
 
