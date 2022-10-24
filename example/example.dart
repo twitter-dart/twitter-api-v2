@@ -124,23 +124,32 @@ Future<void> main() async {
     await twitter.tweets.createFilteringRules(
       rules: [
         v2.FilteringRuleParam(value: '#ElonMusk'),
-        v2.FilteringRuleParam(value: '#Tesla'),
-        v2.FilteringRuleParam(value: '#SpaceX'),
 
         //! You can easily build filtering rule using by "FilteringRule" object.
         v2.FilteringRuleParam(
-          //! => #ElonMusk has:links has:media OR (#Tesla has:images) sample:50
-          value: v2.FilteringRule.sampleOf(percent: 50)
-              .matchHashtag('ElonMusk')
-              .and()
-              .matchWithLinks()
+          //! => #Tesla has:media
+          value: v2.FilteringRule.of()
+              .matchHashtag('Tesla')
               .and()
               .matchWithMedia()
+              .build(),
+        ),
+        v2.FilteringRuleParam(
+          //! => (#SpaceX has:media) OR (#SpaceX has:hashtags) sample:50
+          value: v2.FilteringRule.sampleOf(percent: 50)
+              .group(
+                v2.FilteringRule.of()
+                    .matchHashtag('SpaceX')
+                    .and()
+                    .matchWithMedia(),
+              )
               .or()
-              .group(v2.FilteringRule.of()
-                  .matchHashtag('Tesla')
-                  .and()
-                  .matchWithImages())
+              .group(
+                v2.FilteringRule.of()
+                    .matchHashtag('SpaceX')
+                    .and()
+                    .matchWithHashtags(),
+              )
               .build(),
         ),
       ],
