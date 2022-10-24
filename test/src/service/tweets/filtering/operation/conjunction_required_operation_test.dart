@@ -4,6 +4,7 @@
 
 // Package imports:
 import 'package:test/test.dart';
+import 'package:twitter_api_core/twitter_api_core.dart';
 
 // Project imports:
 import 'package:twitter_api_v2/src/service/tweets/filtering/operation/conjunction_required_operation.dart';
@@ -13,7 +14,6 @@ import 'package:twitter_api_v2/src/service/tweets/filtering/operator/conjunction
 import 'package:twitter_api_v2/src/service/tweets/filtering/operator/conjunction/singleton/is_operator_type.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering/operator/conjunction/source.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering/operator/conjunction/tweet_lang.dart';
-import 'package:twitter_api_v2/src/service/tweets/tweet_language.dart';
 
 void main() {
   test('.createIsRetweet', () {
@@ -218,7 +218,7 @@ void main() {
 
   test('.createTweetLang', () {
     final actual = ConjunctionRequiredOperation().createTweetLang(
-      TweetLanguage.amharic,
+      BCP47Language.amharic,
     );
 
     expect(actual, isA<TweetLang>());
@@ -227,7 +227,7 @@ void main() {
 
   test('.createNegatedTweetLang', () {
     final actual = ConjunctionRequiredOperation().createNegatedTweetLang(
-      TweetLanguage.amharic,
+      BCP47Language.amharic,
     );
 
     expect(actual, isA<TweetLang>());

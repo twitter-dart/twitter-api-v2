@@ -4,21 +4,21 @@
 
 // Package imports:
 import 'package:test/test.dart';
+import 'package:twitter_api_core/twitter_api_core.dart';
 
 // Project imports:
 import 'package:twitter_api_v2/src/service/tweets/filtering/operator/conjunction/tweet_lang.dart';
-import 'package:twitter_api_v2/twitter_api_v2.dart';
 
 void main() {
   group('.toString', () {
     test('normal case', () {
-      final actual = TweetLang(TweetLanguage.amharic);
+      final actual = TweetLang(BCP47Language.amharic);
 
       expect(actual.toString(), 'lang:am');
     });
 
     test('when negated', () {
-      final actual = TweetLang.negated(TweetLanguage.amharic);
+      final actual = TweetLang.negated(BCP47Language.amharic);
 
       expect(actual.toString(), '-lang:am');
     });

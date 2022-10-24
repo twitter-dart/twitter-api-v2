@@ -4,13 +4,13 @@
 
 // Package imports:
 import 'package:test/test.dart';
+import 'package:twitter_api_core/twitter_api_core.dart';
 
 // Project imports:
 import 'package:twitter_api_v2/src/service/common/range.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering/channel/logical_channel.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering/channel/post_logical_channel.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering/filtering_rule.dart';
-import 'package:twitter_api_v2/src/service/tweets/tweet_language.dart';
 
 void main() {
   group('standalone syntaxes', () {
@@ -609,7 +609,7 @@ void main() {
     test('.matchLanguage', () {
       final actual =
           FilteringRule.of().matchKeyword('test').and().matchLanguage(
-                TweetLanguage.amharic,
+                BCP47Language.amharic,
               );
 
       expect(actual, isA<LogicalChannel>());
@@ -619,7 +619,7 @@ void main() {
     test('.notMatchLanguage', () {
       final actual =
           FilteringRule.of().matchKeyword('test').and().notMatchLanguage(
-                TweetLanguage.amharic,
+                BCP47Language.amharic,
               );
 
       expect(actual, isA<LogicalChannel>());
