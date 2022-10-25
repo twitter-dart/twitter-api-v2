@@ -10,7 +10,7 @@
 /// Tweet
 class TweetGeoParam {
   /// Returns the new instance of [TweetGeoParam].
-  TweetGeoParam({required this.placeId});
+  const TweetGeoParam({required this.placeId});
 
   /// Place ID being attached to the Tweet for geo location.
   final String placeId;

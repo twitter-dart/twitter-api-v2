@@ -6,7 +6,6 @@
 import 'dart:async';
 
 // Package imports:
-import 'package:http/http.dart' as http;
 import 'package:twitter_api_core/twitter_api_core.dart' as core;
 
 // Project imports:
@@ -29,7 +28,7 @@ typedef DataBuilder<D extends Data> = D Function(Map<String, Object?> json);
 typedef MetaBuilder<M extends Meta> = M Function(Map<String, Object?> json);
 
 abstract class _Service {
-  Future<http.Response> get(
+  Future<core.Response> get(
     core.UserContext userContext,
     String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
@@ -41,19 +40,19 @@ abstract class _Service {
     Map<String, dynamic> queryParameters = const {},
   });
 
-  Future<http.Response> post(
+  Future<core.Response> post(
     core.UserContext userContext,
     String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
     Map<String, String> body = const {},
   });
 
-  Future<http.Response> delete(
+  Future<core.Response> delete(
     core.UserContext userContext,
     String unencodedPath,
   );
 
-  Future<http.Response> put(
+  Future<core.Response> put(
     core.UserContext userContext,
     String unencodedPath, {
     Map<String, String> body = const {},
@@ -61,14 +60,14 @@ abstract class _Service {
 
   TwitterResponse<D, M>
       transformSingleDataResponse<D extends Data, M extends Meta>(
-    http.Response response, {
+    core.Response response, {
     required DataBuilder<D> dataBuilder,
     MetaBuilder<M>? metaBuilder,
   });
 
   TwitterResponse<List<D>, M>
       transformMultiDataResponse<D extends Data, M extends Meta>(
-    http.Response response, {
+    core.Response response, {
     required DataBuilder<D> dataBuilder,
     MetaBuilder<M>? metaBuilder,
   });
@@ -101,7 +100,7 @@ abstract class _Service {
     required MetaBuilder<M> metaBuilder,
   });
 
-  TwitterResponse<bool, void> evaluateResponse(final http.Response response);
+  TwitterResponse<bool, void> evaluateResponse(final core.Response response);
 }
 
 abstract class BaseService implements _Service {
@@ -118,7 +117,7 @@ abstract class BaseService implements _Service {
       const ResponseHeaderConverter();
 
   @override
-  Future<http.Response> get(
+  Future<core.Response> get(
     final core.UserContext userContext,
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
@@ -136,7 +135,7 @@ abstract class BaseService implements _Service {
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
     Map<String, dynamic> Function(
-            http.StreamedResponse streamedResponse, String event)?
+            core.StreamedResponse streamedResponse, String event)?
         validate,
   }) async =>
       await _helper.getStream(
@@ -147,12 +146,12 @@ abstract class BaseService implements _Service {
       );
 
   @override
-  Future<http.Response> post(
+  Future<core.Response> post(
     final core.UserContext userContext,
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
     dynamic body = const {},
-    http.Response Function(http.Response response)? validate,
+    core.Response Function(core.Response response)? validate,
   }) async =>
       await _helper.post(
         userContext,
@@ -163,10 +162,10 @@ abstract class BaseService implements _Service {
       );
 
   @override
-  Future<http.Response> delete(
+  Future<core.Response> delete(
     final core.UserContext userContext,
     final String unencodedPath, {
-    http.Response Function(http.Response response)? validate,
+    core.Response Function(core.Response response)? validate,
   }) async =>
       await _helper.delete(
         userContext,
@@ -175,11 +174,11 @@ abstract class BaseService implements _Service {
       );
 
   @override
-  Future<http.Response> put(
+  Future<core.Response> put(
     final core.UserContext userContext,
     final String unencodedPath, {
     dynamic body = const {},
-    http.Response Function(http.Response response)? validate,
+    core.Response Function(core.Response response)? validate,
   }) async =>
       await _helper.put(
         userContext,
@@ -191,7 +190,7 @@ abstract class BaseService implements _Service {
   @override
   TwitterResponse<D, M>
       transformSingleDataResponse<D extends Data, M extends Meta>(
-    http.Response response, {
+    core.Response response, {
     required DataBuilder<D> dataBuilder,
     MetaBuilder<M>? metaBuilder,
   }) {
@@ -217,7 +216,7 @@ abstract class BaseService implements _Service {
   @override
   TwitterResponse<List<D>, M>
       transformMultiDataResponse<D extends Data, M extends Meta>(
-    http.Response response, {
+    core.Response response, {
     required DataBuilder<D> dataBuilder,
     MetaBuilder<M>? metaBuilder,
   }) {
@@ -349,7 +348,7 @@ abstract class BaseService implements _Service {
   }
 
   @override
-  TwitterResponse<bool, void> evaluateResponse(final http.Response response) =>
+  TwitterResponse<bool, void> evaluateResponse(final core.Response response) =>
       TwitterResponse(
         rateLimit: RateLimit.fromJson(
           headerConverter.convert(response.headers),
@@ -359,7 +358,7 @@ abstract class BaseService implements _Service {
             .containsKey(ResponseField.errors.value),
       );
 
-  Map<String, dynamic> _checkResponseBody(final http.Response response) {
+  Map<String, dynamic> _checkResponseBody(final core.Response response) {
     final jsonBody = core.tryJsonDecode(response, response.body);
 
     if (!jsonBody.containsKey(ResponseField.data.value)) {
@@ -374,8 +373,8 @@ abstract class BaseService implements _Service {
     return jsonBody;
   }
 
-  http.Response checkResponse(
-    final http.Response response,
+  core.Response checkResponse(
+    final core.Response response,
   ) {
     if (response.statusCode == 401) {
       throw core.UnauthorizedException(
@@ -399,7 +398,10 @@ abstract class BaseService implements _Service {
       final errors = jsonBody[ResponseField.errors.value];
       for (final error in errors) {
         if (error['code'] == 88) {
-          throw core.RateLimitExceededException(error['message'] ?? '');
+          throw core.RateLimitExceededException(
+            error['message'] ?? '',
+            response,
+          );
         }
       }
     }
@@ -408,7 +410,7 @@ abstract class BaseService implements _Service {
   }
 
   Map<String, dynamic> _checkStreamedResponse(
-    final http.StreamedResponse response,
+    final core.StreamedResponse response,
     final String event,
   ) {
     final jsonBody = core.tryJsonDecode(
@@ -427,8 +429,8 @@ abstract class BaseService implements _Service {
     return jsonBody;
   }
 
-  http.StreamedResponse _checkStreamedResponseError(
-    final http.StreamedResponse response,
+  core.StreamedResponse _checkStreamedResponseError(
+    final core.StreamedResponse response,
     final String event,
   ) {
     if (response.statusCode == 401) {
@@ -442,7 +444,8 @@ abstract class BaseService implements _Service {
       final errors = jsonBody[ResponseField.errors.value];
       for (final error in errors) {
         if (error['code'] == 88) {
-          throw core.RateLimitExceededException(error['message'] ?? '');
+          throw core.RateLimitExceededException(
+              error['message'] ?? '', response);
         }
       }
     }

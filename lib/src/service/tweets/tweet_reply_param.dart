@@ -5,7 +5,10 @@
 /// The object that contains information of the Tweet being replied to.
 class TweetReplyParam {
   /// Returns the new instance of [TweetReplyParam].
-  TweetReplyParam({required this.inReplyToTweetId, this.excludeReplyUserIds});
+  const TweetReplyParam({
+    required this.inReplyToTweetId,
+    this.excludeReplyUserIds,
+  });
 
   /// Tweet ID of the Tweet being replied to.
   ///
