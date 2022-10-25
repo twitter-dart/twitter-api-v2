@@ -7,7 +7,6 @@ import 'dart:io';
 import 'dart:typed_data';
 
 // Package imports:
-import 'package:http/http.dart';
 import 'package:twitter_api_core/twitter_api_core.dart' as core;
 
 // Project imports:
@@ -194,7 +193,7 @@ class _MediaService extends BaseMediaService implements MediaService {
         dataBuilder: UploadedMediaData.fromJson,
       );
 
-  Future<Response> _uploadImage({
+  Future<core.Response> _uploadImage({
     required File file,
     String? altText,
     List<String>? additionalOwners,
@@ -225,7 +224,7 @@ class _MediaService extends BaseMediaService implements MediaService {
       core.UserContext.oauth1Only,
       '/1.1/media/upload.json',
       files: [
-        MultipartFile.fromBytes(
+        core.MultipartFile.fromBytes(
           'media',
           file.readAsBytesSync(),
         ),
@@ -236,7 +235,7 @@ class _MediaService extends BaseMediaService implements MediaService {
     );
   }
 
-  Future<Response> _uploadMedia({
+  Future<core.Response> _uploadMedia({
     required File file,
     String? altText,
     List<String>? additionalOwners,
@@ -310,7 +309,7 @@ class _MediaService extends BaseMediaService implements MediaService {
     }
   }
 
-  Future<Response> _initUpload({
+  Future<core.Response> _initUpload({
     required List<int> mediaBytes,
     required String mediaMimeType,
     List<String>? additionalOwners,
@@ -327,7 +326,7 @@ class _MediaService extends BaseMediaService implements MediaService {
         },
       );
 
-  Future<Response> _appendUploadMedia({
+  Future<core.Response> _appendUploadMedia({
     required String mediaId,
     required List<int> media,
     required int segmentIndex,
@@ -336,7 +335,7 @@ class _MediaService extends BaseMediaService implements MediaService {
         core.UserContext.oauth1Only,
         '/1.1/media/upload.json',
         files: [
-          MultipartFile.fromBytes('media', media),
+          core.MultipartFile.fromBytes('media', media),
         ],
         queryParameters: {
           'command': 'APPEND',
@@ -345,7 +344,7 @@ class _MediaService extends BaseMediaService implements MediaService {
         },
       );
 
-  Future<Response> _finalizeUpload({
+  Future<core.Response> _finalizeUpload({
     required String mediaId,
   }) async =>
       await super.post(
@@ -357,7 +356,7 @@ class _MediaService extends BaseMediaService implements MediaService {
         },
       );
 
-  Future<Response> _lookupUploadStatus({
+  Future<core.Response> _lookupUploadStatus({
     required String mediaId,
   }) async =>
       await super.get(
@@ -369,7 +368,7 @@ class _MediaService extends BaseMediaService implements MediaService {
         },
       );
 
-  Future<Response> _createMetaData({
+  Future<core.Response> _createMetaData({
     required String mediaId,
     required String altText,
   }) async =>
@@ -385,7 +384,7 @@ class _MediaService extends BaseMediaService implements MediaService {
       );
 
   Future<Map<String, dynamic>> _pollUploadStatus(
-    final Response finalizedResponse,
+    final core.Response finalizedResponse,
     final File file,
     final Function(UploadEvent event)? onProgress,
     final Function(UploadError error)? onFailed,
@@ -436,7 +435,7 @@ class _MediaService extends BaseMediaService implements MediaService {
     );
   }
 
-  Future<Response> _waitForUploadCompletion({
+  Future<core.Response> _waitForUploadCompletion({
     required String mediaId,
     required int delaySeconds,
     required File file,

@@ -3,7 +3,7 @@
 // modification, are permitted provided the conditions.
 
 // Package imports:
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:twitter_api_core/twitter_api_core.dart';
 
 /// This enum represents the compliance job status.
 enum JobStatus {

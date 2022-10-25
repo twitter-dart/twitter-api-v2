@@ -4,9 +4,7 @@
 
 // Package imports:
 import 'package:test/test.dart';
-import 'package:twitter_api_core/src/exception/rate_limit_exceeded_exception.dart';
-import 'package:twitter_api_core/src/exception/twitter_exception.dart';
-import 'package:twitter_api_core/src/exception/unauthorized_exception.dart';
+import 'package:twitter_api_core/twitter_api_core.dart';
 
 void expectUnauthorizedException(Function fn) {
   expect(
@@ -47,10 +45,8 @@ void expectRateLimitExceededException(Function fn) {
     throwsA(
       allOf(
         isA<RateLimitExceededException>(),
-        predicate(
-          (e) =>
-              e.toString() == 'RateLimitExceededException: Rate limit exceeded',
-        ),
+        predicate((RateLimitExceededException e) =>
+            e.message == 'Rate limit exceeded'),
       ),
     ),
   );

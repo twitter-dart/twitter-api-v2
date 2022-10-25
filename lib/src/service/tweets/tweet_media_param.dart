@@ -7,7 +7,7 @@
 /// This is mutually exclusive from Quote Tweet ID and Poll.
 class TweetMediaParam {
   /// Returns the new instance of [TweetMediaParam].
-  TweetMediaParam({required this.mediaIds, this.taggedUserIds});
+  const TweetMediaParam({required this.mediaIds, this.taggedUserIds});
 
   /// A list of Media IDs being attached to the Tweet.
   ///
