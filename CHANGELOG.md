@@ -1,5 +1,10 @@
 # Release Note
 
+## v4.2.2
+
+- Added `tweets.createThreads` method and deprecated `tweets.createThreadTweets`. ([#495](https://github.com/twitter-dart/twitter-api-v2/issues/495))
+- Added `tweets.createThread` method. You can create a single threaded tweet safely with this method.
+
 ## v4.2.1
 
 - Added detail information in `RateLimitExceededException`. Also, now it extends `TwitterException`.

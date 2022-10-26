@@ -15,7 +15,7 @@ import 'package:twitter_api_v2/src/service/tweets/tweets_service_extension.dart'
 import '../../../mocks/client_context_stubs.dart' as context;
 
 void main() {
-  group('.createThreadTweets', () {
+  group('.createThread', () {
     test('normal case', () async {
       final tweetsService = TweetsService(
         context: context.buildPostStub(
@@ -25,7 +25,54 @@ void main() {
         ),
       );
 
-      final responses = await tweetsService.createThreadTweets(
+      final response = await tweetsService.createThread(
+        parentTweetId: '1234',
+        text: 'test',
+      );
+
+      expect(response, isA<TwitterResponse<TweetData, void>>());
+      expect(response.data, isA<TweetData>());
+    });
+
+    test('when parent tweet id is empty', () async {
+      final tweetsService = TweetsService(
+        context: context.buildPostStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets',
+          'test/src/service/tweets/data/create_tweet.json',
+        ),
+      );
+
+      expect(
+        () async => await tweetsService.createThread(
+          parentTweetId: '',
+          text: '',
+        ),
+        throwsA(
+          allOf(
+            isA<ArgumentError>(),
+            predicate(
+              (dynamic e) =>
+                  e.message ==
+                  'The parent Tweet ID is required to create a thread.',
+            ),
+          ),
+        ),
+      );
+    });
+  });
+
+  group('.createThreads', () {
+    test('normal case', () async {
+      final tweetsService = TweetsService(
+        context: context.buildPostStub(
+          UserContext.oauth2OrOAuth1,
+          '/2/tweets',
+          'test/src/service/tweets/data/create_tweet.json',
+        ),
+      );
+
+      final responses = await tweetsService.createThreads(
         tweets: [
           TweetParam(text: 'tweet1'),
           TweetParam(text: 'tweet2'),
@@ -48,7 +95,7 @@ void main() {
       );
 
       expect(
-        () async => await tweetsService.createThreadTweets(
+        () async => await tweetsService.createThreads(
           tweets: [TweetParam(text: 'tweet1')],
         ),
         throwsA(
