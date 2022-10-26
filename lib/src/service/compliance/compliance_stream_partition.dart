@@ -2,14 +2,14 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
-import 'package:freezed_annotation/freezed_annotation.dart';
+enum ComplianceStreamPartition {
+  section1(1),
+  section2(2),
+  section3(3),
+  section4(4);
 
-enum TweetType {
-  retweeted,
+  /// The value
+  final int value;
 
-  quoted,
-
-  @JsonValue('replied_to')
-  repliedTo,
+  const ComplianceStreamPartition(this.value);
 }

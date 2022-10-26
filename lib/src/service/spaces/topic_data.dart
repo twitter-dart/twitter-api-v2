@@ -3,7 +3,7 @@
 // modification, are permitted provided the conditions.
 
 // Package imports:
-import 'package:twitter_api_core/twitter_api_core.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'topic_data.freezed.dart';
 part 'topic_data.g.dart';

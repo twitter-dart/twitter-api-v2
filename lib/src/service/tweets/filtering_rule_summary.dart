@@ -5,7 +5,7 @@
 // ignore_for_file: invalid_annotation_target
 
 // Package imports:
-import 'package:twitter_api_core/twitter_api_core.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'filtering_rule_summary.freezed.dart';
 part 'filtering_rule_summary.g.dart';
