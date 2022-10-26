@@ -3,7 +3,7 @@
 // modification, are permitted provided the conditions.
 
 // Package imports:
-import 'package:twitter_api_core/twitter_api_core.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'geo_coordinates.freezed.dart';
 part 'geo_coordinates.g.dart';

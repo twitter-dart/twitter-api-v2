@@ -7,16 +7,10 @@ import 'package:twitter_api_core/twitter_api_core.dart' as core;
 
 // Project imports:
 import '../base_service.dart';
-import '../common/rate_limit.dart';
-import '../response/response_field.dart';
 import '../response/twitter_response.dart';
-import '../response/twitter_stream_response.dart';
 import 'batch_compliance_data.dart';
-import 'compliance_stream_partition.dart';
 import 'job_status.dart';
 import 'job_type.dart';
-import 'tweet_compliance_data.dart';
-import 'user_compliance_data.dart';
 
 /// This class provides methods to easily access endpoints based on Compliance.
 abstract class ComplianceService {
@@ -118,100 +112,6 @@ abstract class ComplianceService {
   /// - https://developer.twitter.com/en/docs/twitter-api/compliance/batch-compliance/api-reference/post-compliance-jobs
   Future<TwitterResponse<BatchComplianceData, void>> createJob(
       {required JobType jobType, String? jobName, bool? resumable});
-
-  /// Connect to one of four partitions of the Tweet compliance stream.
-  ///
-  /// ## Parameters
-  ///
-  /// - [partition]: Must be set to [ComplianceStreamPartition.section1],
-  ///               [ComplianceStreamPartition.section2],
-  ///               [ComplianceStreamPartition.section3] or
-  ///               [ComplianceStreamPartition.section4]. Tweet compliance
-  ///               events are split across 4 partitions, so 4 separate streams
-  ///               are needed to receive all events.
-  ///
-  /// - [backfillMinutes]: By passing this parameter, you can recover up to
-  ///                      5 minutes worth of data that you might have missed
-  ///                      during a disconnection. The backfilled events will
-  ///                      automatically flow through a reconnected stream,
-  ///                      with older events generally being delivered before
-  ///                      any newer events. You must include a whole number
-  ///                      between 1 and 5 as the value to this parameter.
-  ///                      This feature will deliver all events that published
-  ///                      during the time frame selected, meaning that if you
-  ///                      were disconnected for 90 seconds, and you requested
-  ///                      2 minutes of backfill, you will receive 30 seconds
-  ///                      worth of duplicate events. Due to this, you should
-  ///                      make sure your system is tolerant of duplicate data.
-  ///
-  /// ## Endpoint Url
-  ///
-  /// - https://api.twitter.com/2/tweets/compliance/stream
-  ///
-  /// ## Authentication Methods
-  ///
-  /// - OAuth 2.0 App-only
-  ///
-  /// ## Rate Limits
-  ///
-  /// - **App rate limit (Application-only)**:
-  ///   100 requests per 15-minute window shared among all users of your app.
-  ///
-  /// ## Reference
-  ///
-  /// - https://developer.twitter.com/en/docs/twitter-api/compliance/streams/api-reference/get-tweets-compliance-stream
-  Future<TwitterStreamResponse<TwitterResponse<TweetComplianceData, void>>>
-      connectTweetsStream({
-    required ComplianceStreamPartition partition,
-    int? backfillMinutes,
-  });
-
-  /// Connect to one of four partitions of the User compliance stream.
-  ///
-  /// ## Parameters
-  ///
-  /// - [partition]: Must be set to [ComplianceStreamPartition.section1],
-  ///               [ComplianceStreamPartition.section2],
-  ///               [ComplianceStreamPartition.section3] or
-  ///               [ComplianceStreamPartition.section4]. Tweet compliance
-  ///               events are split across 4 partitions, so 4 separate streams
-  ///               are needed to receive all events.
-  ///
-  /// - [backfillMinutes]: By passing this parameter, you can recover up to
-  ///                      5 minutes worth of data that you might have missed
-  ///                      during a disconnection. The backfilled events will
-  ///                      automatically flow through a reconnected stream,
-  ///                      with older events generally being delivered before
-  ///                      any newer events. You must include a whole number
-  ///                      between 1 and 5 as the value to this parameter.
-  ///                      This feature will deliver all events that published
-  ///                      during the time frame selected, meaning that if you
-  ///                      were disconnected for 90 seconds, and you requested
-  ///                      2 minutes of backfill, you will receive 30 seconds
-  ///                      worth of duplicate events. Due to this, you should
-  ///                      make sure your system is tolerant of duplicate data.
-  ///
-  /// ## Endpoint Url
-  ///
-  /// - https://api.twitter.com/2/users/compliance/stream
-  ///
-  /// ## Authentication Methods
-  ///
-  /// - OAuth 2.0 App-only
-  ///
-  /// ## Rate Limits
-  ///
-  /// - **App rate limit (Application-only)**:
-  ///   100 requests per 15-minute window shared among all users of your app.
-  ///
-  /// ## Reference
-  ///
-  /// - https://developer.twitter.com/en/docs/twitter-api/compliance/streams/api-reference/get-users-compliance-stream
-  Future<TwitterStreamResponse<TwitterResponse<UserComplianceData, void>>>
-      connectUsersStream({
-    required ComplianceStreamPartition partition,
-    int? backfillMinutes,
-  });
 }
 
 class _ComplianceService extends BaseService implements ComplianceService {
@@ -265,60 +165,4 @@ class _ComplianceService extends BaseService implements ComplianceService {
         ),
         dataBuilder: BatchComplianceData.fromJson,
       );
-
-  @override
-  Future<TwitterStreamResponse<TwitterResponse<TweetComplianceData, void>>>
-      connectTweetsStream({
-    required ComplianceStreamPartition partition,
-    int? backfillMinutes,
-  }) async {
-    final stream = await super.getStream(
-      core.UserContext.oauth2Only,
-      '/2/tweets/compliance/stream',
-      queryParameters: {
-        'partition': partition.value,
-        'backfill_minutes': backfillMinutes,
-      },
-    );
-
-    final headers = super.headerConverter.convert(stream.headers);
-
-    return TwitterStreamResponse(
-      rateLimit: RateLimit.fromJson(headers),
-      stream: stream.body.map(
-        (event) => TwitterResponse(
-          rateLimit: RateLimit.fromJson(headers),
-          data: TweetComplianceData.fromJson(event[ResponseField.data.value]),
-        ),
-      ),
-    );
-  }
-
-  @override
-  Future<TwitterStreamResponse<TwitterResponse<UserComplianceData, void>>>
-      connectUsersStream({
-    required ComplianceStreamPartition partition,
-    int? backfillMinutes,
-  }) async {
-    final stream = await super.getStream(
-      core.UserContext.oauth2Only,
-      '/2/users/compliance/stream',
-      queryParameters: {
-        'partition': partition.value,
-        'backfill_minutes': backfillMinutes,
-      },
-    );
-
-    final headers = super.headerConverter.convert(stream.headers);
-
-    return TwitterStreamResponse(
-      rateLimit: RateLimit.fromJson(headers),
-      stream: stream.body.map(
-        (event) => TwitterResponse(
-          rateLimit: RateLimit.fromJson(headers),
-          data: UserComplianceData.fromJson(event[ResponseField.data.value]),
-        ),
-      ),
-    );
-  }
 }

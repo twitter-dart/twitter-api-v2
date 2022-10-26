@@ -1,5 +1,9 @@
 # Release Note
 
+## v4.2.3
+
+- Fixed dependency structure.
+
 ## v4.2.2
 
 - Added `tweets.createThreads` method and deprecated `tweets.createThreadTweets`. ([#495](https://github.com/twitter-dart/twitter-api-v2/issues/495))
