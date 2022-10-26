@@ -6,8 +6,6 @@
 import 'dart:convert';
 
 // Package imports:
-import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
 import 'package:twitter_api_core/twitter_api_core.dart' as core;
 
 // Project imports:
@@ -17,16 +15,16 @@ import 'common/meta.dart';
 import 'response/twitter_response.dart';
 
 abstract class _MediaService {
-  Future<http.Response> postMultipart(
+  Future<core.Response> postMultipart(
     final core.UserContext userContext,
     final String unencodedPath, {
-    List<http.MultipartFile> files = const [],
+    List<core.MultipartFile> files = const [],
     Map<String, dynamic> queryParameters = const {},
   });
 
   TwitterResponse<D, M>
       transformUploadedDataResponse<D extends Data, M extends Meta>(
-    http.Response response, {
+    core.Response response, {
     required DataBuilder<D> dataBuilder,
   });
 }
@@ -42,7 +40,7 @@ abstract class BaseMediaService extends BaseService implements _MediaService {
   final core.ServiceHelper _helper;
 
   @override
-  Future<http.Response> get(
+  Future<core.Response> get(
     final core.UserContext userContext,
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
@@ -55,12 +53,12 @@ abstract class BaseMediaService extends BaseService implements _MediaService {
       );
 
   @override
-  Future<http.Response> post(
+  Future<core.Response> post(
     final core.UserContext userContext,
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
     dynamic body = const {},
-    http.Response Function(http.Response response)? validate,
+    core.Response Function(core.Response response)? validate,
   }) async =>
       await _helper.post(
         userContext,
@@ -71,10 +69,10 @@ abstract class BaseMediaService extends BaseService implements _MediaService {
       );
 
   @override
-  Future<http.Response> postMultipart(
+  Future<core.Response> postMultipart(
     final core.UserContext userContext,
     final String unencodedPath, {
-    List<http.MultipartFile> files = const [],
+    List<core.MultipartFile> files = const [],
     Map<String, dynamic> queryParameters = const {},
   }) async =>
       await _helper.postMultipart(
@@ -88,13 +86,13 @@ abstract class BaseMediaService extends BaseService implements _MediaService {
   @override
   TwitterResponse<D, M>
       transformUploadedDataResponse<D extends Data, M extends Meta>(
-    http.Response response, {
+    core.Response response, {
     required DataBuilder<D> dataBuilder,
   }) {
     final json = core.tryJsonDecode(response, response.body);
 
     return super.transformSingleDataResponse(
-      Response(
+      core.Response(
         jsonEncode({
           //! Convert to a data structure compliant with v2.0 specifications.
           'data': <String, dynamic>{

@@ -5,7 +5,7 @@
 /// The object that contains filtering rule information.
 class FilteringRuleParam {
   /// Returns the new instance of [FilteringRuleParam].
-  FilteringRuleParam({required this.value, this.tag});
+  const FilteringRuleParam({required this.value, this.tag});
 
   /// The rule text.
   ///

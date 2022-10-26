@@ -3,7 +3,7 @@
 // modification, are permitted provided the conditions.
 
 // Package imports:
-import 'package:json_annotation/json_annotation.dart';
+import 'package:twitter_api_core/twitter_api_core.dart';
 
 enum TweetLanguage {
   @JsonValue('am')

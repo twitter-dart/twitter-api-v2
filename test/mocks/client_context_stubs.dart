@@ -7,9 +7,9 @@ import 'dart:convert';
 import 'dart:io';
 
 // Package imports:
-import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 import 'package:twitter_api_core/src/client/user_context.dart';
+import 'package:twitter_api_core/twitter_api_core.dart' as core;
 
 // Project imports:
 import 'mock.mocks.dart';
@@ -26,7 +26,7 @@ MockClientContext buildGetStub(
     userContext,
     Uri.https('api.twitter.com', unencodedPath, queryParameters),
   )).thenAnswer(
-    (_) async => http.Response(
+    (_) async => core.Response(
       await File(resourcePath).readAsString(),
       200,
       headers: {'content-type': 'application/json; charset=utf-8'},
@@ -47,7 +47,7 @@ MockClientContext buildGetStubWithAnyUriAndMultiResources(
     userContext,
     any,
   )).thenAnswer(
-    (_) async => http.Response(
+    (_) async => core.Response(
       await File(resourcePaths.removeAt(0)).readAsString(),
       200,
       headers: {'content-type': 'application/json; charset=utf-8'},
@@ -71,7 +71,7 @@ MockClientContext buildPostStub(
     headers: anyNamed('headers'),
     body: anyNamed('body'),
   )).thenAnswer(
-    (_) async => http.Response(
+    (_) async => core.Response(
       await File(resourcePath).readAsString(),
       200,
       headers: {
@@ -96,7 +96,7 @@ MockClientContext buildPostMultipartStub(
     Uri.https('upload.twitter.com', unencodedPath, queryParameters),
     files: anyNamed('files'),
   )).thenAnswer(
-    (_) async => http.Response(
+    (_) async => core.Response(
       await File(resourcePath).readAsString(),
       200,
       headers: {
@@ -118,7 +118,7 @@ MockClientContext buildDeleteStub(
     UserContext.oauth2OrOAuth1,
     Uri.https('api.twitter.com', unencodedPath),
   )).thenAnswer(
-    (_) async => http.Response(
+    (_) async => core.Response(
       await File(resourcePath).readAsString(),
       200,
       headers: {'content-type': 'application/json; charset=utf-8'},
@@ -140,7 +140,7 @@ MockClientContext buildPutStub(
     headers: anyNamed('headers'),
     body: anyNamed('body'),
   )).thenAnswer(
-    (_) async => http.Response(
+    (_) async => core.Response(
       await File(resourcePath).readAsString(),
       200,
       headers: {'content-type': 'application/json; charset=utf-8'},
@@ -172,7 +172,7 @@ MockClientContext buildSendStub(
     any,
   )).thenAnswer(
     (_) async {
-      return http.StreamedResponse(
+      return core.StreamedResponse(
         responseStream(),
         200,
         headers: {'content-type': 'application/json; charset=utf-8'},
