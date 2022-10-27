@@ -1,5 +1,9 @@
 # Release Note
 
+## v4.2.4
+
+- Renamed from `createThread` to `createReply`.
+
 ## v4.2.3
 
 - Fixed dependency structure.
