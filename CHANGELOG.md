@@ -1,5 +1,11 @@
 # Release Note
 
+## v4.3.0
+
+- Added `WithheldCountry` enum. This is an enumeration that supports country codes according to the ISO Alpha2 standard, an international standard, as well as `XX` (all countries) and `XY` (DMCA Request), which are supported by Twitter. With the addition of this enumeration, the following response object types have been modified to be safer. Also, refactored field names. ([#500](https://github.com/twitter-dart/twitter-api-v2/issues/500))
+  - From `TweetWithheld.countryCodes` to `TweetWithheld.countries`
+  - From `UserWithheld.countryCodes` to `UserWithheld.countries`
+
 ## v4.2.4
 
 - Renamed from `createThread` to `createReply`.

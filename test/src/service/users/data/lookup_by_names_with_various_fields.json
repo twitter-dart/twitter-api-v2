@@ -12,8 +12,8 @@
             "verified": true,
             "withheld": {
                 "country_codes": [
-                    "XXX",
-                    "YYY"
+                    "XX",
+                    "XY"
                 ]
             }
         },
@@ -22,6 +22,12 @@
             "username": "Twitter",
             "name": "Twitter",
             "created_at": "2013-12-14T04:35:55.000Z",
+            "withheld": {
+                "country_codes": [
+                    "AF",
+                    "JP"
+                ]
+            },
             "entities": {
                 "url": {
                     "urls": [
