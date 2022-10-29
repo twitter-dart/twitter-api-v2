@@ -18,7 +18,7 @@ class Country extends Operator {
   factory Country.negated(final core.ISOAlpha2Country country) =>
       Country(country, negated: true);
 
-  /// The BCP 47 language
+  /// The ISO Alpha2 country
   final core.ISOAlpha2Country country;
 
   @override
