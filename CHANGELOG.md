@@ -1,5 +1,23 @@
 # Release Note
 
+## v4.2.4
+
+- Renamed from `createThread` to `createReply`.
+
+## v4.2.3
+
+- Fixed dependency structure.
+
+## v4.2.2
+
+- Added `tweets.createThreads` method and deprecated `tweets.createThreadTweets`. ([#495](https://github.com/twitter-dart/twitter-api-v2/issues/495))
+- Added `tweets.createThread` method. You can create a single threaded tweet safely with this method.
+
+## v4.2.1
+
+- Added detail information in `RateLimitExceededException`. Also, now it extends `TwitterException`.
+- Added `tweets.createThreadTweets` method. You can create threaded tweets with this method in a very simple way. ([#411](https://github.com/twitter-dart/twitter-api-v2/issues/411))
+
 ## v4.2.0
 
 - Deprecated properties in `TwitterApi` below and added new properties. It will be removed in v5.0.0, so please replace them to new property names. ([#483](https://github.com/twitter-dart/twitter-api-v2/issues/483))
