@@ -24,8 +24,7 @@ mixin _$UserWithheldEvent {
   UserEventData get user => throw _privateConstructorUsedError;
 
   /// List of countries applied withheld.
-  List<ISOAlpha2Country> get withheldInCountries =>
-      throw _privateConstructorUsedError;
+  List<Country> get withheldInCountries => throw _privateConstructorUsedError;
 
   /// Time of when event happened.
   DateTime get eventAt => throw _privateConstructorUsedError;
@@ -43,7 +42,7 @@ abstract class $UserWithheldEventCopyWith<$Res> {
       _$UserWithheldEventCopyWithImpl<$Res>;
   $Res call(
       {UserEventData user,
-      List<ISOAlpha2Country> withheldInCountries,
+      List<Country> withheldInCountries,
       DateTime eventAt});
 
   $UserEventDataCopyWith<$Res> get user;
@@ -72,7 +71,7 @@ class _$UserWithheldEventCopyWithImpl<$Res>
       withheldInCountries: withheldInCountries == freezed
           ? _value.withheldInCountries
           : withheldInCountries // ignore: cast_nullable_to_non_nullable
-              as List<ISOAlpha2Country>,
+              as List<Country>,
       eventAt: eventAt == freezed
           ? _value.eventAt
           : eventAt // ignore: cast_nullable_to_non_nullable
@@ -97,7 +96,7 @@ abstract class _$$_UserWithheldEventCopyWith<$Res>
   @override
   $Res call(
       {UserEventData user,
-      List<ISOAlpha2Country> withheldInCountries,
+      List<Country> withheldInCountries,
       DateTime eventAt});
 
   @override
@@ -129,7 +128,7 @@ class __$$_UserWithheldEventCopyWithImpl<$Res>
       withheldInCountries: withheldInCountries == freezed
           ? _value._withheldInCountries
           : withheldInCountries // ignore: cast_nullable_to_non_nullable
-              as List<ISOAlpha2Country>,
+              as List<Country>,
       eventAt: eventAt == freezed
           ? _value.eventAt
           : eventAt // ignore: cast_nullable_to_non_nullable
@@ -143,7 +142,7 @@ class __$$_UserWithheldEventCopyWithImpl<$Res>
 class _$_UserWithheldEvent implements _UserWithheldEvent {
   const _$_UserWithheldEvent(
       {required this.user,
-      required final List<ISOAlpha2Country> withheldInCountries,
+      required final List<Country> withheldInCountries,
       required this.eventAt})
       : _withheldInCountries = withheldInCountries;
 
@@ -155,11 +154,11 @@ class _$_UserWithheldEvent implements _UserWithheldEvent {
   final UserEventData user;
 
   /// List of countries applied withheld.
-  final List<ISOAlpha2Country> _withheldInCountries;
+  final List<Country> _withheldInCountries;
 
   /// List of countries applied withheld.
   @override
-  List<ISOAlpha2Country> get withheldInCountries {
+  List<Country> get withheldInCountries {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_withheldInCountries);
   }
@@ -209,7 +208,7 @@ class _$_UserWithheldEvent implements _UserWithheldEvent {
 abstract class _UserWithheldEvent implements UserWithheldEvent {
   const factory _UserWithheldEvent(
       {required final UserEventData user,
-      required final List<ISOAlpha2Country> withheldInCountries,
+      required final List<Country> withheldInCountries,
       required final DateTime eventAt}) = _$_UserWithheldEvent;
 
   factory _UserWithheldEvent.fromJson(Map<String, dynamic> json) =
@@ -222,7 +221,7 @@ abstract class _UserWithheldEvent implements UserWithheldEvent {
   @override
 
   /// List of countries applied withheld.
-  List<ISOAlpha2Country> get withheldInCountries;
+  List<Country> get withheldInCountries;
   @override
 
   /// Time of when event happened.

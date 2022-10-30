@@ -9,6 +9,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../common/data.dart';
 import 'tweet_edit_event.dart';
 import 'tweet_event.dart';
+import 'tweet_event_type.dart';
 import 'tweet_withheld_event.dart';
 
 part 'tweet_compliance_data.freezed.dart';
@@ -35,4 +36,30 @@ class TweetComplianceData with _$TweetComplianceData implements Data {
 
   factory TweetComplianceData.fromJson(Map<String, Object?> json) =>
       _$TweetComplianceDataFromJson(json);
+
+  /// Returns the event type.
+  TweetEventType get eventType {
+    if (delete != null) {
+      return TweetEventType.delete;
+    }
+
+    if (tweetEdit != null) {
+      return TweetEventType.tweetEdit;
+    }
+
+    if (withheld != null) {
+      return TweetEventType.withheld;
+    }
+
+    if (drop != null) {
+      return TweetEventType.drop;
+    }
+
+    if (undrop != null) {
+      return TweetEventType.undrop;
+    }
+
+    //! Never happen.
+    throw UnsupportedError('');
+  }
 }

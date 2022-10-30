@@ -19,7 +19,7 @@ class UserWithheldEvent with _$UserWithheldEvent {
     required UserEventData user,
 
     /// List of countries applied withheld.
-    required List<ISOAlpha2Country> withheldInCountries,
+    required List<Country> withheldInCountries,
 
     /// Time of when event happened.
     required DateTime eventAt,

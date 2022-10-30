@@ -24,8 +24,7 @@ mixin _$TweetWithheldEvent {
   TweetEventData get tweet => throw _privateConstructorUsedError;
 
   /// List of countries applied withheld.
-  List<ISOAlpha2Country> get withheldInCountries =>
-      throw _privateConstructorUsedError;
+  List<Country> get withheldInCountries => throw _privateConstructorUsedError;
 
   /// Time of when event happened.
   DateTime get eventAt => throw _privateConstructorUsedError;
@@ -43,7 +42,7 @@ abstract class $TweetWithheldEventCopyWith<$Res> {
       _$TweetWithheldEventCopyWithImpl<$Res>;
   $Res call(
       {TweetEventData tweet,
-      List<ISOAlpha2Country> withheldInCountries,
+      List<Country> withheldInCountries,
       DateTime eventAt});
 
   $TweetEventDataCopyWith<$Res> get tweet;
@@ -72,7 +71,7 @@ class _$TweetWithheldEventCopyWithImpl<$Res>
       withheldInCountries: withheldInCountries == freezed
           ? _value.withheldInCountries
           : withheldInCountries // ignore: cast_nullable_to_non_nullable
-              as List<ISOAlpha2Country>,
+              as List<Country>,
       eventAt: eventAt == freezed
           ? _value.eventAt
           : eventAt // ignore: cast_nullable_to_non_nullable
@@ -97,7 +96,7 @@ abstract class _$$_TweetWithheldEventCopyWith<$Res>
   @override
   $Res call(
       {TweetEventData tweet,
-      List<ISOAlpha2Country> withheldInCountries,
+      List<Country> withheldInCountries,
       DateTime eventAt});
 
   @override
@@ -129,7 +128,7 @@ class __$$_TweetWithheldEventCopyWithImpl<$Res>
       withheldInCountries: withheldInCountries == freezed
           ? _value._withheldInCountries
           : withheldInCountries // ignore: cast_nullable_to_non_nullable
-              as List<ISOAlpha2Country>,
+              as List<Country>,
       eventAt: eventAt == freezed
           ? _value.eventAt
           : eventAt // ignore: cast_nullable_to_non_nullable
@@ -143,7 +142,7 @@ class __$$_TweetWithheldEventCopyWithImpl<$Res>
 class _$_TweetWithheldEvent implements _TweetWithheldEvent {
   const _$_TweetWithheldEvent(
       {required this.tweet,
-      required final List<ISOAlpha2Country> withheldInCountries,
+      required final List<Country> withheldInCountries,
       required this.eventAt})
       : _withheldInCountries = withheldInCountries;
 
@@ -155,11 +154,11 @@ class _$_TweetWithheldEvent implements _TweetWithheldEvent {
   final TweetEventData tweet;
 
   /// List of countries applied withheld.
-  final List<ISOAlpha2Country> _withheldInCountries;
+  final List<Country> _withheldInCountries;
 
   /// List of countries applied withheld.
   @override
-  List<ISOAlpha2Country> get withheldInCountries {
+  List<Country> get withheldInCountries {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_withheldInCountries);
   }
@@ -209,7 +208,7 @@ class _$_TweetWithheldEvent implements _TweetWithheldEvent {
 abstract class _TweetWithheldEvent implements TweetWithheldEvent {
   const factory _TweetWithheldEvent(
       {required final TweetEventData tweet,
-      required final List<ISOAlpha2Country> withheldInCountries,
+      required final List<Country> withheldInCountries,
       required final DateTime eventAt}) = _$_TweetWithheldEvent;
 
   factory _TweetWithheldEvent.fromJson(Map<String, dynamic> json) =
@@ -222,7 +221,7 @@ abstract class _TweetWithheldEvent implements TweetWithheldEvent {
   @override
 
   /// List of countries applied withheld.
-  List<ISOAlpha2Country> get withheldInCountries;
+  List<Country> get withheldInCountries;
   @override
 
   /// Time of when event happened.
