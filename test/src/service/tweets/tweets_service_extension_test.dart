@@ -25,8 +25,8 @@ void main() {
         ),
       );
 
-      final response = await tweetsService.createThread(
-        parentTweetId: '1234',
+      final response = await tweetsService.createReply(
+        tweetId: '1234',
         text: 'test',
       );
 
@@ -44,8 +44,8 @@ void main() {
       );
 
       expect(
-        () async => await tweetsService.createThread(
-          parentTweetId: '',
+        () async => await tweetsService.createReply(
+          tweetId: '',
           text: '',
         ),
         throwsA(
@@ -53,8 +53,7 @@ void main() {
             isA<ArgumentError>(),
             predicate(
               (dynamic e) =>
-                  e.message ==
-                  'The parent Tweet ID is required to create a thread.',
+                  e.message == 'The Tweet ID is required to create a reply.',
             ),
           ),
         ),
