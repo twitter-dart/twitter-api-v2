@@ -1,5 +1,11 @@
 # Release Note
 
+## v4.3.0
+
+- Removed deprecated methods.
+  - Use `tweets.connectSampleStream` instead of `tweets.connectVolumeStream`.
+  - Use `tweets.createThreads` instead of `createThreadTweets`.
+
 ## v4.2.4
 
 - Renamed from `createThread` to `createReply`.
