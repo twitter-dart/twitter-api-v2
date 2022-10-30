@@ -6,6 +6,7 @@
 
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:twitter_api_core/twitter_api_core.dart';
 
 part 'tweet_withheld.freezed.dart';
 part 'tweet_withheld.g.dart';
@@ -15,10 +16,10 @@ class TweetWithheld with _$TweetWithheld {
   const factory TweetWithheld({
     /// Indicates if the content is being withheld for on the basis of
     /// copyright infringement.
-    @JsonKey(name: 'copyright') required bool isCopyright,
+    @JsonKey(name: 'copyright') required bool dueToCopyright,
 
     /// Provides a list of countries where this content is not available.
-    required List<String> countryCodes,
+    @JsonKey(name: 'country_codes') required List<Country> countries,
   }) = _TweetWithheld;
 
   factory TweetWithheld.fromJson(Map<String, Object?> json) =>

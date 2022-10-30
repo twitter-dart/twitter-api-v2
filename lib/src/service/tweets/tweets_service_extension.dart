@@ -14,22 +14,16 @@ import 'tweet_reply_param.dart';
 import 'tweets_service.dart';
 
 extension TweetServiceExtension on TweetsService {
-  @Deprecated('Use ".createThreads" instead. Will be removed in v4.3.0')
-  Future<List<TwitterResponse<TweetData, void>>> createThreadTweets({
-    required List<TweetParam> tweets,
-  }) async =>
-      await createThreads(tweets: tweets);
-
-  /// This is a convenience method for creating a thread tied to a parent tweet.
+  /// This is a convenience method for creating a reply.
   ///
-  /// [parentTweetId] should be the ID of the tweet for which you want to
-  /// create a thread. If [parentTweetId] is an empty string,
+  /// [tweetId] should be the ID of the tweet for which you want to
+  /// create a reply. If [tweetId] is an empty string,
   /// an [ArgumentError] will always occur.
   ///
   /// ## Parameters
   ///
-  /// - [parentTweetId]: the ID of the tweet for which you want to create
-  ///                    a thread
+  /// - [tweetId]: The ID of the tweet for which you want to create
+  ///              a reply.
   ///
   /// - [text]: Text of the Tweet being created.
   ///           This field is required if media.media_ids is not present.
@@ -85,8 +79,8 @@ extension TweetServiceExtension on TweetsService {
   ///
   /// - **User rate limit (OAuth 2.0 user Access Token)**:
   ///     200 requests per 15-minute window per each authenticated user
-  Future<TwitterResponse<TweetData, void>> createThread({
-    required String parentTweetId,
+  Future<TwitterResponse<TweetData, void>> createReply({
+    required String tweetId,
     required String text,
     String? quoteTweetId,
     bool? forSuperFollowersOnly,
@@ -97,9 +91,9 @@ extension TweetServiceExtension on TweetsService {
     TweetPollParam? poll,
     List<String>? excludeReplyUserIds,
   }) async {
-    if (parentTweetId.isEmpty) {
+    if (tweetId.isEmpty) {
       throw ArgumentError(
-        'The parent Tweet ID is required to create a thread.',
+        'The Tweet ID is required to create a reply.',
       );
     }
 
@@ -113,7 +107,7 @@ extension TweetServiceExtension on TweetsService {
       geo: geo,
       poll: poll,
       reply: TweetReplyParam(
-        inReplyToTweetId: parentTweetId,
+        inReplyToTweetId: tweetId,
         excludeReplyUserIds: excludeReplyUserIds,
       ),
     );
@@ -189,8 +183,8 @@ extension TweetServiceExtension on TweetsService {
 
     String parentTweetId = rootTweet.data.id;
     for (final tweet in tweets.sublist(1)) {
-      final childTweet = await createThread(
-        parentTweetId: parentTweetId,
+      final childTweet = await createReply(
+        tweetId: parentTweetId,
         text: tweet.text,
         quoteTweetId: tweet.quoteTweetId,
         forSuperFollowersOnly: tweet.forSuperFollowersOnly,
