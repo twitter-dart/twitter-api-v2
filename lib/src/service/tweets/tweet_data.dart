@@ -6,6 +6,7 @@
 
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:twitter_api_core/twitter_api_core.dart';
 
 // Project imports:
 import '../common/data.dart';
@@ -20,7 +21,6 @@ import 'tweet_attachments.dart';
 import 'tweet_context_annotation_group.dart';
 import 'tweet_edit_controls.dart';
 import 'tweet_entities.dart';
-import 'tweet_language.dart';
 import 'tweet_withheld.dart';
 
 part 'tweet_data.freezed.dart';

@@ -23,10 +23,11 @@ mixin _$TweetWithheld {
   /// Indicates if the content is being withheld for on the basis of
   /// copyright infringement.
   @JsonKey(name: 'copyright')
-  bool get isCopyright => throw _privateConstructorUsedError;
+  bool get dueToCopyright => throw _privateConstructorUsedError;
 
   /// Provides a list of countries where this content is not available.
-  List<String> get countryCodes => throw _privateConstructorUsedError;
+  @JsonKey(name: 'country_codes')
+  List<Country> get countries => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,8 +41,8 @@ abstract class $TweetWithheldCopyWith<$Res> {
           TweetWithheld value, $Res Function(TweetWithheld) then) =
       _$TweetWithheldCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'copyright') bool isCopyright,
-      List<String> countryCodes});
+      {@JsonKey(name: 'copyright') bool dueToCopyright,
+      @JsonKey(name: 'country_codes') List<Country> countries});
 }
 
 /// @nodoc
@@ -55,18 +56,18 @@ class _$TweetWithheldCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? isCopyright = freezed,
-    Object? countryCodes = freezed,
+    Object? dueToCopyright = freezed,
+    Object? countries = freezed,
   }) {
     return _then(_value.copyWith(
-      isCopyright: isCopyright == freezed
-          ? _value.isCopyright
-          : isCopyright // ignore: cast_nullable_to_non_nullable
+      dueToCopyright: dueToCopyright == freezed
+          ? _value.dueToCopyright
+          : dueToCopyright // ignore: cast_nullable_to_non_nullable
               as bool,
-      countryCodes: countryCodes == freezed
-          ? _value.countryCodes
-          : countryCodes // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      countries: countries == freezed
+          ? _value.countries
+          : countries // ignore: cast_nullable_to_non_nullable
+              as List<Country>,
     ));
   }
 }
@@ -79,8 +80,8 @@ abstract class _$$_TweetWithheldCopyWith<$Res>
       __$$_TweetWithheldCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'copyright') bool isCopyright,
-      List<String> countryCodes});
+      {@JsonKey(name: 'copyright') bool dueToCopyright,
+      @JsonKey(name: 'country_codes') List<Country> countries});
 }
 
 /// @nodoc
@@ -96,18 +97,18 @@ class __$$_TweetWithheldCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? isCopyright = freezed,
-    Object? countryCodes = freezed,
+    Object? dueToCopyright = freezed,
+    Object? countries = freezed,
   }) {
     return _then(_$_TweetWithheld(
-      isCopyright: isCopyright == freezed
-          ? _value.isCopyright
-          : isCopyright // ignore: cast_nullable_to_non_nullable
+      dueToCopyright: dueToCopyright == freezed
+          ? _value.dueToCopyright
+          : dueToCopyright // ignore: cast_nullable_to_non_nullable
               as bool,
-      countryCodes: countryCodes == freezed
-          ? _value._countryCodes
-          : countryCodes // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      countries: countries == freezed
+          ? _value._countries
+          : countries // ignore: cast_nullable_to_non_nullable
+              as List<Country>,
     ));
   }
 }
@@ -116,9 +117,9 @@ class __$$_TweetWithheldCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_TweetWithheld implements _TweetWithheld {
   const _$_TweetWithheld(
-      {@JsonKey(name: 'copyright') required this.isCopyright,
-      required final List<String> countryCodes})
-      : _countryCodes = countryCodes;
+      {@JsonKey(name: 'copyright') required this.dueToCopyright,
+      @JsonKey(name: 'country_codes') required final List<Country> countries})
+      : _countries = countries;
 
   factory _$_TweetWithheld.fromJson(Map<String, dynamic> json) =>
       _$$_TweetWithheldFromJson(json);
@@ -127,21 +128,22 @@ class _$_TweetWithheld implements _TweetWithheld {
   /// copyright infringement.
   @override
   @JsonKey(name: 'copyright')
-  final bool isCopyright;
+  final bool dueToCopyright;
 
   /// Provides a list of countries where this content is not available.
-  final List<String> _countryCodes;
+  final List<Country> _countries;
 
   /// Provides a list of countries where this content is not available.
   @override
-  List<String> get countryCodes {
+  @JsonKey(name: 'country_codes')
+  List<Country> get countries {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_countryCodes);
+    return EqualUnmodifiableListView(_countries);
   }
 
   @override
   String toString() {
-    return 'TweetWithheld(isCopyright: $isCopyright, countryCodes: $countryCodes)';
+    return 'TweetWithheld(dueToCopyright: $dueToCopyright, countries: $countries)';
   }
 
   @override
@@ -150,17 +152,17 @@ class _$_TweetWithheld implements _TweetWithheld {
         (other.runtimeType == runtimeType &&
             other is _$_TweetWithheld &&
             const DeepCollectionEquality()
-                .equals(other.isCopyright, isCopyright) &&
+                .equals(other.dueToCopyright, dueToCopyright) &&
             const DeepCollectionEquality()
-                .equals(other._countryCodes, _countryCodes));
+                .equals(other._countries, _countries));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(isCopyright),
-      const DeepCollectionEquality().hash(_countryCodes));
+      const DeepCollectionEquality().hash(dueToCopyright),
+      const DeepCollectionEquality().hash(_countries));
 
   @JsonKey(ignore: true)
   @override
@@ -177,8 +179,10 @@ class _$_TweetWithheld implements _TweetWithheld {
 
 abstract class _TweetWithheld implements TweetWithheld {
   const factory _TweetWithheld(
-      {@JsonKey(name: 'copyright') required final bool isCopyright,
-      required final List<String> countryCodes}) = _$_TweetWithheld;
+      {@JsonKey(name: 'copyright')
+          required final bool dueToCopyright,
+      @JsonKey(name: 'country_codes')
+          required final List<Country> countries}) = _$_TweetWithheld;
 
   factory _TweetWithheld.fromJson(Map<String, dynamic> json) =
       _$_TweetWithheld.fromJson;
@@ -188,11 +192,12 @@ abstract class _TweetWithheld implements TweetWithheld {
   /// Indicates if the content is being withheld for on the basis of
   /// copyright infringement.
   @JsonKey(name: 'copyright')
-  bool get isCopyright;
+  bool get dueToCopyright;
   @override
 
   /// Provides a list of countries where this content is not available.
-  List<String> get countryCodes;
+  @JsonKey(name: 'country_codes')
+  List<Country> get countries;
   @override
   @JsonKey(ignore: true)
   _$$_TweetWithheldCopyWith<_$_TweetWithheld> get copyWith =>

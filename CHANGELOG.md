@@ -5,6 +5,10 @@
 - Removed deprecated methods.
   - Use `tweets.connectSampleStream` instead of `tweets.connectVolumeStream`.
   - Use `tweets.createThreads` instead of `createThreadTweets`.
+- Added `WithheldCountry` enum. This is an enumeration that supports country codes according to the ISO Alpha2 standard, an international standard, as well as `XX` (all countries) and `XY` (DMCA Request), which are supported by Twitter. With the addition of this enumeration, the following response object types have been modified to be safer. Also, refactored field names. ([#500](https://github.com/twitter-dart/twitter-api-v2/issues/500))
+  - From `TweetWithheld.countryCodes` to `TweetWithheld.countries`
+  - From `UserWithheld.countryCodes` to `UserWithheld.countries`
+- Added an object that allows easy and safe generation of filtering rules for FilteredStream. You can generate filtering rules fluently and easily from the `FilteringRule` object. ([#248](https://github.com/twitter-dart/twitter-api-v2/issues/248))
 
 ## v4.2.4
 
