@@ -12,13 +12,13 @@ import 'package:twitter_api_v2/src/service/tweets/filtering/operator/conjunction
 void main() {
   group('.toString', () {
     test('normal case', () {
-      final actual = TweetLang(BCP47Language.amharic);
+      final actual = TweetLang(TweetLanguage.amharic);
 
       expect(actual.toString(), 'lang:am');
     });
 
     test('when negated', () {
-      final actual = TweetLang.negated(BCP47Language.amharic);
+      final actual = TweetLang.negated(TweetLanguage.amharic);
 
       expect(actual.toString(), '-lang:am');
     });

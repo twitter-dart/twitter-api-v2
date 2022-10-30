@@ -9,21 +9,21 @@ import '../validation_result.dart';
 class RetweetedBy extends Operator {
   /// Returns the new instance of [RetweetedBy].
   const RetweetedBy(
-    this.username, {
+    this.user, {
     bool negated = false,
   }) : super(negated);
 
-  factory RetweetedBy.negated(final String username) =>
-      RetweetedBy(username, negated: true);
+  factory RetweetedBy.negated(final String user) =>
+      RetweetedBy(user, negated: true);
 
-  /// The username
-  final String username;
+  /// The user
+  final String user;
 
   @override
   ValidationResult validate() {
-    if (username.isEmpty) {
+    if (user.isEmpty) {
       return ValidationResult.failed(
-        'The username must not be an empty string.',
+        'The user identifier must not be an empty string.',
       );
     }
 
@@ -31,5 +31,5 @@ class RetweetedBy extends Operator {
   }
 
   @override
-  String format() => 'retweets_of:$username';
+  String format() => 'retweets_of:$user';
 }

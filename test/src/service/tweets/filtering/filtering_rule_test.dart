@@ -394,15 +394,15 @@ void main() {
       expect(actual.build(), '-url_contains:test');
     });
 
-    test('.matchRepliesOf', () {
-      final actual = FilteringRule.of().matchRepliesOf('1234');
+    test('.matchRepliesTo', () {
+      final actual = FilteringRule.of().matchRepliesTo('1234');
 
       expect(actual, isA<LogicalChannel>());
       expect(actual.build(), 'in_reply_to_tweet_id:1234');
     });
 
-    test('.notMatchRepliesOf', () {
-      final actual = FilteringRule.of().notMatchRepliesOf('1234');
+    test('.notMatchRepliesTo', () {
+      final actual = FilteringRule.of().notMatchRepliesTo('1234');
 
       expect(actual, isA<LogicalChannel>());
       expect(actual.build(), '-in_reply_to_tweet_id:1234');
@@ -488,135 +488,165 @@ void main() {
 
     test('.notMatchNullcast', () {
       final actual =
-          FilteringRule.of().matchKeyword('test').and().notMatchNullcast();
+          FilteringRule.of().matchKeyword('test').and().notMatchNullcastTweet();
 
       expect(actual, isA<LogicalChannel>());
       expect(actual.build(), 'test -is:nullcast');
     });
 
-    test('.matchWithHashtags', () {
-      final actual =
-          FilteringRule.of().matchKeyword('test').and().matchWithHashtags();
+    test('.matchTweetContainsHashtags', () {
+      final actual = FilteringRule.of()
+          .matchKeyword('test')
+          .and()
+          .matchTweetContainsHashtags();
 
       expect(actual, isA<LogicalChannel>());
       expect(actual.build(), 'test has:hashtags');
     });
 
-    test('.notMatchWithHashtags', () {
-      final actual =
-          FilteringRule.of().matchKeyword('test').and().notMatchWithHashtags();
+    test('.notMatchTweetContainsHashtags', () {
+      final actual = FilteringRule.of()
+          .matchKeyword('test')
+          .and()
+          .notMatchTweetContainsHashtags();
 
       expect(actual, isA<LogicalChannel>());
       expect(actual.build(), 'test -has:hashtags');
     });
 
-    test('.matchWithCashtags', () {
-      final actual =
-          FilteringRule.of().matchKeyword('test').and().matchWithCashtags();
+    test('.matchTweetContainsCashtags', () {
+      final actual = FilteringRule.of()
+          .matchKeyword('test')
+          .and()
+          .matchTweetContainsCashtags();
 
       expect(actual, isA<LogicalChannel>());
       expect(actual.build(), 'test has:cashtags');
     });
 
-    test('.notMatchWithCashtags', () {
-      final actual =
-          FilteringRule.of().matchKeyword('test').and().notMatchWithCashtags();
+    test('.notMatchTweetContainsCashtags', () {
+      final actual = FilteringRule.of()
+          .matchKeyword('test')
+          .and()
+          .notMatchTweetContainsCashtags();
 
       expect(actual, isA<LogicalChannel>());
       expect(actual.build(), 'test -has:cashtags');
     });
 
-    test('.matchWithLinks', () {
-      final actual =
-          FilteringRule.of().matchKeyword('test').and().matchWithLinks();
+    test('.matchTweetContainsLinks', () {
+      final actual = FilteringRule.of()
+          .matchKeyword('test')
+          .and()
+          .matchTweetContainsLinks();
 
       expect(actual, isA<LogicalChannel>());
       expect(actual.build(), 'test has:links');
     });
 
-    test('.notMatchWithLinks', () {
-      final actual =
-          FilteringRule.of().matchKeyword('test').and().notMatchWithLinks();
+    test('.notMatchTweetContainsLinks', () {
+      final actual = FilteringRule.of()
+          .matchKeyword('test')
+          .and()
+          .notMatchTweetContainsLinks();
 
       expect(actual, isA<LogicalChannel>());
       expect(actual.build(), 'test -has:links');
     });
 
-    test('.matchWithMentions', () {
-      final actual =
-          FilteringRule.of().matchKeyword('test').and().matchWithMentions();
+    test('.matchTweetContainsMentions', () {
+      final actual = FilteringRule.of()
+          .matchKeyword('test')
+          .and()
+          .matchTweetContainsMentions();
 
       expect(actual, isA<LogicalChannel>());
       expect(actual.build(), 'test has:mentions');
     });
 
-    test('.notMatchWithMentions', () {
-      final actual =
-          FilteringRule.of().matchKeyword('test').and().notMatchWithMentions();
+    test('.notMatchTweetContainsMentions', () {
+      final actual = FilteringRule.of()
+          .matchKeyword('test')
+          .and()
+          .notMatchTweetContainsMentions();
 
       expect(actual, isA<LogicalChannel>());
       expect(actual.build(), 'test -has:mentions');
     });
 
-    test('.matchWithMedia', () {
-      final actual =
-          FilteringRule.of().matchKeyword('test').and().matchWithMedia();
+    test('.matchTweetContainsMedia', () {
+      final actual = FilteringRule.of()
+          .matchKeyword('test')
+          .and()
+          .matchTweetContainsMedia();
 
       expect(actual, isA<LogicalChannel>());
       expect(actual.build(), 'test has:media');
     });
 
-    test('.notMatchWithMedia', () {
-      final actual =
-          FilteringRule.of().matchKeyword('test').and().notMatchWithMedia();
+    test('.notMatchTweetContainsMedia', () {
+      final actual = FilteringRule.of()
+          .matchKeyword('test')
+          .and()
+          .notMatchTweetContainsMedia();
 
       expect(actual, isA<LogicalChannel>());
       expect(actual.build(), 'test -has:media');
     });
 
-    test('.matchWithImages', () {
-      final actual =
-          FilteringRule.of().matchKeyword('test').and().matchWithImages();
+    test('.matchTweetContainsImages', () {
+      final actual = FilteringRule.of()
+          .matchKeyword('test')
+          .and()
+          .matchTweetContainsImages();
 
       expect(actual, isA<LogicalChannel>());
       expect(actual.build(), 'test has:images');
     });
 
-    test('.notMatchWithImages', () {
-      final actual =
-          FilteringRule.of().matchKeyword('test').and().notMatchWithImages();
+    test('.notMatchTweetContainsImages', () {
+      final actual = FilteringRule.of()
+          .matchKeyword('test')
+          .and()
+          .notMatchTweetContainsImages();
 
       expect(actual, isA<LogicalChannel>());
       expect(actual.build(), 'test -has:images');
     });
 
-    test('.matchWithVideoLinks', () {
-      final actual =
-          FilteringRule.of().matchKeyword('test').and().matchWithVideoLink();
+    test('.matchTweetContainsVideoLinks', () {
+      final actual = FilteringRule.of()
+          .matchKeyword('test')
+          .and()
+          .matchTweetContainsVideoLink();
 
       expect(actual, isA<LogicalChannel>());
       expect(actual.build(), 'test has:video_link');
     });
 
-    test('.notMatchWithVideoLinks', () {
-      final actual =
-          FilteringRule.of().matchKeyword('test').and().notMatchWithVideoLink();
+    test('.notMatchTweetContainsVideoLinks', () {
+      final actual = FilteringRule.of()
+          .matchKeyword('test')
+          .and()
+          .notMatchTweetContainsVideoLink();
 
       expect(actual, isA<LogicalChannel>());
       expect(actual.build(), 'test -has:video_link');
     });
 
-    test('.matchWithGeo', () {
+    test('.matchTweetContainsGeo', () {
       final actual =
-          FilteringRule.of().matchKeyword('test').and().matchWithGeo();
+          FilteringRule.of().matchKeyword('test').and().matchTweetContainsGeo();
 
       expect(actual, isA<LogicalChannel>());
       expect(actual.build(), 'test has:geo');
     });
 
-    test('.notMatchWithGeo', () {
-      final actual =
-          FilteringRule.of().matchKeyword('test').and().notMatchWithGeo();
+    test('.notMatchTweetContainsGeo', () {
+      final actual = FilteringRule.of()
+          .matchKeyword('test')
+          .and()
+          .notMatchTweetContainsGeo();
 
       expect(actual, isA<LogicalChannel>());
       expect(actual.build(), 'test -has:geo');
@@ -625,7 +655,7 @@ void main() {
     test('.matchLanguage', () {
       final actual =
           FilteringRule.of().matchKeyword('test').and().matchLanguage(
-                BCP47Language.amharic,
+                TweetLanguage.amharic,
               );
 
       expect(actual, isA<LogicalChannel>());
@@ -635,7 +665,7 @@ void main() {
     test('.notMatchLanguage', () {
       final actual =
           FilteringRule.of().matchKeyword('test').and().notMatchLanguage(
-                BCP47Language.amharic,
+                TweetLanguage.amharic,
               );
 
       expect(actual, isA<LogicalChannel>());
@@ -689,9 +719,9 @@ void main() {
       final actual = FilteringRule.of()
           .matchKeyword('test')
           .or()
-          .matchWithCashtags()
+          .matchTweetContainsCashtags()
           .or()
-          .matchWithHashtags();
+          .matchTweetContainsHashtags();
 
       expect(actual.build(), 'test OR has:cashtags OR has:hashtags');
     });
@@ -733,9 +763,9 @@ use in nested groups or outside of groups.
         () => FilteringRule.of()
             .matchKeyword('test')
             .or()
-            .matchWithGeo()
+            .matchTweetContainsGeo()
             .or()
-            .matchWithGeo(),
+            .matchTweetContainsGeo(),
         throwsA(
           allOf(
             isA<UnsupportedError>(),
@@ -797,9 +827,9 @@ use in nested groups or outside of groups.
         () => FilteringRule.of()
             .matchKeyword('test')
             .or()
-            .matchWithGeo()
+            .matchTweetContainsGeo()
             .or()
-            .notMatchWithGeo(),
+            .notMatchTweetContainsGeo(),
         throwsA(
           allOf(
             isA<UnsupportedError>(),
@@ -846,7 +876,10 @@ use in nested groups or outside of groups.
           .matchVerifiedUser()
           .or()
           .group(
-            FilteringRule.of().matchKeyword('test').and().matchWithHashtags(),
+            FilteringRule.of()
+                .matchKeyword('test')
+                .and()
+                .matchTweetContainsHashtags(),
           );
 
       expect(actual.build(), 'test is:verified OR (test has:hashtags)');
@@ -858,7 +891,10 @@ use in nested groups or outside of groups.
               FilteringRule.of().matchKeyword('test').and().matchVerifiedUser())
           .or()
           .group(
-            FilteringRule.of().matchKeyword('test').and().matchWithHashtags(),
+            FilteringRule.of()
+                .matchKeyword('test')
+                .and()
+                .matchTweetContainsHashtags(),
           );
 
       expect(actual.build(), '(test is:verified) OR (test has:hashtags)');
@@ -871,7 +907,7 @@ use in nested groups or outside of groups.
           .or()
           .matchKeyword('test')
           .and()
-          .matchWithHashtags();
+          .matchTweetContainsHashtags();
 
       expect(actual.build(), '(test is:verified) OR test has:hashtags');
     });
@@ -883,7 +919,7 @@ use in nested groups or outside of groups.
           .or()
           .matchKeyword('test')
           .and()
-          .matchWithHashtags();
+          .matchTweetContainsHashtags();
 
       expect(actual.build(), '(test OR is:verified) OR test has:hashtags');
     });
@@ -897,7 +933,7 @@ use in nested groups or outside of groups.
             FilteringRule.of()
                 .matchKeyword('test')
                 .and()
-                .notMatchWithHashtags(),
+                .notMatchTweetContainsHashtags(),
           );
 
       expect(actual.build(), '(test is:verified) OR (test -has:hashtags)');

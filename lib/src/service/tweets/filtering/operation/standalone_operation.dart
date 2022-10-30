@@ -61,19 +61,18 @@ class StandaloneOperation {
   Username createNegatedUsername(final String username) =>
       Username.negated(username);
 
-  /// Returns the new instance of [TweetFrom] based on [username].
-  TweetFrom createTweetFrom(final String username) => TweetFrom(username);
+  /// Returns the new instance of [TweetFrom] based on [user].
+  TweetFrom createTweetFrom(final String user) => TweetFrom(user);
 
-  /// Returns the new instance of negated [TweetFrom] based on [username].
-  TweetFrom createNegatedTweetFrom(final String username) =>
-      TweetFrom.negated(username);
+  /// Returns the new instance of negated [TweetFrom] based on [user].
+  TweetFrom createNegatedTweetFrom(final String user) =>
+      TweetFrom.negated(user);
 
-  /// Returns the new instance of [TweetTo] based on [username].
-  TweetTo createTweetTo(final String username) => TweetTo(username);
+  /// Returns the new instance of [TweetTo] based on [user].
+  TweetTo createTweetTo(final String user) => TweetTo(user);
 
-  /// Returns the new instance of negated [TweetTo] based on [username].
-  TweetTo createNegatedTweetTo(final String username) =>
-      TweetTo.negated(username);
+  /// Returns the new instance of negated [TweetTo] based on [user].
+  TweetTo createNegatedTweetTo(final String user) => TweetTo.negated(user);
 
   /// Returns the new instance of [Url] based on [value].
   Url createUrl(final String value) => Url(value);
@@ -81,12 +80,12 @@ class StandaloneOperation {
   /// Returns the new instance of negated [Url] based on [value].
   Url createNegatedUrl(final String value) => Url.negated(value);
 
-  /// Returns the new instance of [RetweetedBy] based on [username].
-  RetweetedBy createRetweetedBy(final String username) => RetweetedBy(username);
+  /// Returns the new instance of [RetweetedBy] based on [user].
+  RetweetedBy createRetweetedBy(final String user) => RetweetedBy(user);
 
-  /// Returns the new instance of negated [RetweetedBy] based on [username].
-  RetweetedBy createNegatedRetweetedBy(final String username) =>
-      RetweetedBy.negated(username);
+  /// Returns the new instance of negated [RetweetedBy] based on [user].
+  RetweetedBy createNegatedRetweetedBy(final String user) =>
+      RetweetedBy.negated(user);
 
   /// Returns the new instance of [Conversation] based on [tweetId].
   Conversation createConversation(final String tweetId) =>

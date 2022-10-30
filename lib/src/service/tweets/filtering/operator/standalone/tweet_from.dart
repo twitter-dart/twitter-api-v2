@@ -9,21 +9,21 @@ import '../validation_result.dart';
 class TweetFrom extends Operator {
   /// Returns the new instance of [TweetFrom].
   const TweetFrom(
-    this.username, {
+    this.user, {
     bool negated = false,
   }) : super(negated);
 
-  factory TweetFrom.negated(final String value) =>
-      TweetFrom(value, negated: true);
+  factory TweetFrom.negated(final String user) =>
+      TweetFrom(user, negated: true);
 
   /// The username
-  final String username;
+  final String user;
 
   @override
   ValidationResult validate() {
-    if (username.isEmpty) {
+    if (user.isEmpty) {
       return ValidationResult.failed(
-        'The username must not be an empty string.',
+        'The user identifier must not be an empty string.',
       );
     }
 
@@ -31,5 +31,5 @@ class TweetFrom extends Operator {
   }
 
   @override
-  String format() => 'from:$username';
+  String format() => 'from:$user';
 }

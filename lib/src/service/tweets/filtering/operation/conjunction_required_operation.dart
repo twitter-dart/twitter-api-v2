@@ -189,12 +189,12 @@ class ConjunctionRequiredOperation {
   HasOperator createNegatedHasGeo() => _hasNotGeo;
 
   /// Returns the new instance of [TweetLang] based on [language].
-  TweetLang createTweetLang(final core.BCP47Language language) =>
+  TweetLang createTweetLang(final core.TweetLanguage language) =>
       TweetLang(language);
 
   /// Returns the new instance of negated [TweetLang]
   /// based on [language].
-  TweetLang createNegatedTweetLang(final core.BCP47Language language) =>
+  TweetLang createNegatedTweetLang(final core.TweetLanguage language) =>
       TweetLang.negated(language);
 
   /// Returns the new instance of [Source] based on [value].

@@ -278,7 +278,7 @@ Future<void> main() async {
           value: v2.FilteringRule.of()
               .matchHashtag('Tesla')
               .and()
-              .matchWithMedia()
+              .matchTweetContainsMedia()
               .build(),
         ),
         v2.FilteringRuleParam(
@@ -288,14 +288,14 @@ Future<void> main() async {
                 v2.FilteringRule.of()
                     .matchHashtag('SpaceX')
                     .and()
-                    .matchWithMedia(),
+                    .matchTweetContainsMedia(),
               )
               .or()
               .group(
                 v2.FilteringRule.of()
                     .matchHashtag('SpaceX')
                     .and()
-                    .matchWithHashtags(),
+                    .matchTweetContainsHashtags(),
               )
               .build(),
         ),

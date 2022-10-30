@@ -9,6 +9,7 @@ import '../operation/logical_operation.dart';
 import 'conclusion.dart';
 import 'filtering_rule_syntax.dart';
 
+/// The object representing the syntax of a group operator.
 abstract class GroupSyntax implements FilteringRuleSyntax {
   const GroupSyntax(this._buffer);
 

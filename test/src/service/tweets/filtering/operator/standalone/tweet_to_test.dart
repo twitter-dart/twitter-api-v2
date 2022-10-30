@@ -32,7 +32,8 @@ void main() {
             isA<ArgumentError>(),
             predicate(
               (dynamic e) =>
-                  e.message == 'The username must not be an empty string.',
+                  e.message ==
+                  'The user identifier must not be an empty string.',
             ),
           ),
         ),

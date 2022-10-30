@@ -9,20 +9,20 @@ import '../validation_result.dart';
 class TweetTo extends Operator {
   /// Returns the new instance of [TweetTo].
   const TweetTo(
-    this.username, {
+    this.user, {
     bool negated = false,
   }) : super(negated);
 
-  factory TweetTo.negated(final String value) => TweetTo(value, negated: true);
+  factory TweetTo.negated(final String user) => TweetTo(user, negated: true);
 
-  /// The username
-  final String username;
+  /// The user
+  final String user;
 
   @override
   ValidationResult validate() {
-    if (username.isEmpty) {
+    if (user.isEmpty) {
       return ValidationResult.failed(
-        'The username must not be an empty string.',
+        'The user identifier must not be an empty string.',
       );
     }
 
@@ -30,5 +30,5 @@ class TweetTo extends Operator {
   }
 
   @override
-  String format() => 'to:$username';
+  String format() => 'to:$user';
 }
