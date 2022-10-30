@@ -27,7 +27,7 @@ mixin _$TweetWithheld {
 
   /// Provides a list of countries where this content is not available.
   @JsonKey(name: 'country_codes')
-  List<WithheldCountry> get countries => throw _privateConstructorUsedError;
+  List<Country> get countries => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,7 +42,7 @@ abstract class $TweetWithheldCopyWith<$Res> {
       _$TweetWithheldCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'copyright') bool dueToCopyright,
-      @JsonKey(name: 'country_codes') List<WithheldCountry> countries});
+      @JsonKey(name: 'country_codes') List<Country> countries});
 }
 
 /// @nodoc
@@ -67,7 +67,7 @@ class _$TweetWithheldCopyWithImpl<$Res>
       countries: countries == freezed
           ? _value.countries
           : countries // ignore: cast_nullable_to_non_nullable
-              as List<WithheldCountry>,
+              as List<Country>,
     ));
   }
 }
@@ -81,7 +81,7 @@ abstract class _$$_TweetWithheldCopyWith<$Res>
   @override
   $Res call(
       {@JsonKey(name: 'copyright') bool dueToCopyright,
-      @JsonKey(name: 'country_codes') List<WithheldCountry> countries});
+      @JsonKey(name: 'country_codes') List<Country> countries});
 }
 
 /// @nodoc
@@ -108,7 +108,7 @@ class __$$_TweetWithheldCopyWithImpl<$Res>
       countries: countries == freezed
           ? _value._countries
           : countries // ignore: cast_nullable_to_non_nullable
-              as List<WithheldCountry>,
+              as List<Country>,
     ));
   }
 }
@@ -117,10 +117,8 @@ class __$$_TweetWithheldCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_TweetWithheld implements _TweetWithheld {
   const _$_TweetWithheld(
-      {@JsonKey(name: 'copyright')
-          required this.dueToCopyright,
-      @JsonKey(name: 'country_codes')
-          required final List<WithheldCountry> countries})
+      {@JsonKey(name: 'copyright') required this.dueToCopyright,
+      @JsonKey(name: 'country_codes') required final List<Country> countries})
       : _countries = countries;
 
   factory _$_TweetWithheld.fromJson(Map<String, dynamic> json) =>
@@ -133,12 +131,12 @@ class _$_TweetWithheld implements _TweetWithheld {
   final bool dueToCopyright;
 
   /// Provides a list of countries where this content is not available.
-  final List<WithheldCountry> _countries;
+  final List<Country> _countries;
 
   /// Provides a list of countries where this content is not available.
   @override
   @JsonKey(name: 'country_codes')
-  List<WithheldCountry> get countries {
+  List<Country> get countries {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_countries);
   }
@@ -184,7 +182,7 @@ abstract class _TweetWithheld implements TweetWithheld {
       {@JsonKey(name: 'copyright')
           required final bool dueToCopyright,
       @JsonKey(name: 'country_codes')
-          required final List<WithheldCountry> countries}) = _$_TweetWithheld;
+          required final List<Country> countries}) = _$_TweetWithheld;
 
   factory _TweetWithheld.fromJson(Map<String, dynamic> json) =
       _$_TweetWithheld.fromJson;
@@ -199,7 +197,7 @@ abstract class _TweetWithheld implements TweetWithheld {
 
   /// Provides a list of countries where this content is not available.
   @JsonKey(name: 'country_codes')
-  List<WithheldCountry> get countries;
+  List<Country> get countries;
   @override
   @JsonKey(ignore: true)
   _$$_TweetWithheldCopyWith<_$_TweetWithheld> get copyWith =>

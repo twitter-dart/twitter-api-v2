@@ -19,7 +19,7 @@ class TweetWithheld with _$TweetWithheld {
     @JsonKey(name: 'copyright') required bool dueToCopyright,
 
     /// Provides a list of countries where this content is not available.
-    @JsonKey(name: 'country_codes') required List<WithheldCountry> countries,
+    @JsonKey(name: 'country_codes') required List<Country> countries,
   }) = _TweetWithheld;
 
   factory TweetWithheld.fromJson(Map<String, Object?> json) =>
