@@ -2476,121 +2476,6 @@ abstract class TweetsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/volume-streams/api-reference/get-tweets-sample-stream
-  @Deprecated('Use "connectSampleStream" instead. Will be removed in v4.3.0')
-  Future<TwitterStreamResponse<TwitterResponse<TweetData, void>>>
-      connectVolumeStream({
-    int? backfillMinutes,
-    List<TweetExpansion>? expansions,
-    List<TweetField>? tweetFields,
-    List<UserField>? userFields,
-    List<PlaceField>? placeFields,
-    List<PollField>? pollFields,
-    List<MediaField>? mediaFields,
-  });
-
-  /// Streams about 1% of all Tweets in real-time.
-  ///
-  /// If you have [Academic Research access](https://developer.twitter.com/en/products/twitter-api/academic-research),
-  /// you can connect up to two [redundant connections](https://developer.twitter.com/en/docs/twitter-api/tweets/sampled-stream/integrate/recovery-and-redundancy-features)
-  /// to maximize your streaming up-time.
-  ///
-  /// ## Parameters
-  ///
-  /// - [backfillMinutes]: By passing this parameter, you can request up to five
-  ///                      (5) minutes worth of streaming data that you might
-  ///                      have missed during a disconnection to be delivered to
-  ///                      you upon reconnection. The backfilled Tweets will
-  ///                      automatically flow through the reconnected stream,
-  ///                      with older Tweets generally being delivered before
-  ///                      any newly matching Tweets. You must include a whole
-  ///                      number between 1 and 5 as the value to this
-  ///                      parameter.
-  ///
-  ///                      This feature will deliver duplicate Tweets, meaning
-  ///                      that if you were disconnected for 90 seconds, and you
-  ///                      requested two minutes of backfill, you will receive
-  ///                      30 seconds worth of duplicate Tweets. Due to this,
-  ///                      you should make sure your system is tolerant of
-  ///                      duplicate data.
-  ///
-  ///                      This feature is currently only available to those
-  ///                      that have been approved for Academic Research access.
-  ///                      To learn more about this access level, please visit
-  ///                      our section on [Academic Research](https://developer.twitter.com/en/products/twitter-api/academic-research).
-  ///
-  /// - [expansions]: Expansions enable you to request additional data objects
-  ///                 that relate to the originally returned Tweets. Submit a
-  ///                 list of desired expansions in a comma-separated list
-  ///                 without spaces. The ID that represents the expanded data
-  ///                 object will be included directly in the Tweet data object,
-  ///                 but the expanded object metadata will be returned within
-  ///                 the includes response object, and will also include the
-  ///                 ID so that you can match this data object to the original
-  ///                 Tweet object.
-  ///
-  /// - [tweetFields]: This fields parameter enables you to select which
-  ///                  specific Tweet fields will deliver in each returned Tweet
-  ///                  object. You can also pass `expansions` to return the
-  ///                  specified fields for both the original Tweet and any
-  ///                  included referenced Tweets. The requested Tweet fields
-  ///                  will display in both the original Tweet data object, as
-  ///                  well as in the referenced Tweet expanded data object that
-  ///                  will be located in the `includes` data object.
-  ///
-  /// - [userFields]: This fields parameter enables you to select which specific
-  ///                 user fields will deliver in each returned Tweet. While the
-  ///                 user ID will be located in the original Tweet object, you
-  ///                 will find this ID and all additional user fields in the
-  ///                 `includes` data object.
-  ///
-  /// - [placeFields]: This fields parameter enables you to select which
-  ///                  specific place fields will deliver in each returned
-  ///                  Tweet. Specify the desired fields in a comma-separated
-  ///                  list without spaces between commas and fields. The Tweet
-  ///                  will only return place fields if the Tweet contains a
-  ///                  place and if you’ve also included the
-  ///                  `expansions=geo.place_id` query parameter in your
-  ///                  request. While the place ID will be located in the Tweet
-  ///                  object, you will find this ID and all additional place
-  ///                  fields in the `includes` data object.
-  ///
-  /// - [pollFields]: This fields parameter enables you to select which specific
-  ///                 poll fields will deliver in each returned Tweet. Specify
-  ///                 the desired fields in a comma-separated list without
-  ///                 spaces between commas and fields. The Tweet will only
-  ///                 return poll fields if the Tweet contains a poll and if
-  ///                 you've also included the `expansions=attachments.poll_ids`
-  ///                 query parameter in your request. While the poll ID will be
-  ///                 located in the Tweet object, you will find this ID and all
-  ///                 additional poll fields in the `includes` data object.
-  ///
-  /// - [mediaFields]: This fields parameter enables you to select which
-  ///                  specific media fields will deliver in each returned
-  ///                  Tweet. Specify the desired fields in a comma-separated
-  ///                  list without spaces between commas and fields. The Tweet
-  ///                  will only return media fields if the Tweet contains media
-  ///                  and if you've also included the
-  ///                  `expansions=attachments.media_keys` query parameter in
-  ///                  your request. While the media ID will be located in the
-  ///                  Tweet object, you will find this ID and all additional
-  ///                  media fields in the `includes` data object.
-  ///
-  /// ## Endpoint Url
-  ///
-  /// - https://api.twitter.com/2/tweets/sample/stream
-  ///
-  /// ## Authentication Methods
-  ///
-  /// - OAuth 2.0 App-only
-  ///
-  /// ## Rate Limits
-  ///
-  /// - **App rate limit (OAuth 2.0 App Access Token)**:
-  ///   50 requests per 15-minute window shared among all users of your app
-  ///
-  /// ## Reference
-  ///
-  /// - https://developer.twitter.com/en/docs/twitter-api/tweets/volume-streams/api-reference/get-tweets-sample-stream
   Future<TwitterStreamResponse<TwitterResponse<TweetData, void>>>
       connectSampleStream({
     int? backfillMinutes,
@@ -3564,7 +3449,7 @@ class _TweetsService extends BaseService implements TweetsService {
 
   @override
   Future<TwitterStreamResponse<TwitterResponse<TweetData, void>>>
-      connectVolumeStream({
+      connectSampleStream({
     int? backfillMinutes,
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
@@ -3602,27 +3487,6 @@ class _TweetsService extends BaseService implements TweetsService {
       ),
     );
   }
-
-  @override
-  Future<TwitterStreamResponse<TwitterResponse<TweetData, void>>>
-      connectSampleStream({
-    int? backfillMinutes,
-    List<TweetExpansion>? expansions,
-    List<TweetField>? tweetFields,
-    List<UserField>? userFields,
-    List<PlaceField>? placeFields,
-    List<PollField>? pollFields,
-    List<MediaField>? mediaFields,
-  }) async =>
-          await connectVolumeStream(
-            backfillMinutes: backfillMinutes,
-            expansions: expansions,
-            tweetFields: tweetFields,
-            userFields: userFields,
-            placeFields: placeFields,
-            pollFields: pollFields,
-            mediaFields: mediaFields,
-          );
 
   @override
   Future<TwitterStreamResponse<TwitterResponse<TweetData, void>>>

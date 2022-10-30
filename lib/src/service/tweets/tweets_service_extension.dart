@@ -14,12 +14,6 @@ import 'tweet_reply_param.dart';
 import 'tweets_service.dart';
 
 extension TweetServiceExtension on TweetsService {
-  @Deprecated('Use ".createThreads" instead. Will be removed in v4.3.0')
-  Future<List<TwitterResponse<TweetData, void>>> createThreadTweets({
-    required List<TweetParam> tweets,
-  }) async =>
-      await createThreads(tweets: tweets);
-
   /// This is a convenience method for creating a reply.
   ///
   /// [tweetId] should be the ID of the tweet for which you want to
