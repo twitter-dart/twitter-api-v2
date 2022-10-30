@@ -422,13 +422,13 @@ abstract class StandaloneSyntax extends GroupSyntax {
   /// ## Availability
   ///
   /// - Elevated
-  LogicalChannel matchCountry(final core.ISOAlpha2Country country) =>
+  LogicalChannel matchCountry(final core.Country country) =>
       _buffer.appendOperator(
         _standaloneOperation.createCountry(country),
       );
 
   /// The negated representation of [matchCountry].
-  LogicalChannel notMatchCountry(core.ISOAlpha2Country country) =>
+  LogicalChannel notMatchCountry(core.Country country) =>
       _buffer.appendOperator(
         _standaloneOperation.createNegatedCountry(country),
       );

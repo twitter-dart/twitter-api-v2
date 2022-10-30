@@ -197,16 +197,14 @@ void main() {
     });
 
     test('.matchCountry', () {
-      final actual =
-          FilteringRule.of().matchCountry(ISOAlpha2Country.afghanistan);
+      final actual = FilteringRule.of().matchCountry(Country.afghanistan);
 
       expect(actual, isA<LogicalChannel>());
       expect(actual.build(), 'place_country:AF');
     });
 
     test('.notMatchCountry', () {
-      final actual =
-          FilteringRule.of().notMatchCountry(ISOAlpha2Country.afghanistan);
+      final actual = FilteringRule.of().notMatchCountry(Country.afghanistan);
 
       expect(actual, isA<LogicalChannel>());
       expect(actual.build(), '-place_country:AF');

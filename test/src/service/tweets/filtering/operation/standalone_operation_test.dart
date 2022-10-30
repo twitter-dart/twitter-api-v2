@@ -4,7 +4,7 @@
 
 // Package imports:
 import 'package:test/test.dart';
-import 'package:twitter_api_core/twitter_api_core.dart';
+import 'package:twitter_api_core/twitter_api_core.dart' as core;
 
 // Project imports:
 import 'package:twitter_api_v2/src/service/common/range.dart';
@@ -219,15 +219,15 @@ void main() {
 
   test('.createCountry', () {
     final actual =
-        StandaloneOperation().createCountry(ISOAlpha2Country.afghanistan);
+        StandaloneOperation().createCountry(core.Country.afghanistan);
 
     expect(actual, isA<Country>());
     expect(actual.negated, isFalse);
   });
 
   test('.createNegatedCountry', () {
-    final actual = StandaloneOperation()
-        .createNegatedCountry(ISOAlpha2Country.afghanistan);
+    final actual =
+        StandaloneOperation().createNegatedCountry(core.Country.afghanistan);
 
     expect(actual, isA<Country>());
     expect(actual.negated, isTrue);

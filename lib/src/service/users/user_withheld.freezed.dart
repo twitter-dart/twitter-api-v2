@@ -22,7 +22,7 @@ UserWithheld _$UserWithheldFromJson(Map<String, dynamic> json) {
 mixin _$UserWithheld {
   /// Provides a list of countries where this user is not available.
   @JsonKey(name: 'country_codes')
-  List<WithheldCountry> get countries => throw _privateConstructorUsedError;
+  List<Country> get countries => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +35,7 @@ abstract class $UserWithheldCopyWith<$Res> {
   factory $UserWithheldCopyWith(
           UserWithheld value, $Res Function(UserWithheld) then) =
       _$UserWithheldCopyWithImpl<$Res>;
-  $Res call({@JsonKey(name: 'country_codes') List<WithheldCountry> countries});
+  $Res call({@JsonKey(name: 'country_codes') List<Country> countries});
 }
 
 /// @nodoc
@@ -54,7 +54,7 @@ class _$UserWithheldCopyWithImpl<$Res> implements $UserWithheldCopyWith<$Res> {
       countries: countries == freezed
           ? _value.countries
           : countries // ignore: cast_nullable_to_non_nullable
-              as List<WithheldCountry>,
+              as List<Country>,
     ));
   }
 }
@@ -66,7 +66,7 @@ abstract class _$$_UserWithheldCopyWith<$Res>
           _$_UserWithheld value, $Res Function(_$_UserWithheld) then) =
       __$$_UserWithheldCopyWithImpl<$Res>;
   @override
-  $Res call({@JsonKey(name: 'country_codes') List<WithheldCountry> countries});
+  $Res call({@JsonKey(name: 'country_codes') List<Country> countries});
 }
 
 /// @nodoc
@@ -88,7 +88,7 @@ class __$$_UserWithheldCopyWithImpl<$Res>
       countries: countries == freezed
           ? _value._countries
           : countries // ignore: cast_nullable_to_non_nullable
-              as List<WithheldCountry>,
+              as List<Country>,
     ));
   }
 }
@@ -97,20 +97,19 @@ class __$$_UserWithheldCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_UserWithheld implements _UserWithheld {
   const _$_UserWithheld(
-      {@JsonKey(name: 'country_codes')
-          required final List<WithheldCountry> countries})
+      {@JsonKey(name: 'country_codes') required final List<Country> countries})
       : _countries = countries;
 
   factory _$_UserWithheld.fromJson(Map<String, dynamic> json) =>
       _$$_UserWithheldFromJson(json);
 
   /// Provides a list of countries where this user is not available.
-  final List<WithheldCountry> _countries;
+  final List<Country> _countries;
 
   /// Provides a list of countries where this user is not available.
   @override
   @JsonKey(name: 'country_codes')
-  List<WithheldCountry> get countries {
+  List<Country> get countries {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_countries);
   }
@@ -150,7 +149,7 @@ class _$_UserWithheld implements _UserWithheld {
 abstract class _UserWithheld implements UserWithheld {
   const factory _UserWithheld(
       {@JsonKey(name: 'country_codes')
-          required final List<WithheldCountry> countries}) = _$_UserWithheld;
+          required final List<Country> countries}) = _$_UserWithheld;
 
   factory _UserWithheld.fromJson(Map<String, dynamic> json) =
       _$_UserWithheld.fromJson;
@@ -159,7 +158,7 @@ abstract class _UserWithheld implements UserWithheld {
 
   /// Provides a list of countries where this user is not available.
   @JsonKey(name: 'country_codes')
-  List<WithheldCountry> get countries;
+  List<Country> get countries;
   @override
   @JsonKey(ignore: true)
   _$$_UserWithheldCopyWith<_$_UserWithheld> get copyWith =>

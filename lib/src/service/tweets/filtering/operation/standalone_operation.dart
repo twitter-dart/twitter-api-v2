@@ -123,11 +123,10 @@ class StandaloneOperation {
   Place createNegatedPlace(final String value) => Place.negated(value);
 
   /// Returns the new instance of [Country] based on [country].
-  Country createCountry(final core.ISOAlpha2Country country) =>
-      Country(country);
+  Country createCountry(final core.Country country) => Country(country);
 
   /// Returns the new instance of negated [Place] based on [country].
-  Country createNegatedCountry(final core.ISOAlpha2Country country) =>
+  Country createNegatedCountry(final core.Country country) =>
       Country.negated(country);
 
   /// Returns the new instance of [PointRadius].

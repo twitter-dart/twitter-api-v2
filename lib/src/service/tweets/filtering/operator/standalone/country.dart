@@ -15,11 +15,11 @@ class Country extends Operator {
     bool negated = false,
   }) : super(negated);
 
-  factory Country.negated(final core.ISOAlpha2Country country) =>
+  factory Country.negated(final core.Country country) =>
       Country(country, negated: true);
 
   /// The ISO Alpha2 country
-  final core.ISOAlpha2Country country;
+  final core.Country country;
 
   @override
   String format() => 'place_country:${country.code}';

@@ -217,7 +217,7 @@ const _$TweetLanguageEnumMap = {
   TweetLanguage.welsh: 'cy',
   TweetLanguage.georgian: 'ka',
   TweetLanguage.lithuanian: 'lt',
-  TweetLanguage.undetermined: 'und',
+  TweetLanguage.undefined: 'und',
 };
 
 const _$ReplySettingEnumMap = {
