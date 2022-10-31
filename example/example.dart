@@ -85,7 +85,7 @@ Future<void> main() async {
     );
 
     //! You can upload media such as image, gif and video.
-    final uploadedResponse = await twitter.media.uploadMedia(
+    final uploadedMedia = await twitter.media.uploadMedia(
       file: File.fromUri(Uri.file('FILE_PATH')),
       altText: 'This is alt text.',
 
@@ -110,7 +110,7 @@ Future<void> main() async {
     await twitter.tweets.createTweet(
       text: 'Tweet with uploaded media',
       media: v2.TweetMediaParam(
-        mediaIds: [uploadedResponse.data.mediaId],
+        mediaIds: [uploadedMedia.data.id],
       ),
     );
 

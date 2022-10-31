@@ -18,7 +18,13 @@ part 'uploaded_media_data.g.dart';
 class UploadedMediaData with _$UploadedMediaData implements Data {
   const factory UploadedMediaData({
     /// The identifier for the uploaded media.
-    @JsonKey(name: 'media_id_string') required String mediaId,
+    @Deprecated('Use "id" property instead. Will be removed in v4.4.0')
+    @JsonKey(name: '_media_id_string')
+    @Default('')
+        String mediaId,
+
+    /// The identifier for the uploaded media.
+    @JsonKey(name: 'media_id_string') required String id,
 
     /// The date and time this media will expire.
     required DateTime expiresAt,
