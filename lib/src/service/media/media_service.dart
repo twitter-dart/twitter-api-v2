@@ -166,7 +166,7 @@ class _MediaService extends BaseMediaService implements MediaService {
 
     if (altText?.isNotEmpty ?? false) {
       await _createMetaData(
-        mediaId: response.data.mediaId,
+        mediaId: response.data.id,
         altText: altText!,
       );
     }

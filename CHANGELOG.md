@@ -1,5 +1,9 @@
 # Release Note
 
+## v4.3.1
+
+- Deprecated `UploadedMediaData.mediaId` and added `UploadedMediaData.id`. Use `UploadedMediaData.id` and `UploadedMediaData.mediaId` will be removed in v4.4.0.
+
 ## v4.3.0
 
 - Removed deprecated methods.

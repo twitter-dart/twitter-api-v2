@@ -13,14 +13,17 @@ _$_UploadedMediaData _$$_UploadedMediaDataFromJson(Map json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = _$_UploadedMediaData(
-          mediaId: $checkedConvert('media_id_string', (v) => v as String),
+          mediaId:
+              $checkedConvert('_media_id_string', (v) => v as String? ?? ''),
+          id: $checkedConvert('media_id_string', (v) => v as String),
           expiresAt:
               $checkedConvert('expires_at', (v) => DateTime.parse(v as String)),
         );
         return val;
       },
       fieldKeyMap: const {
-        'mediaId': 'media_id_string',
+        'mediaId': '_media_id_string',
+        'id': 'media_id_string',
         'expiresAt': 'expires_at'
       },
     );
@@ -28,6 +31,7 @@ _$_UploadedMediaData _$$_UploadedMediaDataFromJson(Map json) => $checkedCreate(
 Map<String, dynamic> _$$_UploadedMediaDataToJson(
         _$_UploadedMediaData instance) =>
     <String, dynamic>{
-      'media_id_string': instance.mediaId,
+      '_media_id_string': instance.mediaId,
+      'media_id_string': instance.id,
       'expires_at': instance.expiresAt.toIso8601String(),
     };
