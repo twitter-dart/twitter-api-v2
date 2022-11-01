@@ -8,7 +8,8 @@ import 'package:twitter_api_core/twitter_api_core.dart';
 enum MediaCategory implements Serializable {
   tweetImage('TWEET_IMAGE'),
   tweetGif('TWEET_GIF'),
-  tweetVideo('TWEET_VIDEO');
+  tweetVideo('TWEET_VIDEO'),
+  videoSubtitle('SUBTITLES');
 
   @override
   final String value;
@@ -16,7 +17,15 @@ enum MediaCategory implements Serializable {
   const MediaCategory(this.value);
 
   /// Returns [MediaCategory] based on [mediaMimeType].
-  static MediaCategory fromMimeType(final String mediaMimeType) {
+  static MediaCategory valueOf(final String mediaMimeType) {
+    if (mediaMimeType.endsWith('x-subrip')) {
+      return videoSubtitle;
+    }
+
+    if (mediaMimeType.startsWith('video')) {
+      return tweetVideo;
+    }
+
     if (mediaMimeType.startsWith('image')) {
       if (mediaMimeType.endsWith('gif')) {
         return tweetGif;
@@ -25,6 +34,8 @@ enum MediaCategory implements Serializable {
       return tweetImage;
     }
 
-    return tweetVideo;
+    throw UnsupportedError(
+      'Unsupported Mime type [$mediaMimeType].',
+    );
   }
 }

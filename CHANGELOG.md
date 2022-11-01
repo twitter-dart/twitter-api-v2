@@ -1,5 +1,9 @@
 # Release Note
 
+## v4.3.3
+
+- Supported upload for caption files (.srt). You can upload caption files by using `uploadMedia`. ([#508](https://github.com/twitter-dart/twitter-api-v2/issues/508))
+
 ## v4.3.2
 
 - Deprecated `FilteringRule.sampleOf` and added `FilteringRule.ofSample`. Deprecated `FilteringRule.sampleOf` will be removed in v4.4.0. ([#515](https://github.com/twitter-dart/twitter-api-v2/issues/515))
