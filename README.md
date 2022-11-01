@@ -104,10 +104,6 @@
 
 # 1. Guide 🌎
 
-</br>
-
-<img align="left" alt="Twitter Logo" src="https://user-images.githubusercontent.com/13072231/199131543-9bf65b11-212f-4307-8c0b-14ed8b825e2b.png" height="auto" width ="17%"/>
-
 This library provides the easiest way to use [Twitter API v2.0](https://developer.twitter.com/en/docs/twitter-api/data-dictionary/introduction) in **Dart** and **Flutter** apps.
 
 **Show some ❤️ and star the repo to support the project.**
@@ -115,8 +111,6 @@ This library provides the easiest way to use [Twitter API v2.0](https://develope
 We also provide [twitter_oauth2_pkce](https://pub.dev/packages/twitter_oauth2_pkce) for easy [OAuth 2.0 PKCE authentication](https://developer.twitter.com/en/docs/authentication/oauth-2-0/authorization-code) when using the Twitter API!
 
 Also, this library is also posted on the [Official Twitter page](https://developer.twitter.com/en/docs/twitter-api/tools-and-libraries/v2#dart) 🐦
-
-</br>
 
 ## 1.1. Features 💎
 
@@ -133,8 +127,6 @@ Also, this library is also posted on the [Official Twitter page](https://develop
 ✅ Supports **safe and powerful paging feature**.
 
 ## 1.2. Getting Started ⚡
-
-<img align="right" alt="features" src="https://user-images.githubusercontent.com/13072231/199144618-fb6475de-3ae3-4a42-abea-c63a0cf69f54.png" height="auto" width ="50%"/>
 
 ### 1.2.1. Install Library
 
