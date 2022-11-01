@@ -136,7 +136,7 @@ Future<void> main() async {
         ),
         v2.FilteringRuleParam(
           //! => (#SpaceX has:media) OR (#SpaceX has:hashtags) sample:50
-          value: v2.FilteringRule.sampleOf(percent: 50)
+          value: v2.FilteringRule.ofSample(percent: 50)
               .group(
                 v2.FilteringRule.of()
                     .matchHashtag('SpaceX')

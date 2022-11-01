@@ -1,5 +1,9 @@
 # Release Note
 
+## v4.3.2
+
+- Deprecated `FilteringRule.sampleOf` and added `FilteringRule.ofSample`. Deprecated `FilteringRule.sampleOf` will be removed in v4.4.0. ([#515](https://github.com/twitter-dart/twitter-api-v2/issues/515))
+
 ## v4.3.1
 
 - Deprecated `UploadedMediaData.mediaId` and added `UploadedMediaData.id`. Use `UploadedMediaData.id` and `UploadedMediaData.mediaId` will be removed in v4.4.0.

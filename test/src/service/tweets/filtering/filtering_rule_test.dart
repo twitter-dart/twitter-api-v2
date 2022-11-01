@@ -853,8 +853,8 @@ use in nested groups or outside of groups.
     });
   });
 
-  test('.sampleOf', () {
-    final actual = FilteringRule.sampleOf(percent: 70).matchKeyword('test');
+  test('.ofSample', () {
+    final actual = FilteringRule.ofSample(percent: 70).matchKeyword('test');
 
     expect(actual.build(), 'test sample:70');
   });
