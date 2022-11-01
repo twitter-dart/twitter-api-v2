@@ -14,6 +14,11 @@ class FilteringRule {
   static EntryChannel of() => FilteringRuleGroup().entryChannel;
 
   /// Returns the new entry point to build filtering rules with sample percent.
+  static EntryChannel ofSample({required int percent}) =>
+      FilteringRuleGroup(percent).entryChannel;
+
+  /// Returns the new entry point to build filtering rules with sample percent.
+  @Deprecated('Use `.ofSample` instead. Will be removed in v4.4.0')
   static EntryChannel sampleOf({required int percent}) =>
       FilteringRuleGroup(percent).entryChannel;
 }
