@@ -257,6 +257,12 @@ class _MediaService extends BaseMediaService implements MediaService {
 
     final mimeType = _resolveMimeType(file);
 
+    if ((altText?.isNotEmpty ?? false) && !mimeType.startsWith('image')) {
+      throw UnsupportedError(
+        'Alt text is supported on images or GIF images only.',
+      );
+    }
+
     final initResponse = await _initUpload(
       mediaBytes: mediaBytes,
       mediaMimeType: mimeType,
@@ -279,8 +285,8 @@ class _MediaService extends BaseMediaService implements MediaService {
       onFailed,
     );
 
-    //! Only supports for Images and GIFs.
-    if (mimeType.startsWith('image') && (altText?.isNotEmpty ?? false)) {
+    if (altText?.isNotEmpty ?? false) {
+      //! Only supports for Images and GIFs.
       await _createMetaData(
         mediaId: mediaId,
         altText: altText!,
@@ -321,7 +327,7 @@ class _MediaService extends BaseMediaService implements MediaService {
           'command': 'INIT',
           'total_bytes': mediaBytes.length,
           'media_type': mediaMimeType,
-          'media_category': MediaCategory.fromMimeType(mediaMimeType),
+          'media_category': MediaCategory.valueOf(mediaMimeType),
           'additional_owners': additionalOwners,
         },
       );
@@ -515,7 +521,8 @@ class _MediaService extends BaseMediaService implements MediaService {
     }
 
     if (!mediaMimeType.startsWith('image') &&
-        !mediaMimeType.startsWith('video')) {
+        !mediaMimeType.startsWith('video') &&
+        !mediaMimeType.endsWith('x-subrip')) {
       throw core.TwitterUploadException(
         file,
         'Unsupported Mime type [$mediaMimeType].',
