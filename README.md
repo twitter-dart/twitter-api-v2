@@ -1079,5 +1079,3 @@ All resources of **twitter_api_v2** is provided under the `BSD-3` license.
 - [API Document](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/twitter_api_v2-library.html)
 - [Release Note](https://github.com/twitter-dart/twitter-api-v2/releases)
 - [Bug Report](https://github.com/twitter-dart/twitter-api-v2/issues)
-
-![footer](https://user-images.githubusercontent.com/13072231/199144471-f8834546-1c2c-471b-9e98-6cbe4592b1da.jpg)
