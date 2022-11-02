@@ -15,11 +15,11 @@ class TweetLang extends Operator {
     bool negated = false,
   }) : super(negated);
 
-  factory TweetLang.negated(final core.TweetLanguage language) =>
+  factory TweetLang.negated(final core.Language language) =>
       TweetLang(language, negated: true);
 
   /// The BCP 47 language
-  final core.TweetLanguage language;
+  final core.Language language;
 
   @override
   String format() => 'lang:${language.code}';

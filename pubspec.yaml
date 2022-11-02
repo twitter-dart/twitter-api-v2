@@ -8,7 +8,7 @@ environment:
   sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
-  twitter_api_core: ^1.6.0
+  twitter_api_core: ^1.7.0
   freezed_annotation: ^2.2.0
   json_annotation: ^4.7.0
 

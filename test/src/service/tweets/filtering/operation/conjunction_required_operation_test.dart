@@ -218,7 +218,7 @@ void main() {
 
   test('.createTweetLang', () {
     final actual = ConjunctionRequiredOperation().createTweetLang(
-      TweetLanguage.amharic,
+      Language.amharic,
     );
 
     expect(actual, isA<TweetLang>());
@@ -227,7 +227,7 @@ void main() {
 
   test('.createNegatedTweetLang', () {
     final actual = ConjunctionRequiredOperation().createNegatedTweetLang(
-      TweetLanguage.amharic,
+      Language.amharic,
     );
 
     expect(actual, isA<TweetLang>());
