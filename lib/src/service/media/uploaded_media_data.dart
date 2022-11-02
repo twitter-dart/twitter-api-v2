@@ -6,6 +6,7 @@
 
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:twitter_api_core/twitter_api_core.dart';
 
 // Project imports:
 import '../common/data.dart';
@@ -28,6 +29,11 @@ class UploadedMediaData with _$UploadedMediaData implements Data {
 
     /// The date and time this media will expire.
     required DateTime expiresAt,
+
+    /// Indicates the language of this media.
+    ///
+    /// This field is only set if a caption (.srt) is uploaded.
+    TweetLanguage? language,
   }) = _UploadedMediaData;
 
   factory UploadedMediaData.fromJson(Map<String, Object?> json) =>

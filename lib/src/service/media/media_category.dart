@@ -9,7 +9,7 @@ enum MediaCategory implements Serializable {
   tweetImage('TWEET_IMAGE'),
   tweetGif('TWEET_GIF'),
   tweetVideo('TWEET_VIDEO'),
-  videoSubtitle('SUBTITLES');
+  videoCaption('SUBTITLES');
 
   @override
   final String value;
@@ -19,7 +19,7 @@ enum MediaCategory implements Serializable {
   /// Returns [MediaCategory] based on [mediaMimeType].
   static MediaCategory valueOf(final String mediaMimeType) {
     if (mediaMimeType.endsWith('x-subrip')) {
-      return videoSubtitle;
+      return videoCaption;
     }
 
     if (mediaMimeType.startsWith('video')) {

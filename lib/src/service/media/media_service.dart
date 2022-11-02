@@ -140,6 +140,36 @@ abstract class MediaService {
     Function(UploadEvent event)? onProgress,
     Function(UploadError error)? onFailed,
   });
+
+  /// Use this endpoint to associate uploaded subtitles to an uploaded video.
+  ///
+  /// You can associate subtitles to video before or after Tweeting.
+  /// ## Parameters
+  ///
+  /// - [videoMediaId]:
+  ///
+  /// - [subtitleMediaId]:
+  ///
+  /// - [language]:
+  ///
+  /// - [displayName]:
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://upload.twitter.com/1.1/media/subtitles/create
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 1.0a
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/post-media-subtitles-create
+  Future<TwitterResponse<bool, void>> createSubtitle({
+    required String videoId,
+    required String captionId,
+    required core.TweetLanguage language,
+  });
 }
 
 class _MediaService extends BaseMediaService implements MediaService {
@@ -191,6 +221,32 @@ class _MediaService extends BaseMediaService implements MediaService {
           onFailed: onFailed,
         ),
         dataBuilder: UploadedMediaData.fromJson,
+      );
+
+  @override
+  Future<TwitterResponse<bool, void>> createSubtitle({
+    required String videoId,
+    required String captionId,
+    required core.TweetLanguage language,
+  }) async =>
+      super.evaluateResponse(
+        await super.post(
+          core.UserContext.oauth1Only,
+          '/1.1/media/subtitles/create.json',
+          body: {
+            'media_id': videoId,
+            'media_category': MediaCategory.tweetVideo.value,
+            'subtitle_info': {
+              'subtitles': [
+                {
+                  'media_id': captionId,
+                  'language_code': language.code.toUpperCase(),
+                  'display_name': language.properName,
+                },
+              ]
+            }
+          },
+        ),
       );
 
   Future<core.Response> _uploadImage({
