@@ -653,7 +653,7 @@ void main() {
     test('.matchLanguage', () {
       final actual =
           FilteringRule.of().matchKeyword('test').and().matchLanguage(
-                TweetLanguage.amharic,
+                Language.amharic,
               );
 
       expect(actual, isA<LogicalChannel>());
@@ -663,7 +663,7 @@ void main() {
     test('.notMatchLanguage', () {
       final actual =
           FilteringRule.of().matchKeyword('test').and().notMatchLanguage(
-                TweetLanguage.amharic,
+                Language.amharic,
               );
 
       expect(actual, isA<LogicalChannel>());

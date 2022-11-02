@@ -321,13 +321,13 @@ abstract class ConjunctionRequiredSyntax extends StandaloneSyntax {
   /// ## Availability
   ///
   /// - Essential
-  LogicalChannel matchLanguage(final core.TweetLanguage language) =>
+  LogicalChannel matchLanguage(final core.Language language) =>
       _buffer.appendOperator(
         _conjunctionRequiredOperation.createTweetLang(language),
       );
 
   /// The negated representation of [matchLanguage].
-  LogicalChannel notMatchLanguage(final core.TweetLanguage language) =>
+  LogicalChannel notMatchLanguage(final core.Language language) =>
       _buffer.appendOperator(
         _conjunctionRequiredOperation.createNegatedTweetLang(language),
       );
