@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/twitter-dart/twitter-api-v2">
-    <img alt="twitter_api_v2" width="600px" src="https://user-images.githubusercontent.com/13072231/199727874-7335528f-c31f-4b43-aa66-a257761ecb04.png">
+    <img alt="twitter_api_v2" width="600px" src="https://user-images.githubusercontent.com/13072231/199728866-202b9742-d58e-4667-b046-e8096efd2339.png">
   </a>
 </p>
 
