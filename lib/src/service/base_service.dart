@@ -4,6 +4,7 @@
 
 // Dart imports:
 import 'dart:async';
+import 'dart:convert';
 
 // Package imports:
 import 'package:twitter_api_core/twitter_api_core.dart' as core;
@@ -126,7 +127,11 @@ abstract class BaseService implements _Service {
         userContext,
         unencodedPath,
         queryParameters: queryParameters,
-        validate: checkResponse,
+        validate: (response) {
+          _checkGetResponse(response, response.body);
+
+          return response;
+        },
       );
 
   @override
@@ -142,7 +147,11 @@ abstract class BaseService implements _Service {
         userContext,
         unencodedPath,
         queryParameters: queryParameters,
-        validate: _checkStreamedResponse,
+        validate: (response, event) {
+          _checkGetResponse(response, event);
+
+          return jsonDecode(event);
+        },
       );
 
   @override
@@ -409,48 +418,44 @@ abstract class BaseService implements _Service {
     return response;
   }
 
-  Map<String, dynamic> _checkStreamedResponse(
-    final core.StreamedResponse response,
-    final String event,
-  ) {
-    final jsonBody = core.tryJsonDecode(
-      _checkStreamedResponseError(response, event),
-      event,
-    );
-
-    if (!jsonBody.containsKey(ResponseField.data.value)) {
-      throw core.TwitterException(
-        'No response data exists for the request.',
-        response,
-        event,
-      );
-    }
-
-    return jsonBody;
-  }
-
-  core.StreamedResponse _checkStreamedResponseError(
-    final core.StreamedResponse response,
+  void _checkGetResponse(
+    final core.BaseResponse response,
     final String event,
   ) {
     if (response.statusCode == 401) {
       throw core.UnauthorizedException(
-          'The specified access token is invalid.');
+        'The specified access token is invalid.',
+      );
+    }
+
+    if (event.isEmpty) {
+      throw core.DataNotFoundException(
+        'There is no data associated with the specified condition.',
+        response,
+      );
     }
 
     final jsonBody = core.tryJsonDecode(response, event);
 
     if (jsonBody.containsKey(ResponseField.errors.value)) {
       final errors = jsonBody[ResponseField.errors.value];
+
       for (final error in errors) {
         if (error['code'] == 88) {
           throw core.RateLimitExceededException(
-              error['message'] ?? '', response);
+            error['message'] ?? '',
+            response,
+          );
+        }
+
+        if (error['title'] == 'Not Found Error') {
+          throw core.DataNotFoundException(
+            'There is no data associated with the specified condition.',
+            response,
+          );
         }
       }
     }
-
-    return response;
   }
 }
 
