@@ -10,7 +10,7 @@ export 'package:twitter_api_core/src/exception/twitter_exception.dart';
 export 'package:twitter_api_core/src/exception/twitter_upload_exception.dart';
 export 'package:twitter_api_core/src/exception/unauthorized_exception.dart';
 export 'package:twitter_api_core/src/service/country.dart';
-export 'package:twitter_api_core/src/service/tweet_language.dart';
+export 'package:twitter_api_core/src/service/language.dart';
 export 'package:twitter_api_core/src/util/oauth_utils.dart';
 export 'package:twitter_api_v2/src/service/common/includes.dart';
 export 'package:twitter_api_v2/src/service/common/mention.dart';

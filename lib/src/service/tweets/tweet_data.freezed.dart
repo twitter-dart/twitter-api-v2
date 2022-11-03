@@ -185,7 +185,7 @@ mixin _$TweetData {
   /// ## How It Can Be Used
   ///
   /// - Classify Tweets by spoken language.
-  TweetLanguage? get lang => throw _privateConstructorUsedError;
+  Language? get lang => throw _privateConstructorUsedError;
 
   /// Indicates if this Tweet contains URLs marked as sensitive, for example
   /// content suitable for mature audiences.
@@ -280,7 +280,7 @@ abstract class $TweetDataCopyWith<$Res> {
       PromotedTweetMetrics? promotedMetrics,
       PublicTweetMetrics? publicMetrics,
       Geo? geo,
-      TweetLanguage? lang,
+      Language? lang,
       @JsonKey(name: 'possibly_sensitive') bool? isPossiblySensitive,
       @JsonKey(name: 'reply_settings') ReplySetting? replySetting,
       String? source,
@@ -393,7 +393,7 @@ class _$TweetDataCopyWithImpl<$Res> implements $TweetDataCopyWith<$Res> {
       lang: lang == freezed
           ? _value.lang
           : lang // ignore: cast_nullable_to_non_nullable
-              as TweetLanguage?,
+              as Language?,
       isPossiblySensitive: isPossiblySensitive == freezed
           ? _value.isPossiblySensitive
           : isPossiblySensitive // ignore: cast_nullable_to_non_nullable
@@ -547,7 +547,7 @@ abstract class _$$_TweetDataCopyWith<$Res> implements $TweetDataCopyWith<$Res> {
       PromotedTweetMetrics? promotedMetrics,
       PublicTweetMetrics? publicMetrics,
       Geo? geo,
-      TweetLanguage? lang,
+      Language? lang,
       @JsonKey(name: 'possibly_sensitive') bool? isPossiblySensitive,
       @JsonKey(name: 'reply_settings') ReplySetting? replySetting,
       String? source,
@@ -671,7 +671,7 @@ class __$$_TweetDataCopyWithImpl<$Res> extends _$TweetDataCopyWithImpl<$Res>
       lang: lang == freezed
           ? _value.lang
           : lang // ignore: cast_nullable_to_non_nullable
-              as TweetLanguage?,
+              as Language?,
       isPossiblySensitive: isPossiblySensitive == freezed
           ? _value.isPossiblySensitive
           : isPossiblySensitive // ignore: cast_nullable_to_non_nullable
@@ -947,7 +947,7 @@ class _$_TweetData implements _TweetData {
   ///
   /// - Classify Tweets by spoken language.
   @override
-  final TweetLanguage? lang;
+  final Language? lang;
 
   /// Indicates if this Tweet contains URLs marked as sensitive, for example
   /// content suitable for mature audiences.
@@ -1142,7 +1142,7 @@ abstract class _TweetData implements TweetData {
       final PromotedTweetMetrics? promotedMetrics,
       final PublicTweetMetrics? publicMetrics,
       final Geo? geo,
-      final TweetLanguage? lang,
+      final Language? lang,
       @JsonKey(name: 'possibly_sensitive')
           final bool? isPossiblySensitive,
       @JsonKey(name: 'reply_settings')
@@ -1334,7 +1334,7 @@ abstract class _TweetData implements TweetData {
   /// ## How It Can Be Used
   ///
   /// - Classify Tweets by spoken language.
-  TweetLanguage? get lang;
+  Language? get lang;
   @override
 
   /// Indicates if this Tweet contains URLs marked as sensitive, for example

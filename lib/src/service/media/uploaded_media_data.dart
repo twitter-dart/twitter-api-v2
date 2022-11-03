@@ -33,7 +33,7 @@ class UploadedMediaData with _$UploadedMediaData implements Data {
     /// Indicates the language of this media.
     ///
     /// This field is only set if a caption (.srt) is uploaded.
-    TweetLanguage? language,
+    Language? language,
   }) = _UploadedMediaData;
 
   factory UploadedMediaData.fromJson(Map<String, Object?> json) =>

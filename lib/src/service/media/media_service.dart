@@ -168,7 +168,7 @@ abstract class MediaService {
   Future<TwitterResponse<bool, void>> createSubtitle({
     required String videoId,
     required String captionId,
-    required core.TweetLanguage language,
+    required core.Language language,
   });
 }
 
@@ -227,7 +227,7 @@ class _MediaService extends BaseMediaService implements MediaService {
   Future<TwitterResponse<bool, void>> createSubtitle({
     required String videoId,
     required String captionId,
-    required core.TweetLanguage language,
+    required core.Language language,
   }) async =>
       super.evaluateResponse(
         await super.post(

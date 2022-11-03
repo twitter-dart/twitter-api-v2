@@ -35,7 +35,7 @@ mixin _$UploadedMediaData {
   /// Indicates the language of this media.
   ///
   /// This field is only set if a caption (.srt) is uploaded.
-  TweetLanguage? get language => throw _privateConstructorUsedError;
+  Language? get language => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,7 +55,7 @@ abstract class $UploadedMediaDataCopyWith<$Res> {
       @JsonKey(name: 'media_id_string')
           String id,
       DateTime expiresAt,
-      TweetLanguage? language});
+      Language? language});
 }
 
 /// @nodoc
@@ -90,7 +90,7 @@ class _$UploadedMediaDataCopyWithImpl<$Res>
       language: language == freezed
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as TweetLanguage?,
+              as Language?,
     ));
   }
 }
@@ -109,7 +109,7 @@ abstract class _$$_UploadedMediaDataCopyWith<$Res>
       @JsonKey(name: 'media_id_string')
           String id,
       DateTime expiresAt,
-      TweetLanguage? language});
+      Language? language});
 }
 
 /// @nodoc
@@ -146,7 +146,7 @@ class __$$_UploadedMediaDataCopyWithImpl<$Res>
       language: language == freezed
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as TweetLanguage?,
+              as Language?,
     ));
   }
 }
@@ -185,7 +185,7 @@ class _$_UploadedMediaData implements _UploadedMediaData {
   ///
   /// This field is only set if a caption (.srt) is uploaded.
   @override
-  final TweetLanguage? language;
+  final Language? language;
 
   @override
   String toString() {
@@ -234,7 +234,7 @@ abstract class _UploadedMediaData implements UploadedMediaData {
       @JsonKey(name: 'media_id_string')
           required final String id,
       required final DateTime expiresAt,
-      final TweetLanguage? language}) = _$_UploadedMediaData;
+      final Language? language}) = _$_UploadedMediaData;
 
   factory _UploadedMediaData.fromJson(Map<String, dynamic> json) =
       _$_UploadedMediaData.fromJson;
@@ -259,7 +259,7 @@ abstract class _UploadedMediaData implements UploadedMediaData {
   /// Indicates the language of this media.
   ///
   /// This field is only set if a caption (.srt) is uploaded.
-  TweetLanguage? get language;
+  Language? get language;
   @override
   @JsonKey(ignore: true)
   _$$_UploadedMediaDataCopyWith<_$_UploadedMediaData> get copyWith =>
