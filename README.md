@@ -982,6 +982,8 @@ Note that media uploads may also fail for reasons such as broken media. In such 
 
 If you would like to contribute to **twitter_api_v2**, please create an [issue](https://github.com/twitter-dart/twitter-api-v2/issues) or create a Pull Request.
 
+![contribution](https://user-images.githubusercontent.com/13072231/199852175-1d7336d1-e330-40ed-9149-b952512bd68e.svg)
+
 There are many ways to contribute to the OSS. For example, the following subjects can be considered:
 
 - There are request parameters or response fields that are not implemented.
