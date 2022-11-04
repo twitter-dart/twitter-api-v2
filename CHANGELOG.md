@@ -4,6 +4,8 @@
 
 - Added support for an endpoint that associates uploaded videos with subtitles. ([#437](https://github.com/twitter-dart/twitter-api-v2/issues/437))
   - `media.createSubtitle`
+- Added support for an endpoint to delete subtitles associated with uploaded videos. ([#436](https://github.com/twitter-dart/twitter-api-v2/issues/436))
+  - `media.destroySubtitle`
 
 ## v4.3.3
 
