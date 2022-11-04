@@ -8,6 +8,7 @@
 ## v4.3.3
 
 - Supported upload for caption files (.srt). You can upload caption files by using `uploadMedia`. ([#508](https://github.com/twitter-dart/twitter-api-v2/issues/508))
+- Renamed enumeration from `TweetLanguage` to `Language`. Please replace name if you're using `TweetLanguage`.
 
 ## v4.3.2
 
