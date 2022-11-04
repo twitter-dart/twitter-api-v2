@@ -34,7 +34,7 @@ mixin _$UploadedMediaData {
 
   /// The locale of this media.
   ///
-  ///
+  /// This field is only set if a .srt file is uploaded.
   Locale? get locale => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -199,7 +199,7 @@ class _$_UploadedMediaData implements _UploadedMediaData {
 
   /// The locale of this media.
   ///
-  ///
+  /// This field is only set if a .srt file is uploaded.
   @override
   final Locale? locale;
 
@@ -274,7 +274,7 @@ abstract class _UploadedMediaData implements UploadedMediaData {
 
   /// The locale of this media.
   ///
-  ///
+  /// This field is only set if a .srt file is uploaded.
   Locale? get locale;
   @override
   @JsonKey(ignore: true)
