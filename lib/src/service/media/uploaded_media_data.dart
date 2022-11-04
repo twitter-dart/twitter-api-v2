@@ -9,6 +9,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
 import '../common/data.dart';
+import '../common/locale.dart';
 
 part 'uploaded_media_data.freezed.dart';
 part 'uploaded_media_data.g.dart';
@@ -28,6 +29,11 @@ class UploadedMediaData with _$UploadedMediaData implements Data {
 
     /// The date and time this media will expire.
     required DateTime expiresAt,
+
+    /// The locale of this media.
+    ///
+    /// This field is only set if a .srt file is uploaded.
+    Locale? locale,
   }) = _UploadedMediaData;
 
   factory UploadedMediaData.fromJson(Map<String, Object?> json) =>

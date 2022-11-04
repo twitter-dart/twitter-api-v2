@@ -18,6 +18,11 @@ _$_UploadedMediaData _$$_UploadedMediaDataFromJson(Map json) => $checkedCreate(
           id: $checkedConvert('media_id_string', (v) => v as String),
           expiresAt:
               $checkedConvert('expires_at', (v) => DateTime.parse(v as String)),
+          locale: $checkedConvert(
+              'locale',
+              (v) => v == null
+                  ? null
+                  : Locale.fromJson(Map<String, Object?>.from(v as Map))),
         );
         return val;
       },
@@ -34,4 +39,5 @@ Map<String, dynamic> _$$_UploadedMediaDataToJson(
       '_media_id_string': instance.mediaId,
       'media_id_string': instance.id,
       'expires_at': instance.expiresAt.toIso8601String(),
+      'locale': instance.locale?.toJson(),
     };
