@@ -154,9 +154,10 @@ abstract class MediaService {
   /// - [captionId]: Media ID of the uploaded caption to associate with the
   ///                video.
   ///
-  /// - [locale]: Subtitle locale. This parameter should be
-  ///             `UploadedMediaData.locale` when the caption file (.srt)
-  ///             is uploaded.
+  /// - [language]: The language of the uploaded subtitle file.
+  ///               This property can be obtained from
+  ///               `UploadedMediaData.locale.lang` of the uploaded caption
+  ///               file.
   ///
   /// ## Endpoint Url
   ///
