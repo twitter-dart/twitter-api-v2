@@ -175,6 +175,41 @@ abstract class MediaService {
     required String captionId,
     required core.Language language,
   });
+
+  /// Use this endpoint to dissociate subtitles from a video and
+  /// delete the subtitles.
+  ///
+  /// You can dissociate subtitles from a video before or after Tweeting.
+  ///
+  /// ## Parameters
+  ///
+  /// - [videoId]: Media ID of the uploaded video to which the subtitle is
+  ///              associated.
+  ///
+  /// - [captionId]: Media ID of the uploaded caption to associate with the
+  ///                video.
+  ///
+  /// - [language]: The language of the uploaded subtitle file.
+  ///               This property can be obtained from
+  ///               `UploadedMediaData.locale.lang` of the uploaded caption
+  ///               file.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://upload.twitter.com/1.1/media/subtitles/delete
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 1.0a
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/post-media-subtitles-delete
+  Future<TwitterResponse<bool, void>> destroySubtitle({
+    required String videoId,
+    required String captionId,
+    required core.Language language,
+  });
 }
 
 class _MediaService extends BaseMediaService implements MediaService {
@@ -284,6 +319,31 @@ class _MediaService extends BaseMediaService implements MediaService {
                   'media_id': captionId,
                   'language_code': language.code.toUpperCase(),
                   'display_name': language.properName,
+                },
+              ]
+            },
+          },
+        ),
+      );
+
+  @override
+  Future<TwitterResponse<bool, void>> destroySubtitle({
+    required String videoId,
+    required String captionId,
+    required core.Language language,
+  }) async =>
+      super.evaluateResponse(
+        await super.post(
+          core.UserContext.oauth1Only,
+          '/1.1/media/subtitles/delete.json',
+          body: {
+            'media_id': videoId,
+            'media_category': MediaCategory.tweetVideo.value,
+            'subtitle_info': {
+              'subtitles': [
+                {
+                  'media_id': captionId,
+                  'language_code': language.code.toUpperCase(),
                 },
               ]
             },
