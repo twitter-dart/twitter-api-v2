@@ -13,14 +13,14 @@ void main() {
     expect(MediaCategory.tweetImage.name, 'tweetImage');
     expect(MediaCategory.tweetGif.name, 'tweetGif');
     expect(MediaCategory.tweetVideo.name, 'tweetVideo');
-    expect(MediaCategory.videoSubtitle.name, 'videoSubtitle');
+    expect(MediaCategory.videoCaption.name, 'videoCaption');
   });
 
   test('.value', () {
     expect(MediaCategory.tweetImage.value, 'TWEET_IMAGE');
     expect(MediaCategory.tweetGif.value, 'TWEET_GIF');
     expect(MediaCategory.tweetVideo.value, 'TWEET_VIDEO');
-    expect(MediaCategory.videoSubtitle.value, 'SUBTITLES');
+    expect(MediaCategory.videoCaption.value, 'SUBTITLES');
   });
 
   group('.valueOf', () {
@@ -42,10 +42,10 @@ void main() {
       expect(mimeType, MediaCategory.tweetVideo);
     });
 
-    test('with subtitle', () {
+    test('with caption (.srt)', () {
       final mimeType = MediaCategory.valueOf('application/x-subrip');
 
-      expect(mimeType, MediaCategory.videoSubtitle);
+      expect(mimeType, MediaCategory.videoCaption);
     });
 
     test('with unsupported mime type', () {

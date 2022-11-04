@@ -11,6 +11,7 @@ import 'package:twitter_api_core/twitter_api_core.dart' as core;
 
 // Project imports:
 import '../base_media_service.dart';
+import '../common/locale.dart';
 import '../response/twitter_response.dart';
 import 'media_category.dart';
 import 'upload_error.dart';
@@ -140,6 +141,75 @@ abstract class MediaService {
     Function(UploadEvent event)? onProgress,
     Function(UploadError error)? onFailed,
   });
+
+  /// Use this endpoint to associate uploaded subtitle to an uploaded video.
+  ///
+  /// You can associate subtitle to video before or after Tweeting.
+  ///
+  /// ## Parameters
+  ///
+  /// - [videoId]: Media ID of the uploaded video to which the subtitle is
+  ///              to be associated.
+  ///
+  /// - [captionId]: Media ID of the uploaded caption to associate with the
+  ///                video.
+  ///
+  /// - [language]: The language of the uploaded subtitle file.
+  ///               This property can be obtained from
+  ///               `UploadedMediaData.locale.lang` of the uploaded caption
+  ///               file.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://upload.twitter.com/1.1/media/subtitles/create
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 1.0a
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/post-media-subtitles-create
+  Future<TwitterResponse<bool, void>> createSubtitle({
+    required String videoId,
+    required String captionId,
+    required core.Language language,
+  });
+
+  /// Use this endpoint to dissociate subtitles from a video and
+  /// delete the subtitles.
+  ///
+  /// You can dissociate subtitles from a video before or after Tweeting.
+  ///
+  /// ## Parameters
+  ///
+  /// - [videoId]: Media ID of the uploaded video to which the subtitle is
+  ///              associated.
+  ///
+  /// - [captionId]: Media ID of the uploaded caption to associate with the
+  ///                video.
+  ///
+  /// - [language]: The language of the uploaded subtitle file.
+  ///               This property can be obtained from
+  ///               `UploadedMediaData.locale.lang` of the uploaded caption
+  ///               file.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://upload.twitter.com/1.1/media/subtitles/delete
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 1.0a
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/post-media-subtitles-delete
+  Future<TwitterResponse<bool, void>> destroySubtitle({
+    required String videoId,
+    required String captionId,
+    required core.Language language,
+  });
 }
 
 class _MediaService extends BaseMediaService implements MediaService {
@@ -148,6 +218,9 @@ class _MediaService extends BaseMediaService implements MediaService {
 
   /// The maximum number of chunks per time (bytes).
   static const _maxChunkSize = 500000;
+
+  /// The regex pattern for locale.
+  static final _regexLocale = RegExp('[a-z]{2}_[A-Z]{2}');
 
   @override
   Future<TwitterResponse<UploadedMediaData, void>> uploadImage({
@@ -181,16 +254,101 @@ class _MediaService extends BaseMediaService implements MediaService {
     List<String>? additionalOwners,
     Function(UploadEvent event)? onProgress,
     Function(UploadError error)? onFailed,
-  }) async =>
-      super.transformUploadedDataResponse(
+  }) async {
+    final mimeType = _resolveMimeType(file);
+    final locale = _regexLocale.stringMatch(
+      file.uri.pathSegments.last,
+    );
+
+    if (_isCaption(mimeType)) {
+      if (locale == null) {
+        throw const FormatException(
+          'The name of the .srt file must include the locale like '
+          '"subtitle.en_US.srt".',
+        );
+      }
+
+      final localeCodes = locale.split('_');
+
+      return super.transformUploadedDataResponse(
         await _uploadMedia(
           file: file,
+          mimeType: mimeType,
           altText: altText,
           additionalOwners: additionalOwners,
           onProgress: onProgress,
           onFailed: onFailed,
         ),
+        locale: Locale(
+          lang: core.Language.valueOf(localeCodes[0]),
+          country: core.Country.valueOf(localeCodes[1]),
+        ),
         dataBuilder: UploadedMediaData.fromJson,
+      );
+    }
+
+    return super.transformUploadedDataResponse(
+      await _uploadMedia(
+        file: file,
+        mimeType: mimeType,
+        altText: altText,
+        additionalOwners: additionalOwners,
+        onProgress: onProgress,
+        onFailed: onFailed,
+      ),
+      dataBuilder: UploadedMediaData.fromJson,
+    );
+  }
+
+  @override
+  Future<TwitterResponse<bool, void>> createSubtitle({
+    required String videoId,
+    required String captionId,
+    required core.Language language,
+  }) async =>
+      super.evaluateResponse(
+        await super.post(
+          core.UserContext.oauth1Only,
+          '/1.1/media/subtitles/create.json',
+          body: {
+            'media_id': videoId,
+            'media_category': MediaCategory.tweetVideo.value,
+            'subtitle_info': {
+              'subtitles': [
+                {
+                  'media_id': captionId,
+                  'language_code': language.code.toUpperCase(),
+                  'display_name': language.properName,
+                },
+              ]
+            },
+          },
+        ),
+      );
+
+  @override
+  Future<TwitterResponse<bool, void>> destroySubtitle({
+    required String videoId,
+    required String captionId,
+    required core.Language language,
+  }) async =>
+      super.evaluateResponse(
+        await super.post(
+          core.UserContext.oauth1Only,
+          '/1.1/media/subtitles/delete.json',
+          body: {
+            'media_id': videoId,
+            'media_category': MediaCategory.tweetVideo.value,
+            'subtitle_info': {
+              'subtitles': [
+                {
+                  'media_id': captionId,
+                  'language_code': language.code.toUpperCase(),
+                },
+              ]
+            },
+          },
+        ),
       );
 
   Future<core.Response> _uploadImage({
@@ -237,6 +395,7 @@ class _MediaService extends BaseMediaService implements MediaService {
 
   Future<core.Response> _uploadMedia({
     required File file,
+    required String mimeType,
     String? altText,
     List<String>? additionalOwners,
     Function(UploadEvent event)? onProgress,
@@ -254,8 +413,6 @@ class _MediaService extends BaseMediaService implements MediaService {
         'Alt text must be <= 1000 chars.',
       );
     }
-
-    final mimeType = _resolveMimeType(file);
 
     if ((altText?.isNotEmpty ?? false) && !mimeType.startsWith('image')) {
       throw UnsupportedError(
@@ -520,15 +677,19 @@ class _MediaService extends BaseMediaService implements MediaService {
       );
     }
 
-    if (!mediaMimeType.startsWith('image') &&
-        !mediaMimeType.startsWith('video') &&
-        !mediaMimeType.endsWith('x-subrip')) {
+    if (!_isImage(mediaMimeType) &&
+        !_isVideo(mediaMimeType) &&
+        !_isCaption(mediaMimeType)) {
       throw core.TwitterUploadException(
         file,
-        'Unsupported Mime type [$mediaMimeType].',
+        'Unsupported mime type [$mediaMimeType].',
       );
     }
 
     return mediaMimeType;
   }
+
+  bool _isImage(final String mimeType) => mimeType.startsWith('image');
+  bool _isVideo(final String mimeType) => mimeType.startsWith('video');
+  bool _isCaption(final String mimeType) => mimeType.endsWith('x-subrip');
 }

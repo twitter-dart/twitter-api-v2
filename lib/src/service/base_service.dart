@@ -362,10 +362,24 @@ abstract class BaseService implements _Service {
         rateLimit: RateLimit.fromJson(
           headerConverter.convert(response.headers),
         ),
-        data: !core
-            .tryJsonDecode(response, response.body)
-            .containsKey(ResponseField.errors.value),
+        data: _evaluateResponse(response),
       );
+
+  bool _evaluateResponse(final core.Response response) {
+    if (response.statusCode == 204) {
+      //! 204: No Content.
+      return true;
+    }
+
+    if (response.statusCode == 200 && response.body.isEmpty) {
+      //! No JSON in response but okay, it's succeeded.
+      return true;
+    }
+
+    return !core
+        .tryJsonDecode(response, response.body)
+        .containsKey(ResponseField.errors.value);
+  }
 
   Map<String, dynamic> _checkResponseBody(final core.Response response) {
     final jsonBody = core.tryJsonDecode(response, response.body);
