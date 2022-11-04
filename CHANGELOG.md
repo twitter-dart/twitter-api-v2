@@ -1,5 +1,10 @@
 # Release Note
 
+## v4.3.4
+
+- Added support for an endpoint that associates uploaded videos with subtitles. ([#437](https://github.com/twitter-dart/twitter-api-v2/issues/437))
+  - `media.createSubtitle`
+
 ## v4.3.3
 
 - Supported upload for caption files (.srt). You can upload caption files by using `uploadMedia`. ([#508](https://github.com/twitter-dart/twitter-api-v2/issues/508))

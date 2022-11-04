@@ -11,6 +11,7 @@ import 'package:twitter_api_core/twitter_api_core.dart' as core;
 
 // Project imports:
 import '../base_media_service.dart';
+import '../common/locale.dart';
 import '../response/twitter_response.dart';
 import 'media_category.dart';
 import 'upload_error.dart';
@@ -141,18 +142,21 @@ abstract class MediaService {
     Function(UploadError error)? onFailed,
   });
 
-  /// Use this endpoint to associate uploaded subtitles to an uploaded video.
+  /// Use this endpoint to associate uploaded subtitle to an uploaded video.
   ///
-  /// You can associate subtitles to video before or after Tweeting.
+  /// You can associate subtitle to video before or after Tweeting.
+  ///
   /// ## Parameters
   ///
-  /// - [videoMediaId]:
+  /// - [videoId]: Media ID of the uploaded video to which the subtitle is
+  ///              to be associated.
   ///
-  /// - [subtitleMediaId]:
+  /// - [captionId]: Media ID of the uploaded caption to associate with the
+  ///                video.
   ///
-  /// - [language]:
-  ///
-  /// - [displayName]:
+  /// - [locale]: Subtitle locale. This parameter should be
+  ///             `UploadedMediaData.locale` when the caption file (.srt)
+  ///             is uploaded.
   ///
   /// ## Endpoint Url
   ///
@@ -178,6 +182,9 @@ class _MediaService extends BaseMediaService implements MediaService {
 
   /// The maximum number of chunks per time (bytes).
   static const _maxChunkSize = 500000;
+
+  /// The regex pattern for locale.
+  static final _regexLocale = RegExp('[a-z]{2}_[A-Z]{2}');
 
   @override
   Future<TwitterResponse<UploadedMediaData, void>> uploadImage({
@@ -211,17 +218,51 @@ class _MediaService extends BaseMediaService implements MediaService {
     List<String>? additionalOwners,
     Function(UploadEvent event)? onProgress,
     Function(UploadError error)? onFailed,
-  }) async =>
-      super.transformUploadedDataResponse(
+  }) async {
+    final mimeType = _resolveMimeType(file);
+    final locale = _regexLocale.stringMatch(
+      file.uri.pathSegments.last,
+    );
+
+    if (_isCaption(mimeType)) {
+      if (locale == null) {
+        throw const FormatException(
+          'The name of the .srt file must include the locale like '
+          '"subtitle.en_US.srt".',
+        );
+      }
+
+      final localeCodes = locale.split('_');
+
+      return super.transformUploadedDataResponse(
         await _uploadMedia(
           file: file,
+          mimeType: mimeType,
           altText: altText,
           additionalOwners: additionalOwners,
           onProgress: onProgress,
           onFailed: onFailed,
         ),
+        locale: Locale(
+          lang: core.Language.valueOf(localeCodes[0]),
+          country: core.Country.valueOf(localeCodes[1]),
+        ),
         dataBuilder: UploadedMediaData.fromJson,
       );
+    }
+
+    return super.transformUploadedDataResponse(
+      await _uploadMedia(
+        file: file,
+        mimeType: mimeType,
+        altText: altText,
+        additionalOwners: additionalOwners,
+        onProgress: onProgress,
+        onFailed: onFailed,
+      ),
+      dataBuilder: UploadedMediaData.fromJson,
+    );
+  }
 
   @override
   Future<TwitterResponse<bool, void>> createSubtitle({
@@ -244,7 +285,7 @@ class _MediaService extends BaseMediaService implements MediaService {
                   'display_name': language.properName,
                 },
               ]
-            }
+            },
           },
         ),
       );
@@ -293,6 +334,7 @@ class _MediaService extends BaseMediaService implements MediaService {
 
   Future<core.Response> _uploadMedia({
     required File file,
+    required String mimeType,
     String? altText,
     List<String>? additionalOwners,
     Function(UploadEvent event)? onProgress,
@@ -310,8 +352,6 @@ class _MediaService extends BaseMediaService implements MediaService {
         'Alt text must be <= 1000 chars.',
       );
     }
-
-    final mimeType = _resolveMimeType(file);
 
     if ((altText?.isNotEmpty ?? false) && !mimeType.startsWith('image')) {
       throw UnsupportedError(
@@ -576,15 +616,19 @@ class _MediaService extends BaseMediaService implements MediaService {
       );
     }
 
-    if (!mediaMimeType.startsWith('image') &&
-        !mediaMimeType.startsWith('video') &&
-        !mediaMimeType.endsWith('x-subrip')) {
+    if (!_isImage(mediaMimeType) &&
+        !_isVideo(mediaMimeType) &&
+        !_isCaption(mediaMimeType)) {
       throw core.TwitterUploadException(
         file,
-        'Unsupported Mime type [$mediaMimeType].',
+        'Unsupported mime type [$mediaMimeType].',
       );
     }
 
     return mediaMimeType;
   }
+
+  bool _isImage(final String mimeType) => mimeType.startsWith('image');
+  bool _isVideo(final String mimeType) => mimeType.startsWith('video');
+  bool _isCaption(final String mimeType) => mimeType.endsWith('x-subrip');
 }

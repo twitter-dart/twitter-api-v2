@@ -13,6 +13,7 @@ export 'package:twitter_api_core/src/service/country.dart';
 export 'package:twitter_api_core/src/service/language.dart';
 export 'package:twitter_api_core/src/util/oauth_utils.dart';
 export 'package:twitter_api_v2/src/service/common/includes.dart';
+export 'package:twitter_api_v2/src/service/common/locale.dart';
 export 'package:twitter_api_v2/src/service/common/mention.dart';
 export 'package:twitter_api_v2/src/service/common/range.dart';
 export 'package:twitter_api_v2/src/service/common/rate_limit.dart';

@@ -11,6 +11,7 @@ import 'package:twitter_api_core/twitter_api_core.dart' as core;
 // Project imports:
 import 'base_service.dart';
 import 'common/data.dart';
+import 'common/locale.dart';
 import 'common/meta.dart';
 import 'response/twitter_response.dart';
 
@@ -25,6 +26,7 @@ abstract class _MediaService {
   TwitterResponse<D, M>
       transformUploadedDataResponse<D extends Data, M extends Meta>(
     core.Response response, {
+    Locale? locale,
     required DataBuilder<D> dataBuilder,
   });
 }
@@ -87,20 +89,27 @@ abstract class BaseMediaService extends BaseService implements _MediaService {
   TwitterResponse<D, M>
       transformUploadedDataResponse<D extends Data, M extends Meta>(
     core.Response response, {
+    Locale? locale,
     required DataBuilder<D> dataBuilder,
   }) {
     final json = core.tryJsonDecode(response, response.body);
 
+    final uploadedMedia = <String, dynamic>{
+      'media_id_string': json['media_id_string'],
+      'expires_at': DateTime.now()
+          .add(Duration(seconds: json['expires_after_secs']))
+          .toIso8601String(),
+    };
+
+    if (locale != null) {
+      uploadedMedia['locale'] = locale.toJson();
+    }
+
+    //! Convert to a data structure compliant with v2 specs.
     return super.transformSingleDataResponse(
       core.Response(
         jsonEncode({
-          //! Convert to a data structure compliant with v2.0 specifications.
-          'data': <String, dynamic>{
-            'media_id_string': json['media_id_string'],
-            'expires_at': DateTime.now()
-                .add(Duration(seconds: json['expires_after_secs']))
-                .toIso8601String(),
-          },
+          'data': uploadedMedia,
         }),
         response.statusCode,
         headers: response.headers,
