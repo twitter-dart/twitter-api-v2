@@ -5,6 +5,7 @@
 export 'package:twitter_api_core/src/client/oauth_tokens.dart';
 export 'package:twitter_api_core/src/client/retry_event.dart';
 export 'package:twitter_api_core/src/config/retry_config.dart';
+export 'package:twitter_api_core/src/exception/data_not_found_exception.dart';
 export 'package:twitter_api_core/src/exception/rate_limit_exceeded_exception.dart';
 export 'package:twitter_api_core/src/exception/twitter_exception.dart';
 export 'package:twitter_api_core/src/exception/twitter_upload_exception.dart';

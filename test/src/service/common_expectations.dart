@@ -50,30 +50,30 @@ void expectRateLimitExceededException(Function fn) {
   );
 }
 
-void expectTwitterExceptionDueToNoData(Function fn) {
+void expectDataNotFoundExceptionDueToNoData(Function fn) {
   expect(
     () async => await fn.call(),
     throwsA(
       allOf(
-        isA<TwitterException>(),
+        isA<DataNotFoundException>(),
         predicate(
-          (TwitterException e) =>
-              e.message == 'No response data exists for the request.',
+          (DataNotFoundException e) =>
+              e.message == 'No data exists in response.',
         ),
       ),
     ),
   );
 }
 
-void expectTwitterExceptionDueToNoJson(Function fn) {
+void expectDataNotFoundExceptionDueToNoJson(Function fn) {
   expect(
     () async => await fn.call(),
     throwsA(
       allOf(
-        isA<TwitterException>(),
+        isA<DataNotFoundException>(),
         predicate(
-          (TwitterException e) =>
-              e.message == 'Failed to decode the response body as JSON.',
+          (DataNotFoundException e) =>
+              e.message == 'No body exists in response.',
         ),
       ),
     ),

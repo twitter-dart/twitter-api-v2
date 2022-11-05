@@ -120,6 +120,7 @@ import 'service/users/users_service.dart';
 /// - [UnauthorizedException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/UnauthorizedException-class.html): When the access token is invalid.
 /// - [RateLimitExceededException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/RateLimitExceededException-class.html): When the rate limit is exceeded.
 /// - [TwitterUploadException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/TwitterUploadException-class.html): When the upload is failed for some reasons.
+/// - [DataNotFoundException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/DataNotFoundException-class.html): When response has no body or data field.
 /// - [TwitterException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/TwitterException-class.html): When the response body is not a valid JSON and etc.
 ///
 /// ## More Information

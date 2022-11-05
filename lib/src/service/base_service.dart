@@ -150,7 +150,16 @@ abstract class BaseService implements _Service {
         validate: (response, event) {
           _checkGetResponse(response, event);
 
-          return jsonDecode(event);
+          final jsonBody = jsonDecode(event);
+          if (!jsonBody.containsKey(ResponseField.data.value)) {
+            throw core.DataNotFoundException(
+              'No data exists in response.',
+              response,
+              event,
+            );
+          }
+
+          return jsonBody;
         },
       );
 
@@ -387,8 +396,8 @@ abstract class BaseService implements _Service {
     if (!jsonBody.containsKey(ResponseField.data.value)) {
       //! This occurs when the tweet to be processed has been deleted or
       //! when the target data does not exist at the time of search.
-      throw core.TwitterException(
-        'No response data exists for the request.',
+      throw core.DataNotFoundException(
+        'No data exists in response.',
         response,
       );
     }

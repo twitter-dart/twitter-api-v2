@@ -315,14 +315,15 @@ Future<void> main() async {
     print(e);
   } on v2.RateLimitExceededException catch (e) {
     print(e);
+  } on v2.DataNotFoundException catch (e) {
+    print(e);
   } on v2.TwitterUploadException catch (e) {
     print(e);
   } on v2.TwitterException catch (e) {
     print(e.response.headers);
     print(e.body);
     print(e);
-  }
-}
+  }}
 ```
 
 ## 1.3. Supported Endpoints 👀

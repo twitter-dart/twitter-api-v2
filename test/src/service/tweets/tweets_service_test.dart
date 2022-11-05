@@ -6,7 +6,7 @@
 import 'package:test/test.dart';
 import 'package:twitter_api_core/src/client/client_context.dart';
 import 'package:twitter_api_core/src/client/user_context.dart';
-import 'package:twitter_api_core/src/exception/twitter_exception.dart';
+import 'package:twitter_api_core/src/exception/data_not_found_exception.dart';
 
 // Project imports:
 import 'package:twitter_api_v2/src/service/pagination/forward_pagination_control.dart';
@@ -86,7 +86,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoData(
+      expectDataNotFoundExceptionDueToNoData(
         () async => await tweetsService.createTweet(
           text: 'Throw TwitterException',
         ),
@@ -118,7 +118,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoJson(
+      expectDataNotFoundExceptionDueToNoJson(
         () async => await tweetsService.createTweet(
           text: 'Throw TwitterException',
         ),
@@ -527,7 +527,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoData(
+      expectDataNotFoundExceptionDueToNoData(
         () async => await tweetsService.lookupLikingUsers(tweetId: '1111'),
       );
     });
@@ -542,7 +542,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoJson(
+      expectDataNotFoundExceptionDueToNoJson(
         () async => await tweetsService.lookupLikingUsers(tweetId: '1111'),
       );
     });
@@ -711,7 +711,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoData(
+      expectDataNotFoundExceptionDueToNoData(
         () async => await tweetsService.lookupLikedTweets(userId: '0000'),
       );
     });
@@ -726,7 +726,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoJson(
+      expectDataNotFoundExceptionDueToNoJson(
         () async => await tweetsService.lookupLikingUsers(tweetId: '1111'),
       );
     });
@@ -895,7 +895,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoData(
+      expectDataNotFoundExceptionDueToNoData(
         () async => await tweetsService.lookupRetweetedUsers(tweetId: '1111'),
       );
     });
@@ -910,7 +910,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoJson(
+      expectDataNotFoundExceptionDueToNoJson(
         () async => await tweetsService.lookupRetweetedUsers(tweetId: '1111'),
       );
     });
@@ -1079,7 +1079,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoData(
+      expectDataNotFoundExceptionDueToNoData(
         () async => await tweetsService.lookupQuoteTweets(tweetId: '1111'),
       );
     });
@@ -1094,7 +1094,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoJson(
+      expectDataNotFoundExceptionDueToNoJson(
         () async => await tweetsService.lookupQuoteTweets(tweetId: '1111'),
       );
     });
@@ -1285,7 +1285,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoData(
+      expectDataNotFoundExceptionDueToNoData(
         () async => await tweetsService.searchRecent(query: 'hello'),
       );
     });
@@ -1300,7 +1300,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoJson(
+      expectDataNotFoundExceptionDueToNoJson(
         () async => await tweetsService.searchRecent(query: 'hello'),
       );
     });
@@ -1465,7 +1465,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoData(
+      expectDataNotFoundExceptionDueToNoData(
         () async => await tweetsService.searchAll(query: 'hello'),
       );
     });
@@ -1480,7 +1480,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoJson(
+      expectDataNotFoundExceptionDueToNoJson(
         () async => await tweetsService.searchAll(query: 'hello'),
       );
     });
@@ -1801,7 +1801,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoData(
+      expectDataNotFoundExceptionDueToNoData(
         () async => await tweetsService.lookupById(tweetId: '1111'),
       );
     });
@@ -1816,7 +1816,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoJson(
+      expectDataNotFoundExceptionDueToNoJson(
         () async => await tweetsService.lookupById(tweetId: '1111'),
       );
     });
@@ -1884,7 +1884,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoData(
+      expectDataNotFoundExceptionDueToNoData(
         () async => await tweetsService.lookupByIds(
           tweetIds: ['1261326399320715264', '1278347468690915330'],
         ),
@@ -1901,7 +1901,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoJson(
+      expectDataNotFoundExceptionDueToNoJson(
         () async => await tweetsService.lookupByIds(
           tweetIds: ['1261326399320715264', '1278347468690915330'],
         ),
@@ -1988,7 +1988,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoData(
+      expectDataNotFoundExceptionDueToNoData(
         () async => await tweetsService.countRecent(
           query: 'hello',
           sinceTweetId: '1111',
@@ -2011,7 +2011,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoJson(
+      expectDataNotFoundExceptionDueToNoJson(
         () async => await tweetsService.countRecent(
           query: 'hello',
           sinceTweetId: '1111',
@@ -2100,7 +2100,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoData(
+      expectDataNotFoundExceptionDueToNoData(
         () async => await tweetsService.countAll(
           query: 'hello',
           sinceTweetId: '1111',
@@ -2123,7 +2123,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoJson(
+      expectDataNotFoundExceptionDueToNoJson(
         () async => await tweetsService.countAll(
           query: 'hello',
           sinceTweetId: '1111',
@@ -2427,7 +2427,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoData(
+      expectDataNotFoundExceptionDueToNoData(
         () async => await tweetsService.lookupBookmarks(
           userId: '0000',
         ),
@@ -2444,7 +2444,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoJson(
+      expectDataNotFoundExceptionDueToNoJson(
         () async => await tweetsService.lookupBookmarks(userId: '0000'),
       );
     });
@@ -2653,7 +2653,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoData(
+      expectDataNotFoundExceptionDueToNoData(
         () async => await tweetsService.lookupMentions(
           userId: '0000',
           maxResults: 10,
@@ -2675,7 +2675,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoJson(
+      expectDataNotFoundExceptionDueToNoJson(
         () async => await tweetsService.lookupMentions(
           userId: '0000',
           maxResults: 10,
@@ -2944,7 +2944,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoData(
+      expectDataNotFoundExceptionDueToNoData(
         () async => await tweetsService.lookupTweets(
           userId: '0000',
           maxResults: 10,
@@ -2966,7 +2966,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoJson(
+      expectDataNotFoundExceptionDueToNoJson(
         () async => await tweetsService.lookupTweets(
           userId: '0000',
           maxResults: 10,
@@ -3149,7 +3149,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoData(
+      expectDataNotFoundExceptionDueToNoData(
         () async => await tweetsService.lookupHomeTimeline(
           userId: '0000',
           maxResults: 10,
@@ -3171,7 +3171,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoJson(
+      expectDataNotFoundExceptionDueToNoJson(
         () async => await tweetsService.lookupHomeTimeline(
           userId: '0000',
           maxResults: 5,
@@ -3321,7 +3321,7 @@ void main() {
 
       expect(data.length, 5);
       expect(errors.length, 1);
-      expect(errors.single, isA<TwitterException>());
+      expect(errors.single, isA<DataNotFoundException>());
     });
   });
 
@@ -3379,7 +3379,7 @@ void main() {
 
       expect(data.length, 5);
       expect(errors.length, 1);
-      expect(errors.single, isA<TwitterException>());
+      expect(errors.single, isA<DataNotFoundException>());
     });
   });
 
@@ -3578,7 +3578,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoData(
+      expectDataNotFoundExceptionDueToNoData(
         () async => await tweetsService.lookupFilteringRules(
           ruleIds: ['XXXX', 'YYYY'],
         ),
@@ -3597,7 +3597,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoJson(
+      expectDataNotFoundExceptionDueToNoJson(
         () async => await tweetsService.lookupFilteringRules(
           ruleIds: ['XXXX', 'YYYY'],
         ),
