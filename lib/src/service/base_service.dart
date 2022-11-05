@@ -402,6 +402,7 @@ abstract class BaseService implements _Service {
     if (response.statusCode == 401) {
       throw core.UnauthorizedException(
         'The specified access token is invalid.',
+        response,
       );
     }
 
@@ -439,6 +440,7 @@ abstract class BaseService implements _Service {
     if (response.statusCode == 401) {
       throw core.UnauthorizedException(
         'The specified access token is invalid.',
+        response,
       );
     }
 
