@@ -444,13 +444,6 @@ abstract class BaseService implements _Service {
       );
     }
 
-    if (event.isEmpty) {
-      throw core.DataNotFoundException(
-        'There is no data associated with the specified condition.',
-        response,
-      );
-    }
-
     final jsonBody = core.tryJsonDecode(response, event);
 
     if (jsonBody.containsKey(ResponseField.errors.value)) {
@@ -460,13 +453,6 @@ abstract class BaseService implements _Service {
         if (error['code'] == 88) {
           throw core.RateLimitExceededException(
             error['message'] ?? '',
-            response,
-          );
-        }
-
-        if (error['title'] == 'Not Found Error') {
-          throw core.DataNotFoundException(
-            'There is no data associated with the specified condition.',
             response,
           );
         }
