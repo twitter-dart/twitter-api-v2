@@ -1,5 +1,10 @@
 # Release Note
 
+## v4.3.5
+
+- `TwitterUploadException` extended `TwitterException`. ([#510](https://github.com/twitter-dart/twitter-api-v2/issues/510))
+- `UnauthorizedException` extended `TwitterException`. ([#528](https://github.com/twitter-dart/twitter-api-v2/issues/528))
+
 ## v4.3.4
 
 - Added support for an endpoint that associates uploaded videos with subtitles. ([#437](https://github.com/twitter-dart/twitter-api-v2/issues/437))

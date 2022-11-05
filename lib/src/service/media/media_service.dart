@@ -682,7 +682,7 @@ class _MediaService extends BaseMediaService implements MediaService {
         !_isCaption(mediaMimeType)) {
       throw core.TwitterUploadException(
         file,
-        'Unsupported mime type [$mediaMimeType].',
+        'Unsupported Mime type [$mediaMimeType].',
       );
     }
 

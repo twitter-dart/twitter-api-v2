@@ -13,9 +13,7 @@ void expectUnauthorizedException(Function fn) {
       allOf(
         isA<UnauthorizedException>(),
         predicate(
-          (e) =>
-              e.toString() ==
-              'UnauthorizedException: The specified access token is invalid.',
+          (dynamic e) => e.message == 'The specified access token is invalid.',
         ),
       ),
     ),
@@ -29,10 +27,10 @@ void expectUnauthorizedExceptionForOAuth1(Function fn) {
       allOf(
         isA<UnauthorizedException>(),
         predicate(
-          (e) =>
-              e.toString() ==
-              'UnauthorizedException: Required tokens were not passed for an '
-                  'endpoint that requires OAuth 1.0a.',
+          (dynamic e) =>
+              e.message ==
+              'Required tokens were not passed for an endpoint that '
+                  'requires OAuth 1.0a.',
         ),
       ),
     ),
