@@ -855,6 +855,40 @@ However, as mentioned earlier in **twitter_api_v2**, for example if you use the 
 | [TwitterUploadException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/TwitterUploadException-class.html)         | Thrown when an exception occurs during media upload.                                                                   |
 | [UnauthorizedException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/UnauthorizedException-class.html)           | Thrown when authentication fails with the specified access token.                                                      |
 | [RateLimitExceededException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/RateLimitExceededException-class.html) | Thrown when the request rate limit is exceeded.                                                                        |
+| [DataNotFoundException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/DataNotFoundException-class.html)           | Thrown when response has no body or data field in body string.                                                         |
+
+Also, all of the above exceptions thrown from the **twitter_api_v2** process extend [TwitterException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/TwitterException-class.html). This means that you can take all exceptions as [TwitterException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/TwitterException-class.html) or handle them as certain exception types, depending on the situation.
+
+However note that, if you receive an individual type exception, be sure to define the process so that the individual exception type is cached before [TwitterException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/TwitterException-class.html). Otherwise, certain type exceptions will also be caught as [TwitterException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/TwitterException-class.html).
+
+Therefore, if you need to catch a specific type of exception in addition to [TwitterException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/TwitterException-class.html), be sure to catch [TwitterException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/TwitterException-class.html) in the bottom catch clause as in the following example.
+
+```dart
+import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
+
+Future<void> main() async {
+  final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
+
+  try {
+    final tweets = await twitter.tweets.searchRecent(
+      query: '#ElonMusk',
+      maxResults: 20,
+    );
+
+    print(tweets);
+  } on v2.UnauthorizedException catch (e) {
+    print(e);
+  } on v2.RateLimitExceededException catch (e) {
+    print(e);
+  } on v2.DataNotFoundException catch (e) {
+    print(e);
+  } on v2.TwitterUploadException catch (e) {
+    print(e);
+  } on v2.TwitterException catch (e) {
+    print(e);
+  }
+}
+```
 
 ### 1.4.11. Upload Media
 
