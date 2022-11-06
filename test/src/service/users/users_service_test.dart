@@ -217,7 +217,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoData(
+      expectDataNotFoundExceptionDueToNoData(
         () async => await usersService.lookupFollowers(
           userId: '0000',
         ),
@@ -234,7 +234,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoJson(
+      expectDataNotFoundExceptionDueToNoJson(
         () async => await usersService.lookupFollowers(userId: '0000'),
       );
     });
@@ -394,7 +394,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoData(
+      expectDataNotFoundExceptionDueToNoData(
         () async => await usersService.lookupFollowings(
           userId: '0000',
         ),
@@ -411,7 +411,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoJson(
+      expectDataNotFoundExceptionDueToNoJson(
         () async => await usersService.lookupFollowings(userId: '0000'),
       );
     });
@@ -571,7 +571,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoData(
+      expectDataNotFoundExceptionDueToNoData(
         () async => await usersService.lookupById(
           userId: '0000',
         ),
@@ -588,7 +588,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoJson(
+      expectDataNotFoundExceptionDueToNoJson(
         () async => await usersService.lookupById(userId: '0000'),
       );
     });
@@ -654,7 +654,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoData(
+      expectDataNotFoundExceptionDueToNoData(
         () async => await usersService.lookupByIds(
           userIds: ['2244994945', '783214'],
         ),
@@ -671,7 +671,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoJson(
+      expectDataNotFoundExceptionDueToNoJson(
         () async => await usersService.lookupByIds(
           userIds: ['2244994945', '783214'],
         ),
@@ -740,7 +740,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoData(
+      expectDataNotFoundExceptionDueToNoData(
         () async => await usersService.lookupByName(
           username: 'TwitterDev',
         ),
@@ -757,7 +757,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoJson(
+      expectDataNotFoundExceptionDueToNoJson(
         () async => await usersService.lookupByName(
           username: 'TwitterDev',
         ),
@@ -846,7 +846,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoData(
+      expectDataNotFoundExceptionDueToNoData(
         () async => await usersService.lookupByNames(
           usernames: ['TwitterDev', 'Twitter'],
         ),
@@ -863,7 +863,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoJson(
+      expectDataNotFoundExceptionDueToNoJson(
         () async => await usersService.lookupByNames(
           usernames: ['TwitterDev', 'Twitter'],
         ),
@@ -929,7 +929,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoData(
+      expectDataNotFoundExceptionDueToNoData(
         () async => await usersService.lookupMe(),
       );
     });
@@ -944,7 +944,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoJson(
+      expectDataNotFoundExceptionDueToNoJson(
         () async => await usersService.lookupMe(),
       );
     });
@@ -1166,7 +1166,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoData(
+      expectDataNotFoundExceptionDueToNoData(
         () async => await usersService.lookupMutingUsers(
           userId: '1111',
           maxResults: 10,
@@ -1188,7 +1188,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoJson(
+      expectDataNotFoundExceptionDueToNoJson(
         () async => await usersService.lookupMutingUsers(
           userId: '1111',
           maxResults: 10,
@@ -1510,7 +1510,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoData(
+      expectDataNotFoundExceptionDueToNoData(
         () async => await usersService.lookupBlockingUsers(
           userId: '1111',
           maxResults: 10,
@@ -1532,7 +1532,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoJson(
+      expectDataNotFoundExceptionDueToNoJson(
         () async => await usersService.lookupBlockingUsers(
           userId: '1111',
           maxResults: 10,

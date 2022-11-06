@@ -4,6 +4,7 @@
 
 // Dart imports:
 import 'dart:async';
+import 'dart:convert';
 
 // Package imports:
 import 'package:twitter_api_core/twitter_api_core.dart' as core;
@@ -126,7 +127,11 @@ abstract class BaseService implements _Service {
         userContext,
         unencodedPath,
         queryParameters: queryParameters,
-        validate: checkResponse,
+        validate: (response) {
+          _checkGetResponse(response, response.body);
+
+          return response;
+        },
       );
 
   @override
@@ -142,7 +147,20 @@ abstract class BaseService implements _Service {
         userContext,
         unencodedPath,
         queryParameters: queryParameters,
-        validate: _checkStreamedResponse,
+        validate: (response, event) {
+          _checkGetResponse(response, event);
+
+          final jsonBody = jsonDecode(event);
+          if (!jsonBody.containsKey(ResponseField.data.value)) {
+            throw core.DataNotFoundException(
+              'No data exists in response.',
+              response,
+              event,
+            );
+          }
+
+          return jsonBody;
+        },
       );
 
   @override
@@ -378,8 +396,8 @@ abstract class BaseService implements _Service {
     if (!jsonBody.containsKey(ResponseField.data.value)) {
       //! This occurs when the tweet to be processed has been deleted or
       //! when the target data does not exist at the time of search.
-      throw core.TwitterException(
-        'No response data exists for the request.',
+      throw core.DataNotFoundException(
+        'No data exists in response.',
         response,
       );
     }
@@ -393,6 +411,7 @@ abstract class BaseService implements _Service {
     if (response.statusCode == 401) {
       throw core.UnauthorizedException(
         'The specified access token is invalid.',
+        response,
       );
     }
 
@@ -423,48 +442,31 @@ abstract class BaseService implements _Service {
     return response;
   }
 
-  Map<String, dynamic> _checkStreamedResponse(
-    final core.StreamedResponse response,
-    final String event,
-  ) {
-    final jsonBody = core.tryJsonDecode(
-      _checkStreamedResponseError(response, event),
-      event,
-    );
-
-    if (!jsonBody.containsKey(ResponseField.data.value)) {
-      throw core.TwitterException(
-        'No response data exists for the request.',
-        response,
-        event,
-      );
-    }
-
-    return jsonBody;
-  }
-
-  core.StreamedResponse _checkStreamedResponseError(
-    final core.StreamedResponse response,
+  void _checkGetResponse(
+    final core.BaseResponse response,
     final String event,
   ) {
     if (response.statusCode == 401) {
       throw core.UnauthorizedException(
-          'The specified access token is invalid.');
+        'The specified access token is invalid.',
+        response,
+      );
     }
 
     final jsonBody = core.tryJsonDecode(response, event);
 
     if (jsonBody.containsKey(ResponseField.errors.value)) {
       final errors = jsonBody[ResponseField.errors.value];
+
       for (final error in errors) {
         if (error['code'] == 88) {
           throw core.RateLimitExceededException(
-              error['message'] ?? '', response);
+            error['message'] ?? '',
+            response,
+          );
         }
       }
     }
-
-    return response;
   }
 }
 

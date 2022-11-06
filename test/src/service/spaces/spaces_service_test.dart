@@ -82,7 +82,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoData(
+      expectDataNotFoundExceptionDueToNoData(
         () async => await spacesService.search(query: 'Hello, World!'),
       );
     });
@@ -97,7 +97,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoJson(
+      expectDataNotFoundExceptionDueToNoJson(
         () async => await spacesService.search(query: 'Hello, World!'),
       );
     });
@@ -160,7 +160,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoData(
+      expectDataNotFoundExceptionDueToNoData(
         () async => await spacesService.lookupById(spaceId: '2222'),
       );
     });
@@ -175,7 +175,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoJson(
+      expectDataNotFoundExceptionDueToNoJson(
         () async => await spacesService.lookupById(spaceId: '2222'),
       );
     });
@@ -267,7 +267,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoData(
+      expectDataNotFoundExceptionDueToNoData(
         () async => await spacesService.lookupByIds(
           spaceIds: ['1DXxyRYNejbKM', '2DXxyRYNejbKM'],
         ),
@@ -284,7 +284,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoJson(
+      expectDataNotFoundExceptionDueToNoJson(
         () async => await spacesService.lookupByIds(
           spaceIds: ['1DXxyRYNejbKM', '2DXxyRYNejbKM'],
         ),
@@ -348,7 +348,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoData(
+      expectDataNotFoundExceptionDueToNoData(
         () async => await spacesService.lookupBuyers(spaceId: '2222'),
       );
     });
@@ -363,7 +363,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoJson(
+      expectDataNotFoundExceptionDueToNoJson(
         () async => await spacesService.lookupBuyers(spaceId: '2222'),
       );
     });
@@ -427,7 +427,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoData(
+      expectDataNotFoundExceptionDueToNoData(
         () async => await spacesService.lookupTweets(spaceId: '2222'),
       );
     });
@@ -442,7 +442,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoJson(
+      expectDataNotFoundExceptionDueToNoJson(
         () async => await spacesService.lookupTweets(spaceId: '2222'),
       );
     });
@@ -512,7 +512,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoData(
+      expectDataNotFoundExceptionDueToNoData(
         () async => await spacesService.lookupByCreatorIds(
           userIds: ['1DXxyRYNejbKM', '2DXxyRYNejbKM'],
         ),
@@ -529,7 +529,7 @@ void main() {
         ),
       );
 
-      expectTwitterExceptionDueToNoJson(
+      expectDataNotFoundExceptionDueToNoJson(
         () async => await spacesService.lookupByCreatorIds(
           userIds: ['1DXxyRYNejbKM', '2DXxyRYNejbKM'],
         ),

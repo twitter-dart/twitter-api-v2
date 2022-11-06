@@ -4,6 +4,7 @@
 
 - `TwitterUploadException` extended `TwitterException`. ([#510](https://github.com/twitter-dart/twitter-api-v2/issues/510))
 - `UnauthorizedException` extended `TwitterException`. ([#528](https://github.com/twitter-dart/twitter-api-v2/issues/528))
+- Added `DataNotFoundException`. This exception extends `TwitterException` and is thrown when there is no response body or the response body does not contain a data field. In other words, this exception is thrown when the target tweet does not exist when searching for a specific tweet, etc. ([#490](https://github.com/twitter-dart/twitter-api-v2/issues/490))
 
 ## v4.3.4
 
