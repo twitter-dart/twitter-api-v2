@@ -7,6 +7,7 @@ import 'package:twitter_api_core/twitter_api_core.dart' as core;
 
 // Project imports:
 import 'service/compliance/compliance_service.dart';
+import 'service/dms/direct_messages_service.dart';
 import 'service/lists/lists_service.dart';
 import 'service/media/media_service.dart';
 import 'service/spaces/spaces_service.dart';
@@ -23,6 +24,7 @@ import 'service/users/users_service.dart';
 /// - Spaces service: [spaces]
 /// - Lists service: [lists]
 /// - Media service: [media]
+/// - Direct Messages service: [directMessages]
 /// - Compliance service: [compliance]
 ///
 /// ## Authentication
@@ -183,6 +185,9 @@ abstract class TwitterApi {
   /// Returns the media service
   MediaService get media;
 
+  /// Returns the direct messages service.
+  DirectMessagesService get directMessages;
+
   /// Returns the compliance service.
   ComplianceService get compliance;
 }
@@ -243,6 +248,10 @@ class _TwitterApi implements TwitterApi {
 
   @override
   MediaService get media => _twitterService.mediaService;
+
+  @override
+  DirectMessagesService get directMessages =>
+      _twitterService.directMessagesService;
 
   @override
   ComplianceService get compliance => _twitterService.complianceService;
