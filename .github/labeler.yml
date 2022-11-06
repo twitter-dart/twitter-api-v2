@@ -20,7 +20,7 @@ service/Media:
 - lib/src/service/media/*.dart
 
 service/DirectMessages:
-- lib/src/service/direct_messages/*.dart
+- lib/src/service/dms/*.dart
 
 test:
 - test/**/*.dart
