@@ -75,8 +75,11 @@
       - [1.3.4.6. Members](#1346-members)
     - [1.3.5. Media Service](#135-media-service)
       - [1.3.5.1. Upload Media](#1351-upload-media)
-    - [1.3.6. Compliance Service](#136-compliance-service)
-      - [1.3.6.1. Batch Compliance](#1361-batch-compliance)
+    - [1.3.6. Direct Messages Service](#136-direct-messages-service)
+      - [1.3.6.1. Lookup Event](#1361-lookup-event)
+      - [1.3.6.2. Manage Event](#1362-manage-event)
+    - [1.3.7. Compliance Service](#137-compliance-service)
+      - [1.3.7.1. Batch Compliance](#1371-batch-compliance)
   - [1.4. Tips 🏄](#14-tips-)
     - [1.4.1. Method Names](#141-method-names)
     - [1.4.2. Generate App-Only Bearer Token](#142-generate-app-only-bearer-token)
@@ -537,9 +540,21 @@ Future<void> main() async {
 | [POST /1.1/media/upload.json](https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/post-media-upload)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | [uploadImage](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/MediaService/uploadImage.html) |
 | [POST /1.1/media/upload.json (INIT)](https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/post-media-upload-init)</br>[POST /1.1/media/upload.json (APPEND)](https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/post-media-upload-append)</br>[POST /1.1/media/upload.json (FINALIZE)](https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/post-media-upload-finalize)</br>[POST /1.1/media/upload.json (STATUS)](https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/get-media-upload-status)</br> | [uploadMedia](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/MediaService/uploadMedia.html) |
 
-### 1.3.6. Compliance Service
+### 1.3.6. Direct Messages Service
 
-#### 1.3.6.1. Batch Compliance
+#### 1.3.6.1. Lookup Event
+
+| Endpoint                                                                                                                                                                                            | Method Name                                                                                                                                                            |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [GET /2/dm_events](https://developer.twitter.com/en/docs/twitter-api/direct-messages/lookup/api-reference/get-dm_events)                                                                            | [lookupEvents](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/DirectMessagesService/dm_events.html)                                                |
+| [GET /2/dm_conversations/with/:participant_id/dm_events](https://developer.twitter.com/en/docs/twitter-api/direct-messages/lookup/api-reference/get-dm_conversations-with-participant_id-dm_events) | [lookupConversationsWithParticipant](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/DirectMessagesService/lookupConversationsWithParticipant.html) |
+| [GET /2/dm_conversations/:dm_conversation_id/dm_events](https://developer.twitter.com/en/docs/twitter-api/direct-messages/lookup/api-reference/get-dm_conversations-dm_conversation_id-dm_events)   | [lookupConversationsById](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/DirectMessagesService/lookupConversationsById.html)                       |
+
+#### 1.3.6.2. Manage Event
+
+### 1.3.7. Compliance Service
+
+#### 1.3.7.1. Batch Compliance
 
 | Endpoint                                                                                                                                         | Method Name                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
