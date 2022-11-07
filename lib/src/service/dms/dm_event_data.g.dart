@@ -2,20 +2,20 @@
 
 // ignore_for_file: non_constant_identifier_names
 
-part of 'direct_message_data.dart';
+part of 'dm_event_data.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_DirectMessageData _$$_DirectMessageDataFromJson(Map json) => $checkedCreate(
-      r'_$_DirectMessageData',
+_$_DMEventData _$$_DMEventDataFromJson(Map json) => $checkedCreate(
+      r'_$_DMEventData',
       json,
       ($checkedConvert) {
-        final val = _$_DirectMessageData(
+        final val = _$_DMEventData(
           id: $checkedConvert('id', (v) => v as String),
-          eventType: $checkedConvert('event_type',
-              (v) => $enumDecode(_$DirectMessageEventTypeEnumMap, v)),
+          eventType: $checkedConvert(
+              'event_type', (v) => $enumDecode(_$DMEventTypeEnumMap, v)),
           text: $checkedConvert('text', (v) => v as String?),
           senderId: $checkedConvert('sender_id', (v) => v as String?),
           conversationId:
@@ -40,11 +40,10 @@ _$_DirectMessageData _$$_DirectMessageDataFromJson(Map json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$$_DirectMessageDataToJson(
-        _$_DirectMessageData instance) =>
+Map<String, dynamic> _$$_DMEventDataToJson(_$_DMEventData instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'event_type': _$DirectMessageEventTypeEnumMap[instance.eventType]!,
+      'event_type': _$DMEventTypeEnumMap[instance.eventType]!,
       'text': instance.text,
       'sender_id': instance.senderId,
       'dm_conversation_id': instance.conversationId,
@@ -53,8 +52,8 @@ Map<String, dynamic> _$$_DirectMessageDataToJson(
       'created_at': instance.createdAt?.toIso8601String(),
     };
 
-const _$DirectMessageEventTypeEnumMap = {
-  DirectMessageEventType.messageCreate: 'MessageCreate',
-  DirectMessageEventType.participantsJoin: 'ParticipantsJoin',
-  DirectMessageEventType.participantsLeave: 'ParticipantsLeave',
+const _$DMEventTypeEnumMap = {
+  DMEventType.messageCreate: 'MessageCreate',
+  DMEventType.participantsJoin: 'ParticipantsJoin',
+  DMEventType.participantsLeave: 'ParticipantsLeave',
 };

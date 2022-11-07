@@ -5,7 +5,7 @@
 // Package imports:
 import 'package:twitter_api_core/twitter_api_core.dart';
 
-enum DirectMessageField implements Serializable {
+enum DMEventField implements Serializable {
   /// `id`
   id('id'),
 
@@ -33,5 +33,5 @@ enum DirectMessageField implements Serializable {
   @override
   final String value;
 
-  const DirectMessageField(this.value);
+  const DMEventField(this.value);
 }

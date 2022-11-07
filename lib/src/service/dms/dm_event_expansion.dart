@@ -5,7 +5,7 @@
 // Package imports:
 import 'package:twitter_api_core/twitter_api_core.dart';
 
-enum DirectMessageExpansion implements Serializable {
+enum DMEventExpansion implements Serializable {
   /// `attachments.media_keys`
   attachmentsMediaKeys('attachments.media_keys'),
 
@@ -21,5 +21,5 @@ enum DirectMessageExpansion implements Serializable {
   @override
   final String value;
 
-  const DirectMessageExpansion(this.value);
+  const DMEventExpansion(this.value);
 }

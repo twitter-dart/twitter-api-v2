@@ -8,12 +8,12 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 // Project imports:
 import '../pagination/pageable.dart';
 
-part 'direct_message_meta.freezed.dart';
-part 'direct_message_meta.g.dart';
+part 'dm_event_meta.freezed.dart';
+part 'dm_event_meta.g.dart';
 
 @freezed
-class DirectMessageMeta with _$DirectMessageMeta implements Pageable {
-  const factory DirectMessageMeta({
+class DMEventMeta with _$DMEventMeta implements Pageable {
+  const factory DMEventMeta({
     /// The number of results in the current page.
     required int resultCount,
 
@@ -24,8 +24,8 @@ class DirectMessageMeta with _$DirectMessageMeta implements Pageable {
     /// A value that encodes the previous 'page' of results that can be
     /// requested, via the `pagination_token` request parameter.
     String? previousToken,
-  }) = _DirectMessageMeta;
+  }) = _DMEventMeta;
 
-  factory DirectMessageMeta.fromJson(Map<String, Object?> json) =>
-      _$DirectMessageMetaFromJson(json);
+  factory DMEventMeta.fromJson(Map<String, Object?> json) =>
+      _$DMEventMetaFromJson(json);
 }

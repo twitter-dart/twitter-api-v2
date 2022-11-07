@@ -12,11 +12,11 @@ import '../pagination/bidirectional_pagination.dart';
 import '../response/twitter_response.dart';
 import '../tweets/tweet_field.dart';
 import '../users/user_field.dart';
-import 'direct_message_data.dart';
-import 'direct_message_event_type.dart';
-import 'direct_message_expansion.dart';
-import 'direct_message_field.dart';
-import 'direct_message_meta.dart';
+import 'dm_event_data.dart';
+import 'dm_event_expansion.dart';
+import 'dm_event_field.dart';
+import 'dm_event_meta.dart';
+import 'dm_event_type.dart';
 
 abstract class DirectMessagesService {
   /// Returns the new instance of [DirectMessagesService].
@@ -72,7 +72,7 @@ abstract class DirectMessagesService {
   ///                 the `expansions=attachments.media_keys` query parameter
   ///                 in your request.
   ///
-  /// - [directMessageFields]: Extra fields to include in the event payload.
+  /// - [dmEventFields]: Extra fields to include in the event payload.
   ///                          `id`, and `event_type` are returned by default.
   ///                          The text value isn't included for
   ///                          `ParticipantsJoin` and `ParticipantsLeave`
@@ -118,17 +118,16 @@ abstract class DirectMessagesService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/direct-messages/lookup/api-reference/get-dm_events
-  Future<TwitterResponse<List<DirectMessageData>, DirectMessageMeta>>
-      lookupEvents({
-    DirectMessageEventType? eventType,
+  Future<TwitterResponse<List<DMEventData>, DMEventMeta>> lookupEvents({
+    DMEventType? eventType,
     int? maxResults,
     String? paginationToken,
-    List<DirectMessageExpansion>? expansions,
+    List<DMEventExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
     List<MediaField>? mediaFields,
-    List<DirectMessageField>? directMessageFields,
-    Paging<List<DirectMessageData>, DirectMessageMeta>? paging,
+    List<DMEventField>? dmEventFields,
+    Paging<List<DMEventData>, DMEventMeta>? paging,
   });
 
   /// Returns a list of Direct Messages (DM) events within a 1-1 conversation
@@ -181,7 +180,7 @@ abstract class DirectMessagesService {
   ///                 the `expansions=attachments.media_keys` query parameter
   ///                 in your request.
   ///
-  /// - [directMessageFields]: Extra fields to include in the event payload.
+  /// - [dmEventFields]: Extra fields to include in the event payload.
   ///                          `id`, and `event_type` are returned by default.
   ///                          The text value isn't included for
   ///                          `ParticipantsJoin` and `ParticipantsLeave`
@@ -227,18 +226,18 @@ abstract class DirectMessagesService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/direct-messages/lookup/api-reference/get-dm_conversations-with-participant_id-dm_events
-  Future<TwitterResponse<List<DirectMessageData>, DirectMessageMeta>>
+  Future<TwitterResponse<List<DMEventData>, DMEventMeta>>
       lookupConversationsWithParticipant({
     required String participantId,
-    DirectMessageEventType? eventType,
+    DMEventType? eventType,
     int? maxResults,
     String? paginationToken,
-    List<DirectMessageExpansion>? expansions,
+    List<DMEventExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
     List<MediaField>? mediaFields,
-    List<DirectMessageField>? directMessageFields,
-    Paging<List<DirectMessageData>, DirectMessageMeta>? paging,
+    List<DMEventField>? dmEventFields,
+    Paging<List<DMEventData>, DMEventMeta>? paging,
   });
 
   /// Returns a list of Direct Messages within a conversation specified in the
@@ -291,7 +290,7 @@ abstract class DirectMessagesService {
   ///                 the `expansions=attachments.media_keys` query parameter
   ///                 in your request.
   ///
-  /// - [directMessageFields]: Extra fields to include in the event payload.
+  /// - [dmEventFields]: Extra fields to include in the event payload.
   ///                          `id`, and `event_type` are returned by default.
   ///                          The text value isn't included for
   ///                          `ParticipantsJoin` and `ParticipantsLeave`
@@ -337,18 +336,18 @@ abstract class DirectMessagesService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/direct-messages/lookup/api-reference/get-dm_conversations-dm_conversation_id-dm_events
-  Future<TwitterResponse<List<DirectMessageData>, DirectMessageMeta>>
+  Future<TwitterResponse<List<DMEventData>, DMEventMeta>>
       lookupConversationsById({
     required String conversationId,
-    DirectMessageEventType? eventType,
+    DMEventType? eventType,
     int? maxResults,
     String? paginationToken,
-    List<DirectMessageExpansion>? expansions,
+    List<DMEventExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
     List<MediaField>? mediaFields,
-    List<DirectMessageField>? directMessageFields,
-    Paging<List<DirectMessageData>, DirectMessageMeta>? paging,
+    List<DMEventField>? dmEventFields,
+    Paging<List<DMEventData>, DMEventMeta>? paging,
   });
 }
 
@@ -358,49 +357,48 @@ class _DirectMessagesService extends BaseService
   _DirectMessagesService({required super.context});
 
   @override
-  Future<TwitterResponse<List<DirectMessageData>, DirectMessageMeta>>
-      lookupEvents({
-    DirectMessageEventType? eventType,
+  Future<TwitterResponse<List<DMEventData>, DMEventMeta>> lookupEvents({
+    DMEventType? eventType,
     int? maxResults,
     String? paginationToken,
-    List<DirectMessageExpansion>? expansions,
+    List<DMEventExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
     List<MediaField>? mediaFields,
-    List<DirectMessageField>? directMessageFields,
-    Paging<List<DirectMessageData>, DirectMessageMeta>? paging,
+    List<DMEventField>? dmEventFields,
+    Paging<List<DMEventData>, DMEventMeta>? paging,
   }) async =>
-          await super.executePaginationIfNecessary(
-            core.UserContext.oauth2OrOAuth1,
-            '/2/dm_events',
-            {
-              'event_type': eventType,
-              'max_results': maxResults,
-              'pagination_token': paginationToken,
-              'expansions': expansions,
-              'tweet.fields': tweetFields,
-              'user.fields': userFields,
-              'media.fields': mediaFields,
-              'dm_event.fields': directMessageFields,
-            },
-            paging: paging,
-            dataBuilder: DirectMessageData.fromJson,
-            metaBuilder: DirectMessageMeta.fromJson,
-          );
+      await super.executePaginationIfNecessary(
+        core.UserContext.oauth2OrOAuth1,
+        '/2/dm_events',
+        {
+          'event_type': eventType,
+          'max_results': maxResults,
+          'pagination_token': paginationToken,
+          'expansions': expansions,
+          'tweet.fields': tweetFields,
+          'user.fields': userFields,
+          'media.fields': mediaFields,
+          'dm_event.fields': dmEventFields,
+        },
+        paging: paging,
+        dataBuilder: DMEventData.fromJson,
+        metaBuilder: DMEventMeta.fromJson,
+      );
 
   @override
-  Future<TwitterResponse<List<DirectMessageData>, DirectMessageMeta>>
+  Future<TwitterResponse<List<DMEventData>, DMEventMeta>>
       lookupConversationsWithParticipant({
     required String participantId,
-    DirectMessageEventType? eventType,
+    DMEventType? eventType,
     int? maxResults,
     String? paginationToken,
-    List<DirectMessageExpansion>? expansions,
+    List<DMEventExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
     List<MediaField>? mediaFields,
-    List<DirectMessageField>? directMessageFields,
-    Paging<List<DirectMessageData>, DirectMessageMeta>? paging,
+    List<DMEventField>? dmEventFields,
+    Paging<List<DMEventData>, DMEventMeta>? paging,
   }) async =>
           await super.executePaginationIfNecessary(
             core.UserContext.oauth2OrOAuth1,
@@ -413,26 +411,26 @@ class _DirectMessagesService extends BaseService
               'tweet.fields': tweetFields,
               'user.fields': userFields,
               'media.fields': mediaFields,
-              'dm_event.fields': directMessageFields,
+              'dm_event.fields': dmEventFields,
             },
             paging: paging,
-            dataBuilder: DirectMessageData.fromJson,
-            metaBuilder: DirectMessageMeta.fromJson,
+            dataBuilder: DMEventData.fromJson,
+            metaBuilder: DMEventMeta.fromJson,
           );
 
   @override
-  Future<TwitterResponse<List<DirectMessageData>, DirectMessageMeta>>
+  Future<TwitterResponse<List<DMEventData>, DMEventMeta>>
       lookupConversationsById({
     required String conversationId,
-    DirectMessageEventType? eventType,
+    DMEventType? eventType,
     int? maxResults,
     String? paginationToken,
-    List<DirectMessageExpansion>? expansions,
+    List<DMEventExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
     List<MediaField>? mediaFields,
-    List<DirectMessageField>? directMessageFields,
-    Paging<List<DirectMessageData>, DirectMessageMeta>? paging,
+    List<DMEventField>? dmEventFields,
+    Paging<List<DMEventData>, DMEventMeta>? paging,
   }) async =>
           await super.executePaginationIfNecessary(
             core.UserContext.oauth2OrOAuth1,
@@ -445,10 +443,10 @@ class _DirectMessagesService extends BaseService
               'tweet.fields': tweetFields,
               'user.fields': userFields,
               'media.fields': mediaFields,
-              'dm_event.fields': directMessageFields,
+              'dm_event.fields': dmEventFields,
             },
             paging: paging,
-            dataBuilder: DirectMessageData.fromJson,
-            metaBuilder: DirectMessageMeta.fromJson,
+            dataBuilder: DMEventData.fromJson,
+            metaBuilder: DMEventMeta.fromJson,
           );
 }

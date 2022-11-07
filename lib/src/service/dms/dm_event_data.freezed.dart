@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'direct_message_data.dart';
+part of 'dm_event_data.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,17 +14,17 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-DirectMessageData _$DirectMessageDataFromJson(Map<String, dynamic> json) {
-  return _DirectMessageData.fromJson(json);
+DMEventData _$DMEventDataFromJson(Map<String, dynamic> json) {
+  return _DMEventData.fromJson(json);
 }
 
 /// @nodoc
-mixin _$DirectMessageData {
+mixin _$DMEventData {
   /// The id of the Direct Message event.
   String get id => throw _privateConstructorUsedError;
 
   /// The type of event.
-  DirectMessageEventType get eventType => throw _privateConstructorUsedError;
+  DMEventType get eventType => throw _privateConstructorUsedError;
 
   /// The text included in the Direct Message.
   String? get text => throw _privateConstructorUsedError;
@@ -49,18 +49,18 @@ mixin _$DirectMessageData {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DirectMessageDataCopyWith<DirectMessageData> get copyWith =>
+  $DMEventDataCopyWith<DMEventData> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DirectMessageDataCopyWith<$Res> {
-  factory $DirectMessageDataCopyWith(
-          DirectMessageData value, $Res Function(DirectMessageData) then) =
-      _$DirectMessageDataCopyWithImpl<$Res>;
+abstract class $DMEventDataCopyWith<$Res> {
+  factory $DMEventDataCopyWith(
+          DMEventData value, $Res Function(DMEventData) then) =
+      _$DMEventDataCopyWithImpl<$Res>;
   $Res call(
       {String id,
-      DirectMessageEventType eventType,
+      DMEventType eventType,
       String? text,
       String? senderId,
       @JsonKey(name: 'dm_conversation_id') String? conversationId,
@@ -69,13 +69,12 @@ abstract class $DirectMessageDataCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$DirectMessageDataCopyWithImpl<$Res>
-    implements $DirectMessageDataCopyWith<$Res> {
-  _$DirectMessageDataCopyWithImpl(this._value, this._then);
+class _$DMEventDataCopyWithImpl<$Res> implements $DMEventDataCopyWith<$Res> {
+  _$DMEventDataCopyWithImpl(this._value, this._then);
 
-  final DirectMessageData _value;
+  final DMEventData _value;
   // ignore: unused_field
-  final $Res Function(DirectMessageData) _then;
+  final $Res Function(DMEventData) _then;
 
   @override
   $Res call({
@@ -95,7 +94,7 @@ class _$DirectMessageDataCopyWithImpl<$Res>
       eventType: eventType == freezed
           ? _value.eventType
           : eventType // ignore: cast_nullable_to_non_nullable
-              as DirectMessageEventType,
+              as DMEventType,
       text: text == freezed
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -121,15 +120,15 @@ class _$DirectMessageDataCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$$_DirectMessageDataCopyWith<$Res>
-    implements $DirectMessageDataCopyWith<$Res> {
-  factory _$$_DirectMessageDataCopyWith(_$_DirectMessageData value,
-          $Res Function(_$_DirectMessageData) then) =
-      __$$_DirectMessageDataCopyWithImpl<$Res>;
+abstract class _$$_DMEventDataCopyWith<$Res>
+    implements $DMEventDataCopyWith<$Res> {
+  factory _$$_DMEventDataCopyWith(
+          _$_DMEventData value, $Res Function(_$_DMEventData) then) =
+      __$$_DMEventDataCopyWithImpl<$Res>;
   @override
   $Res call(
       {String id,
-      DirectMessageEventType eventType,
+      DMEventType eventType,
       String? text,
       String? senderId,
       @JsonKey(name: 'dm_conversation_id') String? conversationId,
@@ -138,15 +137,14 @@ abstract class _$$_DirectMessageDataCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_DirectMessageDataCopyWithImpl<$Res>
-    extends _$DirectMessageDataCopyWithImpl<$Res>
-    implements _$$_DirectMessageDataCopyWith<$Res> {
-  __$$_DirectMessageDataCopyWithImpl(
-      _$_DirectMessageData _value, $Res Function(_$_DirectMessageData) _then)
-      : super(_value, (v) => _then(v as _$_DirectMessageData));
+class __$$_DMEventDataCopyWithImpl<$Res> extends _$DMEventDataCopyWithImpl<$Res>
+    implements _$$_DMEventDataCopyWith<$Res> {
+  __$$_DMEventDataCopyWithImpl(
+      _$_DMEventData _value, $Res Function(_$_DMEventData) _then)
+      : super(_value, (v) => _then(v as _$_DMEventData));
 
   @override
-  _$_DirectMessageData get _value => super._value as _$_DirectMessageData;
+  _$_DMEventData get _value => super._value as _$_DMEventData;
 
   @override
   $Res call({
@@ -158,7 +156,7 @@ class __$$_DirectMessageDataCopyWithImpl<$Res>
     Object? referencedTweets = freezed,
     Object? createdAt = freezed,
   }) {
-    return _then(_$_DirectMessageData(
+    return _then(_$_DMEventData(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -166,7 +164,7 @@ class __$$_DirectMessageDataCopyWithImpl<$Res>
       eventType: eventType == freezed
           ? _value.eventType
           : eventType // ignore: cast_nullable_to_non_nullable
-              as DirectMessageEventType,
+              as DMEventType,
       text: text == freezed
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -193,8 +191,8 @@ class __$$_DirectMessageDataCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_DirectMessageData implements _DirectMessageData {
-  const _$_DirectMessageData(
+class _$_DMEventData implements _DMEventData {
+  const _$_DMEventData(
       {required this.id,
       required this.eventType,
       this.text,
@@ -204,8 +202,8 @@ class _$_DirectMessageData implements _DirectMessageData {
       this.createdAt})
       : _referencedTweets = referencedTweets;
 
-  factory _$_DirectMessageData.fromJson(Map<String, dynamic> json) =>
-      _$$_DirectMessageDataFromJson(json);
+  factory _$_DMEventData.fromJson(Map<String, dynamic> json) =>
+      _$$_DMEventDataFromJson(json);
 
   /// The id of the Direct Message event.
   @override
@@ -213,7 +211,7 @@ class _$_DirectMessageData implements _DirectMessageData {
 
   /// The type of event.
   @override
-  final DirectMessageEventType eventType;
+  final DMEventType eventType;
 
   /// The text included in the Direct Message.
   @override
@@ -254,14 +252,14 @@ class _$_DirectMessageData implements _DirectMessageData {
 
   @override
   String toString() {
-    return 'DirectMessageData(id: $id, eventType: $eventType, text: $text, senderId: $senderId, conversationId: $conversationId, referencedTweets: $referencedTweets, createdAt: $createdAt)';
+    return 'DMEventData(id: $id, eventType: $eventType, text: $text, senderId: $senderId, conversationId: $conversationId, referencedTweets: $referencedTweets, createdAt: $createdAt)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_DirectMessageData &&
+            other is _$_DMEventData &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.eventType, eventType) &&
             const DeepCollectionEquality().equals(other.text, text) &&
@@ -287,30 +285,29 @@ class _$_DirectMessageData implements _DirectMessageData {
 
   @JsonKey(ignore: true)
   @override
-  _$$_DirectMessageDataCopyWith<_$_DirectMessageData> get copyWith =>
-      __$$_DirectMessageDataCopyWithImpl<_$_DirectMessageData>(
-          this, _$identity);
+  _$$_DMEventDataCopyWith<_$_DMEventData> get copyWith =>
+      __$$_DMEventDataCopyWithImpl<_$_DMEventData>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DirectMessageDataToJson(
+    return _$$_DMEventDataToJson(
       this,
     );
   }
 }
 
-abstract class _DirectMessageData implements DirectMessageData {
-  const factory _DirectMessageData(
+abstract class _DMEventData implements DMEventData {
+  const factory _DMEventData(
       {required final String id,
-      required final DirectMessageEventType eventType,
+      required final DMEventType eventType,
       final String? text,
       final String? senderId,
       @JsonKey(name: 'dm_conversation_id') final String? conversationId,
       final List<DMReferencedTweet>? referencedTweets,
-      final DateTime? createdAt}) = _$_DirectMessageData;
+      final DateTime? createdAt}) = _$_DMEventData;
 
-  factory _DirectMessageData.fromJson(Map<String, dynamic> json) =
-      _$_DirectMessageData.fromJson;
+  factory _DMEventData.fromJson(Map<String, dynamic> json) =
+      _$_DMEventData.fromJson;
 
   @override
 
@@ -319,7 +316,7 @@ abstract class _DirectMessageData implements DirectMessageData {
   @override
 
   /// The type of event.
-  DirectMessageEventType get eventType;
+  DMEventType get eventType;
   @override
 
   /// The text included in the Direct Message.
@@ -347,6 +344,6 @@ abstract class _DirectMessageData implements DirectMessageData {
   DateTime? get createdAt;
   @override
   @JsonKey(ignore: true)
-  _$$_DirectMessageDataCopyWith<_$_DirectMessageData> get copyWith =>
+  _$$_DMEventDataCopyWith<_$_DMEventData> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -2,17 +2,17 @@
 
 // ignore_for_file: non_constant_identifier_names
 
-part of 'direct_message_meta.dart';
+part of 'dm_event_meta.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_DirectMessageMeta _$$_DirectMessageMetaFromJson(Map json) => $checkedCreate(
-      r'_$_DirectMessageMeta',
+_$_DMEventMeta _$$_DMEventMetaFromJson(Map json) => $checkedCreate(
+      r'_$_DMEventMeta',
       json,
       ($checkedConvert) {
-        final val = _$_DirectMessageMeta(
+        final val = _$_DMEventMeta(
           resultCount: $checkedConvert('result_count', (v) => v as int),
           nextToken: $checkedConvert('next_token', (v) => v as String?),
           previousToken: $checkedConvert('previous_token', (v) => v as String?),
@@ -26,8 +26,7 @@ _$_DirectMessageMeta _$$_DirectMessageMetaFromJson(Map json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$$_DirectMessageMetaToJson(
-        _$_DirectMessageMeta instance) =>
+Map<String, dynamic> _$$_DMEventMetaToJson(_$_DMEventMeta instance) =>
     <String, dynamic>{
       'result_count': instance.resultCount,
       'next_token': instance.nextToken,

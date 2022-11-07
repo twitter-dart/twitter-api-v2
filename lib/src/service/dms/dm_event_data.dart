@@ -9,20 +9,20 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
 import '../common/data.dart';
-import 'direct_message_event_type.dart';
+import 'dm_event_type.dart';
 import 'dm_referenced_tweet.dart';
 
-part 'direct_message_data.freezed.dart';
-part 'direct_message_data.g.dart';
+part 'dm_event_data.freezed.dart';
+part 'dm_event_data.g.dart';
 
 @freezed
-class DirectMessageData with _$DirectMessageData implements Data {
-  const factory DirectMessageData({
+class DMEventData with _$DMEventData implements Data {
+  const factory DMEventData({
     /// The id of the Direct Message event.
     required String id,
 
     /// The type of event.
-    required DirectMessageEventType eventType,
+    required DMEventType eventType,
 
     /// The text included in the Direct Message.
     String? text,
@@ -42,8 +42,8 @@ class DirectMessageData with _$DirectMessageData implements Data {
 
     /// The timestamp of the Direct Message event creation.
     DateTime? createdAt,
-  }) = _DirectMessageData;
+  }) = _DMEventData;
 
-  factory DirectMessageData.fromJson(Map<String, Object?> json) =>
-      _$DirectMessageDataFromJson(json);
+  factory DMEventData.fromJson(Map<String, Object?> json) =>
+      _$DMEventDataFromJson(json);
 }
