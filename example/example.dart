@@ -34,9 +34,12 @@ Future<void> main() async {
 
     //! Automatic retry is available when a TimeoutException occurs when
     //! communicating with the API.
-    retryConfig: v2.RetryConfig.ofRegularIntervals(
+    retryConfig: v2.RetryConfig.ofExponentialBackOffAndJitter(
       maxAttempts: 5,
-      intervalInSeconds: 3,
+      onExecute: (event) => print(
+        'Retry after ${event.intervalInSeconds} seconds... '
+        '[${event.retryCount} times]',
+      ),
     ),
 
     //! The default timeout is 10 seconds.
