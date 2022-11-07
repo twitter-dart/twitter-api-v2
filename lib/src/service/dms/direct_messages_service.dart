@@ -102,7 +102,6 @@ abstract class DirectMessagesService {
   /// ## Authentication Methods
   ///
   /// - OAuth 2.0 Authorization Code with PKCE
-  /// - OAuth 1.0a
   ///
   /// ## Required Scopes
   ///
@@ -210,7 +209,6 @@ abstract class DirectMessagesService {
   /// ## Authentication Methods
   ///
   /// - OAuth 2.0 Authorization Code with PKCE
-  /// - OAuth 1.0a
   ///
   /// ## Required Scopes
   ///
@@ -227,7 +225,7 @@ abstract class DirectMessagesService {
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/direct-messages/lookup/api-reference/get-dm_conversations-with-participant_id-dm_events
   Future<TwitterResponse<List<DMEventData>, DMEventMeta>>
-      lookupConversationsWithParticipant({
+      lookupConversationsWith({
     required String participantId,
     List<DMEventType>? eventTypes,
     int? maxResults,
@@ -320,7 +318,6 @@ abstract class DirectMessagesService {
   /// ## Authentication Methods
   ///
   /// - OAuth 2.0 Authorization Code with PKCE
-  /// - OAuth 1.0a
   ///
   /// ## Required Scopes
   ///
@@ -369,7 +366,7 @@ class _DirectMessagesService extends BaseService
     Paging<List<DMEventData>, DMEventMeta>? paging,
   }) async =>
       await super.executePaginationIfNecessary(
-        core.UserContext.oauth2OrOAuth1,
+        core.UserContext.oauth2Only,
         '/2/dm_events',
         {
           'event_types': eventTypes,
@@ -388,7 +385,7 @@ class _DirectMessagesService extends BaseService
 
   @override
   Future<TwitterResponse<List<DMEventData>, DMEventMeta>>
-      lookupConversationsWithParticipant({
+      lookupConversationsWith({
     required String participantId,
     List<DMEventType>? eventTypes,
     int? maxResults,
@@ -401,7 +398,7 @@ class _DirectMessagesService extends BaseService
     Paging<List<DMEventData>, DMEventMeta>? paging,
   }) async =>
           await super.executePaginationIfNecessary(
-            core.UserContext.oauth2OrOAuth1,
+            core.UserContext.oauth2Only,
             '/2/dm_conversations/with/$participantId/dm_events',
             {
               'event_types': eventTypes,
@@ -433,7 +430,7 @@ class _DirectMessagesService extends BaseService
     Paging<List<DMEventData>, DMEventMeta>? paging,
   }) async =>
           await super.executePaginationIfNecessary(
-            core.UserContext.oauth2OrOAuth1,
+            core.UserContext.oauth2Only,
             '/2/dm_conversations/$conversationId/dm_events',
             {
               'event_types': eventTypes,
