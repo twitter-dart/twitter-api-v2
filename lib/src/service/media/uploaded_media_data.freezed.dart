@@ -21,11 +21,6 @@ UploadedMediaData _$UploadedMediaDataFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UploadedMediaData {
   /// The identifier for the uploaded media.
-  @Deprecated('Use "id" property instead. Will be removed in v4.4.0')
-  @JsonKey(name: '_media_id_string')
-  String get mediaId => throw _privateConstructorUsedError;
-
-  /// The identifier for the uploaded media.
   @JsonKey(name: 'media_id_string')
   String get id => throw _privateConstructorUsedError;
 
@@ -49,11 +44,7 @@ abstract class $UploadedMediaDataCopyWith<$Res> {
           UploadedMediaData value, $Res Function(UploadedMediaData) then) =
       _$UploadedMediaDataCopyWithImpl<$Res>;
   $Res call(
-      {@Deprecated('Use "id" property instead. Will be removed in v4.4.0')
-      @JsonKey(name: '_media_id_string')
-          String mediaId,
-      @JsonKey(name: 'media_id_string')
-          String id,
+      {@JsonKey(name: 'media_id_string') String id,
       DateTime expiresAt,
       Locale? locale});
 
@@ -71,16 +62,11 @@ class _$UploadedMediaDataCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? mediaId = freezed,
     Object? id = freezed,
     Object? expiresAt = freezed,
     Object? locale = freezed,
   }) {
     return _then(_value.copyWith(
-      mediaId: mediaId == freezed
-          ? _value.mediaId
-          : mediaId // ignore: cast_nullable_to_non_nullable
-              as String,
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -116,11 +102,7 @@ abstract class _$$_UploadedMediaDataCopyWith<$Res>
       __$$_UploadedMediaDataCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@Deprecated('Use "id" property instead. Will be removed in v4.4.0')
-      @JsonKey(name: '_media_id_string')
-          String mediaId,
-      @JsonKey(name: 'media_id_string')
-          String id,
+      {@JsonKey(name: 'media_id_string') String id,
       DateTime expiresAt,
       Locale? locale});
 
@@ -141,16 +123,11 @@ class __$$_UploadedMediaDataCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? mediaId = freezed,
     Object? id = freezed,
     Object? expiresAt = freezed,
     Object? locale = freezed,
   }) {
     return _then(_$_UploadedMediaData(
-      mediaId: mediaId == freezed
-          ? _value.mediaId
-          : mediaId // ignore: cast_nullable_to_non_nullable
-              as String,
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -171,22 +148,12 @@ class __$$_UploadedMediaDataCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_UploadedMediaData implements _UploadedMediaData {
   const _$_UploadedMediaData(
-      {@Deprecated('Use "id" property instead. Will be removed in v4.4.0')
-      @JsonKey(name: '_media_id_string')
-          this.mediaId = '',
-      @JsonKey(name: 'media_id_string')
-          required this.id,
+      {@JsonKey(name: 'media_id_string') required this.id,
       required this.expiresAt,
       this.locale});
 
   factory _$_UploadedMediaData.fromJson(Map<String, dynamic> json) =>
       _$$_UploadedMediaDataFromJson(json);
-
-  /// The identifier for the uploaded media.
-  @override
-  @Deprecated('Use "id" property instead. Will be removed in v4.4.0')
-  @JsonKey(name: '_media_id_string')
-  final String mediaId;
 
   /// The identifier for the uploaded media.
   @override
@@ -205,7 +172,7 @@ class _$_UploadedMediaData implements _UploadedMediaData {
 
   @override
   String toString() {
-    return 'UploadedMediaData(mediaId: $mediaId, id: $id, expiresAt: $expiresAt, locale: $locale)';
+    return 'UploadedMediaData(id: $id, expiresAt: $expiresAt, locale: $locale)';
   }
 
   @override
@@ -213,7 +180,6 @@ class _$_UploadedMediaData implements _UploadedMediaData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UploadedMediaData &&
-            const DeepCollectionEquality().equals(other.mediaId, mediaId) &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.expiresAt, expiresAt) &&
             const DeepCollectionEquality().equals(other.locale, locale));
@@ -223,7 +189,6 @@ class _$_UploadedMediaData implements _UploadedMediaData {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(mediaId),
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(expiresAt),
       const DeepCollectionEquality().hash(locale));
@@ -244,23 +209,13 @@ class _$_UploadedMediaData implements _UploadedMediaData {
 
 abstract class _UploadedMediaData implements UploadedMediaData {
   const factory _UploadedMediaData(
-      {@Deprecated('Use "id" property instead. Will be removed in v4.4.0')
-      @JsonKey(name: '_media_id_string')
-          final String mediaId,
-      @JsonKey(name: 'media_id_string')
-          required final String id,
+      {@JsonKey(name: 'media_id_string') required final String id,
       required final DateTime expiresAt,
       final Locale? locale}) = _$_UploadedMediaData;
 
   factory _UploadedMediaData.fromJson(Map<String, dynamic> json) =
       _$_UploadedMediaData.fromJson;
 
-  @override
-
-  /// The identifier for the uploaded media.
-  @Deprecated('Use "id" property instead. Will be removed in v4.4.0')
-  @JsonKey(name: '_media_id_string')
-  String get mediaId;
   @override
 
   /// The identifier for the uploaded media.
