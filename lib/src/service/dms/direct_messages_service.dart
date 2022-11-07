@@ -32,7 +32,7 @@ abstract class DirectMessagesService {
   ///
   /// ## Parameters
   ///
-  /// - [eventType]: The type of Direct Message event to return.
+  /// - [eventTypes]: The type of Direct Message event to return.
   ///                If not included, all types are returned.
   ///
   /// - [maxResults]: The maximum number of results to be returned in a page.
@@ -119,7 +119,7 @@ abstract class DirectMessagesService {
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/direct-messages/lookup/api-reference/get-dm_events
   Future<TwitterResponse<List<DMEventData>, DMEventMeta>> lookupEvents({
-    DMEventType? eventType,
+    List<DMEventType>? eventTypes,
     int? maxResults,
     String? paginationToken,
     List<DMEventExpansion>? expansions,
@@ -140,7 +140,7 @@ abstract class DirectMessagesService {
   /// - [participantId]: The participant id of the user that the authenticating
   ///                    user is having a 1-1 conversation with.
   ///
-  /// - [eventType]: The type of Direct Message event to return.
+  /// - [eventTypes]: The type of Direct Message event to return.
   ///                If not included, all types are returned.
   ///
   /// - [maxResults]: The maximum number of results to be returned in a page.
@@ -229,7 +229,7 @@ abstract class DirectMessagesService {
   Future<TwitterResponse<List<DMEventData>, DMEventMeta>>
       lookupConversationsWithParticipant({
     required String participantId,
-    DMEventType? eventType,
+    List<DMEventType>? eventTypes,
     int? maxResults,
     String? paginationToken,
     List<DMEventExpansion>? expansions,
@@ -250,7 +250,7 @@ abstract class DirectMessagesService {
   /// - [conversationId]: The `id` of the Direct Message conversation for which
   ///                     events are being retrieved.
   ///
-  /// - [eventType]: The type of Direct Message event to return.
+  /// - [eventTypes]: The type of Direct Message event to return.
   ///                If not included, all types are returned.
   ///
   /// - [maxResults]: The maximum number of results to be returned in a page.
@@ -339,7 +339,7 @@ abstract class DirectMessagesService {
   Future<TwitterResponse<List<DMEventData>, DMEventMeta>>
       lookupConversationsById({
     required String conversationId,
-    DMEventType? eventType,
+    List<DMEventType>? eventTypes,
     int? maxResults,
     String? paginationToken,
     List<DMEventExpansion>? expansions,
@@ -358,7 +358,7 @@ class _DirectMessagesService extends BaseService
 
   @override
   Future<TwitterResponse<List<DMEventData>, DMEventMeta>> lookupEvents({
-    DMEventType? eventType,
+    List<DMEventType>? eventTypes,
     int? maxResults,
     String? paginationToken,
     List<DMEventExpansion>? expansions,
@@ -372,7 +372,7 @@ class _DirectMessagesService extends BaseService
         core.UserContext.oauth2OrOAuth1,
         '/2/dm_events',
         {
-          'event_type': eventType,
+          'event_types': eventTypes,
           'max_results': maxResults,
           'pagination_token': paginationToken,
           'expansions': expansions,
@@ -390,7 +390,7 @@ class _DirectMessagesService extends BaseService
   Future<TwitterResponse<List<DMEventData>, DMEventMeta>>
       lookupConversationsWithParticipant({
     required String participantId,
-    DMEventType? eventType,
+    List<DMEventType>? eventTypes,
     int? maxResults,
     String? paginationToken,
     List<DMEventExpansion>? expansions,
@@ -404,7 +404,7 @@ class _DirectMessagesService extends BaseService
             core.UserContext.oauth2OrOAuth1,
             '/2/dm_conversations/with/$participantId/dm_events',
             {
-              'event_type': eventType,
+              'event_types': eventTypes,
               'max_results': maxResults,
               'pagination_token': paginationToken,
               'expansions': expansions,
@@ -422,7 +422,7 @@ class _DirectMessagesService extends BaseService
   Future<TwitterResponse<List<DMEventData>, DMEventMeta>>
       lookupConversationsById({
     required String conversationId,
-    DMEventType? eventType,
+    List<DMEventType>? eventTypes,
     int? maxResults,
     String? paginationToken,
     List<DMEventExpansion>? expansions,
@@ -436,7 +436,7 @@ class _DirectMessagesService extends BaseService
             core.UserContext.oauth2OrOAuth1,
             '/2/dm_conversations/$conversationId/dm_events',
             {
-              'event_type': eventType,
+              'event_types': eventTypes,
               'max_results': maxResults,
               'pagination_token': paginationToken,
               'expansions': expansions,

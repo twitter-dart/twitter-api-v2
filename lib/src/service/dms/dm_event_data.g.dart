@@ -26,6 +26,12 @@ _$_DMEventData _$$_DMEventDataFromJson(Map json) => $checkedCreate(
                   ?.map((e) => DMReferencedTweet.fromJson(
                       Map<String, Object?>.from(e as Map)))
                   .toList()),
+          attachments: $checkedConvert(
+              'attachments',
+              (v) => v == null
+                  ? null
+                  : DMAttachments.fromJson(
+                      Map<String, Object?>.from(v as Map))),
           createdAt: $checkedConvert('created_at',
               (v) => v == null ? null : DateTime.parse(v as String)),
         );
@@ -49,6 +55,7 @@ Map<String, dynamic> _$$_DMEventDataToJson(_$_DMEventData instance) =>
       'dm_conversation_id': instance.conversationId,
       'referenced_tweets':
           instance.referencedTweets?.map((e) => e.toJson()).toList(),
+      'attachments': instance.attachments?.toJson(),
       'created_at': instance.createdAt?.toIso8601String(),
     };
 

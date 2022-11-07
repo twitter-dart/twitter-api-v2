@@ -9,6 +9,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
 import '../common/data.dart';
+import 'dm_attachments.dart';
 import 'dm_event_type.dart';
 import 'dm_referenced_tweet.dart';
 
@@ -39,6 +40,9 @@ class DMEventData with _$DMEventData implements Data {
     /// (also known as Quoted Tweet) or a Reply, it will include the
     /// related Tweet referenced to by its parent.
     List<DMReferencedTweet>? referencedTweets,
+
+    /// The attached urls and media information for expansion.
+    DMAttachments? attachments,
 
     /// The timestamp of the Direct Message event creation.
     DateTime? createdAt,

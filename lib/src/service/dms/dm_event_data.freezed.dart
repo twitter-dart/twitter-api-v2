@@ -44,6 +44,9 @@ mixin _$DMEventData {
   List<DMReferencedTweet>? get referencedTweets =>
       throw _privateConstructorUsedError;
 
+  /// The attached urls and media information for expansion.
+  DMAttachments? get attachments => throw _privateConstructorUsedError;
+
   /// The timestamp of the Direct Message event creation.
   DateTime? get createdAt => throw _privateConstructorUsedError;
 
@@ -65,7 +68,10 @@ abstract class $DMEventDataCopyWith<$Res> {
       String? senderId,
       @JsonKey(name: 'dm_conversation_id') String? conversationId,
       List<DMReferencedTweet>? referencedTweets,
+      DMAttachments? attachments,
       DateTime? createdAt});
+
+  $DMAttachmentsCopyWith<$Res>? get attachments;
 }
 
 /// @nodoc
@@ -84,6 +90,7 @@ class _$DMEventDataCopyWithImpl<$Res> implements $DMEventDataCopyWith<$Res> {
     Object? senderId = freezed,
     Object? conversationId = freezed,
     Object? referencedTweets = freezed,
+    Object? attachments = freezed,
     Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
@@ -111,11 +118,26 @@ class _$DMEventDataCopyWithImpl<$Res> implements $DMEventDataCopyWith<$Res> {
           ? _value.referencedTweets
           : referencedTweets // ignore: cast_nullable_to_non_nullable
               as List<DMReferencedTweet>?,
+      attachments: attachments == freezed
+          ? _value.attachments
+          : attachments // ignore: cast_nullable_to_non_nullable
+              as DMAttachments?,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
     ));
+  }
+
+  @override
+  $DMAttachmentsCopyWith<$Res>? get attachments {
+    if (_value.attachments == null) {
+      return null;
+    }
+
+    return $DMAttachmentsCopyWith<$Res>(_value.attachments!, (value) {
+      return _then(_value.copyWith(attachments: value));
+    });
   }
 }
 
@@ -133,7 +155,11 @@ abstract class _$$_DMEventDataCopyWith<$Res>
       String? senderId,
       @JsonKey(name: 'dm_conversation_id') String? conversationId,
       List<DMReferencedTweet>? referencedTweets,
+      DMAttachments? attachments,
       DateTime? createdAt});
+
+  @override
+  $DMAttachmentsCopyWith<$Res>? get attachments;
 }
 
 /// @nodoc
@@ -154,6 +180,7 @@ class __$$_DMEventDataCopyWithImpl<$Res> extends _$DMEventDataCopyWithImpl<$Res>
     Object? senderId = freezed,
     Object? conversationId = freezed,
     Object? referencedTweets = freezed,
+    Object? attachments = freezed,
     Object? createdAt = freezed,
   }) {
     return _then(_$_DMEventData(
@@ -181,6 +208,10 @@ class __$$_DMEventDataCopyWithImpl<$Res> extends _$DMEventDataCopyWithImpl<$Res>
           ? _value._referencedTweets
           : referencedTweets // ignore: cast_nullable_to_non_nullable
               as List<DMReferencedTweet>?,
+      attachments: attachments == freezed
+          ? _value.attachments
+          : attachments // ignore: cast_nullable_to_non_nullable
+              as DMAttachments?,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -199,6 +230,7 @@ class _$_DMEventData implements _DMEventData {
       this.senderId,
       @JsonKey(name: 'dm_conversation_id') this.conversationId,
       final List<DMReferencedTweet>? referencedTweets,
+      this.attachments,
       this.createdAt})
       : _referencedTweets = referencedTweets;
 
@@ -246,13 +278,17 @@ class _$_DMEventData implements _DMEventData {
     return EqualUnmodifiableListView(value);
   }
 
+  /// The attached urls and media information for expansion.
+  @override
+  final DMAttachments? attachments;
+
   /// The timestamp of the Direct Message event creation.
   @override
   final DateTime? createdAt;
 
   @override
   String toString() {
-    return 'DMEventData(id: $id, eventType: $eventType, text: $text, senderId: $senderId, conversationId: $conversationId, referencedTweets: $referencedTweets, createdAt: $createdAt)';
+    return 'DMEventData(id: $id, eventType: $eventType, text: $text, senderId: $senderId, conversationId: $conversationId, referencedTweets: $referencedTweets, attachments: $attachments, createdAt: $createdAt)';
   }
 
   @override
@@ -268,6 +304,8 @@ class _$_DMEventData implements _DMEventData {
                 .equals(other.conversationId, conversationId) &&
             const DeepCollectionEquality()
                 .equals(other._referencedTweets, _referencedTweets) &&
+            const DeepCollectionEquality()
+                .equals(other.attachments, attachments) &&
             const DeepCollectionEquality().equals(other.createdAt, createdAt));
   }
 
@@ -281,6 +319,7 @@ class _$_DMEventData implements _DMEventData {
       const DeepCollectionEquality().hash(senderId),
       const DeepCollectionEquality().hash(conversationId),
       const DeepCollectionEquality().hash(_referencedTweets),
+      const DeepCollectionEquality().hash(attachments),
       const DeepCollectionEquality().hash(createdAt));
 
   @JsonKey(ignore: true)
@@ -304,6 +343,7 @@ abstract class _DMEventData implements DMEventData {
       final String? senderId,
       @JsonKey(name: 'dm_conversation_id') final String? conversationId,
       final List<DMReferencedTweet>? referencedTweets,
+      final DMAttachments? attachments,
       final DateTime? createdAt}) = _$_DMEventData;
 
   factory _DMEventData.fromJson(Map<String, dynamic> json) =
@@ -338,6 +378,10 @@ abstract class _DMEventData implements DMEventData {
   /// (also known as Quoted Tweet) or a Reply, it will include the
   /// related Tweet referenced to by its parent.
   List<DMReferencedTweet>? get referencedTweets;
+  @override
+
+  /// The attached urls and media information for expansion.
+  DMAttachments? get attachments;
   @override
 
   /// The timestamp of the Direct Message event creation.
