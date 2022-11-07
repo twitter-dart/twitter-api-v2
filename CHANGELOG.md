@@ -3,10 +3,14 @@
 ## v4.4.0
 
 - Added service for `Direct Message`. You can use endpoints for `Direct Message` using by `TwitterApi.directMessages` property.
-- Added `Direct Messages lookup`. ([#533](https://github.com/twitter-dart/twitter-api-v2/issues/533))
+- Added `Direct Messages Lookup`. ([#533](https://github.com/twitter-dart/twitter-api-v2/issues/533))
   - `GET /2/dm_events`
   - `GET /2/dm_conversations/with/:participant_id/dm_events`
   - `GET /2/dm_conversations/:dm_conversation_id/dm_events`
+- Added `Manage Direct Messages`. ([#534](https://github.com/twitter-dart/twitter-api-v2/issues/534))
+  - `POST /2/dm_conversations/:dm_conversation_id/messages`
+  - `POST /2/dm_conversations/with/:participant_id/messages`
+  - `POST /2/dm_conversations`
 - Removed deprecated property and constructor.
   - Removed `UploadedMediaData.mediaId` and use `UploadedMediaData.id` instead.
   - `FilteringRule.sampleOf` and use `FilteringRule.ofSample` instead.

@@ -346,6 +346,157 @@ abstract class DirectMessagesService {
     List<DMEventField>? dmEventFields,
     Paging<List<DMEventData>, DMEventMeta>? paging,
   });
+
+  /// Creates a Direct Message on behalf of an authenticated user, and
+  /// adds it to the specified conversation.
+  ///
+  /// ## Parameters
+  ///
+  /// - [conversationId]: The `dm_conversation_id` of the conversation
+  ///                     to add the Direct Message to. Supports both
+  ///                     1-1 and group conversations.
+  ///
+  /// - [text]: Text of the Direct Message being created.
+  ///           Text messages support up to 10,000 characters.
+  ///
+  /// - [mediaId]: A single Media ID being attached to the Direct Message.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/dm_conversations/:dm_conversation_id/messages
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - dm.read
+  /// - dm.write
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (User context)**:
+  ///     200 requests per 15-minute window per each authenticated user.
+  ///
+  /// - **User rate limit (User context)**:
+  ///     1000 requests per 24-hour window per each authenticated user.
+  ///
+  /// - **App rate limit**:
+  ///     15000 requests per 24-hour window shared among the app.
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/direct-messages/manage/api-reference/post-dm_conversations-dm_conversation_id-messages
+  Future<TwitterResponse<DMEventData, DMEventMeta>> createMessageTo({
+    required String conversationId,
+    required String text,
+    String? mediaId,
+  });
+
+  /// Creates a one-to-one Direct Message and adds it to the one-to-one
+  /// conversation.
+  ///
+  /// This method either creates a new one-to-one conversation or retrieves
+  /// the current conversation and adds the Direct Message to it.
+  ///
+  /// ## Parameters
+  ///
+  /// - [participantId]: The User ID of the account this one-to-one
+  ///                    Direct Message is to be sent to.
+  ///
+  /// - [text]: Text of the Direct Message being created.
+  ///           Text messages support up to 10,000 characters.
+  ///
+  /// - [mediaId]: A single Media ID being attached to the Direct Message.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/dm_conversations/with/:participant_id/messages
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - dm.read
+  /// - dm.write
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (User context)**:
+  ///     200 requests per 15-minute window per each authenticated user.
+  ///
+  /// - **User rate limit (User context)**:
+  ///     1000 requests per 24-hour window per each authenticated user.
+  ///
+  /// - **App rate limit**:
+  ///     15000 requests per 24-hour window shared among the app.
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/direct-messages/manage/api-reference/post-dm_conversations-with-participant_id-messages
+  Future<TwitterResponse<DMEventData, DMEventMeta>> createMessageWith({
+    required String participantId,
+    required String text,
+    String? mediaId,
+  });
+
+  /// Creates a new group conversation and adds a Direct Message to it on
+  /// behalf of an authenticated user.
+  ///
+  /// ## Parameters
+  ///
+  /// - [participantIds]: An array of User IDs that the conversation is created
+  ///                     with. Conversations can have up to 50 participants.
+  ///
+  /// - [text]: Text of the Direct Message being created.
+  ///           Text messages support up to 10,000 characters.
+  ///
+  /// - [mediaId]: A single Media ID being attached to the Direct Message.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/2/dm_conversations
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
+  ///
+  /// ## Required Scopes
+  ///
+  /// - tweet.read
+  /// - users.read
+  /// - dm.read
+  /// - dm.write
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (User context)**:
+  ///     200 requests per 15-minute window per each authenticated user.
+  ///
+  /// - **User rate limit (User context)**:
+  ///     1000 requests per 24-hour window per each authenticated user.
+  ///
+  /// - **App rate limit**:
+  ///     15000 requests per 24-hour window shared among the app.
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/direct-messages/manage/api-reference/post-dm_conversations
+  Future<TwitterResponse<DMEventData, DMEventMeta>> createGroupConversation({
+    required List<String> participantIds,
+    required String text,
+    String? mediaId,
+  });
 }
 
 class _DirectMessagesService extends BaseService
@@ -446,4 +597,71 @@ class _DirectMessagesService extends BaseService
             dataBuilder: DMEventData.fromJson,
             metaBuilder: DMEventMeta.fromJson,
           );
+
+  @override
+  Future<TwitterResponse<DMEventData, DMEventMeta>> createMessageTo({
+    required String conversationId,
+    required String text,
+    String? mediaId,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          core.UserContext.oauth2OrOAuth1,
+          '/2/dm_conversations/$conversationId/messages',
+          queryParameters: {
+            'text': text,
+            'attachments': [
+              {'media_id': mediaId}
+            ]
+          },
+        ),
+        dataBuilder: DMEventData.fromJson,
+        metaBuilder: DMEventMeta.fromJson,
+      );
+
+  @override
+  Future<TwitterResponse<DMEventData, DMEventMeta>> createMessageWith({
+    required String participantId,
+    required String text,
+    String? mediaId,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          core.UserContext.oauth2OrOAuth1,
+          '/2/dm_conversations/with/$participantId/messages',
+          queryParameters: {
+            'text': text,
+            'attachments': [
+              {'media_id': mediaId}
+            ]
+          },
+        ),
+        dataBuilder: DMEventData.fromJson,
+        metaBuilder: DMEventMeta.fromJson,
+      );
+
+  @override
+  Future<TwitterResponse<DMEventData, DMEventMeta>> createGroupConversation({
+    required List<String> participantIds,
+    required String text,
+    String? mediaId,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          core.UserContext.oauth2OrOAuth1,
+          '/2/dm_conversations',
+          queryParameters: {
+            'conversation_type': 'Group',
+            'participant_ids': participantIds,
+            'message': {
+              'text': text,
+              'attachments': [
+                {'media_id': mediaId}
+              ]
+            }
+          },
+        ),
+        dataBuilder: DMEventData.fromJson,
+        metaBuilder: DMEventMeta.fromJson,
+      );
 }
