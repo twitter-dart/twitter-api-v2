@@ -7,6 +7,9 @@
   - `GET /2/dm_events`
   - `GET /2/dm_conversations/with/:participant_id/dm_events`
   - `GET /2/dm_conversations/:dm_conversation_id/dm_events`
+- Removed deprecated property and constructor.
+  - Removed `UploadedMediaData.mediaId` and use `UploadedMediaData.id` instead.
+  - `FilteringRule.sampleOf` and use `FilteringRule.ofSample` instead.
 
 ## v4.3.5
 
