@@ -1,5 +1,13 @@
 # Release Note
 
+## v4.4.0
+
+- Added service for `Direct Message`. You can use endpoints for `Direct Message` using by `TwitterApi.directMessages` property.
+- Added `Direct Messages lookup`. ([#533](https://github.com/twitter-dart/twitter-api-v2/issues/533))
+  - `GET /2/dm_events`
+  - `GET /2/dm_conversations/with/:participant_id/dm_events`
+  - `GET /2/dm_conversations/:dm_conversation_id/dm_events`
+
 ## v4.3.5
 
 - `TwitterUploadException` extended `TwitterException`. ([#510](https://github.com/twitter-dart/twitter-api-v2/issues/510))
