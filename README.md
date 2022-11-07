@@ -88,7 +88,7 @@
     - [1.4.5. Expand Object Fields with `fields`](#145-expand-object-fields-with-fields)
     - [1.4.6. OAuth 2.0 Authorization Code Flow with PKCE](#146-oauth-20-authorization-code-flow-with-pkce)
     - [1.4.7. Change the Timeout Duration](#147-change-the-timeout-duration)
-    - [1.4.8. Retry When a Timeout Occurs](#148-retry-when-a-timeout-occurs)
+    - [1.4.8. Automatic Retry](#148-automatic-retry)
       - [1.4.8.1. Regular Intervals](#1481-regular-intervals)
       - [1.4.8.2. Exponential Backoff](#1482-exponential-backoff)
       - [1.4.8.3. Exponential Backoff and Jitter](#1483-exponential-backoff-and-jitter)
@@ -186,9 +186,12 @@ Future<void> main() async {
 
     //! Automatic retry is available when a TimeoutException occurs when
     //! communicating with the API.
-    retryConfig: v2.RetryConfig.ofRegularIntervals(
+    retryConfig: v2.RetryConfig.ofExponentialBackOffAndJitter(
       maxAttempts: 5,
-      intervalInSeconds: 3,
+      onExecute: (event) => print(
+        'Retry after ${event.intervalInSeconds} seconds... '
+        '[${event.retryCount} times]',
+      ),
     ),
 
     //! The default timeout is 10 seconds.
@@ -728,7 +731,7 @@ Future<void> main() {
 }
 ```
 
-### 1.4.8. Retry When a Timeout Occurs
+### 1.4.8. Automatic Retry
 
 Due to the nature of this library's communication with external systems, timeouts may occur due to inevitable communication failures or temporary crashes of the server to which requests are sent.
 
@@ -741,6 +744,12 @@ There are 3 retry methods provided by **twitter_api_v2**.
 | Regular Intervals              | RetryConfig.ofRegularIntervals            | Retry at regular intervals.                                                                                             |
 | Exponential Backoff            | RetryConfig.ofExponentialBackOff          | The retry interval is increased exponentially according to the number of retries.                                       |
 | Exponential Backoff and Jitter | RetryConfig.ofExponentialBackOffAndJitter | A random number called Jitter is added to increase the retry interval exponentially according to the number of retries. |
+
+Also, errors subject to retry are as follows.
+
+- When the status code of the response returned from Twitter is `500` or `503`.
+- When the network is temporarily lost and a `SocketException` is thrown.
+- When communication times out temporarily and a `TimeoutException` is thrown
 
 #### 1.4.8.1. Regular Intervals
 
