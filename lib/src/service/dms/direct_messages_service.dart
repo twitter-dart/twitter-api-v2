@@ -17,6 +17,8 @@ import 'dm_event_expansion.dart';
 import 'dm_event_field.dart';
 import 'dm_event_meta.dart';
 import 'dm_event_type.dart';
+import 'message_data.dart';
+import 'message_param.dart';
 
 abstract class DirectMessagesService {
   /// Returns the new instance of [DirectMessagesService].
@@ -102,6 +104,7 @@ abstract class DirectMessagesService {
   /// ## Authentication Methods
   ///
   /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
   ///
   /// ## Required Scopes
   ///
@@ -209,6 +212,7 @@ abstract class DirectMessagesService {
   /// ## Authentication Methods
   ///
   /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
   ///
   /// ## Required Scopes
   ///
@@ -318,6 +322,7 @@ abstract class DirectMessagesService {
   /// ## Authentication Methods
   ///
   /// - OAuth 2.0 Authorization Code with PKCE
+  /// - OAuth 1.0a
   ///
   /// ## Required Scopes
   ///
@@ -356,10 +361,8 @@ abstract class DirectMessagesService {
   ///                     to add the Direct Message to. Supports both
   ///                     1-1 and group conversations.
   ///
-  /// - [text]: Text of the Direct Message being created.
-  ///           Text messages support up to 10,000 characters.
-  ///
-  /// - [mediaId]: A single Media ID being attached to the Direct Message.
+  /// - [message]: The object that contains the `text` and `attachments`
+  ///              parameters.
   ///
   /// ## Endpoint Url
   ///
@@ -391,10 +394,9 @@ abstract class DirectMessagesService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/direct-messages/manage/api-reference/post-dm_conversations-dm_conversation_id-messages
-  Future<TwitterResponse<DMEventData, DMEventMeta>> createMessageTo({
+  Future<TwitterResponse<MessageData, void>> createMessageTo({
     required String conversationId,
-    required String text,
-    String? mediaId,
+    required MessageParam message,
   });
 
   /// Creates a one-to-one Direct Message and adds it to the one-to-one
@@ -408,10 +410,8 @@ abstract class DirectMessagesService {
   /// - [participantId]: The User ID of the account this one-to-one
   ///                    Direct Message is to be sent to.
   ///
-  /// - [text]: Text of the Direct Message being created.
-  ///           Text messages support up to 10,000 characters.
-  ///
-  /// - [mediaId]: A single Media ID being attached to the Direct Message.
+  /// - [message]: The object that contains the `text` and `attachments`
+  ///              parameters.
   ///
   /// ## Endpoint Url
   ///
@@ -443,10 +443,9 @@ abstract class DirectMessagesService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/direct-messages/manage/api-reference/post-dm_conversations-with-participant_id-messages
-  Future<TwitterResponse<DMEventData, DMEventMeta>> createMessageWith({
+  Future<TwitterResponse<MessageData, void>> createMessageWith({
     required String participantId,
-    required String text,
-    String? mediaId,
+    required MessageParam message,
   });
 
   /// Creates a new group conversation and adds a Direct Message to it on
@@ -457,10 +456,8 @@ abstract class DirectMessagesService {
   /// - [participantIds]: An array of User IDs that the conversation is created
   ///                     with. Conversations can have up to 50 participants.
   ///
-  /// - [text]: Text of the Direct Message being created.
-  ///           Text messages support up to 10,000 characters.
-  ///
-  /// - [mediaId]: A single Media ID being attached to the Direct Message.
+  /// - [message]: The object that contains the `text` and `attachments`
+  ///              parameters.
   ///
   /// ## Endpoint Url
   ///
@@ -492,10 +489,9 @@ abstract class DirectMessagesService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/direct-messages/manage/api-reference/post-dm_conversations
-  Future<TwitterResponse<DMEventData, DMEventMeta>> createGroupConversation({
+  Future<TwitterResponse<MessageData, void>> createGroupConversation({
     required List<String> participantIds,
-    required String text,
-    String? mediaId,
+    required MessageParam message,
   });
 }
 
@@ -517,7 +513,7 @@ class _DirectMessagesService extends BaseService
     Paging<List<DMEventData>, DMEventMeta>? paging,
   }) async =>
       await super.executePaginationIfNecessary(
-        core.UserContext.oauth2Only,
+        core.UserContext.oauth2OrOAuth1,
         '/2/dm_events',
         {
           'event_types': eventTypes,
@@ -549,7 +545,7 @@ class _DirectMessagesService extends BaseService
     Paging<List<DMEventData>, DMEventMeta>? paging,
   }) async =>
           await super.executePaginationIfNecessary(
-            core.UserContext.oauth2Only,
+            core.UserContext.oauth2OrOAuth1,
             '/2/dm_conversations/with/$participantId/dm_events',
             {
               'event_types': eventTypes,
@@ -581,7 +577,7 @@ class _DirectMessagesService extends BaseService
     Paging<List<DMEventData>, DMEventMeta>? paging,
   }) async =>
           await super.executePaginationIfNecessary(
-            core.UserContext.oauth2Only,
+            core.UserContext.oauth2OrOAuth1,
             '/2/dm_conversations/$conversationId/dm_events',
             {
               'event_types': eventTypes,
@@ -599,69 +595,69 @@ class _DirectMessagesService extends BaseService
           );
 
   @override
-  Future<TwitterResponse<DMEventData, DMEventMeta>> createMessageTo({
+  Future<TwitterResponse<MessageData, void>> createMessageTo({
     required String conversationId,
-    required String text,
-    String? mediaId,
+    required MessageParam message,
   }) async =>
       super.transformSingleDataResponse(
         await super.post(
           core.UserContext.oauth2OrOAuth1,
           '/2/dm_conversations/$conversationId/messages',
-          queryParameters: {
-            'text': text,
+          body: {
+            'text': message.text,
             'attachments': [
-              {'media_id': mediaId}
+              {
+                'media_id': message.attachments?.mediaIds.first,
+              }
             ]
           },
         ),
-        dataBuilder: DMEventData.fromJson,
-        metaBuilder: DMEventMeta.fromJson,
+        dataBuilder: MessageData.fromJson,
       );
 
   @override
-  Future<TwitterResponse<DMEventData, DMEventMeta>> createMessageWith({
+  Future<TwitterResponse<MessageData, void>> createMessageWith({
     required String participantId,
-    required String text,
-    String? mediaId,
+    required MessageParam message,
   }) async =>
       super.transformSingleDataResponse(
         await super.post(
           core.UserContext.oauth2OrOAuth1,
           '/2/dm_conversations/with/$participantId/messages',
-          queryParameters: {
-            'text': text,
+          body: {
+            'text': message.text,
             'attachments': [
-              {'media_id': mediaId}
+              {
+                'media_id': message.attachments?.mediaIds.first,
+              }
             ]
           },
         ),
-        dataBuilder: DMEventData.fromJson,
-        metaBuilder: DMEventMeta.fromJson,
+        dataBuilder: MessageData.fromJson,
       );
 
   @override
-  Future<TwitterResponse<DMEventData, DMEventMeta>> createGroupConversation({
+  Future<TwitterResponse<MessageData, void>> createGroupConversation({
     required List<String> participantIds,
-    required String text,
-    String? mediaId,
+    required MessageParam message,
   }) async =>
       super.transformSingleDataResponse(
         await super.post(
           core.UserContext.oauth2OrOAuth1,
           '/2/dm_conversations',
-          queryParameters: {
+          body: {
             'conversation_type': 'Group',
             'participant_ids': participantIds,
             'message': {
-              'text': text,
+              'text': message.text,
               'attachments': [
-                {'media_id': mediaId}
+                {
+                  'media_id': message.attachments?.mediaIds.first,
+                }
               ]
             }
           },
         ),
-        dataBuilder: DMEventData.fromJson,
-        metaBuilder: DMEventMeta.fromJson,
+        dataBuilder: MessageData.fromJson,
       );
 }

@@ -21,7 +21,7 @@ void main() {
     test('normal case', () async {
       final directMessagesService = DirectMessagesService(
         context: context.buildGetStub(
-          UserContext.oauth2Only,
+          UserContext.oauth2OrOAuth1,
           '/2/dm_events',
           'test/src/service/dms/data/lookup_events.json',
           {},
@@ -54,7 +54,7 @@ void main() {
     test('with rate limit exceeded error', () async {
       final directMessagesService = DirectMessagesService(
         context: context.buildGetStub(
-          UserContext.oauth2Only,
+          UserContext.oauth2OrOAuth1,
           '/2/dm_events',
           'test/src/service/dms/data/rate_limit_exceeded_error.json',
           {},
@@ -69,7 +69,7 @@ void main() {
     test('with errors', () async {
       final directMessagesService = DirectMessagesService(
         context: context.buildGetStub(
-          UserContext.oauth2Only,
+          UserContext.oauth2OrOAuth1,
           '/2/dm_events',
           'test/src/service/dms/data/no_data.json',
           {},
@@ -84,7 +84,7 @@ void main() {
     test('with no json', () async {
       final directMessagesService = DirectMessagesService(
         context: context.buildGetStub(
-          UserContext.oauth2Only,
+          UserContext.oauth2OrOAuth1,
           '/2/dm_events',
           'test/src/service/dms/data/no_json.json',
           {},
@@ -99,7 +99,7 @@ void main() {
     test('with paging', () async {
       final directMessagesService = DirectMessagesService(
         context: context.buildGetStubWithAnyUriAndMultiResources(
-          UserContext.oauth2Only,
+          UserContext.oauth2OrOAuth1,
           [
             'test/src/service/pagination/data/dms/dataset_1.json',
             'test/src/service/pagination/data/dms/dataset_2.json',
@@ -146,7 +146,7 @@ void main() {
     test('with paging and no more next pages', () async {
       final directMessagesService = DirectMessagesService(
         context: context.buildGetStubWithAnyUriAndMultiResources(
-          UserContext.oauth2Only,
+          UserContext.oauth2OrOAuth1,
           [
             'test/src/service/pagination/data/dms/dataset_1.json',
             'test/src/service/pagination/data/dms/dataset_2.json',
@@ -197,7 +197,7 @@ void main() {
     test('normal case', () async {
       final directMessagesService = DirectMessagesService(
         context: context.buildGetStub(
-          UserContext.oauth2Only,
+          UserContext.oauth2OrOAuth1,
           '/2/dm_conversations/with/1234/dm_events',
           'test/src/service/dms/data/lookup_conversations_with.json',
           {},
@@ -234,7 +234,7 @@ void main() {
     test('with rate limit exceeded error', () async {
       final directMessagesService = DirectMessagesService(
         context: context.buildGetStub(
-          UserContext.oauth2Only,
+          UserContext.oauth2OrOAuth1,
           '/2/dm_conversations/with/1234/dm_events',
           'test/src/service/dms/data/rate_limit_exceeded_error.json',
           {},
@@ -251,7 +251,7 @@ void main() {
     test('with errors', () async {
       final directMessagesService = DirectMessagesService(
         context: context.buildGetStub(
-          UserContext.oauth2Only,
+          UserContext.oauth2OrOAuth1,
           '/2/dm_conversations/with/1234/dm_events',
           'test/src/service/dms/data/no_data.json',
           {},
@@ -268,7 +268,7 @@ void main() {
     test('with no json', () async {
       final directMessagesService = DirectMessagesService(
         context: context.buildGetStub(
-          UserContext.oauth2Only,
+          UserContext.oauth2OrOAuth1,
           '/2/dm_conversations/with/1234/dm_events',
           'test/src/service/dms/data/no_json.json',
           {},
@@ -285,7 +285,7 @@ void main() {
     test('with paging', () async {
       final directMessagesService = DirectMessagesService(
         context: context.buildGetStubWithAnyUriAndMultiResources(
-          UserContext.oauth2Only,
+          UserContext.oauth2OrOAuth1,
           [
             'test/src/service/pagination/data/dms/dataset_1.json',
             'test/src/service/pagination/data/dms/dataset_2.json',
@@ -333,7 +333,7 @@ void main() {
     test('with paging and no more next pages', () async {
       final directMessagesService = DirectMessagesService(
         context: context.buildGetStubWithAnyUriAndMultiResources(
-          UserContext.oauth2Only,
+          UserContext.oauth2OrOAuth1,
           [
             'test/src/service/pagination/data/dms/dataset_1.json',
             'test/src/service/pagination/data/dms/dataset_2.json',
@@ -385,7 +385,7 @@ void main() {
     test('normal case', () async {
       final directMessagesService = DirectMessagesService(
         context: context.buildGetStub(
-          UserContext.oauth2Only,
+          UserContext.oauth2OrOAuth1,
           '/2/dm_conversations/1234/dm_events',
           'test/src/service/dms/data/lookup_conversations_by_id.json',
           {},
@@ -422,7 +422,7 @@ void main() {
     test('with rate limit exceeded error', () async {
       final directMessagesService = DirectMessagesService(
         context: context.buildGetStub(
-          UserContext.oauth2Only,
+          UserContext.oauth2OrOAuth1,
           '/2/dm_conversations/1234/dm_events',
           'test/src/service/dms/data/rate_limit_exceeded_error.json',
           {},
@@ -439,7 +439,7 @@ void main() {
     test('with errors', () async {
       final directMessagesService = DirectMessagesService(
         context: context.buildGetStub(
-          UserContext.oauth2Only,
+          UserContext.oauth2OrOAuth1,
           '/2/dm_conversations/1234/dm_events',
           'test/src/service/dms/data/no_data.json',
           {},
@@ -456,7 +456,7 @@ void main() {
     test('with no json', () async {
       final directMessagesService = DirectMessagesService(
         context: context.buildGetStub(
-          UserContext.oauth2Only,
+          UserContext.oauth2OrOAuth1,
           '/2/dm_conversations/1234/dm_events',
           'test/src/service/dms/data/no_json.json',
           {},
@@ -473,7 +473,7 @@ void main() {
     test('with paging', () async {
       final directMessagesService = DirectMessagesService(
         context: context.buildGetStubWithAnyUriAndMultiResources(
-          UserContext.oauth2Only,
+          UserContext.oauth2OrOAuth1,
           [
             'test/src/service/pagination/data/dms/dataset_1.json',
             'test/src/service/pagination/data/dms/dataset_2.json',
@@ -521,7 +521,7 @@ void main() {
     test('with paging and no more next pages', () async {
       final directMessagesService = DirectMessagesService(
         context: context.buildGetStubWithAnyUriAndMultiResources(
-          UserContext.oauth2Only,
+          UserContext.oauth2OrOAuth1,
           [
             'test/src/service/pagination/data/dms/dataset_1.json',
             'test/src/service/pagination/data/dms/dataset_2.json',
