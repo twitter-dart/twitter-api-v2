@@ -26,7 +26,6 @@ export 'package:twitter_api_v2/src/service/compliance/compliance_stream_partitio
 export 'package:twitter_api_v2/src/service/compliance/job_status.dart';
 export 'package:twitter_api_v2/src/service/compliance/job_type.dart';
 export 'package:twitter_api_v2/src/service/dms/direct_messages_service.dart';
-export 'package:twitter_api_v2/src/service/dms/direct_messages_service.dart';
 export 'package:twitter_api_v2/src/service/dms/dm_attachments.dart';
 export 'package:twitter_api_v2/src/service/dms/dm_event_data.dart';
 export 'package:twitter_api_v2/src/service/dms/dm_event_expansion.dart';
@@ -34,6 +33,9 @@ export 'package:twitter_api_v2/src/service/dms/dm_event_field.dart';
 export 'package:twitter_api_v2/src/service/dms/dm_event_meta.dart';
 export 'package:twitter_api_v2/src/service/dms/dm_event_type.dart';
 export 'package:twitter_api_v2/src/service/dms/dm_referenced_tweet.dart';
+export 'package:twitter_api_v2/src/service/dms/message_attachments_param.dart';
+export 'package:twitter_api_v2/src/service/dms/message_data.dart';
+export 'package:twitter_api_v2/src/service/dms/message_param.dart';
 export 'package:twitter_api_v2/src/service/lists/list_data.dart';
 export 'package:twitter_api_v2/src/service/lists/list_expansion.dart';
 export 'package:twitter_api_v2/src/service/lists/list_field.dart';
