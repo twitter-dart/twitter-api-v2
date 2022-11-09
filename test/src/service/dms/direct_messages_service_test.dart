@@ -195,18 +195,18 @@ void main() {
     });
   });
 
-  group('.lookupConversationsWith', () {
+  group('.lookupEventsWith', () {
     test('normal case', () async {
       final directMessagesService = DirectMessagesService(
         context: context.buildGetStub(
           UserContext.oauth2OrOAuth1,
           '/2/dm_conversations/with/1234/dm_events',
-          'test/src/service/dms/data/lookup_conversations_with.json',
+          'test/src/service/dms/data/lookup_events_with.json',
           {},
         ),
       );
 
-      final response = await directMessagesService.lookupConversationsWith(
+      final response = await directMessagesService.lookupEventsWith(
         participantId: '1234',
       );
 
@@ -227,7 +227,7 @@ void main() {
       );
 
       expectUnauthorizedException(
-        () async => await directMessagesService.lookupConversationsWith(
+        () async => await directMessagesService.lookupEventsWith(
           participantId: '1234',
         ),
       );
@@ -244,7 +244,7 @@ void main() {
       );
 
       expectRateLimitExceededException(
-        () async => await directMessagesService.lookupConversationsWith(
+        () async => await directMessagesService.lookupEventsWith(
           participantId: '1234',
         ),
       );
@@ -261,7 +261,7 @@ void main() {
       );
 
       expectDataNotFoundExceptionDueToNoData(
-        () async => await directMessagesService.lookupConversationsWith(
+        () async => await directMessagesService.lookupEventsWith(
           participantId: '1234',
         ),
       );
@@ -278,7 +278,7 @@ void main() {
       );
 
       expectDataNotFoundExceptionDueToNoJson(
-        () async => await directMessagesService.lookupConversationsWith(
+        () async => await directMessagesService.lookupEventsWith(
           participantId: '1234',
         ),
       );
@@ -298,7 +298,7 @@ void main() {
       );
 
       int count = 1;
-      final response = await directMessagesService.lookupConversationsWith(
+      final response = await directMessagesService.lookupEventsWith(
         participantId: '1234',
         paging: (event) {
           expect(event.count, count);
@@ -346,7 +346,7 @@ void main() {
       );
 
       int count = 1;
-      final response = await directMessagesService.lookupConversationsWith(
+      final response = await directMessagesService.lookupEventsWith(
         participantId: '1234',
         paging: (event) {
           expect(event.count, count);
@@ -383,18 +383,18 @@ void main() {
     });
   });
 
-  group('.lookupConversationsById', () {
+  group('.lookupEventsIn', () {
     test('normal case', () async {
       final directMessagesService = DirectMessagesService(
         context: context.buildGetStub(
           UserContext.oauth2OrOAuth1,
           '/2/dm_conversations/1234/dm_events',
-          'test/src/service/dms/data/lookup_conversations_by_id.json',
+          'test/src/service/dms/data/lookup_events_in.json',
           {},
         ),
       );
 
-      final response = await directMessagesService.lookupConversationsById(
+      final response = await directMessagesService.lookupEventsIn(
         conversationId: '1234',
       );
 
@@ -415,7 +415,7 @@ void main() {
       );
 
       expectUnauthorizedException(
-        () async => await directMessagesService.lookupConversationsById(
+        () async => await directMessagesService.lookupEventsIn(
           conversationId: '1234',
         ),
       );
@@ -432,7 +432,7 @@ void main() {
       );
 
       expectRateLimitExceededException(
-        () async => await directMessagesService.lookupConversationsById(
+        () async => await directMessagesService.lookupEventsIn(
           conversationId: '1234',
         ),
       );
@@ -449,7 +449,7 @@ void main() {
       );
 
       expectDataNotFoundExceptionDueToNoData(
-        () async => await directMessagesService.lookupConversationsById(
+        () async => await directMessagesService.lookupEventsIn(
           conversationId: '1234',
         ),
       );
@@ -466,7 +466,7 @@ void main() {
       );
 
       expectDataNotFoundExceptionDueToNoJson(
-        () async => await directMessagesService.lookupConversationsById(
+        () async => await directMessagesService.lookupEventsIn(
           conversationId: '1234',
         ),
       );
@@ -486,7 +486,7 @@ void main() {
       );
 
       int count = 1;
-      final response = await directMessagesService.lookupConversationsById(
+      final response = await directMessagesService.lookupEventsIn(
         conversationId: '1234',
         paging: (event) {
           expect(event.count, count);
@@ -534,7 +534,7 @@ void main() {
       );
 
       int count = 1;
-      final response = await directMessagesService.lookupConversationsById(
+      final response = await directMessagesService.lookupEventsIn(
         conversationId: '1234',
         paging: (event) {
           expect(event.count, count);
@@ -571,17 +571,17 @@ void main() {
     });
   });
 
-  group('.createMessageWith', () {
+  group('.createConversation', () {
     test('normal case', () async {
       final directMessagesService = DirectMessagesService(
         context: context.buildPostStub(
           UserContext.oauth2OrOAuth1,
           '/2/dm_conversations/with/1234/messages',
-          'test/src/service/dms/data/create_message_with.json',
+          'test/src/service/dms/data/create_conversation.json',
         ),
       );
 
-      final response = await directMessagesService.createMessageWith(
+      final response = await directMessagesService.createConversation(
         participantId: '1234',
         message: MessageParam(text: 'test'),
       );
@@ -602,7 +602,7 @@ void main() {
       );
 
       expectUnauthorizedException(
-        () async => await directMessagesService.createMessageWith(
+        () async => await directMessagesService.createConversation(
           participantId: '1234',
           message: MessageParam(text: 'test'),
         ),
@@ -619,7 +619,7 @@ void main() {
       );
 
       expectRateLimitExceededException(
-        () async => await directMessagesService.createMessageWith(
+        () async => await directMessagesService.createConversation(
           participantId: '1234',
           message: MessageParam(text: 'test'),
         ),
@@ -636,7 +636,7 @@ void main() {
       );
 
       expectDataNotFoundExceptionDueToNoData(
-        () async => await directMessagesService.createMessageWith(
+        () async => await directMessagesService.createConversation(
           participantId: '1234',
           message: MessageParam(text: 'test'),
         ),
@@ -653,7 +653,7 @@ void main() {
       );
 
       expectDataNotFoundExceptionDueToNoJson(
-        () async => await directMessagesService.createMessageWith(
+        () async => await directMessagesService.createConversation(
           participantId: '1234',
           message: MessageParam(text: 'test'),
         ),
@@ -661,17 +661,17 @@ void main() {
     });
   });
 
-  group('.createMessageTo', () {
+  group('.createMessage', () {
     test('normal case', () async {
       final directMessagesService = DirectMessagesService(
         context: context.buildPostStub(
           UserContext.oauth2OrOAuth1,
           '/2/dm_conversations/1234/messages',
-          'test/src/service/dms/data/create_message_to.json',
+          'test/src/service/dms/data/create_message.json',
         ),
       );
 
-      final response = await directMessagesService.createMessageTo(
+      final response = await directMessagesService.createMessage(
         conversationId: '1234',
         message: MessageParam(text: 'test'),
       );
@@ -692,7 +692,7 @@ void main() {
       );
 
       expectUnauthorizedException(
-        () async => await directMessagesService.createMessageTo(
+        () async => await directMessagesService.createMessage(
           conversationId: '1234',
           message: MessageParam(text: 'test'),
         ),
@@ -709,7 +709,7 @@ void main() {
       );
 
       expectRateLimitExceededException(
-        () async => await directMessagesService.createMessageTo(
+        () async => await directMessagesService.createMessage(
           conversationId: '1234',
           message: MessageParam(text: 'test'),
         ),
@@ -726,7 +726,7 @@ void main() {
       );
 
       expectDataNotFoundExceptionDueToNoData(
-        () async => await directMessagesService.createMessageTo(
+        () async => await directMessagesService.createMessage(
           conversationId: '1234',
           message: MessageParam(text: 'test'),
         ),
@@ -743,7 +743,7 @@ void main() {
       );
 
       expectDataNotFoundExceptionDueToNoJson(
-        () async => await directMessagesService.createMessageTo(
+        () async => await directMessagesService.createMessage(
           conversationId: '1234',
           message: MessageParam(text: 'test'),
         ),

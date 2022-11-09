@@ -228,8 +228,7 @@ abstract class DirectMessagesService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/direct-messages/lookup/api-reference/get-dm_conversations-with-participant_id-dm_events
-  Future<TwitterResponse<List<DMEventData>, DMEventMeta>>
-      lookupConversationsWith({
+  Future<TwitterResponse<List<DMEventData>, DMEventMeta>> lookupEventsWith({
     required String participantId,
     List<DMEventType>? eventTypes,
     int? maxResults,
@@ -338,8 +337,7 @@ abstract class DirectMessagesService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/direct-messages/lookup/api-reference/get-dm_conversations-dm_conversation_id-dm_events
-  Future<TwitterResponse<List<DMEventData>, DMEventMeta>>
-      lookupConversationsById({
+  Future<TwitterResponse<List<DMEventData>, DMEventMeta>> lookupEventsIn({
     required String conversationId,
     List<DMEventType>? eventTypes,
     int? maxResults,
@@ -394,7 +392,7 @@ abstract class DirectMessagesService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/direct-messages/manage/api-reference/post-dm_conversations-dm_conversation_id-messages
-  Future<TwitterResponse<MessageData, void>> createMessageTo({
+  Future<TwitterResponse<MessageData, void>> createMessage({
     required String conversationId,
     required MessageParam message,
   });
@@ -443,7 +441,7 @@ abstract class DirectMessagesService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/direct-messages/manage/api-reference/post-dm_conversations-with-participant_id-messages
-  Future<TwitterResponse<MessageData, void>> createMessageWith({
+  Future<TwitterResponse<MessageData, void>> createConversation({
     required String participantId,
     required MessageParam message,
   });
@@ -531,8 +529,7 @@ class _DirectMessagesService extends BaseService
       );
 
   @override
-  Future<TwitterResponse<List<DMEventData>, DMEventMeta>>
-      lookupConversationsWith({
+  Future<TwitterResponse<List<DMEventData>, DMEventMeta>> lookupEventsWith({
     required String participantId,
     List<DMEventType>? eventTypes,
     int? maxResults,
@@ -544,27 +541,26 @@ class _DirectMessagesService extends BaseService
     List<DMEventField>? dmEventFields,
     Paging<List<DMEventData>, DMEventMeta>? paging,
   }) async =>
-          await super.executePaginationIfNecessary(
-            core.UserContext.oauth2OrOAuth1,
-            '/2/dm_conversations/with/$participantId/dm_events',
-            {
-              'event_types': eventTypes,
-              'max_results': maxResults,
-              'pagination_token': paginationToken,
-              'expansions': expansions,
-              'tweet.fields': tweetFields,
-              'user.fields': userFields,
-              'media.fields': mediaFields,
-              'dm_event.fields': dmEventFields,
-            },
-            paging: paging,
-            dataBuilder: DMEventData.fromJson,
-            metaBuilder: DMEventMeta.fromJson,
-          );
+      await super.executePaginationIfNecessary(
+        core.UserContext.oauth2OrOAuth1,
+        '/2/dm_conversations/with/$participantId/dm_events',
+        {
+          'event_types': eventTypes,
+          'max_results': maxResults,
+          'pagination_token': paginationToken,
+          'expansions': expansions,
+          'tweet.fields': tweetFields,
+          'user.fields': userFields,
+          'media.fields': mediaFields,
+          'dm_event.fields': dmEventFields,
+        },
+        paging: paging,
+        dataBuilder: DMEventData.fromJson,
+        metaBuilder: DMEventMeta.fromJson,
+      );
 
   @override
-  Future<TwitterResponse<List<DMEventData>, DMEventMeta>>
-      lookupConversationsById({
+  Future<TwitterResponse<List<DMEventData>, DMEventMeta>> lookupEventsIn({
     required String conversationId,
     List<DMEventType>? eventTypes,
     int? maxResults,
@@ -576,26 +572,26 @@ class _DirectMessagesService extends BaseService
     List<DMEventField>? dmEventFields,
     Paging<List<DMEventData>, DMEventMeta>? paging,
   }) async =>
-          await super.executePaginationIfNecessary(
-            core.UserContext.oauth2OrOAuth1,
-            '/2/dm_conversations/$conversationId/dm_events',
-            {
-              'event_types': eventTypes,
-              'max_results': maxResults,
-              'pagination_token': paginationToken,
-              'expansions': expansions,
-              'tweet.fields': tweetFields,
-              'user.fields': userFields,
-              'media.fields': mediaFields,
-              'dm_event.fields': dmEventFields,
-            },
-            paging: paging,
-            dataBuilder: DMEventData.fromJson,
-            metaBuilder: DMEventMeta.fromJson,
-          );
+      await super.executePaginationIfNecessary(
+        core.UserContext.oauth2OrOAuth1,
+        '/2/dm_conversations/$conversationId/dm_events',
+        {
+          'event_types': eventTypes,
+          'max_results': maxResults,
+          'pagination_token': paginationToken,
+          'expansions': expansions,
+          'tweet.fields': tweetFields,
+          'user.fields': userFields,
+          'media.fields': mediaFields,
+          'dm_event.fields': dmEventFields,
+        },
+        paging: paging,
+        dataBuilder: DMEventData.fromJson,
+        metaBuilder: DMEventMeta.fromJson,
+      );
 
   @override
-  Future<TwitterResponse<MessageData, void>> createMessageTo({
+  Future<TwitterResponse<MessageData, void>> createMessage({
     required String conversationId,
     required MessageParam message,
   }) async =>
@@ -616,7 +612,7 @@ class _DirectMessagesService extends BaseService
       );
 
   @override
-  Future<TwitterResponse<MessageData, void>> createMessageWith({
+  Future<TwitterResponse<MessageData, void>> createConversation({
     required String participantId,
     required MessageParam message,
   }) async =>
