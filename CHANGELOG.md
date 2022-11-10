@@ -1,5 +1,46 @@
 # Release Note
 
+## v4.4.0
+
+- Added service for `Direct Message`. You can use endpoints for `Direct Message` using by `TwitterApi.directMessages` property.
+- Added `Direct Messages Lookup`. ([#533](https://github.com/twitter-dart/twitter-api-v2/issues/533))
+  - `GET /2/dm_events`
+  - `GET /2/dm_conversations/with/:participant_id/dm_events`
+  - `GET /2/dm_conversations/:dm_conversation_id/dm_events`
+- Added `Manage Direct Messages`. ([#534](https://github.com/twitter-dart/twitter-api-v2/issues/534))
+  - `POST /2/dm_conversations/:dm_conversation_id/messages`
+  - `POST /2/dm_conversations/with/:participant_id/messages`
+  - `POST /2/dm_conversations`
+- Removed deprecated property and constructor.
+  - Removed `UploadedMediaData.mediaId` and use `UploadedMediaData.id` instead.
+  - `FilteringRule.sampleOf` and use `FilteringRule.ofSample` instead.
+
+## v4.3.5
+
+- `TwitterUploadException` extended `TwitterException`. ([#510](https://github.com/twitter-dart/twitter-api-v2/issues/510))
+- `UnauthorizedException` extended `TwitterException`. ([#528](https://github.com/twitter-dart/twitter-api-v2/issues/528))
+- Added `DataNotFoundException`. This exception extends `TwitterException` and is thrown when there is no response body or the response body does not contain a data field. In other words, this exception is thrown when the target tweet does not exist when searching for a specific tweet, etc. ([#490](https://github.com/twitter-dart/twitter-api-v2/issues/490))
+
+## v4.3.4
+
+- Added support for an endpoint that associates uploaded videos with subtitles. ([#437](https://github.com/twitter-dart/twitter-api-v2/issues/437))
+  - `media.createSubtitle`
+- Added support for an endpoint to delete subtitles associated with uploaded videos. ([#436](https://github.com/twitter-dart/twitter-api-v2/issues/436))
+  - `media.destroySubtitle`
+
+## v4.3.3
+
+- Supported upload for caption files (.srt). You can upload caption files by using `uploadMedia`. ([#508](https://github.com/twitter-dart/twitter-api-v2/issues/508))
+- Renamed enumeration from `TweetLanguage` to `Language`. Please replace name if you're using `TweetLanguage`.
+
+## v4.3.2
+
+- Deprecated `FilteringRule.sampleOf` and added `FilteringRule.ofSample`. Deprecated `FilteringRule.sampleOf` will be removed in v4.4.0. ([#515](https://github.com/twitter-dart/twitter-api-v2/issues/515))
+
+## v4.3.1
+
+- Deprecated `UploadedMediaData.mediaId` and added `UploadedMediaData.id`. Use `UploadedMediaData.id` and `UploadedMediaData.mediaId` will be removed in v4.4.0.
+
 ## v4.3.0
 
 - Removed deprecated methods.

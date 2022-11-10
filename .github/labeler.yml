@@ -19,5 +19,8 @@ service/Compliance:
 service/Media:
 - lib/src/service/media/*.dart
 
+service/DirectMessages:
+- lib/src/service/dms/*.dart
+
 test:
 - test/**/*.dart

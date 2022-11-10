@@ -22,10 +22,15 @@ UploadedMediaData _$UploadedMediaDataFromJson(Map<String, dynamic> json) {
 mixin _$UploadedMediaData {
   /// The identifier for the uploaded media.
   @JsonKey(name: 'media_id_string')
-  String get mediaId => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
 
   /// The date and time this media will expire.
   DateTime get expiresAt => throw _privateConstructorUsedError;
+
+  /// The locale of this media.
+  ///
+  /// This field is only set if a .srt file is uploaded.
+  Locale? get locale => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,7 +44,11 @@ abstract class $UploadedMediaDataCopyWith<$Res> {
           UploadedMediaData value, $Res Function(UploadedMediaData) then) =
       _$UploadedMediaDataCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'media_id_string') String mediaId, DateTime expiresAt});
+      {@JsonKey(name: 'media_id_string') String id,
+      DateTime expiresAt,
+      Locale? locale});
+
+  $LocaleCopyWith<$Res>? get locale;
 }
 
 /// @nodoc
@@ -53,19 +62,35 @@ class _$UploadedMediaDataCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? mediaId = freezed,
+    Object? id = freezed,
     Object? expiresAt = freezed,
+    Object? locale = freezed,
   }) {
     return _then(_value.copyWith(
-      mediaId: mediaId == freezed
-          ? _value.mediaId
-          : mediaId // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       expiresAt: expiresAt == freezed
           ? _value.expiresAt
           : expiresAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      locale: locale == freezed
+          ? _value.locale
+          : locale // ignore: cast_nullable_to_non_nullable
+              as Locale?,
     ));
+  }
+
+  @override
+  $LocaleCopyWith<$Res>? get locale {
+    if (_value.locale == null) {
+      return null;
+    }
+
+    return $LocaleCopyWith<$Res>(_value.locale!, (value) {
+      return _then(_value.copyWith(locale: value));
+    });
   }
 }
 
@@ -77,7 +102,12 @@ abstract class _$$_UploadedMediaDataCopyWith<$Res>
       __$$_UploadedMediaDataCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'media_id_string') String mediaId, DateTime expiresAt});
+      {@JsonKey(name: 'media_id_string') String id,
+      DateTime expiresAt,
+      Locale? locale});
+
+  @override
+  $LocaleCopyWith<$Res>? get locale;
 }
 
 /// @nodoc
@@ -93,18 +123,23 @@ class __$$_UploadedMediaDataCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? mediaId = freezed,
+    Object? id = freezed,
     Object? expiresAt = freezed,
+    Object? locale = freezed,
   }) {
     return _then(_$_UploadedMediaData(
-      mediaId: mediaId == freezed
-          ? _value.mediaId
-          : mediaId // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       expiresAt: expiresAt == freezed
           ? _value.expiresAt
           : expiresAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      locale: locale == freezed
+          ? _value.locale
+          : locale // ignore: cast_nullable_to_non_nullable
+              as Locale?,
     ));
   }
 }
@@ -113,8 +148,9 @@ class __$$_UploadedMediaDataCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_UploadedMediaData implements _UploadedMediaData {
   const _$_UploadedMediaData(
-      {@JsonKey(name: 'media_id_string') required this.mediaId,
-      required this.expiresAt});
+      {@JsonKey(name: 'media_id_string') required this.id,
+      required this.expiresAt,
+      this.locale});
 
   factory _$_UploadedMediaData.fromJson(Map<String, dynamic> json) =>
       _$$_UploadedMediaDataFromJson(json);
@@ -122,15 +158,21 @@ class _$_UploadedMediaData implements _UploadedMediaData {
   /// The identifier for the uploaded media.
   @override
   @JsonKey(name: 'media_id_string')
-  final String mediaId;
+  final String id;
 
   /// The date and time this media will expire.
   @override
   final DateTime expiresAt;
 
+  /// The locale of this media.
+  ///
+  /// This field is only set if a .srt file is uploaded.
+  @override
+  final Locale? locale;
+
   @override
   String toString() {
-    return 'UploadedMediaData(mediaId: $mediaId, expiresAt: $expiresAt)';
+    return 'UploadedMediaData(id: $id, expiresAt: $expiresAt, locale: $locale)';
   }
 
   @override
@@ -138,16 +180,18 @@ class _$_UploadedMediaData implements _UploadedMediaData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UploadedMediaData &&
-            const DeepCollectionEquality().equals(other.mediaId, mediaId) &&
-            const DeepCollectionEquality().equals(other.expiresAt, expiresAt));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.expiresAt, expiresAt) &&
+            const DeepCollectionEquality().equals(other.locale, locale));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(mediaId),
-      const DeepCollectionEquality().hash(expiresAt));
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(expiresAt),
+      const DeepCollectionEquality().hash(locale));
 
   @JsonKey(ignore: true)
   @override
@@ -165,8 +209,9 @@ class _$_UploadedMediaData implements _UploadedMediaData {
 
 abstract class _UploadedMediaData implements UploadedMediaData {
   const factory _UploadedMediaData(
-      {@JsonKey(name: 'media_id_string') required final String mediaId,
-      required final DateTime expiresAt}) = _$_UploadedMediaData;
+      {@JsonKey(name: 'media_id_string') required final String id,
+      required final DateTime expiresAt,
+      final Locale? locale}) = _$_UploadedMediaData;
 
   factory _UploadedMediaData.fromJson(Map<String, dynamic> json) =
       _$_UploadedMediaData.fromJson;
@@ -175,11 +220,17 @@ abstract class _UploadedMediaData implements UploadedMediaData {
 
   /// The identifier for the uploaded media.
   @JsonKey(name: 'media_id_string')
-  String get mediaId;
+  String get id;
   @override
 
   /// The date and time this media will expire.
   DateTime get expiresAt;
+  @override
+
+  /// The locale of this media.
+  ///
+  /// This field is only set if a .srt file is uploaded.
+  Locale? get locale;
   @override
   @JsonKey(ignore: true)
   _$$_UploadedMediaDataCopyWith<_$_UploadedMediaData> get copyWith =>

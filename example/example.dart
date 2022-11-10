@@ -34,9 +34,12 @@ Future<void> main() async {
 
     //! Automatic retry is available when a TimeoutException occurs when
     //! communicating with the API.
-    retryConfig: v2.RetryConfig.ofRegularIntervals(
+    retryConfig: v2.RetryConfig.ofExponentialBackOffAndJitter(
       maxAttempts: 5,
-      intervalInSeconds: 3,
+      onExecute: (event) => print(
+        'Retry after ${event.intervalInSeconds} seconds... '
+        '[${event.retryCount} times]',
+      ),
     ),
 
     //! The default timeout is 10 seconds.
@@ -85,7 +88,7 @@ Future<void> main() async {
     );
 
     //! You can upload media such as image, gif and video.
-    final uploadedResponse = await twitter.media.uploadMedia(
+    final uploadedMedia = await twitter.media.uploadMedia(
       file: File.fromUri(Uri.file('FILE_PATH')),
       altText: 'This is alt text.',
 
@@ -110,7 +113,7 @@ Future<void> main() async {
     await twitter.tweets.createTweet(
       text: 'Tweet with uploaded media',
       media: v2.TweetMediaParam(
-        mediaIds: [uploadedResponse.data.mediaId],
+        mediaIds: [uploadedMedia.data.id],
       ),
     );
 
@@ -136,7 +139,7 @@ Future<void> main() async {
         ),
         v2.FilteringRuleParam(
           //! => (#SpaceX has:media) OR (#SpaceX has:hashtags) sample:50
-          value: v2.FilteringRule.sampleOf(percent: 50)
+          value: v2.FilteringRule.ofSample(percent: 50)
               .group(
                 v2.FilteringRule.of()
                     .matchHashtag('SpaceX')
@@ -165,6 +168,8 @@ Future<void> main() async {
   } on v2.UnauthorizedException catch (e) {
     print(e);
   } on v2.RateLimitExceededException catch (e) {
+    print(e);
+  } on v2.DataNotFoundException catch (e) {
     print(e);
   } on v2.TwitterUploadException catch (e) {
     print(e);

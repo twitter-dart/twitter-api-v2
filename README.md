@@ -1,11 +1,11 @@
 <p align="center">
   <a href="https://github.com/twitter-dart/twitter-api-v2">
-    <img alt="twitter_api_v2" width="500px" src="https://user-images.githubusercontent.com/13072231/165789212-8f335632-64b2-4eac-be54-8147ccfe7ab1.png">
+    <img alt="twitter_api_v2" width="600px" src="https://user-images.githubusercontent.com/13072231/199728866-202b9742-d58e-4667-b046-e8096efd2339.png">
   </a>
 </p>
 
 <p align="center">
-  <b>The Lightweight and Cross-Platform Wrapper for Twitter API v2.0 🐦</b>
+  <b>The Most Famous and Powerful Dart/Flutter Library for Twitter API v2.0 🐦</b>
 </p>
 
 ---
@@ -75,8 +75,11 @@
       - [1.3.4.6. Members](#1346-members)
     - [1.3.5. Media Service](#135-media-service)
       - [1.3.5.1. Upload Media](#1351-upload-media)
-    - [1.3.6. Compliance Service](#136-compliance-service)
-      - [1.3.6.1. Batch Compliance](#1361-batch-compliance)
+    - [1.3.6. Direct Messages Service](#136-direct-messages-service)
+      - [1.3.6.1. Lookup Event](#1361-lookup-event)
+      - [1.3.6.2. Manage Event](#1362-manage-event)
+    - [1.3.7. Compliance Service](#137-compliance-service)
+      - [1.3.7.1. Batch Compliance](#1371-batch-compliance)
   - [1.4. Tips 🏄](#14-tips-)
     - [1.4.1. Method Names](#141-method-names)
     - [1.4.2. Generate App-Only Bearer Token](#142-generate-app-only-bearer-token)
@@ -85,7 +88,7 @@
     - [1.4.5. Expand Object Fields with `fields`](#145-expand-object-fields-with-fields)
     - [1.4.6. OAuth 2.0 Authorization Code Flow with PKCE](#146-oauth-20-authorization-code-flow-with-pkce)
     - [1.4.7. Change the Timeout Duration](#147-change-the-timeout-duration)
-    - [1.4.8. Retry When a Timeout Occurs](#148-retry-when-a-timeout-occurs)
+    - [1.4.8. Automatic Retry](#148-automatic-retry)
       - [1.4.8.1. Regular Intervals](#1481-regular-intervals)
       - [1.4.8.2. Exponential Backoff](#1482-exponential-backoff)
       - [1.4.8.3. Exponential Backoff and Jitter](#1483-exponential-backoff-and-jitter)
@@ -109,6 +112,8 @@ This library provides the easiest way to use [Twitter API v2.0](https://develope
 **Show some ❤️ and star the repo to support the project.**
 
 We also provide [twitter_oauth2_pkce](https://pub.dev/packages/twitter_oauth2_pkce) for easy [OAuth 2.0 PKCE authentication](https://developer.twitter.com/en/docs/authentication/oauth-2-0/authorization-code) when using the Twitter API!
+
+Also, this library is also posted on the [Official Twitter page](https://developer.twitter.com/en/docs/twitter-api/tools-and-libraries/v2#dart) 🐦
 
 ## 1.1. Features 💎
 
@@ -181,9 +186,12 @@ Future<void> main() async {
 
     //! Automatic retry is available when a TimeoutException occurs when
     //! communicating with the API.
-    retryConfig: v2.RetryConfig.ofRegularIntervals(
+    retryConfig: v2.RetryConfig.ofExponentialBackOffAndJitter(
       maxAttempts: 5,
-      intervalInSeconds: 3,
+      onExecute: (event) => print(
+        'Retry after ${event.intervalInSeconds} seconds... '
+        '[${event.retryCount} times]',
+      ),
     ),
 
     //! The default timeout is 10 seconds.
@@ -232,7 +240,7 @@ Future<void> main() async {
     );
 
     //! You can upload media such as image, gif and video.
-    final uploadedResponse = await twitter.media.uploadMedia(
+    final uploadedMedia = await twitter.media.uploadMedia(
       file: File.fromUri(Uri.file('FILE_PATH')),
       altText: 'This is alt text.',
 
@@ -257,7 +265,7 @@ Future<void> main() async {
     await twitter.tweets.createTweet(
       text: 'Tweet with uploaded media',
       media: v2.TweetMediaParam(
-        mediaIds: [uploadedResponse.data.mediaId],
+        mediaIds: [uploadedMedia.data.id],
       ),
     );
 
@@ -283,7 +291,7 @@ Future<void> main() async {
         ),
         v2.FilteringRuleParam(
           //! => (#SpaceX has:media) OR (#SpaceX has:hashtags) sample:50
-          value: v2.FilteringRule.sampleOf(percent: 50)
+          value: v2.FilteringRule.ofSample(percent: 50)
               .group(
                 v2.FilteringRule.of()
                     .matchHashtag('SpaceX')
@@ -313,14 +321,15 @@ Future<void> main() async {
     print(e);
   } on v2.RateLimitExceededException catch (e) {
     print(e);
+  } on v2.DataNotFoundException catch (e) {
+    print(e);
   } on v2.TwitterUploadException catch (e) {
     print(e);
   } on v2.TwitterException catch (e) {
     print(e.response.headers);
     print(e.body);
     print(e);
-  }
-}
+  }}
 ```
 
 ## 1.3. Supported Endpoints 👀
@@ -534,9 +543,27 @@ Future<void> main() async {
 | [POST /1.1/media/upload.json](https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/post-media-upload)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | [uploadImage](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/MediaService/uploadImage.html) |
 | [POST /1.1/media/upload.json (INIT)](https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/post-media-upload-init)</br>[POST /1.1/media/upload.json (APPEND)](https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/post-media-upload-append)</br>[POST /1.1/media/upload.json (FINALIZE)](https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/post-media-upload-finalize)</br>[POST /1.1/media/upload.json (STATUS)](https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/get-media-upload-status)</br> | [uploadMedia](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/MediaService/uploadMedia.html) |
 
-### 1.3.6. Compliance Service
+### 1.3.6. Direct Messages Service
 
-#### 1.3.6.1. Batch Compliance
+#### 1.3.6.1. Lookup Event
+
+| Endpoint                                                                                                                                                                                            | Method Name                                                                                                                        |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| [GET /2/dm_events](https://developer.twitter.com/en/docs/twitter-api/direct-messages/lookup/api-reference/get-dm_events)                                                                            | [lookupEvents](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/DirectMessagesService/dm_events.html)            |
+| [GET /2/dm_conversations/with/:participant_id/dm_events](https://developer.twitter.com/en/docs/twitter-api/direct-messages/lookup/api-reference/get-dm_conversations-with-participant_id-dm_events) | [lookupEventsWith](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/DirectMessagesService/lookupEventsWith.html) |
+| [GET /2/dm_conversations/:dm_conversation_id/dm_events](https://developer.twitter.com/en/docs/twitter-api/direct-messages/lookup/api-reference/get-dm_conversations-dm_conversation_id-dm_events)   | [lookupEventsIn](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/DirectMessagesService/lookupEventsIn.html)     |
+
+#### 1.3.6.2. Manage Event
+
+| Endpoint                                                                                                                                                                                            | Method Name                                                                                                                                      |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [POST /2/dm_conversations/with/:participant_id/messages](https://developer.twitter.com/en/docs/twitter-api/direct-messages/manage/api-reference/post-dm_conversations-with-participant_id-messages) | [createConversation](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/DirectMessagesService/createConversation.html)           |
+| [POST /2/dm_conversations](https://developer.twitter.com/en/docs/twitter-api/direct-messages/manage/api-reference/post-dm_conversations)                                                            | [createGroupConversation](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/DirectMessagesService/createGroupConversation.html) |
+| [POST /2/dm_conversations/:dm_conversation_id/messages](https://developer.twitter.com/en/docs/twitter-api/direct-messages/manage/api-reference/post-dm_conversations-dm_conversation_id-messages)   | [createMessage](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/DirectMessagesService/createMessage.html)                     |
+
+### 1.3.7. Compliance Service
+
+#### 1.3.7.1. Batch Compliance
 
 | Endpoint                                                                                                                                         | Method Name                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
@@ -710,7 +737,7 @@ Future<void> main() {
 }
 ```
 
-### 1.4.8. Retry When a Timeout Occurs
+### 1.4.8. Automatic Retry
 
 Due to the nature of this library's communication with external systems, timeouts may occur due to inevitable communication failures or temporary crashes of the server to which requests are sent.
 
@@ -723,6 +750,12 @@ There are 3 retry methods provided by **twitter_api_v2**.
 | Regular Intervals              | RetryConfig.ofRegularIntervals            | Retry at regular intervals.                                                                                             |
 | Exponential Backoff            | RetryConfig.ofExponentialBackOff          | The retry interval is increased exponentially according to the number of retries.                                       |
 | Exponential Backoff and Jitter | RetryConfig.ofExponentialBackOffAndJitter | A random number called Jitter is added to increase the retry interval exponentially according to the number of retries. |
+
+Also, errors subject to retry are as follows.
+
+- When the status code of the response returned from Twitter is `500` or `503`.
+- When the network is temporarily lost and a `SocketException` is thrown.
+- When communication times out temporarily and a `TimeoutException` is thrown
 
 #### 1.4.8.1. Regular Intervals
 
@@ -852,6 +885,40 @@ However, as mentioned earlier in **twitter_api_v2**, for example if you use the 
 | [TwitterUploadException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/TwitterUploadException-class.html)         | Thrown when an exception occurs during media upload.                                                                   |
 | [UnauthorizedException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/UnauthorizedException-class.html)           | Thrown when authentication fails with the specified access token.                                                      |
 | [RateLimitExceededException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/RateLimitExceededException-class.html) | Thrown when the request rate limit is exceeded.                                                                        |
+| [DataNotFoundException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/DataNotFoundException-class.html)           | Thrown when response has no body or data field in body string.                                                         |
+
+Also, all of the above exceptions thrown from the **twitter_api_v2** process extend [TwitterException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/TwitterException-class.html). This means that you can take all exceptions as [TwitterException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/TwitterException-class.html) or handle them as certain exception types, depending on the situation.
+
+However note that, if you receive an individual type exception, be sure to define the process so that the individual exception type is cached before [TwitterException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/TwitterException-class.html). Otherwise, certain type exceptions will also be caught as [TwitterException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/TwitterException-class.html).
+
+Therefore, if you need to catch a specific type of exception in addition to [TwitterException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/TwitterException-class.html), be sure to catch [TwitterException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/TwitterException-class.html) in the bottom catch clause as in the following example.
+
+```dart
+import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
+
+Future<void> main() async {
+  final twitter = v2.TwitterApi(bearerToken: 'YOUR_TOKEN_HERE');
+
+  try {
+    final tweets = await twitter.tweets.searchRecent(
+      query: '#ElonMusk',
+      maxResults: 20,
+    );
+
+    print(tweets);
+  } on v2.UnauthorizedException catch (e) {
+    print(e);
+  } on v2.RateLimitExceededException catch (e) {
+    print(e);
+  } on v2.DataNotFoundException catch (e) {
+    print(e);
+  } on v2.TwitterUploadException catch (e) {
+    print(e);
+  } on v2.TwitterException catch (e) {
+    print(e);
+  }
+}
+```
 
 ### 1.4.11. Upload Media
 

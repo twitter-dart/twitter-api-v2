@@ -13,9 +13,7 @@ void expectUnauthorizedException(Function fn) {
       allOf(
         isA<UnauthorizedException>(),
         predicate(
-          (e) =>
-              e.toString() ==
-              'UnauthorizedException: The specified access token is invalid.',
+          (dynamic e) => e.message == 'The specified access token is invalid.',
         ),
       ),
     ),
@@ -29,10 +27,10 @@ void expectUnauthorizedExceptionForOAuth1(Function fn) {
       allOf(
         isA<UnauthorizedException>(),
         predicate(
-          (e) =>
-              e.toString() ==
-              'UnauthorizedException: Required tokens were not passed for an '
-                  'endpoint that requires OAuth 1.0a.',
+          (dynamic e) =>
+              e.message ==
+              'Required tokens were not passed for an endpoint that '
+                  'requires OAuth 1.0a.',
         ),
       ),
     ),
@@ -52,30 +50,30 @@ void expectRateLimitExceededException(Function fn) {
   );
 }
 
-void expectTwitterExceptionDueToNoData(Function fn) {
+void expectDataNotFoundExceptionDueToNoData(Function fn) {
   expect(
     () async => await fn.call(),
     throwsA(
       allOf(
-        isA<TwitterException>(),
+        isA<DataNotFoundException>(),
         predicate(
-          (TwitterException e) =>
-              e.message == 'No response data exists for the request.',
+          (DataNotFoundException e) =>
+              e.message == 'No data exists in response.',
         ),
       ),
     ),
   );
 }
 
-void expectTwitterExceptionDueToNoJson(Function fn) {
+void expectDataNotFoundExceptionDueToNoJson(Function fn) {
   expect(
     () async => await fn.call(),
     throwsA(
       allOf(
-        isA<TwitterException>(),
+        isA<DataNotFoundException>(),
         predicate(
-          (TwitterException e) =>
-              e.message == 'Failed to decode the response body as JSON.',
+          (DataNotFoundException e) =>
+              e.message == 'No body exists in response.',
         ),
       ),
     ),

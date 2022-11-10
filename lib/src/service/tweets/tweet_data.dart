@@ -205,7 +205,7 @@ class TweetData with _$TweetData implements Data {
     /// ## How It Can Be Used
     ///
     /// - Classify Tweets by spoken language.
-    TweetLanguage? lang,
+    Language? lang,
 
     /// Indicates if this Tweet contains URLs marked as sensitive, for example
     /// content suitable for mature audiences.

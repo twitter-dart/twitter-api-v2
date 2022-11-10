@@ -653,7 +653,7 @@ void main() {
     test('.matchLanguage', () {
       final actual =
           FilteringRule.of().matchKeyword('test').and().matchLanguage(
-                TweetLanguage.amharic,
+                Language.amharic,
               );
 
       expect(actual, isA<LogicalChannel>());
@@ -663,7 +663,7 @@ void main() {
     test('.notMatchLanguage', () {
       final actual =
           FilteringRule.of().matchKeyword('test').and().notMatchLanguage(
-                TweetLanguage.amharic,
+                Language.amharic,
               );
 
       expect(actual, isA<LogicalChannel>());
@@ -853,8 +853,8 @@ use in nested groups or outside of groups.
     });
   });
 
-  test('.sampleOf', () {
-    final actual = FilteringRule.sampleOf(percent: 70).matchKeyword('test');
+  test('.ofSample', () {
+    final actual = FilteringRule.ofSample(percent: 70).matchKeyword('test');
 
     expect(actual.build(), 'test sample:70');
   });
