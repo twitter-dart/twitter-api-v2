@@ -207,6 +207,18 @@
         "maintenance",
         "security"
       ]
+    },
+    {
+      "login": "yuto90",
+      "name": "yuto90",
+      "avatar_url": "https://avatars.githubusercontent.com/u/53107639?v=4",
+      "profile": "https://github.com/yuto90",
+      "contributions": [
+        "blog",
+        "content",
+        "example",
+        "tutorial"
+      ]
     }
   ],
   "contributorsPerLine": 5,
