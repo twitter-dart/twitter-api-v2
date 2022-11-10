@@ -167,6 +167,16 @@
       "contributions": [
         "ideas"
       ]
+    },
+    {
+      "login": "bors-ng",
+      "name": "bors-ng",
+      "avatar_url": "https://avatars.githubusercontent.com/u/24979321?v=4",
+      "profile": "https://bors.tech/",
+      "contributions": [
+        "maintenance",
+        "review"
+      ]
     }
   ],
   "contributorsPerLine": 5,
@@ -174,5 +184,6 @@
   "projectOwner": "twitter-dart",
   "repoType": "github",
   "repoHost": "https://github.com",
-  "skipCi": true
+  "skipCi": true,
+  "commitConvention": "angular"
 }
