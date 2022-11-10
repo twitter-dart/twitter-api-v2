@@ -41,6 +41,7 @@ export 'package:twitter_api_v2/src/service/lists/list_expansion.dart';
 export 'package:twitter_api_v2/src/service/lists/list_field.dart';
 export 'package:twitter_api_v2/src/service/lists/list_meta.dart';
 export 'package:twitter_api_v2/src/service/lists/lists_service.dart';
+export 'package:twitter_api_v2/src/service/media/media_category.dart';
 export 'package:twitter_api_v2/src/service/media/media_data.dart';
 export 'package:twitter_api_v2/src/service/media/media_field.dart';
 export 'package:twitter_api_v2/src/service/media/media_service.dart';

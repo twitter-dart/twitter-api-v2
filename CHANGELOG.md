@@ -14,6 +14,7 @@
 - Removed deprecated property and constructor.
   - Removed `UploadedMediaData.mediaId` and use `UploadedMediaData.id` instead.
   - `FilteringRule.sampleOf` and use `FilteringRule.ofSample` instead.
+- Supported upload media for direct message. Please specify `MediaCategory.directMessage` to the option in `MediaService.uploadMedia`. ([#547](https://github.com/twitter-dart/twitter-api-v2/issues/547))
 
 ## v4.3.5
 
