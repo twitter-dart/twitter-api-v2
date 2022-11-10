@@ -169,6 +169,16 @@
       ]
     },
     {
+      "login": "bors-ng",
+      "name": "bors-ng",
+      "avatar_url": "https://avatars.githubusercontent.com/u/24979321?v=4",
+      "profile": "https://bors.tech/",
+      "contributions": [
+        "maintenance",
+        "review"
+      ]
+    },
+    {
       "login": "all-contributors",
       "name": "All Contributors",
       "avatar_url": "https://avatars.githubusercontent.com/u/46410174?v=4",
