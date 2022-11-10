@@ -197,6 +197,16 @@
         "maintenance",
         "security"
       ]
+    },
+    {
+      "login": "fossas",
+      "name": "FOSSA",
+      "avatar_url": "https://avatars.githubusercontent.com/u/9543448?v=4",
+      "profile": "http://fossa.com",
+      "contributions": [
+        "maintenance",
+        "security"
+      ]
     }
   ],
   "contributorsPerLine": 5,
