@@ -14,6 +14,7 @@ import '../base_media_service.dart';
 import '../common/locale.dart';
 import '../response/twitter_response.dart';
 import 'media_category.dart';
+import 'media_mime_type.dart';
 import 'upload_error.dart';
 import 'upload_event.dart';
 import 'uploaded_media_data.dart';
@@ -101,6 +102,14 @@ abstract class MediaService {
   ///
   /// - [file]: The raw binary media content (image, gif, video) being uploaded.
   ///
+  /// - [category]: Specify whether the media to be uploaded is related to
+  ///               tweets or direct messages. The default value is
+  ///               [MediaCategory.tweet], and this option is not necessary
+  ///               if you are uploading media to be attached to a tweet.
+  ///               However, for media to be attached to a direct message,
+  ///               be sure to specify [MediaCategory.directMessage] for this
+  ///               option.
+  ///
   /// - [altText]: Additional descriptive text to be added to images and GIFs.
   ///              Currently, this option is available only for images and GIFs;
   ///              if the media file being uploaded is a video, this option
@@ -136,6 +145,7 @@ abstract class MediaService {
   /// - https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/get-media-upload-status
   Future<TwitterResponse<UploadedMediaData, void>> uploadMedia({
     required File file,
+    MediaCategory category = MediaCategory.tweet,
     String? altText,
     List<String>? additionalOwners,
     Function(UploadEvent event)? onProgress,
@@ -250,6 +260,7 @@ class _MediaService extends BaseMediaService implements MediaService {
   @override
   Future<TwitterResponse<UploadedMediaData, void>> uploadMedia({
     required File file,
+    MediaCategory category = MediaCategory.tweet,
     String? altText,
     List<String>? additionalOwners,
     Function(UploadEvent event)? onProgress,
@@ -273,6 +284,7 @@ class _MediaService extends BaseMediaService implements MediaService {
       return super.transformUploadedDataResponse(
         await _uploadMedia(
           file: file,
+          category: category,
           mimeType: mimeType,
           altText: altText,
           additionalOwners: additionalOwners,
@@ -290,6 +302,7 @@ class _MediaService extends BaseMediaService implements MediaService {
     return super.transformUploadedDataResponse(
       await _uploadMedia(
         file: file,
+        category: category,
         mimeType: mimeType,
         altText: altText,
         additionalOwners: additionalOwners,
@@ -305,6 +318,7 @@ class _MediaService extends BaseMediaService implements MediaService {
     required String videoId,
     required String captionId,
     required core.Language language,
+    MediaCategory category = MediaCategory.tweet,
   }) async =>
       super.evaluateResponse(
         await super.post(
@@ -312,7 +326,10 @@ class _MediaService extends BaseMediaService implements MediaService {
           '/1.1/media/subtitles/create.json',
           body: {
             'media_id': videoId,
-            'media_category': MediaCategory.tweetVideo.value,
+            'media_category': _resolveMediaCategory(
+              category,
+              MediaMimeType.video,
+            ),
             'subtitle_info': {
               'subtitles': [
                 {
@@ -331,6 +348,7 @@ class _MediaService extends BaseMediaService implements MediaService {
     required String videoId,
     required String captionId,
     required core.Language language,
+    MediaCategory mediaCategory = MediaCategory.tweet,
   }) async =>
       super.evaluateResponse(
         await super.post(
@@ -338,7 +356,10 @@ class _MediaService extends BaseMediaService implements MediaService {
           '/1.1/media/subtitles/delete.json',
           body: {
             'media_id': videoId,
-            'media_category': MediaCategory.tweetVideo.value,
+            'media_category': _resolveMediaCategory(
+              mediaCategory,
+              MediaMimeType.video,
+            ),
             'subtitle_info': {
               'subtitles': [
                 {
@@ -395,6 +416,7 @@ class _MediaService extends BaseMediaService implements MediaService {
 
   Future<core.Response> _uploadMedia({
     required File file,
+    required MediaCategory category,
     required String mimeType,
     String? altText,
     List<String>? additionalOwners,
@@ -422,6 +444,7 @@ class _MediaService extends BaseMediaService implements MediaService {
 
     final initResponse = await _initUpload(
       mediaBytes: mediaBytes,
+      category: category,
       mediaMimeType: mimeType,
       additionalOwners: additionalOwners,
     );
@@ -474,6 +497,7 @@ class _MediaService extends BaseMediaService implements MediaService {
 
   Future<core.Response> _initUpload({
     required List<int> mediaBytes,
+    required MediaCategory category,
     required String mediaMimeType,
     List<String>? additionalOwners,
   }) async =>
@@ -484,7 +508,10 @@ class _MediaService extends BaseMediaService implements MediaService {
           'command': 'INIT',
           'total_bytes': mediaBytes.length,
           'media_type': mediaMimeType,
-          'media_category': MediaCategory.valueOf(mediaMimeType),
+          'media_category': _resolveMediaCategory(
+            category,
+            MediaMimeType.valueOf(mediaMimeType),
+          ),
           'additional_owners': additionalOwners,
         },
       );
@@ -688,6 +715,14 @@ class _MediaService extends BaseMediaService implements MediaService {
 
     return mediaMimeType;
   }
+
+  String _resolveMediaCategory(
+    final MediaCategory category,
+    final MediaMimeType mimeType,
+  ) =>
+      mimeType == MediaMimeType.videoCaption
+          ? mimeType.value
+          : '${category.value}_${mimeType.value}';
 
   bool _isImage(final String mimeType) => mimeType.startsWith('image');
   bool _isVideo(final String mimeType) => mimeType.startsWith('video');
