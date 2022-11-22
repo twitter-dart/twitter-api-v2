@@ -4,7 +4,7 @@
 
 // Package imports:
 import 'package:test/test.dart';
-import 'package:twitter_api_v2/src/service/tweets/filtering/operator/standalone/Context.dart';
+import 'package:twitter_api_v2/src/service/tweets/filtering/operator/standalone/context.dart';
 
 void main() {
   group('.toString', () {
