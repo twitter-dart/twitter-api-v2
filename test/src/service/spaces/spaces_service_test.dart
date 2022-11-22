@@ -63,6 +63,7 @@ void main() {
           UserContext.oauth2Only,
           '/2/spaces/search',
           'test/src/service/spaces/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {'query': 'Hello, World!'},
         ),
       );
@@ -141,6 +142,7 @@ void main() {
           UserContext.oauth2Only,
           '/2/spaces/2222',
           'test/src/service/spaces/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {},
         ),
       );
@@ -246,6 +248,7 @@ void main() {
           UserContext.oauth2Only,
           '/2/spaces',
           'test/src/service/spaces/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {'ids': '1DXxyRYNejbKM,2DXxyRYNejbKM'},
         ),
       );
@@ -329,6 +332,7 @@ void main() {
           UserContext.oauth2Only,
           '/2/spaces/2222/buyers',
           'test/src/service/spaces/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {},
         ),
       );
@@ -408,6 +412,7 @@ void main() {
           UserContext.oauth2Only,
           '/2/spaces/2222/tweets',
           'test/src/service/spaces/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {},
         ),
       );
@@ -491,6 +496,7 @@ void main() {
           UserContext.oauth2Only,
           '/2/spaces/by/creator_ids',
           'test/src/service/spaces/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {'user_ids': '1DXxyRYNejbKM,2DXxyRYNejbKM'},
         ),
       );

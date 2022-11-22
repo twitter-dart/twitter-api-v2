@@ -60,6 +60,7 @@ void main() {
           '/2/dm_events',
           'test/src/service/dms/data/rate_limit_exceeded_error.json',
           {},
+          statusCode: 429,
         ),
       );
 
@@ -240,6 +241,7 @@ void main() {
           '/2/dm_conversations/with/1234/dm_events',
           'test/src/service/dms/data/rate_limit_exceeded_error.json',
           {},
+          statusCode: 429,
         ),
       );
 
@@ -428,6 +430,7 @@ void main() {
           '/2/dm_conversations/1234/dm_events',
           'test/src/service/dms/data/rate_limit_exceeded_error.json',
           {},
+          statusCode: 429,
         ),
       );
 
@@ -615,6 +618,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/dm_conversations/with/1234/messages',
           'test/src/service/dms/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 
@@ -705,6 +709,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/dm_conversations/1234/messages',
           'test/src/service/dms/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 
@@ -795,6 +800,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/dm_conversations',
           'test/src/service/dms/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 

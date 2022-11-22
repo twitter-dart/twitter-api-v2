@@ -1,5 +1,9 @@
 # Release Note
 
+## 4.4.2
+
+- Improved internal process for checking rate limit. ([#562](https://github.com/twitter-dart/twitter-api-v2/issues/562))
+
 ## v4.4.1
 
 - Fixed bug that retry count does not increment correctly. ([#560](https://github.com/twitter-dart/twitter-api-v2/issues/560))

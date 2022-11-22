@@ -44,7 +44,7 @@ void expectRateLimitExceededException(Function fn) {
       allOf(
         isA<RateLimitExceededException>(),
         predicate((RateLimitExceededException e) =>
-            e.message == 'Rate limit exceeded'),
+            e.message == 'Rate limit exceeded.'),
       ),
     ),
   );
