@@ -59,6 +59,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/users/0000/following',
           'test/src/service/users/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 
@@ -128,6 +129,7 @@ void main() {
         context: context.buildDeleteStub(
           '/2/users/0000/following/1111',
           'test/src/service/users/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 
@@ -196,6 +198,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/users/0000/followers',
           'test/src/service/users/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {},
         ),
       );
@@ -373,6 +376,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/users/0000/following',
           'test/src/service/users/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {},
         ),
       );
@@ -550,6 +554,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/users/0000',
           'test/src/service/users/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {},
         ),
       );
@@ -633,6 +638,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/users',
           'test/src/service/users/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {'ids': '2244994945,783214'},
         ),
       );
@@ -719,6 +725,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/users/by/username/TwitterDev',
           'test/src/service/users/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {},
         ),
       );
@@ -825,6 +832,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/users/by',
           'test/src/service/users/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {'usernames': 'TwitterDev,Twitter'},
         ),
       );
@@ -910,6 +918,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/users/me',
           'test/src/service/users/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {},
         ),
       );
@@ -991,6 +1000,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/users/1111/muting',
           'test/src/service/users/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 
@@ -1060,6 +1070,7 @@ void main() {
         context: context.buildDeleteStub(
           '/2/users/1111/muting/2222',
           'test/src/service/users/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 
@@ -1137,6 +1148,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/users/1111/muting',
           'test/src/service/users/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {
             'max_results': '10',
             'pagination_token': 'TOKEN',
@@ -1333,6 +1345,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/users/0000/blocking',
           'test/src/service/users/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 
@@ -1402,6 +1415,7 @@ void main() {
         context: context.buildDeleteStub(
           '/2/users/0000/blocking/1111',
           'test/src/service/users/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 
@@ -1481,6 +1495,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/users/1111/blocking',
           'test/src/service/users/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {
             'max_results': '10',
             'pagination_token': 'TOKEN',

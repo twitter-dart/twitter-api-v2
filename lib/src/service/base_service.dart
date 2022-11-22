@@ -415,6 +415,13 @@ abstract class BaseService implements _Service {
       );
     }
 
+    if (response.statusCode == 429) {
+      throw core.RateLimitExceededException(
+        'Rate limit exceeded.',
+        response,
+      );
+    }
+
     if (response.statusCode == 204) {
       //! 204: No Content.
       return response;
@@ -425,19 +432,7 @@ abstract class BaseService implements _Service {
       return response;
     }
 
-    final jsonBody = core.tryJsonDecode(response, response.body);
-
-    if (jsonBody.containsKey(ResponseField.errors.value)) {
-      final errors = jsonBody[ResponseField.errors.value];
-      for (final error in errors) {
-        if (error['code'] == 88) {
-          throw core.RateLimitExceededException(
-            error['message'] ?? '',
-            response,
-          );
-        }
-      }
-    }
+    core.tryJsonDecode(response, response.body);
 
     return response;
   }
@@ -453,20 +448,14 @@ abstract class BaseService implements _Service {
       );
     }
 
-    final jsonBody = core.tryJsonDecode(response, event);
-
-    if (jsonBody.containsKey(ResponseField.errors.value)) {
-      final errors = jsonBody[ResponseField.errors.value];
-
-      for (final error in errors) {
-        if (error['code'] == 88) {
-          throw core.RateLimitExceededException(
-            error['message'] ?? '',
-            response,
-          );
-        }
-      }
+    if (response.statusCode == 429) {
+      throw core.RateLimitExceededException(
+        'Rate limit exceeded.',
+        response,
+      );
     }
+
+    core.tryJsonDecode(response, event);
   }
 }
 

@@ -99,6 +99,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/tweets',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 
@@ -161,6 +162,7 @@ void main() {
         context: context.buildDeleteStub(
           '/2/tweets/1111',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 
@@ -225,6 +227,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/users/0000/likes',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 
@@ -294,6 +297,7 @@ void main() {
         context: context.buildDeleteStub(
           '/2/users/0000/likes/1111',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 
@@ -364,6 +368,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/users/0000/retweets',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 
@@ -433,6 +438,7 @@ void main() {
         context: context.buildDeleteStub(
           '/2/users/0000/retweets/1111',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 
@@ -506,6 +512,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/tweets/1111/liking_users',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {},
         ),
       );
@@ -690,6 +697,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/users/0000/liked_tweets',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {},
         ),
       );
@@ -874,6 +882,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/tweets/1111/retweeted_by',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {},
         ),
       );
@@ -1058,6 +1067,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/tweets/1111/quote_tweets',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {},
         ),
       );
@@ -1264,6 +1274,7 @@ void main() {
           UserContext.oauth2Only,
           '/2/tweets/search/recent',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {'query': 'hello'},
         ),
       );
@@ -1444,6 +1455,7 @@ void main() {
           UserContext.oauth2Only,
           '/2/tweets/search/all',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {'query': 'hello'},
         ),
       );
@@ -1780,6 +1792,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/tweets/1111',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {},
         ),
       );
@@ -1863,6 +1876,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/tweets',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {'ids': '1261326399320715264,1278347468690915330'},
         ),
       );
@@ -1957,6 +1971,7 @@ void main() {
           UserContext.oauth2Only,
           '/2/tweets/counts/recent',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {
             'query': 'hello',
             'since_id': '1111',
@@ -2069,6 +2084,7 @@ void main() {
           UserContext.oauth2Only,
           '/2/tweets/counts/all',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {
             'query': 'hello',
             'since_id': '1111',
@@ -2268,6 +2284,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/users/0000/bookmarks',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 
@@ -2337,6 +2354,7 @@ void main() {
         context: context.buildDeleteStub(
           '/2/users/0000/bookmarks/1111',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 
@@ -2406,6 +2424,7 @@ void main() {
           UserContext.oauth2Only,
           '/2/users/0000/bookmarks',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {},
         ),
       );
@@ -2485,6 +2504,7 @@ void main() {
         context: context.buildPutStub(
           '/2/tweets/0000/hidden',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 
@@ -2547,6 +2567,7 @@ void main() {
         context: context.buildPutStub(
           '/2/tweets/0000/hidden',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 
@@ -2624,6 +2645,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/users/0000/mentions',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {
             'max_results': '10',
             'pagination_token': 'TOKEN',
@@ -2915,6 +2937,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/users/0000/tweets',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {
             'max_results': '10',
             'pagination_token': 'TOKEN',
@@ -3120,6 +3143,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/users/0000/timelines/reverse_chronological',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {
             'max_results': '10',
             'pagination_token': 'TOKEN',
@@ -3481,6 +3505,7 @@ void main() {
           UserContext.oauth2Only,
           '/2/tweets/search/stream/rules',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 
@@ -3553,6 +3578,7 @@ void main() {
           UserContext.oauth2Only,
           '/2/tweets/search/stream/rules',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {
             'ids': 'XXXX,YYYY',
           },
