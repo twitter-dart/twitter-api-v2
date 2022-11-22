@@ -1,5 +1,9 @@
 # Release Note
 
+## v4.4.1
+
+- Fixed bug that retry count does not increment correctly. ([#560](https://github.com/twitter-dart/twitter-api-v2/issues/560))
+
 ## v4.4.0
 
 - Added service for `Direct Message`. You can use endpoints for `Direct Message` using by `TwitterApi.directMessages` property.
