@@ -264,6 +264,34 @@ abstract class StandaloneSyntax extends GroupSyntax {
         _standaloneOperation.createNegatedRetweetedBy(user),
       );
 
+  /// Matches Tweets with a specific domain id and/or domain id,
+  /// entity id pair where * represents a wildcard.
+  ///
+  /// To learn more about this operator, please visit
+  /// [page on Tweet annotations](https://developer.twitter.com/en/docs/twitter-api/annotations/overview).
+  ///
+  /// You can only pass a single domain/entity per this operator.
+  ///
+  /// ## Parameters
+  ///
+  /// - [value]: Context value to be matched.
+  ///
+  /// ## Type
+  ///
+  /// - [Standalone](https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/integrate/build-a-rule#types)
+  ///
+  /// ## Availability
+  ///
+  /// - Essential
+  LogicalChannel matchContext(final String value) => _buffer.appendOperator(
+        _standaloneOperation.createContext(value),
+      );
+
+  /// The negated representation of [matchEntity].
+  LogicalChannel notMatchContext(final String value) => _buffer.appendOperator(
+        _standaloneOperation.createNegatedContext(value),
+      );
+
   /// Matches Tweets with a specific entity string value.
   ///
   /// To learn more about this operator, please visit
