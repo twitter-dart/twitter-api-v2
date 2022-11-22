@@ -6,6 +6,9 @@
 - Supported `entity:` filtering rule operator. You can use this operator with following methods. ([#557](https://github.com/twitter-dart/twitter-api-v2/issues/557))
   - `matchEntity`
   - `notMatchEntity`
+- Supported `context:` filtering rule operator. You can use this operator with following methods. ([#556](https://github.com/twitter-dart/twitter-api-v2/issues/556))
+  - `matchContext`
+  - `notMatchContext`
 
 ## v4.4.1
 

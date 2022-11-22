@@ -10,6 +10,7 @@ import '../../../common/range.dart';
 import '../../distance_unit.dart';
 import '../operator/standalone/bounding_box.dart';
 import '../operator/standalone/cashtag.dart';
+import '../operator/standalone/context.dart';
 import '../operator/standalone/conversation.dart';
 import '../operator/standalone/country.dart';
 import '../operator/standalone/entity.dart';
@@ -87,6 +88,12 @@ class StandaloneOperation {
   /// Returns the new instance of negated [RetweetedBy] based on [user].
   RetweetedBy createNegatedRetweetedBy(final String user) =>
       RetweetedBy.negated(user);
+
+  /// Returns the new instance of [Context] based on [value].
+  Context createContext(final String value) => Context(value);
+
+  /// Returns the new instance of negated [Context] based on [value].
+  Context createNegatedContext(final String value) => Context.negated(value);
 
   /// Returns the new instance of [Entity] based on [value].
   Entity createEntity(final String value) => Entity(value);
