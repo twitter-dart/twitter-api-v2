@@ -126,6 +126,20 @@ void main() {
       expect(actual.build(), '-retweets_of:test');
     });
 
+    test('.matchEntity', () {
+      final actual = FilteringRule.of().matchEntity('test aaa');
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'entity:"test aaa"');
+    });
+
+    test('.notMatchEntity', () {
+      final actual = FilteringRule.of().notMatchEntity('test aaa');
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), '-entity:"test aaa"');
+    });
+
     test('.matchConversation', () {
       final actual = FilteringRule.of().matchConversation('1234');
 

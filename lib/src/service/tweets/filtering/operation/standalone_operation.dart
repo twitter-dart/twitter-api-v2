@@ -12,6 +12,7 @@ import '../operator/standalone/bounding_box.dart';
 import '../operator/standalone/cashtag.dart';
 import '../operator/standalone/conversation.dart';
 import '../operator/standalone/country.dart';
+import '../operator/standalone/entity.dart';
 import '../operator/standalone/hashtag.dart';
 import '../operator/standalone/keyword.dart';
 import '../operator/standalone/place.dart';
@@ -86,6 +87,12 @@ class StandaloneOperation {
   /// Returns the new instance of negated [RetweetedBy] based on [user].
   RetweetedBy createNegatedRetweetedBy(final String user) =>
       RetweetedBy.negated(user);
+
+  /// Returns the new instance of [Entity] based on [value].
+  Entity createEntity(final String value) => Entity(value);
+
+  /// Returns the new instance of negated [Entity] based on [value].
+  Entity createNegatedEntity(final String value) => Entity.negated(value);
 
   /// Returns the new instance of [Conversation] based on [tweetId].
   Conversation createConversation(final String tweetId) =>
