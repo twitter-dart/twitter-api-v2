@@ -3,6 +3,9 @@
 ## 4.4.2
 
 - Improved internal process for checking rate limit. ([#562](https://github.com/twitter-dart/twitter-api-v2/issues/562))
+- Supported `entity:` filtering rule operator. You can use this operator with following methods. ([#557](https://github.com/twitter-dart/twitter-api-v2/issues/557))
+  - `matchEntity`
+  - `notMatchEntity`
 
 ## v4.4.1
 

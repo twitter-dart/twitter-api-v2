@@ -264,6 +264,33 @@ abstract class StandaloneSyntax extends GroupSyntax {
         _standaloneOperation.createNegatedRetweetedBy(user),
       );
 
+  /// Matches Tweets with a specific entity string value.
+  ///
+  /// To learn more about this operator, please visit
+  /// [page on annotations](https://developer.twitter.com/en/docs/twitter-api/annotations/overview).
+  ///
+  /// You can only pass a single entity per this operator.
+  ///
+  /// ## Parameters
+  ///
+  /// - [value]: Entity value to be matched.
+  ///
+  /// ## Type
+  ///
+  /// - [Standalone](https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/integrate/build-a-rule#types)
+  ///
+  /// ## Availability
+  ///
+  /// - Essential
+  LogicalChannel matchEntity(final String value) => _buffer.appendOperator(
+        _standaloneOperation.createEntity(value),
+      );
+
+  /// The negated representation of [matchEntity].
+  LogicalChannel notMatchEntity(final String value) => _buffer.appendOperator(
+        _standaloneOperation.createNegatedEntity(value),
+      );
+
   /// Matches Tweets that share a common conversation ID. A conversation ID
   /// is set to the Tweet ID of a Tweet that started a conversation.
   ///
