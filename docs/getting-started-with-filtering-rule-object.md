@@ -34,7 +34,7 @@ void main() {
 
 The **FilteringRule object is not a simple builder object**. **FilteringRule** object is also aware of the syntax of filtering rules and has a mechanism that prevents developers from creating filtering rules with incorrect syntax.
 
-For example, **you could write** like:
+For example, **you can write** like:
 
 ```dart
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
@@ -51,7 +51,7 @@ void main() {
 }
 ```
 
-But, **you couldn't write** like:
+But, **you can't write** like:
 
 ```dart
 import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
