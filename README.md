@@ -1076,7 +1076,7 @@ void main() {
 
 Okay, the specifications of this feature are difficult to explain in this `README` alone. For this reason, I have created a document for the **FilteringRule** object, which you should also review.
 
-- [Getting Started with FilteringRule Object](https://github.com/twitter-dart/twitter-api-v2/tree/main/docs/getting-started-with-filtering-rule-object.md)
+- [Getting Started with FilteringRule Object](https://github.com/twitter-dart/twitter-api-v2/tree/main/doc/getting-started-with-filtering-rule-object.md)
 
 ## 1.5. Contribution 🏆
 
