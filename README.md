@@ -97,6 +97,7 @@
     - [1.4.10. Thrown Exceptions](#1410-thrown-exceptions)
     - [1.4.11. Upload Media](#1411-upload-media)
     - [1.4.12. Check the Progress of Media Upload](#1412-check-the-progress-of-media-upload)
+    - [1.4.13. Generate Filtering Rules Safely and Easily](#1413-generate-filtering-rules-safely-and-easily)
   - [1.5. Contribution 🏆](#15-contribution-)
   - [1.6. Contributors ✨](#16-contributors-)
   - [1.7. Support ❤️](#17-support-️)
@@ -1042,6 +1043,40 @@ And the trigger that calls the `onProgress` callback is as follows. But if the m
 3. When the upload status becomes `completed` (**Always called once at the end of processing**)
 
 Note that media uploads may also fail for reasons such as broken media. In such cases, [TwitterUploadException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/TwitterUploadException-class.html) is always thrown.
+
+### 1.4.13. Generate Filtering Rules Safely and Easily
+
+The [Filtered Stream](https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/api-reference/get-tweets-search-stream) endpoint in [Twitter API v2.0](https://developer.twitter.com/en/docs/twitter-api/data-dictionary/introduction) supports a number of operators for advanced searches, not just `keywords` and `hashtags`.
+
+- [Filtered Stream: Build a Rule](https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/integrate/build-a-rule)
+
+For example, if you want to extract tweets with the hashtag "#ElonMusk" and the language of the tweeted content is English, you would create the following rule:
+
+- `#ElonMusk lang:en`
+
+Generating these filtering rules is simple at first glance, but the number of supported operators is so large that it's quite a painstaking task to look at the references for each rule you create. Also, there is a syntax specific to this filtering rule, and typos may occur when entering the rules manually.
+
+So, [twitter_api_v2](https://github.com/twitter-dart/twitter-api-v2) provides [FilteringRule](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/FilteringRule-class.html) object that allows this filtering rule to be constructed safely and easily.
+
+The previous filtering rule example would look like following with FilteringRule object.
+
+```dart
+import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
+
+void main() {
+  final rule = v2.FilteringRule.of()
+      .matchHashtag('ElonMusk')
+      .and()
+      .matchLanguage(v2.Language.english);
+
+  // -> #ElonMusk lang:en
+  print(rule.build());
+}
+```
+
+Okay, the specifications of this feature are difficult to explain in this `README` alone. For this reason, I have created a document for the **FilteringRule** object, which you should also review.
+
+- [Getting Started with FilteringRule Object](https://github.com/twitter-dart/twitter-api-v2/tree/main/docs/getting-started-with-filtering-rule-object.md)
 
 ## 1.5. Contribution 🏆
 

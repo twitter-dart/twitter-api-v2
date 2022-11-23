@@ -9,6 +9,8 @@
 - Supported `context:` filtering rule operator. You can use this operator with following methods. ([#556](https://github.com/twitter-dart/twitter-api-v2/issues/556))
   - `matchContext`
   - `notMatchContext`
+- Added documentation about `FilteringRule` object. ([#558](https://github.com/twitter-dart/twitter-api-v2/issues/558))
+  - [Filtered Stream: Build a Rule](https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/integrate/build-a-rule)
 
 ## v4.4.1
 
