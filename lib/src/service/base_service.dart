@@ -114,8 +114,7 @@ abstract class BaseService implements _Service {
 
   final core.ServiceHelper _helper;
 
-  final ResponseHeaderConverter headerConverter =
-      const ResponseHeaderConverter();
+  final RateLimitConverter rateLimitConverter = const RateLimitConverter();
 
   @override
   Future<core.Response> get(
@@ -216,7 +215,7 @@ abstract class BaseService implements _Service {
 
     return TwitterResponse(
       rateLimit: RateLimit.fromJson(
-        headerConverter.convert(response.headers),
+        rateLimitConverter.convert(response.headers),
       ),
       data: dataBuilder(
         jsonBody[ResponseField.data.value],
@@ -242,7 +241,7 @@ abstract class BaseService implements _Service {
 
     return TwitterResponse(
       rateLimit: RateLimit.fromJson(
-        headerConverter.convert(response.headers),
+        rateLimitConverter.convert(response.headers),
       ),
       data: jsonBody[ResponseField.data.value]
           .map<D>((tweet) => dataBuilder(tweet))
@@ -279,7 +278,7 @@ abstract class BaseService implements _Service {
       unencodedPath: unencodedPath,
       queryParameters: queryParameters,
       rateLimit: RateLimit.fromJson(
-        headerConverter.convert(response.headers),
+        rateLimitConverter.convert(response.headers),
       ),
       data: jsonBody[ResponseField.data.value]
           .map<D>((tweet) => dataBuilder(tweet))
@@ -369,7 +368,7 @@ abstract class BaseService implements _Service {
   TwitterResponse<bool, void> evaluateResponse(final core.Response response) =>
       TwitterResponse(
         rateLimit: RateLimit.fromJson(
-          headerConverter.convert(response.headers),
+          rateLimitConverter.convert(response.headers),
         ),
         data: _evaluateResponse(response),
       );
@@ -459,8 +458,9 @@ abstract class BaseService implements _Service {
   }
 }
 
-class ResponseHeaderConverter {
-  const ResponseHeaderConverter();
+class RateLimitConverter {
+  /// Returns the new instance of [RateLimitConverter].
+  const RateLimitConverter();
 
   Map<String, dynamic> convert(final Map<String, String> input) => {
         //! Although it rarely occurs, there is a case where the header does not

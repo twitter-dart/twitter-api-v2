@@ -3472,7 +3472,7 @@ class _TweetsService extends BaseService implements TweetsService {
       },
     );
 
-    final headers = super.headerConverter.convert(stream.headers);
+    final headers = super.rateLimitConverter.convert(stream.headers);
 
     return TwitterStreamResponse(
       rateLimit: RateLimit.fromJson(headers),
@@ -3515,7 +3515,7 @@ class _TweetsService extends BaseService implements TweetsService {
       },
     );
 
-    final headers = super.headerConverter.convert(stream.headers);
+    final headers = super.rateLimitConverter.convert(stream.headers);
 
     return TwitterStreamResponse(
       rateLimit: RateLimit.fromJson(headers),
@@ -3555,7 +3555,7 @@ class _TweetsService extends BaseService implements TweetsService {
       },
     );
 
-    final headers = super.headerConverter.convert(stream.headers);
+    final headers = super.rateLimitConverter.convert(stream.headers);
 
     return TwitterStreamResponse(
       rateLimit: RateLimit.fromJson(headers),

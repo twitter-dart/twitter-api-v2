@@ -1,5 +1,15 @@
 # Release Note
 
+## v4.4.4
+
+- Supported additional language codes. ([#570](https://github.com/twitter-dart/twitter-api-v2/issues/570))
+  - `qam` for tweets with mentions only (works for tweets since 2022-06-14)
+  - `qct` for tweets with cashtags only (works for tweets since 2022-06-14)
+  - `qht` for tweets with hashtags only (works for tweets since 2022-06-14)
+  - `qme` for tweets with media links (works for tweets since 2022-06-14)
+  - `qst` for tweets with a very short text (works for tweets since 2022-06-14)
+  - `zxx` for tweets with either media or Twitter Card only, without any additional text (works for tweets since 2022-06-14)
+
 ## v4.4.3
 
 - Fixed a bug that `TweetEditControls.remainingCount` had a different type. ([#571](https://github.com/twitter-dart/twitter-api-v2/issues/571))
