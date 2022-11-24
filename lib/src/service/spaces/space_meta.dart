@@ -13,6 +13,7 @@ part 'space_meta.g.dart';
 
 @freezed
 class SpaceMeta with _$SpaceMeta implements Meta {
+  @JsonSerializable(includeIfNull: false)
   const factory SpaceMeta({
     /// The number of spaces returned in this request.
     required int? resultCount,

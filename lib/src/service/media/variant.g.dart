@@ -22,9 +22,17 @@ _$_Variant _$$_VariantFromJson(Map json) => $checkedCreate(
       fieldKeyMap: const {'bitRate': 'bit_rate', 'contentType': 'content_type'},
     );
 
-Map<String, dynamic> _$$_VariantToJson(_$_Variant instance) =>
-    <String, dynamic>{
-      'bit_rate': instance.bitRate,
-      'content_type': instance.contentType,
-      'url': instance.url,
-    };
+Map<String, dynamic> _$$_VariantToJson(_$_Variant instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('bit_rate', instance.bitRate);
+  val['content_type'] = instance.contentType;
+  val['url'] = instance.url;
+  return val;
+}

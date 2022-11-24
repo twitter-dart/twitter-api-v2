@@ -705,7 +705,8 @@ class __$$_TweetDataCopyWithImpl<$Res> extends _$TweetDataCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_TweetData implements _TweetData {
   const _$_TweetData(
       {required this.id,

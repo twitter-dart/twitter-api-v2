@@ -22,10 +22,18 @@ _$_Mention _$$_MentionFromJson(Map json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$$_MentionToJson(_$_Mention instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'username': instance.username,
-      'start': instance.start,
-      'end': instance.end,
-    };
+Map<String, dynamic> _$$_MentionToJson(_$_Mention instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('id', instance.id);
+  val['username'] = instance.username;
+  val['start'] = instance.start;
+  val['end'] = instance.end;
+  return val;
+}

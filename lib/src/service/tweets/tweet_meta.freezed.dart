@@ -154,7 +154,8 @@ class __$$_TweetMetaCopyWithImpl<$Res> extends _$TweetMetaCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_TweetMeta implements _TweetMeta {
   const _$_TweetMeta(
       {this.newestId,

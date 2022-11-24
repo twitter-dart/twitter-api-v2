@@ -34,14 +34,23 @@ _$_ListData _$$_ListDataFromJson(Map json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$$_ListDataToJson(_$_ListData instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'description': instance.description,
-      'owner_id': instance.ownerId,
-      'follower_count': instance.followerCount,
-      'member_count': instance.memberCount,
-      'private': instance.isPrivate,
-      'created_at': instance.createdAt?.toIso8601String(),
-    };
+Map<String, dynamic> _$$_ListDataToJson(_$_ListData instance) {
+  final val = <String, dynamic>{
+    'id': instance.id,
+    'name': instance.name,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('description', instance.description);
+  writeNotNull('owner_id', instance.ownerId);
+  writeNotNull('follower_count', instance.followerCount);
+  writeNotNull('member_count', instance.memberCount);
+  writeNotNull('private', instance.isPrivate);
+  writeNotNull('created_at', instance.createdAt?.toIso8601String());
+  return val;
+}

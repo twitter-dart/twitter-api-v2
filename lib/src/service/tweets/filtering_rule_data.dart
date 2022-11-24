@@ -13,6 +13,7 @@ part 'filtering_rule_data.g.dart';
 
 @freezed
 class FilteringRuleData with _$FilteringRuleData implements Data {
+  @JsonSerializable(includeIfNull: false)
   const factory FilteringRuleData({
     /// Unique identifier of this rule. This is returned as a string in order
     /// to avoid complications with languages and tools that cannot

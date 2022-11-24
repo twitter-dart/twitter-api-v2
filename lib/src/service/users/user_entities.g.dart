@@ -30,8 +30,16 @@ _$_UserEntities _$$_UserEntitiesFromJson(Map json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$$_UserEntitiesToJson(_$_UserEntities instance) =>
-    <String, dynamic>{
-      'url': instance.url?.toJson(),
-      'description': instance.description?.toJson(),
-    };
+Map<String, dynamic> _$$_UserEntitiesToJson(_$_UserEntities instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('url', instance.url?.toJson());
+  writeNotNull('description', instance.description?.toJson());
+  return val;
+}

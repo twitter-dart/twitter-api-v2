@@ -132,7 +132,8 @@ class __$$_PrivateTweetMetricsCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_PrivateTweetMetrics implements _PrivateTweetMetrics {
   const _$_PrivateTweetMetrics(
       {required this.impressionCount,

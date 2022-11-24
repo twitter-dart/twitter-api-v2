@@ -178,7 +178,8 @@ class __$$_OrganicTweetMetricsCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_OrganicTweetMetrics implements _OrganicTweetMetrics {
   const _$_OrganicTweetMetrics(
       {required this.impressionCount,

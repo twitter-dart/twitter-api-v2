@@ -12,6 +12,7 @@ part 'promoted_tweet_metrics.g.dart';
 
 @freezed
 class PromotedTweetMetrics with _$PromotedTweetMetrics {
+  @JsonSerializable(includeIfNull: false)
   const factory PromotedTweetMetrics({
     /// A count of how many times the Tweet has been viewed
     /// (not unique by user). A view is counted if any part of the Tweet is

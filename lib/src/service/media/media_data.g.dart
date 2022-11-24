@@ -69,22 +69,31 @@ _$_MediaData _$$_MediaDataFromJson(Map json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$$_MediaDataToJson(_$_MediaData instance) =>
-    <String, dynamic>{
-      'media_key': instance.key,
-      'type': _$MediaTypeEnumMap[instance.type]!,
-      'url': instance.url,
-      'alt_text': instance.altText,
-      'duration_ms': instance.durationMilliseconds,
-      'height': instance.height,
-      'width': instance.width,
-      'non_public_metrics': instance.privateMetrics?.toJson(),
-      'organic_metrics': instance.organicMetrics?.toJson(),
-      'preview_image_url': instance.previewImageUrl,
-      'promoted_metrics': instance.promotedMetrics?.toJson(),
-      'public_metrics': instance.publicMetrics?.toJson(),
-      'variants': instance.variants?.map((e) => e.toJson()).toList(),
-    };
+Map<String, dynamic> _$$_MediaDataToJson(_$_MediaData instance) {
+  final val = <String, dynamic>{
+    'media_key': instance.key,
+    'type': _$MediaTypeEnumMap[instance.type]!,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('url', instance.url);
+  writeNotNull('alt_text', instance.altText);
+  writeNotNull('duration_ms', instance.durationMilliseconds);
+  writeNotNull('height', instance.height);
+  writeNotNull('width', instance.width);
+  writeNotNull('non_public_metrics', instance.privateMetrics?.toJson());
+  writeNotNull('organic_metrics', instance.organicMetrics?.toJson());
+  writeNotNull('preview_image_url', instance.previewImageUrl);
+  writeNotNull('promoted_metrics', instance.promotedMetrics?.toJson());
+  writeNotNull('public_metrics', instance.publicMetrics?.toJson());
+  writeNotNull('variants', instance.variants?.map((e) => e.toJson()).toList());
+  return val;
+}
 
 const _$MediaTypeEnumMap = {
   MediaType.photo: 'photo',

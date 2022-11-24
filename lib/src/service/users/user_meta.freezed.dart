@@ -127,7 +127,8 @@ class __$$_UserMetaCopyWithImpl<$Res> extends _$UserMetaCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_UserMeta implements _UserMeta {
   const _$_UserMeta(
       {required this.resultCount, this.nextToken, this.previousToken});

@@ -26,9 +26,18 @@ _$_UserMeta _$$_UserMetaFromJson(Map json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$$_UserMetaToJson(_$_UserMeta instance) =>
-    <String, dynamic>{
-      'result_count': instance.resultCount,
-      'next_token': instance.nextToken,
-      'previous_token': instance.previousToken,
-    };
+Map<String, dynamic> _$$_UserMetaToJson(_$_UserMeta instance) {
+  final val = <String, dynamic>{
+    'result_count': instance.resultCount,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('next_token', instance.nextToken);
+  writeNotNull('previous_token', instance.previousToken);
+  return val;
+}

@@ -156,7 +156,8 @@ class __$$_TweetEntitiesCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_TweetEntities implements _TweetEntities {
   const _$_TweetEntities(
       {final List<TweetAnnotation>? annotations,

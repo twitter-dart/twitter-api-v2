@@ -116,7 +116,8 @@ class __$$_VariantCopyWithImpl<$Res> extends _$VariantCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_Variant implements _Variant {
   const _$_Variant(
       {this.bitRate, required this.contentType, required this.url});

@@ -117,7 +117,8 @@ class __$$_TweetAttachmentsCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_TweetAttachments implements _TweetAttachments {
   const _$_TweetAttachments(
       {final List<String>? mediaKeys, final List<String>? pollIds})

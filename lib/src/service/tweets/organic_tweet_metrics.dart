@@ -12,6 +12,7 @@ part 'organic_tweet_metrics.g.dart';
 
 @freezed
 class OrganicTweetMetrics with _$OrganicTweetMetrics {
+  @JsonSerializable(includeIfNull: false)
   const factory OrganicTweetMetrics({
     /// A count of how many times the Tweet has been viewed
     /// (not unique by user). A view is counted if any part of the Tweet is

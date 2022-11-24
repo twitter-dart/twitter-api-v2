@@ -128,7 +128,8 @@ class __$$_FilteringRuleMetaCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_FilteringRuleMeta implements _FilteringRuleMeta {
   const _$_FilteringRuleMeta(
       {@JsonKey(name: 'sent') this.sentAt, this.summary});

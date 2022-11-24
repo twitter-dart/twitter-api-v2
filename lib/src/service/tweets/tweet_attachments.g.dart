@@ -23,8 +23,16 @@ _$_TweetAttachments _$$_TweetAttachmentsFromJson(Map json) => $checkedCreate(
       fieldKeyMap: const {'mediaKeys': 'media_keys', 'pollIds': 'poll_ids'},
     );
 
-Map<String, dynamic> _$$_TweetAttachmentsToJson(_$_TweetAttachments instance) =>
-    <String, dynamic>{
-      'media_keys': instance.mediaKeys,
-      'poll_ids': instance.pollIds,
-    };
+Map<String, dynamic> _$$_TweetAttachmentsToJson(_$_TweetAttachments instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('media_keys', instance.mediaKeys);
+  writeNotNull('poll_ids', instance.pollIds);
+  return val;
+}
