@@ -1615,7 +1615,7 @@ void main() {
 
       expect(editControls.toJson(), {
         'is_edit_eligible': true,
-        'edits_remaining': '4',
+        'edits_remaining': 4,
         'editable_until': '2022-08-21T09:35:20.311'
       });
     });
