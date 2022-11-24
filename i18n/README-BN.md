@@ -210,14 +210,14 @@ Future<void> main() async {
 
 #### 1.2.1.1. টুইট
 
-| এন্ডপয়েন্ট                                                                                                                       | মেথডের নাম                                                                                                            |
+| এন্ডপয়েন্ট                                                                                                                       | মেথডের নাম                                                                                                            |
 | ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | [POST /2/tweets](https://developer.twitter.com/en/docs/twitter-api/tweets/manage-tweets/api-reference/post-tweets)            | [createTweet](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/createTweet.html)   |
 | [DELETE /2/tweets/:id](https://developer.twitter.com/en/docs/twitter-api/tweets/manage-tweets/api-reference/delete-tweets-id) | [destroyTweet](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/destroyTweet.html) |
 
 #### 1.2.1.2. লাইকস
 
-| এন্ডপয়েন্ট                                                                                                                                            | মেথডের নাম                                                                                                                      |
+| এন্ডপয়েন্ট                                                                                                                                            | মেথডের নাম                                                                                                                      |
 | -------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | [POST /2/users/:id/likes](https://developer.twitter.com/en/docs/twitter-api/tweets/likes/api-reference/post-users-id-likes)                        | [createLike](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/createLike.html)               |
 | [DELETE /2/users/:id/likes/:tweet_id](https://developer.twitter.com/en/docs/twitter-api/tweets/likes/api-reference/delete-users-id-likes-tweet_id) | [destroyLike](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/destroyLike.html)             |
@@ -226,7 +226,7 @@ Future<void> main() async {
 
 #### 1.2.1.3. রিটুইটস
 
-| এন্ডপয়েন্ট                                                                                                                                                            | মেথডের নাম                                                                                                                            |
+| এন্ডপয়েন্ট                                                                                                                                                            | মেথডের নাম                                                                                                                            |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
 | [POST /2/users/:id/retweets](https://developer.twitter.com/en/docs/twitter-api/tweets/retweets/api-reference/post-users-id-retweets)                               | [createRetweet](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/createRetweet.html)               |
 | [DELETE /2/users/:id/retweets/:source_tweet_id](https://developer.twitter.com/en/docs/twitter-api/tweets/retweets/api-reference/delete-users-id-retweets-tweet_id) | [destroyRetweet](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/destroyRetweet.html)             |
@@ -234,34 +234,34 @@ Future<void> main() async {
 
 #### 1.2.1.4. কোট টুইটস
 
-| এন্ডপয়েন্ট                                                                                                                                          | মেথডের নাম                                                                                                                      |
+| এন্ডপয়েন্ট                                                                                                                                          | মেথডের নাম                                                                                                                      |
 | ------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------- |
 | [GET /2/tweets/:id/quote_tweets](https://developer.twitter.com/en/docs/twitter-api/tweets/quote-tweets/api-reference/get-tweets-id-quote_tweets) | [lookupQuoteTweets](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupQuoteTweets.html) |
 
 #### 1.2.1.5. সার্চ টুইটস
 
-| এন্ডপয়েন্ট                                                                                                                               | মেথডের নাম                                                                                                            |
+| এন্ডপয়েন্ট                                                                                                                               | মেথডের নাম                                                                                                            |
 | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | [GET /2/tweets/search/all](https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-all)       | [searchAll](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/searchAll.html)       |
 | [GET /2/tweets/search/recent](https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-recent) | [searchRecent](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/searchRecent.html) |
 
 #### 1.2.1.6. লুকআপ টুইটস
 
-| এন্ডপয়েন্ট                                                                                                          | মেথডের নাম                                                                                                          |
+| এন্ডপয়েন্ট                                                                                                          | মেথডের নাম                                                                                                          |
 | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | [GET /2/tweets](https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference/get-tweets)        | [lookupByIds](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupByIds.html) |
 | [GET /2/tweets/:id](https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference/get-tweets-id) | [lookupById](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupByIds.html)  |
 
 #### 1.2.1.7. টুইট কাউন্টস
 
-| এন্ডপয়েন্ট                                                                                                                               | মেথডের নাম                                                                                                          |
+| এন্ডপয়েন্ট                                                                                                                               | মেথডের নাম                                                                                                          |
 | ------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | [GET /2/tweets/counts/all](https://developer.twitter.com/en/docs/twitter-api/tweets/counts/api-reference/get-tweets-counts-all)       | [countAll](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/countAll.html)       |
 | [GET /2/tweets/counts/recent](https://developer.twitter.com/en/docs/twitter-api/tweets/counts/api-reference/get-tweets-counts-recent) | [countRecent](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/countRecent.html) |
 
 #### 1.2.1.8. বুকমার্কস
 
-| এন্ডপয়েন্ট                                                                                                                                                        | মেথডের নাম                                                                                                                  |
+| এন্ডপয়েন্ট                                                                                                                                                        | মেথডের নাম                                                                                                                  |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | [POST /2/users/:id/bookmarks](https://developer.twitter.com/en/docs/twitter-api/tweets/bookmarks/api-reference/post-users-id-bookmarks)                        | [createBookmark](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/createBookmark.html)   |
 | [DELETE /2/users/:id/bookmarks/:tweet_id](https://developer.twitter.com/en/docs/twitter-api/tweets/bookmarks/api-reference/delete-users-id-bookmarks-tweet_id) | [destroyBookmark](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/destroyBookmark.html) |
@@ -269,7 +269,7 @@ Future<void> main() async {
 
 #### 1.2.1.9. টাইমলাইন্স
 
-| এন্ডপয়েন্ট                                                                                                                                                                 | মেথডের নাম                                                                                                                        |
+| এন্ডপয়েন্ট                                                                                                                                                                 | মেথডের নাম                                                                                                                        |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | [GET /2/users/:id/mentions](https://developer.twitter.com/en/docs/twitter-api/tweets/timelines/api-reference/get-users-id-mentions)                                     | [lookupMentions](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupMentions.html)         |
 | [GET /2/users/:id/tweets](https://developer.twitter.com/en/docs/twitter-api/tweets/timelines/api-reference/get-users-id-tweets)                                         | [lookupTweets](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupTweets.html)             |
@@ -277,20 +277,20 @@ Future<void> main() async {
 
 #### 1.2.1.10. হাইড রিপ্লাইস
 
-| এন্ডপয়েন্ট                                                                                                                              | মেথডের নাম                                                                                                                        |
+| এন্ডপয়েন্ট                                                                                                                              | মেথডের নাম                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
 | [PUT /2/tweets/:id/hidden](https://developer.twitter.com/en/docs/twitter-api/tweets/hide-replies/api-reference/put-tweets-id-hidden) | [createHiddenReply](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/createHiddenReply.html)   |
 | [PUT /2/tweets/:id/hidden](https://developer.twitter.com/en/docs/twitter-api/tweets/hide-replies/api-reference/put-tweets-id-hidden) | [destroyHiddenReply](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/destroyHiddenReply.html) |
 
 #### 1.2.1.11. ভলিউম স্ট্রীম
 
-| এন্ডপয়েন্ট                                                                                                                                       | মেথডের নাম                                                                                                                          |
+| এন্ডপয়েন্ট                                                                                                                                       | মেথডের নাম                                                                                                                          |
 | --------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | [GET /2/tweets/sample/stream](https://developer.twitter.com/en/docs/twitter-api/tweets/volume-streams/api-reference/get-tweets-sample-stream) | [connectSampleStream](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/connectSampleStream.html) |
 
 #### 1.2.1.12. ফিল্টার্ড স্ট্রীম
 
-| এন্ডপয়েন্ট                                                                                                                                                      | মেথডের নাম                                                                                                                              |
+| এন্ডপয়েন্ট                                                                                                                                                      | মেথডের নাম                                                                                                                              |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
 | [POST /2/tweets/search/stream/rules](https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/api-reference/post-tweets-search-stream-rules) | [createFilteringRules](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/createFilteringRules.html)   |
 | [GET /2/tweets/search/stream/rules](https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/api-reference/get-tweets-search-stream-rules)   | [lookupFilteringRules](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/lookupFilteringRules.html)   |
@@ -300,7 +300,7 @@ Future<void> main() async {
 
 #### 1.2.2.1. ফলৌস
 
-| এন্ডপয়েন্ট                                                                                                                                                                     | মেথডের নাম                                                                                                                   |
+| এন্ডপয়েন্ট                                                                                                                                                                     | মেথডের নাম                                                                                                                   |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | [POST /2/users/:id/following](https://developer.twitter.com/en/docs/twitter-api/users/follows/api-reference/post-users-source_user_id-following)                            | [createFollow](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/createFollow.html)         |
 | [DELETE /2/users/:source_user_id/following/:target_user_id](https://developer.twitter.com/en/docs/twitter-api/users/follows/api-reference/delete-users-source_id-following) | [destroyFollow](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/destroyFollow.html)       |
@@ -309,7 +309,7 @@ Future<void> main() async {
 
 #### 1.2.2.2. লুকআপ ইউজারস
 
-| এন্ডপয়েন্ট                                                                                                                                           | মেথডের নাম                                                                                                             |
+| এন্ডপয়েন্ট                                                                                                                                           | মেথডের নাম                                                                                                             |
 | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
 | [GET /2/users](https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users)                                            | [lookupByIds](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/lookupByIds.html)     |
 | [GET /2/users/:id](https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users-id)                                     | [lookupById](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/lookupById.html)       |
@@ -319,7 +319,7 @@ Future<void> main() async {
 
 #### 1.2.2.3. ইউজারস মিউটস
 
-| এন্ডপয়েন্ট                                                                                                                                                           | মেথডের নাম                                                                                                                     |
+| এন্ডপয়েন্ট                                                                                                                                                           | মেথডের নাম                                                                                                                     |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
 | [POST /2/users/:id/muting](https://developer.twitter.com/en/docs/twitter-api/users/mutes/api-reference/post-users-user_id-muting)                                 | [createMute](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/createMute.html)               |
 | [DELETE /2/users/:source_user_id/muting/:target_user_id](https://developer.twitter.com/en/docs/twitter-api/users/mutes/api-reference/delete-users-user_id-muting) | [destroyMute](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/destroyMute.html)             |
@@ -327,7 +327,7 @@ Future<void> main() async {
 
 #### 1.2.2.4. ব্লক্স
 
-| এন্ডপয়েন্ট                                                                                                                                                                | মেথডের নাম                                                                                                                         |
+| এন্ডপয়েন্ট                                                                                                                                                                | মেথডের নাম                                                                                                                         |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | [POST /2/users/:id/blocking](https://developer.twitter.com/en/docs/twitter-api/users/blocks/api-reference/post-users-user_id-blocking)                                 | [createBlock](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/createBlock.html)                 |
 | [DELETE /2/users/:source_user_id/blocking/:target_user_id](https://developer.twitter.com/en/docs/twitter-api/users/blocks/api-reference/delete-users-user_id-blocking) | [destroyBlock](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/destroyBlock.html)               |
@@ -337,13 +337,13 @@ Future<void> main() async {
 
 #### 1.2.3.1. সার্চ স্পেসেস
 
-| এন্ডপয়েন্ট                                                                                                                 | মেথডের নাম                                                                                                |
+| এন্ডপয়েন্ট                                                                                                                 | মেথডের নাম                                                                                                |
 | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | [GET /2/spaces/search](https://developer.twitter.com/en/docs/twitter-api/spaces/search/api-reference/get-spaces-search) | [search](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/SpacesService/search.html) |
 
 #### 1.2.3.2. লুকআপ স্পেসেস
 
-| এন্ডপয়েন্ট                                                                                                                                 | মেথডের নাম                                                                                                                        |
+| এন্ডপয়েন্ট                                                                                                                                 | মেথডের নাম                                                                                                                        |
 | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | [GET /2/spaces](https://developer.twitter.com/en/docs/twitter-api/spaces/lookup/api-reference/get-spaces)                               | [lookupByIds](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/SpacesService/lookupByIds.html)               |
 | [GET /2/spaces/:id](https://developer.twitter.com/en/docs/twitter-api/spaces/lookup/api-reference/get-spaces-id)                        | [lookupById](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/SpacesService/lookupById.html)                 |
@@ -355,14 +355,14 @@ Future<void> main() async {
 
 #### 1.2.4.1. লুকআপ লিস্টস
 
-| এন্ডপয়েন্ট                                                                                                                                    | মেথডের নাম                                                                                                             |
+| এন্ডপয়েন্ট                                                                                                                                    | মেথডের নাম                                                                                                             |
 | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
 | [GET /2/lists/:id](https://developer.twitter.com/en/docs/twitter-api/lists/list-lookup/api-reference/get-lists-id)                         | [lookupById](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/lookupById.html)       |
 | [GET /2/users/:id/owned_lists](https://developer.twitter.com/en/docs/twitter-api/lists/list-lookup/api-reference/get-users-id-owned_lists) | [lookupOwnedBy](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/lookupOwnedBy.html) |
 
 #### 1.2.4.2. পিনিংস
 
-| এন্ডপয়েন্ট                                                                                                                                                              | মেথডের নাম                                                                                                                     |
+| এন্ডপয়েন্ট                                                                                                                                                              | মেথডের নাম                                                                                                                     |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
 | [POST /2/users/:id/pinned_lists](https://developer.twitter.com/en/docs/twitter-api/lists/pinned-lists/api-reference/post-users-id-pinned-lists)                      | [createPinnedList](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/createPinnedList.html)   |
 | [DELETE /2/users/:id/pinned_lists/:list_id](https://developer.twitter.com/en/docs/twitter-api/lists/pinned-lists/api-reference/delete-users-id-pinned-lists-list_id) | [destroyPinnedList](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/destroyPinnedList.html) |
@@ -370,13 +370,13 @@ Future<void> main() async {
 
 #### 1.2.4.3. টুইট লুকআপ
 
-| এন্ডপয়েন্ট                                                                                                                          | মেথডের নাম                                                                                                           |
+| এন্ডপয়েন্ট                                                                                                                          | মেথডের নাম                                                                                                           |
 | -------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
 | [GET /2/lists/:id/tweets](https://developer.twitter.com/en/docs/twitter-api/lists/list-tweets/api-reference/get-lists-id-tweets) | [lookupTweets](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/lookupTweets.html) |
 
 #### 1.2.4.4. লিস্ট ম্যানেজ
 
-| এন্ডপয়েন্ট                                                                                                                   | মেথডের নাম                                                                                                                         |
+| এন্ডপয়েন্ট                                                                                                                   | মেথডের নাম                                                                                                                         |
 | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | [POST /2/lists](https://developer.twitter.com/en/docs/twitter-api/lists/manage-lists/api-reference/post-lists)            | [createPublicList](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/createPublicList.html)       |
 | [POST /2/lists](https://developer.twitter.com/en/docs/twitter-api/lists/manage-lists/api-reference/post-lists)            | [createPrivateList](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/createPrivateList.html)     |
@@ -386,7 +386,7 @@ Future<void> main() async {
 
 #### 1.2.4.5. ফলৌস
 
-| এন্ডপয়েন্ট                                                                                                                                                                  | মেথডের নাম                                                                                                                         |
+| এন্ডপয়েন্ট                                                                                                                                                                  | মেথডের নাম                                                                                                                         |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------- |
 | [POST /2/users/:id/followed_lists](https://developer.twitter.com/en/docs/twitter-api/lists/list-follows/api-reference/post-users-id-followed-lists)                      | [createFollow](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/createFollow.html)               |
 | [DELETE /2/users/:id/followed_lists/:list_id](https://developer.twitter.com/en/docs/twitter-api/lists/list-follows/api-reference/delete-users-id-followed-lists-list_id) | [destroyFollow](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/destroyFollow.html)             |
@@ -395,7 +395,7 @@ Future<void> main() async {
 
 #### 1.2.4.6. মেম্বারস
 
-| এন্ডপয়েন্ট                                                                                                                                                    | মেথডের নাম                                                                                                                     |
+| এন্ডপয়েন্ট                                                                                                                                                    | মেথডের নাম                                                                                                                     |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
 | [POST /2/lists/:id/members](https://developer.twitter.com/en/docs/twitter-api/lists/list-members/api-reference/post-lists-id-members)                      | [createMember](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/createMember.html)           |
 | [DELETE /2/lists/:id/members/:user_id](https://developer.twitter.com/en/docs/twitter-api/lists/list-members/api-reference/delete-lists-id-members-user_id) | [destroyMember](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ListsService/destroyMember.html)         |
@@ -406,7 +406,7 @@ Future<void> main() async {
 
 #### 1.2.5.1. ব্যাচ কমপ্লায়েন্স
 
-| এন্ডপয়েন্ট                                                                                                                                          | মেথডের নাম                                                                                                            |
+| এন্ডপয়েন্ট                                                                                                                                          | মেথডের নাম                                                                                                            |
 | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
 | [POST /2/compliance/jobs](https://developer.twitter.com/en/docs/twitter-api/compliance/batch-compliance/api-reference/post-compliance-jobs)      | [createJob](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ComplianceService/createJob.html)   |
 | [GET /2/compliance/jobs](https://developer.twitter.com/en/docs/twitter-api/compliance/batch-compliance/api-reference/get-compliance-jobs)        | [lookupJobs](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/ComplianceService/lookupJobs.html) |
@@ -420,13 +420,13 @@ Future<void> main() async {
 
 | উপসর্গ       | বর্ণনা                                                            |
 | ----------- | --------------------------------------------------------------- |
-| **lookup**  | এই উপসর্গটি এন্ডপয়েন্টের সাথে সংযুক্ত থাকে যা উল্লেখ করে টুইটস, ইউজারস প্রভৃতি।       |
-| **search**  | এই উপসর্গটি এন্ডপয়েন্টের সাথে সংযুক্ত থাকে যা ব্যাপক সার্চ সম্পাদন করে।              |
-| **connect** | এই উপসর্গটি উচ্চ ক্ষমতা সম্পন্ন স্ট্রীমিং সহ এন্ডপয়েন্টের সাথে সংযুক্ত থাকে।           |
-| **count**   | এই উপসর্গটি এন্ডপয়েন্টের সাথে সংযুক্ত থাকে যা একটি নির্দিষ্ট আইটেম গণনা করে।          |
-| **create**  | এই উপসর্গটি এন্ডপয়েন্টের সাথে সংযুক্ত থাকে যা স্টেট ক্রিয়েট করে যেমন `টুইট` এবং `ফলো`।  |
-| **destroy** | এই উপসর্গটি এন্ডপয়েন্টের সাথে সংযুক্ত থাকে যা স্টেট ডেস্ট্রয় করে যেমন `টুইট` এবং `ফলো`। |
-| **update**  | এই উপসর্গটি এন্ডপয়েন্টের সাথে সংযুক্ত থাকে যা স্টেট আপডেট করে।                    |
+| **lookup**  | এই উপসর্গটি এন্ডপয়েন্টের সাথে সংযুক্ত থাকে যা উল্লেখ করে টুইটস, ইউজারস প্রভৃতি।       |
+| **search**  | এই উপসর্গটি এন্ডপয়েন্টের সাথে সংযুক্ত থাকে যা ব্যাপক সার্চ সম্পাদন করে।              |
+| **connect** | এই উপসর্গটি উচ্চ ক্ষমতা সম্পন্ন স্ট্রীমিং সহ এন্ডপয়েন্টের সাথে সংযুক্ত থাকে।           |
+| **count**   | এই উপসর্গটি এন্ডপয়েন্টের সাথে সংযুক্ত থাকে যা একটি নির্দিষ্ট আইটেম গণনা করে।          |
+| **create**  | এই উপসর্গটি এন্ডপয়েন্টের সাথে সংযুক্ত থাকে যা স্টেট ক্রিয়েট করে যেমন `টুইট` এবং `ফলো`।  |
+| **destroy** | এই উপসর্গটি এন্ডপয়েন্টের সাথে সংযুক্ত থাকে যা স্টেট ডেস্ট্রয় করে যেমন `টুইট` এবং `ফলো`। |
+| **update**  | এই উপসর্গটি এন্ডপয়েন্টের সাথে সংযুক্ত থাকে যা স্টেট আপডেট করে।                    |
 
 ### 1.3.2. জেনারেট অ্যাপ-অনলি বিয়ারার টোকেন
 
@@ -591,12 +591,12 @@ OSS এ কন্ট্রিবিউট করার অনেক পদ্ধ
       <td align="center"><a href="https://github.com/eltociear"><img src="https://avatars.githubusercontent.com/u/22633385?v=4?s=100" width="100px;" alt="Ikko Ashimine"/><br /><sub><b>Ikko Ashimine</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=eltociear" title="Documentation">📖</a></td>
       <td align="center"><a href="https://github.com/VinniciusJesus"><img src="https://avatars.githubusercontent.com/u/57817746?v=4?s=100" width="100px;" alt="Marcos Vinícius"/><br /><sub><b>Marcos Vinícius</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=VinniciusJesus" title="Documentation">📖</a> <a href="#translation-VinniciusJesus" title="Translation">🌍</a></td>
       <td align="center"><a href="https://github.com/MarkOSullivan94"><img src="https://avatars.githubusercontent.com/u/6950843?v=4?s=100" width="100px;" alt="Mark O'Sullivan"/><br /><sub><b>Mark O'Sullivan</b></sub></a><br /><a href="#ideas-MarkOSullivan94" title="Ideas, Planning, & Feedback">🤔</a></td>
-      <td align="center"><a href="https://bors.tech/"><img src="https://avatars.githubusercontent.com/u/24979321?v=4?s=100" width="100px;" alt="bors-ng"/><br /><sub><b>bors-ng</b></sub></a><br /><a href="#maintenance-bors-ng" title="Maintenance">🚧</a> <a href="https://github.com/twitter-dart/twitter-api-v2/pulls?q=is%3Apr+reviewed-by%3Abors-ng" title="Reviewed Pull Requests">👀</a></td>
-      <td align="center"><a href="https://allcontributors.org"><img src="https://avatars.githubusercontent.com/u/46410174?v=4?s=100" width="100px;" alt="All Contributors"/><br /><sub><b>All Contributors</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=all-contributors" title="Documentation">📖</a></td>
+      <td align="center"><a href="https://github.com/bors-ng"><img src="https://avatars.githubusercontent.com/u/24979321?v=4?s=100" width="100px;" alt="bors-ng"/><br /><sub><b>bors-ng</b></sub></a><br /><a href="#maintenance-bors-ng" title="Maintenance">🚧</a> <a href="https://github.com/twitter-dart/twitter-api-v2/pulls?q=is%3Apr+reviewed-by%3Abors-ng" title="Reviewed Pull Requests">👀</a></td>
+      <td align="center"><a href="https://github.com/all-contributors"><img src="https://avatars.githubusercontent.com/u/46410174?v=4?s=100" width="100px;" alt="All Contributors"/><br /><sub><b>All Contributors</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=all-contributors" title="Documentation">📖</a></td>
     </tr>
     <tr>
-      <td align="center"><a href="https://codecov.io/"><img src="https://avatars.githubusercontent.com/u/8226205?v=4?s=100" width="100px;" alt="Codecov"/><br /><sub><b>Codecov</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=codecov" title="Tests">⚠️</a> <a href="#maintenance-codecov" title="Maintenance">🚧</a> <a href="#security-codecov" title="Security">🛡️</a></td>
-      <td align="center"><a href="http://fossa.com"><img src="https://avatars.githubusercontent.com/u/9543448?v=4?s=100" width="100px;" alt="FOSSA"/><br /><sub><b>FOSSA</b></sub></a><br /><a href="#maintenance-fossas" title="Maintenance">🚧</a> <a href="#security-fossas" title="Security">🛡️</a></td>
+      <td align="center"><a href="https://github.com/codecov"><img src="https://avatars.githubusercontent.com/u/8226205?v=4?s=100" width="100px;" alt="Codecov"/><br /><sub><b>Codecov</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=codecov" title="Tests">⚠️</a> <a href="#maintenance-codecov" title="Maintenance">🚧</a> <a href="#security-codecov" title="Security">🛡️</a></td>
+      <td align="center"><a href="https://github.com/fossabot"><img src="https://avatars.githubusercontent.com/u/9543448?v=4?s=100" width="100px;" alt="FOSSA"/><br /><sub><b>FOSSA</b></sub></a><br /><a href="#maintenance-fossas" title="Maintenance">🚧</a> <a href="#security-fossas" title="Security">🛡️</a></td>
       <td align="center"><a href="https://github.com/yuto90"><img src="https://avatars.githubusercontent.com/u/53107639?v=4?s=100" width="100px;" alt="yuto90"/><br /><sub><b>yuto90</b></sub></a><br /><a href="#blog-yuto90" title="Blogposts">📝</a> <a href="#content-yuto90" title="Content">🖋</a> <a href="#example-yuto90" title="Examples">💡</a> <a href="#tutorial-yuto90" title="Tutorials">✅</a></td>
     </tr>
   </tbody>
