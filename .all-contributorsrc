@@ -172,7 +172,7 @@
       "login": "bors-ng",
       "name": "bors-ng",
       "avatar_url": "https://avatars.githubusercontent.com/u/24979321?v=4",
-      "profile": "https://bors.tech/",
+      "profile": "https://github.com/bors-ng",
       "contributions": [
         "maintenance",
         "review"
@@ -182,7 +182,7 @@
       "login": "all-contributors",
       "name": "All Contributors",
       "avatar_url": "https://avatars.githubusercontent.com/u/46410174?v=4",
-      "profile": "https://allcontributors.org",
+      "profile": "https://github.com/all-contributors",
       "contributions": [
         "doc"
       ]
@@ -191,7 +191,7 @@
       "login": "codecov",
       "name": "Codecov",
       "avatar_url": "https://avatars.githubusercontent.com/u/8226205?v=4",
-      "profile": "https://codecov.io/",
+      "profile": "https://github.com/codecov",
       "contributions": [
         "test",
         "maintenance",
@@ -202,7 +202,7 @@
       "login": "fossas",
       "name": "FOSSA",
       "avatar_url": "https://avatars.githubusercontent.com/u/9543448?v=4",
-      "profile": "http://fossa.com",
+      "profile": "https://github.com/fossabot",
       "contributions": [
         "maintenance",
         "security"
