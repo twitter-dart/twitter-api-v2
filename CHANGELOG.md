@@ -2,6 +2,7 @@
 
 ## v4.4.3
 
+- Fixed a bug that `TweetEditControls.remainingCount` had a different type. ([#571](https://github.com/twitter-dart/twitter-api-v2/issues/571))
 - Fixed to exclude null fields when performing `toJson` on `TwitterResponse` and other model objects. With this fix, the JSON obtained from `toJson` is now fully equivalent to the raw JSON returned by Twitter. ([#569](https://github.com/twitter-dart/twitter-api-v2/issues/569))
 
 ## v4.4.2
