@@ -100,6 +100,12 @@ const _$LanguageEnumMap = {
   Language.georgian: 'ka',
   Language.lithuanian: 'lt',
   Language.undefined: 'und',
+  Language.mentionsOnly: 'qam',
+  Language.cashtagsOnly: 'qct',
+  Language.hashtagsOnly: 'qht',
+  Language.mediaLinks: 'qme',
+  Language.shortText: 'qst',
+  Language.mediaOrCardOnly: 'zxx',
 };
 
 const _$CountryEnumMap = {
