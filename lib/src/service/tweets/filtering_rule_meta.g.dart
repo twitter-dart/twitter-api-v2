@@ -28,8 +28,16 @@ _$_FilteringRuleMeta _$$_FilteringRuleMetaFromJson(Map json) => $checkedCreate(
     );
 
 Map<String, dynamic> _$$_FilteringRuleMetaToJson(
-        _$_FilteringRuleMeta instance) =>
-    <String, dynamic>{
-      'sent': instance.sentAt?.toIso8601String(),
-      'summary': instance.summary?.toJson(),
-    };
+    _$_FilteringRuleMeta instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('sent', instance.sentAt?.toIso8601String());
+  writeNotNull('summary', instance.summary?.toJson());
+  return val;
+}

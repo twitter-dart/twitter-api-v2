@@ -18,6 +18,7 @@ part 'dm_event_data.g.dart';
 
 @freezed
 class DMEventData with _$DMEventData implements Data {
+  @JsonSerializable(includeIfNull: false)
   const factory DMEventData({
     /// The id of the Direct Message event.
     required String id,

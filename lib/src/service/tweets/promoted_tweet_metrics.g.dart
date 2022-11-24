@@ -35,12 +35,21 @@ _$_PromotedTweetMetrics _$$_PromotedTweetMetricsFromJson(Map json) =>
     );
 
 Map<String, dynamic> _$$_PromotedTweetMetricsToJson(
-        _$_PromotedTweetMetrics instance) =>
-    <String, dynamic>{
-      'impression_count': instance.impressionCount,
-      'like_count': instance.likeCount,
-      'retweet_count': instance.retweetCount,
-      'reply_count': instance.replyCount,
-      'user_profile_clicks': instance.profileClickCount,
-      'url_link_clicks': instance.linkClickCount,
-    };
+    _$_PromotedTweetMetrics instance) {
+  final val = <String, dynamic>{
+    'impression_count': instance.impressionCount,
+    'like_count': instance.likeCount,
+    'retweet_count': instance.retweetCount,
+    'reply_count': instance.replyCount,
+    'user_profile_clicks': instance.profileClickCount,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('url_link_clicks', instance.linkClickCount);
+  return val;
+}

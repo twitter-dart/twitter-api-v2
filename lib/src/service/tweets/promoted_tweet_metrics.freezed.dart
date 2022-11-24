@@ -178,7 +178,8 @@ class __$$_PromotedTweetMetricsCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_PromotedTweetMetrics implements _PromotedTweetMetrics {
   const _$_PromotedTweetMetrics(
       {required this.impressionCount,

@@ -13,6 +13,7 @@ part 'list_meta.g.dart';
 
 @freezed
 class ListMeta with _$ListMeta implements Pageable {
+  @JsonSerializable(includeIfNull: false)
   const factory ListMeta({
     /// The number of users returned in this request. Note that this number
     /// may be lower than what was specified in the max_results query parameter.

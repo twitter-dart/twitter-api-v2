@@ -12,6 +12,7 @@ part 'filtering_rule_summary.g.dart';
 
 @freezed
 class FilteringRuleSummary with _$FilteringRuleSummary {
+  @JsonSerializable(includeIfNull: false)
   const factory FilteringRuleSummary({
     /// The count of created filtering rules.
     @JsonKey(name: 'created') int? createdCount,

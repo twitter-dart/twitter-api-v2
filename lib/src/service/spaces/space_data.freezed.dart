@@ -412,7 +412,8 @@ class __$$_SpaceDataCopyWithImpl<$Res> extends _$SpaceDataCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_SpaceData implements _SpaceData {
   const _$_SpaceData(
       {required this.id,

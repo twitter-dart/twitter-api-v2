@@ -145,7 +145,8 @@ class __$$_UploadedMediaDataCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_UploadedMediaData implements _UploadedMediaData {
   const _$_UploadedMediaData(
       {@JsonKey(name: 'media_id_string') required this.id,

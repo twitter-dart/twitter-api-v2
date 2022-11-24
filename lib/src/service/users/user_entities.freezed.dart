@@ -137,7 +137,8 @@ class __$$_UserEntitiesCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_UserEntities implements _UserEntities {
   const _$_UserEntities({this.url, this.description});
 

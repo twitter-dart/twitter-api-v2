@@ -48,11 +48,20 @@ _$_TweetEntities _$$_TweetEntitiesFromJson(Map json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$$_TweetEntitiesToJson(_$_TweetEntities instance) =>
-    <String, dynamic>{
-      'annotations': instance.annotations?.map((e) => e.toJson()).toList(),
-      'hashtags': instance.hashtags?.map((e) => e.toJson()).toList(),
-      'cashtags': instance.cashtags?.map((e) => e.toJson()).toList(),
-      'mentions': instance.mentions?.map((e) => e.toJson()).toList(),
-      'urls': instance.urls?.map((e) => e.toJson()).toList(),
-    };
+Map<String, dynamic> _$$_TweetEntitiesToJson(_$_TweetEntities instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull(
+      'annotations', instance.annotations?.map((e) => e.toJson()).toList());
+  writeNotNull('hashtags', instance.hashtags?.map((e) => e.toJson()).toList());
+  writeNotNull('cashtags', instance.cashtags?.map((e) => e.toJson()).toList());
+  writeNotNull('mentions', instance.mentions?.map((e) => e.toJson()).toList());
+  writeNotNull('urls', instance.urls?.map((e) => e.toJson()).toList());
+  return val;
+}

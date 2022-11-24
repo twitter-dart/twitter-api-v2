@@ -26,7 +26,16 @@ _$_Geo _$$_GeoFromJson(Map json) => $checkedCreate(
       fieldKeyMap: const {'placeId': 'place_id'},
     );
 
-Map<String, dynamic> _$$_GeoToJson(_$_Geo instance) => <String, dynamic>{
-      'place_id': instance.placeId,
-      'coordinates': instance.coordinates?.toJson(),
-    };
+Map<String, dynamic> _$$_GeoToJson(_$_Geo instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('place_id', instance.placeId);
+  writeNotNull('coordinates', instance.coordinates?.toJson());
+  return val;
+}

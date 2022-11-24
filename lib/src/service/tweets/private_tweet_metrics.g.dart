@@ -29,9 +29,18 @@ _$_PrivateTweetMetrics _$$_PrivateTweetMetricsFromJson(Map json) =>
     );
 
 Map<String, dynamic> _$$_PrivateTweetMetricsToJson(
-        _$_PrivateTweetMetrics instance) =>
-    <String, dynamic>{
-      'impression_count': instance.impressionCount,
-      'user_profile_clicks': instance.profileClickCount,
-      'url_link_clicks': instance.linkClickCount,
-    };
+    _$_PrivateTweetMetrics instance) {
+  final val = <String, dynamic>{
+    'impression_count': instance.impressionCount,
+    'user_profile_clicks': instance.profileClickCount,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('url_link_clicks', instance.linkClickCount);
+  return val;
+}

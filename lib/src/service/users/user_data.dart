@@ -31,6 +31,7 @@ part 'user_data.g.dart';
 /// object.
 @freezed
 class UserData with _$UserData implements Data {
+  @JsonSerializable(includeIfNull: false)
   const factory UserData({
     /// The unique identifier of this user.
     ///

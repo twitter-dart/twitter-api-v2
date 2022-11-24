@@ -21,6 +21,7 @@ part 'place_data.g.dart';
 /// additional fields to complete the object.
 @freezed
 class PlaceData with _$PlaceData {
+  @JsonSerializable(includeIfNull: false)
   const factory PlaceData({
     /// The unique identifier of the expanded place, if this is a point of
     /// interest tagged in the Tweet.

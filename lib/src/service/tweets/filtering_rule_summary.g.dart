@@ -30,10 +30,18 @@ _$_FilteringRuleSummary _$$_FilteringRuleSummaryFromJson(Map json) =>
     );
 
 Map<String, dynamic> _$$_FilteringRuleSummaryToJson(
-        _$_FilteringRuleSummary instance) =>
-    <String, dynamic>{
-      'created': instance.createdCount,
-      'not_created': instance.notCreatedCount,
-      'deleted': instance.deletedCount,
-      'not_deleted': instance.notDeletedCount,
-    };
+    _$_FilteringRuleSummary instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('created', instance.createdCount);
+  writeNotNull('not_created', instance.notCreatedCount);
+  writeNotNull('deleted', instance.deletedCount);
+  writeNotNull('not_deleted', instance.notDeletedCount);
+  return val;
+}

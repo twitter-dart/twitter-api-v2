@@ -380,7 +380,8 @@ class __$$_MediaDataCopyWithImpl<$Res> extends _$MediaDataCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_MediaData implements _MediaData {
   const _$_MediaData(
       {@JsonKey(name: 'media_key') required this.key,

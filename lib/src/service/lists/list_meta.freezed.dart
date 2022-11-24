@@ -127,7 +127,8 @@ class __$$_ListMetaCopyWithImpl<$Res> extends _$ListMetaCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_ListMeta implements _ListMeta {
   const _$_ListMeta({this.resultCount, this.nextToken, this.previousToken});
 

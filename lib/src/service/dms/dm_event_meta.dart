@@ -13,6 +13,7 @@ part 'dm_event_meta.g.dart';
 
 @freezed
 class DMEventMeta with _$DMEventMeta implements Pageable {
+  @JsonSerializable(includeIfNull: false)
   const factory DMEventMeta({
     /// The number of results in the current page.
     required int resultCount,

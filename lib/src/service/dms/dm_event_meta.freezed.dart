@@ -120,7 +120,8 @@ class __$$_DMEventMetaCopyWithImpl<$Res> extends _$DMEventMetaCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_DMEventMeta implements _DMEventMeta {
   const _$_DMEventMeta(
       {required this.resultCount, this.nextToken, this.previousToken});

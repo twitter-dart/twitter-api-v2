@@ -240,7 +240,8 @@ class __$$_PlaceDataCopyWithImpl<$Res> extends _$PlaceDataCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_PlaceData implements _PlaceData {
   const _$_PlaceData(
       {required this.id,

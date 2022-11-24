@@ -46,18 +46,27 @@ _$_DMEventData _$$_DMEventDataFromJson(Map json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$$_DMEventDataToJson(_$_DMEventData instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'event_type': _$DMEventTypeEnumMap[instance.eventType]!,
-      'text': instance.text,
-      'sender_id': instance.senderId,
-      'dm_conversation_id': instance.conversationId,
-      'referenced_tweets':
-          instance.referencedTweets?.map((e) => e.toJson()).toList(),
-      'attachments': instance.attachments?.toJson(),
-      'created_at': instance.createdAt?.toIso8601String(),
-    };
+Map<String, dynamic> _$$_DMEventDataToJson(_$_DMEventData instance) {
+  final val = <String, dynamic>{
+    'id': instance.id,
+    'event_type': _$DMEventTypeEnumMap[instance.eventType]!,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('text', instance.text);
+  writeNotNull('sender_id', instance.senderId);
+  writeNotNull('dm_conversation_id', instance.conversationId);
+  writeNotNull('referenced_tweets',
+      instance.referencedTweets?.map((e) => e.toJson()).toList());
+  writeNotNull('attachments', instance.attachments?.toJson());
+  writeNotNull('created_at', instance.createdAt?.toIso8601String());
+  return val;
+}
 
 const _$DMEventTypeEnumMap = {
   DMEventType.messageCreate: 'MessageCreate',
