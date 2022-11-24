@@ -10,6 +10,7 @@ part 'variant.g.dart';
 
 @freezed
 class Variant with _$Variant {
+  @JsonSerializable(includeIfNull: false)
   const factory Variant({
     /// The number of bit rates in the content.
     ///

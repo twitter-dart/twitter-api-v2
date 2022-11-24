@@ -43,6 +43,7 @@ part 'tweet_data.g.dart';
 /// tweet.fields when requesting additional fields to complete the object.
 @freezed
 class TweetData with _$TweetData implements Data {
+  @JsonSerializable(includeIfNull: false)
   const factory TweetData({
     /// Unique identifier of this Tweet. This is returned as a string in order
     /// to avoid complications with languages and tools that cannot handle

@@ -86,18 +86,19 @@
     - [1.4.3. Null Parameter at Request](#143-null-parameter-at-request)
     - [1.4.4. Expand Object Fields with `expansions`](#144-expand-object-fields-with-expansions)
     - [1.4.5. Expand Object Fields with `fields`](#145-expand-object-fields-with-fields)
-    - [1.4.6. OAuth 2.0 Authorization Code Flow with PKCE](#146-oauth-20-authorization-code-flow-with-pkce)
-    - [1.4.7. Change the Timeout Duration](#147-change-the-timeout-duration)
-    - [1.4.8. Automatic Retry](#148-automatic-retry)
-      - [1.4.8.1. Regular Intervals](#1481-regular-intervals)
-      - [1.4.8.2. Exponential Backoff](#1482-exponential-backoff)
-      - [1.4.8.3. Exponential Backoff and Jitter](#1483-exponential-backoff-and-jitter)
-      - [1.4.8.4. Do Something on Retry](#1484-do-something-on-retry)
-    - [1.4.9. Meaning of the Returned Boolean](#149-meaning-of-the-returned-boolean)
-    - [1.4.10. Thrown Exceptions](#1410-thrown-exceptions)
-    - [1.4.11. Upload Media](#1411-upload-media)
-    - [1.4.12. Check the Progress of Media Upload](#1412-check-the-progress-of-media-upload)
-    - [1.4.13. Generate Filtering Rules Safely and Easily](#1413-generate-filtering-rules-safely-and-easily)
+    - [1.4.6. JSON Serialization and Deserialization](#146-json-serialization-and-deserialization)
+    - [1.4.7. OAuth 2.0 Authorization Code Flow with PKCE](#147-oauth-20-authorization-code-flow-with-pkce)
+    - [1.4.8. Change the Timeout Duration](#148-change-the-timeout-duration)
+    - [1.4.9. Automatic Retry](#149-automatic-retry)
+      - [1.4.9.1. Regular Intervals](#1491-regular-intervals)
+      - [1.4.9.2. Exponential Backoff](#1492-exponential-backoff)
+      - [1.4.9.3. Exponential Backoff and Jitter](#1493-exponential-backoff-and-jitter)
+      - [1.4.9.4. Do Something on Retry](#1494-do-something-on-retry)
+    - [1.4.10. Meaning of the Returned Boolean](#1410-meaning-of-the-returned-boolean)
+    - [1.4.11. Thrown Exceptions](#1411-thrown-exceptions)
+    - [1.4.12. Upload Media](#1412-upload-media)
+    - [1.4.13. Check the Progress of Media Upload](#1413-check-the-progress-of-media-upload)
+    - [1.4.14. Generate Filtering Rules Safely and Easily](#1414-generate-filtering-rules-safely-and-easily)
   - [1.5. Contribution 🏆](#15-contribution-)
   - [1.6. Contributors ✨](#16-contributors-)
   - [1.7. Support ❤️](#17-support-️)
@@ -234,6 +235,12 @@ Future<void> main() async {
         return v2.ForwardPaginationControl.next();
       },
     );
+
+    //! You can serialize & deserialize JSON from response object
+    //! and model object.
+    final tweetJson = tweets.data.first.toJson();
+    final tweet = v2.TweetData.fromJson(tweetJson);
+    print(tweet);
 
     await twitter.tweets.createLike(
       userId: me.data.id,
@@ -704,7 +711,65 @@ Future<void> main() async {
 
 You can see more details about `fields` from [Official Documentation](https://developer.twitter.com/en/docs/twitter-api/fields).
 
-### 1.4.6. OAuth 2.0 Authorization Code Flow with PKCE
+### 1.4.6. JSON Serialization and Deserialization
+
+All Twitter API responses obtained using **twitter_api_v2** are returned stored in a safe type object. However, there may be cases where the raw JSON returned from the Twitter API is needed when creating applications in combination with other libraries.
+
+In that case, you can use the **`toJson`** method provided by the `TwitterResponse` or other model objects to convert it to the raw JSON format returned by the Twitter API.
+
+The JSON converted by this **`toJson`** method is **completely equivalent to the JSON returned by the Twitter API** and can be deserialized by using the factory constructor **`fromJson`** provided with each model object.
+
+```dart
+import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
+
+Future<void> main() async {
+  final twitter = v2.TwitterApi(bearerToken: 'YOUR_BEARER_TOKEN');
+
+  try {
+    final response = await twitter.tweets.searchRecent(
+      query: '#ElonMusk',
+      maxResults: 10,
+      expansions: v2.TweetExpansion.values,
+    );
+
+    //! You can get raw JSON from this response.
+    print(response.toJson());
+
+    //! Or you can get raw JSON from specific model object.
+    print(response.data.first.toJson());
+  } on v2.TwitterException catch (e) {
+    print(e);
+  }
+}
+```
+
+You could also write like:
+
+```dart
+import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
+
+Future<void> main() async {
+  final twitter = v2.TwitterApi(bearerToken: 'YOUR_BEARER_TOKEN');
+
+  try {
+    final response = await twitter.tweets.searchRecent(
+      query: '#ElonMusk',
+      maxResults: 10,
+      expansions: v2.TweetExpansion.values,
+    );
+
+    //! Serialize & Deserialize
+    final tweetJson = response.data.first.toJson();
+    final tweet = v2.TweetData.fromJson(tweetJson);
+
+    print(tweet);
+  } on v2.TwitterException catch (e) {
+    print(e);
+  }
+}
+```
+
+### 1.4.7. OAuth 2.0 Authorization Code Flow with PKCE
 
 **Twitter API v2.0** supports authentication methods with [OAuth 2.0 PKCE](https://developer.twitter.com/en/docs/authentication/oauth-2-0/authorization-code), and it allows users of apps using **Twitter API v2.0** to request authorization for the minimum necessary [scope](https://developer.twitter.com/en/docs/authentication/guides/v2-authentication-mapping) of operation.
 
@@ -719,7 +784,7 @@ Also, please refer to the next simple sample Flutter application that combines *
 
 - [Example Tweet App](https://github.com/twitter-dart/example-tweet-app-with-twitter-api-v2)
 
-### 1.4.7. Change the Timeout Duration
+### 1.4.8. Change the Timeout Duration
 
 The library specifies a default timeout of **10 seconds** for all API communications.
 
@@ -738,7 +803,7 @@ Future<void> main() {
 }
 ```
 
-### 1.4.8. Automatic Retry
+### 1.4.9. Automatic Retry
 
 Due to the nature of this library's communication with external systems, timeouts may occur due to inevitable communication failures or temporary crashes of the server to which requests are sent.
 
@@ -758,7 +823,7 @@ Also, errors subject to retry are as follows.
 - When the network is temporarily lost and a `SocketException` is thrown.
 - When communication times out temporarily and a `TimeoutException` is thrown
 
-#### 1.4.8.1. Regular Intervals
+#### 1.4.9.1. Regular Intervals
 
 It would be easy to imagine **retries at regular intervals**. For example, if a timeout occurs and the request is assumed to be retried 3 times, waiting for 5 seconds and then sending the request again, it can be defined as follows.
 
@@ -778,7 +843,7 @@ Future<void> main() async {
 }
 ```
 
-#### 1.4.8.2. Exponential Backoff
+#### 1.4.9.2. Exponential Backoff
 
 Although retries can be effective by simply performing them at regular intervals as in the above example, sending a large number of requests at regular intervals when the server to which the request is being sent is experiencing a failure is something that should be avoided. Even if the network or server is already down, the retry process can further aggravate the situation by adding to the load.
 
@@ -804,7 +869,7 @@ In the above implementation, the interval increases exponentially for each retry
 
 > 2 ^ retryCount
 
-#### 1.4.8.3. Exponential Backoff and Jitter
+#### 1.4.9.3. Exponential Backoff and Jitter
 
 Although the algorithm introduced earlier that exponentially increases the retry interval is already powerful, some may believe that it is not yet sufficient to distribute the sensation of retries. It's more distributed than equally spaced retries, but retries still occur at static intervals.
 
@@ -831,7 +896,7 @@ In the above implementation, the interval increases exponentially for each retry
 
 > **(2 ^ retryCount) + jitter(Random Number between 0 ~ 3)**
 
-#### 1.4.8.4. Do Something on Retry
+#### 1.4.9.4. Do Something on Retry
 
 It would be useful to output logging on retries and a popup notifying the user that a retry has been executed. So **twitter_api_v2** provides callbacks that can perform arbitrary processing when retries are executed.
 
@@ -856,7 +921,7 @@ Future<void> main() async {
 
 The [RetryEvent](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/RetryEvent-class.html) passed to the callback contains information on retries.
 
-### 1.4.9. Meaning of the Returned Boolean
+### 1.4.10. Meaning of the Returned Boolean
 
 A boolean value is returned from the endpoint when the communication is primarily POST, DELETE, or PUT.
 
@@ -876,7 +941,7 @@ Note that this specification differs from the official [Twitter API v2.0](https:
 
 However, as mentioned earlier in **twitter_api_v2**, for example if you use the [createRetweet](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/createRetweet.html) method, it will return a **flag indicating whether the process was successful or not**. This principle applies not only to the [createRetweet](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/createRetweet.html) method, but to all methods that return flags as a result of processing.
 
-### 1.4.10. Thrown Exceptions
+### 1.4.11. Thrown Exceptions
 
 **twitter_api_v2** provides a convenient exception object for easy handling of exceptional responses and errors returned from [Twitter API v2.0](https://developer.twitter.com/en/docs/twitter-api/data-dictionary/introduction).
 
@@ -921,7 +986,7 @@ Future<void> main() async {
 }
 ```
 
-### 1.4.11. Upload Media
+### 1.4.12. Upload Media
 
 Uploading media on Twitter and sharing it with various people is a very interesting activity. Also, from a business perspective, accompanying tweets with media will attract even more interest from people.
 
@@ -972,7 +1037,7 @@ This upload process works very safely, but note that [TwitterUploadException](ht
 > **Note**</br>
 > Also note that the v1.1 endpoint is used to achieve this specification in twitter_api_v2. This is because the official Twitter API v2.0 does not yet support media uploads. While I'm trying to keep the implementation as non-disruptive as possible in the future, there may be disruptive changes when media uploads are supported by the official Twitter API v2.0.
 
-### 1.4.12. Check the Progress of Media Upload
+### 1.4.13. Check the Progress of Media Upload
 
 Uploading small images to Twitter does not take long, but uploading large videos takes longer to complete. At that time, it would be very useful if you could show users how far along we are in the uploading process.
 
@@ -1044,7 +1109,7 @@ And the trigger that calls the `onProgress` callback is as follows. But if the m
 
 Note that media uploads may also fail for reasons such as broken media. In such cases, [TwitterUploadException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/TwitterUploadException-class.html) is always thrown.
 
-### 1.4.13. Generate Filtering Rules Safely and Easily
+### 1.4.14. Generate Filtering Rules Safely and Easily
 
 The [Filtered Stream](https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/api-reference/get-tweets-search-stream) endpoint in [Twitter API v2.0](https://developer.twitter.com/en/docs/twitter-api/data-dictionary/introduction) supports a number of operators for advanced searches, not just `keywords` and `hashtags`.
 

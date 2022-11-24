@@ -221,7 +221,8 @@ class __$$_DMEventDataCopyWithImpl<$Res> extends _$DMEventDataCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_DMEventData implements _DMEventData {
   const _$_DMEventData(
       {required this.id,

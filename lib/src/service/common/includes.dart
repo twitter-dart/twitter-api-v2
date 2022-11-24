@@ -18,6 +18,7 @@ part 'includes.g.dart';
 
 @freezed
 class Includes with _$Includes {
+  @JsonSerializable(includeIfNull: false)
   const factory Includes({
     /// This includes a list of referenced Retweets, Quoted Tweets, or replies
     /// in the form of Tweet objects with their default fields and any

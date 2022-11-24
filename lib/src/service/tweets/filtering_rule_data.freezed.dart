@@ -122,7 +122,8 @@ class __$$_FilteringRuleDataCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_FilteringRuleData implements _FilteringRuleData {
   const _$_FilteringRuleData({required this.id, required this.value, this.tag});
 

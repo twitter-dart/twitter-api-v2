@@ -37,14 +37,23 @@ _$_PlaceData _$$_PlaceDataFromJson(Map json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$$_PlaceDataToJson(_$_PlaceData instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'full_name': instance.fullName,
-      'name': instance.name,
-      'place_type': instance.placeType,
-      'country': instance.country,
-      'country_code': instance.countryCode,
-      'geo': instance.geo?.toJson(),
-      'contained_within': instance.containedWithin,
-    };
+Map<String, dynamic> _$$_PlaceDataToJson(_$_PlaceData instance) {
+  final val = <String, dynamic>{
+    'id': instance.id,
+    'full_name': instance.fullName,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('name', instance.name);
+  writeNotNull('place_type', instance.placeType);
+  writeNotNull('country', instance.country);
+  writeNotNull('country_code', instance.countryCode);
+  writeNotNull('geo', instance.geo?.toJson());
+  writeNotNull('contained_within', instance.containedWithin);
+  return val;
+}

@@ -133,7 +133,8 @@ class __$$_MentionCopyWithImpl<$Res> extends _$MentionCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_Mention implements _Mention {
   const _$_Mention(
       {this.id,

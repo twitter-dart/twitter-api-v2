@@ -26,9 +26,17 @@ _$_ListMeta _$$_ListMetaFromJson(Map json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$$_ListMetaToJson(_$_ListMeta instance) =>
-    <String, dynamic>{
-      'result_count': instance.resultCount,
-      'next_token': instance.nextToken,
-      'previous_token': instance.previousToken,
-    };
+Map<String, dynamic> _$$_ListMetaToJson(_$_ListMeta instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('result_count', instance.resultCount);
+  writeNotNull('next_token', instance.nextToken);
+  writeNotNull('previous_token', instance.previousToken);
+  return val;
+}

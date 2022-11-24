@@ -22,9 +22,18 @@ _$_FilteringRuleData _$$_FilteringRuleDataFromJson(Map json) => $checkedCreate(
     );
 
 Map<String, dynamic> _$$_FilteringRuleDataToJson(
-        _$_FilteringRuleData instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'value': instance.value,
-      'tag': instance.tag,
-    };
+    _$_FilteringRuleData instance) {
+  final val = <String, dynamic>{
+    'id': instance.id,
+    'value': instance.value,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('tag', instance.tag);
+  return val;
+}

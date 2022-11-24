@@ -110,7 +110,8 @@ class __$$_TweetCountMetaCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_TweetCountMeta implements _TweetCountMeta {
   const _$_TweetCountMeta(
       {@JsonKey(name: 'total_tweet_count') required this.total,

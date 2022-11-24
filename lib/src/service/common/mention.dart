@@ -10,6 +10,7 @@ part 'mention.g.dart';
 
 @freezed
 class Mention with _$Mention {
+  @JsonSerializable(includeIfNull: false)
   const factory Mention({
     /// The user id that created the mentions.
     String? id,

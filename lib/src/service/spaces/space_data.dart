@@ -31,6 +31,7 @@ part 'space_data.g.dart';
 /// expectations and intent.
 @freezed
 class SpaceData with _$SpaceData implements Data {
+  @JsonSerializable(includeIfNull: false)
   const factory SpaceData({
     /// The unique identifier of the requested Space.
     ///

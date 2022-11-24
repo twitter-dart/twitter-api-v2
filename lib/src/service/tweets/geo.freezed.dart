@@ -121,7 +121,8 @@ class __$$_GeoCopyWithImpl<$Res> extends _$GeoCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_Geo implements _Geo {
   const _$_Geo({this.placeId, this.coordinates});
 

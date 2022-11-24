@@ -63,26 +63,35 @@ _$_SpaceData _$$_SpaceDataFromJson(Map json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$$_SpaceDataToJson(_$_SpaceData instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'title': instance.title,
-      'state': _$SpaceStateEnumMap[instance.state],
-      'creator_id': instance.creatorId,
-      'lang': _$SpaceLanguageEnumMap[instance.lang],
-      'host_ids': instance.hostIds,
-      'topic_ids': instance.topicIds,
-      'speaker_ids': instance.speakerIds,
-      'invited_user_ids': instance.invitedUserIds,
-      'subscriber_count': instance.subscriberCount,
-      'participant_count': instance.participantCount,
-      'is_ticketed': instance.isTicketed,
-      'scheduled_start': instance.scheduledStart?.toIso8601String(),
-      'started_at': instance.startedAt?.toIso8601String(),
-      'ended_at': instance.endedAt?.toIso8601String(),
-      'created_at': instance.createdAt?.toIso8601String(),
-      'updated_at': instance.updatedAt?.toIso8601String(),
-    };
+Map<String, dynamic> _$$_SpaceDataToJson(_$_SpaceData instance) {
+  final val = <String, dynamic>{
+    'id': instance.id,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('title', instance.title);
+  writeNotNull('state', _$SpaceStateEnumMap[instance.state]);
+  writeNotNull('creator_id', instance.creatorId);
+  writeNotNull('lang', _$SpaceLanguageEnumMap[instance.lang]);
+  writeNotNull('host_ids', instance.hostIds);
+  writeNotNull('topic_ids', instance.topicIds);
+  writeNotNull('speaker_ids', instance.speakerIds);
+  writeNotNull('invited_user_ids', instance.invitedUserIds);
+  writeNotNull('subscriber_count', instance.subscriberCount);
+  writeNotNull('participant_count', instance.participantCount);
+  writeNotNull('is_ticketed', instance.isTicketed);
+  writeNotNull('scheduled_start', instance.scheduledStart?.toIso8601String());
+  writeNotNull('started_at', instance.startedAt?.toIso8601String());
+  writeNotNull('ended_at', instance.endedAt?.toIso8601String());
+  writeNotNull('created_at', instance.createdAt?.toIso8601String());
+  writeNotNull('updated_at', instance.updatedAt?.toIso8601String());
+  return val;
+}
 
 const _$SpaceStateEnumMap = {
   SpaceState.scheduled: 'scheduled',

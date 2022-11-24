@@ -17,6 +17,7 @@ part 'uploaded_media_data.g.dart';
 /// This object represents uploaded media data.
 @freezed
 class UploadedMediaData with _$UploadedMediaData implements Data {
+  @JsonSerializable(includeIfNull: false)
   const factory UploadedMediaData({
     /// The identifier for the uploaded media.
     @JsonKey(name: 'media_id_string') required String id,

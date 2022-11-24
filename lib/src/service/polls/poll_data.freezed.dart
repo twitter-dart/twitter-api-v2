@@ -154,7 +154,8 @@ class __$$_PollDataCopyWithImpl<$Res> extends _$PollDataCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_PollData implements _PollData {
   const _$_PollData(
       {required this.id,

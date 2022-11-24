@@ -30,11 +30,19 @@ _$_TweetMeta _$$_TweetMetaFromJson(Map json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$$_TweetMetaToJson(_$_TweetMeta instance) =>
-    <String, dynamic>{
-      'newest_id': instance.newestId,
-      'oldest_id': instance.oldestId,
-      'result_count': instance.resultCount,
-      'next_token': instance.nextToken,
-      'previous_token': instance.previousToken,
-    };
+Map<String, dynamic> _$$_TweetMetaToJson(_$_TweetMeta instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('newest_id', instance.newestId);
+  writeNotNull('oldest_id', instance.oldestId);
+  writeNotNull('result_count', instance.resultCount);
+  writeNotNull('next_token', instance.nextToken);
+  writeNotNull('previous_token', instance.previousToken);
+  return val;
+}

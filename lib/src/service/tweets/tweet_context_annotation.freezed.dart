@@ -129,7 +129,8 @@ class __$$_TweetContextAnnotationCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_TweetContextAnnotation implements _TweetContextAnnotation {
   const _$_TweetContextAnnotation(
       {required this.id, required this.name, this.description});

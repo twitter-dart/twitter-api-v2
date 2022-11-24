@@ -24,6 +24,7 @@ part 'poll_data.g.dart';
 /// additional fields to complete the object.
 @freezed
 class PollData with _$PollData {
+  @JsonSerializable(includeIfNull: false)
   const factory PollData({
     /// Unique identifier of the expanded poll.
     required String id,
