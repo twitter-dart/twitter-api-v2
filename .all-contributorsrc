@@ -219,6 +219,15 @@
         "example",
         "tutorial"
       ]
+    },
+    {
+      "login": "normidar",
+      "name": "normidar",
+      "avatar_url": "https://avatars.githubusercontent.com/u/36730656?v=4",
+      "profile": "https://github.com/normidar",
+      "contributions": [
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 5,
