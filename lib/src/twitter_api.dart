@@ -8,6 +8,7 @@ import 'package:twitter_api_core/twitter_api_core.dart' as core;
 // Project imports:
 import 'service/compliance/compliance_service.dart';
 import 'service/dms/direct_messages_service.dart';
+import 'service/geo/geo_service.dart';
 import 'service/lists/lists_service.dart';
 import 'service/media/media_service.dart';
 import 'service/spaces/spaces_service.dart';
@@ -25,6 +26,7 @@ import 'service/users/users_service.dart';
 /// - Lists service: [lists]
 /// - Media service: [media]
 /// - Direct Messages service: [directMessages]
+/// - Geo Service: [geo]
 /// - Compliance service: [compliance]
 ///
 /// ## Authentication
@@ -188,6 +190,9 @@ abstract class TwitterApi {
   /// Returns the direct messages service.
   DirectMessagesService get directMessages;
 
+  /// Returns the geo service.
+  GeoService get geo;
+
   /// Returns the compliance service.
   ComplianceService get compliance;
 }
@@ -252,6 +257,9 @@ class _TwitterApi implements TwitterApi {
   @override
   DirectMessagesService get directMessages =>
       _twitterService.directMessagesService;
+
+  @override
+  GeoService get geo => _twitterService.geoService;
 
   @override
   ComplianceService get compliance => _twitterService.complianceService;

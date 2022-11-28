@@ -8,6 +8,7 @@ import 'package:twitter_api_core/twitter_api_core.dart';
 // Project imports:
 import 'compliance/compliance_service.dart';
 import 'dms/direct_messages_service.dart';
+import 'geo/geo_service.dart';
 import 'lists/lists_service.dart';
 import 'media/media_service.dart';
 import 'spaces/spaces_service.dart';
@@ -37,6 +38,9 @@ abstract class TwitterService {
   /// Returns the direct messages service.
   DirectMessagesService get directMessagesService;
 
+  /// Returns the geo service.
+  GeoService get geoService;
+
   /// Returns the compliance service.
   ComplianceService get complianceService;
 }
@@ -50,6 +54,7 @@ class _TwitterService implements TwitterService {
         listsService = ListsService(context: context),
         mediaService = MediaService(context: context),
         directMessagesService = DirectMessagesService(context: context),
+        geoService = GeoService(context: context),
         complianceService = ComplianceService(context: context);
 
   @override
@@ -69,6 +74,9 @@ class _TwitterService implements TwitterService {
 
   @override
   final DirectMessagesService directMessagesService;
+
+  @override
+  final GeoService geoService;
 
   @override
   final ComplianceService complianceService;

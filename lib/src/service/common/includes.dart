@@ -8,8 +8,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
+import '../geo/place_data.dart';
 import '../media/media_data.dart';
-import '../places/place_data.dart';
 import '../polls/poll_data.dart';
 import '../spaces/topic_data.dart';
 import '../tweets/tweet_data.dart';

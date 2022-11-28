@@ -244,7 +244,7 @@ abstract class BaseService implements _Service {
         rateLimitConverter.convert(response.headers),
       ),
       data: jsonBody[ResponseField.data.value]
-          .map<D>((tweet) => dataBuilder(tweet))
+          .map<D>((json) => dataBuilder(json))
           .toList(),
       includes: jsonBody.containsKey(ResponseField.includes.value)
           ? Includes.fromJson(jsonBody[ResponseField.includes.value])
