@@ -3,12 +3,13 @@
 // modification, are permitted provided the conditions.
 
 // Package imports:
+import 'dart:convert';
+
 import 'package:twitter_api_core/twitter_api_core.dart' as core;
 
 // Project imports:
 import '../../../twitter_api_v2.dart';
 import '../base_service.dart';
-import 'geo_granularity.dart';
 
 /// This class provides methods to easily access endpoints based on Geo.
 abstract class GeoService {
@@ -140,10 +141,7 @@ class _GeoService extends BaseService implements GeoService {
       '/1.1/geo/id/$placeId.json',
     );
 
-    final place = core.tryJsonDecode(
-      response,
-      response.body,
-    );
+    final place = _checkResponse(response);
 
     return TwitterResponse(
       rateLimit: RateLimit.fromJson(
@@ -175,10 +173,7 @@ class _GeoService extends BaseService implements GeoService {
       },
     );
 
-    final places = core.tryJsonDecode(
-      response,
-      response.body,
-    )['result']['places'];
+    final places = _checkResponse(response)['result']['places'];
 
     return TwitterResponse(
       rateLimit: RateLimit.fromJson(
@@ -188,6 +183,21 @@ class _GeoService extends BaseService implements GeoService {
           .map<PlaceData>((json) => PlaceData.fromJson(json))
           .toList(),
     );
+  }
+
+  dynamic _checkResponse(final core.Response response) {
+    final json = jsonDecode(response.body);
+
+    if (json is Map<String, dynamic>) {
+      if (json.containsKey('errors')) {
+        throw DataNotFoundException(
+          'No data exists in response.',
+          response,
+        );
+      }
+    }
+
+    return json;
   }
 
   List<dynamic> _toV2Format(

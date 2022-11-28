@@ -78,8 +78,11 @@
     - [1.3.6. Direct Messages Service](#136-direct-messages-service)
       - [1.3.6.1. Lookup Event](#1361-lookup-event)
       - [1.3.6.2. Manage Event](#1362-manage-event)
-    - [1.3.7. Compliance Service](#137-compliance-service)
-      - [1.3.7.1. Batch Compliance](#1371-batch-compliance)
+    - [1.3.7. Geo Service](#137-geo-service)
+      - [1.3.7.1. Lookup Place](#1371-lookup-place)
+      - [1.3.7.2. Search Locations](#1372-search-locations)
+    - [1.3.8. Compliance Service](#138-compliance-service)
+      - [1.3.8.1. Batch Compliance](#1381-batch-compliance)
   - [1.4. Tips 🏄](#14-tips-)
     - [1.4.1. Method Names](#141-method-names)
     - [1.4.2. Generate App-Only Bearer Token](#142-generate-app-only-bearer-token)
@@ -569,9 +572,26 @@ Future<void> main() async {
 | [POST /2/dm_conversations](https://developer.twitter.com/en/docs/twitter-api/direct-messages/manage/api-reference/post-dm_conversations)                                                            | [createGroupConversation](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/DirectMessagesService/createGroupConversation.html) |
 | [POST /2/dm_conversations/:dm_conversation_id/messages](https://developer.twitter.com/en/docs/twitter-api/direct-messages/manage/api-reference/post-dm_conversations-dm_conversation_id-messages)   | [createMessage](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/DirectMessagesService/createMessage.html)                     |
 
-### 1.3.7. Compliance Service
+### 1.3.7. Geo Service
 
-#### 1.3.7.1. Batch Compliance
+> **Note**</br>
+> Twitter API v1.1 endpoint is used because Twitter Official does not yet release the Geo endpoint for Twitter API v2.0. Therefore, this service may be changed in the future.
+
+#### 1.3.7.1. Lookup Place
+
+| Endpoint                      | Method Name                                                                                                 |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| GET /1.1/geo/id/:placeId.json | [lookupById](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/GeoService/lookupById.html) |
+
+#### 1.3.7.2. Search Locations
+
+| Endpoint                                                                                                                               | Method Name                                                                                                           |
+| -------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| [GET /1.1/geo/search.json](https://developer.twitter.com/en/docs/twitter-api/v1/geo/places-near-location/api-reference/get-geo-search) | [searchLocations](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/GeoService/searchLocations.html) |
+
+### 1.3.8. Compliance Service
+
+#### 1.3.8.1. Batch Compliance
 
 | Endpoint                                                                                                                                         | Method Name                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |

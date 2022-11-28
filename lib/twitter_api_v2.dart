@@ -37,6 +37,7 @@ export 'package:twitter_api_v2/src/service/dms/message_attachments_param.dart';
 export 'package:twitter_api_v2/src/service/dms/message_data.dart';
 export 'package:twitter_api_v2/src/service/dms/message_param.dart';
 export 'package:twitter_api_v2/src/service/geo/geo_coordinates.dart';
+export 'package:twitter_api_v2/src/service/geo/geo_granularity.dart';
 export 'package:twitter_api_v2/src/service/geo/geo_service.dart';
 export 'package:twitter_api_v2/src/service/geo/place_data.dart';
 export 'package:twitter_api_v2/src/service/geo/place_field.dart';
