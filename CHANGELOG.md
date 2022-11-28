@@ -1,5 +1,11 @@
 # Release Note
 
+## v4.5.0
+
+- Supported `Geo` service. ([#578](https://github.com/twitter-dart/twitter-api-v2/issues/578))
+  - `GET /1.1/geo/search.json`
+  - `GET /1.1/geo/id/$placeId.json`
+
 ## v4.4.4
 
 - Supported additional language codes. ([#570](https://github.com/twitter-dart/twitter-api-v2/issues/570))

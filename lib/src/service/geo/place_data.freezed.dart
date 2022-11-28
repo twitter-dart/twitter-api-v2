@@ -48,21 +48,23 @@ mixin _$PlaceData {
   /// ## How It Can Be Used
   ///
   /// - Classify a Tweet by a specific type of place.
-  String? get placeType => throw _privateConstructorUsedError;
+  PlaceType? get placeType => throw _privateConstructorUsedError;
 
   /// The full-length name of the country this place belongs to.
   ///
   /// ## How It Can Be Used
   ///
   /// - Classify a Tweet by country name.
-  String? get country => throw _privateConstructorUsedError;
+  @JsonKey(name: 'country')
+  String? get countryName => throw _privateConstructorUsedError;
 
   /// The ISO Alpha-2 country code this place belongs to.
   ///
   /// ## How It Can Be Used
   ///
   /// - Classify a Tweet by country code.
-  String? get countryCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'country_code')
+  Country? get country => throw _privateConstructorUsedError;
 
   /// Contains place details in GeoJSON format.
   PlaceGeo? get geo => throw _privateConstructorUsedError;
@@ -85,9 +87,9 @@ abstract class $PlaceDataCopyWith<$Res> {
       {String id,
       String fullName,
       String? name,
-      String? placeType,
-      String? country,
-      String? countryCode,
+      PlaceType? placeType,
+      @JsonKey(name: 'country') String? countryName,
+      @JsonKey(name: 'country_code') Country? country,
       PlaceGeo? geo,
       List<String>? containedWithin});
 
@@ -108,8 +110,8 @@ class _$PlaceDataCopyWithImpl<$Res> implements $PlaceDataCopyWith<$Res> {
     Object? fullName = freezed,
     Object? name = freezed,
     Object? placeType = freezed,
+    Object? countryName = freezed,
     Object? country = freezed,
-    Object? countryCode = freezed,
     Object? geo = freezed,
     Object? containedWithin = freezed,
   }) {
@@ -129,15 +131,15 @@ class _$PlaceDataCopyWithImpl<$Res> implements $PlaceDataCopyWith<$Res> {
       placeType: placeType == freezed
           ? _value.placeType
           : placeType // ignore: cast_nullable_to_non_nullable
+              as PlaceType?,
+      countryName: countryName == freezed
+          ? _value.countryName
+          : countryName // ignore: cast_nullable_to_non_nullable
               as String?,
       country: country == freezed
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
-              as String?,
-      countryCode: countryCode == freezed
-          ? _value.countryCode
-          : countryCode // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as Country?,
       geo: geo == freezed
           ? _value.geo
           : geo // ignore: cast_nullable_to_non_nullable
@@ -171,9 +173,9 @@ abstract class _$$_PlaceDataCopyWith<$Res> implements $PlaceDataCopyWith<$Res> {
       {String id,
       String fullName,
       String? name,
-      String? placeType,
-      String? country,
-      String? countryCode,
+      PlaceType? placeType,
+      @JsonKey(name: 'country') String? countryName,
+      @JsonKey(name: 'country_code') Country? country,
       PlaceGeo? geo,
       List<String>? containedWithin});
 
@@ -197,8 +199,8 @@ class __$$_PlaceDataCopyWithImpl<$Res> extends _$PlaceDataCopyWithImpl<$Res>
     Object? fullName = freezed,
     Object? name = freezed,
     Object? placeType = freezed,
+    Object? countryName = freezed,
     Object? country = freezed,
-    Object? countryCode = freezed,
     Object? geo = freezed,
     Object? containedWithin = freezed,
   }) {
@@ -218,15 +220,15 @@ class __$$_PlaceDataCopyWithImpl<$Res> extends _$PlaceDataCopyWithImpl<$Res>
       placeType: placeType == freezed
           ? _value.placeType
           : placeType // ignore: cast_nullable_to_non_nullable
+              as PlaceType?,
+      countryName: countryName == freezed
+          ? _value.countryName
+          : countryName // ignore: cast_nullable_to_non_nullable
               as String?,
       country: country == freezed
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
-              as String?,
-      countryCode: countryCode == freezed
-          ? _value.countryCode
-          : countryCode // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as Country?,
       geo: geo == freezed
           ? _value.geo
           : geo // ignore: cast_nullable_to_non_nullable
@@ -248,8 +250,8 @@ class _$_PlaceData implements _PlaceData {
       required this.fullName,
       this.name,
       this.placeType,
-      this.country,
-      this.countryCode,
+      @JsonKey(name: 'country') this.countryName,
+      @JsonKey(name: 'country_code') this.country,
       this.geo,
       final List<String>? containedWithin})
       : _containedWithin = containedWithin;
@@ -289,7 +291,7 @@ class _$_PlaceData implements _PlaceData {
   ///
   /// - Classify a Tweet by a specific type of place.
   @override
-  final String? placeType;
+  final PlaceType? placeType;
 
   /// The full-length name of the country this place belongs to.
   ///
@@ -297,7 +299,8 @@ class _$_PlaceData implements _PlaceData {
   ///
   /// - Classify a Tweet by country name.
   @override
-  final String? country;
+  @JsonKey(name: 'country')
+  final String? countryName;
 
   /// The ISO Alpha-2 country code this place belongs to.
   ///
@@ -305,7 +308,8 @@ class _$_PlaceData implements _PlaceData {
   ///
   /// - Classify a Tweet by country code.
   @override
-  final String? countryCode;
+  @JsonKey(name: 'country_code')
+  final Country? country;
 
   /// Contains place details in GeoJSON format.
   @override
@@ -327,7 +331,7 @@ class _$_PlaceData implements _PlaceData {
 
   @override
   String toString() {
-    return 'PlaceData(id: $id, fullName: $fullName, name: $name, placeType: $placeType, country: $country, countryCode: $countryCode, geo: $geo, containedWithin: $containedWithin)';
+    return 'PlaceData(id: $id, fullName: $fullName, name: $name, placeType: $placeType, countryName: $countryName, country: $country, geo: $geo, containedWithin: $containedWithin)';
   }
 
   @override
@@ -339,9 +343,9 @@ class _$_PlaceData implements _PlaceData {
             const DeepCollectionEquality().equals(other.fullName, fullName) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.placeType, placeType) &&
-            const DeepCollectionEquality().equals(other.country, country) &&
             const DeepCollectionEquality()
-                .equals(other.countryCode, countryCode) &&
+                .equals(other.countryName, countryName) &&
+            const DeepCollectionEquality().equals(other.country, country) &&
             const DeepCollectionEquality().equals(other.geo, geo) &&
             const DeepCollectionEquality()
                 .equals(other._containedWithin, _containedWithin));
@@ -355,8 +359,8 @@ class _$_PlaceData implements _PlaceData {
       const DeepCollectionEquality().hash(fullName),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(placeType),
+      const DeepCollectionEquality().hash(countryName),
       const DeepCollectionEquality().hash(country),
-      const DeepCollectionEquality().hash(countryCode),
       const DeepCollectionEquality().hash(geo),
       const DeepCollectionEquality().hash(_containedWithin));
 
@@ -378,9 +382,9 @@ abstract class _PlaceData implements PlaceData {
       {required final String id,
       required final String fullName,
       final String? name,
-      final String? placeType,
-      final String? country,
-      final String? countryCode,
+      final PlaceType? placeType,
+      @JsonKey(name: 'country') final String? countryName,
+      @JsonKey(name: 'country_code') final Country? country,
       final PlaceGeo? geo,
       final List<String>? containedWithin}) = _$_PlaceData;
 
@@ -420,7 +424,7 @@ abstract class _PlaceData implements PlaceData {
   /// ## How It Can Be Used
   ///
   /// - Classify a Tweet by a specific type of place.
-  String? get placeType;
+  PlaceType? get placeType;
   @override
 
   /// The full-length name of the country this place belongs to.
@@ -428,7 +432,8 @@ abstract class _PlaceData implements PlaceData {
   /// ## How It Can Be Used
   ///
   /// - Classify a Tweet by country name.
-  String? get country;
+  @JsonKey(name: 'country')
+  String? get countryName;
   @override
 
   /// The ISO Alpha-2 country code this place belongs to.
@@ -436,7 +441,8 @@ abstract class _PlaceData implements PlaceData {
   /// ## How It Can Be Used
   ///
   /// - Classify a Tweet by country code.
-  String? get countryCode;
+  @JsonKey(name: 'country_code')
+  Country? get country;
   @override
 
   /// Contains place details in GeoJSON format.

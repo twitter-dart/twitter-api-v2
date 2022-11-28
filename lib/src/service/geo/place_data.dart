@@ -4,9 +4,12 @@
 
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:twitter_api_core/twitter_api_core.dart';
 
 // Project imports:
+import '../common/data.dart';
 import 'place_geo.dart';
+import 'place_type.dart';
 
 part 'place_data.freezed.dart';
 part 'place_data.g.dart';
@@ -20,7 +23,7 @@ part 'place_data.g.dart';
 /// Use the expansion with the field parameter: place.fields when requesting
 /// additional fields to complete the object.
 @freezed
-class PlaceData with _$PlaceData {
+class PlaceData with _$PlaceData implements Data {
   @JsonSerializable(includeIfNull: false)
   const factory PlaceData({
     /// The unique identifier of the expanded place, if this is a point of
@@ -51,21 +54,21 @@ class PlaceData with _$PlaceData {
     /// ## How It Can Be Used
     ///
     /// - Classify a Tweet by a specific type of place.
-    String? placeType,
+    PlaceType? placeType,
 
     /// The full-length name of the country this place belongs to.
     ///
     /// ## How It Can Be Used
     ///
     /// - Classify a Tweet by country name.
-    String? country,
+    @JsonKey(name: 'country') String? countryName,
 
     /// The ISO Alpha-2 country code this place belongs to.
     ///
     /// ## How It Can Be Used
     ///
     /// - Classify a Tweet by country code.
-    String? countryCode,
+    @JsonKey(name: 'country_code') Country? country,
 
     /// Contains place details in GeoJSON format.
     PlaceGeo? geo,
