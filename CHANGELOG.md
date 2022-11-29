@@ -1,5 +1,12 @@
 # Release Note
 
+## v4.6.0
+
+- Supported `Trends` service. ([#582](https://github.com/twitter-dart/twitter-api-v2/issues/582))
+  - `GET /1.1/trends/place.json`
+  - `GET /1.1/trends/available.json`
+  - `GET /1.1/trends/closest.json`
+
 ## v4.5.0
 
 - Supported `Geo` service. ([#578](https://github.com/twitter-dart/twitter-api-v2/issues/578))

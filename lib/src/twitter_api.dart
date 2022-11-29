@@ -12,6 +12,7 @@ import 'service/geo/geo_service.dart';
 import 'service/lists/lists_service.dart';
 import 'service/media/media_service.dart';
 import 'service/spaces/spaces_service.dart';
+import 'service/trends/trends_service.dart';
 import 'service/tweets/tweets_service.dart';
 import 'service/twitter_service.dart';
 import 'service/users/users_service.dart';
@@ -27,6 +28,7 @@ import 'service/users/users_service.dart';
 /// - Media service: [media]
 /// - Direct Messages service: [directMessages]
 /// - Geo Service: [geo]
+/// - Trends Service: [trends]
 /// - Compliance service: [compliance]
 ///
 /// ## Authentication
@@ -193,6 +195,9 @@ abstract class TwitterApi {
   /// Returns the geo service.
   GeoService get geo;
 
+  /// Returns the trends service.
+  TrendsService get trends;
+
   /// Returns the compliance service.
   ComplianceService get compliance;
 }
@@ -260,6 +265,9 @@ class _TwitterApi implements TwitterApi {
 
   @override
   GeoService get geo => _twitterService.geoService;
+
+  @override
+  TrendsService get trends => _twitterService.trendsService;
 
   @override
   ComplianceService get compliance => _twitterService.complianceService;
