@@ -81,8 +81,11 @@
     - [1.3.7. Geo Service](#137-geo-service)
       - [1.3.7.1. Lookup Place](#1371-lookup-place)
       - [1.3.7.2. Search Locations](#1372-search-locations)
-    - [1.3.8. Compliance Service](#138-compliance-service)
-      - [1.3.8.1. Batch Compliance](#1381-batch-compliance)
+    - [1.3.8. Trends Service](#138-trends-service)
+      - [1.3.8.1. Trending Location](#1381-trending-location)
+      - [1.3.8.2. Trend](#1382-trend)
+    - [1.3.9. Compliance Service](#139-compliance-service)
+      - [1.3.9.1. Batch Compliance](#1391-batch-compliance)
   - [1.4. Tips 🏄](#14-tips-)
     - [1.4.1. Method Names](#141-method-names)
     - [1.4.2. Generate App-Only Bearer Token](#142-generate-app-only-bearer-token)
@@ -589,9 +592,27 @@ Future<void> main() async {
 | -------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | [GET /1.1/geo/search.json](https://developer.twitter.com/en/docs/twitter-api/v1/geo/places-near-location/api-reference/get-geo-search) | [searchLocations](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/GeoService/searchLocations.html) |
 
-### 1.3.8. Compliance Service
+### 1.3.8. Trends Service
 
-#### 1.3.8.1. Batch Compliance
+> **Note**</br>
+> Twitter API v1.1 endpoint is used because Twitter Official does not yet release the Trends endpoint for Twitter API v2.0. Therefore, this service may be changed in the future.
+
+#### 1.3.8.1. Trending Location
+
+| Endpoint                                                                                                                                                        | Method Name                                                                                                                                |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| [GET /1.1/trends/available.json](https://developer.twitter.com/en/docs/twitter-api/v1/trends/locations-with-trending-topics/api-reference/get-trends-available) | [searchAvailableLocations](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TrendsService/searchAvailableLocations.html) |
+| [GET /1.1/trends/closest.json](https://developer.twitter.com/en/docs/twitter-api/v1/trends/locations-with-trending-topics/api-reference/get-trends-closest)     | [searchClosestLocations](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TrendsService/searchClosestLocations.html)     |
+
+#### 1.3.8.2. Trend
+
+| Endpoint                                                                                                                                     | Method Name                                                                                                        |
+| -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| [GET /1.1/trends/place.json](https://developer.twitter.com/en/docs/twitter-api/v1/trends/trends-for-location/api-reference/get-trends-place) | [lookupTrends](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TrendsService/lookupTrends.html) |
+
+### 1.3.9. Compliance Service
+
+#### 1.3.9.1. Batch Compliance
 
 | Endpoint                                                                                                                                         | Method Name                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
