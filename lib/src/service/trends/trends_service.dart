@@ -117,7 +117,7 @@ class _TrendsService extends BaseService implements TrendsService {
       '/1.1/trends/available.json',
     );
 
-    final locations = _checkResponse(response).first['trends'];
+    final locations = _checkResponse(response);
 
     return TwitterResponse(
       rateLimit: RateLimit.fromJson(
