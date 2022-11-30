@@ -16,6 +16,7 @@
     "nullcast",
     "nullcasted",
     "Pageable",
+    "parentid",
     "PKCE",
     "Shinya",
     "sublist",
@@ -30,6 +31,7 @@
     "unliked",
     "unmute",
     "unmuted",
+    "woeid",
     "writeln"
   ],
   "files.trimTrailingWhitespace": true,

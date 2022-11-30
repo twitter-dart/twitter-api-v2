@@ -2,9 +2,10 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
+// Dart imports:
 import 'dart:convert';
 
+// Package imports:
 import 'package:twitter_api_core/twitter_api_core.dart' as core;
 
 // Project imports:
