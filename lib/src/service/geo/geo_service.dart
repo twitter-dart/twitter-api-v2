@@ -127,6 +127,28 @@ abstract class GeoService {
     double? longitude,
     String? ipAddress,
   });
+
+  /// Search for places that can be attached to a Tweet.
+  ///
+  /// Given a latitude and a longitude, searches for up to 20 places that can
+  /// be used as a place_id when updating a status.
+  /// This request is an informative call and will deliver generalized
+  /// results about geography.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/1.1/geo/reverse_geocode.json
+  ///
+  ///  ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/v1/geo/places-near-location/api-reference/get-geo-reverse_geocode
+  Future<TwitterResponse<List<PlaceData>, void>> reverseGeocodeLocations({
+    GeoGranularity? granularity,
+    int? maxResults,
+    String? accuracy,
+    double? latitude,
+    double? longitude,
+  });
 }
 
 class _GeoService extends BaseService implements GeoService {
@@ -219,5 +241,37 @@ class _GeoService extends BaseService implements GeoService {
     }
 
     return json;
+  }
+
+  @override
+  Future<TwitterResponse<List<PlaceData>, void>> reverseGeocodeLocations({
+    GeoGranularity? granularity,
+    int? maxResults,
+    String? accuracy,
+    double? latitude,
+    double? longitude,
+  }) async {
+    final response = await super.get(
+      core.UserContext.oauth1Only,
+      '/1.1/geo/reverse_geocode.json',
+      queryParameters: {
+        'granularity': granularity,
+        'max_results': maxResults,
+        'lat': latitude,
+        'long': longitude,
+        'accuracy': accuracy,
+      },
+    );
+
+    final places = _checkResponse(response)['result']['places'];
+
+    return TwitterResponse(
+      rateLimit: RateLimit.fromJson(
+        rateLimitConverter.convert(response.headers),
+      ),
+      data: _toV2Format(places)
+          .map<PlaceData>((json) => PlaceData.fromJson(json))
+          .toList(),
+    );
   }
 }
