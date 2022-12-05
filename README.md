@@ -585,6 +585,7 @@ Future<void> main() async {
 | Endpoint                      | Method Name                                                                                                 |
 | ----------------------------- | ----------------------------------------------------------------------------------------------------------- |
 | GET /1.1/geo/id/:placeId.json | [lookupById](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/GeoService/lookupById.html) |
+| [GET /1.1/geo/reverse_geocode.json](https://developer.twitter.com/en/docs/twitter-api/v1/geo/places-near-location/api-reference/get-geo-reverse_geocode) | [lookupReverseGeocodedLocations](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/GeoService/lookupReverseGeocodedLocations.html) |
 
 #### 1.3.7.2. Search Locations
 

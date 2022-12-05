@@ -135,6 +135,53 @@ abstract class GeoService {
   /// This request is an informative call and will deliver generalized
   /// results about geography.
   ///
+  /// ## Parameters
+  ///
+  /// - [granularity]: This is the minimal granularity of place types to
+  ///                  return and must be one of: [GeoGranularity.neighborhood],
+  ///                  [GeoGranularity.city], [GeoGranularity.admin] or
+  ///                  [GeoGranularity.country]. If no granularity is provided
+  ///                  for the request [GeoGranularity.neighborhood] is assumed.
+  ///                  Setting this to [GeoGranularity.city], for example,
+  ///                  will find places which have a type of
+  ///                  [GeoGranularity.city], [GeoGranularity.admin] or
+  ///                  [GeoGranularity.country].
+  ///
+  /// - [maxResults]: A hint as to the number of results to return.
+  ///                 This does not guarantee that the number of results
+  ///                 returned will equal max_results, but instead informs how
+  ///                 many "nearby" results to return. Ideally, only pass in
+  ///                 the number of places you intend to display to the user
+  ///                 here.
+  ///
+  /// - [accuracy]: A hint on the "region" in which to search. If a number,
+  ///               then this is a radius in meters, but it can also take a
+  ///               string that is suffixed with ft to specify feet.
+  ///               If this is not passed in, then it is assumed to be `0m`.
+  ///               If coming from a device, in practice, this value is
+  ///               whatever accuracy the device has measuring its location
+  ///               (whether it be coming from a GPS, WiFi triangulation, etc.).
+  ///
+  /// - [latitude]: The latitude to search around. This parameter will be
+  ///               ignored unless it is inside the range -90.0 to +90.0
+  ///               (North is positive) inclusive. It will also be ignored if
+  ///               there isn't a corresponding [longitude] parameter
+  ///
+  /// - [longitude]: The longitude to search around. The valid ranges for
+  ///                longitude are -180.0 to +180.0 (East is positive)
+  ///                inclusive. This parameter will be ignored if outside
+  ///                that range, if it is not a number, or if there not a
+  ///                corresponding [latitude] parameter.
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 1.0a
+  ///
+  /// ## Rate Limits
+  ///
+  /// - **User rate limit (OAuth 1.0a)**:
+  ///    15 requests per 15-minute window per each authenticated user
+  ///
   /// ## Endpoint Url
   ///
   /// - https://api.twitter.com/1.1/geo/reverse_geocode.json
@@ -142,12 +189,13 @@ abstract class GeoService {
   ///  ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/v1/geo/places-near-location/api-reference/get-geo-reverse_geocode
-  Future<TwitterResponse<List<PlaceData>, void>> reverseGeocodeLocations({
-    GeoGranularity? granularity,
+  Future<TwitterResponse<List<PlaceData>, void>>
+      lookupReverseGeocodedLocations({
+    required double latitude,
+    required double longitude,
     int? maxResults,
     String? accuracy,
-    double? latitude,
-    double? longitude,
+    GeoGranularity? granularity,
   });
 }
 
@@ -208,6 +256,39 @@ class _GeoService extends BaseService implements GeoService {
     );
   }
 
+  @override
+  Future<TwitterResponse<List<PlaceData>, void>>
+      lookupReverseGeocodedLocations({
+    required double latitude,
+    required double longitude,
+    int? maxResults,
+    String? accuracy,
+    GeoGranularity? granularity,
+  }) async {
+    final response = await super.get(
+      core.UserContext.oauth1Only,
+      '/1.1/geo/reverse_geocode.json',
+      queryParameters: {
+        'lat': latitude,
+        'long': longitude,
+        'max_results': maxResults,
+        'accuracy': accuracy,
+        'granularity': granularity,
+      },
+    );
+
+    final places = _checkResponse(response)['result']['places'];
+
+    return TwitterResponse(
+      rateLimit: RateLimit.fromJson(
+        rateLimitConverter.convert(response.headers),
+      ),
+      data: _toV2Format(places)
+          .map<PlaceData>((json) => PlaceData.fromJson(json))
+          .toList(),
+    );
+  }
+
   dynamic _checkResponse(final core.Response response) {
     final json = jsonDecode(response.body);
 
@@ -241,37 +322,5 @@ class _GeoService extends BaseService implements GeoService {
     }
 
     return json;
-  }
-
-  @override
-  Future<TwitterResponse<List<PlaceData>, void>> reverseGeocodeLocations({
-    GeoGranularity? granularity,
-    int? maxResults,
-    String? accuracy,
-    double? latitude,
-    double? longitude,
-  }) async {
-    final response = await super.get(
-      core.UserContext.oauth1Only,
-      '/1.1/geo/reverse_geocode.json',
-      queryParameters: {
-        'granularity': granularity,
-        'max_results': maxResults,
-        'lat': latitude,
-        'long': longitude,
-        'accuracy': accuracy,
-      },
-    );
-
-    final places = _checkResponse(response)['result']['places'];
-
-    return TwitterResponse(
-      rateLimit: RateLimit.fromJson(
-        rateLimitConverter.convert(response.headers),
-      ),
-      data: _toV2Format(places)
-          .map<PlaceData>((json) => PlaceData.fromJson(json))
-          .toList(),
-    );
   }
 }

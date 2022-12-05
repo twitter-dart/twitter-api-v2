@@ -6,6 +6,8 @@
   - `GET /1.1/trends/place.json`
   - `GET /1.1/trends/available.json`
   - `GET /1.1/trends/closest.json`
+- Supported `/1.1/geo/reverse_geocode.json` endpoint for `Geo` service. ([#584](https://github.com/twitter-dart/twitter-api-v2/issues/584))
+
 
 ## v4.5.0
 
