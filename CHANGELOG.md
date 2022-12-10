@@ -1,5 +1,9 @@
 # Release Note
 
+## v4.6.1
+
+- Internal processing has been improved to set `false` in the data field of `TwitterResponse` when a `403` error is returned in `POST`, `PUT` and `DELETE` communication. ([#592](https://github.com/twitter-dart/twitter-api-v2/issues/592))
+
 ## v4.6.0
 
 - Supported `Trends` service. ([#582](https://github.com/twitter-dart/twitter-api-v2/issues/582))

@@ -138,9 +138,6 @@ abstract class BaseService implements _Service {
     final core.UserContext userContext,
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
-    Map<String, dynamic> Function(
-            core.StreamedResponse streamedResponse, String event)?
-        validate,
   }) async =>
       await _helper.getStream(
         userContext,
@@ -168,7 +165,6 @@ abstract class BaseService implements _Service {
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
     dynamic body = const {},
-    core.Response Function(core.Response response)? validate,
   }) async =>
       await _helper.post(
         userContext,
@@ -181,9 +177,8 @@ abstract class BaseService implements _Service {
   @override
   Future<core.Response> delete(
     final core.UserContext userContext,
-    final String unencodedPath, {
-    core.Response Function(core.Response response)? validate,
-  }) async =>
+    final String unencodedPath,
+  ) async =>
       await _helper.delete(
         userContext,
         unencodedPath,
@@ -195,7 +190,6 @@ abstract class BaseService implements _Service {
     final core.UserContext userContext,
     final String unencodedPath, {
     dynamic body = const {},
-    core.Response Function(core.Response response)? validate,
   }) async =>
       await _helper.put(
         userContext,
@@ -382,6 +376,11 @@ abstract class BaseService implements _Service {
     if (response.statusCode == 200 && response.body.isEmpty) {
       //! No JSON in response but okay, it's succeeded.
       return true;
+    }
+
+    if (response.statusCode == 403) {
+      //! Forbidden for some reasons.
+      return false;
     }
 
     return !core

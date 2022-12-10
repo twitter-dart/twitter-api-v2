@@ -2484,6 +2484,21 @@ void main() {
       expect(response.data, isTrue);
     });
 
+    test('when forbidden', () async {
+      final tweetsService = TweetsService(
+        context: context.buildPutStub(
+          '/2/tweets/0000/hidden',
+          'test/src/service/tweets/data/create_hidden_reply.json',
+          statusCode: 403,
+        ),
+      );
+
+      final response = await tweetsService.createHiddenReply(tweetId: '0000');
+
+      expect(response, isA<TwitterResponse<bool, void>>());
+      expect(response.data, isFalse);
+    });
+
     test('with invalid access token', () async {
       final tweetsService = TweetsService(
         context: ClientContext(
@@ -2545,6 +2560,21 @@ void main() {
 
       expect(response, isA<TwitterResponse<bool, void>>());
       expect(response.data, isTrue);
+    });
+
+    test('when forbidden', () async {
+      final tweetsService = TweetsService(
+        context: context.buildPutStub(
+          '/2/tweets/0000/hidden',
+          'test/src/service/tweets/data/destroy_hidden_reply.json',
+          statusCode: 403,
+        ),
+      );
+
+      final response = await tweetsService.destroyHiddenReply(tweetId: '0000');
+
+      expect(response, isA<TwitterResponse<bool, void>>());
+      expect(response.data, isFalse);
     });
 
     test('with invalid access token', () async {
