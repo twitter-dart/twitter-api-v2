@@ -2,10 +2,9 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
-import 'package:twitter_api_core/twitter_api_core.dart' as core;
-
-// Project imports:
+// 🌎 Project imports:
+import '../../core/client/client_context.dart';
+import '../../core/client/user_context.dart';
 import '../base_service.dart';
 import '../media/media_field.dart';
 import '../pagination/bidirectional_pagination.dart';
@@ -22,7 +21,7 @@ import 'message_param.dart';
 
 abstract class DirectMessagesService {
   /// Returns the new instance of [DirectMessagesService].
-  factory DirectMessagesService({required core.ClientContext context}) =>
+  factory DirectMessagesService({required ClientContext context}) =>
       _DirectMessagesService(context: context);
 
   /// Returns a list of Direct Messages for the authenticated user,
@@ -511,7 +510,7 @@ class _DirectMessagesService extends BaseService
     Paging<List<DMEventData>, DMEventMeta>? paging,
   }) async =>
       await super.executePaginationIfNecessary(
-        core.UserContext.oauth2OrOAuth1,
+        UserContext.oauth2OrOAuth1,
         '/2/dm_events',
         {
           'event_types': eventTypes,
@@ -542,7 +541,7 @@ class _DirectMessagesService extends BaseService
     Paging<List<DMEventData>, DMEventMeta>? paging,
   }) async =>
       await super.executePaginationIfNecessary(
-        core.UserContext.oauth2OrOAuth1,
+        UserContext.oauth2OrOAuth1,
         '/2/dm_conversations/with/$participantId/dm_events',
         {
           'event_types': eventTypes,
@@ -573,7 +572,7 @@ class _DirectMessagesService extends BaseService
     Paging<List<DMEventData>, DMEventMeta>? paging,
   }) async =>
       await super.executePaginationIfNecessary(
-        core.UserContext.oauth2OrOAuth1,
+        UserContext.oauth2OrOAuth1,
         '/2/dm_conversations/$conversationId/dm_events',
         {
           'event_types': eventTypes,
@@ -597,7 +596,7 @@ class _DirectMessagesService extends BaseService
   }) async =>
       super.transformSingleDataResponse(
         await super.post(
-          core.UserContext.oauth2OrOAuth1,
+          UserContext.oauth2OrOAuth1,
           '/2/dm_conversations/$conversationId/messages',
           body: {
             'text': message.text,
@@ -618,7 +617,7 @@ class _DirectMessagesService extends BaseService
   }) async =>
       super.transformSingleDataResponse(
         await super.post(
-          core.UserContext.oauth2OrOAuth1,
+          UserContext.oauth2OrOAuth1,
           '/2/dm_conversations/with/$participantId/messages',
           body: {
             'text': message.text,
@@ -639,7 +638,7 @@ class _DirectMessagesService extends BaseService
   }) async =>
       super.transformSingleDataResponse(
         await super.post(
-          core.UserContext.oauth2OrOAuth1,
+          UserContext.oauth2OrOAuth1,
           '/2/dm_conversations',
           body: {
             'conversation_type': 'Group',

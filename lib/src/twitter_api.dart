@@ -2,10 +2,10 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
-import 'package:twitter_api_core/twitter_api_core.dart' as core;
-
-// Project imports:
+// 🌎 Project imports:
+import 'core/client/client_context.dart';
+import 'core/client/oauth_tokens.dart';
+import 'core/config/retry_config.dart';
 import 'service/compliance/compliance_service.dart';
 import 'service/dms/direct_messages_service.dart';
 import 'service/geo/geo_service.dart';
@@ -139,9 +139,9 @@ abstract class TwitterApi {
   /// Returns the new instance of [TwitterApi].
   factory TwitterApi({
     required String bearerToken,
-    core.OAuthTokens? oauthTokens,
+    OAuthTokens? oauthTokens,
     Duration timeout = const Duration(seconds: 10),
-    core.RetryConfig? retryConfig,
+    RetryConfig? retryConfig,
   }) =>
       _TwitterApi(
         bearerToken: bearerToken,
@@ -205,11 +205,11 @@ abstract class TwitterApi {
 class _TwitterApi implements TwitterApi {
   _TwitterApi({
     required String bearerToken,
-    core.OAuthTokens? oauthTokens,
+    OAuthTokens? oauthTokens,
     required Duration timeout,
-    core.RetryConfig? retryConfig,
+    RetryConfig? retryConfig,
   }) : _twitterService = TwitterService(
-          context: core.ClientContext(
+          context: ClientContext(
             bearerToken: bearerToken,
             oauthTokens: oauthTokens,
             timeout: timeout,

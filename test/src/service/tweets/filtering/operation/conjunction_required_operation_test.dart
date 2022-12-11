@@ -2,11 +2,11 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
+// 📦 Package imports:
 import 'package:test/test.dart';
-import 'package:twitter_api_core/twitter_api_core.dart';
 
-// Project imports:
+// 🌎 Project imports:
+import 'package:twitter_api_v2/src/core/language.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering/operation/conjunction_required_operation.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering/operator/conjunction/singleton/has_operator.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering/operator/conjunction/singleton/has_operator_type.dart';

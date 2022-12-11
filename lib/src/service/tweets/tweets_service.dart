@@ -2,10 +2,9 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
-import 'package:twitter_api_core/twitter_api_core.dart' as core;
-
-// Project imports:
+// 🌎 Project imports:
+import '../../core/client/client_context.dart';
+import '../../core/client/user_context.dart';
 import '../base_service.dart';
 import '../common/includes.dart';
 import '../common/rate_limit.dart';
@@ -45,7 +44,7 @@ import 'tweet_reply_param.dart';
 /// This class provides methods to easily access endpoints based on Tweet.
 abstract class TweetsService {
   /// Returns the new instance of [TweetsService].
-  factory TweetsService({required core.ClientContext context}) =>
+  factory TweetsService({required ClientContext context}) =>
       _TweetsService(context: context);
 
   /// Creates a Tweet on behalf of an authenticated user.
@@ -2842,7 +2841,7 @@ class _TweetsService extends BaseService implements TweetsService {
   }) async =>
       super.transformSingleDataResponse(
         await super.post(
-          core.UserContext.oauth2OrOAuth1,
+          UserContext.oauth2OrOAuth1,
           '/2/tweets',
           body: {
             'text': text,
@@ -2880,7 +2879,7 @@ class _TweetsService extends BaseService implements TweetsService {
   }) async =>
       super.evaluateResponse(
         await super.delete(
-          core.UserContext.oauth2OrOAuth1,
+          UserContext.oauth2OrOAuth1,
           '/2/tweets/$tweetId',
         ),
       );
@@ -2892,7 +2891,7 @@ class _TweetsService extends BaseService implements TweetsService {
   }) async =>
       super.evaluateResponse(
         await super.post(
-          core.UserContext.oauth2OrOAuth1,
+          UserContext.oauth2OrOAuth1,
           '/2/users/$userId/likes',
           body: {'tweet_id': tweetId},
         ),
@@ -2905,7 +2904,7 @@ class _TweetsService extends BaseService implements TweetsService {
   }) async =>
       super.evaluateResponse(
         await super.delete(
-          core.UserContext.oauth2OrOAuth1,
+          UserContext.oauth2OrOAuth1,
           '/2/users/$userId/likes/$tweetId',
         ),
       );
@@ -2917,7 +2916,7 @@ class _TweetsService extends BaseService implements TweetsService {
   }) async =>
       super.evaluateResponse(
         await super.post(
-          core.UserContext.oauth2OrOAuth1,
+          UserContext.oauth2OrOAuth1,
           '/2/users/$userId/retweets',
           body: {'tweet_id': tweetId},
         ),
@@ -2930,7 +2929,7 @@ class _TweetsService extends BaseService implements TweetsService {
   }) async =>
       super.evaluateResponse(
         await super.delete(
-          core.UserContext.oauth2OrOAuth1,
+          UserContext.oauth2OrOAuth1,
           '/2/users/$userId/retweets/$tweetId',
         ),
       );
@@ -2949,7 +2948,7 @@ class _TweetsService extends BaseService implements TweetsService {
     Paging<List<UserData>, UserMeta>? paging,
   }) async =>
       await super.executePaginationIfNecessary(
-        core.UserContext.oauth2OrOAuth1,
+        UserContext.oauth2OrOAuth1,
         '/2/tweets/$tweetId/liking_users',
         {
           'max_results': maxResults,
@@ -2980,7 +2979,7 @@ class _TweetsService extends BaseService implements TweetsService {
     Paging<List<TweetData>, TweetMeta>? paging,
   }) async =>
       await super.executePaginationIfNecessary(
-        core.UserContext.oauth2OrOAuth1,
+        UserContext.oauth2OrOAuth1,
         '/2/users/$userId/liked_tweets',
         {
           'max_results': maxResults,
@@ -3011,7 +3010,7 @@ class _TweetsService extends BaseService implements TweetsService {
     Paging<List<UserData>, UserMeta>? paging,
   }) async =>
       await super.executePaginationIfNecessary(
-        core.UserContext.oauth2OrOAuth1,
+        UserContext.oauth2OrOAuth1,
         '/2/tweets/$tweetId/retweeted_by',
         {
           'max_results': maxResults,
@@ -3042,7 +3041,7 @@ class _TweetsService extends BaseService implements TweetsService {
     Paging<List<TweetData>, TweetMeta>? paging,
   }) async =>
       await super.executePaginationIfNecessary(
-        core.UserContext.oauth2OrOAuth1,
+        UserContext.oauth2OrOAuth1,
         '/2/tweets/$tweetId/quote_tweets',
         {
           'max_results': maxResults,
@@ -3078,7 +3077,7 @@ class _TweetsService extends BaseService implements TweetsService {
     ForwardPaging<List<TweetData>, TweetMeta>? paging,
   }) async =>
       await super.executeForwardPaginationIfNecessary(
-        core.UserContext.oauth2Only,
+        UserContext.oauth2Only,
         '/2/tweets/search/recent',
         {
           'query': query,
@@ -3120,7 +3119,7 @@ class _TweetsService extends BaseService implements TweetsService {
     ForwardPaging<List<TweetData>, TweetMeta>? paging,
   }) async =>
       await super.executeForwardPaginationIfNecessary(
-        core.UserContext.oauth2Only,
+        UserContext.oauth2Only,
         '/2/tweets/search/all',
         {
           'query': query,
@@ -3155,7 +3154,7 @@ class _TweetsService extends BaseService implements TweetsService {
   }) async =>
       super.transformSingleDataResponse(
         await super.get(
-          core.UserContext.oauth2OrOAuth1,
+          UserContext.oauth2OrOAuth1,
           '/2/tweets/$tweetId',
           queryParameters: {
             'expansions': expansions,
@@ -3181,7 +3180,7 @@ class _TweetsService extends BaseService implements TweetsService {
   }) async =>
       super.transformMultiDataResponse(
         await super.get(
-          core.UserContext.oauth2OrOAuth1,
+          UserContext.oauth2OrOAuth1,
           '/2/tweets',
           queryParameters: {
             'ids': tweetIds,
@@ -3208,7 +3207,7 @@ class _TweetsService extends BaseService implements TweetsService {
   }) async =>
       super.transformMultiDataResponse(
         await super.get(
-          core.UserContext.oauth2Only,
+          UserContext.oauth2Only,
           '/2/tweets/counts/recent',
           queryParameters: {
             'query': query,
@@ -3236,7 +3235,7 @@ class _TweetsService extends BaseService implements TweetsService {
     ForwardPaging<List<TweetCountData>, TweetCountMeta>? paging,
   }) async =>
       await super.executeForwardPaginationIfNecessary(
-        core.UserContext.oauth2Only,
+        UserContext.oauth2Only,
         '/2/tweets/counts/all',
         {
           'query': query,
@@ -3259,7 +3258,7 @@ class _TweetsService extends BaseService implements TweetsService {
   }) async =>
       super.evaluateResponse(
         await super.post(
-          core.UserContext.oauth2OrOAuth1,
+          UserContext.oauth2OrOAuth1,
           '/2/users/$userId/bookmarks',
           body: {'tweet_id': tweetId},
         ),
@@ -3272,7 +3271,7 @@ class _TweetsService extends BaseService implements TweetsService {
   }) async =>
       super.evaluateResponse(
         await super.delete(
-          core.UserContext.oauth2OrOAuth1,
+          UserContext.oauth2OrOAuth1,
           '/2/users/$userId/bookmarks/$tweetId',
         ),
       );
@@ -3289,7 +3288,7 @@ class _TweetsService extends BaseService implements TweetsService {
   }) async =>
       super.transformMultiDataResponse(
         await super.get(
-          core.UserContext.oauth2Only,
+          UserContext.oauth2Only,
           '/2/users/$userId/bookmarks',
           queryParameters: {
             'expansions': expansions,
@@ -3309,7 +3308,7 @@ class _TweetsService extends BaseService implements TweetsService {
           {required String tweetId}) async =>
       super.evaluateResponse(
         await super.put(
-          core.UserContext.oauth2OrOAuth1,
+          UserContext.oauth2OrOAuth1,
           '/2/tweets/$tweetId/hidden',
           body: {'hidden': true},
         ),
@@ -3320,7 +3319,7 @@ class _TweetsService extends BaseService implements TweetsService {
           {required String tweetId}) async =>
       super.evaluateResponse(
         await super.put(
-          core.UserContext.oauth2OrOAuth1,
+          UserContext.oauth2OrOAuth1,
           '/2/tweets/$tweetId/hidden',
           body: {'hidden': false},
         ),
@@ -3344,7 +3343,7 @@ class _TweetsService extends BaseService implements TweetsService {
     Paging<List<TweetData>, TweetMeta>? paging,
   }) async =>
       await super.executePaginationIfNecessary(
-        core.UserContext.oauth2OrOAuth1,
+        UserContext.oauth2OrOAuth1,
         '/2/users/$userId/mentions',
         {
           'max_results': maxResults,
@@ -3384,7 +3383,7 @@ class _TweetsService extends BaseService implements TweetsService {
     Paging<List<TweetData>, TweetMeta>? paging,
   }) async =>
       await super.executePaginationIfNecessary(
-        core.UserContext.oauth2OrOAuth1,
+        UserContext.oauth2OrOAuth1,
         '/2/users/$userId/tweets',
         {
           'max_results': maxResults,
@@ -3425,7 +3424,7 @@ class _TweetsService extends BaseService implements TweetsService {
     Paging<List<TweetData>, TweetMeta>? paging,
   }) async =>
       await super.executePaginationIfNecessary(
-        core.UserContext.oauth2OrOAuth1,
+        UserContext.oauth2OrOAuth1,
         '/2/users/$userId/timelines/reverse_chronological',
         {
           'max_results': maxResults,
@@ -3459,7 +3458,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<MediaField>? mediaFields,
   }) async {
     final stream = await super.getStream(
-      core.UserContext.oauth2Only,
+      UserContext.oauth2Only,
       '/2/tweets/sample/stream',
       queryParameters: {
         'backfill_minutes': backfillMinutes,
@@ -3501,7 +3500,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<MediaField>? mediaFields,
   }) async {
     final stream = await super.getStream(
-      core.UserContext.oauth2Only,
+      UserContext.oauth2Only,
       '/2/tweets/sample10/stream',
       queryParameters: {
         'partition': partition.value,
@@ -3542,7 +3541,7 @@ class _TweetsService extends BaseService implements TweetsService {
     List<MediaField>? mediaFields,
   }) async {
     final stream = await super.getStream(
-      core.UserContext.oauth2Only,
+      UserContext.oauth2Only,
       '/2/tweets/search/stream',
       queryParameters: {
         'backfill_minutes': backfillMinutes,
@@ -3579,7 +3578,7 @@ class _TweetsService extends BaseService implements TweetsService {
       lookupFilteringRules({List<String>? ruleIds}) async =>
           super.transformMultiDataResponse(
             await super.get(
-              core.UserContext.oauth2Only,
+              UserContext.oauth2Only,
               '/2/tweets/search/stream/rules',
               queryParameters: {
                 'ids': ruleIds,
@@ -3597,7 +3596,7 @@ class _TweetsService extends BaseService implements TweetsService {
   }) async =>
           super.transformMultiDataResponse(
             await super.post(
-              core.UserContext.oauth2Only,
+              UserContext.oauth2Only,
               '/2/tweets/search/stream/rules',
               queryParameters: {
                 'dry_run': dryRun,
@@ -3618,7 +3617,7 @@ class _TweetsService extends BaseService implements TweetsService {
   }) async =>
       super.evaluateResponse(
         await super.post(
-          core.UserContext.oauth2Only,
+          UserContext.oauth2Only,
           '/2/tweets/search/stream/rules',
           body: {
             'delete': {'ids': ruleIds},

@@ -2,14 +2,16 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Dart imports:
+// 🎯 Dart imports:
 import 'dart:io';
 
-// Package imports:
+// 📦 Package imports:
 import 'package:test/test.dart';
-import 'package:twitter_api_core/twitter_api_core.dart';
 
-// Project imports:
+// 🌎 Project imports:
+import 'package:twitter_api_v2/src/core/client/client_context.dart';
+import 'package:twitter_api_v2/src/core/client/user_context.dart';
+import 'package:twitter_api_v2/src/core/exception/twitter_upload_exception.dart';
 import 'package:twitter_api_v2/src/service/media/media_service.dart';
 import 'package:twitter_api_v2/src/service/media/uploaded_media_data.dart';
 import '../../../mocks/client_context_stubs.dart' as context;

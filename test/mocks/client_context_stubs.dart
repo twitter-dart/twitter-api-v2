@@ -2,16 +2,16 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Dart imports:
+// 🎯 Dart imports:
 import 'dart:convert';
 import 'dart:io';
 
-// Package imports:
+// 📦 Package imports:
+import 'package:http/http.dart';
 import 'package:mockito/mockito.dart';
-import 'package:twitter_api_core/src/client/user_context.dart';
-import 'package:twitter_api_core/twitter_api_core.dart' as core;
 
-// Project imports:
+// 🌎 Project imports:
+import 'package:twitter_api_v2/src/core/client/user_context.dart';
 import 'mock.mocks.dart';
 
 MockClientContext buildGetStub(
@@ -27,7 +27,7 @@ MockClientContext buildGetStub(
     userContext,
     Uri.https('api.twitter.com', unencodedPath, queryParameters),
   )).thenAnswer(
-    (_) async => core.Response(
+    (_) async => Response(
       await File(resourcePath).readAsString(),
       statusCode,
       headers: {'content-type': 'application/json; charset=utf-8'},
@@ -49,7 +49,7 @@ MockClientContext buildGetStubWithAnyUriAndMultiResources(
     userContext,
     any,
   )).thenAnswer(
-    (_) async => core.Response(
+    (_) async => Response(
       await File(resourcePaths.removeAt(0)).readAsString(),
       statusCode,
       headers: {'content-type': 'application/json; charset=utf-8'},
@@ -74,7 +74,7 @@ MockClientContext buildPostStub(
     headers: anyNamed('headers'),
     body: anyNamed('body'),
   )).thenAnswer(
-    (_) async => core.Response(
+    (_) async => Response(
       await File(resourcePath).readAsString(),
       statusCode,
       headers: {
@@ -100,7 +100,7 @@ MockClientContext buildPostMultipartStub(
     Uri.https('upload.twitter.com', unencodedPath, queryParameters),
     files: anyNamed('files'),
   )).thenAnswer(
-    (_) async => core.Response(
+    (_) async => Response(
       await File(resourcePath).readAsString(),
       statusCode,
       headers: {
@@ -123,7 +123,7 @@ MockClientContext buildDeleteStub(
     UserContext.oauth2OrOAuth1,
     Uri.https('api.twitter.com', unencodedPath),
   )).thenAnswer(
-    (_) async => core.Response(
+    (_) async => Response(
       await File(resourcePath).readAsString(),
       statusCode,
       headers: {'content-type': 'application/json; charset=utf-8'},
@@ -146,7 +146,7 @@ MockClientContext buildPutStub(
     headers: anyNamed('headers'),
     body: anyNamed('body'),
   )).thenAnswer(
-    (_) async => core.Response(
+    (_) async => Response(
       await File(resourcePath).readAsString(),
       statusCode,
       headers: {'content-type': 'application/json; charset=utf-8'},
@@ -179,7 +179,7 @@ MockClientContext buildSendStub(
     any,
   )).thenAnswer(
     (_) async {
-      return core.StreamedResponse(
+      return StreamedResponse(
         responseStream(),
         statusCode,
         headers: {'content-type': 'application/json; charset=utf-8'},
