@@ -1282,7 +1282,7 @@ void main() {
     test('normal case', () async {
       final tweetsService = TweetsService(
         context: context.buildGetStub(
-          UserContext.oauth2Only,
+          UserContext.appOnly,
           '/2/tweets/search/recent',
           'test/src/service/tweets/data/search_recent.json',
           {'query': 'hello'},
@@ -1304,7 +1304,7 @@ void main() {
     test('with various fields', () async {
       final tweetsService = TweetsService(
         context: context.buildGetStub(
-          UserContext.oauth2Only,
+          UserContext.appOnly,
           '/2/tweets/search/recent',
           'test/src/service/tweets/data/search_recent_with_various_fields.json',
           {'query': 'hello'},
@@ -1341,7 +1341,7 @@ void main() {
     test('with rate limit exceeded error', () async {
       final tweetsService = TweetsService(
         context: context.buildGetStub(
-          UserContext.oauth2Only,
+          UserContext.appOnly,
           '/2/tweets/search/recent',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
           statusCode: 429,
@@ -1359,7 +1359,7 @@ void main() {
     test('with errors', () async {
       final tweetsService = TweetsService(
         context: context.buildGetStub(
-          UserContext.oauth2Only,
+          UserContext.appOnly,
           '/2/tweets/search/recent',
           'test/src/service/tweets/data/no_data.json',
           {'query': 'hello'},
@@ -1374,7 +1374,7 @@ void main() {
     test('with no json', () async {
       final tweetsService = TweetsService(
         context: context.buildGetStub(
-          UserContext.oauth2Only,
+          UserContext.appOnly,
           '/2/tweets/search/recent',
           'test/src/service/tweets/data/no_json.json',
           {'query': 'hello'},
@@ -1389,7 +1389,7 @@ void main() {
     test('with paging', () async {
       final tweetsService = TweetsService(
         context: context.buildGetStubWithAnyUriAndMultiResources(
-          UserContext.oauth2Only,
+          UserContext.appOnly,
           [
             'test/src/service/pagination/data/tweets/dataset_1.json',
             'test/src/service/pagination/data/tweets/dataset_2.json',
@@ -1435,7 +1435,7 @@ void main() {
     test('with paging and no more next pages', () async {
       final tweetsService = TweetsService(
         context: context.buildGetStubWithAnyUriAndMultiResources(
-          UserContext.oauth2Only,
+          UserContext.appOnly,
           [
             'test/src/service/pagination/data/tweets/dataset_1.json',
             'test/src/service/pagination/data/tweets/dataset_2.json',
@@ -1485,7 +1485,7 @@ void main() {
     test('normal case', () async {
       final tweetsService = TweetsService(
         context: context.buildGetStub(
-          UserContext.oauth2Only,
+          UserContext.appOnly,
           '/2/tweets/search/all',
           'test/src/service/tweets/data/search_all.json',
           {'query': 'hello'},
@@ -1522,7 +1522,7 @@ void main() {
     test('with rate limit exceeded error', () async {
       final tweetsService = TweetsService(
         context: context.buildGetStub(
-          UserContext.oauth2Only,
+          UserContext.appOnly,
           '/2/tweets/search/all',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
           statusCode: 429,
@@ -1540,7 +1540,7 @@ void main() {
     test('with errors', () async {
       final tweetsService = TweetsService(
         context: context.buildGetStub(
-          UserContext.oauth2Only,
+          UserContext.appOnly,
           '/2/tweets/search/all',
           'test/src/service/tweets/data/no_data.json',
           {'query': 'hello'},
@@ -1555,7 +1555,7 @@ void main() {
     test('with no json', () async {
       final tweetsService = TweetsService(
         context: context.buildGetStub(
-          UserContext.oauth2Only,
+          UserContext.appOnly,
           '/2/tweets/search/all',
           'test/src/service/tweets/data/no_json.json',
           {'query': 'hello'},
@@ -1570,7 +1570,7 @@ void main() {
     test('with paging', () async {
       final tweetsService = TweetsService(
         context: context.buildGetStubWithAnyUriAndMultiResources(
-          UserContext.oauth2Only,
+          UserContext.appOnly,
           [
             'test/src/service/pagination/data/tweets/dataset_1.json',
             'test/src/service/pagination/data/tweets/dataset_2.json',
@@ -1616,7 +1616,7 @@ void main() {
     test('with paging and no more next pages', () async {
       final tweetsService = TweetsService(
         context: context.buildGetStubWithAnyUriAndMultiResources(
-          UserContext.oauth2Only,
+          UserContext.appOnly,
           [
             'test/src/service/pagination/data/tweets/dataset_1.json',
             'test/src/service/pagination/data/tweets/dataset_2.json',
@@ -2009,7 +2009,7 @@ void main() {
     test('normal case', () async {
       final tweetsService = TweetsService(
         context: context.buildGetStub(
-          UserContext.oauth2Only,
+          UserContext.appOnly,
           '/2/tweets/counts/recent',
           'test/src/service/tweets/data/counts_recent.json',
           {
@@ -2050,7 +2050,7 @@ void main() {
     test('with rate limit exceeded error', () async {
       final tweetsService = TweetsService(
         context: context.buildGetStub(
-          UserContext.oauth2Only,
+          UserContext.appOnly,
           '/2/tweets/counts/recent',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
           statusCode: 429,
@@ -2074,7 +2074,7 @@ void main() {
     test('with errors', () async {
       final tweetsService = TweetsService(
         context: context.buildGetStub(
-          UserContext.oauth2Only,
+          UserContext.appOnly,
           '/2/tweets/counts/recent',
           'test/src/service/tweets/data/no_data.json',
           {
@@ -2097,7 +2097,7 @@ void main() {
     test('with no json', () async {
       final tweetsService = TweetsService(
         context: context.buildGetStub(
-          UserContext.oauth2Only,
+          UserContext.appOnly,
           '/2/tweets/counts/recent',
           'test/src/service/tweets/data/no_json.json',
           {
@@ -2122,7 +2122,7 @@ void main() {
     test('normal case', () async {
       final tweetsService = TweetsService(
         context: context.buildGetStub(
-          UserContext.oauth2Only,
+          UserContext.appOnly,
           '/2/tweets/counts/all',
           'test/src/service/tweets/data/counts_all.json',
           {
@@ -2163,7 +2163,7 @@ void main() {
     test('with rate limit exceeded error', () async {
       final tweetsService = TweetsService(
         context: context.buildGetStub(
-          UserContext.oauth2Only,
+          UserContext.appOnly,
           '/2/tweets/counts/all',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
           statusCode: 429,
@@ -2187,7 +2187,7 @@ void main() {
     test('with errors', () async {
       final tweetsService = TweetsService(
         context: context.buildGetStub(
-          UserContext.oauth2Only,
+          UserContext.appOnly,
           '/2/tweets/counts/all',
           'test/src/service/tweets/data/no_data.json',
           {
@@ -2210,7 +2210,7 @@ void main() {
     test('with no json', () async {
       final tweetsService = TweetsService(
         context: context.buildGetStub(
-          UserContext.oauth2Only,
+          UserContext.appOnly,
           '/2/tweets/counts/all',
           'test/src/service/tweets/data/no_json.json',
           {
@@ -2233,7 +2233,7 @@ void main() {
     test('with paging', () async {
       final tweetsService = TweetsService(
         context: context.buildGetStubWithAnyUriAndMultiResources(
-          UserContext.oauth2Only,
+          UserContext.appOnly,
           [
             'test/src/service/pagination/data/tweets/count_dataset_1.json',
             'test/src/service/pagination/data/tweets/count_dataset_2.json',
@@ -2279,7 +2279,7 @@ void main() {
     test('with paging and no more next pages', () async {
       final tweetsService = TweetsService(
         context: context.buildGetStubWithAnyUriAndMultiResources(
-          UserContext.oauth2Only,
+          UserContext.appOnly,
           [
             'test/src/service/pagination/data/tweets/count_dataset_1.json',
             'test/src/service/pagination/data/tweets/count_dataset_2.json',

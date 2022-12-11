@@ -22,7 +22,7 @@ void main() {
     test('normal case', () async {
       final complianceService = ComplianceService(
         context: context.buildGetStub(
-          UserContext.oauth2Only,
+          UserContext.appOnly,
           '/2/compliance/jobs/5555',
           'test/src/service/compliance/data/lookup_job.json',
           {},
@@ -56,7 +56,7 @@ void main() {
     test('throws TwitterException due to no data', () async {
       final complianceService = ComplianceService(
         context: context.buildGetStub(
-          UserContext.oauth2Only,
+          UserContext.appOnly,
           '/2/compliance/jobs/5555',
           'test/src/service/compliance/data/no_data.json',
           {},
@@ -76,7 +76,7 @@ void main() {
   test('.lookupJobs', () async {
     final complianceService = ComplianceService(
       context: context.buildGetStub(
-        UserContext.oauth2Only,
+        UserContext.appOnly,
         '/2/compliance/jobs',
         'test/src/service/compliance/data/lookup_jobs.json',
         {'type': 'tweets', 'status': 'complete'},
@@ -96,7 +96,7 @@ void main() {
   test('.createJob', () async {
     final complianceService = ComplianceService(
       context: context.buildPostStub(
-        UserContext.oauth2Only,
+        UserContext.appOnly,
         '/2/compliance/jobs',
         'test/src/service/compliance/data/create_job.json',
       ),

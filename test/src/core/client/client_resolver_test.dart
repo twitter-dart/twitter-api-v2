@@ -101,5 +101,17 @@ void main() {
         throwsA(isA<UnauthorizedException>()),
       );
     });
+
+    test('when user context is appOnly and client does not for AppOnly', () {
+      final resolver = ClientResolver(
+        null,
+        OAuth2Client(bearerToken: 'TEST'),
+      );
+
+      expect(
+        () => resolver.execute(UserContext.appOnly),
+        throwsA(isA<UnauthorizedException>()),
+      );
+    });
   });
 }

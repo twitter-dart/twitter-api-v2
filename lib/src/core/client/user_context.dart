@@ -3,6 +3,9 @@
 // modification, are permitted provided the conditions.
 
 enum UserContext {
+  /// App Only.
+  appOnly,
+
   /// OAuth 2.0 only.
   oauth2Only,
 

@@ -41,8 +41,9 @@ class _ClientResolver implements ClientResolver {
     if (_shouldUseOauth1Client(userContext)) {
       if (oauth1Client == null) {
         throw UnauthorizedException(
-            'Required tokens were not passed for an endpoint that '
-            'requires OAuth 1.0a.');
+          'Required tokens were not passed for an endpoint that '
+          'requires OAuth 1.0a.',
+        );
       }
 
       return oauth1Client!;
@@ -50,8 +51,15 @@ class _ClientResolver implements ClientResolver {
 
     if (oauth2Client == null) {
       throw UnauthorizedException(
-          'Required access token was not passed for an endpoint that '
-          'requires OAuth 2.0.');
+        'Required access token was not passed for an endpoint that '
+        'requires OAuth 2.0.',
+      );
+    }
+
+    if (userContext == UserContext.appOnly && !oauth2Client!.isAppOnly) {
+      throw UnauthorizedException(
+        'Only AppOnly token is allowed on this endpoint.',
+      );
     }
 
     return oauth2Client!;
