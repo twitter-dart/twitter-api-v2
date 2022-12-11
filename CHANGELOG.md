@@ -3,6 +3,10 @@
 ## v4.6.2
 
 - Reintegrated core packages. ([#598](https://github.com/twitter-dart/twitter-api-v2/issues/598))
+- Supported retry algorithm have been changed to only `Exponential BackOff and Jitter` recommended by official Twitter. All of the following factory constructors provided until now are deprecated and should be modified by `v5.0.0` to use the default constructor of `RetryConfig`. The following deprecated factory constructors will be removed in `v5.0.0`, and the `Exponential BackOff and Jitter` algorithm will always be used regardless of constructor. ([#601](https://github.com/twitter-dart/twitter-api-v2/issues/601))
+  - `ofRegularIntervals`
+  - `ofExponentialBackOff`
+  - `ofExponentialBackOffAndJitter`
 
 ## v4.6.1
 

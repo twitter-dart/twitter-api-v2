@@ -32,9 +32,9 @@ Future<void> main() async {
       accessTokenSecret: 'YOUR_ACCESS_TOKEN_SECRET_HERE',
     ),
 
-    //! Automatic retry is available when a TimeoutException occurs when
-    //! communicating with the API.
-    retryConfig: v2.RetryConfig.ofExponentialBackOffAndJitter(
+    //! Automatic retry is available when network error or server error
+    //! are happened.
+    retryConfig: v2.RetryConfig(
       maxAttempts: 5,
       onExecute: (event) => print(
         'Retry after ${event.intervalInSeconds} seconds... '
