@@ -2,10 +2,8 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
-import 'package:twitter_api_core/twitter_api_core.dart' as core;
-
-// Project imports:
+// 🌎 Project imports:
+import '../../../../core/language.dart';
 import '../operator/conjunction/singleton/has_operator.dart';
 import '../operator/conjunction/singleton/has_operator_type.dart';
 import '../operator/conjunction/singleton/is_operator.dart';
@@ -189,12 +187,11 @@ class ConjunctionRequiredOperation {
   HasOperator createNegatedHasGeo() => _hasNotGeo;
 
   /// Returns the new instance of [TweetLang] based on [language].
-  TweetLang createTweetLang(final core.Language language) =>
-      TweetLang(language);
+  TweetLang createTweetLang(final Language language) => TweetLang(language);
 
   /// Returns the new instance of negated [TweetLang]
   /// based on [language].
-  TweetLang createNegatedTweetLang(final core.Language language) =>
+  TweetLang createNegatedTweetLang(final Language language) =>
       TweetLang.negated(language);
 
   /// Returns the new instance of [Source] based on [value].

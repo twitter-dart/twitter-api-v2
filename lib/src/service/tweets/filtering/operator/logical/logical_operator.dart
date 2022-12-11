@@ -2,7 +2,7 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Project imports:
+// 🌎 Project imports:
 import '../filtering_rule_operator.dart';
 
 abstract class LogicalOperator extends FilteringRuleOperator {

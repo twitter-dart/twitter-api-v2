@@ -2,9 +2,12 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:twitter_api_core/twitter_api_core.dart';
+
+// 🌎 Project imports:
+import '../../core/country.dart';
+import '../../core/language.dart';
 
 part 'locale.freezed.dart';
 part 'locale.g.dart';

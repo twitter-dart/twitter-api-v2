@@ -2,17 +2,17 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-export 'package:twitter_api_core/src/client/oauth_tokens.dart';
-export 'package:twitter_api_core/src/client/retry_event.dart';
-export 'package:twitter_api_core/src/config/retry_config.dart';
-export 'package:twitter_api_core/src/exception/data_not_found_exception.dart';
-export 'package:twitter_api_core/src/exception/rate_limit_exceeded_exception.dart';
-export 'package:twitter_api_core/src/exception/twitter_exception.dart';
-export 'package:twitter_api_core/src/exception/twitter_upload_exception.dart';
-export 'package:twitter_api_core/src/exception/unauthorized_exception.dart';
-export 'package:twitter_api_core/src/service/country.dart';
-export 'package:twitter_api_core/src/service/language.dart';
-export 'package:twitter_api_core/src/util/oauth_utils.dart';
+export 'package:twitter_api_v2/src/core/client/oauth_tokens.dart';
+export 'package:twitter_api_v2/src/core/client/retry_event.dart';
+export 'package:twitter_api_v2/src/core/config/retry_config.dart';
+export 'package:twitter_api_v2/src/core/country.dart';
+export 'package:twitter_api_v2/src/core/exception/data_not_found_exception.dart';
+export 'package:twitter_api_v2/src/core/exception/rate_limit_exceeded_exception.dart';
+export 'package:twitter_api_v2/src/core/exception/twitter_exception.dart';
+export 'package:twitter_api_v2/src/core/exception/twitter_upload_exception.dart';
+export 'package:twitter_api_v2/src/core/exception/unauthorized_exception.dart';
+export 'package:twitter_api_v2/src/core/language.dart';
+export 'package:twitter_api_v2/src/core/util/oauth_utils.dart';
 export 'package:twitter_api_v2/src/service/common/includes.dart';
 export 'package:twitter_api_v2/src/service/common/locale.dart';
 export 'package:twitter_api_v2/src/service/common/mention.dart';

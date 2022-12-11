@@ -2,13 +2,11 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Dart imports:
+// 🎯 Dart imports:
 import 'dart:async';
 
-// Package imports:
-import 'package:twitter_api_core/twitter_api_core.dart';
-
-// Project imports:
+// 🌎 Project imports:
+import '../../core/client/user_context.dart';
 import '../response/pagination_response.dart';
 import 'base_pagination_control.dart';
 import 'forward_pageable.dart';

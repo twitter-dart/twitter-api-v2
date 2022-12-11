@@ -2,9 +2,13 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
+// 📦 Package imports:
 import 'package:test/test.dart';
-import 'package:twitter_api_core/twitter_api_core.dart';
+
+// 🌎 Project imports:
+import 'package:twitter_api_v2/src/core/exception/data_not_found_exception.dart';
+import 'package:twitter_api_v2/src/core/exception/rate_limit_exceeded_exception.dart';
+import 'package:twitter_api_v2/src/core/exception/unauthorized_exception.dart';
 
 void expectUnauthorizedException(Function fn) {
   expect(

@@ -2,11 +2,13 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
+// 📦 Package imports:
 import 'package:test/test.dart';
-import 'package:twitter_api_core/twitter_api_core.dart';
 
-// Project imports:
+// 🌎 Project imports:
+import 'package:twitter_api_v2/src/core/client/client_context.dart';
+import 'package:twitter_api_v2/src/core/client/oauth_tokens.dart';
+import 'package:twitter_api_v2/src/core/client/user_context.dart';
 import 'package:twitter_api_v2/src/service/response/twitter_response.dart';
 import 'package:twitter_api_v2/src/service/trends/trend_data.dart';
 import 'package:twitter_api_v2/src/service/trends/trending_location_data.dart';

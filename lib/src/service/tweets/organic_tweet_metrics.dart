@@ -4,7 +4,7 @@
 
 // ignore_for_file: invalid_annotation_target
 
-// Package imports:
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'organic_tweet_metrics.freezed.dart';

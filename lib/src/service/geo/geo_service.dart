@@ -2,20 +2,26 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Dart imports:
+// 🎯 Dart imports:
 import 'dart:convert';
 
-// Package imports:
-import 'package:twitter_api_core/twitter_api_core.dart' as core;
+// 📦 Package imports:
+import 'package:http/http.dart';
 
-// Project imports:
-import '../../../twitter_api_v2.dart';
+// 🌎 Project imports:
+import '../../core/client/client_context.dart';
+import '../../core/client/user_context.dart';
+import '../../core/exception/data_not_found_exception.dart';
 import '../base_service.dart';
+import '../common/rate_limit.dart';
+import '../response/twitter_response.dart';
+import 'geo_granularity.dart';
+import 'place_data.dart';
 
 /// This class provides methods to easily access endpoints based on Geo.
 abstract class GeoService {
   /// Returns the new instance of [GeoService].
-  factory GeoService({required core.ClientContext context}) =>
+  factory GeoService({required ClientContext context}) =>
       _GeoService(context: context);
 
   /// Returns place data associated with a specific place ID.
@@ -208,7 +214,7 @@ class _GeoService extends BaseService implements GeoService {
     required String placeId,
   }) async {
     final response = await super.get(
-      core.UserContext.oauth1Only,
+      UserContext.oauth1Only,
       '/1.1/geo/id/$placeId.json',
     );
 
@@ -232,7 +238,7 @@ class _GeoService extends BaseService implements GeoService {
     String? ipAddress,
   }) async {
     final response = await super.get(
-      core.UserContext.oauth1Only,
+      UserContext.oauth1Only,
       '/1.1/geo/search.json',
       queryParameters: {
         'query': query,
@@ -266,7 +272,7 @@ class _GeoService extends BaseService implements GeoService {
     GeoGranularity? granularity,
   }) async {
     final response = await super.get(
-      core.UserContext.oauth1Only,
+      UserContext.oauth1Only,
       '/1.1/geo/reverse_geocode.json',
       queryParameters: {
         'lat': latitude,
@@ -289,7 +295,7 @@ class _GeoService extends BaseService implements GeoService {
     );
   }
 
-  dynamic _checkResponse(final core.Response response) {
+  dynamic _checkResponse(final Response response) {
     final json = jsonDecode(response.body);
 
     if (json is Map<String, dynamic>) {

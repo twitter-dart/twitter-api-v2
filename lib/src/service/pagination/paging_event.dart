@@ -3,7 +3,7 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Project imports:
+// 🌎 Project imports:
 import 'forward_paging_event.dart';
 import 'pageable.dart';
 

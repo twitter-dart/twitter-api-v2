@@ -2,11 +2,11 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
+// 📦 Package imports:
 import 'package:test/test.dart';
-import 'package:twitter_api_core/twitter_api_core.dart' as core;
 
-// Project imports:
+// 🌎 Project imports:
+import 'package:twitter_api_v2/src/core/country.dart' as core;
 import 'package:twitter_api_v2/src/service/common/range.dart';
 import 'package:twitter_api_v2/src/service/tweets/distance_unit.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering/operation/standalone_operation.dart';

@@ -4,9 +4,11 @@
 
 // ignore_for_file: invalid_annotation_target
 
-// Package imports:
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:twitter_api_core/twitter_api_core.dart';
+
+// 🌎 Project imports:
+import '../../core/country.dart';
 
 part 'tweet_withheld.freezed.dart';
 part 'tweet_withheld.g.dart';

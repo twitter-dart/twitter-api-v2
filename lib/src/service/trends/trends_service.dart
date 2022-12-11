@@ -2,14 +2,16 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Dart imports:
+// 🎯 Dart imports:
 import 'dart:convert';
 
-// Package imports:
-import 'package:twitter_api_core/twitter_api_core.dart' as core;
-import 'package:twitter_api_core/twitter_api_core.dart';
+// 📦 Package imports:
+import 'package:http/http.dart';
 
-// Project imports:
+// 🌎 Project imports:
+import '../../core/client/client_context.dart';
+import '../../core/client/user_context.dart';
+import '../../core/exception/data_not_found_exception.dart';
 import '../base_service.dart';
 import '../common/rate_limit.dart';
 import '../response/twitter_response.dart';
@@ -19,7 +21,7 @@ import 'trending_location_data.dart';
 /// This class provides methods to easily access endpoints based on Trends.
 abstract class TrendsService {
   /// Returns the new instance of [TrendsService].
-  factory TrendsService({required core.ClientContext context}) =>
+  factory TrendsService({required ClientContext context}) =>
       _TrendsService(context: context);
 
   /// Returns the locations that Twitter has trending topic information for.
@@ -113,7 +115,7 @@ class _TrendsService extends BaseService implements TrendsService {
   Future<TwitterResponse<List<TrendingLocationData>, void>>
       searchAvailableLocations() async {
     final response = await super.get(
-      core.UserContext.oauth1Only,
+      UserContext.oauth1Only,
       '/1.1/trends/available.json',
     );
 
@@ -137,7 +139,7 @@ class _TrendsService extends BaseService implements TrendsService {
     required double longitude,
   }) async {
     final response = await super.get(
-      core.UserContext.oauth1Only,
+      UserContext.oauth1Only,
       '/1.1/trends/closest.json',
       queryParameters: {
         'lat': latitude,
@@ -164,7 +166,7 @@ class _TrendsService extends BaseService implements TrendsService {
     List<String>? excludeHashtags,
   }) async {
     final response = await super.get(
-      core.UserContext.oauth1Only,
+      UserContext.oauth1Only,
       '/1.1/trends/place.json',
       queryParameters: {
         'id': locationId,
@@ -183,7 +185,7 @@ class _TrendsService extends BaseService implements TrendsService {
     );
   }
 
-  dynamic _checkResponse(final core.Response response) {
+  dynamic _checkResponse(final Response response) {
     final json = jsonDecode(response.body);
 
     if (json is Map<String, dynamic>) {

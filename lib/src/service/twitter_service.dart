@@ -2,10 +2,8 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
-import 'package:twitter_api_core/twitter_api_core.dart';
-
-// Project imports:
+// 🌎 Project imports:
+import '../core/client/client_context.dart';
 import 'compliance/compliance_service.dart';
 import 'dms/direct_messages_service.dart';
 import 'geo/geo_service.dart';

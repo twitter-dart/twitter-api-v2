@@ -3,9 +3,10 @@
 // modification, are permitted provided the conditions.
 
 // Package imports:
-import 'package:twitter_api_core/twitter_api_core.dart' as core;
 
-// Project imports:
+// 🌎 Project imports:
+import '../../core/client/client_context.dart';
+import '../../core/client/user_context.dart';
 import '../base_service.dart';
 import '../response/twitter_response.dart';
 import 'batch_compliance_data.dart';
@@ -15,7 +16,7 @@ import 'job_type.dart';
 /// This class provides methods to easily access endpoints based on Compliance.
 abstract class ComplianceService {
   /// Returns the new instance of [ComplianceService].
-  factory ComplianceService({required core.ClientContext context}) =>
+  factory ComplianceService({required ClientContext context}) =>
       _ComplianceService(context: context);
 
   /// Returns  a single compliance job with the specified ID.
@@ -124,7 +125,7 @@ class _ComplianceService extends BaseService implements ComplianceService {
   }) async =>
       super.transformSingleDataResponse(
         await super.get(
-          core.UserContext.oauth2Only,
+          UserContext.oauth2Only,
           '/2/compliance/jobs/$jobId',
         ),
         dataBuilder: BatchComplianceData.fromJson,
@@ -137,7 +138,7 @@ class _ComplianceService extends BaseService implements ComplianceService {
   }) async =>
       super.transformMultiDataResponse(
         await super.get(
-          core.UserContext.oauth2Only,
+          UserContext.oauth2Only,
           '/2/compliance/jobs',
           queryParameters: {
             'type': jobType.name,
@@ -155,7 +156,7 @@ class _ComplianceService extends BaseService implements ComplianceService {
   }) async =>
       super.transformSingleDataResponse(
         await super.post(
-          core.UserContext.oauth2Only,
+          UserContext.oauth2Only,
           '/2/compliance/jobs',
           body: {
             'type': jobType.name,

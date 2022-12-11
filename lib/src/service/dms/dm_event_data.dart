@@ -4,10 +4,10 @@
 
 // ignore_for_file: invalid_annotation_target
 
-// Package imports:
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-// Project imports:
+// 🌎 Project imports:
 import '../common/data.dart';
 import 'dm_attachments.dart';
 import 'dm_event_type.dart';

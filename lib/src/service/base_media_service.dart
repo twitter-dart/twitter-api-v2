@@ -2,13 +2,16 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Dart imports:
+// 🎯 Dart imports:
 import 'dart:convert';
 
-// Package imports:
-import 'package:twitter_api_core/twitter_api_core.dart' as core;
+// 📦 Package imports:
+import 'package:http/http.dart';
 
-// Project imports:
+// 🌎 Project imports:
+import '../core/client/user_context.dart';
+import '../core/service_helper.dart';
+import '../core/util/json_utils.dart';
 import 'base_service.dart';
 import 'common/data.dart';
 import 'common/locale.dart';
@@ -16,16 +19,16 @@ import 'common/meta.dart';
 import 'response/twitter_response.dart';
 
 abstract class _MediaService {
-  Future<core.Response> postMultipart(
-    final core.UserContext userContext,
+  Future<Response> postMultipart(
+    final UserContext userContext,
     final String unencodedPath, {
-    List<core.MultipartFile> files = const [],
+    List<MultipartFile> files = const [],
     Map<String, dynamic> queryParameters = const {},
   });
 
   TwitterResponse<D, M>
       transformUploadedDataResponse<D extends Data, M extends Meta>(
-    core.Response response, {
+    Response response, {
     Locale? locale,
     required DataBuilder<D> dataBuilder,
   });
@@ -34,16 +37,16 @@ abstract class _MediaService {
 abstract class BaseMediaService extends BaseService implements _MediaService {
   /// Returns the new instance of [BaseMediaService].
   BaseMediaService({required super.context})
-      : _helper = core.ServiceHelper(
+      : _helper = ServiceHelper(
           authority: 'upload.twitter.com',
           context: context,
         );
 
-  final core.ServiceHelper _helper;
+  final ServiceHelper _helper;
 
   @override
-  Future<core.Response> get(
-    final core.UserContext userContext,
+  Future<Response> get(
+    final UserContext userContext,
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
   }) async =>
@@ -55,12 +58,12 @@ abstract class BaseMediaService extends BaseService implements _MediaService {
       );
 
   @override
-  Future<core.Response> post(
-    final core.UserContext userContext,
+  Future<Response> post(
+    final UserContext userContext,
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
     dynamic body = const {},
-    core.Response Function(core.Response response)? validate,
+    Response Function(Response response)? validate,
   }) async =>
       await _helper.post(
         userContext,
@@ -71,10 +74,10 @@ abstract class BaseMediaService extends BaseService implements _MediaService {
       );
 
   @override
-  Future<core.Response> postMultipart(
-    final core.UserContext userContext,
+  Future<Response> postMultipart(
+    final UserContext userContext,
     final String unencodedPath, {
-    List<core.MultipartFile> files = const [],
+    List<MultipartFile> files = const [],
     Map<String, dynamic> queryParameters = const {},
   }) async =>
       await _helper.postMultipart(
@@ -88,11 +91,11 @@ abstract class BaseMediaService extends BaseService implements _MediaService {
   @override
   TwitterResponse<D, M>
       transformUploadedDataResponse<D extends Data, M extends Meta>(
-    core.Response response, {
+    Response response, {
     Locale? locale,
     required DataBuilder<D> dataBuilder,
   }) {
-    final json = core.tryJsonDecode(response, response.body);
+    final json = tryJsonDecode(response, response.body);
 
     final uploadedMedia = <String, dynamic>{
       'media_id_string': json['media_id_string'],
@@ -107,7 +110,7 @@ abstract class BaseMediaService extends BaseService implements _MediaService {
 
     //! Convert to a data structure compliant with v2 specs.
     return super.transformSingleDataResponse(
-      core.Response(
+      Response(
         jsonEncode({
           'data': uploadedMedia,
         }),
