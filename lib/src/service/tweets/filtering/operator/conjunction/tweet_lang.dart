@@ -2,10 +2,8 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
-import 'package:twitter_api_core/twitter_api_core.dart' as core;
-
-// Project imports:
+// 🌎 Project imports:
+import '../../../../../core/language.dart';
 import '../operator.dart';
 
 class TweetLang extends Operator {
@@ -15,11 +13,11 @@ class TweetLang extends Operator {
     bool negated = false,
   }) : super(negated);
 
-  factory TweetLang.negated(final core.Language language) =>
+  factory TweetLang.negated(final Language language) =>
       TweetLang(language, negated: true);
 
   /// The BCP 47 language
-  final core.Language language;
+  final Language language;
 
   @override
   String format() => 'lang:${language.code}';

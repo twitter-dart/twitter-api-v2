@@ -4,10 +4,10 @@
 
 // ignore_for_file: invalid_annotation_target
 
-// Package imports:
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-// Project imports:
+// 🌎 Project imports:
 import 'media_type.dart';
 import 'organic_media_metrics.dart';
 import 'private_media_metrics.dart';

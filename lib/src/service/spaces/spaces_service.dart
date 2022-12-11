@@ -2,10 +2,9 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
-import 'package:twitter_api_core/twitter_api_core.dart' as core;
-
-// Project imports:
+// 🌎 Project imports:
+import '../../core/client/client_context.dart';
+import '../../core/client/user_context.dart';
 import '../base_service.dart';
 import '../geo/place_field.dart';
 import '../media/media_field.dart';
@@ -28,7 +27,7 @@ import 'topic_field.dart';
 /// This class provides methods to easily access endpoints based on Space.
 abstract class SpacesService {
   /// Returns the new instance of [SpacesService].
-  factory SpacesService({required core.ClientContext context}) =>
+  factory SpacesService({required ClientContext context}) =>
       _SpacesService(context: context);
 
   /// Return live or scheduled Spaces matching your specified search terms.
@@ -532,7 +531,7 @@ class _SpacesService extends BaseService implements SpacesService {
   }) async =>
       super.transformMultiDataResponse(
         await super.get(
-          core.UserContext.oauth2Only,
+          UserContext.oauth2Only,
           '/2/spaces/search',
           queryParameters: {
             'query': query,
@@ -557,7 +556,7 @@ class _SpacesService extends BaseService implements SpacesService {
   }) async =>
       super.transformSingleDataResponse(
         await super.get(
-          core.UserContext.oauth2Only,
+          UserContext.oauth2Only,
           '/2/spaces/$spaceId',
           queryParameters: {
             'expansions': expansions,
@@ -579,7 +578,7 @@ class _SpacesService extends BaseService implements SpacesService {
   }) async =>
       super.transformMultiDataResponse(
         await super.get(
-          core.UserContext.oauth2Only,
+          UserContext.oauth2Only,
           '/2/spaces',
           queryParameters: {
             'ids': spaceIds,
@@ -604,7 +603,7 @@ class _SpacesService extends BaseService implements SpacesService {
   }) async =>
       super.transformMultiDataResponse(
         await super.get(
-          core.UserContext.oauth2Only,
+          UserContext.oauth2Only,
           '/2/spaces/$spaceId/buyers',
           queryParameters: {
             'expansions': expansions,
@@ -630,7 +629,7 @@ class _SpacesService extends BaseService implements SpacesService {
   }) async =>
       super.transformMultiDataResponse(
         await super.get(
-          core.UserContext.oauth2Only,
+          UserContext.oauth2Only,
           '/2/spaces/$spaceId/tweets',
           queryParameters: {
             'expansions': expansions,
@@ -655,7 +654,7 @@ class _SpacesService extends BaseService implements SpacesService {
   }) async =>
       super.transformMultiDataResponse(
         await super.get(
-          core.UserContext.oauth2Only,
+          UserContext.oauth2Only,
           '/2/spaces/by/creator_ids',
           queryParameters: {
             'user_ids': userIds,

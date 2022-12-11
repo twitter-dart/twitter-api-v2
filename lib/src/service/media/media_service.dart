@@ -2,14 +2,21 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Dart imports:
+// 🎯 Dart imports:
 import 'dart:io';
 import 'dart:typed_data';
 
-// Package imports:
-import 'package:twitter_api_core/twitter_api_core.dart' as core;
+// 📦 Package imports:
+import 'package:http/http.dart';
+import 'package:mime/mime.dart';
 
-// Project imports:
+// 🌎 Project imports:
+import '../../core/client/client_context.dart';
+import '../../core/client/user_context.dart';
+import '../../core/country.dart';
+import '../../core/exception/twitter_upload_exception.dart';
+import '../../core/language.dart';
+import '../../core/util/json_utils.dart';
 import '../base_media_service.dart';
 import '../common/locale.dart';
 import '../response/twitter_response.dart';
@@ -21,7 +28,7 @@ import 'uploaded_media_data.dart';
 
 abstract class MediaService {
   /// Returns the new instance of [MediaService].
-  factory MediaService({required core.ClientContext context}) =>
+  factory MediaService({required ClientContext context}) =>
       _MediaService(context: context);
 
   /// Use this endpoint to upload images to Twitter.
@@ -39,7 +46,7 @@ abstract class MediaService {
   /// object of this method may change in the future when the v2.0 endpoint for
   /// uploading images is released.
   ///
-  /// If an error occurs when uploading media, [core.TwitterUploadException] is
+  /// If an error occurs when uploading media, [TwitterUploadException] is
   /// always thrown.
   ///
   /// ## Usage
@@ -89,7 +96,7 @@ abstract class MediaService {
   /// required, and the caller of this method does not need to be aware of the
   /// status of the upload.
   ///
-  /// If an error occurs when uploading media, [core.TwitterUploadException] is
+  /// If an error occurs when uploading media, [TwitterUploadException] is
   /// always thrown.
   ///
   /// ## Caution
@@ -183,7 +190,7 @@ abstract class MediaService {
   Future<TwitterResponse<bool, void>> createSubtitle({
     required String videoId,
     required String captionId,
-    required core.Language language,
+    required Language language,
   });
 
   /// Use this endpoint to dissociate subtitles from a video and
@@ -218,7 +225,7 @@ abstract class MediaService {
   Future<TwitterResponse<bool, void>> destroySubtitle({
     required String videoId,
     required String captionId,
-    required core.Language language,
+    required Language language,
   });
 }
 
@@ -292,8 +299,8 @@ class _MediaService extends BaseMediaService implements MediaService {
           onFailed: onFailed,
         ),
         locale: Locale(
-          lang: core.Language.valueOf(localeCodes[0]),
-          country: core.Country.valueOf(localeCodes[1]),
+          lang: Language.valueOf(localeCodes[0]),
+          country: Country.valueOf(localeCodes[1]),
         ),
         dataBuilder: UploadedMediaData.fromJson,
       );
@@ -317,12 +324,12 @@ class _MediaService extends BaseMediaService implements MediaService {
   Future<TwitterResponse<bool, void>> createSubtitle({
     required String videoId,
     required String captionId,
-    required core.Language language,
+    required Language language,
     MediaCategory category = MediaCategory.tweet,
   }) async =>
       super.evaluateResponse(
         await super.post(
-          core.UserContext.oauth1Only,
+          UserContext.oauth1Only,
           '/1.1/media/subtitles/create.json',
           body: {
             'media_id': videoId,
@@ -347,12 +354,12 @@ class _MediaService extends BaseMediaService implements MediaService {
   Future<TwitterResponse<bool, void>> destroySubtitle({
     required String videoId,
     required String captionId,
-    required core.Language language,
+    required Language language,
     MediaCategory mediaCategory = MediaCategory.tweet,
   }) async =>
       super.evaluateResponse(
         await super.post(
-          core.UserContext.oauth1Only,
+          UserContext.oauth1Only,
           '/1.1/media/subtitles/delete.json',
           body: {
             'media_id': videoId,
@@ -372,7 +379,7 @@ class _MediaService extends BaseMediaService implements MediaService {
         ),
       );
 
-  Future<core.Response> _uploadImage({
+  Future<Response> _uploadImage({
     required File file,
     String? altText,
     List<String>? additionalOwners,
@@ -392,7 +399,7 @@ class _MediaService extends BaseMediaService implements MediaService {
 
     final mimeType = _resolveMimeType(file);
     if (!mimeType.startsWith('image')) {
-      throw core.TwitterUploadException(
+      throw TwitterUploadException(
         file,
         'Only image uploads are allowed from this endpoint. '
         'Use "uploadMedia" if you need to upload videos.',
@@ -400,10 +407,10 @@ class _MediaService extends BaseMediaService implements MediaService {
     }
 
     return await super.postMultipart(
-      core.UserContext.oauth1Only,
+      UserContext.oauth1Only,
       '/1.1/media/upload.json',
       files: [
-        core.MultipartFile.fromBytes(
+        MultipartFile.fromBytes(
           'media',
           file.readAsBytesSync(),
         ),
@@ -414,7 +421,7 @@ class _MediaService extends BaseMediaService implements MediaService {
     );
   }
 
-  Future<core.Response> _uploadMedia({
+  Future<Response> _uploadMedia({
     required File file,
     required MediaCategory category,
     required String mimeType,
@@ -449,7 +456,7 @@ class _MediaService extends BaseMediaService implements MediaService {
       additionalOwners: additionalOwners,
     );
 
-    final initJson = core.tryJsonDecode(initResponse, initResponse.body);
+    final initJson = tryJsonDecode(initResponse, initResponse.body);
     final mediaId = initJson['media_id_string'];
 
     await onProgress?.call(
@@ -495,14 +502,14 @@ class _MediaService extends BaseMediaService implements MediaService {
     }
   }
 
-  Future<core.Response> _initUpload({
+  Future<Response> _initUpload({
     required List<int> mediaBytes,
     required MediaCategory category,
     required String mediaMimeType,
     List<String>? additionalOwners,
   }) async =>
       await super.post(
-        core.UserContext.oauth1Only,
+        UserContext.oauth1Only,
         '/1.1/media/upload.json',
         queryParameters: {
           'command': 'INIT',
@@ -516,16 +523,16 @@ class _MediaService extends BaseMediaService implements MediaService {
         },
       );
 
-  Future<core.Response> _appendUploadMedia({
+  Future<Response> _appendUploadMedia({
     required String mediaId,
     required List<int> media,
     required int segmentIndex,
   }) async =>
       await super.postMultipart(
-        core.UserContext.oauth1Only,
+        UserContext.oauth1Only,
         '/1.1/media/upload.json',
         files: [
-          core.MultipartFile.fromBytes('media', media),
+          MultipartFile.fromBytes('media', media),
         ],
         queryParameters: {
           'command': 'APPEND',
@@ -534,11 +541,11 @@ class _MediaService extends BaseMediaService implements MediaService {
         },
       );
 
-  Future<core.Response> _finalizeUpload({
+  Future<Response> _finalizeUpload({
     required String mediaId,
   }) async =>
       await super.post(
-        core.UserContext.oauth1Only,
+        UserContext.oauth1Only,
         '/1.1/media/upload.json',
         queryParameters: {
           'command': 'FINALIZE',
@@ -546,11 +553,11 @@ class _MediaService extends BaseMediaService implements MediaService {
         },
       );
 
-  Future<core.Response> _lookupUploadStatus({
+  Future<Response> _lookupUploadStatus({
     required String mediaId,
   }) async =>
       await super.get(
-        core.UserContext.oauth1Only,
+        UserContext.oauth1Only,
         '/1.1/media/upload.json',
         queryParameters: {
           'command': 'STATUS',
@@ -558,12 +565,12 @@ class _MediaService extends BaseMediaService implements MediaService {
         },
       );
 
-  Future<core.Response> _createMetaData({
+  Future<Response> _createMetaData({
     required String mediaId,
     required String altText,
   }) async =>
       super.post(
-        core.UserContext.oauth1Only,
+        UserContext.oauth1Only,
         '/1.1/media/metadata/create.json',
         body: {
           'media_id': mediaId,
@@ -574,12 +581,12 @@ class _MediaService extends BaseMediaService implements MediaService {
       );
 
   Future<Map<String, dynamic>> _pollUploadStatus(
-    final core.Response finalizedResponse,
+    final Response finalizedResponse,
     final File file,
     final Function(UploadEvent event)? onProgress,
     final Function(UploadError error)? onFailed,
   ) async {
-    final finalizedJson = core.tryJsonDecode(
+    final finalizedJson = tryJsonDecode(
       finalizedResponse,
       finalizedResponse.body,
     );
@@ -595,7 +602,7 @@ class _MediaService extends BaseMediaService implements MediaService {
           ),
         );
 
-        throw core.TwitterUploadException(
+        throw TwitterUploadException(
           file,
           'The media file is in an invalid format.',
           finalizedResponse,
@@ -611,7 +618,7 @@ class _MediaService extends BaseMediaService implements MediaService {
           onFailed: onFailed,
         );
 
-        return core.tryJsonDecode(
+        return tryJsonDecode(
           uploadedResponse,
           uploadedResponse.body,
         );
@@ -619,13 +626,13 @@ class _MediaService extends BaseMediaService implements MediaService {
     }
 
     //! The upload is completed when finalized is called.
-    return core.tryJsonDecode(
+    return tryJsonDecode(
       finalizedResponse,
       finalizedResponse.body,
     );
   }
 
-  Future<core.Response> _waitForUploadCompletion({
+  Future<Response> _waitForUploadCompletion({
     required String mediaId,
     required int delaySeconds,
     required File file,
@@ -635,7 +642,7 @@ class _MediaService extends BaseMediaService implements MediaService {
     await Future<void>.delayed(Duration(seconds: delaySeconds));
 
     final response = await _lookupUploadStatus(mediaId: mediaId);
-    final status = core.tryJsonDecode(response, response.body);
+    final status = tryJsonDecode(response, response.body);
 
     final processingInfo = status['processing_info'];
 
@@ -647,7 +654,7 @@ class _MediaService extends BaseMediaService implements MediaService {
           ),
         );
 
-        throw core.TwitterUploadException(
+        throw TwitterUploadException(
           file,
           'The media file is in an invalid format.',
           response,
@@ -695,10 +702,10 @@ class _MediaService extends BaseMediaService implements MediaService {
   }
 
   String _resolveMimeType(final File file) {
-    final mediaMimeType = core.lookupMimeType(file.path);
+    final mediaMimeType = lookupMimeType(file.path);
 
     if (mediaMimeType == null) {
-      throw core.TwitterUploadException(
+      throw TwitterUploadException(
         file,
         'Could not identify the Mime type of the file.',
       );
@@ -707,7 +714,7 @@ class _MediaService extends BaseMediaService implements MediaService {
     if (!_isImage(mediaMimeType) &&
         !_isVideo(mediaMimeType) &&
         !_isCaption(mediaMimeType)) {
-      throw core.TwitterUploadException(
+      throw TwitterUploadException(
         file,
         'Unsupported Mime type [$mediaMimeType].',
       );

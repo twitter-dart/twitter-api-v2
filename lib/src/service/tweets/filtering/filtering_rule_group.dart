@@ -2,7 +2,7 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Project imports:
+// 🌎 Project imports:
 import 'channel/entry_channel.dart';
 import 'channel/logical_channel.dart';
 import 'channel/post_logical_channel.dart';

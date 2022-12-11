@@ -2,10 +2,8 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
-import 'package:twitter_api_core/twitter_api_core.dart' as core;
-
-// Project imports:
+// 🌎 Project imports:
+import '../../../../core/language.dart';
 import '../channel/logical_channel.dart';
 import '../filtering_rule_group.dart';
 import '../operation/conjunction_required_operation.dart';
@@ -321,13 +319,13 @@ abstract class ConjunctionRequiredSyntax extends StandaloneSyntax {
   /// ## Availability
   ///
   /// - Essential
-  LogicalChannel matchLanguage(final core.Language language) =>
+  LogicalChannel matchLanguage(final Language language) =>
       _buffer.appendOperator(
         _conjunctionRequiredOperation.createTweetLang(language),
       );
 
   /// The negated representation of [matchLanguage].
-  LogicalChannel notMatchLanguage(final core.Language language) =>
+  LogicalChannel notMatchLanguage(final Language language) =>
       _buffer.appendOperator(
         _conjunctionRequiredOperation.createNegatedTweetLang(language),
       );
