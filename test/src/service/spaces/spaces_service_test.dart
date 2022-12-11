@@ -52,7 +52,7 @@ void main() {
         ),
       );
 
-      expectUnauthorizedException(
+      expectUnauthorizedExceptionForOAuth2(
         () async => await spacesService.search(query: 'Hello, World!'),
       );
     });
@@ -131,7 +131,7 @@ void main() {
         ),
       );
 
-      expectUnauthorizedException(
+      expectUnauthorizedExceptionForOAuth2(
         () async => await spacesService.lookupById(spaceId: '2222'),
       );
     });
@@ -235,7 +235,7 @@ void main() {
         ),
       );
 
-      expectUnauthorizedException(
+      expectUnauthorizedExceptionForOAuth2(
         () async => await spacesService.lookupByIds(
           spaceIds: ['1DXxyRYNejbKM', '2DXxyRYNejbKM'],
         ),
@@ -321,7 +321,7 @@ void main() {
         ),
       );
 
-      expectUnauthorizedException(
+      expectUnauthorizedExceptionForOAuth2(
         () async => await spacesService.lookupBuyers(spaceId: '2222'),
       );
     });
@@ -401,7 +401,7 @@ void main() {
         ),
       );
 
-      expectUnauthorizedException(
+      expectUnauthorizedExceptionForOAuth2(
         () async => await spacesService.lookupTweets(spaceId: '2222'),
       );
     });
@@ -483,7 +483,7 @@ void main() {
         ),
       );
 
-      expectUnauthorizedException(
+      expectUnauthorizedExceptionForOAuth2(
         () async => await spacesService.lookupByCreatorIds(
           userIds: ['1DXxyRYNejbKM', '2DXxyRYNejbKM'],
         ),

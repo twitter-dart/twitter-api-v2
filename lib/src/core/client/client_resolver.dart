@@ -13,7 +13,7 @@ abstract class ClientResolver {
   /// Returns the new instance of [ClientResolver].
   factory ClientResolver(
     final OAuth1Client? oauth1Client,
-    final OAuth2Client oauth2Client,
+    final OAuth2Client? oauth2Client,
   ) =>
       _ClientResolver(
         oauth1Client,
@@ -32,7 +32,7 @@ class _ClientResolver implements ClientResolver {
   final OAuth1Client? oauth1Client;
 
   /// The OAuth 2.0 client
-  final OAuth2Client oauth2Client;
+  final OAuth2Client? oauth2Client;
 
   @override
   Client execute(UserContext userContext) {
@@ -48,7 +48,13 @@ class _ClientResolver implements ClientResolver {
       return oauth1Client!;
     }
 
-    return oauth2Client;
+    if (oauth2Client == null) {
+      throw UnauthorizedException(
+          'Required access token was not passed for an endpoint that '
+          'requires OAuth 2.0.');
+    }
+
+    return oauth2Client!;
   }
 
   /// Returns true if this context should use OAuth 1.0a client, otherwise
@@ -58,6 +64,6 @@ class _ClientResolver implements ClientResolver {
       return true;
     }
 
-    return userContext == UserContext.oauth2OrOAuth1 && oauth1Client != null;
+    return userContext == UserContext.oauth2OrOAuth1 && oauth2Client == null;
   }
 }

@@ -7,6 +7,7 @@ import 'package:test/test.dart';
 
 // 🌎 Project imports:
 import 'package:twitter_api_v2/src/core/client/client_context.dart';
+import 'package:twitter_api_v2/src/core/client/oauth_tokens.dart';
 import 'package:twitter_api_v2/src/core/client/user_context.dart';
 import 'package:twitter_api_v2/src/service/pagination/pagination_control.dart';
 import 'package:twitter_api_v2/src/service/response/pagination_response.dart';
@@ -41,6 +42,12 @@ void main() {
       final usersService = UsersService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -94,6 +101,7 @@ void main() {
     test('normal case', () async {
       final usersService = UsersService(
         context: context.buildDeleteStub(
+          UserContext.oauth2OrOAuth1,
           '/2/users/0000/following/1111',
           'test/src/service/users/data/destroy_follow.json',
         ),
@@ -112,6 +120,12 @@ void main() {
       final usersService = UsersService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -127,6 +141,7 @@ void main() {
     test('with rate limit exceeded error', () async {
       final usersService = UsersService(
         context: context.buildDeleteStub(
+          UserContext.oauth2OrOAuth1,
           '/2/users/0000/following/1111',
           'test/src/service/users/data/rate_limit_exceeded_error.json',
           statusCode: 429,
@@ -144,6 +159,7 @@ void main() {
     test('with errors', () async {
       final usersService = UsersService(
         context: context.buildDeleteStub(
+          UserContext.oauth2OrOAuth1,
           '/2/users/0000/following/1111',
           'test/src/service/users/data/no_data.json',
         ),
@@ -183,6 +199,12 @@ void main() {
       final usersService = UsersService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -361,6 +383,12 @@ void main() {
       final usersService = UsersService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -539,6 +567,12 @@ void main() {
       final usersService = UsersService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -623,6 +657,12 @@ void main() {
       final usersService = UsersService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -708,6 +748,12 @@ void main() {
       final usersService = UsersService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -815,6 +861,12 @@ void main() {
       final usersService = UsersService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -903,6 +955,12 @@ void main() {
       final usersService = UsersService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -982,6 +1040,12 @@ void main() {
       final usersService = UsersService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -1035,6 +1099,7 @@ void main() {
     test('normal case', () async {
       final usersService = UsersService(
         context: context.buildDeleteStub(
+          UserContext.oauth2OrOAuth1,
           '/2/users/1111/muting/2222',
           'test/src/service/users/data/destroy_mute.json',
         ),
@@ -1053,6 +1118,12 @@ void main() {
       final usersService = UsersService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -1068,6 +1139,7 @@ void main() {
     test('with rate limit exceeded error', () async {
       final usersService = UsersService(
         context: context.buildDeleteStub(
+          UserContext.oauth2OrOAuth1,
           '/2/users/1111/muting/2222',
           'test/src/service/users/data/rate_limit_exceeded_error.json',
           statusCode: 429,
@@ -1085,6 +1157,7 @@ void main() {
     test('with errors', () async {
       final usersService = UsersService(
         context: context.buildDeleteStub(
+          UserContext.oauth2OrOAuth1,
           '/2/users/1111/muting/2222',
           'test/src/service/users/data/no_data.json',
         ),
@@ -1129,6 +1202,12 @@ void main() {
       final usersService = UsersService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -1327,6 +1406,12 @@ void main() {
       final usersService = UsersService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -1380,6 +1465,7 @@ void main() {
     test('normal case', () async {
       final usersService = UsersService(
         context: context.buildDeleteStub(
+          UserContext.oauth2OrOAuth1,
           '/2/users/0000/blocking/1111',
           'test/src/service/users/data/destroy_block.json',
         ),
@@ -1398,6 +1484,12 @@ void main() {
       final usersService = UsersService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -1413,6 +1505,7 @@ void main() {
     test('with rate limit exceeded error', () async {
       final usersService = UsersService(
         context: context.buildDeleteStub(
+          UserContext.oauth2OrOAuth1,
           '/2/users/0000/blocking/1111',
           'test/src/service/users/data/rate_limit_exceeded_error.json',
           statusCode: 429,
@@ -1430,6 +1523,7 @@ void main() {
     test('with errors', () async {
       final usersService = UsersService(
         context: context.buildDeleteStub(
+          UserContext.oauth2OrOAuth1,
           '/2/users/0000/blocking/1111',
           'test/src/service/users/data/no_data.json',
         ),
@@ -1476,6 +1570,12 @@ void main() {
       final usersService = UsersService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );

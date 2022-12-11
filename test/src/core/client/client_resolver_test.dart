@@ -56,7 +56,7 @@ void main() {
 
       final client = resolver.execute(UserContext.oauth2OrOAuth1);
 
-      expect(client, isA<OAuth1Client>());
+      expect(client, isA<OAuth2Client>());
     });
 
     test('when user context is oauth1Only', () {
@@ -82,6 +82,22 @@ void main() {
 
       expect(
         () => resolver.execute(UserContext.oauth1Only),
+        throwsA(isA<UnauthorizedException>()),
+      );
+    });
+
+    test('when user context is oauth2Only and bearer token is not passed', () {
+      final resolver = ClientResolver(
+        OAuth1Client(
+            consumerKey: '',
+            consumerSecret: '',
+            accessToken: '',
+            accessTokenSecret: ''),
+        null,
+      );
+
+      expect(
+        () => resolver.execute(UserContext.oauth2Only),
         throwsA(isA<UnauthorizedException>()),
       );
     });

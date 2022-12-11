@@ -7,6 +7,7 @@ import 'package:test/test.dart';
 
 // 🌎 Project imports:
 import 'package:twitter_api_v2/src/core/client/client_context.dart';
+import 'package:twitter_api_v2/src/core/client/oauth_tokens.dart';
 import 'package:twitter_api_v2/src/core/client/user_context.dart';
 import 'package:twitter_api_v2/src/core/exception/data_not_found_exception.dart';
 import 'package:twitter_api_v2/src/service/pagination/forward_pagination_control.dart';
@@ -66,6 +67,12 @@ void main() {
       final tweetsService = TweetsService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: const Duration(seconds: 10),
         ),
       );
@@ -131,6 +138,7 @@ void main() {
     test('normal case', () async {
       final tweetsService = TweetsService(
         context: context.buildDeleteStub(
+          UserContext.oauth2OrOAuth1,
           '/2/tweets/1111',
           'test/src/service/tweets/data/destroy_tweet.json',
         ),
@@ -146,6 +154,12 @@ void main() {
       final tweetsService = TweetsService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -160,6 +174,7 @@ void main() {
     test('with rate limit exceeded error', () async {
       final tweetsService = TweetsService(
         context: context.buildDeleteStub(
+          UserContext.oauth2OrOAuth1,
           '/2/tweets/1111',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
           statusCode: 429,
@@ -174,6 +189,7 @@ void main() {
     test('with errors', () async {
       final tweetsService = TweetsService(
         context: context.buildDeleteStub(
+          UserContext.oauth2OrOAuth1,
           '/2/tweets/1111',
           'test/src/service/tweets/data/no_data.json',
         ),
@@ -209,6 +225,12 @@ void main() {
       final tweetsService = TweetsService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -262,6 +284,7 @@ void main() {
     test('normal case', () async {
       final tweetsService = TweetsService(
         context: context.buildDeleteStub(
+          UserContext.oauth2OrOAuth1,
           '/2/users/0000/likes/1111',
           'test/src/service/tweets/data/destroy_like.json',
         ),
@@ -280,6 +303,12 @@ void main() {
       final tweetsService = TweetsService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -295,6 +324,7 @@ void main() {
     test('with rate limit exceeded error', () async {
       final tweetsService = TweetsService(
         context: context.buildDeleteStub(
+          UserContext.oauth2OrOAuth1,
           '/2/users/0000/likes/1111',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
           statusCode: 429,
@@ -312,6 +342,7 @@ void main() {
     test('with errors', () async {
       final tweetsService = TweetsService(
         context: context.buildDeleteStub(
+          UserContext.oauth2OrOAuth1,
           '/2/users/0000/likes/1111',
           'test/src/service/tweets/data/no_data.json',
         ),
@@ -350,6 +381,12 @@ void main() {
       final tweetsService = TweetsService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -403,6 +440,7 @@ void main() {
     test('normal case', () async {
       final tweetsService = TweetsService(
         context: context.buildDeleteStub(
+          UserContext.oauth2OrOAuth1,
           '/2/users/0000/retweets/1111',
           'test/src/service/tweets/data/destroy_retweet.json',
         ),
@@ -421,6 +459,12 @@ void main() {
       final tweetsService = TweetsService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -436,6 +480,7 @@ void main() {
     test('with rate limit exceeded error', () async {
       final tweetsService = TweetsService(
         context: context.buildDeleteStub(
+          UserContext.oauth2OrOAuth1,
           '/2/users/0000/retweets/1111',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
           statusCode: 429,
@@ -453,6 +498,7 @@ void main() {
     test('with errors', () async {
       final tweetsService = TweetsService(
         context: context.buildDeleteStub(
+          UserContext.oauth2OrOAuth1,
           '/2/users/0000/retweets/1111',
           'test/src/service/tweets/data/no_data.json',
         ),
@@ -495,6 +541,12 @@ void main() {
       final tweetsService = TweetsService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -680,6 +732,12 @@ void main() {
       final tweetsService = TweetsService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -865,6 +923,12 @@ void main() {
       final tweetsService = TweetsService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -1050,6 +1114,12 @@ void main() {
       final tweetsService = TweetsService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -1261,7 +1331,7 @@ void main() {
         ),
       );
 
-      expectUnauthorizedException(
+      expectUnauthorizedExceptionForOAuth2(
         () async => await tweetsService.searchRecent(
           query: '1111',
         ),
@@ -1442,7 +1512,7 @@ void main() {
         ),
       );
 
-      expectUnauthorizedException(
+      expectUnauthorizedExceptionForOAuth2(
         () async => await tweetsService.searchAll(
           query: '1111',
         ),
@@ -1775,6 +1845,12 @@ void main() {
       final tweetsService = TweetsService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -1859,6 +1935,12 @@ void main() {
       final tweetsService = TweetsService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -1958,7 +2040,7 @@ void main() {
         ),
       );
 
-      expectUnauthorizedException(
+      expectUnauthorizedExceptionForOAuth2(
         () async => await tweetsService.countRecent(
           query: 'hello',
         ),
@@ -2071,7 +2153,7 @@ void main() {
         ),
       );
 
-      expectUnauthorizedException(
+      expectUnauthorizedExceptionForOAuth2(
         () async => await tweetsService.countAll(
           query: 'hello',
         ),
@@ -2247,7 +2329,7 @@ void main() {
     test('normal case', () async {
       final tweetsService = TweetsService(
         context: context.buildPostStub(
-          UserContext.oauth2OrOAuth1,
+          UserContext.oauth2Only,
           '/2/users/0000/bookmarks',
           'test/src/service/tweets/data/create_bookmark.json',
         ),
@@ -2270,7 +2352,7 @@ void main() {
         ),
       );
 
-      expectUnauthorizedException(
+      expectUnauthorizedExceptionForOAuth2(
         () async => await tweetsService.createBookmark(
           userId: '0000',
           tweetId: '1111',
@@ -2281,7 +2363,7 @@ void main() {
     test('with rate limit exceeded error', () async {
       final tweetsService = TweetsService(
         context: context.buildPostStub(
-          UserContext.oauth2OrOAuth1,
+          UserContext.oauth2Only,
           '/2/users/0000/bookmarks',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
           statusCode: 429,
@@ -2299,7 +2381,7 @@ void main() {
     test('with errors', () async {
       final tweetsService = TweetsService(
         context: context.buildPostStub(
-          UserContext.oauth2OrOAuth1,
+          UserContext.oauth2Only,
           '/2/users/0000/bookmarks',
           'test/src/service/tweets/data/no_data.json',
         ),
@@ -2319,6 +2401,7 @@ void main() {
     test('normal case', () async {
       final tweetsService = TweetsService(
         context: context.buildDeleteStub(
+          UserContext.oauth2Only,
           '/2/users/0000/bookmarks/1111',
           'test/src/service/tweets/data/destroy_bookmark.json',
         ),
@@ -2341,7 +2424,7 @@ void main() {
         ),
       );
 
-      expectUnauthorizedException(
+      expectUnauthorizedExceptionForOAuth2(
         () async => await tweetsService.destroyBookmark(
           userId: '0000',
           tweetId: '1111',
@@ -2352,6 +2435,7 @@ void main() {
     test('with rate limit exceeded error', () async {
       final tweetsService = TweetsService(
         context: context.buildDeleteStub(
+          UserContext.oauth2Only,
           '/2/users/0000/bookmarks/1111',
           'test/src/service/tweets/data/rate_limit_exceeded_error.json',
           statusCode: 429,
@@ -2369,6 +2453,7 @@ void main() {
     test('with errors', () async {
       final tweetsService = TweetsService(
         context: context.buildDeleteStub(
+          UserContext.oauth2Only,
           '/2/users/0000/bookmarks/1111',
           'test/src/service/tweets/data/no_data.json',
         ),
@@ -2413,7 +2498,7 @@ void main() {
         ),
       );
 
-      expectUnauthorizedException(
+      expectUnauthorizedExceptionForOAuth2(
         () async => await tweetsService.lookupBookmarks(userId: '0000'),
       );
     });
@@ -2503,6 +2588,12 @@ void main() {
       final tweetsService = TweetsService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -2581,6 +2672,12 @@ void main() {
       final tweetsService = TweetsService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -2656,6 +2753,12 @@ void main() {
       final tweetsService = TweetsService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -2948,6 +3051,12 @@ void main() {
       final tweetsService = TweetsService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -3154,6 +3263,12 @@ void main() {
       final tweetsService = TweetsService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -3492,7 +3607,7 @@ void main() {
         ),
       );
 
-      expectUnauthorizedException(
+      expectUnauthorizedExceptionForOAuth2(
         () async => await tweetsService.createFilteringRules(rules: []),
       );
     });
@@ -3524,7 +3639,7 @@ void main() {
         ),
       );
 
-      expectUnauthorizedException(
+      expectUnauthorizedExceptionForOAuth2(
         () async => await tweetsService.destroyFilteringRules(ruleIds: []),
       );
     });
@@ -3597,7 +3712,7 @@ void main() {
         ),
       );
 
-      expectUnauthorizedException(
+      expectUnauthorizedExceptionForOAuth2(
         () async => await tweetsService.lookupFilteringRules(ruleIds: []),
       );
     });

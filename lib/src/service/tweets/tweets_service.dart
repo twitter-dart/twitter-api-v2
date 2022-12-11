@@ -3258,7 +3258,7 @@ class _TweetsService extends BaseService implements TweetsService {
   }) async =>
       super.evaluateResponse(
         await super.post(
-          UserContext.oauth2OrOAuth1,
+          UserContext.oauth2Only,
           '/2/users/$userId/bookmarks',
           body: {'tweet_id': tweetId},
         ),
@@ -3271,7 +3271,7 @@ class _TweetsService extends BaseService implements TweetsService {
   }) async =>
       super.evaluateResponse(
         await super.delete(
-          UserContext.oauth2OrOAuth1,
+          UserContext.oauth2Only,
           '/2/users/$userId/bookmarks/$tweetId',
         ),
       );

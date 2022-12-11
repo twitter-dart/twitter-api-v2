@@ -113,6 +113,7 @@ MockClientContext buildPostMultipartStub(
 }
 
 MockClientContext buildDeleteStub(
+  final UserContext userContext,
   final String unencodedPath,
   final String resourcePath, {
   int statusCode = 200,
@@ -120,7 +121,7 @@ MockClientContext buildDeleteStub(
   final mockClientContext = MockClientContext();
 
   when(mockClientContext.delete(
-    UserContext.oauth2OrOAuth1,
+    userContext,
     Uri.https('api.twitter.com', unencodedPath),
   )).thenAnswer(
     (_) async => Response(
