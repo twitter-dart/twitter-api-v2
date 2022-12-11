@@ -88,21 +88,22 @@
       - [1.3.9.1. Batch Compliance](#1391-batch-compliance)
   - [1.4. Tips 🏄](#14-tips-)
     - [1.4.1. Method Names](#141-method-names)
-    - [1.4.2. Generate App-Only Bearer Token](#142-generate-app-only-bearer-token)
-    - [1.4.3. Null Parameter at Request](#143-null-parameter-at-request)
-    - [1.4.4. Expand Object Fields with `expansions`](#144-expand-object-fields-with-expansions)
-    - [1.4.5. Expand Object Fields with `fields`](#145-expand-object-fields-with-fields)
-    - [1.4.6. JSON Serialization and Deserialization](#146-json-serialization-and-deserialization)
-    - [1.4.7. OAuth 2.0 Authorization Code Flow with PKCE](#147-oauth-20-authorization-code-flow-with-pkce)
-    - [1.4.8. Change the Timeout Duration](#148-change-the-timeout-duration)
-    - [1.4.9. Automatic Retry](#149-automatic-retry)
-      - [1.4.9.1. Exponential BackOff and Jitter](#1491-exponential-backoff-and-jitter)
-      - [1.4.9.2. Do Something on Retry](#1492-do-something-on-retry)
-    - [1.4.10. Meaning of the Returned Boolean](#1410-meaning-of-the-returned-boolean)
-    - [1.4.11. Thrown Exceptions](#1411-thrown-exceptions)
-    - [1.4.12. Upload Media](#1412-upload-media)
-    - [1.4.13. Check the Progress of Media Upload](#1413-check-the-progress-of-media-upload)
-    - [1.4.14. Generate Filtering Rules Safely and Easily](#1414-generate-filtering-rules-safely-and-easily)
+    - [1.4.2. Automatic REST Client Resolution](#142-automatic-rest-client-resolution)
+    - [1.4.3. Generate App-Only Bearer Token](#143-generate-app-only-bearer-token)
+    - [1.4.4. Null Parameter at Request](#144-null-parameter-at-request)
+    - [1.4.5. Expand Object Fields with `expansions`](#145-expand-object-fields-with-expansions)
+    - [1.4.6. Expand Object Fields with `fields`](#146-expand-object-fields-with-fields)
+    - [1.4.7. JSON Serialization and Deserialization](#147-json-serialization-and-deserialization)
+    - [1.4.8. OAuth 2.0 Authorization Code Flow with PKCE](#148-oauth-20-authorization-code-flow-with-pkce)
+    - [1.4.9. Change the Timeout Duration](#149-change-the-timeout-duration)
+    - [1.4.10. Automatic Retry](#1410-automatic-retry)
+      - [1.4.10.1. Exponential BackOff and Jitter](#14101-exponential-backoff-and-jitter)
+      - [1.4.10.2. Do Something on Retry](#14102-do-something-on-retry)
+    - [1.4.11. Meaning of the Returned Boolean](#1411-meaning-of-the-returned-boolean)
+    - [1.4.12. Thrown Exceptions](#1412-thrown-exceptions)
+    - [1.4.13. Upload Media](#1413-upload-media)
+    - [1.4.14. Check the Progress of Media Upload](#1414-check-the-progress-of-media-upload)
+    - [1.4.15. Generate Filtering Rules Safely and Easily](#1415-generate-filtering-rules-safely-and-easily)
   - [1.5. Contribution 🏆](#15-contribution-)
   - [1.6. Contributors ✨](#16-contributors-)
   - [1.7. Support ❤️](#17-support-️)
@@ -636,7 +637,29 @@ Future<void> main() async {
 | **update**  | This prefix is attached to the endpoint performing the update state.                               |
 | **upload**  | This prefix is attached to the endpoint performing the media uploading.                            |
 
-### 1.4.2. Generate App-Only Bearer Token
+### 1.4.2. Automatic REST Client Resolution
+
+Some of the **Twitter API v2.0** endpoints support `OAuth 1.0a` method of authentication in parallel while assuming `OAuth 2.0`.
+
+**twitter_api_v2** also supports this specification and provides a mechanism to automatically resolve the REST client for HTTP communication depending on the state and type of token specified when creating an instance of the `TwitterApi` object.
+
+This is resolved by the following rules.
+
+- **When you use v2 endpoints:**
+
+| **When**                   | **bearerToken.isEmpty** | **bearerToken.isNotEmpty** |
+| -------------------------- | :---------------------: | :------------------------: |
+| **oauthTokens.isEmpty**    |  UnauthorizedException  |         OAuth 2.0          |
+| **oauthTokens.isNotEmpty** |       OAuth 1.0a        |         OAuth 2.0          |
+
+- **When you use v1 endpoints:**
+
+| **When**                   | **bearerToken.isEmpty** | **bearerToken.isNotEmpty** |
+| -------------------------- | :---------------------: | :------------------------: |
+| **oauthTokens.isEmpty**    |  UnauthorizedException  |   UnauthorizedException    |
+| **oauthTokens.isNotEmpty** |       OAuth 1.0a        |         OAuth 1.0a         |
+
+### 1.4.3. Generate App-Only Bearer Token
 
 **twitter_api_v2** provides utility to generate/find your app-only bearer token.
 
@@ -653,7 +676,7 @@ Future<void> main() async {
 }
 ```
 
-### 1.4.3. Null Parameter at Request
+### 1.4.4. Null Parameter at Request
 
 In this library, parameters that are not required at request time, i.e., optional parameters, are defined as nullable.
 However, developers do not need to be aware of the null parameter when sending requests when using this library.
@@ -677,7 +700,7 @@ Future<void> main() async {
 }
 ```
 
-### 1.4.4. Expand Object Fields with `expansions`
+### 1.4.5. Expand Object Fields with `expansions`
 
 For example, there may be a situation where data contains only an ID, and you want to retrieve the data object associated with that ID as well. In such cases, the `Twitter API v2.0` specification called `expansions` is useful, and this library supports that specification.
 
@@ -710,7 +733,7 @@ Future<void> main() async {
 
 You can see more details about `expansions` from [Official Documentation](https://developer.twitter.com/en/docs/twitter-api/expansions).
 
-### 1.4.5. Expand Object Fields with `fields`
+### 1.4.6. Expand Object Fields with `fields`
 
 `Twitter API v2.0` supports a very interesting specification, allowing users to control the amount of data contained in the response object for each endpoint depending on the situation. It's called `fields`, and this library supports this specification.
 
@@ -751,7 +774,7 @@ Future<void> main() async {
 
 You can see more details about `fields` from [Official Documentation](https://developer.twitter.com/en/docs/twitter-api/fields).
 
-### 1.4.6. JSON Serialization and Deserialization
+### 1.4.7. JSON Serialization and Deserialization
 
 All Twitter API responses obtained using **twitter_api_v2** are returned stored in a safe type object. However, there may be cases where the raw JSON returned from the Twitter API is needed when creating applications in combination with other libraries.
 
@@ -809,7 +832,7 @@ Future<void> main() async {
 }
 ```
 
-### 1.4.7. OAuth 2.0 Authorization Code Flow with PKCE
+### 1.4.8. OAuth 2.0 Authorization Code Flow with PKCE
 
 **Twitter API v2.0** supports authentication methods with [OAuth 2.0 PKCE](https://developer.twitter.com/en/docs/authentication/oauth-2-0/authorization-code), and it allows users of apps using **Twitter API v2.0** to request authorization for the minimum necessary [scope](https://developer.twitter.com/en/docs/authentication/guides/v2-authentication-mapping) of operation.
 
@@ -824,7 +847,7 @@ Also, please refer to the next simple sample Flutter application that combines *
 
 - [Example Tweet App](https://github.com/twitter-dart/example-tweet-app-with-twitter-api-v2)
 
-### 1.4.8. Change the Timeout Duration
+### 1.4.9. Change the Timeout Duration
 
 The library specifies a default timeout of **10 seconds** for all API communications.
 
@@ -843,7 +866,7 @@ Future<void> main() {
 }
 ```
 
-### 1.4.9. Automatic Retry
+### 1.4.10. Automatic Retry
 
 Due to the nature of this library's communication with external systems, timeouts may occur due to inevitable communication failures or temporary crashes of the server to which requests are sent.
 
@@ -855,7 +878,7 @@ The errors subject to retry are as follows.
 - When the network is temporarily lost and `SocketException` is thrown.
 - When communication times out temporarily and `TimeoutException` is thrown
 
-#### 1.4.9.1. Exponential BackOff and Jitter
+#### 1.4.10.1. Exponential BackOff and Jitter
 
 The easiest way to perform an automatic retry is to stop the process at a certain time and rerun it until it succeeds. However, if there is a network outage on Twitter's servers, sending multiple requests to a specific server at the same time may further overload the server to which the request is sent and further reduce the success rate of retry attempts.
 
@@ -882,7 +905,7 @@ In the above implementation, the interval increases exponentially for each retry
 
 > **(2 ^ retryCount) + jitter(Random Number between 0 ~ 3)**
 
-#### 1.4.9.2. Do Something on Retry
+#### 1.4.10.2. Do Something on Retry
 
 It would be useful to output logging on retries and a popup notifying the user that a retry has been executed. So **twitter_api_v2** provides callbacks that can perform arbitrary processing when retries are executed.
 
@@ -907,7 +930,7 @@ Future<void> main() async {
 
 The [RetryEvent](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/RetryEvent-class.html) passed to the callback contains information on retries.
 
-### 1.4.10. Meaning of the Returned Boolean
+### 1.4.11. Meaning of the Returned Boolean
 
 A boolean value is returned from the endpoint when the communication is primarily POST, DELETE, or PUT.
 
@@ -927,7 +950,7 @@ Note that this specification differs from the official [Twitter API v2.0](https:
 
 However, as mentioned earlier in **twitter_api_v2**, for example if you use the [createRetweet](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/createRetweet.html) method, it will return a **flag indicating whether the process was successful or not**. This principle applies not only to the [createRetweet](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/createRetweet.html) method, but to all methods that return flags as a result of processing.
 
-### 1.4.11. Thrown Exceptions
+### 1.4.12. Thrown Exceptions
 
 **twitter_api_v2** provides a convenient exception object for easy handling of exceptional responses and errors returned from [Twitter API v2.0](https://developer.twitter.com/en/docs/twitter-api/data-dictionary/introduction).
 
@@ -972,7 +995,7 @@ Future<void> main() async {
 }
 ```
 
-### 1.4.12. Upload Media
+### 1.4.13. Upload Media
 
 Uploading media on Twitter and sharing it with various people is a very interesting activity. Also, from a business perspective, accompanying tweets with media will attract even more interest from people.
 
@@ -1023,7 +1046,7 @@ This upload process works very safely, but note that [TwitterUploadException](ht
 > **Note**</br>
 > Also note that the v1.1 endpoint is used to achieve this specification in twitter_api_v2. This is because the official Twitter API v2.0 does not yet support media uploads. While I'm trying to keep the implementation as non-disruptive as possible in the future, there may be disruptive changes when media uploads are supported by the official Twitter API v2.0.
 
-### 1.4.13. Check the Progress of Media Upload
+### 1.4.14. Check the Progress of Media Upload
 
 Uploading small images to Twitter does not take long, but uploading large videos takes longer to complete. At that time, it would be very useful if you could show users how far along we are in the uploading process.
 
@@ -1095,7 +1118,7 @@ And the trigger that calls the `onProgress` callback is as follows. But if the m
 
 Note that media uploads may also fail for reasons such as broken media. In such cases, [TwitterUploadException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/TwitterUploadException-class.html) is always thrown.
 
-### 1.4.14. Generate Filtering Rules Safely and Easily
+### 1.4.15. Generate Filtering Rules Safely and Easily
 
 Some endpoints in [Twitter API v2.0](https://developer.twitter.com/en/docs/twitter-api/data-dictionary/introduction) supports a number of operators for advanced searches, not just `keywords` and `hashtags`.
 
