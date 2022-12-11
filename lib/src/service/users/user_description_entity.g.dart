@@ -44,10 +44,18 @@ _$_UserDescriptionEntity _$$_UserDescriptionEntityFromJson(Map json) =>
     );
 
 Map<String, dynamic> _$$_UserDescriptionEntityToJson(
-        _$_UserDescriptionEntity instance) =>
-    <String, dynamic>{
-      'urls': instance.urls?.map((e) => e.toJson()).toList(),
-      'hashtags': instance.hashtags?.map((e) => e.toJson()).toList(),
-      'cashtags': instance.cashtags?.map((e) => e.toJson()).toList(),
-      'mentions': instance.mentions?.map((e) => e.toJson()).toList(),
-    };
+    _$_UserDescriptionEntity instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('urls', instance.urls?.map((e) => e.toJson()).toList());
+  writeNotNull('hashtags', instance.hashtags?.map((e) => e.toJson()).toList());
+  writeNotNull('cashtags', instance.cashtags?.map((e) => e.toJson()).toList());
+  writeNotNull('mentions', instance.mentions?.map((e) => e.toJson()).toList());
+  return val;
+}

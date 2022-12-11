@@ -4,10 +4,10 @@
 
 // ignore_for_file: invalid_annotation_target
 
-// Package imports:
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-// Project imports:
+// 🌎 Project imports:
 import 'poll_option.dart';
 import 'poll_voting_status.dart';
 
@@ -24,6 +24,7 @@ part 'poll_data.g.dart';
 /// additional fields to complete the object.
 @freezed
 class PollData with _$PollData {
+  @JsonSerializable(includeIfNull: false)
   const factory PollData({
     /// Unique identifier of the expanded poll.
     required String id,

@@ -213,7 +213,8 @@ class __$$_ListDataCopyWithImpl<$Res> extends _$ListDataCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_ListData implements _ListData {
   const _$_ListData(
       {required this.id,

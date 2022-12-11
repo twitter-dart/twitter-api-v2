@@ -184,7 +184,8 @@ class __$$_IncludesCopyWithImpl<$Res> extends _$IncludesCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_Includes implements _Includes {
   const _$_Includes(
       {final List<TweetData>? tweets,

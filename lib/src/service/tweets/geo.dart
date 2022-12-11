@@ -4,17 +4,18 @@
 
 // ignore_for_file: invalid_annotation_target
 
-// Package imports:
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-// Project imports:
-import 'geo_coordinates.dart';
+// 🌎 Project imports:
+import '../geo/geo_coordinates.dart';
 
 part 'geo.freezed.dart';
 part 'geo.g.dart';
 
 @freezed
 class Geo with _$Geo {
+  @JsonSerializable(includeIfNull: false)
   const factory Geo({
     /// The unique identifier of the place, if this is a point of interest
     /// tagged in the Tweet.

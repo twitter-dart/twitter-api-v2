@@ -2,12 +2,12 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
+// 📦 Package imports:
 import 'package:test/test.dart';
-import 'package:twitter_api_core/src/client/client_context.dart';
-import 'package:twitter_api_core/src/client/user_context.dart';
 
-// Project imports:
+// 🌎 Project imports:
+import 'package:twitter_api_v2/src/core/client/client_context.dart';
+import 'package:twitter_api_v2/src/core/client/user_context.dart';
 import 'package:twitter_api_v2/src/service/response/twitter_response.dart';
 import 'package:twitter_api_v2/src/service/spaces/space_data.dart';
 import 'package:twitter_api_v2/src/service/spaces/space_meta.dart';
@@ -63,6 +63,7 @@ void main() {
           UserContext.oauth2Only,
           '/2/spaces/search',
           'test/src/service/spaces/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {'query': 'Hello, World!'},
         ),
       );
@@ -141,6 +142,7 @@ void main() {
           UserContext.oauth2Only,
           '/2/spaces/2222',
           'test/src/service/spaces/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {},
         ),
       );
@@ -246,6 +248,7 @@ void main() {
           UserContext.oauth2Only,
           '/2/spaces',
           'test/src/service/spaces/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {'ids': '1DXxyRYNejbKM,2DXxyRYNejbKM'},
         ),
       );
@@ -329,6 +332,7 @@ void main() {
           UserContext.oauth2Only,
           '/2/spaces/2222/buyers',
           'test/src/service/spaces/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {},
         ),
       );
@@ -408,6 +412,7 @@ void main() {
           UserContext.oauth2Only,
           '/2/spaces/2222/tweets',
           'test/src/service/spaces/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {},
         ),
       );
@@ -491,6 +496,7 @@ void main() {
           UserContext.oauth2Only,
           '/2/spaces/by/creator_ids',
           'test/src/service/spaces/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {'user_ids': '1DXxyRYNejbKM,2DXxyRYNejbKM'},
         ),
       );

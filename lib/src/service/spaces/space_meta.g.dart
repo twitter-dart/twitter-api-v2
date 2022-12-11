@@ -20,7 +20,15 @@ _$_SpaceMeta _$$_SpaceMetaFromJson(Map json) => $checkedCreate(
       fieldKeyMap: const {'resultCount': 'result_count'},
     );
 
-Map<String, dynamic> _$$_SpaceMetaToJson(_$_SpaceMeta instance) =>
-    <String, dynamic>{
-      'result_count': instance.resultCount,
-    };
+Map<String, dynamic> _$$_SpaceMetaToJson(_$_SpaceMeta instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('result_count', instance.resultCount);
+  return val;
+}

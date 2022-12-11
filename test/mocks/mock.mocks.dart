@@ -3,13 +3,18 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+
+// 🎯 Dart imports:
 import 'dart:async' as _i4;
 
+// 📦 Package imports:
 import 'package:http/http.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:twitter_api_core/src/client/client_context.dart' as _i3;
-import 'package:twitter_api_core/src/client/stream_request.dart' as _i6;
-import 'package:twitter_api_core/src/client/user_context.dart' as _i5;
+
+// 🌎 Project imports:
+import 'package:twitter_api_v2/src/core/client/client_context.dart' as _i3;
+import 'package:twitter_api_v2/src/core/client/stream_request.dart' as _i6;
+import 'package:twitter_api_v2/src/core/client/user_context.dart' as _i5;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values

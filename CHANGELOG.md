@@ -1,5 +1,58 @@
 # Release Note
 
+## v4.6.2
+
+- Reintegrated core packages. ([#598](https://github.com/twitter-dart/twitter-api-v2/issues/598))
+
+## v4.6.1
+
+- Internal processing has been improved to set `false` in the data field of `TwitterResponse` when a `403` error is returned in `POST`, `PUT` and `DELETE` communication. ([#592](https://github.com/twitter-dart/twitter-api-v2/issues/592))
+
+## v4.6.0
+
+- Supported `Trends` service. ([#582](https://github.com/twitter-dart/twitter-api-v2/issues/582))
+  - `GET /1.1/trends/place.json`
+  - `GET /1.1/trends/available.json`
+  - `GET /1.1/trends/closest.json`
+- Supported `/1.1/geo/reverse_geocode.json` endpoint for `Geo` service. ([#584](https://github.com/twitter-dart/twitter-api-v2/issues/584))
+
+## v4.5.0
+
+- Supported `Geo` service. ([#578](https://github.com/twitter-dart/twitter-api-v2/issues/578))
+  - `GET /1.1/geo/search.json`
+  - `GET /1.1/geo/id/$placeId.json`
+
+## v4.4.4
+
+- Supported additional language codes. ([#570](https://github.com/twitter-dart/twitter-api-v2/issues/570))
+  - `qam` for tweets with mentions only (works for tweets since 2022-06-14)
+  - `qct` for tweets with cashtags only (works for tweets since 2022-06-14)
+  - `qht` for tweets with hashtags only (works for tweets since 2022-06-14)
+  - `qme` for tweets with media links (works for tweets since 2022-06-14)
+  - `qst` for tweets with a very short text (works for tweets since 2022-06-14)
+  - `zxx` for tweets with either media or Twitter Card only, without any additional text (works for tweets since 2022-06-14)
+
+## v4.4.3
+
+- Fixed a bug that `TweetEditControls.remainingCount` had a different type. ([#571](https://github.com/twitter-dart/twitter-api-v2/issues/571))
+- Fixed to exclude null fields when performing `toJson` on `TwitterResponse` and other model objects. With this fix, the JSON obtained from `toJson` is now fully equivalent to the raw JSON returned by Twitter. ([#569](https://github.com/twitter-dart/twitter-api-v2/issues/569))
+
+## v4.4.2
+
+- Improved internal process for checking rate limit. ([#562](https://github.com/twitter-dart/twitter-api-v2/issues/562))
+- Supported `entity:` filtering rule operator. You can use this operator with following methods. ([#557](https://github.com/twitter-dart/twitter-api-v2/issues/557))
+  - `matchEntity`
+  - `notMatchEntity`
+- Supported `context:` filtering rule operator. You can use this operator with following methods. ([#556](https://github.com/twitter-dart/twitter-api-v2/issues/556))
+  - `matchContext`
+  - `notMatchContext`
+- Added documentation about `FilteringRule` object. ([#558](https://github.com/twitter-dart/twitter-api-v2/issues/558))
+  - [Filtered Stream: Build a Rule](https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/integrate/build-a-rule)
+
+## v4.4.1
+
+- Fixed bug that retry count does not increment correctly. ([#560](https://github.com/twitter-dart/twitter-api-v2/issues/560))
+
 ## v4.4.0
 
 - Added service for `Direct Message`. You can use endpoints for `Direct Message` using by `TwitterApi.directMessages` property.
@@ -14,6 +67,7 @@
 - Removed deprecated property and constructor.
   - Removed `UploadedMediaData.mediaId` and use `UploadedMediaData.id` instead.
   - `FilteringRule.sampleOf` and use `FilteringRule.ofSample` instead.
+- Supported upload media for direct message. Please specify `MediaCategory.directMessage` to the option in `MediaService.uploadMedia`. ([#547](https://github.com/twitter-dart/twitter-api-v2/issues/547))
 
 ## v4.3.5
 

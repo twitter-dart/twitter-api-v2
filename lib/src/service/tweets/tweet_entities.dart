@@ -2,10 +2,12 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
+// ignore_for_file: invalid_annotation_target
+
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-// Project imports:
+// 🌎 Project imports:
 import '../common/mention.dart';
 import '../common/tag.dart';
 import '../common/url.dart';
@@ -16,6 +18,7 @@ part 'tweet_entities.g.dart';
 
 @freezed
 class TweetEntities with _$TweetEntities {
+  @JsonSerializable(includeIfNull: false)
   const factory TweetEntities({
     /// Contains details about annotations relative to the text within a Tweet.
     List<TweetAnnotation>? annotations,

@@ -56,20 +56,29 @@ _$_UserData _$$_UserDataFromJson(Map json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$$_UserDataToJson(_$_UserData instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'username': instance.username,
-      'description': instance.description,
-      'url': instance.url,
-      'profile_image_url': instance.profileImageUrl,
-      'location': instance.location,
-      'protected': instance.isProtected,
-      'verified': instance.isVerified,
-      'pinned_tweet_id': instance.pinnedTweetId,
-      'entities': instance.entities?.toJson(),
-      'public_metrics': instance.publicMetrics?.toJson(),
-      'created_at': instance.createdAt?.toIso8601String(),
-      'withheld': instance.withheld?.toJson(),
-    };
+Map<String, dynamic> _$$_UserDataToJson(_$_UserData instance) {
+  final val = <String, dynamic>{
+    'id': instance.id,
+    'name': instance.name,
+    'username': instance.username,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('description', instance.description);
+  writeNotNull('url', instance.url);
+  writeNotNull('profile_image_url', instance.profileImageUrl);
+  writeNotNull('location', instance.location);
+  writeNotNull('protected', instance.isProtected);
+  writeNotNull('verified', instance.isVerified);
+  writeNotNull('pinned_tweet_id', instance.pinnedTweetId);
+  writeNotNull('entities', instance.entities?.toJson());
+  writeNotNull('public_metrics', instance.publicMetrics?.toJson());
+  writeNotNull('created_at', instance.createdAt?.toIso8601String());
+  writeNotNull('withheld', instance.withheld?.toJson());
+  return val;
+}

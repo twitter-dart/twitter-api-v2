@@ -23,9 +23,18 @@ _$_TweetContextAnnotation _$$_TweetContextAnnotationFromJson(Map json) =>
     );
 
 Map<String, dynamic> _$$_TweetContextAnnotationToJson(
-        _$_TweetContextAnnotation instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'description': instance.description,
-    };
+    _$_TweetContextAnnotation instance) {
+  final val = <String, dynamic>{
+    'id': instance.id,
+    'name': instance.name,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('description', instance.description);
+  return val;
+}

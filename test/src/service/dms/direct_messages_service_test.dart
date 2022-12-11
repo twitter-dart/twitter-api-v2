@@ -2,11 +2,12 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
+// 📦 Package imports:
 import 'package:test/test.dart';
-import 'package:twitter_api_core/twitter_api_core.dart';
 
-// Project imports:
+// 🌎 Project imports:
+import 'package:twitter_api_v2/src/core/client/client_context.dart';
+import 'package:twitter_api_v2/src/core/client/user_context.dart';
 import 'package:twitter_api_v2/src/service/dms/direct_messages_service.dart';
 import 'package:twitter_api_v2/src/service/dms/dm_event_data.dart';
 import 'package:twitter_api_v2/src/service/dms/dm_event_meta.dart';
@@ -60,6 +61,7 @@ void main() {
           '/2/dm_events',
           'test/src/service/dms/data/rate_limit_exceeded_error.json',
           {},
+          statusCode: 429,
         ),
       );
 
@@ -240,6 +242,7 @@ void main() {
           '/2/dm_conversations/with/1234/dm_events',
           'test/src/service/dms/data/rate_limit_exceeded_error.json',
           {},
+          statusCode: 429,
         ),
       );
 
@@ -428,6 +431,7 @@ void main() {
           '/2/dm_conversations/1234/dm_events',
           'test/src/service/dms/data/rate_limit_exceeded_error.json',
           {},
+          statusCode: 429,
         ),
       );
 
@@ -615,6 +619,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/dm_conversations/with/1234/messages',
           'test/src/service/dms/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 
@@ -705,6 +710,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/dm_conversations/1234/messages',
           'test/src/service/dms/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 
@@ -795,6 +801,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/dm_conversations',
           'test/src/service/dms/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 

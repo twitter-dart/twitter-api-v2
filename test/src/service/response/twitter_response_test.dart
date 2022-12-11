@@ -2,10 +2,10 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
+// 📦 Package imports:
 import 'package:test/test.dart';
 
-// Project imports:
+// 🌎 Project imports:
 import 'package:twitter_api_v2/src/service/common/includes.dart';
 import 'package:twitter_api_v2/src/service/common/rate_limit.dart';
 import 'package:twitter_api_v2/src/service/response/twitter_response.dart';
@@ -88,88 +88,13 @@ void main() {
       );
 
       expect(response.toJson(), {
-        'data': {
-          'id': 'test1',
-          'text': 'test2',
-          'author_id': null,
-          'in_reply_to_user_id': null,
-          'conversation_id': null,
-          'referenced_tweets': null,
-          'context_annotations': null,
-          'entities': null,
-          'attachments': null,
-          'non_public_metrics': null,
-          'organic_metrics': null,
-          'promoted_metrics': null,
-          'public_metrics': null,
-          'geo': null,
-          'lang': null,
-          'possibly_sensitive': null,
-          'reply_settings': null,
-          'source': null,
-          'edit_controls': null,
-          'edit_history_tweet_ids': null,
-          'withheld': null,
-          'created_at': null
-        },
+        'data': {'id': 'test1', 'text': 'test2'},
         'includes': {
           'tweets': [
-            {
-              'id': 'test1',
-              'text': 'test2',
-              'author_id': null,
-              'in_reply_to_user_id': null,
-              'conversation_id': null,
-              'referenced_tweets': null,
-              'context_annotations': null,
-              'entities': null,
-              'attachments': null,
-              'non_public_metrics': null,
-              'organic_metrics': null,
-              'promoted_metrics': null,
-              'public_metrics': null,
-              'geo': null,
-              'lang': null,
-              'possibly_sensitive': null,
-              'reply_settings': null,
-              'source': null,
-              'edit_controls': null,
-              'edit_history_tweet_ids': null,
-              'withheld': null,
-              'created_at': null
-            },
-            {
-              'id': 'test3',
-              'text': 'test4',
-              'author_id': null,
-              'in_reply_to_user_id': null,
-              'conversation_id': null,
-              'referenced_tweets': null,
-              'context_annotations': null,
-              'entities': null,
-              'attachments': null,
-              'non_public_metrics': null,
-              'organic_metrics': null,
-              'promoted_metrics': null,
-              'public_metrics': null,
-              'geo': null,
-              'lang': null,
-              'possibly_sensitive': null,
-              'reply_settings': null,
-              'source': null,
-              'edit_controls': null,
-              'edit_history_tweet_ids': null,
-              'withheld': null,
-              'created_at': null
-            }
+            {'id': 'test1', 'text': 'test2'},
+            {'id': 'test3', 'text': 'test4'}
           ],
-          'users': null,
-          'media': null,
-          'places': null,
-          'polls': null,
-          'topics': null
-        },
-        'meta': null,
+        }
       });
     });
 
@@ -189,57 +114,9 @@ void main() {
 
       expect(response.toJson(), {
         'data': [
-          {
-            'id': 'test1',
-            'text': 'test2',
-            'author_id': null,
-            'in_reply_to_user_id': null,
-            'conversation_id': null,
-            'referenced_tweets': null,
-            'context_annotations': null,
-            'entities': null,
-            'attachments': null,
-            'non_public_metrics': null,
-            'organic_metrics': null,
-            'promoted_metrics': null,
-            'public_metrics': null,
-            'geo': null,
-            'lang': null,
-            'possibly_sensitive': null,
-            'reply_settings': null,
-            'source': null,
-            'edit_controls': null,
-            'edit_history_tweet_ids': null,
-            'withheld': null,
-            'created_at': null
-          },
-          {
-            'id': 'test3',
-            'text': 'test4',
-            'author_id': null,
-            'in_reply_to_user_id': null,
-            'conversation_id': null,
-            'referenced_tweets': null,
-            'context_annotations': null,
-            'entities': null,
-            'attachments': null,
-            'non_public_metrics': null,
-            'organic_metrics': null,
-            'promoted_metrics': null,
-            'public_metrics': null,
-            'geo': null,
-            'lang': null,
-            'possibly_sensitive': null,
-            'reply_settings': null,
-            'source': null,
-            'edit_controls': null,
-            'edit_history_tweet_ids': null,
-            'withheld': null,
-            'created_at': null
-          }
-        ],
-        'includes': null,
-        'meta': null,
+          {'id': 'test1', 'text': 'test2'},
+          {'id': 'test3', 'text': 'test4'}
+        ]
       });
     });
   });

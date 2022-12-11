@@ -2,14 +2,22 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Dart imports:
+// 🎯 Dart imports:
 import 'dart:async';
 import 'dart:convert';
 
-// Package imports:
-import 'package:twitter_api_core/twitter_api_core.dart' as core;
+// 📦 Package imports:
+import 'package:http/http.dart';
 
-// Project imports:
+// 🌎 Project imports:
+import '../core/client/client_context.dart';
+import '../core/client/stream_response.dart';
+import '../core/client/user_context.dart';
+import '../core/exception/data_not_found_exception.dart';
+import '../core/exception/rate_limit_exceeded_exception.dart';
+import '../core/exception/unauthorized_exception.dart';
+import '../core/service_helper.dart';
+import '../core/util/json_utils.dart';
 import 'common/data.dart';
 import 'common/includes.dart';
 import 'common/meta.dart';
@@ -29,53 +37,53 @@ typedef DataBuilder<D extends Data> = D Function(Map<String, Object?> json);
 typedef MetaBuilder<M extends Meta> = M Function(Map<String, Object?> json);
 
 abstract class _Service {
-  Future<core.Response> get(
-    core.UserContext userContext,
+  Future<Response> get(
+    UserContext userContext,
     String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
   });
 
-  Future<core.StreamResponse> getStream(
-    final core.UserContext userContext,
+  Future<StreamResponse> getStream(
+    final UserContext userContext,
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
   });
 
-  Future<core.Response> post(
-    core.UserContext userContext,
+  Future<Response> post(
+    UserContext userContext,
     String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
     Map<String, String> body = const {},
   });
 
-  Future<core.Response> delete(
-    core.UserContext userContext,
+  Future<Response> delete(
+    UserContext userContext,
     String unencodedPath,
   );
 
-  Future<core.Response> put(
-    core.UserContext userContext,
+  Future<Response> put(
+    UserContext userContext,
     String unencodedPath, {
     Map<String, String> body = const {},
   });
 
   TwitterResponse<D, M>
       transformSingleDataResponse<D extends Data, M extends Meta>(
-    core.Response response, {
+    Response response, {
     required DataBuilder<D> dataBuilder,
     MetaBuilder<M>? metaBuilder,
   });
 
   TwitterResponse<List<D>, M>
       transformMultiDataResponse<D extends Data, M extends Meta>(
-    core.Response response, {
+    Response response, {
     required DataBuilder<D> dataBuilder,
     MetaBuilder<M>? metaBuilder,
   });
 
   Future<PaginationResponse<List<D>, M>>
       getPage<D extends Data, M extends Meta>(
-    core.UserContext userContext,
+    UserContext userContext,
     String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
     required DataBuilder<D> dataBuilder,
@@ -83,7 +91,7 @@ abstract class _Service {
   });
 
   Future<void> executePaginationIfNecessary<D extends Data, M extends Pageable>(
-    core.UserContext userContext,
+    UserContext userContext,
     String unencodedPath,
     Map<String, dynamic> queryParameters, {
     required Paging<List<D>, M>? paging,
@@ -93,7 +101,7 @@ abstract class _Service {
 
   Future<void> executeForwardPaginationIfNecessary<D extends Data,
       M extends ForwardPageable>(
-    core.UserContext userContext,
+    UserContext userContext,
     String unencodedPath,
     Map<String, dynamic> queryParameters, {
     required ForwardPaging<List<D>, M>? paging,
@@ -101,25 +109,24 @@ abstract class _Service {
     required MetaBuilder<M> metaBuilder,
   });
 
-  TwitterResponse<bool, void> evaluateResponse(final core.Response response);
+  TwitterResponse<bool, void> evaluateResponse(final Response response);
 }
 
 abstract class BaseService implements _Service {
   /// Returns the new instance of [BaseService].
-  BaseService({required core.ClientContext context})
-      : _helper = core.ServiceHelper(
+  BaseService({required ClientContext context})
+      : _helper = ServiceHelper(
           authority: 'api.twitter.com',
           context: context,
         );
 
-  final core.ServiceHelper _helper;
+  final ServiceHelper _helper;
 
-  final ResponseHeaderConverter headerConverter =
-      const ResponseHeaderConverter();
+  final RateLimitConverter rateLimitConverter = const RateLimitConverter();
 
   @override
-  Future<core.Response> get(
-    final core.UserContext userContext,
+  Future<Response> get(
+    final UserContext userContext,
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
   }) async =>
@@ -135,13 +142,10 @@ abstract class BaseService implements _Service {
       );
 
   @override
-  Future<core.StreamResponse> getStream(
-    final core.UserContext userContext,
+  Future<StreamResponse> getStream(
+    final UserContext userContext,
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
-    Map<String, dynamic> Function(
-            core.StreamedResponse streamedResponse, String event)?
-        validate,
   }) async =>
       await _helper.getStream(
         userContext,
@@ -152,7 +156,7 @@ abstract class BaseService implements _Service {
 
           final jsonBody = jsonDecode(event);
           if (!jsonBody.containsKey(ResponseField.data.value)) {
-            throw core.DataNotFoundException(
+            throw DataNotFoundException(
               'No data exists in response.',
               response,
               event,
@@ -164,12 +168,11 @@ abstract class BaseService implements _Service {
       );
 
   @override
-  Future<core.Response> post(
-    final core.UserContext userContext,
+  Future<Response> post(
+    final UserContext userContext,
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
     dynamic body = const {},
-    core.Response Function(core.Response response)? validate,
   }) async =>
       await _helper.post(
         userContext,
@@ -180,11 +183,10 @@ abstract class BaseService implements _Service {
       );
 
   @override
-  Future<core.Response> delete(
-    final core.UserContext userContext,
-    final String unencodedPath, {
-    core.Response Function(core.Response response)? validate,
-  }) async =>
+  Future<Response> delete(
+    final UserContext userContext,
+    final String unencodedPath,
+  ) async =>
       await _helper.delete(
         userContext,
         unencodedPath,
@@ -192,11 +194,10 @@ abstract class BaseService implements _Service {
       );
 
   @override
-  Future<core.Response> put(
-    final core.UserContext userContext,
+  Future<Response> put(
+    final UserContext userContext,
     final String unencodedPath, {
     dynamic body = const {},
-    core.Response Function(core.Response response)? validate,
   }) async =>
       await _helper.put(
         userContext,
@@ -208,7 +209,7 @@ abstract class BaseService implements _Service {
   @override
   TwitterResponse<D, M>
       transformSingleDataResponse<D extends Data, M extends Meta>(
-    core.Response response, {
+    Response response, {
     required DataBuilder<D> dataBuilder,
     MetaBuilder<M>? metaBuilder,
   }) {
@@ -216,7 +217,7 @@ abstract class BaseService implements _Service {
 
     return TwitterResponse(
       rateLimit: RateLimit.fromJson(
-        headerConverter.convert(response.headers),
+        rateLimitConverter.convert(response.headers),
       ),
       data: dataBuilder(
         jsonBody[ResponseField.data.value],
@@ -234,7 +235,7 @@ abstract class BaseService implements _Service {
   @override
   TwitterResponse<List<D>, M>
       transformMultiDataResponse<D extends Data, M extends Meta>(
-    core.Response response, {
+    Response response, {
     required DataBuilder<D> dataBuilder,
     MetaBuilder<M>? metaBuilder,
   }) {
@@ -242,10 +243,10 @@ abstract class BaseService implements _Service {
 
     return TwitterResponse(
       rateLimit: RateLimit.fromJson(
-        headerConverter.convert(response.headers),
+        rateLimitConverter.convert(response.headers),
       ),
       data: jsonBody[ResponseField.data.value]
-          .map<D>((tweet) => dataBuilder(tweet))
+          .map<D>((json) => dataBuilder(json))
           .toList(),
       includes: jsonBody.containsKey(ResponseField.includes.value)
           ? Includes.fromJson(jsonBody[ResponseField.includes.value])
@@ -260,7 +261,7 @@ abstract class BaseService implements _Service {
   @override
   Future<PaginationResponse<List<D>, M>>
       getPage<D extends Data, M extends Meta>(
-    core.UserContext userContext,
+    UserContext userContext,
     String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
     required DataBuilder<D> dataBuilder,
@@ -279,7 +280,7 @@ abstract class BaseService implements _Service {
       unencodedPath: unencodedPath,
       queryParameters: queryParameters,
       rateLimit: RateLimit.fromJson(
-        headerConverter.convert(response.headers),
+        rateLimitConverter.convert(response.headers),
       ),
       data: jsonBody[ResponseField.data.value]
           .map<D>((tweet) => dataBuilder(tweet))
@@ -296,7 +297,7 @@ abstract class BaseService implements _Service {
   @override
   Future<PaginationResponse<List<D>, M>>
       executePaginationIfNecessary<D extends Data, M extends Pageable>(
-    core.UserContext userContext,
+    UserContext userContext,
     String unencodedPath,
     Map<String, dynamic> queryParameters, {
     required Paging<List<D>, M>? paging,
@@ -332,7 +333,7 @@ abstract class BaseService implements _Service {
   @override
   Future<PaginationResponse<List<D>, M>> executeForwardPaginationIfNecessary<
       D extends Data, M extends ForwardPageable>(
-    core.UserContext userContext,
+    UserContext userContext,
     String unencodedPath,
     Map<String, dynamic> queryParameters, {
     required ForwardPaging<List<D>, M>? paging,
@@ -366,15 +367,15 @@ abstract class BaseService implements _Service {
   }
 
   @override
-  TwitterResponse<bool, void> evaluateResponse(final core.Response response) =>
+  TwitterResponse<bool, void> evaluateResponse(final Response response) =>
       TwitterResponse(
         rateLimit: RateLimit.fromJson(
-          headerConverter.convert(response.headers),
+          rateLimitConverter.convert(response.headers),
         ),
         data: _evaluateResponse(response),
       );
 
-  bool _evaluateResponse(final core.Response response) {
+  bool _evaluateResponse(final Response response) {
     if (response.statusCode == 204) {
       //! 204: No Content.
       return true;
@@ -385,18 +386,22 @@ abstract class BaseService implements _Service {
       return true;
     }
 
-    return !core
-        .tryJsonDecode(response, response.body)
+    if (response.statusCode == 403) {
+      //! Forbidden for some reasons.
+      return false;
+    }
+
+    return !tryJsonDecode(response, response.body)
         .containsKey(ResponseField.errors.value);
   }
 
-  Map<String, dynamic> _checkResponseBody(final core.Response response) {
-    final jsonBody = core.tryJsonDecode(response, response.body);
+  Map<String, dynamic> _checkResponseBody(final Response response) {
+    final jsonBody = tryJsonDecode(response, response.body);
 
     if (!jsonBody.containsKey(ResponseField.data.value)) {
       //! This occurs when the tweet to be processed has been deleted or
       //! when the target data does not exist at the time of search.
-      throw core.DataNotFoundException(
+      throw DataNotFoundException(
         'No data exists in response.',
         response,
       );
@@ -405,12 +410,19 @@ abstract class BaseService implements _Service {
     return jsonBody;
   }
 
-  core.Response checkResponse(
-    final core.Response response,
+  Response checkResponse(
+    final Response response,
   ) {
     if (response.statusCode == 401) {
-      throw core.UnauthorizedException(
+      throw UnauthorizedException(
         'The specified access token is invalid.',
+        response,
+      );
+    }
+
+    if (response.statusCode == 429) {
+      throw RateLimitExceededException(
+        'Rate limit exceeded.',
         response,
       );
     }
@@ -425,53 +437,36 @@ abstract class BaseService implements _Service {
       return response;
     }
 
-    final jsonBody = core.tryJsonDecode(response, response.body);
-
-    if (jsonBody.containsKey(ResponseField.errors.value)) {
-      final errors = jsonBody[ResponseField.errors.value];
-      for (final error in errors) {
-        if (error['code'] == 88) {
-          throw core.RateLimitExceededException(
-            error['message'] ?? '',
-            response,
-          );
-        }
-      }
-    }
+    tryJsonDecode(response, response.body);
 
     return response;
   }
 
   void _checkGetResponse(
-    final core.BaseResponse response,
+    final BaseResponse response,
     final String event,
   ) {
     if (response.statusCode == 401) {
-      throw core.UnauthorizedException(
+      throw UnauthorizedException(
         'The specified access token is invalid.',
         response,
       );
     }
 
-    final jsonBody = core.tryJsonDecode(response, event);
-
-    if (jsonBody.containsKey(ResponseField.errors.value)) {
-      final errors = jsonBody[ResponseField.errors.value];
-
-      for (final error in errors) {
-        if (error['code'] == 88) {
-          throw core.RateLimitExceededException(
-            error['message'] ?? '',
-            response,
-          );
-        }
-      }
+    if (response.statusCode == 429) {
+      throw RateLimitExceededException(
+        'Rate limit exceeded.',
+        response,
+      );
     }
+
+    tryJsonDecode(response, event);
   }
 }
 
-class ResponseHeaderConverter {
-  const ResponseHeaderConverter();
+class RateLimitConverter {
+  /// Returns the new instance of [RateLimitConverter].
+  const RateLimitConverter();
 
   Map<String, dynamic> convert(final Map<String, String> input) => {
         //! Although it rarely occurs, there is a case where the header does not

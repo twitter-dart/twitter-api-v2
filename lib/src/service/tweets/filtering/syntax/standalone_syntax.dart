@@ -2,10 +2,8 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
-import 'package:twitter_api_core/twitter_api_core.dart' as core;
-
-// Project imports:
+// 🌎 Project imports:
+import '../../../../core/country.dart' as core;
 import '../../../common/range.dart';
 import '../../distance_unit.dart';
 import '../channel/logical_channel.dart';
@@ -262,6 +260,61 @@ abstract class StandaloneSyntax extends GroupSyntax {
   LogicalChannel notMatchRetweetedBy(final String user) =>
       _buffer.appendOperator(
         _standaloneOperation.createNegatedRetweetedBy(user),
+      );
+
+  /// Matches Tweets with a specific domain id and/or domain id,
+  /// entity id pair where * represents a wildcard.
+  ///
+  /// To learn more about this operator, please visit
+  /// [page on Tweet annotations](https://developer.twitter.com/en/docs/twitter-api/annotations/overview).
+  ///
+  /// You can only pass a single domain/entity per this operator.
+  ///
+  /// ## Parameters
+  ///
+  /// - [value]: Context value to be matched.
+  ///
+  /// ## Type
+  ///
+  /// - [Standalone](https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/integrate/build-a-rule#types)
+  ///
+  /// ## Availability
+  ///
+  /// - Essential
+  LogicalChannel matchContext(final String value) => _buffer.appendOperator(
+        _standaloneOperation.createContext(value),
+      );
+
+  /// The negated representation of [matchEntity].
+  LogicalChannel notMatchContext(final String value) => _buffer.appendOperator(
+        _standaloneOperation.createNegatedContext(value),
+      );
+
+  /// Matches Tweets with a specific entity string value.
+  ///
+  /// To learn more about this operator, please visit
+  /// [page on annotations](https://developer.twitter.com/en/docs/twitter-api/annotations/overview).
+  ///
+  /// You can only pass a single entity per this operator.
+  ///
+  /// ## Parameters
+  ///
+  /// - [value]: Entity value to be matched.
+  ///
+  /// ## Type
+  ///
+  /// - [Standalone](https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/integrate/build-a-rule#types)
+  ///
+  /// ## Availability
+  ///
+  /// - Essential
+  LogicalChannel matchEntity(final String value) => _buffer.appendOperator(
+        _standaloneOperation.createEntity(value),
+      );
+
+  /// The negated representation of [matchEntity].
+  LogicalChannel notMatchEntity(final String value) => _buffer.appendOperator(
+        _standaloneOperation.createNegatedEntity(value),
       );
 
   /// Matches Tweets that share a common conversation ID. A conversation ID

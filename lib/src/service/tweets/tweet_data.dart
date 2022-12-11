@@ -4,11 +4,11 @@
 
 // ignore_for_file: invalid_annotation_target
 
-// Package imports:
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:twitter_api_core/twitter_api_core.dart';
 
-// Project imports:
+// 🌎 Project imports:
+import '../../core/language.dart';
 import '../common/data.dart';
 import 'geo.dart';
 import 'organic_tweet_metrics.dart';
@@ -43,6 +43,7 @@ part 'tweet_data.g.dart';
 /// tweet.fields when requesting additional fields to complete the object.
 @freezed
 class TweetData with _$TweetData implements Data {
+  @JsonSerializable(includeIfNull: false)
   const factory TweetData({
     /// Unique identifier of this Tweet. This is returned as a string in order
     /// to avoid complications with languages and tools that cannot handle

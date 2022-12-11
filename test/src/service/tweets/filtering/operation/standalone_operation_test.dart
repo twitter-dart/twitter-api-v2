@@ -2,18 +2,20 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
+// 📦 Package imports:
 import 'package:test/test.dart';
-import 'package:twitter_api_core/twitter_api_core.dart' as core;
 
-// Project imports:
+// 🌎 Project imports:
+import 'package:twitter_api_v2/src/core/country.dart' as core;
 import 'package:twitter_api_v2/src/service/common/range.dart';
 import 'package:twitter_api_v2/src/service/tweets/distance_unit.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering/operation/standalone_operation.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering/operator/standalone/bounding_box.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering/operator/standalone/cashtag.dart';
+import 'package:twitter_api_v2/src/service/tweets/filtering/operator/standalone/context.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering/operator/standalone/conversation.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering/operator/standalone/country.dart';
+import 'package:twitter_api_v2/src/service/tweets/filtering/operator/standalone/entity.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering/operator/standalone/hashtag.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering/operator/standalone/keyword.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering/operator/standalone/place.dart';
@@ -144,6 +146,34 @@ void main() {
     final actual = StandaloneOperation().createNegatedRetweetedBy('test');
 
     expect(actual, isA<RetweetedBy>());
+    expect(actual.negated, isTrue);
+  });
+
+  test('.createContext', () {
+    final actual = StandaloneOperation().createContext('test');
+
+    expect(actual, isA<Context>());
+    expect(actual.negated, isFalse);
+  });
+
+  test('.createNegatedContext', () {
+    final actual = StandaloneOperation().createNegatedContext('test');
+
+    expect(actual, isA<Context>());
+    expect(actual.negated, isTrue);
+  });
+
+  test('.createEntity', () {
+    final actual = StandaloneOperation().createEntity('test');
+
+    expect(actual, isA<Entity>());
+    expect(actual.negated, isFalse);
+  });
+
+  test('.createNegatedEntity', () {
+    final actual = StandaloneOperation().createNegatedEntity('test');
+
+    expect(actual, isA<Entity>());
     expect(actual.negated, isTrue);
   });
 

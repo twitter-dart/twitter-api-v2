@@ -24,8 +24,17 @@ _$_TweetCountMeta _$$_TweetCountMetaFromJson(Map json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$$_TweetCountMetaToJson(_$_TweetCountMeta instance) =>
-    <String, dynamic>{
-      'total_tweet_count': instance.total,
-      'next_token': instance.nextToken,
-    };
+Map<String, dynamic> _$$_TweetCountMetaToJson(_$_TweetCountMeta instance) {
+  final val = <String, dynamic>{
+    'total_tweet_count': instance.total,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('next_token', instance.nextToken);
+  return val;
+}

@@ -145,7 +145,8 @@ class __$$_FilteringRuleSummaryCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_FilteringRuleSummary implements _FilteringRuleSummary {
   const _$_FilteringRuleSummary(
       {@JsonKey(name: 'created') this.createdCount,

@@ -2,7 +2,9 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
+// ignore_for_file: invalid_annotation_target
+
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'mention.freezed.dart';
@@ -10,6 +12,7 @@ part 'mention.g.dart';
 
 @freezed
 class Mention with _$Mention {
+  @JsonSerializable(includeIfNull: false)
   const factory Mention({
     /// The user id that created the mentions.
     String? id,

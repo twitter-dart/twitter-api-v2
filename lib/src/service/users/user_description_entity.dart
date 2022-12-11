@@ -2,10 +2,12 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
+// ignore_for_file: invalid_annotation_target
+
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-// Project imports:
+// 🌎 Project imports:
 import '../common/mention.dart';
 import '../common/tag.dart';
 import '../common/url.dart';
@@ -15,6 +17,7 @@ part 'user_description_entity.g.dart';
 
 @freezed
 class UserDescriptionEntity with _$UserDescriptionEntity {
+  @JsonSerializable(includeIfNull: false)
   const factory UserDescriptionEntity({
     /// Contains details about any URLs included in the user's description.
     List<Url>? urls,

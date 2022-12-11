@@ -4,10 +4,10 @@
 
 // ignore_for_file: invalid_annotation_target
 
-// Package imports:
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-// Project imports:
+// 🌎 Project imports:
 import '../common/meta.dart';
 import 'filtering_rule_summary.dart';
 
@@ -16,6 +16,7 @@ part 'filtering_rule_meta.g.dart';
 
 @freezed
 class FilteringRuleMeta with _$FilteringRuleMeta implements Meta {
+  @JsonSerializable(includeIfNull: false)
   const factory FilteringRuleMeta({
     /// The time when the request body was returned.
     @JsonKey(name: 'sent') DateTime? sentAt,

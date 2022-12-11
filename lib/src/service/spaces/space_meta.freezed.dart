@@ -90,7 +90,8 @@ class __$$_SpaceMetaCopyWithImpl<$Res> extends _$SpaceMetaCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_SpaceMeta implements _SpaceMeta {
   const _$_SpaceMeta({required this.resultCount});
 

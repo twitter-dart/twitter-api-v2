@@ -4,7 +4,7 @@
 
 // ignore_for_file: invalid_annotation_target
 
-// Package imports:
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'filtering_rule_summary.freezed.dart';
@@ -12,6 +12,7 @@ part 'filtering_rule_summary.g.dart';
 
 @freezed
 class FilteringRuleSummary with _$FilteringRuleSummary {
+  @JsonSerializable(includeIfNull: false)
   const factory FilteringRuleSummary({
     /// The count of created filtering rules.
     @JsonKey(name: 'created') int? createdCount,

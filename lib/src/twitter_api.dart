@@ -2,15 +2,17 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
-import 'package:twitter_api_core/twitter_api_core.dart' as core;
-
-// Project imports:
+// 🌎 Project imports:
+import 'core/client/client_context.dart';
+import 'core/client/oauth_tokens.dart';
+import 'core/config/retry_config.dart';
 import 'service/compliance/compliance_service.dart';
 import 'service/dms/direct_messages_service.dart';
+import 'service/geo/geo_service.dart';
 import 'service/lists/lists_service.dart';
 import 'service/media/media_service.dart';
 import 'service/spaces/spaces_service.dart';
+import 'service/trends/trends_service.dart';
 import 'service/tweets/tweets_service.dart';
 import 'service/twitter_service.dart';
 import 'service/users/users_service.dart';
@@ -25,6 +27,8 @@ import 'service/users/users_service.dart';
 /// - Lists service: [lists]
 /// - Media service: [media]
 /// - Direct Messages service: [directMessages]
+/// - Geo Service: [geo]
+/// - Trends Service: [trends]
 /// - Compliance service: [compliance]
 ///
 /// ## Authentication
@@ -135,9 +139,9 @@ abstract class TwitterApi {
   /// Returns the new instance of [TwitterApi].
   factory TwitterApi({
     required String bearerToken,
-    core.OAuthTokens? oauthTokens,
+    OAuthTokens? oauthTokens,
     Duration timeout = const Duration(seconds: 10),
-    core.RetryConfig? retryConfig,
+    RetryConfig? retryConfig,
   }) =>
       _TwitterApi(
         bearerToken: bearerToken,
@@ -188,6 +192,12 @@ abstract class TwitterApi {
   /// Returns the direct messages service.
   DirectMessagesService get directMessages;
 
+  /// Returns the geo service.
+  GeoService get geo;
+
+  /// Returns the trends service.
+  TrendsService get trends;
+
   /// Returns the compliance service.
   ComplianceService get compliance;
 }
@@ -195,11 +205,11 @@ abstract class TwitterApi {
 class _TwitterApi implements TwitterApi {
   _TwitterApi({
     required String bearerToken,
-    core.OAuthTokens? oauthTokens,
+    OAuthTokens? oauthTokens,
     required Duration timeout,
-    core.RetryConfig? retryConfig,
+    RetryConfig? retryConfig,
   }) : _twitterService = TwitterService(
-          context: core.ClientContext(
+          context: ClientContext(
             bearerToken: bearerToken,
             oauthTokens: oauthTokens,
             timeout: timeout,
@@ -252,6 +262,12 @@ class _TwitterApi implements TwitterApi {
   @override
   DirectMessagesService get directMessages =>
       _twitterService.directMessagesService;
+
+  @override
+  GeoService get geo => _twitterService.geoService;
+
+  @override
+  TrendsService get trends => _twitterService.trendsService;
 
   @override
   ComplianceService get compliance => _twitterService.complianceService;

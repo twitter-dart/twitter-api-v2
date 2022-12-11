@@ -31,12 +31,22 @@ _$_Url _$$_UrlFromJson(Map json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$$_UrlToJson(_$_Url instance) => <String, dynamic>{
-      'start': instance.start,
-      'end': instance.end,
-      'url': instance.url,
-      'expanded_url': instance.expandedUrl,
-      'display_url': instance.displayUrl,
-      'unwound_url': instance.unwoundUrl,
-      'media_key': instance.mediaKey,
-    };
+Map<String, dynamic> _$$_UrlToJson(_$_Url instance) {
+  final val = <String, dynamic>{
+    'start': instance.start,
+    'end': instance.end,
+    'url': instance.url,
+    'expanded_url': instance.expandedUrl,
+    'display_url': instance.displayUrl,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('unwound_url', instance.unwoundUrl);
+  writeNotNull('media_key', instance.mediaKey);
+  return val;
+}

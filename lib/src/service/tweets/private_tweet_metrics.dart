@@ -4,7 +4,7 @@
 
 // ignore_for_file: invalid_annotation_target
 
-// Package imports:
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'private_tweet_metrics.freezed.dart';
@@ -12,6 +12,7 @@ part 'private_tweet_metrics.g.dart';
 
 @freezed
 class PrivateTweetMetrics with _$PrivateTweetMetrics {
+  @JsonSerializable(includeIfNull: false)
   const factory PrivateTweetMetrics({
     /// A count of how many times the Tweet has been viewed
     /// (not unique by user). A view is counted if any part of the Tweet is

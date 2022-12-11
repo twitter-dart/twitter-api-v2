@@ -2,11 +2,12 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
+// 📦 Package imports:
 import 'package:test/test.dart';
-import 'package:twitter_api_core/twitter_api_core.dart';
 
-// Project imports:
+// 🌎 Project imports:
+import 'package:twitter_api_v2/src/core/country.dart';
+import 'package:twitter_api_v2/src/core/language.dart';
 import 'package:twitter_api_v2/src/service/common/range.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering/channel/logical_channel.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering/channel/post_logical_channel.dart';
@@ -124,6 +125,35 @@ void main() {
 
       expect(actual, isA<LogicalChannel>());
       expect(actual.build(), '-retweets_of:test');
+    });
+
+    test('.matchContext', () {
+      final actual = FilteringRule.of().matchContext('domain_id.*');
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'context:domain_id.*');
+    });
+
+    test('.notMatchContext', () {
+      final actual =
+          FilteringRule.of().notMatchContext('10.799022225751871488');
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), '-context:10.799022225751871488');
+    });
+
+    test('.matchEntity', () {
+      final actual = FilteringRule.of().matchEntity('test aaa');
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), 'entity:"test aaa"');
+    });
+
+    test('.notMatchEntity', () {
+      final actual = FilteringRule.of().notMatchEntity('test aaa');
+
+      expect(actual, isA<LogicalChannel>());
+      expect(actual.build(), '-entity:"test aaa"');
     });
 
     test('.matchConversation', () {

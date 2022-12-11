@@ -2,12 +2,12 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
+// 📦 Package imports:
 import 'package:test/test.dart';
-import 'package:twitter_api_core/src/client/client_context.dart';
-import 'package:twitter_api_core/src/client/user_context.dart';
 
-// Project imports:
+// 🌎 Project imports:
+import 'package:twitter_api_v2/src/core/client/client_context.dart';
+import 'package:twitter_api_v2/src/core/client/user_context.dart';
 import 'package:twitter_api_v2/src/service/lists/list_data.dart';
 import 'package:twitter_api_v2/src/service/lists/list_meta.dart';
 import 'package:twitter_api_v2/src/service/lists/lists_service.dart';
@@ -60,6 +60,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/lists/5555',
           'test/src/service/lists/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {},
         ),
       );
@@ -152,6 +153,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/users/5555/owned_lists',
           'test/src/service/lists/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {
             'max_results': '50',
             'pagination_token': 'PAGINATION_TOKEN',
@@ -348,6 +350,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/users/5555/pinned_lists',
           'test/src/service/lists/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 
@@ -417,6 +420,7 @@ void main() {
         context: context.buildDeleteStub(
           '/2/users/5555/pinned_lists/1111',
           'test/src/service/lists/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 
@@ -485,6 +489,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/users/5555/pinned_lists',
           'test/src/service/lists/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {},
         ),
       );
@@ -575,6 +580,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/lists/1111/tweets',
           'test/src/service/lists/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {
             'max_results': '10',
             'pagination_token': 'TOKEN',
@@ -771,6 +777,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/lists',
           'test/src/service/lists/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 
@@ -858,6 +865,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/lists',
           'test/src/service/lists/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 
@@ -937,6 +945,7 @@ void main() {
         context: context.buildDeleteStub(
           '/2/lists/1111',
           'test/src/service/lists/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 
@@ -1001,6 +1010,7 @@ void main() {
         context: context.buildPutStub(
           '/2/lists/1111',
           'test/src/service/lists/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 
@@ -1073,6 +1083,7 @@ void main() {
         context: context.buildPutStub(
           '/2/lists/1111',
           'test/src/service/lists/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 
@@ -1145,6 +1156,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/users/1111/followed_lists',
           'test/src/service/lists/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 
@@ -1214,6 +1226,7 @@ void main() {
         context: context.buildDeleteStub(
           '/2/users/1111/followed_lists/2222',
           'test/src/service/lists/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 
@@ -1293,6 +1306,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/lists/0000/followers',
           'test/src/service/lists/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {
             'max_results': '10',
             'pagination_token': 'TOKEN',
@@ -1498,6 +1512,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/users/1111/followed_lists',
           'test/src/service/lists/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {
             'max_results': '10',
             'pagination_token': 'TOKEN',
@@ -1694,6 +1709,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/lists/0000/members',
           'test/src/service/lists/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 
@@ -1763,6 +1779,7 @@ void main() {
         context: context.buildDeleteStub(
           '/2/lists/0000/members/1111',
           'test/src/service/lists/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
         ),
       );
 
@@ -1842,6 +1859,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/lists/0000/members',
           'test/src/service/lists/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {
             'max_results': '10',
             'pagination_token': 'TOKEN',
@@ -2047,6 +2065,7 @@ void main() {
           UserContext.oauth2OrOAuth1,
           '/2/users/0000/list_memberships',
           'test/src/service/lists/data/rate_limit_exceeded_error.json',
+          statusCode: 429,
           {
             'max_results': '10',
             'pagination_token': 'TOKEN',

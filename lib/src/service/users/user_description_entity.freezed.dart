@@ -143,7 +143,8 @@ class __$$_UserDescriptionEntityCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_UserDescriptionEntity implements _UserDescriptionEntity {
   const _$_UserDescriptionEntity(
       {final List<Url>? urls,

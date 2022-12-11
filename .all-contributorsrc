@@ -167,6 +167,70 @@
       "contributions": [
         "ideas"
       ]
+    },
+    {
+      "login": "bors-ng",
+      "name": "bors-ng",
+      "avatar_url": "https://avatars.githubusercontent.com/u/24979321?v=4",
+      "profile": "https://github.com/bors-ng",
+      "contributions": [
+        "maintenance",
+        "review"
+      ]
+    },
+    {
+      "login": "all-contributors",
+      "name": "All Contributors",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46410174?v=4",
+      "profile": "https://github.com/all-contributors",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "codecov",
+      "name": "Codecov",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8226205?v=4",
+      "profile": "https://github.com/codecov",
+      "contributions": [
+        "test",
+        "maintenance",
+        "security"
+      ]
+    },
+    {
+      "login": "fossas",
+      "name": "FOSSA",
+      "avatar_url": "https://avatars.githubusercontent.com/u/9543448?v=4",
+      "profile": "https://github.com/fossabot",
+      "contributions": [
+        "maintenance",
+        "security"
+      ]
+    },
+    {
+      "login": "yuto90",
+      "name": "yuto90",
+      "avatar_url": "https://avatars.githubusercontent.com/u/53107639?v=4",
+      "profile": "https://github.com/yuto90",
+      "contributions": [
+        "blog",
+        "content",
+        "example",
+        "tutorial"
+      ]
+    },
+    {
+      "login": "normidar",
+      "name": "normidar",
+      "avatar_url": "https://avatars.githubusercontent.com/u/36730656?v=4",
+      "profile": "https://github.com/normidar",
+      "contributions": [
+        "ideas",
+        "code",
+        "doc",
+        "question"
+      ]
     }
   ],
   "contributorsPerLine": 5,
@@ -174,5 +238,6 @@
   "projectOwner": "twitter-dart",
   "repoType": "github",
   "repoHost": "https://github.com",
-  "skipCi": true
+  "skipCi": true,
+  "commitConvention": "angular"
 }

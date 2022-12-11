@@ -2,10 +2,12 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
+// ignore_for_file: invalid_annotation_target
+
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-// Project imports:
+// 🌎 Project imports:
 import '../common/data.dart';
 import 'space_language.dart';
 import 'space_state.dart';
@@ -31,6 +33,7 @@ part 'space_data.g.dart';
 /// expectations and intent.
 @freezed
 class SpaceData with _$SpaceData implements Data {
+  @JsonSerializable(includeIfNull: false)
   const factory SpaceData({
     /// The unique identifier of the requested Space.
     ///

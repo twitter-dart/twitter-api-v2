@@ -2,7 +2,9 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
+// ignore_for_file: invalid_annotation_target
+
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'tweet_context_annotation.freezed.dart';
@@ -10,6 +12,7 @@ part 'tweet_context_annotation.g.dart';
 
 @freezed
 class TweetContextAnnotation with _$TweetContextAnnotation {
+  @JsonSerializable(includeIfNull: false)
   const factory TweetContextAnnotation({
     /// Domain: Contains the numeric value of the domain.
     ///

@@ -2,10 +2,12 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
+// ignore_for_file: invalid_annotation_target
+
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-// Project imports:
+// 🌎 Project imports:
 import '../pagination/pageable.dart';
 
 part 'user_meta.freezed.dart';
@@ -13,6 +15,7 @@ part 'user_meta.g.dart';
 
 @freezed
 class UserMeta with _$UserMeta implements Pageable {
+  @JsonSerializable(includeIfNull: false)
   const factory UserMeta({
     /// The number of users returned in this request. Note that this number
     /// may be lower than what was specified in the max_results query parameter.

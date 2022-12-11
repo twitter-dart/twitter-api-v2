@@ -2,33 +2,34 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Dart imports:
+// 🎯 Dart imports:
 import 'dart:convert';
 import 'dart:io';
 
-// Package imports:
+// 📦 Package imports:
+import 'package:http/http.dart';
 import 'package:mockito/mockito.dart';
-import 'package:twitter_api_core/src/client/user_context.dart';
-import 'package:twitter_api_core/twitter_api_core.dart' as core;
 
-// Project imports:
+// 🌎 Project imports:
+import 'package:twitter_api_v2/src/core/client/user_context.dart';
 import 'mock.mocks.dart';
 
 MockClientContext buildGetStub(
   final UserContext userContext,
   final String unencodedPath,
   final String resourcePath,
-  final Map<String, String> queryParameters,
-) {
+  final Map<String, String> queryParameters, {
+  int statusCode = 200,
+}) {
   final mockClientContext = MockClientContext();
 
   when(mockClientContext.get(
     userContext,
     Uri.https('api.twitter.com', unencodedPath, queryParameters),
   )).thenAnswer(
-    (_) async => core.Response(
+    (_) async => Response(
       await File(resourcePath).readAsString(),
-      200,
+      statusCode,
       headers: {'content-type': 'application/json; charset=utf-8'},
     ),
   );
@@ -39,17 +40,18 @@ MockClientContext buildGetStub(
 /// This stub is used to test paging feature mainly.
 MockClientContext buildGetStubWithAnyUriAndMultiResources(
   final UserContext userContext,
-  final List<String> resourcePaths,
-) {
+  final List<String> resourcePaths, {
+  int statusCode = 200,
+}) {
   final mockClientContext = MockClientContext();
 
   when(mockClientContext.get(
     userContext,
     any,
   )).thenAnswer(
-    (_) async => core.Response(
+    (_) async => Response(
       await File(resourcePaths.removeAt(0)).readAsString(),
-      200,
+      statusCode,
       headers: {'content-type': 'application/json; charset=utf-8'},
     ),
   );
@@ -62,6 +64,7 @@ MockClientContext buildPostStub(
   final String unencodedPath,
   final String resourcePath, {
   Map<String, String> queryParameters = const {},
+  int statusCode = 200,
 }) {
   final mockClientContext = MockClientContext();
 
@@ -71,9 +74,9 @@ MockClientContext buildPostStub(
     headers: anyNamed('headers'),
     body: anyNamed('body'),
   )).thenAnswer(
-    (_) async => core.Response(
+    (_) async => Response(
       await File(resourcePath).readAsString(),
-      200,
+      statusCode,
       headers: {
         'content-type': 'application/json; charset=utf-8',
       },
@@ -88,6 +91,7 @@ MockClientContext buildPostMultipartStub(
   final String unencodedPath,
   final String resourcePath, {
   Map<String, String> queryParameters = const {},
+  int statusCode = 200,
 }) {
   final mockClientContext = MockClientContext();
 
@@ -96,9 +100,9 @@ MockClientContext buildPostMultipartStub(
     Uri.https('upload.twitter.com', unencodedPath, queryParameters),
     files: anyNamed('files'),
   )).thenAnswer(
-    (_) async => core.Response(
+    (_) async => Response(
       await File(resourcePath).readAsString(),
-      200,
+      statusCode,
       headers: {
         'content-type': 'application/json; charset=utf-8',
       },
@@ -110,17 +114,18 @@ MockClientContext buildPostMultipartStub(
 
 MockClientContext buildDeleteStub(
   final String unencodedPath,
-  final String resourcePath,
-) {
+  final String resourcePath, {
+  int statusCode = 200,
+}) {
   final mockClientContext = MockClientContext();
 
   when(mockClientContext.delete(
     UserContext.oauth2OrOAuth1,
     Uri.https('api.twitter.com', unencodedPath),
   )).thenAnswer(
-    (_) async => core.Response(
+    (_) async => Response(
       await File(resourcePath).readAsString(),
-      200,
+      statusCode,
       headers: {'content-type': 'application/json; charset=utf-8'},
     ),
   );
@@ -130,8 +135,9 @@ MockClientContext buildDeleteStub(
 
 MockClientContext buildPutStub(
   final String unencodedPath,
-  final String resourcePath,
-) {
+  final String resourcePath, {
+  int statusCode = 200,
+}) {
   final mockClientContext = MockClientContext();
 
   when(mockClientContext.put(
@@ -140,9 +146,9 @@ MockClientContext buildPutStub(
     headers: anyNamed('headers'),
     body: anyNamed('body'),
   )).thenAnswer(
-    (_) async => core.Response(
+    (_) async => Response(
       await File(resourcePath).readAsString(),
-      200,
+      statusCode,
       headers: {'content-type': 'application/json; charset=utf-8'},
     ),
   );
@@ -154,6 +160,7 @@ MockClientContext buildSendStub(
   final UserContext userContext,
   final String resourcePath, [
   final Map<String, String>? queryParameters,
+  int statusCode = 200,
 ]) {
   final mockClientContext = MockClientContext();
 
@@ -172,9 +179,9 @@ MockClientContext buildSendStub(
     any,
   )).thenAnswer(
     (_) async {
-      return core.StreamedResponse(
+      return StreamedResponse(
         responseStream(),
-        200,
+        statusCode,
         headers: {'content-type': 'application/json; charset=utf-8'},
       );
     },

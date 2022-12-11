@@ -181,7 +181,8 @@ class __$$_UrlCopyWithImpl<$Res> extends _$UrlCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$_Url implements _Url {
   const _$_Url(
       {required this.start,

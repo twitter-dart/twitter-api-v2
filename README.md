@@ -78,25 +78,33 @@
     - [1.3.6. Direct Messages Service](#136-direct-messages-service)
       - [1.3.6.1. Lookup Event](#1361-lookup-event)
       - [1.3.6.2. Manage Event](#1362-manage-event)
-    - [1.3.7. Compliance Service](#137-compliance-service)
-      - [1.3.7.1. Batch Compliance](#1371-batch-compliance)
+    - [1.3.7. Geo Service](#137-geo-service)
+      - [1.3.7.1. Lookup Place](#1371-lookup-place)
+      - [1.3.7.2. Search Locations](#1372-search-locations)
+    - [1.3.8. Trends Service](#138-trends-service)
+      - [1.3.8.1. Trending Location](#1381-trending-location)
+      - [1.3.8.2. Trend](#1382-trend)
+    - [1.3.9. Compliance Service](#139-compliance-service)
+      - [1.3.9.1. Batch Compliance](#1391-batch-compliance)
   - [1.4. Tips 🏄](#14-tips-)
     - [1.4.1. Method Names](#141-method-names)
     - [1.4.2. Generate App-Only Bearer Token](#142-generate-app-only-bearer-token)
     - [1.4.3. Null Parameter at Request](#143-null-parameter-at-request)
     - [1.4.4. Expand Object Fields with `expansions`](#144-expand-object-fields-with-expansions)
     - [1.4.5. Expand Object Fields with `fields`](#145-expand-object-fields-with-fields)
-    - [1.4.6. OAuth 2.0 Authorization Code Flow with PKCE](#146-oauth-20-authorization-code-flow-with-pkce)
-    - [1.4.7. Change the Timeout Duration](#147-change-the-timeout-duration)
-    - [1.4.8. Automatic Retry](#148-automatic-retry)
-      - [1.4.8.1. Regular Intervals](#1481-regular-intervals)
-      - [1.4.8.2. Exponential Backoff](#1482-exponential-backoff)
-      - [1.4.8.3. Exponential Backoff and Jitter](#1483-exponential-backoff-and-jitter)
-      - [1.4.8.4. Do Something on Retry](#1484-do-something-on-retry)
-    - [1.4.9. Meaning of the Returned Boolean](#149-meaning-of-the-returned-boolean)
-    - [1.4.10. Thrown Exceptions](#1410-thrown-exceptions)
-    - [1.4.11. Upload Media](#1411-upload-media)
-    - [1.4.12. Check the Progress of Media Upload](#1412-check-the-progress-of-media-upload)
+    - [1.4.6. JSON Serialization and Deserialization](#146-json-serialization-and-deserialization)
+    - [1.4.7. OAuth 2.0 Authorization Code Flow with PKCE](#147-oauth-20-authorization-code-flow-with-pkce)
+    - [1.4.8. Change the Timeout Duration](#148-change-the-timeout-duration)
+    - [1.4.9. Automatic Retry](#149-automatic-retry)
+      - [1.4.9.1. Regular Intervals](#1491-regular-intervals)
+      - [1.4.9.2. Exponential Backoff](#1492-exponential-backoff)
+      - [1.4.9.3. Exponential Backoff and Jitter](#1493-exponential-backoff-and-jitter)
+      - [1.4.9.4. Do Something on Retry](#1494-do-something-on-retry)
+    - [1.4.10. Meaning of the Returned Boolean](#1410-meaning-of-the-returned-boolean)
+    - [1.4.11. Thrown Exceptions](#1411-thrown-exceptions)
+    - [1.4.12. Upload Media](#1412-upload-media)
+    - [1.4.13. Check the Progress of Media Upload](#1413-check-the-progress-of-media-upload)
+    - [1.4.14. Generate Filtering Rules Safely and Easily](#1414-generate-filtering-rules-safely-and-easily)
   - [1.5. Contribution 🏆](#15-contribution-)
   - [1.6. Contributors ✨](#16-contributors-)
   - [1.7. Support ❤️](#17-support-️)
@@ -233,6 +241,12 @@ Future<void> main() async {
         return v2.ForwardPaginationControl.next();
       },
     );
+
+    //! You can serialize & deserialize JSON from response object
+    //! and model object.
+    final tweetJson = tweets.data.first.toJson();
+    final tweet = v2.TweetData.fromJson(tweetJson);
+    print(tweet);
 
     await twitter.tweets.createLike(
       userId: me.data.id,
@@ -561,9 +575,45 @@ Future<void> main() async {
 | [POST /2/dm_conversations](https://developer.twitter.com/en/docs/twitter-api/direct-messages/manage/api-reference/post-dm_conversations)                                                            | [createGroupConversation](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/DirectMessagesService/createGroupConversation.html) |
 | [POST /2/dm_conversations/:dm_conversation_id/messages](https://developer.twitter.com/en/docs/twitter-api/direct-messages/manage/api-reference/post-dm_conversations-dm_conversation_id-messages)   | [createMessage](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/DirectMessagesService/createMessage.html)                     |
 
-### 1.3.7. Compliance Service
+### 1.3.7. Geo Service
 
-#### 1.3.7.1. Batch Compliance
+> **Note**</br>
+> Twitter API v1.1 endpoint is used because Twitter Official does not yet release the Geo endpoint for Twitter API v2.0. Therefore, this service may be changed in the future.
+
+#### 1.3.7.1. Lookup Place
+
+| Endpoint                      | Method Name                                                                                                 |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| GET /1.1/geo/id/:placeId.json | [lookupById](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/GeoService/lookupById.html) |
+| [GET /1.1/geo/reverse_geocode.json](https://developer.twitter.com/en/docs/twitter-api/v1/geo/places-near-location/api-reference/get-geo-reverse_geocode) | [lookupReverseGeocodedLocations](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/GeoService/lookupReverseGeocodedLocations.html) |
+
+#### 1.3.7.2. Search Locations
+
+| Endpoint                                                                                                                               | Method Name                                                                                                           |
+| -------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| [GET /1.1/geo/search.json](https://developer.twitter.com/en/docs/twitter-api/v1/geo/places-near-location/api-reference/get-geo-search) | [searchLocations](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/GeoService/searchLocations.html) |
+
+### 1.3.8. Trends Service
+
+> **Note**</br>
+> Twitter API v1.1 endpoint is used because Twitter Official does not yet release the Trends endpoint for Twitter API v2.0. Therefore, this service may be changed in the future.
+
+#### 1.3.8.1. Trending Location
+
+| Endpoint                                                                                                                                                        | Method Name                                                                                                                                |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| [GET /1.1/trends/available.json](https://developer.twitter.com/en/docs/twitter-api/v1/trends/locations-with-trending-topics/api-reference/get-trends-available) | [searchAvailableLocations](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TrendsService/searchAvailableLocations.html) |
+| [GET /1.1/trends/closest.json](https://developer.twitter.com/en/docs/twitter-api/v1/trends/locations-with-trending-topics/api-reference/get-trends-closest)     | [searchClosestLocations](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TrendsService/searchClosestLocations.html)     |
+
+#### 1.3.8.2. Trend
+
+| Endpoint                                                                                                                                     | Method Name                                                                                                        |
+| -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| [GET /1.1/trends/place.json](https://developer.twitter.com/en/docs/twitter-api/v1/trends/trends-for-location/api-reference/get-trends-place) | [lookupTrends](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TrendsService/lookupTrends.html) |
+
+### 1.3.9. Compliance Service
+
+#### 1.3.9.1. Batch Compliance
 
 | Endpoint                                                                                                                                         | Method Name                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
@@ -703,7 +753,65 @@ Future<void> main() async {
 
 You can see more details about `fields` from [Official Documentation](https://developer.twitter.com/en/docs/twitter-api/fields).
 
-### 1.4.6. OAuth 2.0 Authorization Code Flow with PKCE
+### 1.4.6. JSON Serialization and Deserialization
+
+All Twitter API responses obtained using **twitter_api_v2** are returned stored in a safe type object. However, there may be cases where the raw JSON returned from the Twitter API is needed when creating applications in combination with other libraries.
+
+In that case, you can use the **`toJson`** method provided by the `TwitterResponse` or other model objects to convert it to the raw JSON format returned by the Twitter API.
+
+The JSON converted by this **`toJson`** method is **completely equivalent to the JSON returned by the Twitter API** and can be deserialized by using the factory constructor **`fromJson`** provided with each model object.
+
+```dart
+import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
+
+Future<void> main() async {
+  final twitter = v2.TwitterApi(bearerToken: 'YOUR_BEARER_TOKEN');
+
+  try {
+    final response = await twitter.tweets.searchRecent(
+      query: '#ElonMusk',
+      maxResults: 10,
+      expansions: v2.TweetExpansion.values,
+    );
+
+    //! You can get raw JSON from this response.
+    print(response.toJson());
+
+    //! Or you can get raw JSON from specific model object.
+    print(response.data.first.toJson());
+  } on v2.TwitterException catch (e) {
+    print(e);
+  }
+}
+```
+
+You could also write like:
+
+```dart
+import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
+
+Future<void> main() async {
+  final twitter = v2.TwitterApi(bearerToken: 'YOUR_BEARER_TOKEN');
+
+  try {
+    final response = await twitter.tweets.searchRecent(
+      query: '#ElonMusk',
+      maxResults: 10,
+      expansions: v2.TweetExpansion.values,
+    );
+
+    //! Serialize & Deserialize
+    final tweetJson = response.data.first.toJson();
+    final tweet = v2.TweetData.fromJson(tweetJson);
+
+    print(tweet);
+  } on v2.TwitterException catch (e) {
+    print(e);
+  }
+}
+```
+
+### 1.4.7. OAuth 2.0 Authorization Code Flow with PKCE
 
 **Twitter API v2.0** supports authentication methods with [OAuth 2.0 PKCE](https://developer.twitter.com/en/docs/authentication/oauth-2-0/authorization-code), and it allows users of apps using **Twitter API v2.0** to request authorization for the minimum necessary [scope](https://developer.twitter.com/en/docs/authentication/guides/v2-authentication-mapping) of operation.
 
@@ -718,7 +826,7 @@ Also, please refer to the next simple sample Flutter application that combines *
 
 - [Example Tweet App](https://github.com/twitter-dart/example-tweet-app-with-twitter-api-v2)
 
-### 1.4.7. Change the Timeout Duration
+### 1.4.8. Change the Timeout Duration
 
 The library specifies a default timeout of **10 seconds** for all API communications.
 
@@ -737,7 +845,7 @@ Future<void> main() {
 }
 ```
 
-### 1.4.8. Automatic Retry
+### 1.4.9. Automatic Retry
 
 Due to the nature of this library's communication with external systems, timeouts may occur due to inevitable communication failures or temporary crashes of the server to which requests are sent.
 
@@ -757,7 +865,7 @@ Also, errors subject to retry are as follows.
 - When the network is temporarily lost and a `SocketException` is thrown.
 - When communication times out temporarily and a `TimeoutException` is thrown
 
-#### 1.4.8.1. Regular Intervals
+#### 1.4.9.1. Regular Intervals
 
 It would be easy to imagine **retries at regular intervals**. For example, if a timeout occurs and the request is assumed to be retried 3 times, waiting for 5 seconds and then sending the request again, it can be defined as follows.
 
@@ -777,7 +885,7 @@ Future<void> main() async {
 }
 ```
 
-#### 1.4.8.2. Exponential Backoff
+#### 1.4.9.2. Exponential Backoff
 
 Although retries can be effective by simply performing them at regular intervals as in the above example, sending a large number of requests at regular intervals when the server to which the request is being sent is experiencing a failure is something that should be avoided. Even if the network or server is already down, the retry process can further aggravate the situation by adding to the load.
 
@@ -803,7 +911,7 @@ In the above implementation, the interval increases exponentially for each retry
 
 > 2 ^ retryCount
 
-#### 1.4.8.3. Exponential Backoff and Jitter
+#### 1.4.9.3. Exponential Backoff and Jitter
 
 Although the algorithm introduced earlier that exponentially increases the retry interval is already powerful, some may believe that it is not yet sufficient to distribute the sensation of retries. It's more distributed than equally spaced retries, but retries still occur at static intervals.
 
@@ -830,7 +938,7 @@ In the above implementation, the interval increases exponentially for each retry
 
 > **(2 ^ retryCount) + jitter(Random Number between 0 ~ 3)**
 
-#### 1.4.8.4. Do Something on Retry
+#### 1.4.9.4. Do Something on Retry
 
 It would be useful to output logging on retries and a popup notifying the user that a retry has been executed. So **twitter_api_v2** provides callbacks that can perform arbitrary processing when retries are executed.
 
@@ -855,7 +963,7 @@ Future<void> main() async {
 
 The [RetryEvent](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/RetryEvent-class.html) passed to the callback contains information on retries.
 
-### 1.4.9. Meaning of the Returned Boolean
+### 1.4.10. Meaning of the Returned Boolean
 
 A boolean value is returned from the endpoint when the communication is primarily POST, DELETE, or PUT.
 
@@ -875,7 +983,7 @@ Note that this specification differs from the official [Twitter API v2.0](https:
 
 However, as mentioned earlier in **twitter_api_v2**, for example if you use the [createRetweet](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/createRetweet.html) method, it will return a **flag indicating whether the process was successful or not**. This principle applies not only to the [createRetweet](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/createRetweet.html) method, but to all methods that return flags as a result of processing.
 
-### 1.4.10. Thrown Exceptions
+### 1.4.11. Thrown Exceptions
 
 **twitter_api_v2** provides a convenient exception object for easy handling of exceptional responses and errors returned from [Twitter API v2.0](https://developer.twitter.com/en/docs/twitter-api/data-dictionary/introduction).
 
@@ -920,7 +1028,7 @@ Future<void> main() async {
 }
 ```
 
-### 1.4.11. Upload Media
+### 1.4.12. Upload Media
 
 Uploading media on Twitter and sharing it with various people is a very interesting activity. Also, from a business perspective, accompanying tweets with media will attract even more interest from people.
 
@@ -971,7 +1079,7 @@ This upload process works very safely, but note that [TwitterUploadException](ht
 > **Note**</br>
 > Also note that the v1.1 endpoint is used to achieve this specification in twitter_api_v2. This is because the official Twitter API v2.0 does not yet support media uploads. While I'm trying to keep the implementation as non-disruptive as possible in the future, there may be disruptive changes when media uploads are supported by the official Twitter API v2.0.
 
-### 1.4.12. Check the Progress of Media Upload
+### 1.4.13. Check the Progress of Media Upload
 
 Uploading small images to Twitter does not take long, but uploading large videos takes longer to complete. At that time, it would be very useful if you could show users how far along we are in the uploading process.
 
@@ -1043,6 +1151,40 @@ And the trigger that calls the `onProgress` callback is as follows. But if the m
 
 Note that media uploads may also fail for reasons such as broken media. In such cases, [TwitterUploadException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/TwitterUploadException-class.html) is always thrown.
 
+### 1.4.14. Generate Filtering Rules Safely and Easily
+
+Some endpoints in [Twitter API v2.0](https://developer.twitter.com/en/docs/twitter-api/data-dictionary/introduction) supports a number of operators for advanced searches, not just `keywords` and `hashtags`.
+
+- [Filtered Stream: Build a Rule](https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/integrate/build-a-rule)
+
+For example, if you want to extract tweets with the hashtag "#ElonMusk" and the language of the tweeted content is English, you would create the following rule:
+
+- `#ElonMusk lang:en`
+
+Generating these filtering rules is simple at first glance, but the number of supported operators is so large that it's quite a painstaking task to look at the references for each rule you create. Also, there is a syntax specific to this filtering rule, and typos may occur when entering the rules manually.
+
+So, [twitter_api_v2](https://github.com/twitter-dart/twitter-api-v2) provides [FilteringRule](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/FilteringRule-class.html) object that allows this filtering rule to be constructed safely and easily.
+
+The previous filtering rule example would look like following with FilteringRule object.
+
+```dart
+import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
+
+void main() {
+  final rule = v2.FilteringRule.of()
+      .matchHashtag('ElonMusk')
+      .and()
+      .matchLanguage(v2.Language.english);
+
+  // -> #ElonMusk lang:en
+  print(rule.build());
+}
+```
+
+Okay, the specifications of this feature are difficult to explain in this `README` alone. For this reason, I have created a document for the **FilteringRule** object, which you should also review.
+
+- [Getting Started with FilteringRule Object](https://github.com/twitter-dart/twitter-api-v2/tree/main/doc/getting-started-with-filtering-rule-object.md)
+
 ## 1.5. Contribution 🏆
 
 If you would like to contribute to **twitter_api_v2**, please create an [issue](https://github.com/twitter-dart/twitter-api-v2/issues) or create a Pull Request.
@@ -1072,25 +1214,35 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <table>
-  <tr>
-    <td align="center"><a href="https://github.com/myConsciousness"><img src="https://avatars.githubusercontent.com/u/13072231?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Kato Shinya / 加藤 真也</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=myConsciousness" title="Code">💻</a> <a href="#content-myConsciousness" title="Content">🖋</a> <a href="#data-myConsciousness" title="Data">🔣</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=myConsciousness" title="Documentation">📖</a> <a href="#design-myConsciousness" title="Design">🎨</a> <a href="#example-myConsciousness" title="Examples">💡</a> <a href="#fundingFinding-myConsciousness" title="Funding Finding">🔍</a> <a href="#ideas-myConsciousness" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-myConsciousness" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-myConsciousness" title="Maintenance">🚧</a> <a href="#mentoring-myConsciousness" title="Mentoring">🧑‍🏫</a> <a href="#projectManagement-myConsciousness" title="Project Management">📆</a> <a href="#question-myConsciousness" title="Answering Questions">💬</a> <a href="https://github.com/twitter-dart/twitter-api-v2/pulls?q=is%3Apr+reviewed-by%3AmyConsciousness" title="Reviewed Pull Requests">👀</a> <a href="#security-myConsciousness" title="Security">🛡️</a> <a href="#translation-myConsciousness" title="Translation">🌍</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=myConsciousness" title="Tests">⚠️</a> <a href="#tutorial-myConsciousness" title="Tutorials">✅</a></td>
-    <td align="center"><a href="https://andypiper.me"><img src="https://avatars.githubusercontent.com/u/552452?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Andy Piper</b></sub></a><br /><a href="#content-andypiper" title="Content">🖋</a> <a href="#talk-andypiper" title="Talks">📢</a></td>
-    <td align="center"><a href="https://github.com/XRayAdamo"><img src="https://avatars.githubusercontent.com/u/4430621?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Konstantin</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=XRayAdamo" title="Code">💻</a> <a href="#design-XRayAdamo" title="Design">🎨</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=XRayAdamo" title="Documentation">📖</a> <a href="#example-XRayAdamo" title="Examples">💡</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=XRayAdamo" title="Tests">⚠️</a></td>
-    <td align="center"><a href="https://ko-fi.com/robertodoering"><img src="https://avatars.githubusercontent.com/u/20045287?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Roberto Doering</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=robertodoering" title="Code">💻</a> <a href="#design-robertodoering" title="Design">🎨</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=robertodoering" title="Documentation">📖</a> <a href="#example-robertodoering" title="Examples">💡</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=robertodoering" title="Tests">⚠️</a> <a href="#ideas-robertodoering" title="Ideas, Planning, & Feedback">🤔</a></td>
-    <td align="center"><a href="https://github.com/niteshsh4rma"><img src="https://avatars.githubusercontent.com/u/58659088?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nitesh Sharma</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=niteshsh4rma" title="Code">💻</a> <a href="#design-niteshsh4rma" title="Design">🎨</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=niteshsh4rma" title="Documentation">📖</a> <a href="#example-niteshsh4rma" title="Examples">💡</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=niteshsh4rma" title="Tests">⚠️</a> <a href="#ideas-niteshsh4rma" title="Ideas, Planning, & Feedback">🤔</a></td>
-  </tr>
-  <tr>
-    <td align="center"><a href="https://github.com/ngoluuduythai"><img src="https://avatars.githubusercontent.com/u/12238262?v=4?s=100" width="100px;" alt=""/><br /><sub><b>ngoluuduythai</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=ngoluuduythai" title="Documentation">📖</a> <a href="#translation-ngoluuduythai" title="Translation">🌍</a></td>
-    <td align="center"><a href="https://github.com/its-me-mahmud"><img src="https://avatars.githubusercontent.com/u/53822204?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Abdullah Al Mahmud</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=its-me-mahmud" title="Documentation">📖</a> <a href="#translation-its-me-mahmud" title="Translation">🌍</a></td>
-    <td align="center"><a href="https://github.com/omar6260"><img src="https://avatars.githubusercontent.com/u/82382673?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Oumar fall</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=omar6260" title="Documentation">📖</a> <a href="#translation-omar6260" title="Translation">🌍</a></td>
-    <td align="center"><a href="http://www.natalieastroud.com"><img src="https://avatars.githubusercontent.com/u/17433156?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Natalie Stroud</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=natastro" title="Documentation">📖</a> <a href="#translation-natastro" title="Translation">🌍</a></td>
-    <td align="center"><a href="https://twitch.tv/novas1r1"><img src="https://avatars.githubusercontent.com/u/2575205?v=4?s=100" width="100px;" alt=""/><br /><sub><b>novas1r1</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=novas1r1" title="Documentation">📖</a> <a href="#translation-novas1r1" title="Translation">🌍</a> <a href="#ideas-novas1r1" title="Ideas, Planning, & Feedback">🤔</a></td>
-  </tr>
-  <tr>
-    <td align="center"><a href="https://bandism.net/"><img src="https://avatars.githubusercontent.com/u/22633385?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ikko Ashimine</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=eltociear" title="Documentation">📖</a></td>
-    <td align="center"><a href="https://github.com/VinniciusJesus"><img src="https://avatars.githubusercontent.com/u/57817746?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Marcos Vinícius</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=VinniciusJesus" title="Documentation">📖</a> <a href="#translation-VinniciusJesus" title="Translation">🌍</a></td>
-    <td align="center"><a href="http://markos.dev"><img src="https://avatars.githubusercontent.com/u/6950843?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Mark O'Sullivan</b></sub></a><br /><a href="#ideas-MarkOSullivan94" title="Ideas, Planning, & Feedback">🤔</a></td>
-  </tr>
+  <tbody>
+    <tr>
+      <td align="center"><a href="https://github.com/myConsciousness"><img src="https://avatars.githubusercontent.com/u/13072231?v=4?s=100" width="100px;" alt="Kato Shinya / 加藤 真也"/><br /><sub><b>Kato Shinya / 加藤 真也</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=myConsciousness" title="Code">💻</a> <a href="#content-myConsciousness" title="Content">🖋</a> <a href="#data-myConsciousness" title="Data">🔣</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=myConsciousness" title="Documentation">📖</a> <a href="#design-myConsciousness" title="Design">🎨</a> <a href="#example-myConsciousness" title="Examples">💡</a> <a href="#fundingFinding-myConsciousness" title="Funding Finding">🔍</a> <a href="#ideas-myConsciousness" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-myConsciousness" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-myConsciousness" title="Maintenance">🚧</a> <a href="#mentoring-myConsciousness" title="Mentoring">🧑‍🏫</a> <a href="#projectManagement-myConsciousness" title="Project Management">📆</a> <a href="#question-myConsciousness" title="Answering Questions">💬</a> <a href="https://github.com/twitter-dart/twitter-api-v2/pulls?q=is%3Apr+reviewed-by%3AmyConsciousness" title="Reviewed Pull Requests">👀</a> <a href="#security-myConsciousness" title="Security">🛡️</a> <a href="#translation-myConsciousness" title="Translation">🌍</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=myConsciousness" title="Tests">⚠️</a> <a href="#tutorial-myConsciousness" title="Tutorials">✅</a></td>
+      <td align="center"><a href="https://github.com/andypiper"><img src="https://avatars.githubusercontent.com/u/552452?v=4?s=100" width="100px;" alt="Andy Piper"/><br /><sub><b>Andy Piper</b></sub></a><br /><a href="#content-andypiper" title="Content">🖋</a> <a href="#talk-andypiper" title="Talks">📢</a></td>
+      <td align="center"><a href="https://github.com/XRayAdamo"><img src="https://avatars.githubusercontent.com/u/4430621?v=4?s=100" width="100px;" alt="Konstantin"/><br /><sub><b>Konstantin</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=XRayAdamo" title="Code">💻</a> <a href="#design-XRayAdamo" title="Design">🎨</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=XRayAdamo" title="Documentation">📖</a> <a href="#example-XRayAdamo" title="Examples">💡</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=XRayAdamo" title="Tests">⚠️</a></td>
+      <td align="center"><a href="https://github.com/robertodoering"><img src="https://avatars.githubusercontent.com/u/20045287?v=4?s=100" width="100px;" alt="Roberto Doering"/><br /><sub><b>Roberto Doering</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=robertodoering" title="Code">💻</a> <a href="#design-robertodoering" title="Design">🎨</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=robertodoering" title="Documentation">📖</a> <a href="#example-robertodoering" title="Examples">💡</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=robertodoering" title="Tests">⚠️</a> <a href="#ideas-robertodoering" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center"><a href="https://github.com/niteshsh4rma"><img src="https://avatars.githubusercontent.com/u/58659088?v=4?s=100" width="100px;" alt="Nitesh Sharma"/><br /><sub><b>Nitesh Sharma</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=niteshsh4rma" title="Code">💻</a> <a href="#design-niteshsh4rma" title="Design">🎨</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=niteshsh4rma" title="Documentation">📖</a> <a href="#example-niteshsh4rma" title="Examples">💡</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=niteshsh4rma" title="Tests">⚠️</a> <a href="#ideas-niteshsh4rma" title="Ideas, Planning, & Feedback">🤔</a></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://github.com/ngoluuduythai"><img src="https://avatars.githubusercontent.com/u/12238262?v=4?s=100" width="100px;" alt="ngoluuduythai"/><br /><sub><b>ngoluuduythai</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=ngoluuduythai" title="Documentation">📖</a> <a href="#translation-ngoluuduythai" title="Translation">🌍</a></td>
+      <td align="center"><a href="https://github.com/its-me-mahmud"><img src="https://avatars.githubusercontent.com/u/53822204?v=4?s=100" width="100px;" alt="Abdullah Al Mahmud"/><br /><sub><b>Abdullah Al Mahmud</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=its-me-mahmud" title="Documentation">📖</a> <a href="#translation-its-me-mahmud" title="Translation">🌍</a></td>
+      <td align="center"><a href="https://github.com/omar6260"><img src="https://avatars.githubusercontent.com/u/82382673?v=4?s=100" width="100px;" alt="Oumar fall"/><br /><sub><b>Oumar fall</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=omar6260" title="Documentation">📖</a> <a href="#translation-omar6260" title="Translation">🌍</a></td>
+      <td align="center"><a href="https://github.com/natastro"><img src="https://avatars.githubusercontent.com/u/17433156?v=4?s=100" width="100px;" alt="Natalie Stroud"/><br /><sub><b>Natalie Stroud</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=natastro" title="Documentation">📖</a> <a href="#translation-natastro" title="Translation">🌍</a></td>
+      <td align="center"><a href="https://github.com/novas1r1"><img src="https://avatars.githubusercontent.com/u/2575205?v=4?s=100" width="100px;" alt="novas1r1"/><br /><sub><b>novas1r1</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=novas1r1" title="Documentation">📖</a> <a href="#translation-novas1r1" title="Translation">🌍</a> <a href="#ideas-novas1r1" title="Ideas, Planning, & Feedback">🤔</a></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://github.com/eltociear"><img src="https://avatars.githubusercontent.com/u/22633385?v=4?s=100" width="100px;" alt="Ikko Ashimine"/><br /><sub><b>Ikko Ashimine</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=eltociear" title="Documentation">📖</a></td>
+      <td align="center"><a href="https://github.com/VinniciusJesus"><img src="https://avatars.githubusercontent.com/u/57817746?v=4?s=100" width="100px;" alt="Marcos Vinícius"/><br /><sub><b>Marcos Vinícius</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=VinniciusJesus" title="Documentation">📖</a> <a href="#translation-VinniciusJesus" title="Translation">🌍</a></td>
+      <td align="center"><a href="https://github.com/MarkOSullivan94"><img src="https://avatars.githubusercontent.com/u/6950843?v=4?s=100" width="100px;" alt="Mark O'Sullivan"/><br /><sub><b>Mark O'Sullivan</b></sub></a><br /><a href="#ideas-MarkOSullivan94" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center"><a href="https://github.com/bors-ng"><img src="https://avatars.githubusercontent.com/u/24979321?v=4?s=100" width="100px;" alt="bors-ng"/><br /><sub><b>bors-ng</b></sub></a><br /><a href="#maintenance-bors-ng" title="Maintenance">🚧</a> <a href="https://github.com/twitter-dart/twitter-api-v2/pulls?q=is%3Apr+reviewed-by%3Abors-ng" title="Reviewed Pull Requests">👀</a></td>
+      <td align="center"><a href="https://github.com/all-contributors"><img src="https://avatars.githubusercontent.com/u/46410174?v=4?s=100" width="100px;" alt="All Contributors"/><br /><sub><b>All Contributors</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=all-contributors" title="Documentation">📖</a></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://github.com/codecov"><img src="https://avatars.githubusercontent.com/u/8226205?v=4?s=100" width="100px;" alt="Codecov"/><br /><sub><b>Codecov</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=codecov" title="Tests">⚠️</a> <a href="#maintenance-codecov" title="Maintenance">🚧</a> <a href="#security-codecov" title="Security">🛡️</a></td>
+      <td align="center"><a href="https://github.com/fossabot"><img src="https://avatars.githubusercontent.com/u/9543448?v=4?s=100" width="100px;" alt="FOSSA"/><br /><sub><b>FOSSA</b></sub></a><br /><a href="#maintenance-fossas" title="Maintenance">🚧</a> <a href="#security-fossas" title="Security">🛡️</a></td>
+      <td align="center"><a href="https://github.com/yuto90"><img src="https://avatars.githubusercontent.com/u/53107639?v=4?s=100" width="100px;" alt="yuto90"/><br /><sub><b>yuto90</b></sub></a><br /><a href="#blog-yuto90" title="Blogposts">📝</a> <a href="#content-yuto90" title="Content">🖋</a> <a href="#example-yuto90" title="Examples">💡</a> <a href="#tutorial-yuto90" title="Tutorials">✅</a></td>
+      <td align="center"><a href="https://github.com/normidar"><img src="https://avatars.githubusercontent.com/u/36730656?v=4?s=100" width="100px;" alt="normidar"/><br /><sub><b>normidar</b></sub></a><br /><a href="#ideas-normidar" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=normidar" title="Code">💻</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=normidar" title="Documentation">📖</a> <a href="#question-normidar" title="Answering Questions">💬</a></td>
+    </tr>
+  </tbody>
 </table>
 
 <!-- markdownlint-restore -->

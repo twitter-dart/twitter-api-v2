@@ -82,6 +82,12 @@ Future<void> main() async {
       },
     );
 
+    //! You can serialize & deserialize JSON from response object
+    //! and model object.
+    final tweetJson = tweets.data.first.toJson();
+    final tweet = v2.TweetData.fromJson(tweetJson);
+    print(tweet);
+
     await twitter.tweets.createLike(
       userId: me.data.id,
       tweetId: tweets.data.first.id,

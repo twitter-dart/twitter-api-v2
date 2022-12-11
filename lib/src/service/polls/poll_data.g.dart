@@ -36,14 +36,24 @@ _$_PollData _$$_PollDataFromJson(Map json) => $checkedCreate(
       },
     );
 
-Map<String, dynamic> _$$_PollDataToJson(_$_PollData instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'options': instance.options.map((e) => e.toJson()).toList(),
-      'voting_status': _$PollVotingStatusEnumMap[instance.votingStatus],
-      'duration_minutes': instance.durationMinutes,
-      'end_datetime': instance.endAt?.toIso8601String(),
-    };
+Map<String, dynamic> _$$_PollDataToJson(_$_PollData instance) {
+  final val = <String, dynamic>{
+    'id': instance.id,
+    'options': instance.options.map((e) => e.toJson()).toList(),
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull(
+      'voting_status', _$PollVotingStatusEnumMap[instance.votingStatus]);
+  writeNotNull('duration_minutes', instance.durationMinutes);
+  writeNotNull('end_datetime', instance.endAt?.toIso8601String());
+  return val;
+}
 
 const _$PollVotingStatusEnumMap = {
   PollVotingStatus.open: 'open',

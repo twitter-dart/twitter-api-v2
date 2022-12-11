@@ -2,7 +2,9 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
+// ignore_for_file: invalid_annotation_target
+
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'tweet_attachments.freezed.dart';
@@ -10,6 +12,7 @@ part 'tweet_attachments.g.dart';
 
 @freezed
 class TweetAttachments with _$TweetAttachments {
+  @JsonSerializable(includeIfNull: false)
   const factory TweetAttachments({
     /// List of unique identifiers of media attached to this Tweet. These
     /// identifiers use the same media key format as those returned by the

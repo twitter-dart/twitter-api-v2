@@ -4,10 +4,10 @@
 
 // ignore_for_file: invalid_annotation_target
 
-// Package imports:
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-// Project imports:
+// 🌎 Project imports:
 import '../common/data.dart';
 
 part 'list_data.freezed.dart';
@@ -30,6 +30,7 @@ part 'list_data.g.dart';
 /// complete the expansion object.
 @freezed
 class ListData with _$ListData implements Data {
+  @JsonSerializable(includeIfNull: false)
   const factory ListData({
     /// The unique identifier of this List.
     ///

@@ -2,7 +2,7 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Project imports:
+// 🌎 Project imports:
 import '../tweets/matching_rule.dart';
 import '../tweets/tweet_data.dart';
 import 'twitter_response.dart';

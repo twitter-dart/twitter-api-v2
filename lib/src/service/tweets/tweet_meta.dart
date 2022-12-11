@@ -2,10 +2,12 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
+// ignore_for_file: invalid_annotation_target
+
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-// Project imports:
+// 🌎 Project imports:
 import '../pagination/pageable.dart';
 
 part 'tweet_meta.freezed.dart';
@@ -13,6 +15,7 @@ part 'tweet_meta.g.dart';
 
 @freezed
 class TweetMeta with _$TweetMeta implements Pageable {
+  @JsonSerializable(includeIfNull: false)
   const factory TweetMeta({
     /// The Tweet ID of the most recent Tweet returned in the response.
     String? newestId,

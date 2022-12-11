@@ -2,12 +2,14 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
+// ignore_for_file: invalid_annotation_target
+
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-// Project imports:
+// 🌎 Project imports:
+import '../geo/place_data.dart';
 import '../media/media_data.dart';
-import '../places/place_data.dart';
 import '../polls/poll_data.dart';
 import '../spaces/topic_data.dart';
 import '../tweets/tweet_data.dart';
@@ -18,6 +20,7 @@ part 'includes.g.dart';
 
 @freezed
 class Includes with _$Includes {
+  @JsonSerializable(includeIfNull: false)
   const factory Includes({
     /// This includes a list of referenced Retweets, Quoted Tweets, or replies
     /// in the form of Tweet objects with their default fields and any

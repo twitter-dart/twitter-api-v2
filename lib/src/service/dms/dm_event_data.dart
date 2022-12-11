@@ -4,10 +4,10 @@
 
 // ignore_for_file: invalid_annotation_target
 
-// Package imports:
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-// Project imports:
+// 🌎 Project imports:
 import '../common/data.dart';
 import 'dm_attachments.dart';
 import 'dm_event_type.dart';
@@ -18,6 +18,7 @@ part 'dm_event_data.g.dart';
 
 @freezed
 class DMEventData with _$DMEventData implements Data {
+  @JsonSerializable(includeIfNull: false)
   const factory DMEventData({
     /// The id of the Direct Message event.
     required String id,

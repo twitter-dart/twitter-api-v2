@@ -2,7 +2,9 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Package imports:
+// ignore_for_file: invalid_annotation_target
+
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'variant.freezed.dart';
@@ -10,6 +12,7 @@ part 'variant.g.dart';
 
 @freezed
 class Variant with _$Variant {
+  @JsonSerializable(includeIfNull: false)
   const factory Variant({
     /// The number of bit rates in the content.
     ///

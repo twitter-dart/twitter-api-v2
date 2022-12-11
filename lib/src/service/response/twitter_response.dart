@@ -2,7 +2,7 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-// Project imports:
+// 🌎 Project imports:
 import '../common/includes.dart';
 import '../common/rate_limit.dart';
 
@@ -40,13 +40,28 @@ class TwitterResponse<D, M> {
   /// Returns true if this response has not [meta], otherwise false.
   bool get hasNotMeta => !hasMeta;
 
-  Map<String, dynamic> toJson() => {
-        'data': data is List
-            ? (data as List).map((e) => e.toJson()).toList()
-            : (data as dynamic).toJson(),
-        'includes': includes?.toJson(),
-        'meta': (meta as dynamic)?.toJson(),
-      };
+  /// Returns the JSON representation of this response.
+  ///
+  /// It equals to raw JSON response from Twitter.
+  Map<String, dynamic> toJson() {
+    final json = {
+      'data': data is List
+          ? (data as List).map((e) => e.toJson()).toList()
+          : (data as dynamic).toJson()
+    };
+
+    final $includes = includes?.toJson();
+    if ($includes != null) {
+      json['includes'] = $includes;
+    }
+
+    final $meta = (meta as dynamic)?.toJson();
+    if ($meta != null) {
+      json['meta'] = $meta;
+    }
+
+    return json;
+  }
 
   @override
   String toString() {
