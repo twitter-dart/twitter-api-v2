@@ -83,7 +83,9 @@ class _ClientContext implements ClientContext {
                   accessTokenSecret: oauthTokens.accessTokenSecret,
                 )
               : null,
-          OAuth2Client(bearerToken: bearerToken),
+          bearerToken.isNotEmpty
+              ? OAuth2Client(bearerToken: bearerToken)
+              : null,
         ),
         _retryPolicy = RetryPolicy(retryConfig);
 

@@ -41,6 +41,23 @@ void expectUnauthorizedExceptionForOAuth1(Function fn) {
   );
 }
 
+void expectUnauthorizedExceptionForOAuth2(Function fn) {
+  expect(
+    () async => await fn.call(),
+    throwsA(
+      allOf(
+        isA<UnauthorizedException>(),
+        predicate(
+          (dynamic e) =>
+              e.message ==
+              'Required access token was not passed for an endpoint that '
+                  'requires OAuth 2.0.',
+        ),
+      ),
+    ),
+  );
+}
+
 void expectRateLimitExceededException(Function fn) {
   expect(
     () async => fn.call(),

@@ -3077,7 +3077,7 @@ class _TweetsService extends BaseService implements TweetsService {
     ForwardPaging<List<TweetData>, TweetMeta>? paging,
   }) async =>
       await super.executeForwardPaginationIfNecessary(
-        UserContext.oauth2Only,
+        UserContext.appOnly,
         '/2/tweets/search/recent',
         {
           'query': query,
@@ -3119,7 +3119,7 @@ class _TweetsService extends BaseService implements TweetsService {
     ForwardPaging<List<TweetData>, TweetMeta>? paging,
   }) async =>
       await super.executeForwardPaginationIfNecessary(
-        UserContext.oauth2Only,
+        UserContext.appOnly,
         '/2/tweets/search/all',
         {
           'query': query,
@@ -3207,7 +3207,7 @@ class _TweetsService extends BaseService implements TweetsService {
   }) async =>
       super.transformMultiDataResponse(
         await super.get(
-          UserContext.oauth2Only,
+          UserContext.appOnly,
           '/2/tweets/counts/recent',
           queryParameters: {
             'query': query,
@@ -3235,7 +3235,7 @@ class _TweetsService extends BaseService implements TweetsService {
     ForwardPaging<List<TweetCountData>, TweetCountMeta>? paging,
   }) async =>
       await super.executeForwardPaginationIfNecessary(
-        UserContext.oauth2Only,
+        UserContext.appOnly,
         '/2/tweets/counts/all',
         {
           'query': query,
@@ -3258,7 +3258,7 @@ class _TweetsService extends BaseService implements TweetsService {
   }) async =>
       super.evaluateResponse(
         await super.post(
-          UserContext.oauth2OrOAuth1,
+          UserContext.oauth2Only,
           '/2/users/$userId/bookmarks',
           body: {'tweet_id': tweetId},
         ),
@@ -3271,7 +3271,7 @@ class _TweetsService extends BaseService implements TweetsService {
   }) async =>
       super.evaluateResponse(
         await super.delete(
-          UserContext.oauth2OrOAuth1,
+          UserContext.oauth2Only,
           '/2/users/$userId/bookmarks/$tweetId',
         ),
       );

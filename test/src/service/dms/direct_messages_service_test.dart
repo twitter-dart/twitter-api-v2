@@ -7,6 +7,7 @@ import 'package:test/test.dart';
 
 // 🌎 Project imports:
 import 'package:twitter_api_v2/src/core/client/client_context.dart';
+import 'package:twitter_api_v2/src/core/client/oauth_tokens.dart';
 import 'package:twitter_api_v2/src/core/client/user_context.dart';
 import 'package:twitter_api_v2/src/service/dms/direct_messages_service.dart';
 import 'package:twitter_api_v2/src/service/dms/dm_event_data.dart';
@@ -45,6 +46,12 @@ void main() {
       final directMessagesService = DirectMessagesService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -224,6 +231,12 @@ void main() {
       final directMessagesService = DirectMessagesService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -413,6 +426,12 @@ void main() {
       final directMessagesService = DirectMessagesService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -601,6 +620,12 @@ void main() {
       final directMessagesService = DirectMessagesService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -692,6 +717,12 @@ void main() {
       final directMessagesService = DirectMessagesService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );
@@ -783,6 +814,12 @@ void main() {
       final directMessagesService = DirectMessagesService(
         context: ClientContext(
           bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
           timeout: Duration(seconds: 10),
         ),
       );

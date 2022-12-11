@@ -109,4 +109,7 @@ class OAuth2Client extends Client {
             encoding: utf8,
           )
           .timeout(timeout);
+
+  /// Returns true if this client is for app only, otherwise false.
+  bool get isAppOnly => _bearerToken.startsWith('AAAAAAAAAAAAAAAAAAAAA');
 }
