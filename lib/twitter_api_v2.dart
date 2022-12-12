@@ -12,6 +12,8 @@ export 'package:twitter_api_v2/src/core/exception/twitter_exception.dart';
 export 'package:twitter_api_v2/src/core/exception/twitter_upload_exception.dart';
 export 'package:twitter_api_v2/src/core/exception/unauthorized_exception.dart';
 export 'package:twitter_api_v2/src/core/language.dart';
+export 'package:twitter_api_v2/src/core/oauth_response.dart' show OAuthResponse;
+export 'package:twitter_api_v2/src/core/scope.dart';
 export 'package:twitter_api_v2/src/core/util/oauth_utils.dart';
 export 'package:twitter_api_v2/src/service/common/includes.dart';
 export 'package:twitter_api_v2/src/service/common/locale.dart';
