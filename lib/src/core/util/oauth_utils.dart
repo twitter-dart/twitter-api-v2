@@ -42,7 +42,7 @@ class OAuthUtils {
     return jsonDecode(response.body)['access_token'];
   }
 
-  ///
+  /// Reissue the access token using the refresh token.
   static Future<OAuthResponse> refreshAccessToken({
     required String clientId,
     required String clientSecret,
