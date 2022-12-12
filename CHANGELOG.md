@@ -8,6 +8,7 @@
   - `ofExponentialBackOff`
   - `ofExponentialBackOffAndJitter`
 - For endpoints that can use both OAuth 2.0 and OAuth 1.0a authentication methods, the resolution of both has been improved. Starting with this version, OAuth 2.0 is the highest priority authentication method. For example, if OAuth 2.0 and OAuth 1.0a tokens are specified at the same time, the OAuth 2.0 client is always used for v2 endpoints. ([#596](https://github.com/twitter-dart/twitter-api-v2/issues/596))
+- A utility has been added to this package to allow access token refresh. `OAuthUtils.refreshAccessToken` can be used to refresh access tokens issued by OAuth 2.0 PKCE. ([#604](https://github.com/twitter-dart/twitter-api-v2/issues/604))
 
 ## v4.6.1
 

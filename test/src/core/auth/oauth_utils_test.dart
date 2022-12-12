@@ -13,13 +13,31 @@ void main() {
   //! Since it is difficult to add the case where the access token can be
   //! obtained as a unit test, only the case where an exception occurs should be
   //! tested.
-  test('throws TwitterException', () {
-    expect(
-      () async => await OAuthUtils.generateAppOnlyBearerToken(
-        consumerKey: '',
-        consumerSecret: '',
-      ),
-      throwsA(isA<TwitterException>()),
-    );
+  group('.generateAppOnlyBearerToken', () {
+    test('throws TwitterException', () {
+      expect(
+        () async => await OAuthUtils.generateAppOnlyBearerToken(
+          consumerKey: '',
+          consumerSecret: '',
+        ),
+        throwsA(isA<TwitterException>()),
+      );
+    });
+  });
+
+  //! Since it is difficult to add the case where the access token can be
+  //! obtained as a unit test, only the case where an exception occurs should be
+  //! tested.
+  group('.refreshAccessToken', () {
+    test('throws TwitterException', () {
+      expect(
+        () async => await OAuthUtils.refreshAccessToken(
+          clientId: 'aaaa',
+          clientSecret: 'bbbb',
+          refreshToken: 'test',
+        ),
+        throwsA(isA<TwitterException>()),
+      );
+    });
   });
 }
