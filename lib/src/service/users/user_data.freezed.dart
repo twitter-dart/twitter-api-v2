@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'user_data.dart';
 
@@ -128,7 +128,8 @@ mixin _$UserData {
 /// @nodoc
 abstract class $UserDataCopyWith<$Res> {
   factory $UserDataCopyWith(UserData value, $Res Function(UserData) then) =
-      _$UserDataCopyWithImpl<$Res>;
+      _$UserDataCopyWithImpl<$Res, UserData>;
+  @useResult
   $Res call(
       {String id,
       String name,
@@ -151,18 +152,21 @@ abstract class $UserDataCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UserDataCopyWithImpl<$Res> implements $UserDataCopyWith<$Res> {
+class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
+    implements $UserDataCopyWith<$Res> {
   _$UserDataCopyWithImpl(this._value, this._then);
 
-  final UserData _value;
   // ignore: unused_field
-  final $Res Function(UserData) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? username = freezed,
+    Object? id = null,
+    Object? name = null,
+    Object? username = null,
     Object? description = freezed,
     Object? url = freezed,
     Object? profileImageUrl = freezed,
@@ -176,95 +180,98 @@ class _$UserDataCopyWithImpl<$Res> implements $UserDataCopyWith<$Res> {
     Object? withheld = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      username: username == freezed
+      username: null == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
-      description: description == freezed
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      url: url == freezed
+      url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String?,
-      profileImageUrl: profileImageUrl == freezed
+      profileImageUrl: freezed == profileImageUrl
           ? _value.profileImageUrl
           : profileImageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      location: location == freezed
+      location: freezed == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as String?,
-      isProtected: isProtected == freezed
+      isProtected: freezed == isProtected
           ? _value.isProtected
           : isProtected // ignore: cast_nullable_to_non_nullable
               as bool?,
-      isVerified: isVerified == freezed
+      isVerified: freezed == isVerified
           ? _value.isVerified
           : isVerified // ignore: cast_nullable_to_non_nullable
               as bool?,
-      pinnedTweetId: pinnedTweetId == freezed
+      pinnedTweetId: freezed == pinnedTweetId
           ? _value.pinnedTweetId
           : pinnedTweetId // ignore: cast_nullable_to_non_nullable
               as String?,
-      entities: entities == freezed
+      entities: freezed == entities
           ? _value.entities
           : entities // ignore: cast_nullable_to_non_nullable
               as UserEntities?,
-      publicMetrics: publicMetrics == freezed
+      publicMetrics: freezed == publicMetrics
           ? _value.publicMetrics
           : publicMetrics // ignore: cast_nullable_to_non_nullable
               as PublicUserMetrics?,
-      createdAt: createdAt == freezed
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      withheld: withheld == freezed
+      withheld: freezed == withheld
           ? _value.withheld
           : withheld // ignore: cast_nullable_to_non_nullable
               as UserWithheld?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $UserEntitiesCopyWith<$Res>? get entities {
     if (_value.entities == null) {
       return null;
     }
 
     return $UserEntitiesCopyWith<$Res>(_value.entities!, (value) {
-      return _then(_value.copyWith(entities: value));
+      return _then(_value.copyWith(entities: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $PublicUserMetricsCopyWith<$Res>? get publicMetrics {
     if (_value.publicMetrics == null) {
       return null;
     }
 
     return $PublicUserMetricsCopyWith<$Res>(_value.publicMetrics!, (value) {
-      return _then(_value.copyWith(publicMetrics: value));
+      return _then(_value.copyWith(publicMetrics: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $UserWithheldCopyWith<$Res>? get withheld {
     if (_value.withheld == null) {
       return null;
     }
 
     return $UserWithheldCopyWith<$Res>(_value.withheld!, (value) {
-      return _then(_value.copyWith(withheld: value));
+      return _then(_value.copyWith(withheld: value) as $Val);
     });
   }
 }
@@ -275,6 +282,7 @@ abstract class _$$_UserDataCopyWith<$Res> implements $UserDataCopyWith<$Res> {
           _$_UserData value, $Res Function(_$_UserData) then) =
       __$$_UserDataCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String id,
       String name,
@@ -300,20 +308,19 @@ abstract class _$$_UserDataCopyWith<$Res> implements $UserDataCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_UserDataCopyWithImpl<$Res> extends _$UserDataCopyWithImpl<$Res>
+class __$$_UserDataCopyWithImpl<$Res>
+    extends _$UserDataCopyWithImpl<$Res, _$_UserData>
     implements _$$_UserDataCopyWith<$Res> {
   __$$_UserDataCopyWithImpl(
       _$_UserData _value, $Res Function(_$_UserData) _then)
-      : super(_value, (v) => _then(v as _$_UserData));
+      : super(_value, _then);
 
-  @override
-  _$_UserData get _value => super._value as _$_UserData;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? username = freezed,
+    Object? id = null,
+    Object? name = null,
+    Object? username = null,
     Object? description = freezed,
     Object? url = freezed,
     Object? profileImageUrl = freezed,
@@ -327,59 +334,59 @@ class __$$_UserDataCopyWithImpl<$Res> extends _$UserDataCopyWithImpl<$Res>
     Object? withheld = freezed,
   }) {
     return _then(_$_UserData(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      username: username == freezed
+      username: null == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
-      description: description == freezed
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      url: url == freezed
+      url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String?,
-      profileImageUrl: profileImageUrl == freezed
+      profileImageUrl: freezed == profileImageUrl
           ? _value.profileImageUrl
           : profileImageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      location: location == freezed
+      location: freezed == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as String?,
-      isProtected: isProtected == freezed
+      isProtected: freezed == isProtected
           ? _value.isProtected
           : isProtected // ignore: cast_nullable_to_non_nullable
               as bool?,
-      isVerified: isVerified == freezed
+      isVerified: freezed == isVerified
           ? _value.isVerified
           : isVerified // ignore: cast_nullable_to_non_nullable
               as bool?,
-      pinnedTweetId: pinnedTweetId == freezed
+      pinnedTweetId: freezed == pinnedTweetId
           ? _value.pinnedTweetId
           : pinnedTweetId // ignore: cast_nullable_to_non_nullable
               as String?,
-      entities: entities == freezed
+      entities: freezed == entities
           ? _value.entities
           : entities // ignore: cast_nullable_to_non_nullable
               as UserEntities?,
-      publicMetrics: publicMetrics == freezed
+      publicMetrics: freezed == publicMetrics
           ? _value.publicMetrics
           : publicMetrics // ignore: cast_nullable_to_non_nullable
               as PublicUserMetrics?,
-      createdAt: createdAt == freezed
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      withheld: withheld == freezed
+      withheld: freezed == withheld
           ? _value.withheld
           : withheld // ignore: cast_nullable_to_non_nullable
               as UserWithheld?,
@@ -533,49 +540,55 @@ class _$_UserData implements _UserData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UserData &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.username, username) &&
-            const DeepCollectionEquality()
-                .equals(other.description, description) &&
-            const DeepCollectionEquality().equals(other.url, url) &&
-            const DeepCollectionEquality()
-                .equals(other.profileImageUrl, profileImageUrl) &&
-            const DeepCollectionEquality().equals(other.location, location) &&
-            const DeepCollectionEquality()
-                .equals(other.isProtected, isProtected) &&
-            const DeepCollectionEquality()
-                .equals(other.isVerified, isVerified) &&
-            const DeepCollectionEquality()
-                .equals(other.pinnedTweetId, pinnedTweetId) &&
-            const DeepCollectionEquality().equals(other.entities, entities) &&
-            const DeepCollectionEquality()
-                .equals(other.publicMetrics, publicMetrics) &&
-            const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
-            const DeepCollectionEquality().equals(other.withheld, withheld));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.username, username) ||
+                other.username == username) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.profileImageUrl, profileImageUrl) ||
+                other.profileImageUrl == profileImageUrl) &&
+            (identical(other.location, location) ||
+                other.location == location) &&
+            (identical(other.isProtected, isProtected) ||
+                other.isProtected == isProtected) &&
+            (identical(other.isVerified, isVerified) ||
+                other.isVerified == isVerified) &&
+            (identical(other.pinnedTweetId, pinnedTweetId) ||
+                other.pinnedTweetId == pinnedTweetId) &&
+            (identical(other.entities, entities) ||
+                other.entities == entities) &&
+            (identical(other.publicMetrics, publicMetrics) ||
+                other.publicMetrics == publicMetrics) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.withheld, withheld) ||
+                other.withheld == withheld));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(username),
-      const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(url),
-      const DeepCollectionEquality().hash(profileImageUrl),
-      const DeepCollectionEquality().hash(location),
-      const DeepCollectionEquality().hash(isProtected),
-      const DeepCollectionEquality().hash(isVerified),
-      const DeepCollectionEquality().hash(pinnedTweetId),
-      const DeepCollectionEquality().hash(entities),
-      const DeepCollectionEquality().hash(publicMetrics),
-      const DeepCollectionEquality().hash(createdAt),
-      const DeepCollectionEquality().hash(withheld));
+      id,
+      name,
+      username,
+      description,
+      url,
+      profileImageUrl,
+      location,
+      isProtected,
+      isVerified,
+      pinnedTweetId,
+      entities,
+      publicMetrics,
+      createdAt,
+      withheld);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_UserDataCopyWith<_$_UserData> get copyWith =>
       __$$_UserDataCopyWithImpl<_$_UserData>(this, _$identity);
 

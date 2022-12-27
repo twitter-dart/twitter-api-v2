@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'tweet_entities.dart';
 
@@ -45,7 +45,8 @@ mixin _$TweetEntities {
 abstract class $TweetEntitiesCopyWith<$Res> {
   factory $TweetEntitiesCopyWith(
           TweetEntities value, $Res Function(TweetEntities) then) =
-      _$TweetEntitiesCopyWithImpl<$Res>;
+      _$TweetEntitiesCopyWithImpl<$Res, TweetEntities>;
+  @useResult
   $Res call(
       {List<TweetAnnotation>? annotations,
       List<Tag>? hashtags,
@@ -55,14 +56,16 @@ abstract class $TweetEntitiesCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TweetEntitiesCopyWithImpl<$Res>
+class _$TweetEntitiesCopyWithImpl<$Res, $Val extends TweetEntities>
     implements $TweetEntitiesCopyWith<$Res> {
   _$TweetEntitiesCopyWithImpl(this._value, this._then);
 
-  final TweetEntities _value;
   // ignore: unused_field
-  final $Res Function(TweetEntities) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? annotations = freezed,
@@ -72,27 +75,27 @@ class _$TweetEntitiesCopyWithImpl<$Res>
     Object? urls = freezed,
   }) {
     return _then(_value.copyWith(
-      annotations: annotations == freezed
+      annotations: freezed == annotations
           ? _value.annotations
           : annotations // ignore: cast_nullable_to_non_nullable
               as List<TweetAnnotation>?,
-      hashtags: hashtags == freezed
+      hashtags: freezed == hashtags
           ? _value.hashtags
           : hashtags // ignore: cast_nullable_to_non_nullable
               as List<Tag>?,
-      cashtags: cashtags == freezed
+      cashtags: freezed == cashtags
           ? _value.cashtags
           : cashtags // ignore: cast_nullable_to_non_nullable
               as List<Tag>?,
-      mentions: mentions == freezed
+      mentions: freezed == mentions
           ? _value.mentions
           : mentions // ignore: cast_nullable_to_non_nullable
               as List<Mention>?,
-      urls: urls == freezed
+      urls: freezed == urls
           ? _value.urls
           : urls // ignore: cast_nullable_to_non_nullable
               as List<Url>?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -103,6 +106,7 @@ abstract class _$$_TweetEntitiesCopyWith<$Res>
           _$_TweetEntities value, $Res Function(_$_TweetEntities) then) =
       __$$_TweetEntitiesCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {List<TweetAnnotation>? annotations,
       List<Tag>? hashtags,
@@ -113,15 +117,13 @@ abstract class _$$_TweetEntitiesCopyWith<$Res>
 
 /// @nodoc
 class __$$_TweetEntitiesCopyWithImpl<$Res>
-    extends _$TweetEntitiesCopyWithImpl<$Res>
+    extends _$TweetEntitiesCopyWithImpl<$Res, _$_TweetEntities>
     implements _$$_TweetEntitiesCopyWith<$Res> {
   __$$_TweetEntitiesCopyWithImpl(
       _$_TweetEntities _value, $Res Function(_$_TweetEntities) _then)
-      : super(_value, (v) => _then(v as _$_TweetEntities));
+      : super(_value, _then);
 
-  @override
-  _$_TweetEntities get _value => super._value as _$_TweetEntities;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? annotations = freezed,
@@ -131,23 +133,23 @@ class __$$_TweetEntitiesCopyWithImpl<$Res>
     Object? urls = freezed,
   }) {
     return _then(_$_TweetEntities(
-      annotations: annotations == freezed
+      annotations: freezed == annotations
           ? _value._annotations
           : annotations // ignore: cast_nullable_to_non_nullable
               as List<TweetAnnotation>?,
-      hashtags: hashtags == freezed
+      hashtags: freezed == hashtags
           ? _value._hashtags
           : hashtags // ignore: cast_nullable_to_non_nullable
               as List<Tag>?,
-      cashtags: cashtags == freezed
+      cashtags: freezed == cashtags
           ? _value._cashtags
           : cashtags // ignore: cast_nullable_to_non_nullable
               as List<Tag>?,
-      mentions: mentions == freezed
+      mentions: freezed == mentions
           ? _value._mentions
           : mentions // ignore: cast_nullable_to_non_nullable
               as List<Mention>?,
-      urls: urls == freezed
+      urls: freezed == urls
           ? _value._urls
           : urls // ignore: cast_nullable_to_non_nullable
               as List<Url>?,
@@ -182,6 +184,7 @@ class _$_TweetEntities implements _TweetEntities {
   List<TweetAnnotation>? get annotations {
     final value = _annotations;
     if (value == null) return null;
+    if (_annotations is EqualUnmodifiableListView) return _annotations;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -194,6 +197,7 @@ class _$_TweetEntities implements _TweetEntities {
   List<Tag>? get hashtags {
     final value = _hashtags;
     if (value == null) return null;
+    if (_hashtags is EqualUnmodifiableListView) return _hashtags;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -206,6 +210,7 @@ class _$_TweetEntities implements _TweetEntities {
   List<Tag>? get cashtags {
     final value = _cashtags;
     if (value == null) return null;
+    if (_cashtags is EqualUnmodifiableListView) return _cashtags;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -218,6 +223,7 @@ class _$_TweetEntities implements _TweetEntities {
   List<Mention>? get mentions {
     final value = _mentions;
     if (value == null) return null;
+    if (_mentions is EqualUnmodifiableListView) return _mentions;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -230,6 +236,7 @@ class _$_TweetEntities implements _TweetEntities {
   List<Url>? get urls {
     final value = _urls;
     if (value == null) return null;
+    if (_urls is EqualUnmodifiableListView) return _urls;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -264,6 +271,7 @@ class _$_TweetEntities implements _TweetEntities {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_TweetEntitiesCopyWith<_$_TweetEntities> get copyWith =>
       __$$_TweetEntitiesCopyWithImpl<_$_TweetEntities>(this, _$identity);
 

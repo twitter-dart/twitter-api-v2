@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'poll_option.dart';
 
@@ -34,38 +34,42 @@ mixin _$PollOption {
 abstract class $PollOptionCopyWith<$Res> {
   factory $PollOptionCopyWith(
           PollOption value, $Res Function(PollOption) then) =
-      _$PollOptionCopyWithImpl<$Res>;
+      _$PollOptionCopyWithImpl<$Res, PollOption>;
+  @useResult
   $Res call({int position, String label, int votes});
 }
 
 /// @nodoc
-class _$PollOptionCopyWithImpl<$Res> implements $PollOptionCopyWith<$Res> {
+class _$PollOptionCopyWithImpl<$Res, $Val extends PollOption>
+    implements $PollOptionCopyWith<$Res> {
   _$PollOptionCopyWithImpl(this._value, this._then);
 
-  final PollOption _value;
   // ignore: unused_field
-  final $Res Function(PollOption) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? position = freezed,
-    Object? label = freezed,
-    Object? votes = freezed,
+    Object? position = null,
+    Object? label = null,
+    Object? votes = null,
   }) {
     return _then(_value.copyWith(
-      position: position == freezed
+      position: null == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as int,
-      label: label == freezed
+      label: null == label
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
               as String,
-      votes: votes == freezed
+      votes: null == votes
           ? _value.votes
           : votes // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+    ) as $Val);
   }
 }
 
@@ -76,35 +80,35 @@ abstract class _$$_PollOptionCopyWith<$Res>
           _$_PollOption value, $Res Function(_$_PollOption) then) =
       __$$_PollOptionCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({int position, String label, int votes});
 }
 
 /// @nodoc
-class __$$_PollOptionCopyWithImpl<$Res> extends _$PollOptionCopyWithImpl<$Res>
+class __$$_PollOptionCopyWithImpl<$Res>
+    extends _$PollOptionCopyWithImpl<$Res, _$_PollOption>
     implements _$$_PollOptionCopyWith<$Res> {
   __$$_PollOptionCopyWithImpl(
       _$_PollOption _value, $Res Function(_$_PollOption) _then)
-      : super(_value, (v) => _then(v as _$_PollOption));
+      : super(_value, _then);
 
-  @override
-  _$_PollOption get _value => super._value as _$_PollOption;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? position = freezed,
-    Object? label = freezed,
-    Object? votes = freezed,
+    Object? position = null,
+    Object? label = null,
+    Object? votes = null,
   }) {
     return _then(_$_PollOption(
-      position: position == freezed
+      position: null == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as int,
-      label: label == freezed
+      label: null == label
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
               as String,
-      votes: votes == freezed
+      votes: null == votes
           ? _value.votes
           : votes // ignore: cast_nullable_to_non_nullable
               as int,
@@ -138,21 +142,19 @@ class _$_PollOption implements _PollOption {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PollOption &&
-            const DeepCollectionEquality().equals(other.position, position) &&
-            const DeepCollectionEquality().equals(other.label, label) &&
-            const DeepCollectionEquality().equals(other.votes, votes));
+            (identical(other.position, position) ||
+                other.position == position) &&
+            (identical(other.label, label) || other.label == label) &&
+            (identical(other.votes, votes) || other.votes == votes));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(position),
-      const DeepCollectionEquality().hash(label),
-      const DeepCollectionEquality().hash(votes));
+  int get hashCode => Object.hash(runtimeType, position, label, votes);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_PollOptionCopyWith<_$_PollOption> get copyWith =>
       __$$_PollOptionCopyWithImpl<_$_PollOption>(this, _$identity);
 

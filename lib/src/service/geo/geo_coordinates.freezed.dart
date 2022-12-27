@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'geo_coordinates.dart';
 
@@ -39,34 +39,37 @@ mixin _$GeoCoordinates {
 abstract class $GeoCoordinatesCopyWith<$Res> {
   factory $GeoCoordinatesCopyWith(
           GeoCoordinates value, $Res Function(GeoCoordinates) then) =
-      _$GeoCoordinatesCopyWithImpl<$Res>;
+      _$GeoCoordinatesCopyWithImpl<$Res, GeoCoordinates>;
+  @useResult
   $Res call({String type, List<double> coordinates});
 }
 
 /// @nodoc
-class _$GeoCoordinatesCopyWithImpl<$Res>
+class _$GeoCoordinatesCopyWithImpl<$Res, $Val extends GeoCoordinates>
     implements $GeoCoordinatesCopyWith<$Res> {
   _$GeoCoordinatesCopyWithImpl(this._value, this._then);
 
-  final GeoCoordinates _value;
   // ignore: unused_field
-  final $Res Function(GeoCoordinates) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = freezed,
-    Object? coordinates = freezed,
+    Object? type = null,
+    Object? coordinates = null,
   }) {
     return _then(_value.copyWith(
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-      coordinates: coordinates == freezed
+      coordinates: null == coordinates
           ? _value.coordinates
           : coordinates // ignore: cast_nullable_to_non_nullable
               as List<double>,
-    ));
+    ) as $Val);
   }
 }
 
@@ -77,31 +80,30 @@ abstract class _$$_GeoCoordinatesCopyWith<$Res>
           _$_GeoCoordinates value, $Res Function(_$_GeoCoordinates) then) =
       __$$_GeoCoordinatesCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String type, List<double> coordinates});
 }
 
 /// @nodoc
 class __$$_GeoCoordinatesCopyWithImpl<$Res>
-    extends _$GeoCoordinatesCopyWithImpl<$Res>
+    extends _$GeoCoordinatesCopyWithImpl<$Res, _$_GeoCoordinates>
     implements _$$_GeoCoordinatesCopyWith<$Res> {
   __$$_GeoCoordinatesCopyWithImpl(
       _$_GeoCoordinates _value, $Res Function(_$_GeoCoordinates) _then)
-      : super(_value, (v) => _then(v as _$_GeoCoordinates));
+      : super(_value, _then);
 
-  @override
-  _$_GeoCoordinates get _value => super._value as _$_GeoCoordinates;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = freezed,
-    Object? coordinates = freezed,
+    Object? type = null,
+    Object? coordinates = null,
   }) {
     return _then(_$_GeoCoordinates(
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-      coordinates: coordinates == freezed
+      coordinates: null == coordinates
           ? _value._coordinates
           : coordinates // ignore: cast_nullable_to_non_nullable
               as List<double>,
@@ -134,6 +136,7 @@ class _$_GeoCoordinates implements _GeoCoordinates {
   /// shared their precise location.
   @override
   List<double> get coordinates {
+    if (_coordinates is EqualUnmodifiableListView) return _coordinates;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_coordinates);
   }
@@ -148,7 +151,7 @@ class _$_GeoCoordinates implements _GeoCoordinates {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_GeoCoordinates &&
-            const DeepCollectionEquality().equals(other.type, type) &&
+            (identical(other.type, type) || other.type == type) &&
             const DeepCollectionEquality()
                 .equals(other._coordinates, _coordinates));
   }
@@ -156,12 +159,11 @@ class _$_GeoCoordinates implements _GeoCoordinates {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(type),
-      const DeepCollectionEquality().hash(_coordinates));
+      runtimeType, type, const DeepCollectionEquality().hash(_coordinates));
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_GeoCoordinatesCopyWith<_$_GeoCoordinates> get copyWith =>
       __$$_GeoCoordinatesCopyWithImpl<_$_GeoCoordinates>(this, _$identity);
 

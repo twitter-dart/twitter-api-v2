@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'private_media_metrics.dart';
 
@@ -65,7 +65,8 @@ mixin _$PrivateMediaMetrics {
 abstract class $PrivateMediaMetricsCopyWith<$Res> {
   factory $PrivateMediaMetricsCopyWith(
           PrivateMediaMetrics value, $Res Function(PrivateMediaMetrics) then) =
-      _$PrivateMediaMetricsCopyWithImpl<$Res>;
+      _$PrivateMediaMetricsCopyWithImpl<$Res, PrivateMediaMetrics>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'playback_0_count') int playback0Count,
       @JsonKey(name: 'playback_25_count') int playback25Count,
@@ -75,44 +76,46 @@ abstract class $PrivateMediaMetricsCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PrivateMediaMetricsCopyWithImpl<$Res>
+class _$PrivateMediaMetricsCopyWithImpl<$Res, $Val extends PrivateMediaMetrics>
     implements $PrivateMediaMetricsCopyWith<$Res> {
   _$PrivateMediaMetricsCopyWithImpl(this._value, this._then);
 
-  final PrivateMediaMetrics _value;
   // ignore: unused_field
-  final $Res Function(PrivateMediaMetrics) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? playback0Count = freezed,
-    Object? playback25Count = freezed,
-    Object? playback50Count = freezed,
-    Object? playback75Count = freezed,
-    Object? playback100Count = freezed,
+    Object? playback0Count = null,
+    Object? playback25Count = null,
+    Object? playback50Count = null,
+    Object? playback75Count = null,
+    Object? playback100Count = null,
   }) {
     return _then(_value.copyWith(
-      playback0Count: playback0Count == freezed
+      playback0Count: null == playback0Count
           ? _value.playback0Count
           : playback0Count // ignore: cast_nullable_to_non_nullable
               as int,
-      playback25Count: playback25Count == freezed
+      playback25Count: null == playback25Count
           ? _value.playback25Count
           : playback25Count // ignore: cast_nullable_to_non_nullable
               as int,
-      playback50Count: playback50Count == freezed
+      playback50Count: null == playback50Count
           ? _value.playback50Count
           : playback50Count // ignore: cast_nullable_to_non_nullable
               as int,
-      playback75Count: playback75Count == freezed
+      playback75Count: null == playback75Count
           ? _value.playback75Count
           : playback75Count // ignore: cast_nullable_to_non_nullable
               as int,
-      playback100Count: playback100Count == freezed
+      playback100Count: null == playback100Count
           ? _value.playback100Count
           : playback100Count // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+    ) as $Val);
   }
 }
 
@@ -123,6 +126,7 @@ abstract class _$$_PrivateMediaMetricsCopyWith<$Res>
           $Res Function(_$_PrivateMediaMetrics) then) =
       __$$_PrivateMediaMetricsCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'playback_0_count') int playback0Count,
       @JsonKey(name: 'playback_25_count') int playback25Count,
@@ -133,41 +137,39 @@ abstract class _$$_PrivateMediaMetricsCopyWith<$Res>
 
 /// @nodoc
 class __$$_PrivateMediaMetricsCopyWithImpl<$Res>
-    extends _$PrivateMediaMetricsCopyWithImpl<$Res>
+    extends _$PrivateMediaMetricsCopyWithImpl<$Res, _$_PrivateMediaMetrics>
     implements _$$_PrivateMediaMetricsCopyWith<$Res> {
   __$$_PrivateMediaMetricsCopyWithImpl(_$_PrivateMediaMetrics _value,
       $Res Function(_$_PrivateMediaMetrics) _then)
-      : super(_value, (v) => _then(v as _$_PrivateMediaMetrics));
+      : super(_value, _then);
 
-  @override
-  _$_PrivateMediaMetrics get _value => super._value as _$_PrivateMediaMetrics;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? playback0Count = freezed,
-    Object? playback25Count = freezed,
-    Object? playback50Count = freezed,
-    Object? playback75Count = freezed,
-    Object? playback100Count = freezed,
+    Object? playback0Count = null,
+    Object? playback25Count = null,
+    Object? playback50Count = null,
+    Object? playback75Count = null,
+    Object? playback100Count = null,
   }) {
     return _then(_$_PrivateMediaMetrics(
-      playback0Count: playback0Count == freezed
+      playback0Count: null == playback0Count
           ? _value.playback0Count
           : playback0Count // ignore: cast_nullable_to_non_nullable
               as int,
-      playback25Count: playback25Count == freezed
+      playback25Count: null == playback25Count
           ? _value.playback25Count
           : playback25Count // ignore: cast_nullable_to_non_nullable
               as int,
-      playback50Count: playback50Count == freezed
+      playback50Count: null == playback50Count
           ? _value.playback50Count
           : playback50Count // ignore: cast_nullable_to_non_nullable
               as int,
-      playback75Count: playback75Count == freezed
+      playback75Count: null == playback75Count
           ? _value.playback75Count
           : playback75Count // ignore: cast_nullable_to_non_nullable
               as int,
-      playback100Count: playback100Count == freezed
+      playback100Count: null == playback100Count
           ? _value.playback100Count
           : playback100Count // ignore: cast_nullable_to_non_nullable
               as int,
@@ -238,30 +240,26 @@ class _$_PrivateMediaMetrics implements _PrivateMediaMetrics {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PrivateMediaMetrics &&
-            const DeepCollectionEquality()
-                .equals(other.playback0Count, playback0Count) &&
-            const DeepCollectionEquality()
-                .equals(other.playback25Count, playback25Count) &&
-            const DeepCollectionEquality()
-                .equals(other.playback50Count, playback50Count) &&
-            const DeepCollectionEquality()
-                .equals(other.playback75Count, playback75Count) &&
-            const DeepCollectionEquality()
-                .equals(other.playback100Count, playback100Count));
+            (identical(other.playback0Count, playback0Count) ||
+                other.playback0Count == playback0Count) &&
+            (identical(other.playback25Count, playback25Count) ||
+                other.playback25Count == playback25Count) &&
+            (identical(other.playback50Count, playback50Count) ||
+                other.playback50Count == playback50Count) &&
+            (identical(other.playback75Count, playback75Count) ||
+                other.playback75Count == playback75Count) &&
+            (identical(other.playback100Count, playback100Count) ||
+                other.playback100Count == playback100Count));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(playback0Count),
-      const DeepCollectionEquality().hash(playback25Count),
-      const DeepCollectionEquality().hash(playback50Count),
-      const DeepCollectionEquality().hash(playback75Count),
-      const DeepCollectionEquality().hash(playback100Count));
+  int get hashCode => Object.hash(runtimeType, playback0Count, playback25Count,
+      playback50Count, playback75Count, playback100Count);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_PrivateMediaMetricsCopyWith<_$_PrivateMediaMetrics> get copyWith =>
       __$$_PrivateMediaMetricsCopyWithImpl<_$_PrivateMediaMetrics>(
           this, _$identity);

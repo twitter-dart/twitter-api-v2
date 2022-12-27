@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'private_tweet_metrics.dart';
 
@@ -45,7 +45,8 @@ mixin _$PrivateTweetMetrics {
 abstract class $PrivateTweetMetricsCopyWith<$Res> {
   factory $PrivateTweetMetricsCopyWith(
           PrivateTweetMetrics value, $Res Function(PrivateTweetMetrics) then) =
-      _$PrivateTweetMetricsCopyWithImpl<$Res>;
+      _$PrivateTweetMetricsCopyWithImpl<$Res, PrivateTweetMetrics>;
+  @useResult
   $Res call(
       {int impressionCount,
       @JsonKey(name: 'user_profile_clicks') int profileClickCount,
@@ -53,34 +54,36 @@ abstract class $PrivateTweetMetricsCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PrivateTweetMetricsCopyWithImpl<$Res>
+class _$PrivateTweetMetricsCopyWithImpl<$Res, $Val extends PrivateTweetMetrics>
     implements $PrivateTweetMetricsCopyWith<$Res> {
   _$PrivateTweetMetricsCopyWithImpl(this._value, this._then);
 
-  final PrivateTweetMetrics _value;
   // ignore: unused_field
-  final $Res Function(PrivateTweetMetrics) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? impressionCount = freezed,
-    Object? profileClickCount = freezed,
+    Object? impressionCount = null,
+    Object? profileClickCount = null,
     Object? linkClickCount = freezed,
   }) {
     return _then(_value.copyWith(
-      impressionCount: impressionCount == freezed
+      impressionCount: null == impressionCount
           ? _value.impressionCount
           : impressionCount // ignore: cast_nullable_to_non_nullable
               as int,
-      profileClickCount: profileClickCount == freezed
+      profileClickCount: null == profileClickCount
           ? _value.profileClickCount
           : profileClickCount // ignore: cast_nullable_to_non_nullable
               as int,
-      linkClickCount: linkClickCount == freezed
+      linkClickCount: freezed == linkClickCount
           ? _value.linkClickCount
           : linkClickCount // ignore: cast_nullable_to_non_nullable
               as int?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -91,6 +94,7 @@ abstract class _$$_PrivateTweetMetricsCopyWith<$Res>
           $Res Function(_$_PrivateTweetMetrics) then) =
       __$$_PrivateTweetMetricsCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {int impressionCount,
       @JsonKey(name: 'user_profile_clicks') int profileClickCount,
@@ -99,31 +103,29 @@ abstract class _$$_PrivateTweetMetricsCopyWith<$Res>
 
 /// @nodoc
 class __$$_PrivateTweetMetricsCopyWithImpl<$Res>
-    extends _$PrivateTweetMetricsCopyWithImpl<$Res>
+    extends _$PrivateTweetMetricsCopyWithImpl<$Res, _$_PrivateTweetMetrics>
     implements _$$_PrivateTweetMetricsCopyWith<$Res> {
   __$$_PrivateTweetMetricsCopyWithImpl(_$_PrivateTweetMetrics _value,
       $Res Function(_$_PrivateTweetMetrics) _then)
-      : super(_value, (v) => _then(v as _$_PrivateTweetMetrics));
+      : super(_value, _then);
 
-  @override
-  _$_PrivateTweetMetrics get _value => super._value as _$_PrivateTweetMetrics;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? impressionCount = freezed,
-    Object? profileClickCount = freezed,
+    Object? impressionCount = null,
+    Object? profileClickCount = null,
     Object? linkClickCount = freezed,
   }) {
     return _then(_$_PrivateTweetMetrics(
-      impressionCount: impressionCount == freezed
+      impressionCount: null == impressionCount
           ? _value.impressionCount
           : impressionCount // ignore: cast_nullable_to_non_nullable
               as int,
-      profileClickCount: profileClickCount == freezed
+      profileClickCount: null == profileClickCount
           ? _value.profileClickCount
           : profileClickCount // ignore: cast_nullable_to_non_nullable
               as int,
-      linkClickCount: linkClickCount == freezed
+      linkClickCount: freezed == linkClickCount
           ? _value.linkClickCount
           : linkClickCount // ignore: cast_nullable_to_non_nullable
               as int?,
@@ -171,24 +173,22 @@ class _$_PrivateTweetMetrics implements _PrivateTweetMetrics {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PrivateTweetMetrics &&
-            const DeepCollectionEquality()
-                .equals(other.impressionCount, impressionCount) &&
-            const DeepCollectionEquality()
-                .equals(other.profileClickCount, profileClickCount) &&
-            const DeepCollectionEquality()
-                .equals(other.linkClickCount, linkClickCount));
+            (identical(other.impressionCount, impressionCount) ||
+                other.impressionCount == impressionCount) &&
+            (identical(other.profileClickCount, profileClickCount) ||
+                other.profileClickCount == profileClickCount) &&
+            (identical(other.linkClickCount, linkClickCount) ||
+                other.linkClickCount == linkClickCount));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(impressionCount),
-      const DeepCollectionEquality().hash(profileClickCount),
-      const DeepCollectionEquality().hash(linkClickCount));
+      runtimeType, impressionCount, profileClickCount, linkClickCount);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_PrivateTweetMetricsCopyWith<_$_PrivateTweetMetrics> get copyWith =>
       __$$_PrivateTweetMetricsCopyWithImpl<_$_PrivateTweetMetrics>(
           this, _$identity);

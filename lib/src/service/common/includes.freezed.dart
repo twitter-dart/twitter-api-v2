@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'includes.dart';
 
@@ -64,7 +64,8 @@ mixin _$Includes {
 /// @nodoc
 abstract class $IncludesCopyWith<$Res> {
   factory $IncludesCopyWith(Includes value, $Res Function(Includes) then) =
-      _$IncludesCopyWithImpl<$Res>;
+      _$IncludesCopyWithImpl<$Res, Includes>;
+  @useResult
   $Res call(
       {List<TweetData>? tweets,
       List<UserData>? users,
@@ -75,13 +76,16 @@ abstract class $IncludesCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$IncludesCopyWithImpl<$Res> implements $IncludesCopyWith<$Res> {
+class _$IncludesCopyWithImpl<$Res, $Val extends Includes>
+    implements $IncludesCopyWith<$Res> {
   _$IncludesCopyWithImpl(this._value, this._then);
 
-  final Includes _value;
   // ignore: unused_field
-  final $Res Function(Includes) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? tweets = freezed,
@@ -92,31 +96,31 @@ class _$IncludesCopyWithImpl<$Res> implements $IncludesCopyWith<$Res> {
     Object? topics = freezed,
   }) {
     return _then(_value.copyWith(
-      tweets: tweets == freezed
+      tweets: freezed == tweets
           ? _value.tweets
           : tweets // ignore: cast_nullable_to_non_nullable
               as List<TweetData>?,
-      users: users == freezed
+      users: freezed == users
           ? _value.users
           : users // ignore: cast_nullable_to_non_nullable
               as List<UserData>?,
-      media: media == freezed
+      media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
               as List<MediaData>?,
-      places: places == freezed
+      places: freezed == places
           ? _value.places
           : places // ignore: cast_nullable_to_non_nullable
               as List<PlaceData>?,
-      polls: polls == freezed
+      polls: freezed == polls
           ? _value.polls
           : polls // ignore: cast_nullable_to_non_nullable
               as List<PollData>?,
-      topics: topics == freezed
+      topics: freezed == topics
           ? _value.topics
           : topics // ignore: cast_nullable_to_non_nullable
               as List<TopicData>?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -126,6 +130,7 @@ abstract class _$$_IncludesCopyWith<$Res> implements $IncludesCopyWith<$Res> {
           _$_Includes value, $Res Function(_$_Includes) then) =
       __$$_IncludesCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {List<TweetData>? tweets,
       List<UserData>? users,
@@ -136,15 +141,14 @@ abstract class _$$_IncludesCopyWith<$Res> implements $IncludesCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_IncludesCopyWithImpl<$Res> extends _$IncludesCopyWithImpl<$Res>
+class __$$_IncludesCopyWithImpl<$Res>
+    extends _$IncludesCopyWithImpl<$Res, _$_Includes>
     implements _$$_IncludesCopyWith<$Res> {
   __$$_IncludesCopyWithImpl(
       _$_Includes _value, $Res Function(_$_Includes) _then)
-      : super(_value, (v) => _then(v as _$_Includes));
+      : super(_value, _then);
 
-  @override
-  _$_Includes get _value => super._value as _$_Includes;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? tweets = freezed,
@@ -155,27 +159,27 @@ class __$$_IncludesCopyWithImpl<$Res> extends _$IncludesCopyWithImpl<$Res>
     Object? topics = freezed,
   }) {
     return _then(_$_Includes(
-      tweets: tweets == freezed
+      tweets: freezed == tweets
           ? _value._tweets
           : tweets // ignore: cast_nullable_to_non_nullable
               as List<TweetData>?,
-      users: users == freezed
+      users: freezed == users
           ? _value._users
           : users // ignore: cast_nullable_to_non_nullable
               as List<UserData>?,
-      media: media == freezed
+      media: freezed == media
           ? _value._media
           : media // ignore: cast_nullable_to_non_nullable
               as List<MediaData>?,
-      places: places == freezed
+      places: freezed == places
           ? _value._places
           : places // ignore: cast_nullable_to_non_nullable
               as List<PlaceData>?,
-      polls: polls == freezed
+      polls: freezed == polls
           ? _value._polls
           : polls // ignore: cast_nullable_to_non_nullable
               as List<PollData>?,
-      topics: topics == freezed
+      topics: freezed == topics
           ? _value._topics
           : topics // ignore: cast_nullable_to_non_nullable
               as List<TopicData>?,
@@ -218,6 +222,7 @@ class _$_Includes implements _Includes {
   List<TweetData>? get tweets {
     final value = _tweets;
     if (value == null) return null;
+    if (_tweets is EqualUnmodifiableListView) return _tweets;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -234,6 +239,7 @@ class _$_Includes implements _Includes {
   List<UserData>? get users {
     final value = _users;
     if (value == null) return null;
+    if (_users is EqualUnmodifiableListView) return _users;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -252,6 +258,7 @@ class _$_Includes implements _Includes {
   List<MediaData>? get media {
     final value = _media;
     if (value == null) return null;
+    if (_media is EqualUnmodifiableListView) return _media;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -270,6 +277,7 @@ class _$_Includes implements _Includes {
   List<PlaceData>? get places {
     final value = _places;
     if (value == null) return null;
+    if (_places is EqualUnmodifiableListView) return _places;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -288,6 +296,7 @@ class _$_Includes implements _Includes {
   List<PollData>? get polls {
     final value = _polls;
     if (value == null) return null;
+    if (_polls is EqualUnmodifiableListView) return _polls;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -306,6 +315,7 @@ class _$_Includes implements _Includes {
   List<TopicData>? get topics {
     final value = _topics;
     if (value == null) return null;
+    if (_topics is EqualUnmodifiableListView) return _topics;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -341,6 +351,7 @@ class _$_Includes implements _Includes {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_IncludesCopyWith<_$_Includes> get copyWith =>
       __$$_IncludesCopyWithImpl<_$_Includes>(this, _$identity);
 

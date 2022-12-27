@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'locale.dart';
 
@@ -34,33 +34,37 @@ mixin _$Locale {
 /// @nodoc
 abstract class $LocaleCopyWith<$Res> {
   factory $LocaleCopyWith(Locale value, $Res Function(Locale) then) =
-      _$LocaleCopyWithImpl<$Res>;
+      _$LocaleCopyWithImpl<$Res, Locale>;
+  @useResult
   $Res call({Language lang, Country country});
 }
 
 /// @nodoc
-class _$LocaleCopyWithImpl<$Res> implements $LocaleCopyWith<$Res> {
+class _$LocaleCopyWithImpl<$Res, $Val extends Locale>
+    implements $LocaleCopyWith<$Res> {
   _$LocaleCopyWithImpl(this._value, this._then);
 
-  final Locale _value;
   // ignore: unused_field
-  final $Res Function(Locale) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? lang = freezed,
-    Object? country = freezed,
+    Object? lang = null,
+    Object? country = null,
   }) {
     return _then(_value.copyWith(
-      lang: lang == freezed
+      lang: null == lang
           ? _value.lang
           : lang // ignore: cast_nullable_to_non_nullable
               as Language,
-      country: country == freezed
+      country: null == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
               as Country,
-    ));
+    ) as $Val);
   }
 }
 
@@ -69,29 +73,29 @@ abstract class _$$_LocaleCopyWith<$Res> implements $LocaleCopyWith<$Res> {
   factory _$$_LocaleCopyWith(_$_Locale value, $Res Function(_$_Locale) then) =
       __$$_LocaleCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({Language lang, Country country});
 }
 
 /// @nodoc
-class __$$_LocaleCopyWithImpl<$Res> extends _$LocaleCopyWithImpl<$Res>
+class __$$_LocaleCopyWithImpl<$Res>
+    extends _$LocaleCopyWithImpl<$Res, _$_Locale>
     implements _$$_LocaleCopyWith<$Res> {
   __$$_LocaleCopyWithImpl(_$_Locale _value, $Res Function(_$_Locale) _then)
-      : super(_value, (v) => _then(v as _$_Locale));
+      : super(_value, _then);
 
-  @override
-  _$_Locale get _value => super._value as _$_Locale;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? lang = freezed,
-    Object? country = freezed,
+    Object? lang = null,
+    Object? country = null,
   }) {
     return _then(_$_Locale(
-      lang: lang == freezed
+      lang: null == lang
           ? _value.lang
           : lang // ignore: cast_nullable_to_non_nullable
               as Language,
-      country: country == freezed
+      country: null == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
               as Country,
@@ -125,19 +129,17 @@ class _$_Locale implements _Locale {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Locale &&
-            const DeepCollectionEquality().equals(other.lang, lang) &&
-            const DeepCollectionEquality().equals(other.country, country));
+            (identical(other.lang, lang) || other.lang == lang) &&
+            (identical(other.country, country) || other.country == country));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(lang),
-      const DeepCollectionEquality().hash(country));
+  int get hashCode => Object.hash(runtimeType, lang, country);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_LocaleCopyWith<_$_Locale> get copyWith =>
       __$$_LocaleCopyWithImpl<_$_Locale>(this, _$identity);
 

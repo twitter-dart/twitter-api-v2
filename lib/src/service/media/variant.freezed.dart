@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'variant.dart';
 
@@ -39,38 +39,42 @@ mixin _$Variant {
 /// @nodoc
 abstract class $VariantCopyWith<$Res> {
   factory $VariantCopyWith(Variant value, $Res Function(Variant) then) =
-      _$VariantCopyWithImpl<$Res>;
+      _$VariantCopyWithImpl<$Res, Variant>;
+  @useResult
   $Res call({int? bitRate, String contentType, String url});
 }
 
 /// @nodoc
-class _$VariantCopyWithImpl<$Res> implements $VariantCopyWith<$Res> {
+class _$VariantCopyWithImpl<$Res, $Val extends Variant>
+    implements $VariantCopyWith<$Res> {
   _$VariantCopyWithImpl(this._value, this._then);
 
-  final Variant _value;
   // ignore: unused_field
-  final $Res Function(Variant) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? bitRate = freezed,
-    Object? contentType = freezed,
-    Object? url = freezed,
+    Object? contentType = null,
+    Object? url = null,
   }) {
     return _then(_value.copyWith(
-      bitRate: bitRate == freezed
+      bitRate: freezed == bitRate
           ? _value.bitRate
           : bitRate // ignore: cast_nullable_to_non_nullable
               as int?,
-      contentType: contentType == freezed
+      contentType: null == contentType
           ? _value.contentType
           : contentType // ignore: cast_nullable_to_non_nullable
               as String,
-      url: url == freezed
+      url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -80,34 +84,34 @@ abstract class _$$_VariantCopyWith<$Res> implements $VariantCopyWith<$Res> {
           _$_Variant value, $Res Function(_$_Variant) then) =
       __$$_VariantCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({int? bitRate, String contentType, String url});
 }
 
 /// @nodoc
-class __$$_VariantCopyWithImpl<$Res> extends _$VariantCopyWithImpl<$Res>
+class __$$_VariantCopyWithImpl<$Res>
+    extends _$VariantCopyWithImpl<$Res, _$_Variant>
     implements _$$_VariantCopyWith<$Res> {
   __$$_VariantCopyWithImpl(_$_Variant _value, $Res Function(_$_Variant) _then)
-      : super(_value, (v) => _then(v as _$_Variant));
+      : super(_value, _then);
 
-  @override
-  _$_Variant get _value => super._value as _$_Variant;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? bitRate = freezed,
-    Object? contentType = freezed,
-    Object? url = freezed,
+    Object? contentType = null,
+    Object? url = null,
   }) {
     return _then(_$_Variant(
-      bitRate: bitRate == freezed
+      bitRate: freezed == bitRate
           ? _value.bitRate
           : bitRate // ignore: cast_nullable_to_non_nullable
               as int?,
-      contentType: contentType == freezed
+      contentType: null == contentType
           ? _value.contentType
           : contentType // ignore: cast_nullable_to_non_nullable
               as String,
-      url: url == freezed
+      url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
@@ -149,22 +153,19 @@ class _$_Variant implements _Variant {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Variant &&
-            const DeepCollectionEquality().equals(other.bitRate, bitRate) &&
-            const DeepCollectionEquality()
-                .equals(other.contentType, contentType) &&
-            const DeepCollectionEquality().equals(other.url, url));
+            (identical(other.bitRate, bitRate) || other.bitRate == bitRate) &&
+            (identical(other.contentType, contentType) ||
+                other.contentType == contentType) &&
+            (identical(other.url, url) || other.url == url));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(bitRate),
-      const DeepCollectionEquality().hash(contentType),
-      const DeepCollectionEquality().hash(url));
+  int get hashCode => Object.hash(runtimeType, bitRate, contentType, url);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_VariantCopyWith<_$_Variant> get copyWith =>
       __$$_VariantCopyWithImpl<_$_Variant>(this, _$identity);
 

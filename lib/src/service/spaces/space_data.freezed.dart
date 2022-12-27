@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'space_data.dart';
 
@@ -160,7 +160,8 @@ mixin _$SpaceData {
 /// @nodoc
 abstract class $SpaceDataCopyWith<$Res> {
   factory $SpaceDataCopyWith(SpaceData value, $Res Function(SpaceData) then) =
-      _$SpaceDataCopyWithImpl<$Res>;
+      _$SpaceDataCopyWithImpl<$Res, SpaceData>;
+  @useResult
   $Res call(
       {String id,
       String? title,
@@ -182,16 +183,19 @@ abstract class $SpaceDataCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SpaceDataCopyWithImpl<$Res> implements $SpaceDataCopyWith<$Res> {
+class _$SpaceDataCopyWithImpl<$Res, $Val extends SpaceData>
+    implements $SpaceDataCopyWith<$Res> {
   _$SpaceDataCopyWithImpl(this._value, this._then);
 
-  final SpaceData _value;
   // ignore: unused_field
-  final $Res Function(SpaceData) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? id = null,
     Object? title = freezed,
     Object? state = freezed,
     Object? creatorId = freezed,
@@ -210,75 +214,75 @@ class _$SpaceDataCopyWithImpl<$Res> implements $SpaceDataCopyWith<$Res> {
     Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      title: title == freezed
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
-      state: state == freezed
+      state: freezed == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
               as SpaceState?,
-      creatorId: creatorId == freezed
+      creatorId: freezed == creatorId
           ? _value.creatorId
           : creatorId // ignore: cast_nullable_to_non_nullable
               as String?,
-      lang: lang == freezed
+      lang: freezed == lang
           ? _value.lang
           : lang // ignore: cast_nullable_to_non_nullable
               as SpaceLanguage?,
-      hostIds: hostIds == freezed
+      hostIds: freezed == hostIds
           ? _value.hostIds
           : hostIds // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      topicIds: topicIds == freezed
+      topicIds: freezed == topicIds
           ? _value.topicIds
           : topicIds // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      speakerIds: speakerIds == freezed
+      speakerIds: freezed == speakerIds
           ? _value.speakerIds
           : speakerIds // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      invitedUserIds: invitedUserIds == freezed
+      invitedUserIds: freezed == invitedUserIds
           ? _value.invitedUserIds
           : invitedUserIds // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      subscriberCount: subscriberCount == freezed
+      subscriberCount: freezed == subscriberCount
           ? _value.subscriberCount
           : subscriberCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      participantCount: participantCount == freezed
+      participantCount: freezed == participantCount
           ? _value.participantCount
           : participantCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      isTicketed: isTicketed == freezed
+      isTicketed: freezed == isTicketed
           ? _value.isTicketed
           : isTicketed // ignore: cast_nullable_to_non_nullable
               as bool?,
-      scheduledStart: scheduledStart == freezed
+      scheduledStart: freezed == scheduledStart
           ? _value.scheduledStart
           : scheduledStart // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      startedAt: startedAt == freezed
+      startedAt: freezed == startedAt
           ? _value.startedAt
           : startedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      endedAt: endedAt == freezed
+      endedAt: freezed == endedAt
           ? _value.endedAt
           : endedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      createdAt: createdAt == freezed
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      updatedAt: updatedAt == freezed
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -288,6 +292,7 @@ abstract class _$$_SpaceDataCopyWith<$Res> implements $SpaceDataCopyWith<$Res> {
           _$_SpaceData value, $Res Function(_$_SpaceData) then) =
       __$$_SpaceDataCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String id,
       String? title,
@@ -309,18 +314,17 @@ abstract class _$$_SpaceDataCopyWith<$Res> implements $SpaceDataCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_SpaceDataCopyWithImpl<$Res> extends _$SpaceDataCopyWithImpl<$Res>
+class __$$_SpaceDataCopyWithImpl<$Res>
+    extends _$SpaceDataCopyWithImpl<$Res, _$_SpaceData>
     implements _$$_SpaceDataCopyWith<$Res> {
   __$$_SpaceDataCopyWithImpl(
       _$_SpaceData _value, $Res Function(_$_SpaceData) _then)
-      : super(_value, (v) => _then(v as _$_SpaceData));
+      : super(_value, _then);
 
-  @override
-  _$_SpaceData get _value => super._value as _$_SpaceData;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? id = null,
     Object? title = freezed,
     Object? state = freezed,
     Object? creatorId = freezed,
@@ -339,71 +343,71 @@ class __$$_SpaceDataCopyWithImpl<$Res> extends _$SpaceDataCopyWithImpl<$Res>
     Object? updatedAt = freezed,
   }) {
     return _then(_$_SpaceData(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      title: title == freezed
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
-      state: state == freezed
+      state: freezed == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
               as SpaceState?,
-      creatorId: creatorId == freezed
+      creatorId: freezed == creatorId
           ? _value.creatorId
           : creatorId // ignore: cast_nullable_to_non_nullable
               as String?,
-      lang: lang == freezed
+      lang: freezed == lang
           ? _value.lang
           : lang // ignore: cast_nullable_to_non_nullable
               as SpaceLanguage?,
-      hostIds: hostIds == freezed
+      hostIds: freezed == hostIds
           ? _value._hostIds
           : hostIds // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      topicIds: topicIds == freezed
+      topicIds: freezed == topicIds
           ? _value._topicIds
           : topicIds // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      speakerIds: speakerIds == freezed
+      speakerIds: freezed == speakerIds
           ? _value._speakerIds
           : speakerIds // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      invitedUserIds: invitedUserIds == freezed
+      invitedUserIds: freezed == invitedUserIds
           ? _value._invitedUserIds
           : invitedUserIds // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      subscriberCount: subscriberCount == freezed
+      subscriberCount: freezed == subscriberCount
           ? _value.subscriberCount
           : subscriberCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      participantCount: participantCount == freezed
+      participantCount: freezed == participantCount
           ? _value.participantCount
           : participantCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      isTicketed: isTicketed == freezed
+      isTicketed: freezed == isTicketed
           ? _value.isTicketed
           : isTicketed // ignore: cast_nullable_to_non_nullable
               as bool?,
-      scheduledStart: scheduledStart == freezed
+      scheduledStart: freezed == scheduledStart
           ? _value.scheduledStart
           : scheduledStart // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      startedAt: startedAt == freezed
+      startedAt: freezed == startedAt
           ? _value.startedAt
           : startedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      endedAt: endedAt == freezed
+      endedAt: freezed == endedAt
           ? _value.endedAt
           : endedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      createdAt: createdAt == freezed
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      updatedAt: updatedAt == freezed
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
@@ -496,6 +500,7 @@ class _$_SpaceData implements _SpaceData {
   List<String>? get hostIds {
     final value = _hostIds;
     if (value == null) return null;
+    if (_hostIds is EqualUnmodifiableListView) return _hostIds;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -518,6 +523,7 @@ class _$_SpaceData implements _SpaceData {
   List<String>? get topicIds {
     final value = _topicIds;
     if (value == null) return null;
+    if (_topicIds is EqualUnmodifiableListView) return _topicIds;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -542,6 +548,7 @@ class _$_SpaceData implements _SpaceData {
   List<String>? get speakerIds {
     final value = _speakerIds;
     if (value == null) return null;
+    if (_speakerIds is EqualUnmodifiableListView) return _speakerIds;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -564,6 +571,7 @@ class _$_SpaceData implements _SpaceData {
   List<String>? get invitedUserIds {
     final value = _invitedUserIds;
     if (value == null) return null;
+    if (_invitedUserIds is EqualUnmodifiableListView) return _invitedUserIds;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -651,55 +659,60 @@ class _$_SpaceData implements _SpaceData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SpaceData &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.title, title) &&
-            const DeepCollectionEquality().equals(other.state, state) &&
-            const DeepCollectionEquality().equals(other.creatorId, creatorId) &&
-            const DeepCollectionEquality().equals(other.lang, lang) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.state, state) || other.state == state) &&
+            (identical(other.creatorId, creatorId) ||
+                other.creatorId == creatorId) &&
+            (identical(other.lang, lang) || other.lang == lang) &&
             const DeepCollectionEquality().equals(other._hostIds, _hostIds) &&
             const DeepCollectionEquality().equals(other._topicIds, _topicIds) &&
             const DeepCollectionEquality()
                 .equals(other._speakerIds, _speakerIds) &&
             const DeepCollectionEquality()
                 .equals(other._invitedUserIds, _invitedUserIds) &&
-            const DeepCollectionEquality()
-                .equals(other.subscriberCount, subscriberCount) &&
-            const DeepCollectionEquality()
-                .equals(other.participantCount, participantCount) &&
-            const DeepCollectionEquality()
-                .equals(other.isTicketed, isTicketed) &&
-            const DeepCollectionEquality()
-                .equals(other.scheduledStart, scheduledStart) &&
-            const DeepCollectionEquality().equals(other.startedAt, startedAt) &&
-            const DeepCollectionEquality().equals(other.endedAt, endedAt) &&
-            const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
-            const DeepCollectionEquality().equals(other.updatedAt, updatedAt));
+            (identical(other.subscriberCount, subscriberCount) ||
+                other.subscriberCount == subscriberCount) &&
+            (identical(other.participantCount, participantCount) ||
+                other.participantCount == participantCount) &&
+            (identical(other.isTicketed, isTicketed) ||
+                other.isTicketed == isTicketed) &&
+            (identical(other.scheduledStart, scheduledStart) ||
+                other.scheduledStart == scheduledStart) &&
+            (identical(other.startedAt, startedAt) ||
+                other.startedAt == startedAt) &&
+            (identical(other.endedAt, endedAt) || other.endedAt == endedAt) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(title),
-      const DeepCollectionEquality().hash(state),
-      const DeepCollectionEquality().hash(creatorId),
-      const DeepCollectionEquality().hash(lang),
+      id,
+      title,
+      state,
+      creatorId,
+      lang,
       const DeepCollectionEquality().hash(_hostIds),
       const DeepCollectionEquality().hash(_topicIds),
       const DeepCollectionEquality().hash(_speakerIds),
       const DeepCollectionEquality().hash(_invitedUserIds),
-      const DeepCollectionEquality().hash(subscriberCount),
-      const DeepCollectionEquality().hash(participantCount),
-      const DeepCollectionEquality().hash(isTicketed),
-      const DeepCollectionEquality().hash(scheduledStart),
-      const DeepCollectionEquality().hash(startedAt),
-      const DeepCollectionEquality().hash(endedAt),
-      const DeepCollectionEquality().hash(createdAt),
-      const DeepCollectionEquality().hash(updatedAt));
+      subscriberCount,
+      participantCount,
+      isTicketed,
+      scheduledStart,
+      startedAt,
+      endedAt,
+      createdAt,
+      updatedAt);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_SpaceDataCopyWith<_$_SpaceData> get copyWith =>
       __$$_SpaceDataCopyWithImpl<_$_SpaceData>(this, _$identity);
 

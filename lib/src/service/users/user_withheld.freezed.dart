@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'user_withheld.dart';
 
@@ -34,28 +34,32 @@ mixin _$UserWithheld {
 abstract class $UserWithheldCopyWith<$Res> {
   factory $UserWithheldCopyWith(
           UserWithheld value, $Res Function(UserWithheld) then) =
-      _$UserWithheldCopyWithImpl<$Res>;
+      _$UserWithheldCopyWithImpl<$Res, UserWithheld>;
+  @useResult
   $Res call({@JsonKey(name: 'country_codes') List<Country> countries});
 }
 
 /// @nodoc
-class _$UserWithheldCopyWithImpl<$Res> implements $UserWithheldCopyWith<$Res> {
+class _$UserWithheldCopyWithImpl<$Res, $Val extends UserWithheld>
+    implements $UserWithheldCopyWith<$Res> {
   _$UserWithheldCopyWithImpl(this._value, this._then);
 
-  final UserWithheld _value;
   // ignore: unused_field
-  final $Res Function(UserWithheld) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? countries = freezed,
+    Object? countries = null,
   }) {
     return _then(_value.copyWith(
-      countries: countries == freezed
+      countries: null == countries
           ? _value.countries
           : countries // ignore: cast_nullable_to_non_nullable
               as List<Country>,
-    ));
+    ) as $Val);
   }
 }
 
@@ -66,26 +70,25 @@ abstract class _$$_UserWithheldCopyWith<$Res>
           _$_UserWithheld value, $Res Function(_$_UserWithheld) then) =
       __$$_UserWithheldCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({@JsonKey(name: 'country_codes') List<Country> countries});
 }
 
 /// @nodoc
 class __$$_UserWithheldCopyWithImpl<$Res>
-    extends _$UserWithheldCopyWithImpl<$Res>
+    extends _$UserWithheldCopyWithImpl<$Res, _$_UserWithheld>
     implements _$$_UserWithheldCopyWith<$Res> {
   __$$_UserWithheldCopyWithImpl(
       _$_UserWithheld _value, $Res Function(_$_UserWithheld) _then)
-      : super(_value, (v) => _then(v as _$_UserWithheld));
+      : super(_value, _then);
 
-  @override
-  _$_UserWithheld get _value => super._value as _$_UserWithheld;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? countries = freezed,
+    Object? countries = null,
   }) {
     return _then(_$_UserWithheld(
-      countries: countries == freezed
+      countries: null == countries
           ? _value._countries
           : countries // ignore: cast_nullable_to_non_nullable
               as List<Country>,
@@ -110,6 +113,7 @@ class _$_UserWithheld implements _UserWithheld {
   @override
   @JsonKey(name: 'country_codes')
   List<Country> get countries {
+    if (_countries is EqualUnmodifiableListView) return _countries;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_countries);
   }
@@ -135,6 +139,7 @@ class _$_UserWithheld implements _UserWithheld {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_UserWithheldCopyWith<_$_UserWithheld> get copyWith =>
       __$$_UserWithheldCopyWithImpl<_$_UserWithheld>(this, _$identity);
 

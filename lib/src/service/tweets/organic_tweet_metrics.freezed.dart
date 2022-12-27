@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'organic_tweet_metrics.dart';
 
@@ -55,7 +55,8 @@ mixin _$OrganicTweetMetrics {
 abstract class $OrganicTweetMetricsCopyWith<$Res> {
   factory $OrganicTweetMetricsCopyWith(
           OrganicTweetMetrics value, $Res Function(OrganicTweetMetrics) then) =
-      _$OrganicTweetMetricsCopyWithImpl<$Res>;
+      _$OrganicTweetMetricsCopyWithImpl<$Res, OrganicTweetMetrics>;
+  @useResult
   $Res call(
       {int impressionCount,
       int likeCount,
@@ -66,49 +67,51 @@ abstract class $OrganicTweetMetricsCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$OrganicTweetMetricsCopyWithImpl<$Res>
+class _$OrganicTweetMetricsCopyWithImpl<$Res, $Val extends OrganicTweetMetrics>
     implements $OrganicTweetMetricsCopyWith<$Res> {
   _$OrganicTweetMetricsCopyWithImpl(this._value, this._then);
 
-  final OrganicTweetMetrics _value;
   // ignore: unused_field
-  final $Res Function(OrganicTweetMetrics) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? impressionCount = freezed,
-    Object? likeCount = freezed,
-    Object? retweetCount = freezed,
-    Object? replyCount = freezed,
-    Object? profileClickCount = freezed,
+    Object? impressionCount = null,
+    Object? likeCount = null,
+    Object? retweetCount = null,
+    Object? replyCount = null,
+    Object? profileClickCount = null,
     Object? linkClickCount = freezed,
   }) {
     return _then(_value.copyWith(
-      impressionCount: impressionCount == freezed
+      impressionCount: null == impressionCount
           ? _value.impressionCount
           : impressionCount // ignore: cast_nullable_to_non_nullable
               as int,
-      likeCount: likeCount == freezed
+      likeCount: null == likeCount
           ? _value.likeCount
           : likeCount // ignore: cast_nullable_to_non_nullable
               as int,
-      retweetCount: retweetCount == freezed
+      retweetCount: null == retweetCount
           ? _value.retweetCount
           : retweetCount // ignore: cast_nullable_to_non_nullable
               as int,
-      replyCount: replyCount == freezed
+      replyCount: null == replyCount
           ? _value.replyCount
           : replyCount // ignore: cast_nullable_to_non_nullable
               as int,
-      profileClickCount: profileClickCount == freezed
+      profileClickCount: null == profileClickCount
           ? _value.profileClickCount
           : profileClickCount // ignore: cast_nullable_to_non_nullable
               as int,
-      linkClickCount: linkClickCount == freezed
+      linkClickCount: freezed == linkClickCount
           ? _value.linkClickCount
           : linkClickCount // ignore: cast_nullable_to_non_nullable
               as int?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -119,6 +122,7 @@ abstract class _$$_OrganicTweetMetricsCopyWith<$Res>
           $Res Function(_$_OrganicTweetMetrics) then) =
       __$$_OrganicTweetMetricsCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {int impressionCount,
       int likeCount,
@@ -130,46 +134,44 @@ abstract class _$$_OrganicTweetMetricsCopyWith<$Res>
 
 /// @nodoc
 class __$$_OrganicTweetMetricsCopyWithImpl<$Res>
-    extends _$OrganicTweetMetricsCopyWithImpl<$Res>
+    extends _$OrganicTweetMetricsCopyWithImpl<$Res, _$_OrganicTweetMetrics>
     implements _$$_OrganicTweetMetricsCopyWith<$Res> {
   __$$_OrganicTweetMetricsCopyWithImpl(_$_OrganicTweetMetrics _value,
       $Res Function(_$_OrganicTweetMetrics) _then)
-      : super(_value, (v) => _then(v as _$_OrganicTweetMetrics));
+      : super(_value, _then);
 
-  @override
-  _$_OrganicTweetMetrics get _value => super._value as _$_OrganicTweetMetrics;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? impressionCount = freezed,
-    Object? likeCount = freezed,
-    Object? retweetCount = freezed,
-    Object? replyCount = freezed,
-    Object? profileClickCount = freezed,
+    Object? impressionCount = null,
+    Object? likeCount = null,
+    Object? retweetCount = null,
+    Object? replyCount = null,
+    Object? profileClickCount = null,
     Object? linkClickCount = freezed,
   }) {
     return _then(_$_OrganicTweetMetrics(
-      impressionCount: impressionCount == freezed
+      impressionCount: null == impressionCount
           ? _value.impressionCount
           : impressionCount // ignore: cast_nullable_to_non_nullable
               as int,
-      likeCount: likeCount == freezed
+      likeCount: null == likeCount
           ? _value.likeCount
           : likeCount // ignore: cast_nullable_to_non_nullable
               as int,
-      retweetCount: retweetCount == freezed
+      retweetCount: null == retweetCount
           ? _value.retweetCount
           : retweetCount // ignore: cast_nullable_to_non_nullable
               as int,
-      replyCount: replyCount == freezed
+      replyCount: null == replyCount
           ? _value.replyCount
           : replyCount // ignore: cast_nullable_to_non_nullable
               as int,
-      profileClickCount: profileClickCount == freezed
+      profileClickCount: null == profileClickCount
           ? _value.profileClickCount
           : profileClickCount // ignore: cast_nullable_to_non_nullable
               as int,
-      linkClickCount: linkClickCount == freezed
+      linkClickCount: freezed == linkClickCount
           ? _value.linkClickCount
           : linkClickCount // ignore: cast_nullable_to_non_nullable
               as int?,
@@ -233,32 +235,28 @@ class _$_OrganicTweetMetrics implements _OrganicTweetMetrics {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_OrganicTweetMetrics &&
-            const DeepCollectionEquality()
-                .equals(other.impressionCount, impressionCount) &&
-            const DeepCollectionEquality().equals(other.likeCount, likeCount) &&
-            const DeepCollectionEquality()
-                .equals(other.retweetCount, retweetCount) &&
-            const DeepCollectionEquality()
-                .equals(other.replyCount, replyCount) &&
-            const DeepCollectionEquality()
-                .equals(other.profileClickCount, profileClickCount) &&
-            const DeepCollectionEquality()
-                .equals(other.linkClickCount, linkClickCount));
+            (identical(other.impressionCount, impressionCount) ||
+                other.impressionCount == impressionCount) &&
+            (identical(other.likeCount, likeCount) ||
+                other.likeCount == likeCount) &&
+            (identical(other.retweetCount, retweetCount) ||
+                other.retweetCount == retweetCount) &&
+            (identical(other.replyCount, replyCount) ||
+                other.replyCount == replyCount) &&
+            (identical(other.profileClickCount, profileClickCount) ||
+                other.profileClickCount == profileClickCount) &&
+            (identical(other.linkClickCount, linkClickCount) ||
+                other.linkClickCount == linkClickCount));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(impressionCount),
-      const DeepCollectionEquality().hash(likeCount),
-      const DeepCollectionEquality().hash(retweetCount),
-      const DeepCollectionEquality().hash(replyCount),
-      const DeepCollectionEquality().hash(profileClickCount),
-      const DeepCollectionEquality().hash(linkClickCount));
+  int get hashCode => Object.hash(runtimeType, impressionCount, likeCount,
+      retweetCount, replyCount, profileClickCount, linkClickCount);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_OrganicTweetMetricsCopyWith<_$_OrganicTweetMetrics> get copyWith =>
       __$$_OrganicTweetMetricsCopyWithImpl<_$_OrganicTweetMetrics>(
           this, _$identity);

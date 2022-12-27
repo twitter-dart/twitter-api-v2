@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'matching_rule.dart';
 
@@ -37,33 +37,37 @@ mixin _$MatchingRule {
 abstract class $MatchingRuleCopyWith<$Res> {
   factory $MatchingRuleCopyWith(
           MatchingRule value, $Res Function(MatchingRule) then) =
-      _$MatchingRuleCopyWithImpl<$Res>;
+      _$MatchingRuleCopyWithImpl<$Res, MatchingRule>;
+  @useResult
   $Res call({String id, String tag});
 }
 
 /// @nodoc
-class _$MatchingRuleCopyWithImpl<$Res> implements $MatchingRuleCopyWith<$Res> {
+class _$MatchingRuleCopyWithImpl<$Res, $Val extends MatchingRule>
+    implements $MatchingRuleCopyWith<$Res> {
   _$MatchingRuleCopyWithImpl(this._value, this._then);
 
-  final MatchingRule _value;
   // ignore: unused_field
-  final $Res Function(MatchingRule) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? tag = freezed,
+    Object? id = null,
+    Object? tag = null,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      tag: tag == freezed
+      tag: null == tag
           ? _value.tag
           : tag // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -74,31 +78,30 @@ abstract class _$$_MatchingRuleCopyWith<$Res>
           _$_MatchingRule value, $Res Function(_$_MatchingRule) then) =
       __$$_MatchingRuleCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String id, String tag});
 }
 
 /// @nodoc
 class __$$_MatchingRuleCopyWithImpl<$Res>
-    extends _$MatchingRuleCopyWithImpl<$Res>
+    extends _$MatchingRuleCopyWithImpl<$Res, _$_MatchingRule>
     implements _$$_MatchingRuleCopyWith<$Res> {
   __$$_MatchingRuleCopyWithImpl(
       _$_MatchingRule _value, $Res Function(_$_MatchingRule) _then)
-      : super(_value, (v) => _then(v as _$_MatchingRule));
+      : super(_value, _then);
 
-  @override
-  _$_MatchingRule get _value => super._value as _$_MatchingRule;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? tag = freezed,
+    Object? id = null,
+    Object? tag = null,
   }) {
     return _then(_$_MatchingRule(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      tag: tag == freezed
+      tag: null == tag
           ? _value.tag
           : tag // ignore: cast_nullable_to_non_nullable
               as String,
@@ -133,19 +136,17 @@ class _$_MatchingRule implements _MatchingRule {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MatchingRule &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.tag, tag));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.tag, tag) || other.tag == tag));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(tag));
+  int get hashCode => Object.hash(runtimeType, id, tag);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_MatchingRuleCopyWith<_$_MatchingRule> get copyWith =>
       __$$_MatchingRuleCopyWithImpl<_$_MatchingRule>(this, _$identity);
 

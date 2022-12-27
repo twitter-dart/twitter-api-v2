@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'dm_attachments.dart';
 
@@ -38,29 +38,32 @@ mixin _$DMAttachments {
 abstract class $DMAttachmentsCopyWith<$Res> {
   factory $DMAttachmentsCopyWith(
           DMAttachments value, $Res Function(DMAttachments) then) =
-      _$DMAttachmentsCopyWithImpl<$Res>;
+      _$DMAttachmentsCopyWithImpl<$Res, DMAttachments>;
+  @useResult
   $Res call({List<String> mediaKeys});
 }
 
 /// @nodoc
-class _$DMAttachmentsCopyWithImpl<$Res>
+class _$DMAttachmentsCopyWithImpl<$Res, $Val extends DMAttachments>
     implements $DMAttachmentsCopyWith<$Res> {
   _$DMAttachmentsCopyWithImpl(this._value, this._then);
 
-  final DMAttachments _value;
   // ignore: unused_field
-  final $Res Function(DMAttachments) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? mediaKeys = freezed,
+    Object? mediaKeys = null,
   }) {
     return _then(_value.copyWith(
-      mediaKeys: mediaKeys == freezed
+      mediaKeys: null == mediaKeys
           ? _value.mediaKeys
           : mediaKeys // ignore: cast_nullable_to_non_nullable
               as List<String>,
-    ));
+    ) as $Val);
   }
 }
 
@@ -71,26 +74,25 @@ abstract class _$$_DMAttachmentsCopyWith<$Res>
           _$_DMAttachments value, $Res Function(_$_DMAttachments) then) =
       __$$_DMAttachmentsCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({List<String> mediaKeys});
 }
 
 /// @nodoc
 class __$$_DMAttachmentsCopyWithImpl<$Res>
-    extends _$DMAttachmentsCopyWithImpl<$Res>
+    extends _$DMAttachmentsCopyWithImpl<$Res, _$_DMAttachments>
     implements _$$_DMAttachmentsCopyWith<$Res> {
   __$$_DMAttachmentsCopyWithImpl(
       _$_DMAttachments _value, $Res Function(_$_DMAttachments) _then)
-      : super(_value, (v) => _then(v as _$_DMAttachments));
+      : super(_value, _then);
 
-  @override
-  _$_DMAttachments get _value => super._value as _$_DMAttachments;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? mediaKeys = freezed,
+    Object? mediaKeys = null,
   }) {
     return _then(_$_DMAttachments(
-      mediaKeys: mediaKeys == freezed
+      mediaKeys: null == mediaKeys
           ? _value._mediaKeys
           : mediaKeys // ignore: cast_nullable_to_non_nullable
               as List<String>,
@@ -123,6 +125,7 @@ class _$_DMAttachments implements _DMAttachments {
   /// `TweetExpansion.attachmentsMediaKeys` in the request's query parameter.
   @override
   List<String> get mediaKeys {
+    if (_mediaKeys is EqualUnmodifiableListView) return _mediaKeys;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_mediaKeys);
   }
@@ -148,6 +151,7 @@ class _$_DMAttachments implements _DMAttachments {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_DMAttachmentsCopyWith<_$_DMAttachments> get copyWith =>
       __$$_DMAttachmentsCopyWithImpl<_$_DMAttachments>(this, _$identity);
 

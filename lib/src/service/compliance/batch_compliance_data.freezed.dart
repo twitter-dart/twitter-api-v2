@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'batch_compliance_data.dart';
 
@@ -66,7 +66,8 @@ mixin _$BatchComplianceData {
 abstract class $BatchComplianceDataCopyWith<$Res> {
   factory $BatchComplianceDataCopyWith(
           BatchComplianceData value, $Res Function(BatchComplianceData) then) =
-      _$BatchComplianceDataCopyWithImpl<$Res>;
+      _$BatchComplianceDataCopyWithImpl<$Res, BatchComplianceData>;
+  @useResult
   $Res call(
       {String id,
       JobType type,
@@ -80,64 +81,66 @@ abstract class $BatchComplianceDataCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$BatchComplianceDataCopyWithImpl<$Res>
+class _$BatchComplianceDataCopyWithImpl<$Res, $Val extends BatchComplianceData>
     implements $BatchComplianceDataCopyWith<$Res> {
   _$BatchComplianceDataCopyWithImpl(this._value, this._then);
 
-  final BatchComplianceData _value;
   // ignore: unused_field
-  final $Res Function(BatchComplianceData) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? type = freezed,
-    Object? status = freezed,
-    Object? resumable = freezed,
-    Object? uploadUrl = freezed,
-    Object? downloadUrl = freezed,
-    Object? uploadExpiresAt = freezed,
-    Object? downloadExpiresAt = freezed,
-    Object? createdAt = freezed,
+    Object? id = null,
+    Object? type = null,
+    Object? status = null,
+    Object? resumable = null,
+    Object? uploadUrl = null,
+    Object? downloadUrl = null,
+    Object? uploadExpiresAt = null,
+    Object? downloadExpiresAt = null,
+    Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as JobType,
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as JobStatus,
-      resumable: resumable == freezed
+      resumable: null == resumable
           ? _value.resumable
           : resumable // ignore: cast_nullable_to_non_nullable
               as bool,
-      uploadUrl: uploadUrl == freezed
+      uploadUrl: null == uploadUrl
           ? _value.uploadUrl
           : uploadUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      downloadUrl: downloadUrl == freezed
+      downloadUrl: null == downloadUrl
           ? _value.downloadUrl
           : downloadUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      uploadExpiresAt: uploadExpiresAt == freezed
+      uploadExpiresAt: null == uploadExpiresAt
           ? _value.uploadExpiresAt
           : uploadExpiresAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      downloadExpiresAt: downloadExpiresAt == freezed
+      downloadExpiresAt: null == downloadExpiresAt
           ? _value.downloadExpiresAt
           : downloadExpiresAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      createdAt: createdAt == freezed
+      createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-    ));
+    ) as $Val);
   }
 }
 
@@ -148,6 +151,7 @@ abstract class _$$_BatchComplianceDataCopyWith<$Res>
           $Res Function(_$_BatchComplianceData) then) =
       __$$_BatchComplianceDataCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String id,
       JobType type,
@@ -162,61 +166,59 @@ abstract class _$$_BatchComplianceDataCopyWith<$Res>
 
 /// @nodoc
 class __$$_BatchComplianceDataCopyWithImpl<$Res>
-    extends _$BatchComplianceDataCopyWithImpl<$Res>
+    extends _$BatchComplianceDataCopyWithImpl<$Res, _$_BatchComplianceData>
     implements _$$_BatchComplianceDataCopyWith<$Res> {
   __$$_BatchComplianceDataCopyWithImpl(_$_BatchComplianceData _value,
       $Res Function(_$_BatchComplianceData) _then)
-      : super(_value, (v) => _then(v as _$_BatchComplianceData));
+      : super(_value, _then);
 
-  @override
-  _$_BatchComplianceData get _value => super._value as _$_BatchComplianceData;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? type = freezed,
-    Object? status = freezed,
-    Object? resumable = freezed,
-    Object? uploadUrl = freezed,
-    Object? downloadUrl = freezed,
-    Object? uploadExpiresAt = freezed,
-    Object? downloadExpiresAt = freezed,
-    Object? createdAt = freezed,
+    Object? id = null,
+    Object? type = null,
+    Object? status = null,
+    Object? resumable = null,
+    Object? uploadUrl = null,
+    Object? downloadUrl = null,
+    Object? uploadExpiresAt = null,
+    Object? downloadExpiresAt = null,
+    Object? createdAt = null,
   }) {
     return _then(_$_BatchComplianceData(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as JobType,
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as JobStatus,
-      resumable: resumable == freezed
+      resumable: null == resumable
           ? _value.resumable
           : resumable // ignore: cast_nullable_to_non_nullable
               as bool,
-      uploadUrl: uploadUrl == freezed
+      uploadUrl: null == uploadUrl
           ? _value.uploadUrl
           : uploadUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      downloadUrl: downloadUrl == freezed
+      downloadUrl: null == downloadUrl
           ? _value.downloadUrl
           : downloadUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      uploadExpiresAt: uploadExpiresAt == freezed
+      uploadExpiresAt: null == uploadExpiresAt
           ? _value.uploadExpiresAt
           : uploadExpiresAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      downloadExpiresAt: downloadExpiresAt == freezed
+      downloadExpiresAt: null == downloadExpiresAt
           ? _value.downloadExpiresAt
           : downloadExpiresAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      createdAt: createdAt == freezed
+      createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
@@ -296,36 +298,31 @@ class _$_BatchComplianceData implements _BatchComplianceData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_BatchComplianceData &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.type, type) &&
-            const DeepCollectionEquality().equals(other.status, status) &&
-            const DeepCollectionEquality().equals(other.resumable, resumable) &&
-            const DeepCollectionEquality().equals(other.uploadUrl, uploadUrl) &&
-            const DeepCollectionEquality()
-                .equals(other.downloadUrl, downloadUrl) &&
-            const DeepCollectionEquality()
-                .equals(other.uploadExpiresAt, uploadExpiresAt) &&
-            const DeepCollectionEquality()
-                .equals(other.downloadExpiresAt, downloadExpiresAt) &&
-            const DeepCollectionEquality().equals(other.createdAt, createdAt));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.resumable, resumable) ||
+                other.resumable == resumable) &&
+            (identical(other.uploadUrl, uploadUrl) ||
+                other.uploadUrl == uploadUrl) &&
+            (identical(other.downloadUrl, downloadUrl) ||
+                other.downloadUrl == downloadUrl) &&
+            (identical(other.uploadExpiresAt, uploadExpiresAt) ||
+                other.uploadExpiresAt == uploadExpiresAt) &&
+            (identical(other.downloadExpiresAt, downloadExpiresAt) ||
+                other.downloadExpiresAt == downloadExpiresAt) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(type),
-      const DeepCollectionEquality().hash(status),
-      const DeepCollectionEquality().hash(resumable),
-      const DeepCollectionEquality().hash(uploadUrl),
-      const DeepCollectionEquality().hash(downloadUrl),
-      const DeepCollectionEquality().hash(uploadExpiresAt),
-      const DeepCollectionEquality().hash(downloadExpiresAt),
-      const DeepCollectionEquality().hash(createdAt));
+  int get hashCode => Object.hash(runtimeType, id, type, status, resumable,
+      uploadUrl, downloadUrl, uploadExpiresAt, downloadExpiresAt, createdAt);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_BatchComplianceDataCopyWith<_$_BatchComplianceData> get copyWith =>
       __$$_BatchComplianceDataCopyWithImpl<_$_BatchComplianceData>(
           this, _$identity);

@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'tweet_data.dart';
 
@@ -264,7 +264,8 @@ mixin _$TweetData {
 /// @nodoc
 abstract class $TweetDataCopyWith<$Res> {
   factory $TweetDataCopyWith(TweetData value, $Res Function(TweetData) then) =
-      _$TweetDataCopyWithImpl<$Res>;
+      _$TweetDataCopyWithImpl<$Res, TweetData>;
+  @useResult
   $Res call(
       {String id,
       String text,
@@ -301,17 +302,20 @@ abstract class $TweetDataCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TweetDataCopyWithImpl<$Res> implements $TweetDataCopyWith<$Res> {
+class _$TweetDataCopyWithImpl<$Res, $Val extends TweetData>
+    implements $TweetDataCopyWith<$Res> {
   _$TweetDataCopyWithImpl(this._value, this._then);
 
-  final TweetData _value;
   // ignore: unused_field
-  final $Res Function(TweetData) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? text = freezed,
+    Object? id = null,
+    Object? text = null,
     Object? authorId = freezed,
     Object? inReplyToUserId = freezed,
     Object? conversationId = freezed,
@@ -334,142 +338,147 @@ class _$TweetDataCopyWithImpl<$Res> implements $TweetDataCopyWith<$Res> {
     Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      text: text == freezed
+      text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
-      authorId: authorId == freezed
+      authorId: freezed == authorId
           ? _value.authorId
           : authorId // ignore: cast_nullable_to_non_nullable
               as String?,
-      inReplyToUserId: inReplyToUserId == freezed
+      inReplyToUserId: freezed == inReplyToUserId
           ? _value.inReplyToUserId
           : inReplyToUserId // ignore: cast_nullable_to_non_nullable
               as String?,
-      conversationId: conversationId == freezed
+      conversationId: freezed == conversationId
           ? _value.conversationId
           : conversationId // ignore: cast_nullable_to_non_nullable
               as String?,
-      referencedTweets: referencedTweets == freezed
+      referencedTweets: freezed == referencedTweets
           ? _value.referencedTweets
           : referencedTweets // ignore: cast_nullable_to_non_nullable
               as List<ReferencedTweet>?,
-      contextAnnotations: contextAnnotations == freezed
+      contextAnnotations: freezed == contextAnnotations
           ? _value.contextAnnotations
           : contextAnnotations // ignore: cast_nullable_to_non_nullable
               as List<TweetContextAnnotationGroup>?,
-      entities: entities == freezed
+      entities: freezed == entities
           ? _value.entities
           : entities // ignore: cast_nullable_to_non_nullable
               as TweetEntities?,
-      attachments: attachments == freezed
+      attachments: freezed == attachments
           ? _value.attachments
           : attachments // ignore: cast_nullable_to_non_nullable
               as TweetAttachments?,
-      privateMetrics: privateMetrics == freezed
+      privateMetrics: freezed == privateMetrics
           ? _value.privateMetrics
           : privateMetrics // ignore: cast_nullable_to_non_nullable
               as PrivateTweetMetrics?,
-      organicMetrics: organicMetrics == freezed
+      organicMetrics: freezed == organicMetrics
           ? _value.organicMetrics
           : organicMetrics // ignore: cast_nullable_to_non_nullable
               as OrganicTweetMetrics?,
-      promotedMetrics: promotedMetrics == freezed
+      promotedMetrics: freezed == promotedMetrics
           ? _value.promotedMetrics
           : promotedMetrics // ignore: cast_nullable_to_non_nullable
               as PromotedTweetMetrics?,
-      publicMetrics: publicMetrics == freezed
+      publicMetrics: freezed == publicMetrics
           ? _value.publicMetrics
           : publicMetrics // ignore: cast_nullable_to_non_nullable
               as PublicTweetMetrics?,
-      geo: geo == freezed
+      geo: freezed == geo
           ? _value.geo
           : geo // ignore: cast_nullable_to_non_nullable
               as Geo?,
-      lang: lang == freezed
+      lang: freezed == lang
           ? _value.lang
           : lang // ignore: cast_nullable_to_non_nullable
               as Language?,
-      isPossiblySensitive: isPossiblySensitive == freezed
+      isPossiblySensitive: freezed == isPossiblySensitive
           ? _value.isPossiblySensitive
           : isPossiblySensitive // ignore: cast_nullable_to_non_nullable
               as bool?,
-      replySetting: replySetting == freezed
+      replySetting: freezed == replySetting
           ? _value.replySetting
           : replySetting // ignore: cast_nullable_to_non_nullable
               as ReplySetting?,
-      source: source == freezed
+      source: freezed == source
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
               as String?,
-      editControls: editControls == freezed
+      editControls: freezed == editControls
           ? _value.editControls
           : editControls // ignore: cast_nullable_to_non_nullable
               as TweetEditControls?,
-      editHistoryTweetIds: editHistoryTweetIds == freezed
+      editHistoryTweetIds: freezed == editHistoryTweetIds
           ? _value.editHistoryTweetIds
           : editHistoryTweetIds // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      withheld: withheld == freezed
+      withheld: freezed == withheld
           ? _value.withheld
           : withheld // ignore: cast_nullable_to_non_nullable
               as TweetWithheld?,
-      createdAt: createdAt == freezed
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $TweetEntitiesCopyWith<$Res>? get entities {
     if (_value.entities == null) {
       return null;
     }
 
     return $TweetEntitiesCopyWith<$Res>(_value.entities!, (value) {
-      return _then(_value.copyWith(entities: value));
+      return _then(_value.copyWith(entities: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $TweetAttachmentsCopyWith<$Res>? get attachments {
     if (_value.attachments == null) {
       return null;
     }
 
     return $TweetAttachmentsCopyWith<$Res>(_value.attachments!, (value) {
-      return _then(_value.copyWith(attachments: value));
+      return _then(_value.copyWith(attachments: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $PrivateTweetMetricsCopyWith<$Res>? get privateMetrics {
     if (_value.privateMetrics == null) {
       return null;
     }
 
     return $PrivateTweetMetricsCopyWith<$Res>(_value.privateMetrics!, (value) {
-      return _then(_value.copyWith(privateMetrics: value));
+      return _then(_value.copyWith(privateMetrics: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $OrganicTweetMetricsCopyWith<$Res>? get organicMetrics {
     if (_value.organicMetrics == null) {
       return null;
     }
 
     return $OrganicTweetMetricsCopyWith<$Res>(_value.organicMetrics!, (value) {
-      return _then(_value.copyWith(organicMetrics: value));
+      return _then(_value.copyWith(organicMetrics: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $PromotedTweetMetricsCopyWith<$Res>? get promotedMetrics {
     if (_value.promotedMetrics == null) {
       return null;
@@ -477,51 +486,55 @@ class _$TweetDataCopyWithImpl<$Res> implements $TweetDataCopyWith<$Res> {
 
     return $PromotedTweetMetricsCopyWith<$Res>(_value.promotedMetrics!,
         (value) {
-      return _then(_value.copyWith(promotedMetrics: value));
+      return _then(_value.copyWith(promotedMetrics: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $PublicTweetMetricsCopyWith<$Res>? get publicMetrics {
     if (_value.publicMetrics == null) {
       return null;
     }
 
     return $PublicTweetMetricsCopyWith<$Res>(_value.publicMetrics!, (value) {
-      return _then(_value.copyWith(publicMetrics: value));
+      return _then(_value.copyWith(publicMetrics: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $GeoCopyWith<$Res>? get geo {
     if (_value.geo == null) {
       return null;
     }
 
     return $GeoCopyWith<$Res>(_value.geo!, (value) {
-      return _then(_value.copyWith(geo: value));
+      return _then(_value.copyWith(geo: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $TweetEditControlsCopyWith<$Res>? get editControls {
     if (_value.editControls == null) {
       return null;
     }
 
     return $TweetEditControlsCopyWith<$Res>(_value.editControls!, (value) {
-      return _then(_value.copyWith(editControls: value));
+      return _then(_value.copyWith(editControls: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $TweetWithheldCopyWith<$Res>? get withheld {
     if (_value.withheld == null) {
       return null;
     }
 
     return $TweetWithheldCopyWith<$Res>(_value.withheld!, (value) {
-      return _then(_value.copyWith(withheld: value));
+      return _then(_value.copyWith(withheld: value) as $Val);
     });
   }
 }
@@ -532,6 +545,7 @@ abstract class _$$_TweetDataCopyWith<$Res> implements $TweetDataCopyWith<$Res> {
           _$_TweetData value, $Res Function(_$_TweetData) then) =
       __$$_TweetDataCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String id,
       String text,
@@ -577,19 +591,18 @@ abstract class _$$_TweetDataCopyWith<$Res> implements $TweetDataCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_TweetDataCopyWithImpl<$Res> extends _$TweetDataCopyWithImpl<$Res>
+class __$$_TweetDataCopyWithImpl<$Res>
+    extends _$TweetDataCopyWithImpl<$Res, _$_TweetData>
     implements _$$_TweetDataCopyWith<$Res> {
   __$$_TweetDataCopyWithImpl(
       _$_TweetData _value, $Res Function(_$_TweetData) _then)
-      : super(_value, (v) => _then(v as _$_TweetData));
+      : super(_value, _then);
 
-  @override
-  _$_TweetData get _value => super._value as _$_TweetData;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? text = freezed,
+    Object? id = null,
+    Object? text = null,
     Object? authorId = freezed,
     Object? inReplyToUserId = freezed,
     Object? conversationId = freezed,
@@ -612,91 +625,91 @@ class __$$_TweetDataCopyWithImpl<$Res> extends _$TweetDataCopyWithImpl<$Res>
     Object? createdAt = freezed,
   }) {
     return _then(_$_TweetData(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      text: text == freezed
+      text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
-      authorId: authorId == freezed
+      authorId: freezed == authorId
           ? _value.authorId
           : authorId // ignore: cast_nullable_to_non_nullable
               as String?,
-      inReplyToUserId: inReplyToUserId == freezed
+      inReplyToUserId: freezed == inReplyToUserId
           ? _value.inReplyToUserId
           : inReplyToUserId // ignore: cast_nullable_to_non_nullable
               as String?,
-      conversationId: conversationId == freezed
+      conversationId: freezed == conversationId
           ? _value.conversationId
           : conversationId // ignore: cast_nullable_to_non_nullable
               as String?,
-      referencedTweets: referencedTweets == freezed
+      referencedTweets: freezed == referencedTweets
           ? _value._referencedTweets
           : referencedTweets // ignore: cast_nullable_to_non_nullable
               as List<ReferencedTweet>?,
-      contextAnnotations: contextAnnotations == freezed
+      contextAnnotations: freezed == contextAnnotations
           ? _value._contextAnnotations
           : contextAnnotations // ignore: cast_nullable_to_non_nullable
               as List<TweetContextAnnotationGroup>?,
-      entities: entities == freezed
+      entities: freezed == entities
           ? _value.entities
           : entities // ignore: cast_nullable_to_non_nullable
               as TweetEntities?,
-      attachments: attachments == freezed
+      attachments: freezed == attachments
           ? _value.attachments
           : attachments // ignore: cast_nullable_to_non_nullable
               as TweetAttachments?,
-      privateMetrics: privateMetrics == freezed
+      privateMetrics: freezed == privateMetrics
           ? _value.privateMetrics
           : privateMetrics // ignore: cast_nullable_to_non_nullable
               as PrivateTweetMetrics?,
-      organicMetrics: organicMetrics == freezed
+      organicMetrics: freezed == organicMetrics
           ? _value.organicMetrics
           : organicMetrics // ignore: cast_nullable_to_non_nullable
               as OrganicTweetMetrics?,
-      promotedMetrics: promotedMetrics == freezed
+      promotedMetrics: freezed == promotedMetrics
           ? _value.promotedMetrics
           : promotedMetrics // ignore: cast_nullable_to_non_nullable
               as PromotedTweetMetrics?,
-      publicMetrics: publicMetrics == freezed
+      publicMetrics: freezed == publicMetrics
           ? _value.publicMetrics
           : publicMetrics // ignore: cast_nullable_to_non_nullable
               as PublicTweetMetrics?,
-      geo: geo == freezed
+      geo: freezed == geo
           ? _value.geo
           : geo // ignore: cast_nullable_to_non_nullable
               as Geo?,
-      lang: lang == freezed
+      lang: freezed == lang
           ? _value.lang
           : lang // ignore: cast_nullable_to_non_nullable
               as Language?,
-      isPossiblySensitive: isPossiblySensitive == freezed
+      isPossiblySensitive: freezed == isPossiblySensitive
           ? _value.isPossiblySensitive
           : isPossiblySensitive // ignore: cast_nullable_to_non_nullable
               as bool?,
-      replySetting: replySetting == freezed
+      replySetting: freezed == replySetting
           ? _value.replySetting
           : replySetting // ignore: cast_nullable_to_non_nullable
               as ReplySetting?,
-      source: source == freezed
+      source: freezed == source
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
               as String?,
-      editControls: editControls == freezed
+      editControls: freezed == editControls
           ? _value.editControls
           : editControls // ignore: cast_nullable_to_non_nullable
               as TweetEditControls?,
-      editHistoryTweetIds: editHistoryTweetIds == freezed
+      editHistoryTweetIds: freezed == editHistoryTweetIds
           ? _value._editHistoryTweetIds
           : editHistoryTweetIds // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      withheld: withheld == freezed
+      withheld: freezed == withheld
           ? _value.withheld
           : withheld // ignore: cast_nullable_to_non_nullable
               as TweetWithheld?,
-      createdAt: createdAt == freezed
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
@@ -823,6 +836,8 @@ class _$_TweetData implements _TweetData {
   List<ReferencedTweet>? get referencedTweets {
     final value = _referencedTweets;
     if (value == null) return null;
+    if (_referencedTweets is EqualUnmodifiableListView)
+      return _referencedTweets;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -849,6 +864,8 @@ class _$_TweetData implements _TweetData {
   List<TweetContextAnnotationGroup>? get contextAnnotations {
     final value = _contextAnnotations;
     if (value == null) return null;
+    if (_contextAnnotations is EqualUnmodifiableListView)
+      return _contextAnnotations;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -1015,6 +1032,8 @@ class _$_TweetData implements _TweetData {
   List<String>? get editHistoryTweetIds {
     final value = _editHistoryTweetIds;
     if (value == null) return null;
+    if (_editHistoryTweetIds is EqualUnmodifiableListView)
+      return _editHistoryTweetIds;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -1048,73 +1067,78 @@ class _$_TweetData implements _TweetData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TweetData &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.text, text) &&
-            const DeepCollectionEquality().equals(other.authorId, authorId) &&
-            const DeepCollectionEquality()
-                .equals(other.inReplyToUserId, inReplyToUserId) &&
-            const DeepCollectionEquality()
-                .equals(other.conversationId, conversationId) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.text, text) || other.text == text) &&
+            (identical(other.authorId, authorId) ||
+                other.authorId == authorId) &&
+            (identical(other.inReplyToUserId, inReplyToUserId) ||
+                other.inReplyToUserId == inReplyToUserId) &&
+            (identical(other.conversationId, conversationId) ||
+                other.conversationId == conversationId) &&
             const DeepCollectionEquality()
                 .equals(other._referencedTweets, _referencedTweets) &&
             const DeepCollectionEquality()
                 .equals(other._contextAnnotations, _contextAnnotations) &&
-            const DeepCollectionEquality().equals(other.entities, entities) &&
-            const DeepCollectionEquality()
-                .equals(other.attachments, attachments) &&
-            const DeepCollectionEquality()
-                .equals(other.privateMetrics, privateMetrics) &&
-            const DeepCollectionEquality()
-                .equals(other.organicMetrics, organicMetrics) &&
-            const DeepCollectionEquality()
-                .equals(other.promotedMetrics, promotedMetrics) &&
-            const DeepCollectionEquality()
-                .equals(other.publicMetrics, publicMetrics) &&
-            const DeepCollectionEquality().equals(other.geo, geo) &&
-            const DeepCollectionEquality().equals(other.lang, lang) &&
-            const DeepCollectionEquality()
-                .equals(other.isPossiblySensitive, isPossiblySensitive) &&
-            const DeepCollectionEquality()
-                .equals(other.replySetting, replySetting) &&
-            const DeepCollectionEquality().equals(other.source, source) &&
-            const DeepCollectionEquality()
-                .equals(other.editControls, editControls) &&
+            (identical(other.entities, entities) ||
+                other.entities == entities) &&
+            (identical(other.attachments, attachments) ||
+                other.attachments == attachments) &&
+            (identical(other.privateMetrics, privateMetrics) ||
+                other.privateMetrics == privateMetrics) &&
+            (identical(other.organicMetrics, organicMetrics) ||
+                other.organicMetrics == organicMetrics) &&
+            (identical(other.promotedMetrics, promotedMetrics) ||
+                other.promotedMetrics == promotedMetrics) &&
+            (identical(other.publicMetrics, publicMetrics) ||
+                other.publicMetrics == publicMetrics) &&
+            (identical(other.geo, geo) || other.geo == geo) &&
+            (identical(other.lang, lang) || other.lang == lang) &&
+            (identical(other.isPossiblySensitive, isPossiblySensitive) ||
+                other.isPossiblySensitive == isPossiblySensitive) &&
+            (identical(other.replySetting, replySetting) ||
+                other.replySetting == replySetting) &&
+            (identical(other.source, source) || other.source == source) &&
+            (identical(other.editControls, editControls) ||
+                other.editControls == editControls) &&
             const DeepCollectionEquality()
                 .equals(other._editHistoryTweetIds, _editHistoryTweetIds) &&
-            const DeepCollectionEquality().equals(other.withheld, withheld) &&
-            const DeepCollectionEquality().equals(other.createdAt, createdAt));
+            (identical(other.withheld, withheld) ||
+                other.withheld == withheld) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        const DeepCollectionEquality().hash(id),
-        const DeepCollectionEquality().hash(text),
-        const DeepCollectionEquality().hash(authorId),
-        const DeepCollectionEquality().hash(inReplyToUserId),
-        const DeepCollectionEquality().hash(conversationId),
+        id,
+        text,
+        authorId,
+        inReplyToUserId,
+        conversationId,
         const DeepCollectionEquality().hash(_referencedTweets),
         const DeepCollectionEquality().hash(_contextAnnotations),
-        const DeepCollectionEquality().hash(entities),
-        const DeepCollectionEquality().hash(attachments),
-        const DeepCollectionEquality().hash(privateMetrics),
-        const DeepCollectionEquality().hash(organicMetrics),
-        const DeepCollectionEquality().hash(promotedMetrics),
-        const DeepCollectionEquality().hash(publicMetrics),
-        const DeepCollectionEquality().hash(geo),
-        const DeepCollectionEquality().hash(lang),
-        const DeepCollectionEquality().hash(isPossiblySensitive),
-        const DeepCollectionEquality().hash(replySetting),
-        const DeepCollectionEquality().hash(source),
-        const DeepCollectionEquality().hash(editControls),
+        entities,
+        attachments,
+        privateMetrics,
+        organicMetrics,
+        promotedMetrics,
+        publicMetrics,
+        geo,
+        lang,
+        isPossiblySensitive,
+        replySetting,
+        source,
+        editControls,
         const DeepCollectionEquality().hash(_editHistoryTweetIds),
-        const DeepCollectionEquality().hash(withheld),
-        const DeepCollectionEquality().hash(createdAt)
+        withheld,
+        createdAt
       ]);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_TweetDataCopyWith<_$_TweetData> get copyWith =>
       __$$_TweetDataCopyWithImpl<_$_TweetData>(this, _$identity);
 

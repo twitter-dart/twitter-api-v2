@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'public_user_metrics.dart';
 
@@ -42,7 +42,8 @@ mixin _$PublicUserMetrics {
 abstract class $PublicUserMetricsCopyWith<$Res> {
   factory $PublicUserMetricsCopyWith(
           PublicUserMetrics value, $Res Function(PublicUserMetrics) then) =
-      _$PublicUserMetricsCopyWithImpl<$Res>;
+      _$PublicUserMetricsCopyWithImpl<$Res, PublicUserMetrics>;
+  @useResult
   $Res call(
       {int followersCount,
       int followingCount,
@@ -51,39 +52,41 @@ abstract class $PublicUserMetricsCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PublicUserMetricsCopyWithImpl<$Res>
+class _$PublicUserMetricsCopyWithImpl<$Res, $Val extends PublicUserMetrics>
     implements $PublicUserMetricsCopyWith<$Res> {
   _$PublicUserMetricsCopyWithImpl(this._value, this._then);
 
-  final PublicUserMetrics _value;
   // ignore: unused_field
-  final $Res Function(PublicUserMetrics) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? followersCount = freezed,
-    Object? followingCount = freezed,
-    Object? tweetCount = freezed,
-    Object? listedCount = freezed,
+    Object? followersCount = null,
+    Object? followingCount = null,
+    Object? tweetCount = null,
+    Object? listedCount = null,
   }) {
     return _then(_value.copyWith(
-      followersCount: followersCount == freezed
+      followersCount: null == followersCount
           ? _value.followersCount
           : followersCount // ignore: cast_nullable_to_non_nullable
               as int,
-      followingCount: followingCount == freezed
+      followingCount: null == followingCount
           ? _value.followingCount
           : followingCount // ignore: cast_nullable_to_non_nullable
               as int,
-      tweetCount: tweetCount == freezed
+      tweetCount: null == tweetCount
           ? _value.tweetCount
           : tweetCount // ignore: cast_nullable_to_non_nullable
               as int,
-      listedCount: listedCount == freezed
+      listedCount: null == listedCount
           ? _value.listedCount
           : listedCount // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+    ) as $Val);
   }
 }
 
@@ -94,6 +97,7 @@ abstract class _$$_PublicUserMetricsCopyWith<$Res>
           $Res Function(_$_PublicUserMetrics) then) =
       __$$_PublicUserMetricsCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {int followersCount,
       int followingCount,
@@ -103,36 +107,34 @@ abstract class _$$_PublicUserMetricsCopyWith<$Res>
 
 /// @nodoc
 class __$$_PublicUserMetricsCopyWithImpl<$Res>
-    extends _$PublicUserMetricsCopyWithImpl<$Res>
+    extends _$PublicUserMetricsCopyWithImpl<$Res, _$_PublicUserMetrics>
     implements _$$_PublicUserMetricsCopyWith<$Res> {
   __$$_PublicUserMetricsCopyWithImpl(
       _$_PublicUserMetrics _value, $Res Function(_$_PublicUserMetrics) _then)
-      : super(_value, (v) => _then(v as _$_PublicUserMetrics));
+      : super(_value, _then);
 
-  @override
-  _$_PublicUserMetrics get _value => super._value as _$_PublicUserMetrics;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? followersCount = freezed,
-    Object? followingCount = freezed,
-    Object? tweetCount = freezed,
-    Object? listedCount = freezed,
+    Object? followersCount = null,
+    Object? followingCount = null,
+    Object? tweetCount = null,
+    Object? listedCount = null,
   }) {
     return _then(_$_PublicUserMetrics(
-      followersCount: followersCount == freezed
+      followersCount: null == followersCount
           ? _value.followersCount
           : followersCount // ignore: cast_nullable_to_non_nullable
               as int,
-      followingCount: followingCount == freezed
+      followingCount: null == followingCount
           ? _value.followingCount
           : followingCount // ignore: cast_nullable_to_non_nullable
               as int,
-      tweetCount: tweetCount == freezed
+      tweetCount: null == tweetCount
           ? _value.tweetCount
           : tweetCount // ignore: cast_nullable_to_non_nullable
               as int,
-      listedCount: listedCount == freezed
+      listedCount: null == listedCount
           ? _value.listedCount
           : listedCount // ignore: cast_nullable_to_non_nullable
               as int,
@@ -178,27 +180,24 @@ class _$_PublicUserMetrics implements _PublicUserMetrics {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PublicUserMetrics &&
-            const DeepCollectionEquality()
-                .equals(other.followersCount, followersCount) &&
-            const DeepCollectionEquality()
-                .equals(other.followingCount, followingCount) &&
-            const DeepCollectionEquality()
-                .equals(other.tweetCount, tweetCount) &&
-            const DeepCollectionEquality()
-                .equals(other.listedCount, listedCount));
+            (identical(other.followersCount, followersCount) ||
+                other.followersCount == followersCount) &&
+            (identical(other.followingCount, followingCount) ||
+                other.followingCount == followingCount) &&
+            (identical(other.tweetCount, tweetCount) ||
+                other.tweetCount == tweetCount) &&
+            (identical(other.listedCount, listedCount) ||
+                other.listedCount == listedCount));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(followersCount),
-      const DeepCollectionEquality().hash(followingCount),
-      const DeepCollectionEquality().hash(tweetCount),
-      const DeepCollectionEquality().hash(listedCount));
+      runtimeType, followersCount, followingCount, tweetCount, listedCount);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_PublicUserMetricsCopyWith<_$_PublicUserMetrics> get copyWith =>
       __$$_PublicUserMetricsCopyWithImpl<_$_PublicUserMetrics>(
           this, _$identity);

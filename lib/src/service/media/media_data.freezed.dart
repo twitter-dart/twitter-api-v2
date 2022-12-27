@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'media_data.dart';
 
@@ -117,7 +117,8 @@ mixin _$MediaData {
 /// @nodoc
 abstract class $MediaDataCopyWith<$Res> {
   factory $MediaDataCopyWith(MediaData value, $Res Function(MediaData) then) =
-      _$MediaDataCopyWithImpl<$Res>;
+      _$MediaDataCopyWithImpl<$Res, MediaData>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'media_key') String key,
       MediaType type,
@@ -140,17 +141,20 @@ abstract class $MediaDataCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$MediaDataCopyWithImpl<$Res> implements $MediaDataCopyWith<$Res> {
+class _$MediaDataCopyWithImpl<$Res, $Val extends MediaData>
+    implements $MediaDataCopyWith<$Res> {
   _$MediaDataCopyWithImpl(this._value, this._then);
 
-  final MediaData _value;
   // ignore: unused_field
-  final $Res Function(MediaData) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? key = freezed,
-    Object? type = freezed,
+    Object? key = null,
+    Object? type = null,
     Object? url = freezed,
     Object? altText = freezed,
     Object? durationMilliseconds = freezed,
@@ -164,84 +168,87 @@ class _$MediaDataCopyWithImpl<$Res> implements $MediaDataCopyWith<$Res> {
     Object? variants = freezed,
   }) {
     return _then(_value.copyWith(
-      key: key == freezed
+      key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
               as String,
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as MediaType,
-      url: url == freezed
+      url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String?,
-      altText: altText == freezed
+      altText: freezed == altText
           ? _value.altText
           : altText // ignore: cast_nullable_to_non_nullable
               as String?,
-      durationMilliseconds: durationMilliseconds == freezed
+      durationMilliseconds: freezed == durationMilliseconds
           ? _value.durationMilliseconds
           : durationMilliseconds // ignore: cast_nullable_to_non_nullable
               as int?,
-      height: height == freezed
+      height: freezed == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
               as int?,
-      width: width == freezed
+      width: freezed == width
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
               as int?,
-      privateMetrics: privateMetrics == freezed
+      privateMetrics: freezed == privateMetrics
           ? _value.privateMetrics
           : privateMetrics // ignore: cast_nullable_to_non_nullable
               as PrivateMediaMetrics?,
-      organicMetrics: organicMetrics == freezed
+      organicMetrics: freezed == organicMetrics
           ? _value.organicMetrics
           : organicMetrics // ignore: cast_nullable_to_non_nullable
               as OrganicMediaMetrics?,
-      previewImageUrl: previewImageUrl == freezed
+      previewImageUrl: freezed == previewImageUrl
           ? _value.previewImageUrl
           : previewImageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      promotedMetrics: promotedMetrics == freezed
+      promotedMetrics: freezed == promotedMetrics
           ? _value.promotedMetrics
           : promotedMetrics // ignore: cast_nullable_to_non_nullable
               as PromotedMediaMetrics?,
-      publicMetrics: publicMetrics == freezed
+      publicMetrics: freezed == publicMetrics
           ? _value.publicMetrics
           : publicMetrics // ignore: cast_nullable_to_non_nullable
               as PublicMediaMetrics?,
-      variants: variants == freezed
+      variants: freezed == variants
           ? _value.variants
           : variants // ignore: cast_nullable_to_non_nullable
               as List<Variant>?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $PrivateMediaMetricsCopyWith<$Res>? get privateMetrics {
     if (_value.privateMetrics == null) {
       return null;
     }
 
     return $PrivateMediaMetricsCopyWith<$Res>(_value.privateMetrics!, (value) {
-      return _then(_value.copyWith(privateMetrics: value));
+      return _then(_value.copyWith(privateMetrics: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $OrganicMediaMetricsCopyWith<$Res>? get organicMetrics {
     if (_value.organicMetrics == null) {
       return null;
     }
 
     return $OrganicMediaMetricsCopyWith<$Res>(_value.organicMetrics!, (value) {
-      return _then(_value.copyWith(organicMetrics: value));
+      return _then(_value.copyWith(organicMetrics: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $PromotedMediaMetricsCopyWith<$Res>? get promotedMetrics {
     if (_value.promotedMetrics == null) {
       return null;
@@ -249,18 +256,19 @@ class _$MediaDataCopyWithImpl<$Res> implements $MediaDataCopyWith<$Res> {
 
     return $PromotedMediaMetricsCopyWith<$Res>(_value.promotedMetrics!,
         (value) {
-      return _then(_value.copyWith(promotedMetrics: value));
+      return _then(_value.copyWith(promotedMetrics: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $PublicMediaMetricsCopyWith<$Res>? get publicMetrics {
     if (_value.publicMetrics == null) {
       return null;
     }
 
     return $PublicMediaMetricsCopyWith<$Res>(_value.publicMetrics!, (value) {
-      return _then(_value.copyWith(publicMetrics: value));
+      return _then(_value.copyWith(publicMetrics: value) as $Val);
     });
   }
 }
@@ -271,6 +279,7 @@ abstract class _$$_MediaDataCopyWith<$Res> implements $MediaDataCopyWith<$Res> {
           _$_MediaData value, $Res Function(_$_MediaData) then) =
       __$$_MediaDataCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'media_key') String key,
       MediaType type,
@@ -297,19 +306,18 @@ abstract class _$$_MediaDataCopyWith<$Res> implements $MediaDataCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_MediaDataCopyWithImpl<$Res> extends _$MediaDataCopyWithImpl<$Res>
+class __$$_MediaDataCopyWithImpl<$Res>
+    extends _$MediaDataCopyWithImpl<$Res, _$_MediaData>
     implements _$$_MediaDataCopyWith<$Res> {
   __$$_MediaDataCopyWithImpl(
       _$_MediaData _value, $Res Function(_$_MediaData) _then)
-      : super(_value, (v) => _then(v as _$_MediaData));
+      : super(_value, _then);
 
-  @override
-  _$_MediaData get _value => super._value as _$_MediaData;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? key = freezed,
-    Object? type = freezed,
+    Object? key = null,
+    Object? type = null,
     Object? url = freezed,
     Object? altText = freezed,
     Object? durationMilliseconds = freezed,
@@ -323,55 +331,55 @@ class __$$_MediaDataCopyWithImpl<$Res> extends _$MediaDataCopyWithImpl<$Res>
     Object? variants = freezed,
   }) {
     return _then(_$_MediaData(
-      key: key == freezed
+      key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
               as String,
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as MediaType,
-      url: url == freezed
+      url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String?,
-      altText: altText == freezed
+      altText: freezed == altText
           ? _value.altText
           : altText // ignore: cast_nullable_to_non_nullable
               as String?,
-      durationMilliseconds: durationMilliseconds == freezed
+      durationMilliseconds: freezed == durationMilliseconds
           ? _value.durationMilliseconds
           : durationMilliseconds // ignore: cast_nullable_to_non_nullable
               as int?,
-      height: height == freezed
+      height: freezed == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
               as int?,
-      width: width == freezed
+      width: freezed == width
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
               as int?,
-      privateMetrics: privateMetrics == freezed
+      privateMetrics: freezed == privateMetrics
           ? _value.privateMetrics
           : privateMetrics // ignore: cast_nullable_to_non_nullable
               as PrivateMediaMetrics?,
-      organicMetrics: organicMetrics == freezed
+      organicMetrics: freezed == organicMetrics
           ? _value.organicMetrics
           : organicMetrics // ignore: cast_nullable_to_non_nullable
               as OrganicMediaMetrics?,
-      previewImageUrl: previewImageUrl == freezed
+      previewImageUrl: freezed == previewImageUrl
           ? _value.previewImageUrl
           : previewImageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      promotedMetrics: promotedMetrics == freezed
+      promotedMetrics: freezed == promotedMetrics
           ? _value.promotedMetrics
           : promotedMetrics // ignore: cast_nullable_to_non_nullable
               as PromotedMediaMetrics?,
-      publicMetrics: publicMetrics == freezed
+      publicMetrics: freezed == publicMetrics
           ? _value.publicMetrics
           : publicMetrics // ignore: cast_nullable_to_non_nullable
               as PublicMediaMetrics?,
-      variants: variants == freezed
+      variants: freezed == variants
           ? _value._variants
           : variants // ignore: cast_nullable_to_non_nullable
               as List<Variant>?,
@@ -511,6 +519,7 @@ class _$_MediaData implements _MediaData {
   List<Variant>? get variants {
     final value = _variants;
     if (value == null) return null;
+    if (_variants is EqualUnmodifiableListView) return _variants;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -525,24 +534,24 @@ class _$_MediaData implements _MediaData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MediaData &&
-            const DeepCollectionEquality().equals(other.key, key) &&
-            const DeepCollectionEquality().equals(other.type, type) &&
-            const DeepCollectionEquality().equals(other.url, url) &&
-            const DeepCollectionEquality().equals(other.altText, altText) &&
-            const DeepCollectionEquality()
-                .equals(other.durationMilliseconds, durationMilliseconds) &&
-            const DeepCollectionEquality().equals(other.height, height) &&
-            const DeepCollectionEquality().equals(other.width, width) &&
-            const DeepCollectionEquality()
-                .equals(other.privateMetrics, privateMetrics) &&
-            const DeepCollectionEquality()
-                .equals(other.organicMetrics, organicMetrics) &&
-            const DeepCollectionEquality()
-                .equals(other.previewImageUrl, previewImageUrl) &&
-            const DeepCollectionEquality()
-                .equals(other.promotedMetrics, promotedMetrics) &&
-            const DeepCollectionEquality()
-                .equals(other.publicMetrics, publicMetrics) &&
+            (identical(other.key, key) || other.key == key) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.altText, altText) || other.altText == altText) &&
+            (identical(other.durationMilliseconds, durationMilliseconds) ||
+                other.durationMilliseconds == durationMilliseconds) &&
+            (identical(other.height, height) || other.height == height) &&
+            (identical(other.width, width) || other.width == width) &&
+            (identical(other.privateMetrics, privateMetrics) ||
+                other.privateMetrics == privateMetrics) &&
+            (identical(other.organicMetrics, organicMetrics) ||
+                other.organicMetrics == organicMetrics) &&
+            (identical(other.previewImageUrl, previewImageUrl) ||
+                other.previewImageUrl == previewImageUrl) &&
+            (identical(other.promotedMetrics, promotedMetrics) ||
+                other.promotedMetrics == promotedMetrics) &&
+            (identical(other.publicMetrics, publicMetrics) ||
+                other.publicMetrics == publicMetrics) &&
             const DeepCollectionEquality().equals(other._variants, _variants));
   }
 
@@ -550,22 +559,23 @@ class _$_MediaData implements _MediaData {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(key),
-      const DeepCollectionEquality().hash(type),
-      const DeepCollectionEquality().hash(url),
-      const DeepCollectionEquality().hash(altText),
-      const DeepCollectionEquality().hash(durationMilliseconds),
-      const DeepCollectionEquality().hash(height),
-      const DeepCollectionEquality().hash(width),
-      const DeepCollectionEquality().hash(privateMetrics),
-      const DeepCollectionEquality().hash(organicMetrics),
-      const DeepCollectionEquality().hash(previewImageUrl),
-      const DeepCollectionEquality().hash(promotedMetrics),
-      const DeepCollectionEquality().hash(publicMetrics),
+      key,
+      type,
+      url,
+      altText,
+      durationMilliseconds,
+      height,
+      width,
+      privateMetrics,
+      organicMetrics,
+      previewImageUrl,
+      promotedMetrics,
+      publicMetrics,
       const DeepCollectionEquality().hash(_variants));
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_MediaDataCopyWith<_$_MediaData> get copyWith =>
       __$$_MediaDataCopyWithImpl<_$_MediaData>(this, _$identity);
 

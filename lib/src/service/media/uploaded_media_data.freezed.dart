@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'uploaded_media_data.dart';
 
@@ -42,7 +42,8 @@ mixin _$UploadedMediaData {
 abstract class $UploadedMediaDataCopyWith<$Res> {
   factory $UploadedMediaDataCopyWith(
           UploadedMediaData value, $Res Function(UploadedMediaData) then) =
-      _$UploadedMediaDataCopyWithImpl<$Res>;
+      _$UploadedMediaDataCopyWithImpl<$Res, UploadedMediaData>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'media_id_string') String id,
       DateTime expiresAt,
@@ -52,44 +53,47 @@ abstract class $UploadedMediaDataCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UploadedMediaDataCopyWithImpl<$Res>
+class _$UploadedMediaDataCopyWithImpl<$Res, $Val extends UploadedMediaData>
     implements $UploadedMediaDataCopyWith<$Res> {
   _$UploadedMediaDataCopyWithImpl(this._value, this._then);
 
-  final UploadedMediaData _value;
   // ignore: unused_field
-  final $Res Function(UploadedMediaData) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? expiresAt = freezed,
+    Object? id = null,
+    Object? expiresAt = null,
     Object? locale = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      expiresAt: expiresAt == freezed
+      expiresAt: null == expiresAt
           ? _value.expiresAt
           : expiresAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      locale: locale == freezed
+      locale: freezed == locale
           ? _value.locale
           : locale // ignore: cast_nullable_to_non_nullable
               as Locale?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $LocaleCopyWith<$Res>? get locale {
     if (_value.locale == null) {
       return null;
     }
 
     return $LocaleCopyWith<$Res>(_value.locale!, (value) {
-      return _then(_value.copyWith(locale: value));
+      return _then(_value.copyWith(locale: value) as $Val);
     });
   }
 }
@@ -101,6 +105,7 @@ abstract class _$$_UploadedMediaDataCopyWith<$Res>
           $Res Function(_$_UploadedMediaData) then) =
       __$$_UploadedMediaDataCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'media_id_string') String id,
       DateTime expiresAt,
@@ -112,31 +117,29 @@ abstract class _$$_UploadedMediaDataCopyWith<$Res>
 
 /// @nodoc
 class __$$_UploadedMediaDataCopyWithImpl<$Res>
-    extends _$UploadedMediaDataCopyWithImpl<$Res>
+    extends _$UploadedMediaDataCopyWithImpl<$Res, _$_UploadedMediaData>
     implements _$$_UploadedMediaDataCopyWith<$Res> {
   __$$_UploadedMediaDataCopyWithImpl(
       _$_UploadedMediaData _value, $Res Function(_$_UploadedMediaData) _then)
-      : super(_value, (v) => _then(v as _$_UploadedMediaData));
+      : super(_value, _then);
 
-  @override
-  _$_UploadedMediaData get _value => super._value as _$_UploadedMediaData;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? expiresAt = freezed,
+    Object? id = null,
+    Object? expiresAt = null,
     Object? locale = freezed,
   }) {
     return _then(_$_UploadedMediaData(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      expiresAt: expiresAt == freezed
+      expiresAt: null == expiresAt
           ? _value.expiresAt
           : expiresAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      locale: locale == freezed
+      locale: freezed == locale
           ? _value.locale
           : locale // ignore: cast_nullable_to_non_nullable
               as Locale?,
@@ -181,21 +184,19 @@ class _$_UploadedMediaData implements _UploadedMediaData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UploadedMediaData &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.expiresAt, expiresAt) &&
-            const DeepCollectionEquality().equals(other.locale, locale));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.expiresAt, expiresAt) ||
+                other.expiresAt == expiresAt) &&
+            (identical(other.locale, locale) || other.locale == locale));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(expiresAt),
-      const DeepCollectionEquality().hash(locale));
+  int get hashCode => Object.hash(runtimeType, id, expiresAt, locale);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_UploadedMediaDataCopyWith<_$_UploadedMediaData> get copyWith =>
       __$$_UploadedMediaDataCopyWithImpl<_$_UploadedMediaData>(
           this, _$identity);

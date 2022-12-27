@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'tweet_edit_controls.dart';
 
@@ -46,7 +46,8 @@ mixin _$TweetEditControls {
 abstract class $TweetEditControlsCopyWith<$Res> {
   factory $TweetEditControlsCopyWith(
           TweetEditControls value, $Res Function(TweetEditControls) then) =
-      _$TweetEditControlsCopyWithImpl<$Res>;
+      _$TweetEditControlsCopyWithImpl<$Res, TweetEditControls>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'is_edit_eligible') bool isEditable,
       @JsonKey(name: 'edits_remaining') int remainingCount,
@@ -54,34 +55,36 @@ abstract class $TweetEditControlsCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TweetEditControlsCopyWithImpl<$Res>
+class _$TweetEditControlsCopyWithImpl<$Res, $Val extends TweetEditControls>
     implements $TweetEditControlsCopyWith<$Res> {
   _$TweetEditControlsCopyWithImpl(this._value, this._then);
 
-  final TweetEditControls _value;
   // ignore: unused_field
-  final $Res Function(TweetEditControls) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isEditable = freezed,
-    Object? remainingCount = freezed,
-    Object? expireAt = freezed,
+    Object? isEditable = null,
+    Object? remainingCount = null,
+    Object? expireAt = null,
   }) {
     return _then(_value.copyWith(
-      isEditable: isEditable == freezed
+      isEditable: null == isEditable
           ? _value.isEditable
           : isEditable // ignore: cast_nullable_to_non_nullable
               as bool,
-      remainingCount: remainingCount == freezed
+      remainingCount: null == remainingCount
           ? _value.remainingCount
           : remainingCount // ignore: cast_nullable_to_non_nullable
               as int,
-      expireAt: expireAt == freezed
+      expireAt: null == expireAt
           ? _value.expireAt
           : expireAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-    ));
+    ) as $Val);
   }
 }
 
@@ -92,6 +95,7 @@ abstract class _$$_TweetEditControlsCopyWith<$Res>
           $Res Function(_$_TweetEditControls) then) =
       __$$_TweetEditControlsCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'is_edit_eligible') bool isEditable,
       @JsonKey(name: 'edits_remaining') int remainingCount,
@@ -100,31 +104,29 @@ abstract class _$$_TweetEditControlsCopyWith<$Res>
 
 /// @nodoc
 class __$$_TweetEditControlsCopyWithImpl<$Res>
-    extends _$TweetEditControlsCopyWithImpl<$Res>
+    extends _$TweetEditControlsCopyWithImpl<$Res, _$_TweetEditControls>
     implements _$$_TweetEditControlsCopyWith<$Res> {
   __$$_TweetEditControlsCopyWithImpl(
       _$_TweetEditControls _value, $Res Function(_$_TweetEditControls) _then)
-      : super(_value, (v) => _then(v as _$_TweetEditControls));
+      : super(_value, _then);
 
-  @override
-  _$_TweetEditControls get _value => super._value as _$_TweetEditControls;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isEditable = freezed,
-    Object? remainingCount = freezed,
-    Object? expireAt = freezed,
+    Object? isEditable = null,
+    Object? remainingCount = null,
+    Object? expireAt = null,
   }) {
     return _then(_$_TweetEditControls(
-      isEditable: isEditable == freezed
+      isEditable: null == isEditable
           ? _value.isEditable
           : isEditable // ignore: cast_nullable_to_non_nullable
               as bool,
-      remainingCount: remainingCount == freezed
+      remainingCount: null == remainingCount
           ? _value.remainingCount
           : remainingCount // ignore: cast_nullable_to_non_nullable
               as int,
-      expireAt: expireAt == freezed
+      expireAt: null == expireAt
           ? _value.expireAt
           : expireAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
@@ -172,23 +174,22 @@ class _$_TweetEditControls implements _TweetEditControls {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TweetEditControls &&
-            const DeepCollectionEquality()
-                .equals(other.isEditable, isEditable) &&
-            const DeepCollectionEquality()
-                .equals(other.remainingCount, remainingCount) &&
-            const DeepCollectionEquality().equals(other.expireAt, expireAt));
+            (identical(other.isEditable, isEditable) ||
+                other.isEditable == isEditable) &&
+            (identical(other.remainingCount, remainingCount) ||
+                other.remainingCount == remainingCount) &&
+            (identical(other.expireAt, expireAt) ||
+                other.expireAt == expireAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(isEditable),
-      const DeepCollectionEquality().hash(remainingCount),
-      const DeepCollectionEquality().hash(expireAt));
+  int get hashCode =>
+      Object.hash(runtimeType, isEditable, remainingCount, expireAt);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_TweetEditControlsCopyWith<_$_TweetEditControls> get copyWith =>
       __$$_TweetEditControlsCopyWithImpl<_$_TweetEditControls>(
           this, _$identity);

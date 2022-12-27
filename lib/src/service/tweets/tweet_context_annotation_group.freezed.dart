@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'tweet_context_annotation_group.dart';
 
@@ -40,7 +40,9 @@ abstract class $TweetContextAnnotationGroupCopyWith<$Res> {
   factory $TweetContextAnnotationGroupCopyWith(
           TweetContextAnnotationGroup value,
           $Res Function(TweetContextAnnotationGroup) then) =
-      _$TweetContextAnnotationGroupCopyWithImpl<$Res>;
+      _$TweetContextAnnotationGroupCopyWithImpl<$Res,
+          TweetContextAnnotationGroup>;
+  @useResult
   $Res call({TweetContextAnnotation domain, TweetContextAnnotation entity});
 
   $TweetContextAnnotationCopyWith<$Res> get domain;
@@ -48,42 +50,47 @@ abstract class $TweetContextAnnotationGroupCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TweetContextAnnotationGroupCopyWithImpl<$Res>
+class _$TweetContextAnnotationGroupCopyWithImpl<$Res,
+        $Val extends TweetContextAnnotationGroup>
     implements $TweetContextAnnotationGroupCopyWith<$Res> {
   _$TweetContextAnnotationGroupCopyWithImpl(this._value, this._then);
 
-  final TweetContextAnnotationGroup _value;
   // ignore: unused_field
-  final $Res Function(TweetContextAnnotationGroup) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? domain = freezed,
-    Object? entity = freezed,
+    Object? domain = null,
+    Object? entity = null,
   }) {
     return _then(_value.copyWith(
-      domain: domain == freezed
+      domain: null == domain
           ? _value.domain
           : domain // ignore: cast_nullable_to_non_nullable
               as TweetContextAnnotation,
-      entity: entity == freezed
+      entity: null == entity
           ? _value.entity
           : entity // ignore: cast_nullable_to_non_nullable
               as TweetContextAnnotation,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $TweetContextAnnotationCopyWith<$Res> get domain {
     return $TweetContextAnnotationCopyWith<$Res>(_value.domain, (value) {
-      return _then(_value.copyWith(domain: value));
+      return _then(_value.copyWith(domain: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $TweetContextAnnotationCopyWith<$Res> get entity {
     return $TweetContextAnnotationCopyWith<$Res>(_value.entity, (value) {
-      return _then(_value.copyWith(entity: value));
+      return _then(_value.copyWith(entity: value) as $Val);
     });
   }
 }
@@ -96,6 +103,7 @@ abstract class _$$_TweetContextAnnotationGroupCopyWith<$Res>
           $Res Function(_$_TweetContextAnnotationGroup) then) =
       __$$_TweetContextAnnotationGroupCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({TweetContextAnnotation domain, TweetContextAnnotation entity});
 
   @override
@@ -106,28 +114,26 @@ abstract class _$$_TweetContextAnnotationGroupCopyWith<$Res>
 
 /// @nodoc
 class __$$_TweetContextAnnotationGroupCopyWithImpl<$Res>
-    extends _$TweetContextAnnotationGroupCopyWithImpl<$Res>
+    extends _$TweetContextAnnotationGroupCopyWithImpl<$Res,
+        _$_TweetContextAnnotationGroup>
     implements _$$_TweetContextAnnotationGroupCopyWith<$Res> {
   __$$_TweetContextAnnotationGroupCopyWithImpl(
       _$_TweetContextAnnotationGroup _value,
       $Res Function(_$_TweetContextAnnotationGroup) _then)
-      : super(_value, (v) => _then(v as _$_TweetContextAnnotationGroup));
+      : super(_value, _then);
 
-  @override
-  _$_TweetContextAnnotationGroup get _value =>
-      super._value as _$_TweetContextAnnotationGroup;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? domain = freezed,
-    Object? entity = freezed,
+    Object? domain = null,
+    Object? entity = null,
   }) {
     return _then(_$_TweetContextAnnotationGroup(
-      domain: domain == freezed
+      domain: null == domain
           ? _value.domain
           : domain // ignore: cast_nullable_to_non_nullable
               as TweetContextAnnotation,
-      entity: entity == freezed
+      entity: null == entity
           ? _value.entity
           : entity // ignore: cast_nullable_to_non_nullable
               as TweetContextAnnotation,
@@ -164,19 +170,17 @@ class _$_TweetContextAnnotationGroup implements _TweetContextAnnotationGroup {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TweetContextAnnotationGroup &&
-            const DeepCollectionEquality().equals(other.domain, domain) &&
-            const DeepCollectionEquality().equals(other.entity, entity));
+            (identical(other.domain, domain) || other.domain == domain) &&
+            (identical(other.entity, entity) || other.entity == entity));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(domain),
-      const DeepCollectionEquality().hash(entity));
+  int get hashCode => Object.hash(runtimeType, domain, entity);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_TweetContextAnnotationGroupCopyWith<_$_TweetContextAnnotationGroup>
       get copyWith => __$$_TweetContextAnnotationGroupCopyWithImpl<
           _$_TweetContextAnnotationGroup>(this, _$identity);

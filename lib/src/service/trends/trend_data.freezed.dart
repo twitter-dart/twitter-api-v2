@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'trend_data.dart';
 
@@ -34,28 +34,32 @@ mixin _$TrendData {
 /// @nodoc
 abstract class $TrendDataCopyWith<$Res> {
   factory $TrendDataCopyWith(TrendData value, $Res Function(TrendData) then) =
-      _$TrendDataCopyWithImpl<$Res>;
+      _$TrendDataCopyWithImpl<$Res, TrendData>;
+  @useResult
   $Res call({String name});
 }
 
 /// @nodoc
-class _$TrendDataCopyWithImpl<$Res> implements $TrendDataCopyWith<$Res> {
+class _$TrendDataCopyWithImpl<$Res, $Val extends TrendData>
+    implements $TrendDataCopyWith<$Res> {
   _$TrendDataCopyWithImpl(this._value, this._then);
 
-  final TrendData _value;
   // ignore: unused_field
-  final $Res Function(TrendData) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
+    Object? name = null,
   }) {
     return _then(_value.copyWith(
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -65,25 +69,25 @@ abstract class _$$_TrendDataCopyWith<$Res> implements $TrendDataCopyWith<$Res> {
           _$_TrendData value, $Res Function(_$_TrendData) then) =
       __$$_TrendDataCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String name});
 }
 
 /// @nodoc
-class __$$_TrendDataCopyWithImpl<$Res> extends _$TrendDataCopyWithImpl<$Res>
+class __$$_TrendDataCopyWithImpl<$Res>
+    extends _$TrendDataCopyWithImpl<$Res, _$_TrendData>
     implements _$$_TrendDataCopyWith<$Res> {
   __$$_TrendDataCopyWithImpl(
       _$_TrendData _value, $Res Function(_$_TrendData) _then)
-      : super(_value, (v) => _then(v as _$_TrendData));
+      : super(_value, _then);
 
-  @override
-  _$_TrendData get _value => super._value as _$_TrendData;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
+    Object? name = null,
   }) {
     return _then(_$_TrendData(
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
@@ -116,16 +120,16 @@ class _$_TrendData implements _TrendData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TrendData &&
-            const DeepCollectionEquality().equals(other.name, name));
+            (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(name));
+  int get hashCode => Object.hash(runtimeType, name);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_TrendDataCopyWith<_$_TrendData> get copyWith =>
       __$$_TrendDataCopyWithImpl<_$_TrendData>(this, _$identity);
 

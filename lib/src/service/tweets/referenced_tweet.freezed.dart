@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'referenced_tweet.dart';
 
@@ -40,34 +40,37 @@ mixin _$ReferencedTweet {
 abstract class $ReferencedTweetCopyWith<$Res> {
   factory $ReferencedTweetCopyWith(
           ReferencedTweet value, $Res Function(ReferencedTweet) then) =
-      _$ReferencedTweetCopyWithImpl<$Res>;
+      _$ReferencedTweetCopyWithImpl<$Res, ReferencedTweet>;
+  @useResult
   $Res call({String id, TweetType type});
 }
 
 /// @nodoc
-class _$ReferencedTweetCopyWithImpl<$Res>
+class _$ReferencedTweetCopyWithImpl<$Res, $Val extends ReferencedTweet>
     implements $ReferencedTweetCopyWith<$Res> {
   _$ReferencedTweetCopyWithImpl(this._value, this._then);
 
-  final ReferencedTweet _value;
   // ignore: unused_field
-  final $Res Function(ReferencedTweet) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? type = freezed,
+    Object? id = null,
+    Object? type = null,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as TweetType,
-    ));
+    ) as $Val);
   }
 }
 
@@ -78,31 +81,30 @@ abstract class _$$_ReferencedTweetCopyWith<$Res>
           _$_ReferencedTweet value, $Res Function(_$_ReferencedTweet) then) =
       __$$_ReferencedTweetCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String id, TweetType type});
 }
 
 /// @nodoc
 class __$$_ReferencedTweetCopyWithImpl<$Res>
-    extends _$ReferencedTweetCopyWithImpl<$Res>
+    extends _$ReferencedTweetCopyWithImpl<$Res, _$_ReferencedTweet>
     implements _$$_ReferencedTweetCopyWith<$Res> {
   __$$_ReferencedTweetCopyWithImpl(
       _$_ReferencedTweet _value, $Res Function(_$_ReferencedTweet) _then)
-      : super(_value, (v) => _then(v as _$_ReferencedTweet));
+      : super(_value, _then);
 
-  @override
-  _$_ReferencedTweet get _value => super._value as _$_ReferencedTweet;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? type = freezed,
+    Object? id = null,
+    Object? type = null,
   }) {
     return _then(_$_ReferencedTweet(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as TweetType,
@@ -140,19 +142,17 @@ class _$_ReferencedTweet implements _ReferencedTweet {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ReferencedTweet &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.type, type));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.type, type) || other.type == type));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(type));
+  int get hashCode => Object.hash(runtimeType, id, type);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ReferencedTweetCopyWith<_$_ReferencedTweet> get copyWith =>
       __$$_ReferencedTweetCopyWithImpl<_$_ReferencedTweet>(this, _$identity);
 

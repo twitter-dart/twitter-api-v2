@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'tweet_attachments.dart';
 
@@ -46,34 +46,37 @@ mixin _$TweetAttachments {
 abstract class $TweetAttachmentsCopyWith<$Res> {
   factory $TweetAttachmentsCopyWith(
           TweetAttachments value, $Res Function(TweetAttachments) then) =
-      _$TweetAttachmentsCopyWithImpl<$Res>;
+      _$TweetAttachmentsCopyWithImpl<$Res, TweetAttachments>;
+  @useResult
   $Res call({List<String>? mediaKeys, List<String>? pollIds});
 }
 
 /// @nodoc
-class _$TweetAttachmentsCopyWithImpl<$Res>
+class _$TweetAttachmentsCopyWithImpl<$Res, $Val extends TweetAttachments>
     implements $TweetAttachmentsCopyWith<$Res> {
   _$TweetAttachmentsCopyWithImpl(this._value, this._then);
 
-  final TweetAttachments _value;
   // ignore: unused_field
-  final $Res Function(TweetAttachments) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? mediaKeys = freezed,
     Object? pollIds = freezed,
   }) {
     return _then(_value.copyWith(
-      mediaKeys: mediaKeys == freezed
+      mediaKeys: freezed == mediaKeys
           ? _value.mediaKeys
           : mediaKeys // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      pollIds: pollIds == freezed
+      pollIds: freezed == pollIds
           ? _value.pollIds
           : pollIds // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -84,31 +87,30 @@ abstract class _$$_TweetAttachmentsCopyWith<$Res>
           _$_TweetAttachments value, $Res Function(_$_TweetAttachments) then) =
       __$$_TweetAttachmentsCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({List<String>? mediaKeys, List<String>? pollIds});
 }
 
 /// @nodoc
 class __$$_TweetAttachmentsCopyWithImpl<$Res>
-    extends _$TweetAttachmentsCopyWithImpl<$Res>
+    extends _$TweetAttachmentsCopyWithImpl<$Res, _$_TweetAttachments>
     implements _$$_TweetAttachmentsCopyWith<$Res> {
   __$$_TweetAttachmentsCopyWithImpl(
       _$_TweetAttachments _value, $Res Function(_$_TweetAttachments) _then)
-      : super(_value, (v) => _then(v as _$_TweetAttachments));
+      : super(_value, _then);
 
-  @override
-  _$_TweetAttachments get _value => super._value as _$_TweetAttachments;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? mediaKeys = freezed,
     Object? pollIds = freezed,
   }) {
     return _then(_$_TweetAttachments(
-      mediaKeys: mediaKeys == freezed
+      mediaKeys: freezed == mediaKeys
           ? _value._mediaKeys
           : mediaKeys // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      pollIds: pollIds == freezed
+      pollIds: freezed == pollIds
           ? _value._pollIds
           : pollIds // ignore: cast_nullable_to_non_nullable
               as List<String>?,
@@ -146,6 +148,7 @@ class _$_TweetAttachments implements _TweetAttachments {
   List<String>? get mediaKeys {
     final value = _mediaKeys;
     if (value == null) return null;
+    if (_mediaKeys is EqualUnmodifiableListView) return _mediaKeys;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -168,6 +171,7 @@ class _$_TweetAttachments implements _TweetAttachments {
   List<String>? get pollIds {
     final value = _pollIds;
     if (value == null) return null;
+    if (_pollIds is EqualUnmodifiableListView) return _pollIds;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -196,6 +200,7 @@ class _$_TweetAttachments implements _TweetAttachments {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_TweetAttachmentsCopyWith<_$_TweetAttachments> get copyWith =>
       __$$_TweetAttachmentsCopyWithImpl<_$_TweetAttachments>(this, _$identity);
 
