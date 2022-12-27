@@ -121,7 +121,7 @@ This library provides the easiest way to use [Twitter API v2.0](https://develope
 
 We also provide [twitter_oauth2_pkce](https://pub.dev/packages/twitter_oauth2_pkce) for easy [OAuth 2.0 PKCE authentication](https://developer.twitter.com/en/docs/authentication/oauth-2-0/authorization-code) when using the Twitter API!
 
-Also, this library is also posted on the [Official Twitter page](https://developer.twitter.com/en/docs/twitter-api/tools-and-libraries/v2#dart) 🐦
+Also, this library is listed in the [Official Twitter page](https://developer.twitter.com/en/docs/twitter-api/tools-and-libraries/v2#dart) 🐦
 
 ## 1.1. Features 💎
 
