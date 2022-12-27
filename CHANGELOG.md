@@ -1,5 +1,9 @@
 # Release Note
 
+## v4.7.1
+
+- Upgraded dependencies.
+
 ## v4.7.0
 
 - Reintegrated core packages. ([#598](https://github.com/twitter-dart/twitter-api-v2/issues/598))
