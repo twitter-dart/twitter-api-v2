@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'list_meta.dart';
 
@@ -49,18 +49,22 @@ mixin _$ListMeta {
 /// @nodoc
 abstract class $ListMetaCopyWith<$Res> {
   factory $ListMetaCopyWith(ListMeta value, $Res Function(ListMeta) then) =
-      _$ListMetaCopyWithImpl<$Res>;
+      _$ListMetaCopyWithImpl<$Res, ListMeta>;
+  @useResult
   $Res call({int? resultCount, String? nextToken, String? previousToken});
 }
 
 /// @nodoc
-class _$ListMetaCopyWithImpl<$Res> implements $ListMetaCopyWith<$Res> {
+class _$ListMetaCopyWithImpl<$Res, $Val extends ListMeta>
+    implements $ListMetaCopyWith<$Res> {
   _$ListMetaCopyWithImpl(this._value, this._then);
 
-  final ListMeta _value;
   // ignore: unused_field
-  final $Res Function(ListMeta) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? resultCount = freezed,
@@ -68,19 +72,19 @@ class _$ListMetaCopyWithImpl<$Res> implements $ListMetaCopyWith<$Res> {
     Object? previousToken = freezed,
   }) {
     return _then(_value.copyWith(
-      resultCount: resultCount == freezed
+      resultCount: freezed == resultCount
           ? _value.resultCount
           : resultCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      nextToken: nextToken == freezed
+      nextToken: freezed == nextToken
           ? _value.nextToken
           : nextToken // ignore: cast_nullable_to_non_nullable
               as String?,
-      previousToken: previousToken == freezed
+      previousToken: freezed == previousToken
           ? _value.previousToken
           : previousToken // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -90,19 +94,19 @@ abstract class _$$_ListMetaCopyWith<$Res> implements $ListMetaCopyWith<$Res> {
           _$_ListMeta value, $Res Function(_$_ListMeta) then) =
       __$$_ListMetaCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({int? resultCount, String? nextToken, String? previousToken});
 }
 
 /// @nodoc
-class __$$_ListMetaCopyWithImpl<$Res> extends _$ListMetaCopyWithImpl<$Res>
+class __$$_ListMetaCopyWithImpl<$Res>
+    extends _$ListMetaCopyWithImpl<$Res, _$_ListMeta>
     implements _$$_ListMetaCopyWith<$Res> {
   __$$_ListMetaCopyWithImpl(
       _$_ListMeta _value, $Res Function(_$_ListMeta) _then)
-      : super(_value, (v) => _then(v as _$_ListMeta));
+      : super(_value, _then);
 
-  @override
-  _$_ListMeta get _value => super._value as _$_ListMeta;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? resultCount = freezed,
@@ -110,15 +114,15 @@ class __$$_ListMetaCopyWithImpl<$Res> extends _$ListMetaCopyWithImpl<$Res>
     Object? previousToken = freezed,
   }) {
     return _then(_$_ListMeta(
-      resultCount: resultCount == freezed
+      resultCount: freezed == resultCount
           ? _value.resultCount
           : resultCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      nextToken: nextToken == freezed
+      nextToken: freezed == nextToken
           ? _value.nextToken
           : nextToken // ignore: cast_nullable_to_non_nullable
               as String?,
-      previousToken: previousToken == freezed
+      previousToken: freezed == previousToken
           ? _value.previousToken
           : previousToken // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -168,23 +172,22 @@ class _$_ListMeta implements _ListMeta {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ListMeta &&
-            const DeepCollectionEquality()
-                .equals(other.resultCount, resultCount) &&
-            const DeepCollectionEquality().equals(other.nextToken, nextToken) &&
-            const DeepCollectionEquality()
-                .equals(other.previousToken, previousToken));
+            (identical(other.resultCount, resultCount) ||
+                other.resultCount == resultCount) &&
+            (identical(other.nextToken, nextToken) ||
+                other.nextToken == nextToken) &&
+            (identical(other.previousToken, previousToken) ||
+                other.previousToken == previousToken));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(resultCount),
-      const DeepCollectionEquality().hash(nextToken),
-      const DeepCollectionEquality().hash(previousToken));
+  int get hashCode =>
+      Object.hash(runtimeType, resultCount, nextToken, previousToken);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ListMetaCopyWith<_$_ListMeta> get copyWith =>
       __$$_ListMetaCopyWithImpl<_$_ListMeta>(this, _$identity);
 

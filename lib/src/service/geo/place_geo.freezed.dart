@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'place_geo.dart';
 
@@ -38,38 +38,42 @@ mixin _$PlaceGeo {
 /// @nodoc
 abstract class $PlaceGeoCopyWith<$Res> {
   factory $PlaceGeoCopyWith(PlaceGeo value, $Res Function(PlaceGeo) then) =
-      _$PlaceGeoCopyWithImpl<$Res>;
+      _$PlaceGeoCopyWithImpl<$Res, PlaceGeo>;
+  @useResult
   $Res call({String type, List<double> bbox, Map<String, dynamic> properties});
 }
 
 /// @nodoc
-class _$PlaceGeoCopyWithImpl<$Res> implements $PlaceGeoCopyWith<$Res> {
+class _$PlaceGeoCopyWithImpl<$Res, $Val extends PlaceGeo>
+    implements $PlaceGeoCopyWith<$Res> {
   _$PlaceGeoCopyWithImpl(this._value, this._then);
 
-  final PlaceGeo _value;
   // ignore: unused_field
-  final $Res Function(PlaceGeo) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = freezed,
-    Object? bbox = freezed,
-    Object? properties = freezed,
+    Object? type = null,
+    Object? bbox = null,
+    Object? properties = null,
   }) {
     return _then(_value.copyWith(
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-      bbox: bbox == freezed
+      bbox: null == bbox
           ? _value.bbox
           : bbox // ignore: cast_nullable_to_non_nullable
               as List<double>,
-      properties: properties == freezed
+      properties: null == properties
           ? _value.properties
           : properties // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
-    ));
+    ) as $Val);
   }
 }
 
@@ -79,35 +83,35 @@ abstract class _$$_PlaceGeoCopyWith<$Res> implements $PlaceGeoCopyWith<$Res> {
           _$_PlaceGeo value, $Res Function(_$_PlaceGeo) then) =
       __$$_PlaceGeoCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String type, List<double> bbox, Map<String, dynamic> properties});
 }
 
 /// @nodoc
-class __$$_PlaceGeoCopyWithImpl<$Res> extends _$PlaceGeoCopyWithImpl<$Res>
+class __$$_PlaceGeoCopyWithImpl<$Res>
+    extends _$PlaceGeoCopyWithImpl<$Res, _$_PlaceGeo>
     implements _$$_PlaceGeoCopyWith<$Res> {
   __$$_PlaceGeoCopyWithImpl(
       _$_PlaceGeo _value, $Res Function(_$_PlaceGeo) _then)
-      : super(_value, (v) => _then(v as _$_PlaceGeo));
+      : super(_value, _then);
 
-  @override
-  _$_PlaceGeo get _value => super._value as _$_PlaceGeo;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = freezed,
-    Object? bbox = freezed,
-    Object? properties = freezed,
+    Object? type = null,
+    Object? bbox = null,
+    Object? properties = null,
   }) {
     return _then(_$_PlaceGeo(
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-      bbox: bbox == freezed
+      bbox: null == bbox
           ? _value._bbox
           : bbox // ignore: cast_nullable_to_non_nullable
               as List<double>,
-      properties: properties == freezed
+      properties: null == properties
           ? _value._properties
           : properties // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
@@ -138,6 +142,7 @@ class _$_PlaceGeo implements _PlaceGeo {
   /// The bounding box.
   @override
   List<double> get bbox {
+    if (_bbox is EqualUnmodifiableListView) return _bbox;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_bbox);
   }
@@ -148,6 +153,7 @@ class _$_PlaceGeo implements _PlaceGeo {
   /// The place properties.
   @override
   Map<String, dynamic> get properties {
+    if (_properties is EqualUnmodifiableMapView) return _properties;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(_properties);
   }
@@ -162,7 +168,7 @@ class _$_PlaceGeo implements _PlaceGeo {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PlaceGeo &&
-            const DeepCollectionEquality().equals(other.type, type) &&
+            (identical(other.type, type) || other.type == type) &&
             const DeepCollectionEquality().equals(other._bbox, _bbox) &&
             const DeepCollectionEquality()
                 .equals(other._properties, _properties));
@@ -172,12 +178,13 @@ class _$_PlaceGeo implements _PlaceGeo {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(type),
+      type,
       const DeepCollectionEquality().hash(_bbox),
       const DeepCollectionEquality().hash(_properties));
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_PlaceGeoCopyWith<_$_PlaceGeo> get copyWith =>
       __$$_PlaceGeoCopyWithImpl<_$_PlaceGeo>(this, _$identity);
 

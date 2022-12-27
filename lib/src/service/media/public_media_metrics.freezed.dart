@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'public_media_metrics.dart';
 
@@ -39,29 +39,32 @@ mixin _$PublicMediaMetrics {
 abstract class $PublicMediaMetricsCopyWith<$Res> {
   factory $PublicMediaMetricsCopyWith(
           PublicMediaMetrics value, $Res Function(PublicMediaMetrics) then) =
-      _$PublicMediaMetricsCopyWithImpl<$Res>;
+      _$PublicMediaMetricsCopyWithImpl<$Res, PublicMediaMetrics>;
+  @useResult
   $Res call({int viewCount});
 }
 
 /// @nodoc
-class _$PublicMediaMetricsCopyWithImpl<$Res>
+class _$PublicMediaMetricsCopyWithImpl<$Res, $Val extends PublicMediaMetrics>
     implements $PublicMediaMetricsCopyWith<$Res> {
   _$PublicMediaMetricsCopyWithImpl(this._value, this._then);
 
-  final PublicMediaMetrics _value;
   // ignore: unused_field
-  final $Res Function(PublicMediaMetrics) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? viewCount = freezed,
+    Object? viewCount = null,
   }) {
     return _then(_value.copyWith(
-      viewCount: viewCount == freezed
+      viewCount: null == viewCount
           ? _value.viewCount
           : viewCount // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+    ) as $Val);
   }
 }
 
@@ -72,26 +75,25 @@ abstract class _$$_PublicMediaMetricsCopyWith<$Res>
           $Res Function(_$_PublicMediaMetrics) then) =
       __$$_PublicMediaMetricsCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({int viewCount});
 }
 
 /// @nodoc
 class __$$_PublicMediaMetricsCopyWithImpl<$Res>
-    extends _$PublicMediaMetricsCopyWithImpl<$Res>
+    extends _$PublicMediaMetricsCopyWithImpl<$Res, _$_PublicMediaMetrics>
     implements _$$_PublicMediaMetricsCopyWith<$Res> {
   __$$_PublicMediaMetricsCopyWithImpl(
       _$_PublicMediaMetrics _value, $Res Function(_$_PublicMediaMetrics) _then)
-      : super(_value, (v) => _then(v as _$_PublicMediaMetrics));
+      : super(_value, _then);
 
-  @override
-  _$_PublicMediaMetrics get _value => super._value as _$_PublicMediaMetrics;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? viewCount = freezed,
+    Object? viewCount = null,
   }) {
     return _then(_$_PublicMediaMetrics(
-      viewCount: viewCount == freezed
+      viewCount: null == viewCount
           ? _value.viewCount
           : viewCount // ignore: cast_nullable_to_non_nullable
               as int,
@@ -127,16 +129,17 @@ class _$_PublicMediaMetrics implements _PublicMediaMetrics {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PublicMediaMetrics &&
-            const DeepCollectionEquality().equals(other.viewCount, viewCount));
+            (identical(other.viewCount, viewCount) ||
+                other.viewCount == viewCount));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(viewCount));
+  int get hashCode => Object.hash(runtimeType, viewCount);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_PublicMediaMetricsCopyWith<_$_PublicMediaMetrics> get copyWith =>
       __$$_PublicMediaMetricsCopyWithImpl<_$_PublicMediaMetrics>(
           this, _$identity);

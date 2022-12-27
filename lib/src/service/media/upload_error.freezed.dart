@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'upload_error.dart';
 
@@ -39,38 +39,42 @@ mixin _$UploadError {
 abstract class $UploadErrorCopyWith<$Res> {
   factory $UploadErrorCopyWith(
           UploadError value, $Res Function(UploadError) then) =
-      _$UploadErrorCopyWithImpl<$Res>;
+      _$UploadErrorCopyWithImpl<$Res, UploadError>;
+  @useResult
   $Res call({int code, String name, String message});
 }
 
 /// @nodoc
-class _$UploadErrorCopyWithImpl<$Res> implements $UploadErrorCopyWith<$Res> {
+class _$UploadErrorCopyWithImpl<$Res, $Val extends UploadError>
+    implements $UploadErrorCopyWith<$Res> {
   _$UploadErrorCopyWithImpl(this._value, this._then);
 
-  final UploadError _value;
   // ignore: unused_field
-  final $Res Function(UploadError) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? code = freezed,
-    Object? name = freezed,
-    Object? message = freezed,
+    Object? code = null,
+    Object? name = null,
+    Object? message = null,
   }) {
     return _then(_value.copyWith(
-      code: code == freezed
+      code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as int,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      message: message == freezed
+      message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -81,35 +85,35 @@ abstract class _$$_UploadErrorCopyWith<$Res>
           _$_UploadError value, $Res Function(_$_UploadError) then) =
       __$$_UploadErrorCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({int code, String name, String message});
 }
 
 /// @nodoc
-class __$$_UploadErrorCopyWithImpl<$Res> extends _$UploadErrorCopyWithImpl<$Res>
+class __$$_UploadErrorCopyWithImpl<$Res>
+    extends _$UploadErrorCopyWithImpl<$Res, _$_UploadError>
     implements _$$_UploadErrorCopyWith<$Res> {
   __$$_UploadErrorCopyWithImpl(
       _$_UploadError _value, $Res Function(_$_UploadError) _then)
-      : super(_value, (v) => _then(v as _$_UploadError));
+      : super(_value, _then);
 
-  @override
-  _$_UploadError get _value => super._value as _$_UploadError;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? code = freezed,
-    Object? name = freezed,
-    Object? message = freezed,
+    Object? code = null,
+    Object? name = null,
+    Object? message = null,
   }) {
     return _then(_$_UploadError(
-      code: code == freezed
+      code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as int,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      message: message == freezed
+      message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
@@ -148,21 +152,18 @@ class _$_UploadError implements _UploadError {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UploadError &&
-            const DeepCollectionEquality().equals(other.code, code) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.message, message));
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(code),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(message));
+  int get hashCode => Object.hash(runtimeType, code, name, message);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_UploadErrorCopyWith<_$_UploadError> get copyWith =>
       __$$_UploadErrorCopyWithImpl<_$_UploadError>(this, _$identity);
 

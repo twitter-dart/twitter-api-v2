@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'public_tweet_metrics.dart';
 
@@ -43,44 +43,47 @@ mixin _$PublicTweetMetrics {
 abstract class $PublicTweetMetricsCopyWith<$Res> {
   factory $PublicTweetMetricsCopyWith(
           PublicTweetMetrics value, $Res Function(PublicTweetMetrics) then) =
-      _$PublicTweetMetricsCopyWithImpl<$Res>;
+      _$PublicTweetMetricsCopyWithImpl<$Res, PublicTweetMetrics>;
+  @useResult
   $Res call({int likeCount, int retweetCount, int replyCount, int quoteCount});
 }
 
 /// @nodoc
-class _$PublicTweetMetricsCopyWithImpl<$Res>
+class _$PublicTweetMetricsCopyWithImpl<$Res, $Val extends PublicTweetMetrics>
     implements $PublicTweetMetricsCopyWith<$Res> {
   _$PublicTweetMetricsCopyWithImpl(this._value, this._then);
 
-  final PublicTweetMetrics _value;
   // ignore: unused_field
-  final $Res Function(PublicTweetMetrics) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? likeCount = freezed,
-    Object? retweetCount = freezed,
-    Object? replyCount = freezed,
-    Object? quoteCount = freezed,
+    Object? likeCount = null,
+    Object? retweetCount = null,
+    Object? replyCount = null,
+    Object? quoteCount = null,
   }) {
     return _then(_value.copyWith(
-      likeCount: likeCount == freezed
+      likeCount: null == likeCount
           ? _value.likeCount
           : likeCount // ignore: cast_nullable_to_non_nullable
               as int,
-      retweetCount: retweetCount == freezed
+      retweetCount: null == retweetCount
           ? _value.retweetCount
           : retweetCount // ignore: cast_nullable_to_non_nullable
               as int,
-      replyCount: replyCount == freezed
+      replyCount: null == replyCount
           ? _value.replyCount
           : replyCount // ignore: cast_nullable_to_non_nullable
               as int,
-      quoteCount: quoteCount == freezed
+      quoteCount: null == quoteCount
           ? _value.quoteCount
           : quoteCount // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+    ) as $Val);
   }
 }
 
@@ -91,41 +94,40 @@ abstract class _$$_PublicTweetMetricsCopyWith<$Res>
           $Res Function(_$_PublicTweetMetrics) then) =
       __$$_PublicTweetMetricsCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({int likeCount, int retweetCount, int replyCount, int quoteCount});
 }
 
 /// @nodoc
 class __$$_PublicTweetMetricsCopyWithImpl<$Res>
-    extends _$PublicTweetMetricsCopyWithImpl<$Res>
+    extends _$PublicTweetMetricsCopyWithImpl<$Res, _$_PublicTweetMetrics>
     implements _$$_PublicTweetMetricsCopyWith<$Res> {
   __$$_PublicTweetMetricsCopyWithImpl(
       _$_PublicTweetMetrics _value, $Res Function(_$_PublicTweetMetrics) _then)
-      : super(_value, (v) => _then(v as _$_PublicTweetMetrics));
+      : super(_value, _then);
 
-  @override
-  _$_PublicTweetMetrics get _value => super._value as _$_PublicTweetMetrics;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? likeCount = freezed,
-    Object? retweetCount = freezed,
-    Object? replyCount = freezed,
-    Object? quoteCount = freezed,
+    Object? likeCount = null,
+    Object? retweetCount = null,
+    Object? replyCount = null,
+    Object? quoteCount = null,
   }) {
     return _then(_$_PublicTweetMetrics(
-      likeCount: likeCount == freezed
+      likeCount: null == likeCount
           ? _value.likeCount
           : likeCount // ignore: cast_nullable_to_non_nullable
               as int,
-      retweetCount: retweetCount == freezed
+      retweetCount: null == retweetCount
           ? _value.retweetCount
           : retweetCount // ignore: cast_nullable_to_non_nullable
               as int,
-      replyCount: replyCount == freezed
+      replyCount: null == replyCount
           ? _value.replyCount
           : replyCount // ignore: cast_nullable_to_non_nullable
               as int,
-      quoteCount: quoteCount == freezed
+      quoteCount: null == quoteCount
           ? _value.quoteCount
           : quoteCount // ignore: cast_nullable_to_non_nullable
               as int,
@@ -172,26 +174,24 @@ class _$_PublicTweetMetrics implements _PublicTweetMetrics {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PublicTweetMetrics &&
-            const DeepCollectionEquality().equals(other.likeCount, likeCount) &&
-            const DeepCollectionEquality()
-                .equals(other.retweetCount, retweetCount) &&
-            const DeepCollectionEquality()
-                .equals(other.replyCount, replyCount) &&
-            const DeepCollectionEquality()
-                .equals(other.quoteCount, quoteCount));
+            (identical(other.likeCount, likeCount) ||
+                other.likeCount == likeCount) &&
+            (identical(other.retweetCount, retweetCount) ||
+                other.retweetCount == retweetCount) &&
+            (identical(other.replyCount, replyCount) ||
+                other.replyCount == replyCount) &&
+            (identical(other.quoteCount, quoteCount) ||
+                other.quoteCount == quoteCount));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(likeCount),
-      const DeepCollectionEquality().hash(retweetCount),
-      const DeepCollectionEquality().hash(replyCount),
-      const DeepCollectionEquality().hash(quoteCount));
+  int get hashCode =>
+      Object.hash(runtimeType, likeCount, retweetCount, replyCount, quoteCount);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_PublicTweetMetricsCopyWith<_$_PublicTweetMetrics> get copyWith =>
       __$$_PublicTweetMetricsCopyWithImpl<_$_PublicTweetMetrics>(
           this, _$identity);

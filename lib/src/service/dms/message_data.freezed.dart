@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'message_data.dart';
 
@@ -38,35 +38,39 @@ mixin _$MessageData {
 abstract class $MessageDataCopyWith<$Res> {
   factory $MessageDataCopyWith(
           MessageData value, $Res Function(MessageData) then) =
-      _$MessageDataCopyWithImpl<$Res>;
+      _$MessageDataCopyWithImpl<$Res, MessageData>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'dm_event_id') String eventId,
       @JsonKey(name: 'dm_conversation_id') String conversationId});
 }
 
 /// @nodoc
-class _$MessageDataCopyWithImpl<$Res> implements $MessageDataCopyWith<$Res> {
+class _$MessageDataCopyWithImpl<$Res, $Val extends MessageData>
+    implements $MessageDataCopyWith<$Res> {
   _$MessageDataCopyWithImpl(this._value, this._then);
 
-  final MessageData _value;
   // ignore: unused_field
-  final $Res Function(MessageData) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? eventId = freezed,
-    Object? conversationId = freezed,
+    Object? eventId = null,
+    Object? conversationId = null,
   }) {
     return _then(_value.copyWith(
-      eventId: eventId == freezed
+      eventId: null == eventId
           ? _value.eventId
           : eventId // ignore: cast_nullable_to_non_nullable
               as String,
-      conversationId: conversationId == freezed
+      conversationId: null == conversationId
           ? _value.conversationId
           : conversationId // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -77,32 +81,32 @@ abstract class _$$_MessageDataCopyWith<$Res>
           _$_MessageData value, $Res Function(_$_MessageData) then) =
       __$$_MessageDataCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'dm_event_id') String eventId,
       @JsonKey(name: 'dm_conversation_id') String conversationId});
 }
 
 /// @nodoc
-class __$$_MessageDataCopyWithImpl<$Res> extends _$MessageDataCopyWithImpl<$Res>
+class __$$_MessageDataCopyWithImpl<$Res>
+    extends _$MessageDataCopyWithImpl<$Res, _$_MessageData>
     implements _$$_MessageDataCopyWith<$Res> {
   __$$_MessageDataCopyWithImpl(
       _$_MessageData _value, $Res Function(_$_MessageData) _then)
-      : super(_value, (v) => _then(v as _$_MessageData));
+      : super(_value, _then);
 
-  @override
-  _$_MessageData get _value => super._value as _$_MessageData;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? eventId = freezed,
-    Object? conversationId = freezed,
+    Object? eventId = null,
+    Object? conversationId = null,
   }) {
     return _then(_$_MessageData(
-      eventId: eventId == freezed
+      eventId: null == eventId
           ? _value.eventId
           : eventId // ignore: cast_nullable_to_non_nullable
               as String,
-      conversationId: conversationId == freezed
+      conversationId: null == conversationId
           ? _value.conversationId
           : conversationId // ignore: cast_nullable_to_non_nullable
               as String,
@@ -140,20 +144,18 @@ class _$_MessageData implements _MessageData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MessageData &&
-            const DeepCollectionEquality().equals(other.eventId, eventId) &&
-            const DeepCollectionEquality()
-                .equals(other.conversationId, conversationId));
+            (identical(other.eventId, eventId) || other.eventId == eventId) &&
+            (identical(other.conversationId, conversationId) ||
+                other.conversationId == conversationId));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(eventId),
-      const DeepCollectionEquality().hash(conversationId));
+  int get hashCode => Object.hash(runtimeType, eventId, conversationId);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_MessageDataCopyWith<_$_MessageData> get copyWith =>
       __$$_MessageDataCopyWithImpl<_$_MessageData>(this, _$identity);
 

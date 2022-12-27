@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'list_data.dart';
 
@@ -69,7 +69,8 @@ mixin _$ListData {
 /// @nodoc
 abstract class $ListDataCopyWith<$Res> {
   factory $ListDataCopyWith(ListData value, $Res Function(ListData) then) =
-      _$ListDataCopyWithImpl<$Res>;
+      _$ListDataCopyWithImpl<$Res, ListData>;
+  @useResult
   $Res call(
       {String id,
       String name,
@@ -82,17 +83,20 @@ abstract class $ListDataCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ListDataCopyWithImpl<$Res> implements $ListDataCopyWith<$Res> {
+class _$ListDataCopyWithImpl<$Res, $Val extends ListData>
+    implements $ListDataCopyWith<$Res> {
   _$ListDataCopyWithImpl(this._value, this._then);
 
-  final ListData _value;
   // ignore: unused_field
-  final $Res Function(ListData) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
+    Object? id = null,
+    Object? name = null,
     Object? description = freezed,
     Object? ownerId = freezed,
     Object? followerCount = freezed,
@@ -101,39 +105,39 @@ class _$ListDataCopyWithImpl<$Res> implements $ListDataCopyWith<$Res> {
     Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      description: description == freezed
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      ownerId: ownerId == freezed
+      ownerId: freezed == ownerId
           ? _value.ownerId
           : ownerId // ignore: cast_nullable_to_non_nullable
               as String?,
-      followerCount: followerCount == freezed
+      followerCount: freezed == followerCount
           ? _value.followerCount
           : followerCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      memberCount: memberCount == freezed
+      memberCount: freezed == memberCount
           ? _value.memberCount
           : memberCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      isPrivate: isPrivate == freezed
+      isPrivate: freezed == isPrivate
           ? _value.isPrivate
           : isPrivate // ignore: cast_nullable_to_non_nullable
               as bool?,
-      createdAt: createdAt == freezed
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -143,6 +147,7 @@ abstract class _$$_ListDataCopyWith<$Res> implements $ListDataCopyWith<$Res> {
           _$_ListData value, $Res Function(_$_ListData) then) =
       __$$_ListDataCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String id,
       String name,
@@ -155,19 +160,18 @@ abstract class _$$_ListDataCopyWith<$Res> implements $ListDataCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_ListDataCopyWithImpl<$Res> extends _$ListDataCopyWithImpl<$Res>
+class __$$_ListDataCopyWithImpl<$Res>
+    extends _$ListDataCopyWithImpl<$Res, _$_ListData>
     implements _$$_ListDataCopyWith<$Res> {
   __$$_ListDataCopyWithImpl(
       _$_ListData _value, $Res Function(_$_ListData) _then)
-      : super(_value, (v) => _then(v as _$_ListData));
+      : super(_value, _then);
 
-  @override
-  _$_ListData get _value => super._value as _$_ListData;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
+    Object? id = null,
+    Object? name = null,
     Object? description = freezed,
     Object? ownerId = freezed,
     Object? followerCount = freezed,
@@ -176,35 +180,35 @@ class __$$_ListDataCopyWithImpl<$Res> extends _$ListDataCopyWithImpl<$Res>
     Object? createdAt = freezed,
   }) {
     return _then(_$_ListData(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      description: description == freezed
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      ownerId: ownerId == freezed
+      ownerId: freezed == ownerId
           ? _value.ownerId
           : ownerId // ignore: cast_nullable_to_non_nullable
               as String?,
-      followerCount: followerCount == freezed
+      followerCount: freezed == followerCount
           ? _value.followerCount
           : followerCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      memberCount: memberCount == freezed
+      memberCount: freezed == memberCount
           ? _value.memberCount
           : memberCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      isPrivate: isPrivate == freezed
+      isPrivate: freezed == isPrivate
           ? _value.isPrivate
           : isPrivate // ignore: cast_nullable_to_non_nullable
               as bool?,
-      createdAt: createdAt == freezed
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
@@ -287,34 +291,29 @@ class _$_ListData implements _ListData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ListData &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality()
-                .equals(other.description, description) &&
-            const DeepCollectionEquality().equals(other.ownerId, ownerId) &&
-            const DeepCollectionEquality()
-                .equals(other.followerCount, followerCount) &&
-            const DeepCollectionEquality()
-                .equals(other.memberCount, memberCount) &&
-            const DeepCollectionEquality().equals(other.isPrivate, isPrivate) &&
-            const DeepCollectionEquality().equals(other.createdAt, createdAt));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.ownerId, ownerId) || other.ownerId == ownerId) &&
+            (identical(other.followerCount, followerCount) ||
+                other.followerCount == followerCount) &&
+            (identical(other.memberCount, memberCount) ||
+                other.memberCount == memberCount) &&
+            (identical(other.isPrivate, isPrivate) ||
+                other.isPrivate == isPrivate) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(ownerId),
-      const DeepCollectionEquality().hash(followerCount),
-      const DeepCollectionEquality().hash(memberCount),
-      const DeepCollectionEquality().hash(isPrivate),
-      const DeepCollectionEquality().hash(createdAt));
+  int get hashCode => Object.hash(runtimeType, id, name, description, ownerId,
+      followerCount, memberCount, isPrivate, createdAt);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ListDataCopyWith<_$_ListData> get copyWith =>
       __$$_ListDataCopyWithImpl<_$_ListData>(this, _$identity);
 

@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'tweet_meta.dart';
 
@@ -46,7 +46,8 @@ mixin _$TweetMeta {
 /// @nodoc
 abstract class $TweetMetaCopyWith<$Res> {
   factory $TweetMetaCopyWith(TweetMeta value, $Res Function(TweetMeta) then) =
-      _$TweetMetaCopyWithImpl<$Res>;
+      _$TweetMetaCopyWithImpl<$Res, TweetMeta>;
+  @useResult
   $Res call(
       {String? newestId,
       String? oldestId,
@@ -56,13 +57,16 @@ abstract class $TweetMetaCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TweetMetaCopyWithImpl<$Res> implements $TweetMetaCopyWith<$Res> {
+class _$TweetMetaCopyWithImpl<$Res, $Val extends TweetMeta>
+    implements $TweetMetaCopyWith<$Res> {
   _$TweetMetaCopyWithImpl(this._value, this._then);
 
-  final TweetMeta _value;
   // ignore: unused_field
-  final $Res Function(TweetMeta) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? newestId = freezed,
@@ -72,27 +76,27 @@ class _$TweetMetaCopyWithImpl<$Res> implements $TweetMetaCopyWith<$Res> {
     Object? previousToken = freezed,
   }) {
     return _then(_value.copyWith(
-      newestId: newestId == freezed
+      newestId: freezed == newestId
           ? _value.newestId
           : newestId // ignore: cast_nullable_to_non_nullable
               as String?,
-      oldestId: oldestId == freezed
+      oldestId: freezed == oldestId
           ? _value.oldestId
           : oldestId // ignore: cast_nullable_to_non_nullable
               as String?,
-      resultCount: resultCount == freezed
+      resultCount: freezed == resultCount
           ? _value.resultCount
           : resultCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      nextToken: nextToken == freezed
+      nextToken: freezed == nextToken
           ? _value.nextToken
           : nextToken // ignore: cast_nullable_to_non_nullable
               as String?,
-      previousToken: previousToken == freezed
+      previousToken: freezed == previousToken
           ? _value.previousToken
           : previousToken // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -102,6 +106,7 @@ abstract class _$$_TweetMetaCopyWith<$Res> implements $TweetMetaCopyWith<$Res> {
           _$_TweetMeta value, $Res Function(_$_TweetMeta) then) =
       __$$_TweetMetaCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String? newestId,
       String? oldestId,
@@ -111,15 +116,14 @@ abstract class _$$_TweetMetaCopyWith<$Res> implements $TweetMetaCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_TweetMetaCopyWithImpl<$Res> extends _$TweetMetaCopyWithImpl<$Res>
+class __$$_TweetMetaCopyWithImpl<$Res>
+    extends _$TweetMetaCopyWithImpl<$Res, _$_TweetMeta>
     implements _$$_TweetMetaCopyWith<$Res> {
   __$$_TweetMetaCopyWithImpl(
       _$_TweetMeta _value, $Res Function(_$_TweetMeta) _then)
-      : super(_value, (v) => _then(v as _$_TweetMeta));
+      : super(_value, _then);
 
-  @override
-  _$_TweetMeta get _value => super._value as _$_TweetMeta;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? newestId = freezed,
@@ -129,23 +133,23 @@ class __$$_TweetMetaCopyWithImpl<$Res> extends _$TweetMetaCopyWithImpl<$Res>
     Object? previousToken = freezed,
   }) {
     return _then(_$_TweetMeta(
-      newestId: newestId == freezed
+      newestId: freezed == newestId
           ? _value.newestId
           : newestId // ignore: cast_nullable_to_non_nullable
               as String?,
-      oldestId: oldestId == freezed
+      oldestId: freezed == oldestId
           ? _value.oldestId
           : oldestId // ignore: cast_nullable_to_non_nullable
               as String?,
-      resultCount: resultCount == freezed
+      resultCount: freezed == resultCount
           ? _value.resultCount
           : resultCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      nextToken: nextToken == freezed
+      nextToken: freezed == nextToken
           ? _value.nextToken
           : nextToken // ignore: cast_nullable_to_non_nullable
               as String?,
-      previousToken: previousToken == freezed
+      previousToken: freezed == previousToken
           ? _value.previousToken
           : previousToken // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -199,27 +203,26 @@ class _$_TweetMeta implements _TweetMeta {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TweetMeta &&
-            const DeepCollectionEquality().equals(other.newestId, newestId) &&
-            const DeepCollectionEquality().equals(other.oldestId, oldestId) &&
-            const DeepCollectionEquality()
-                .equals(other.resultCount, resultCount) &&
-            const DeepCollectionEquality().equals(other.nextToken, nextToken) &&
-            const DeepCollectionEquality()
-                .equals(other.previousToken, previousToken));
+            (identical(other.newestId, newestId) ||
+                other.newestId == newestId) &&
+            (identical(other.oldestId, oldestId) ||
+                other.oldestId == oldestId) &&
+            (identical(other.resultCount, resultCount) ||
+                other.resultCount == resultCount) &&
+            (identical(other.nextToken, nextToken) ||
+                other.nextToken == nextToken) &&
+            (identical(other.previousToken, previousToken) ||
+                other.previousToken == previousToken));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(newestId),
-      const DeepCollectionEquality().hash(oldestId),
-      const DeepCollectionEquality().hash(resultCount),
-      const DeepCollectionEquality().hash(nextToken),
-      const DeepCollectionEquality().hash(previousToken));
+      runtimeType, newestId, oldestId, resultCount, nextToken, previousToken);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_TweetMetaCopyWith<_$_TweetMeta> get copyWith =>
       __$$_TweetMetaCopyWithImpl<_$_TweetMeta>(this, _$identity);
 

@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'trending_location_data.dart';
 
@@ -49,7 +49,8 @@ mixin _$TrendingLocationData {
 abstract class $TrendingLocationDataCopyWith<$Res> {
   factory $TrendingLocationDataCopyWith(TrendingLocationData value,
           $Res Function(TrendingLocationData) then) =
-      _$TrendingLocationDataCopyWithImpl<$Res>;
+      _$TrendingLocationDataCopyWithImpl<$Res, TrendingLocationData>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'woeid') int id,
       @JsonKey(name: 'parentid') int parentId,
@@ -59,44 +60,47 @@ abstract class $TrendingLocationDataCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TrendingLocationDataCopyWithImpl<$Res>
+class _$TrendingLocationDataCopyWithImpl<$Res,
+        $Val extends TrendingLocationData>
     implements $TrendingLocationDataCopyWith<$Res> {
   _$TrendingLocationDataCopyWithImpl(this._value, this._then);
 
-  final TrendingLocationData _value;
   // ignore: unused_field
-  final $Res Function(TrendingLocationData) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? parentId = freezed,
-    Object? name = freezed,
-    Object? countryName = freezed,
+    Object? id = null,
+    Object? parentId = null,
+    Object? name = null,
+    Object? countryName = null,
     Object? country = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      parentId: parentId == freezed
+      parentId: null == parentId
           ? _value.parentId
           : parentId // ignore: cast_nullable_to_non_nullable
               as int,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      countryName: countryName == freezed
+      countryName: null == countryName
           ? _value.countryName
           : countryName // ignore: cast_nullable_to_non_nullable
               as String,
-      country: country == freezed
+      country: freezed == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
               as Country?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -107,6 +111,7 @@ abstract class _$$_TrendingLocationDataCopyWith<$Res>
           $Res Function(_$_TrendingLocationData) then) =
       __$$_TrendingLocationDataCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'woeid') int id,
       @JsonKey(name: 'parentid') int parentId,
@@ -117,41 +122,39 @@ abstract class _$$_TrendingLocationDataCopyWith<$Res>
 
 /// @nodoc
 class __$$_TrendingLocationDataCopyWithImpl<$Res>
-    extends _$TrendingLocationDataCopyWithImpl<$Res>
+    extends _$TrendingLocationDataCopyWithImpl<$Res, _$_TrendingLocationData>
     implements _$$_TrendingLocationDataCopyWith<$Res> {
   __$$_TrendingLocationDataCopyWithImpl(_$_TrendingLocationData _value,
       $Res Function(_$_TrendingLocationData) _then)
-      : super(_value, (v) => _then(v as _$_TrendingLocationData));
+      : super(_value, _then);
 
-  @override
-  _$_TrendingLocationData get _value => super._value as _$_TrendingLocationData;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? parentId = freezed,
-    Object? name = freezed,
-    Object? countryName = freezed,
+    Object? id = null,
+    Object? parentId = null,
+    Object? name = null,
+    Object? countryName = null,
     Object? country = freezed,
   }) {
     return _then(_$_TrendingLocationData(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      parentId: parentId == freezed
+      parentId: null == parentId
           ? _value.parentId
           : parentId // ignore: cast_nullable_to_non_nullable
               as int,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      countryName: countryName == freezed
+      countryName: null == countryName
           ? _value.countryName
           : countryName // ignore: cast_nullable_to_non_nullable
               as String,
-      country: country == freezed
+      country: freezed == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
               as Country?,
@@ -207,26 +210,23 @@ class _$_TrendingLocationData implements _TrendingLocationData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TrendingLocationData &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.parentId, parentId) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality()
-                .equals(other.countryName, countryName) &&
-            const DeepCollectionEquality().equals(other.country, country));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.parentId, parentId) ||
+                other.parentId == parentId) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.countryName, countryName) ||
+                other.countryName == countryName) &&
+            (identical(other.country, country) || other.country == country));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(parentId),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(countryName),
-      const DeepCollectionEquality().hash(country));
+  int get hashCode =>
+      Object.hash(runtimeType, id, parentId, name, countryName, country);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_TrendingLocationDataCopyWith<_$_TrendingLocationData> get copyWith =>
       __$$_TrendingLocationDataCopyWithImpl<_$_TrendingLocationData>(
           this, _$identity);

@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'rate_limit.dart';
 
@@ -41,7 +41,8 @@ mixin _$RateLimit {
 /// @nodoc
 abstract class $RateLimitCopyWith<$Res> {
   factory $RateLimitCopyWith(RateLimit value, $Res Function(RateLimit) then) =
-      _$RateLimitCopyWithImpl<$Res>;
+      _$RateLimitCopyWithImpl<$Res, RateLimit>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'x-rate-limit-limit') int limitCount,
       @JsonKey(name: 'x-rate-limit-remaining') int remainingCount,
@@ -49,33 +50,36 @@ abstract class $RateLimitCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$RateLimitCopyWithImpl<$Res> implements $RateLimitCopyWith<$Res> {
+class _$RateLimitCopyWithImpl<$Res, $Val extends RateLimit>
+    implements $RateLimitCopyWith<$Res> {
   _$RateLimitCopyWithImpl(this._value, this._then);
 
-  final RateLimit _value;
   // ignore: unused_field
-  final $Res Function(RateLimit) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? limitCount = freezed,
-    Object? remainingCount = freezed,
-    Object? resetAt = freezed,
+    Object? limitCount = null,
+    Object? remainingCount = null,
+    Object? resetAt = null,
   }) {
     return _then(_value.copyWith(
-      limitCount: limitCount == freezed
+      limitCount: null == limitCount
           ? _value.limitCount
           : limitCount // ignore: cast_nullable_to_non_nullable
               as int,
-      remainingCount: remainingCount == freezed
+      remainingCount: null == remainingCount
           ? _value.remainingCount
           : remainingCount // ignore: cast_nullable_to_non_nullable
               as int,
-      resetAt: resetAt == freezed
+      resetAt: null == resetAt
           ? _value.resetAt
           : resetAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-    ));
+    ) as $Val);
   }
 }
 
@@ -85,6 +89,7 @@ abstract class _$$_RateLimitCopyWith<$Res> implements $RateLimitCopyWith<$Res> {
           _$_RateLimit value, $Res Function(_$_RateLimit) then) =
       __$$_RateLimitCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'x-rate-limit-limit') int limitCount,
       @JsonKey(name: 'x-rate-limit-remaining') int remainingCount,
@@ -92,31 +97,30 @@ abstract class _$$_RateLimitCopyWith<$Res> implements $RateLimitCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_RateLimitCopyWithImpl<$Res> extends _$RateLimitCopyWithImpl<$Res>
+class __$$_RateLimitCopyWithImpl<$Res>
+    extends _$RateLimitCopyWithImpl<$Res, _$_RateLimit>
     implements _$$_RateLimitCopyWith<$Res> {
   __$$_RateLimitCopyWithImpl(
       _$_RateLimit _value, $Res Function(_$_RateLimit) _then)
-      : super(_value, (v) => _then(v as _$_RateLimit));
+      : super(_value, _then);
 
-  @override
-  _$_RateLimit get _value => super._value as _$_RateLimit;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? limitCount = freezed,
-    Object? remainingCount = freezed,
-    Object? resetAt = freezed,
+    Object? limitCount = null,
+    Object? remainingCount = null,
+    Object? resetAt = null,
   }) {
     return _then(_$_RateLimit(
-      limitCount: limitCount == freezed
+      limitCount: null == limitCount
           ? _value.limitCount
           : limitCount // ignore: cast_nullable_to_non_nullable
               as int,
-      remainingCount: remainingCount == freezed
+      remainingCount: null == remainingCount
           ? _value.remainingCount
           : remainingCount // ignore: cast_nullable_to_non_nullable
               as int,
-      resetAt: resetAt == freezed
+      resetAt: null == resetAt
           ? _value.resetAt
           : resetAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
@@ -161,23 +165,21 @@ class _$_RateLimit extends _RateLimit {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_RateLimit &&
-            const DeepCollectionEquality()
-                .equals(other.limitCount, limitCount) &&
-            const DeepCollectionEquality()
-                .equals(other.remainingCount, remainingCount) &&
-            const DeepCollectionEquality().equals(other.resetAt, resetAt));
+            (identical(other.limitCount, limitCount) ||
+                other.limitCount == limitCount) &&
+            (identical(other.remainingCount, remainingCount) ||
+                other.remainingCount == remainingCount) &&
+            (identical(other.resetAt, resetAt) || other.resetAt == resetAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(limitCount),
-      const DeepCollectionEquality().hash(remainingCount),
-      const DeepCollectionEquality().hash(resetAt));
+  int get hashCode =>
+      Object.hash(runtimeType, limitCount, remainingCount, resetAt);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_RateLimitCopyWith<_$_RateLimit> get copyWith =>
       __$$_RateLimitCopyWithImpl<_$_RateLimit>(this, _$identity);
 

@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'dm_event_data.dart';
 
@@ -60,7 +60,8 @@ mixin _$DMEventData {
 abstract class $DMEventDataCopyWith<$Res> {
   factory $DMEventDataCopyWith(
           DMEventData value, $Res Function(DMEventData) then) =
-      _$DMEventDataCopyWithImpl<$Res>;
+      _$DMEventDataCopyWithImpl<$Res, DMEventData>;
+  @useResult
   $Res call(
       {String id,
       DMEventType eventType,
@@ -75,17 +76,20 @@ abstract class $DMEventDataCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$DMEventDataCopyWithImpl<$Res> implements $DMEventDataCopyWith<$Res> {
+class _$DMEventDataCopyWithImpl<$Res, $Val extends DMEventData>
+    implements $DMEventDataCopyWith<$Res> {
   _$DMEventDataCopyWithImpl(this._value, this._then);
 
-  final DMEventData _value;
   // ignore: unused_field
-  final $Res Function(DMEventData) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? eventType = freezed,
+    Object? id = null,
+    Object? eventType = null,
     Object? text = freezed,
     Object? senderId = freezed,
     Object? conversationId = freezed,
@@ -94,49 +98,50 @@ class _$DMEventDataCopyWithImpl<$Res> implements $DMEventDataCopyWith<$Res> {
     Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      eventType: eventType == freezed
+      eventType: null == eventType
           ? _value.eventType
           : eventType // ignore: cast_nullable_to_non_nullable
               as DMEventType,
-      text: text == freezed
+      text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String?,
-      senderId: senderId == freezed
+      senderId: freezed == senderId
           ? _value.senderId
           : senderId // ignore: cast_nullable_to_non_nullable
               as String?,
-      conversationId: conversationId == freezed
+      conversationId: freezed == conversationId
           ? _value.conversationId
           : conversationId // ignore: cast_nullable_to_non_nullable
               as String?,
-      referencedTweets: referencedTweets == freezed
+      referencedTweets: freezed == referencedTweets
           ? _value.referencedTweets
           : referencedTweets // ignore: cast_nullable_to_non_nullable
               as List<DMReferencedTweet>?,
-      attachments: attachments == freezed
+      attachments: freezed == attachments
           ? _value.attachments
           : attachments // ignore: cast_nullable_to_non_nullable
               as DMAttachments?,
-      createdAt: createdAt == freezed
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $DMAttachmentsCopyWith<$Res>? get attachments {
     if (_value.attachments == null) {
       return null;
     }
 
     return $DMAttachmentsCopyWith<$Res>(_value.attachments!, (value) {
-      return _then(_value.copyWith(attachments: value));
+      return _then(_value.copyWith(attachments: value) as $Val);
     });
   }
 }
@@ -148,6 +153,7 @@ abstract class _$$_DMEventDataCopyWith<$Res>
           _$_DMEventData value, $Res Function(_$_DMEventData) then) =
       __$$_DMEventDataCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String id,
       DMEventType eventType,
@@ -163,19 +169,18 @@ abstract class _$$_DMEventDataCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_DMEventDataCopyWithImpl<$Res> extends _$DMEventDataCopyWithImpl<$Res>
+class __$$_DMEventDataCopyWithImpl<$Res>
+    extends _$DMEventDataCopyWithImpl<$Res, _$_DMEventData>
     implements _$$_DMEventDataCopyWith<$Res> {
   __$$_DMEventDataCopyWithImpl(
       _$_DMEventData _value, $Res Function(_$_DMEventData) _then)
-      : super(_value, (v) => _then(v as _$_DMEventData));
+      : super(_value, _then);
 
-  @override
-  _$_DMEventData get _value => super._value as _$_DMEventData;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? eventType = freezed,
+    Object? id = null,
+    Object? eventType = null,
     Object? text = freezed,
     Object? senderId = freezed,
     Object? conversationId = freezed,
@@ -184,35 +189,35 @@ class __$$_DMEventDataCopyWithImpl<$Res> extends _$DMEventDataCopyWithImpl<$Res>
     Object? createdAt = freezed,
   }) {
     return _then(_$_DMEventData(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      eventType: eventType == freezed
+      eventType: null == eventType
           ? _value.eventType
           : eventType // ignore: cast_nullable_to_non_nullable
               as DMEventType,
-      text: text == freezed
+      text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String?,
-      senderId: senderId == freezed
+      senderId: freezed == senderId
           ? _value.senderId
           : senderId // ignore: cast_nullable_to_non_nullable
               as String?,
-      conversationId: conversationId == freezed
+      conversationId: freezed == conversationId
           ? _value.conversationId
           : conversationId // ignore: cast_nullable_to_non_nullable
               as String?,
-      referencedTweets: referencedTweets == freezed
+      referencedTweets: freezed == referencedTweets
           ? _value._referencedTweets
           : referencedTweets // ignore: cast_nullable_to_non_nullable
               as List<DMReferencedTweet>?,
-      attachments: attachments == freezed
+      attachments: freezed == attachments
           ? _value.attachments
           : attachments // ignore: cast_nullable_to_non_nullable
               as DMAttachments?,
-      createdAt: createdAt == freezed
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
@@ -275,6 +280,8 @@ class _$_DMEventData implements _DMEventData {
   List<DMReferencedTweet>? get referencedTweets {
     final value = _referencedTweets;
     if (value == null) return null;
+    if (_referencedTweets is EqualUnmodifiableListView)
+      return _referencedTweets;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -297,34 +304,38 @@ class _$_DMEventData implements _DMEventData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_DMEventData &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.eventType, eventType) &&
-            const DeepCollectionEquality().equals(other.text, text) &&
-            const DeepCollectionEquality().equals(other.senderId, senderId) &&
-            const DeepCollectionEquality()
-                .equals(other.conversationId, conversationId) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.eventType, eventType) ||
+                other.eventType == eventType) &&
+            (identical(other.text, text) || other.text == text) &&
+            (identical(other.senderId, senderId) ||
+                other.senderId == senderId) &&
+            (identical(other.conversationId, conversationId) ||
+                other.conversationId == conversationId) &&
             const DeepCollectionEquality()
                 .equals(other._referencedTweets, _referencedTweets) &&
-            const DeepCollectionEquality()
-                .equals(other.attachments, attachments) &&
-            const DeepCollectionEquality().equals(other.createdAt, createdAt));
+            (identical(other.attachments, attachments) ||
+                other.attachments == attachments) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(eventType),
-      const DeepCollectionEquality().hash(text),
-      const DeepCollectionEquality().hash(senderId),
-      const DeepCollectionEquality().hash(conversationId),
+      id,
+      eventType,
+      text,
+      senderId,
+      conversationId,
       const DeepCollectionEquality().hash(_referencedTweets),
-      const DeepCollectionEquality().hash(attachments),
-      const DeepCollectionEquality().hash(createdAt));
+      attachments,
+      createdAt);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_DMEventDataCopyWith<_$_DMEventData> get copyWith =>
       __$$_DMEventDataCopyWithImpl<_$_DMEventData>(this, _$identity);
 

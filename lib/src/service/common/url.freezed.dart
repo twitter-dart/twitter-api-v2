@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'url.dart';
 
@@ -51,7 +51,8 @@ mixin _$Url {
 /// @nodoc
 abstract class $UrlCopyWith<$Res> {
   factory $UrlCopyWith(Url value, $Res Function(Url) then) =
-      _$UrlCopyWithImpl<$Res>;
+      _$UrlCopyWithImpl<$Res, Url>;
+  @useResult
   $Res call(
       {int start,
       int end,
@@ -63,53 +64,55 @@ abstract class $UrlCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UrlCopyWithImpl<$Res> implements $UrlCopyWith<$Res> {
+class _$UrlCopyWithImpl<$Res, $Val extends Url> implements $UrlCopyWith<$Res> {
   _$UrlCopyWithImpl(this._value, this._then);
 
-  final Url _value;
   // ignore: unused_field
-  final $Res Function(Url) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? start = freezed,
-    Object? end = freezed,
-    Object? url = freezed,
-    Object? expandedUrl = freezed,
-    Object? displayUrl = freezed,
+    Object? start = null,
+    Object? end = null,
+    Object? url = null,
+    Object? expandedUrl = null,
+    Object? displayUrl = null,
     Object? unwoundUrl = freezed,
     Object? mediaKey = freezed,
   }) {
     return _then(_value.copyWith(
-      start: start == freezed
+      start: null == start
           ? _value.start
           : start // ignore: cast_nullable_to_non_nullable
               as int,
-      end: end == freezed
+      end: null == end
           ? _value.end
           : end // ignore: cast_nullable_to_non_nullable
               as int,
-      url: url == freezed
+      url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
-      expandedUrl: expandedUrl == freezed
+      expandedUrl: null == expandedUrl
           ? _value.expandedUrl
           : expandedUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      displayUrl: displayUrl == freezed
+      displayUrl: null == displayUrl
           ? _value.displayUrl
           : displayUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      unwoundUrl: unwoundUrl == freezed
+      unwoundUrl: freezed == unwoundUrl
           ? _value.unwoundUrl
           : unwoundUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      mediaKey: mediaKey == freezed
+      mediaKey: freezed == mediaKey
           ? _value.mediaKey
           : mediaKey // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -118,6 +121,7 @@ abstract class _$$_UrlCopyWith<$Res> implements $UrlCopyWith<$Res> {
   factory _$$_UrlCopyWith(_$_Url value, $Res Function(_$_Url) then) =
       __$$_UrlCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {int start,
       int end,
@@ -129,50 +133,48 @@ abstract class _$$_UrlCopyWith<$Res> implements $UrlCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_UrlCopyWithImpl<$Res> extends _$UrlCopyWithImpl<$Res>
+class __$$_UrlCopyWithImpl<$Res> extends _$UrlCopyWithImpl<$Res, _$_Url>
     implements _$$_UrlCopyWith<$Res> {
   __$$_UrlCopyWithImpl(_$_Url _value, $Res Function(_$_Url) _then)
-      : super(_value, (v) => _then(v as _$_Url));
+      : super(_value, _then);
 
-  @override
-  _$_Url get _value => super._value as _$_Url;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? start = freezed,
-    Object? end = freezed,
-    Object? url = freezed,
-    Object? expandedUrl = freezed,
-    Object? displayUrl = freezed,
+    Object? start = null,
+    Object? end = null,
+    Object? url = null,
+    Object? expandedUrl = null,
+    Object? displayUrl = null,
     Object? unwoundUrl = freezed,
     Object? mediaKey = freezed,
   }) {
     return _then(_$_Url(
-      start: start == freezed
+      start: null == start
           ? _value.start
           : start // ignore: cast_nullable_to_non_nullable
               as int,
-      end: end == freezed
+      end: null == end
           ? _value.end
           : end // ignore: cast_nullable_to_non_nullable
               as int,
-      url: url == freezed
+      url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
-      expandedUrl: expandedUrl == freezed
+      expandedUrl: null == expandedUrl
           ? _value.expandedUrl
           : expandedUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      displayUrl: displayUrl == freezed
+      displayUrl: null == displayUrl
           ? _value.displayUrl
           : displayUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      unwoundUrl: unwoundUrl == freezed
+      unwoundUrl: freezed == unwoundUrl
           ? _value.unwoundUrl
           : unwoundUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      mediaKey: mediaKey == freezed
+      mediaKey: freezed == mediaKey
           ? _value.mediaKey
           : mediaKey // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -235,32 +237,27 @@ class _$_Url implements _Url {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Url &&
-            const DeepCollectionEquality().equals(other.start, start) &&
-            const DeepCollectionEquality().equals(other.end, end) &&
-            const DeepCollectionEquality().equals(other.url, url) &&
-            const DeepCollectionEquality()
-                .equals(other.expandedUrl, expandedUrl) &&
-            const DeepCollectionEquality()
-                .equals(other.displayUrl, displayUrl) &&
-            const DeepCollectionEquality()
-                .equals(other.unwoundUrl, unwoundUrl) &&
-            const DeepCollectionEquality().equals(other.mediaKey, mediaKey));
+            (identical(other.start, start) || other.start == start) &&
+            (identical(other.end, end) || other.end == end) &&
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.expandedUrl, expandedUrl) ||
+                other.expandedUrl == expandedUrl) &&
+            (identical(other.displayUrl, displayUrl) ||
+                other.displayUrl == displayUrl) &&
+            (identical(other.unwoundUrl, unwoundUrl) ||
+                other.unwoundUrl == unwoundUrl) &&
+            (identical(other.mediaKey, mediaKey) ||
+                other.mediaKey == mediaKey));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(start),
-      const DeepCollectionEquality().hash(end),
-      const DeepCollectionEquality().hash(url),
-      const DeepCollectionEquality().hash(expandedUrl),
-      const DeepCollectionEquality().hash(displayUrl),
-      const DeepCollectionEquality().hash(unwoundUrl),
-      const DeepCollectionEquality().hash(mediaKey));
+  int get hashCode => Object.hash(runtimeType, start, end, url, expandedUrl,
+      displayUrl, unwoundUrl, mediaKey);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_UrlCopyWith<_$_Url> get copyWith =>
       __$$_UrlCopyWithImpl<_$_Url>(this, _$identity);
 

@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'user_entities.dart';
 
@@ -37,7 +37,8 @@ mixin _$UserEntities {
 abstract class $UserEntitiesCopyWith<$Res> {
   factory $UserEntitiesCopyWith(
           UserEntities value, $Res Function(UserEntities) then) =
-      _$UserEntitiesCopyWithImpl<$Res>;
+      _$UserEntitiesCopyWithImpl<$Res, UserEntities>;
+  @useResult
   $Res call({UserUrlEntity? url, UserDescriptionEntity? description});
 
   $UserUrlEntityCopyWith<$Res>? get url;
@@ -45,49 +46,54 @@ abstract class $UserEntitiesCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UserEntitiesCopyWithImpl<$Res> implements $UserEntitiesCopyWith<$Res> {
+class _$UserEntitiesCopyWithImpl<$Res, $Val extends UserEntities>
+    implements $UserEntitiesCopyWith<$Res> {
   _$UserEntitiesCopyWithImpl(this._value, this._then);
 
-  final UserEntities _value;
   // ignore: unused_field
-  final $Res Function(UserEntities) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? url = freezed,
     Object? description = freezed,
   }) {
     return _then(_value.copyWith(
-      url: url == freezed
+      url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as UserUrlEntity?,
-      description: description == freezed
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as UserDescriptionEntity?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $UserUrlEntityCopyWith<$Res>? get url {
     if (_value.url == null) {
       return null;
     }
 
     return $UserUrlEntityCopyWith<$Res>(_value.url!, (value) {
-      return _then(_value.copyWith(url: value));
+      return _then(_value.copyWith(url: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $UserDescriptionEntityCopyWith<$Res>? get description {
     if (_value.description == null) {
       return null;
     }
 
     return $UserDescriptionEntityCopyWith<$Res>(_value.description!, (value) {
-      return _then(_value.copyWith(description: value));
+      return _then(_value.copyWith(description: value) as $Val);
     });
   }
 }
@@ -99,6 +105,7 @@ abstract class _$$_UserEntitiesCopyWith<$Res>
           _$_UserEntities value, $Res Function(_$_UserEntities) then) =
       __$$_UserEntitiesCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({UserUrlEntity? url, UserDescriptionEntity? description});
 
   @override
@@ -109,26 +116,24 @@ abstract class _$$_UserEntitiesCopyWith<$Res>
 
 /// @nodoc
 class __$$_UserEntitiesCopyWithImpl<$Res>
-    extends _$UserEntitiesCopyWithImpl<$Res>
+    extends _$UserEntitiesCopyWithImpl<$Res, _$_UserEntities>
     implements _$$_UserEntitiesCopyWith<$Res> {
   __$$_UserEntitiesCopyWithImpl(
       _$_UserEntities _value, $Res Function(_$_UserEntities) _then)
-      : super(_value, (v) => _then(v as _$_UserEntities));
+      : super(_value, _then);
 
-  @override
-  _$_UserEntities get _value => super._value as _$_UserEntities;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? url = freezed,
     Object? description = freezed,
   }) {
     return _then(_$_UserEntities(
-      url: url == freezed
+      url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as UserUrlEntity?,
-      description: description == freezed
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as UserDescriptionEntity?,
@@ -164,20 +169,18 @@ class _$_UserEntities implements _UserEntities {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UserEntities &&
-            const DeepCollectionEquality().equals(other.url, url) &&
-            const DeepCollectionEquality()
-                .equals(other.description, description));
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.description, description) ||
+                other.description == description));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(url),
-      const DeepCollectionEquality().hash(description));
+  int get hashCode => Object.hash(runtimeType, url, description);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_UserEntitiesCopyWith<_$_UserEntities> get copyWith =>
       __$$_UserEntitiesCopyWithImpl<_$_UserEntities>(this, _$identity);
 

@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'tweet_annotation.dart';
 
@@ -49,7 +49,8 @@ mixin _$TweetAnnotation {
 abstract class $TweetAnnotationCopyWith<$Res> {
   factory $TweetAnnotationCopyWith(
           TweetAnnotation value, $Res Function(TweetAnnotation) then) =
-      _$TweetAnnotationCopyWithImpl<$Res>;
+      _$TweetAnnotationCopyWithImpl<$Res, TweetAnnotation>;
+  @useResult
   $Res call(
       {int start,
       int end,
@@ -59,44 +60,46 @@ abstract class $TweetAnnotationCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TweetAnnotationCopyWithImpl<$Res>
+class _$TweetAnnotationCopyWithImpl<$Res, $Val extends TweetAnnotation>
     implements $TweetAnnotationCopyWith<$Res> {
   _$TweetAnnotationCopyWithImpl(this._value, this._then);
 
-  final TweetAnnotation _value;
   // ignore: unused_field
-  final $Res Function(TweetAnnotation) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? start = freezed,
-    Object? end = freezed,
-    Object? probability = freezed,
-    Object? type = freezed,
-    Object? normalizedText = freezed,
+    Object? start = null,
+    Object? end = null,
+    Object? probability = null,
+    Object? type = null,
+    Object? normalizedText = null,
   }) {
     return _then(_value.copyWith(
-      start: start == freezed
+      start: null == start
           ? _value.start
           : start // ignore: cast_nullable_to_non_nullable
               as int,
-      end: end == freezed
+      end: null == end
           ? _value.end
           : end // ignore: cast_nullable_to_non_nullable
               as int,
-      probability: probability == freezed
+      probability: null == probability
           ? _value.probability
           : probability // ignore: cast_nullable_to_non_nullable
               as double,
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-      normalizedText: normalizedText == freezed
+      normalizedText: null == normalizedText
           ? _value.normalizedText
           : normalizedText // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -107,6 +110,7 @@ abstract class _$$_TweetAnnotationCopyWith<$Res>
           _$_TweetAnnotation value, $Res Function(_$_TweetAnnotation) then) =
       __$$_TweetAnnotationCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {int start,
       int end,
@@ -117,41 +121,39 @@ abstract class _$$_TweetAnnotationCopyWith<$Res>
 
 /// @nodoc
 class __$$_TweetAnnotationCopyWithImpl<$Res>
-    extends _$TweetAnnotationCopyWithImpl<$Res>
+    extends _$TweetAnnotationCopyWithImpl<$Res, _$_TweetAnnotation>
     implements _$$_TweetAnnotationCopyWith<$Res> {
   __$$_TweetAnnotationCopyWithImpl(
       _$_TweetAnnotation _value, $Res Function(_$_TweetAnnotation) _then)
-      : super(_value, (v) => _then(v as _$_TweetAnnotation));
+      : super(_value, _then);
 
-  @override
-  _$_TweetAnnotation get _value => super._value as _$_TweetAnnotation;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? start = freezed,
-    Object? end = freezed,
-    Object? probability = freezed,
-    Object? type = freezed,
-    Object? normalizedText = freezed,
+    Object? start = null,
+    Object? end = null,
+    Object? probability = null,
+    Object? type = null,
+    Object? normalizedText = null,
   }) {
     return _then(_$_TweetAnnotation(
-      start: start == freezed
+      start: null == start
           ? _value.start
           : start // ignore: cast_nullable_to_non_nullable
               as int,
-      end: end == freezed
+      end: null == end
           ? _value.end
           : end // ignore: cast_nullable_to_non_nullable
               as int,
-      probability: probability == freezed
+      probability: null == probability
           ? _value.probability
           : probability // ignore: cast_nullable_to_non_nullable
               as double,
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-      normalizedText: normalizedText == freezed
+      normalizedText: null == normalizedText
           ? _value.normalizedText
           : normalizedText // ignore: cast_nullable_to_non_nullable
               as String,
@@ -206,27 +208,23 @@ class _$_TweetAnnotation implements _TweetAnnotation {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TweetAnnotation &&
-            const DeepCollectionEquality().equals(other.start, start) &&
-            const DeepCollectionEquality().equals(other.end, end) &&
-            const DeepCollectionEquality()
-                .equals(other.probability, probability) &&
-            const DeepCollectionEquality().equals(other.type, type) &&
-            const DeepCollectionEquality()
-                .equals(other.normalizedText, normalizedText));
+            (identical(other.start, start) || other.start == start) &&
+            (identical(other.end, end) || other.end == end) &&
+            (identical(other.probability, probability) ||
+                other.probability == probability) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.normalizedText, normalizedText) ||
+                other.normalizedText == normalizedText));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(start),
-      const DeepCollectionEquality().hash(end),
-      const DeepCollectionEquality().hash(probability),
-      const DeepCollectionEquality().hash(type),
-      const DeepCollectionEquality().hash(normalizedText));
+  int get hashCode =>
+      Object.hash(runtimeType, start, end, probability, type, normalizedText);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_TweetAnnotationCopyWith<_$_TweetAnnotation> get copyWith =>
       __$$_TweetAnnotationCopyWithImpl<_$_TweetAnnotation>(this, _$identity);
 

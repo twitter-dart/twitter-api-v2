@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'filtering_rule_data.dart';
 
@@ -41,39 +41,42 @@ mixin _$FilteringRuleData {
 abstract class $FilteringRuleDataCopyWith<$Res> {
   factory $FilteringRuleDataCopyWith(
           FilteringRuleData value, $Res Function(FilteringRuleData) then) =
-      _$FilteringRuleDataCopyWithImpl<$Res>;
+      _$FilteringRuleDataCopyWithImpl<$Res, FilteringRuleData>;
+  @useResult
   $Res call({String id, String value, String? tag});
 }
 
 /// @nodoc
-class _$FilteringRuleDataCopyWithImpl<$Res>
+class _$FilteringRuleDataCopyWithImpl<$Res, $Val extends FilteringRuleData>
     implements $FilteringRuleDataCopyWith<$Res> {
   _$FilteringRuleDataCopyWithImpl(this._value, this._then);
 
-  final FilteringRuleData _value;
   // ignore: unused_field
-  final $Res Function(FilteringRuleData) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? value = freezed,
+    Object? id = null,
+    Object? value = null,
     Object? tag = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      value: value == freezed
+      value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as String,
-      tag: tag == freezed
+      tag: freezed == tag
           ? _value.tag
           : tag // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -84,36 +87,35 @@ abstract class _$$_FilteringRuleDataCopyWith<$Res>
           $Res Function(_$_FilteringRuleData) then) =
       __$$_FilteringRuleDataCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String id, String value, String? tag});
 }
 
 /// @nodoc
 class __$$_FilteringRuleDataCopyWithImpl<$Res>
-    extends _$FilteringRuleDataCopyWithImpl<$Res>
+    extends _$FilteringRuleDataCopyWithImpl<$Res, _$_FilteringRuleData>
     implements _$$_FilteringRuleDataCopyWith<$Res> {
   __$$_FilteringRuleDataCopyWithImpl(
       _$_FilteringRuleData _value, $Res Function(_$_FilteringRuleData) _then)
-      : super(_value, (v) => _then(v as _$_FilteringRuleData));
+      : super(_value, _then);
 
-  @override
-  _$_FilteringRuleData get _value => super._value as _$_FilteringRuleData;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? value = freezed,
+    Object? id = null,
+    Object? value = null,
     Object? tag = freezed,
   }) {
     return _then(_$_FilteringRuleData(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      value: value == freezed
+      value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as String,
-      tag: tag == freezed
+      tag: freezed == tag
           ? _value.tag
           : tag // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -154,21 +156,18 @@ class _$_FilteringRuleData implements _FilteringRuleData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_FilteringRuleData &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.value, value) &&
-            const DeepCollectionEquality().equals(other.tag, tag));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.value, value) || other.value == value) &&
+            (identical(other.tag, tag) || other.tag == tag));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(value),
-      const DeepCollectionEquality().hash(tag));
+  int get hashCode => Object.hash(runtimeType, id, value, tag);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_FilteringRuleDataCopyWith<_$_FilteringRuleData> get copyWith =>
       __$$_FilteringRuleDataCopyWithImpl<_$_FilteringRuleData>(
           this, _$identity);

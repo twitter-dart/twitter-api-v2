@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'oauth_response.dart';
 
@@ -39,7 +39,8 @@ mixin _$OAuthResponse {
 abstract class $OAuthResponseCopyWith<$Res> {
   factory $OAuthResponseCopyWith(
           OAuthResponse value, $Res Function(OAuthResponse) then) =
-      _$OAuthResponseCopyWithImpl<$Res>;
+      _$OAuthResponseCopyWithImpl<$Res, OAuthResponse>;
+  @useResult
   $Res call(
       {String accessToken,
       String refreshToken,
@@ -48,39 +49,41 @@ abstract class $OAuthResponseCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$OAuthResponseCopyWithImpl<$Res>
+class _$OAuthResponseCopyWithImpl<$Res, $Val extends OAuthResponse>
     implements $OAuthResponseCopyWith<$Res> {
   _$OAuthResponseCopyWithImpl(this._value, this._then);
 
-  final OAuthResponse _value;
   // ignore: unused_field
-  final $Res Function(OAuthResponse) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? accessToken = freezed,
-    Object? refreshToken = freezed,
-    Object? scopes = freezed,
-    Object? expiresAt = freezed,
+    Object? accessToken = null,
+    Object? refreshToken = null,
+    Object? scopes = null,
+    Object? expiresAt = null,
   }) {
     return _then(_value.copyWith(
-      accessToken: accessToken == freezed
+      accessToken: null == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
               as String,
-      refreshToken: refreshToken == freezed
+      refreshToken: null == refreshToken
           ? _value.refreshToken
           : refreshToken // ignore: cast_nullable_to_non_nullable
               as String,
-      scopes: scopes == freezed
+      scopes: null == scopes
           ? _value.scopes
           : scopes // ignore: cast_nullable_to_non_nullable
               as List<Scope>,
-      expiresAt: expiresAt == freezed
+      expiresAt: null == expiresAt
           ? _value.expiresAt
           : expiresAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-    ));
+    ) as $Val);
   }
 }
 
@@ -91,6 +94,7 @@ abstract class _$$_OAuthResponseCopyWith<$Res>
           _$_OAuthResponse value, $Res Function(_$_OAuthResponse) then) =
       __$$_OAuthResponseCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String accessToken,
       String refreshToken,
@@ -100,36 +104,34 @@ abstract class _$$_OAuthResponseCopyWith<$Res>
 
 /// @nodoc
 class __$$_OAuthResponseCopyWithImpl<$Res>
-    extends _$OAuthResponseCopyWithImpl<$Res>
+    extends _$OAuthResponseCopyWithImpl<$Res, _$_OAuthResponse>
     implements _$$_OAuthResponseCopyWith<$Res> {
   __$$_OAuthResponseCopyWithImpl(
       _$_OAuthResponse _value, $Res Function(_$_OAuthResponse) _then)
-      : super(_value, (v) => _then(v as _$_OAuthResponse));
+      : super(_value, _then);
 
-  @override
-  _$_OAuthResponse get _value => super._value as _$_OAuthResponse;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? accessToken = freezed,
-    Object? refreshToken = freezed,
-    Object? scopes = freezed,
-    Object? expiresAt = freezed,
+    Object? accessToken = null,
+    Object? refreshToken = null,
+    Object? scopes = null,
+    Object? expiresAt = null,
   }) {
     return _then(_$_OAuthResponse(
-      accessToken: accessToken == freezed
+      accessToken: null == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
               as String,
-      refreshToken: refreshToken == freezed
+      refreshToken: null == refreshToken
           ? _value.refreshToken
           : refreshToken // ignore: cast_nullable_to_non_nullable
               as String,
-      scopes: scopes == freezed
+      scopes: null == scopes
           ? _value._scopes
           : scopes // ignore: cast_nullable_to_non_nullable
               as List<Scope>,
-      expiresAt: expiresAt == freezed
+      expiresAt: null == expiresAt
           ? _value.expiresAt
           : expiresAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
@@ -164,6 +166,7 @@ class _$_OAuthResponse extends _OAuthResponse {
   @JsonKey(name: 'scope')
   @ScopeConverter()
   List<Scope> get scopes {
+    if (_scopes is EqualUnmodifiableListView) return _scopes;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_scopes);
   }
@@ -183,25 +186,23 @@ class _$_OAuthResponse extends _OAuthResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_OAuthResponse &&
-            const DeepCollectionEquality()
-                .equals(other.accessToken, accessToken) &&
-            const DeepCollectionEquality()
-                .equals(other.refreshToken, refreshToken) &&
+            (identical(other.accessToken, accessToken) ||
+                other.accessToken == accessToken) &&
+            (identical(other.refreshToken, refreshToken) ||
+                other.refreshToken == refreshToken) &&
             const DeepCollectionEquality().equals(other._scopes, _scopes) &&
-            const DeepCollectionEquality().equals(other.expiresAt, expiresAt));
+            (identical(other.expiresAt, expiresAt) ||
+                other.expiresAt == expiresAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(accessToken),
-      const DeepCollectionEquality().hash(refreshToken),
-      const DeepCollectionEquality().hash(_scopes),
-      const DeepCollectionEquality().hash(expiresAt));
+  int get hashCode => Object.hash(runtimeType, accessToken, refreshToken,
+      const DeepCollectionEquality().hash(_scopes), expiresAt);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_OAuthResponseCopyWith<_$_OAuthResponse> get copyWith =>
       __$$_OAuthResponseCopyWithImpl<_$_OAuthResponse>(this, _$identity);
 

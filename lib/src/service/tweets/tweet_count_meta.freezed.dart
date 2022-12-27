@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'tweet_count_meta.dart';
 
@@ -39,34 +39,37 @@ mixin _$TweetCountMeta {
 abstract class $TweetCountMetaCopyWith<$Res> {
   factory $TweetCountMetaCopyWith(
           TweetCountMeta value, $Res Function(TweetCountMeta) then) =
-      _$TweetCountMetaCopyWithImpl<$Res>;
+      _$TweetCountMetaCopyWithImpl<$Res, TweetCountMeta>;
+  @useResult
   $Res call({@JsonKey(name: 'total_tweet_count') int total, String? nextToken});
 }
 
 /// @nodoc
-class _$TweetCountMetaCopyWithImpl<$Res>
+class _$TweetCountMetaCopyWithImpl<$Res, $Val extends TweetCountMeta>
     implements $TweetCountMetaCopyWith<$Res> {
   _$TweetCountMetaCopyWithImpl(this._value, this._then);
 
-  final TweetCountMeta _value;
   // ignore: unused_field
-  final $Res Function(TweetCountMeta) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? total = freezed,
+    Object? total = null,
     Object? nextToken = freezed,
   }) {
     return _then(_value.copyWith(
-      total: total == freezed
+      total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
               as int,
-      nextToken: nextToken == freezed
+      nextToken: freezed == nextToken
           ? _value.nextToken
           : nextToken // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -77,31 +80,30 @@ abstract class _$$_TweetCountMetaCopyWith<$Res>
           _$_TweetCountMeta value, $Res Function(_$_TweetCountMeta) then) =
       __$$_TweetCountMetaCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({@JsonKey(name: 'total_tweet_count') int total, String? nextToken});
 }
 
 /// @nodoc
 class __$$_TweetCountMetaCopyWithImpl<$Res>
-    extends _$TweetCountMetaCopyWithImpl<$Res>
+    extends _$TweetCountMetaCopyWithImpl<$Res, _$_TweetCountMeta>
     implements _$$_TweetCountMetaCopyWith<$Res> {
   __$$_TweetCountMetaCopyWithImpl(
       _$_TweetCountMeta _value, $Res Function(_$_TweetCountMeta) _then)
-      : super(_value, (v) => _then(v as _$_TweetCountMeta));
+      : super(_value, _then);
 
-  @override
-  _$_TweetCountMeta get _value => super._value as _$_TweetCountMeta;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? total = freezed,
+    Object? total = null,
     Object? nextToken = freezed,
   }) {
     return _then(_$_TweetCountMeta(
-      total: total == freezed
+      total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
               as int,
-      nextToken: nextToken == freezed
+      nextToken: freezed == nextToken
           ? _value.nextToken
           : nextToken // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -141,19 +143,18 @@ class _$_TweetCountMeta implements _TweetCountMeta {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TweetCountMeta &&
-            const DeepCollectionEquality().equals(other.total, total) &&
-            const DeepCollectionEquality().equals(other.nextToken, nextToken));
+            (identical(other.total, total) || other.total == total) &&
+            (identical(other.nextToken, nextToken) ||
+                other.nextToken == nextToken));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(total),
-      const DeepCollectionEquality().hash(nextToken));
+  int get hashCode => Object.hash(runtimeType, total, nextToken);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_TweetCountMetaCopyWith<_$_TweetCountMeta> get copyWith =>
       __$$_TweetCountMetaCopyWithImpl<_$_TweetCountMeta>(this, _$identity);
 

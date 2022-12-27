@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'filtering_rule_summary.dart';
 
@@ -46,7 +46,8 @@ mixin _$FilteringRuleSummary {
 abstract class $FilteringRuleSummaryCopyWith<$Res> {
   factory $FilteringRuleSummaryCopyWith(FilteringRuleSummary value,
           $Res Function(FilteringRuleSummary) then) =
-      _$FilteringRuleSummaryCopyWithImpl<$Res>;
+      _$FilteringRuleSummaryCopyWithImpl<$Res, FilteringRuleSummary>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'created') int? createdCount,
       @JsonKey(name: 'not_created') int? notCreatedCount,
@@ -55,14 +56,17 @@ abstract class $FilteringRuleSummaryCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$FilteringRuleSummaryCopyWithImpl<$Res>
+class _$FilteringRuleSummaryCopyWithImpl<$Res,
+        $Val extends FilteringRuleSummary>
     implements $FilteringRuleSummaryCopyWith<$Res> {
   _$FilteringRuleSummaryCopyWithImpl(this._value, this._then);
 
-  final FilteringRuleSummary _value;
   // ignore: unused_field
-  final $Res Function(FilteringRuleSummary) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? createdCount = freezed,
@@ -71,23 +75,23 @@ class _$FilteringRuleSummaryCopyWithImpl<$Res>
     Object? notDeletedCount = freezed,
   }) {
     return _then(_value.copyWith(
-      createdCount: createdCount == freezed
+      createdCount: freezed == createdCount
           ? _value.createdCount
           : createdCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      notCreatedCount: notCreatedCount == freezed
+      notCreatedCount: freezed == notCreatedCount
           ? _value.notCreatedCount
           : notCreatedCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      deletedCount: deletedCount == freezed
+      deletedCount: freezed == deletedCount
           ? _value.deletedCount
           : deletedCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      notDeletedCount: notDeletedCount == freezed
+      notDeletedCount: freezed == notDeletedCount
           ? _value.notDeletedCount
           : notDeletedCount // ignore: cast_nullable_to_non_nullable
               as int?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -98,6 +102,7 @@ abstract class _$$_FilteringRuleSummaryCopyWith<$Res>
           $Res Function(_$_FilteringRuleSummary) then) =
       __$$_FilteringRuleSummaryCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'created') int? createdCount,
       @JsonKey(name: 'not_created') int? notCreatedCount,
@@ -107,15 +112,13 @@ abstract class _$$_FilteringRuleSummaryCopyWith<$Res>
 
 /// @nodoc
 class __$$_FilteringRuleSummaryCopyWithImpl<$Res>
-    extends _$FilteringRuleSummaryCopyWithImpl<$Res>
+    extends _$FilteringRuleSummaryCopyWithImpl<$Res, _$_FilteringRuleSummary>
     implements _$$_FilteringRuleSummaryCopyWith<$Res> {
   __$$_FilteringRuleSummaryCopyWithImpl(_$_FilteringRuleSummary _value,
       $Res Function(_$_FilteringRuleSummary) _then)
-      : super(_value, (v) => _then(v as _$_FilteringRuleSummary));
+      : super(_value, _then);
 
-  @override
-  _$_FilteringRuleSummary get _value => super._value as _$_FilteringRuleSummary;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? createdCount = freezed,
@@ -124,19 +127,19 @@ class __$$_FilteringRuleSummaryCopyWithImpl<$Res>
     Object? notDeletedCount = freezed,
   }) {
     return _then(_$_FilteringRuleSummary(
-      createdCount: createdCount == freezed
+      createdCount: freezed == createdCount
           ? _value.createdCount
           : createdCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      notCreatedCount: notCreatedCount == freezed
+      notCreatedCount: freezed == notCreatedCount
           ? _value.notCreatedCount
           : notCreatedCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      deletedCount: deletedCount == freezed
+      deletedCount: freezed == deletedCount
           ? _value.deletedCount
           : deletedCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      notDeletedCount: notDeletedCount == freezed
+      notDeletedCount: freezed == notDeletedCount
           ? _value.notDeletedCount
           : notDeletedCount // ignore: cast_nullable_to_non_nullable
               as int?,
@@ -187,27 +190,24 @@ class _$_FilteringRuleSummary implements _FilteringRuleSummary {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_FilteringRuleSummary &&
-            const DeepCollectionEquality()
-                .equals(other.createdCount, createdCount) &&
-            const DeepCollectionEquality()
-                .equals(other.notCreatedCount, notCreatedCount) &&
-            const DeepCollectionEquality()
-                .equals(other.deletedCount, deletedCount) &&
-            const DeepCollectionEquality()
-                .equals(other.notDeletedCount, notDeletedCount));
+            (identical(other.createdCount, createdCount) ||
+                other.createdCount == createdCount) &&
+            (identical(other.notCreatedCount, notCreatedCount) ||
+                other.notCreatedCount == notCreatedCount) &&
+            (identical(other.deletedCount, deletedCount) ||
+                other.deletedCount == deletedCount) &&
+            (identical(other.notDeletedCount, notDeletedCount) ||
+                other.notDeletedCount == notDeletedCount));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(createdCount),
-      const DeepCollectionEquality().hash(notCreatedCount),
-      const DeepCollectionEquality().hash(deletedCount),
-      const DeepCollectionEquality().hash(notDeletedCount));
+  int get hashCode => Object.hash(runtimeType, createdCount, notCreatedCount,
+      deletedCount, notDeletedCount);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_FilteringRuleSummaryCopyWith<_$_FilteringRuleSummary> get copyWith =>
       __$$_FilteringRuleSummaryCopyWithImpl<_$_FilteringRuleSummary>(
           this, _$identity);

@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'mention.dart';
 
@@ -46,43 +46,47 @@ mixin _$Mention {
 /// @nodoc
 abstract class $MentionCopyWith<$Res> {
   factory $MentionCopyWith(Mention value, $Res Function(Mention) then) =
-      _$MentionCopyWithImpl<$Res>;
+      _$MentionCopyWithImpl<$Res, Mention>;
+  @useResult
   $Res call({String? id, String username, int start, int end});
 }
 
 /// @nodoc
-class _$MentionCopyWithImpl<$Res> implements $MentionCopyWith<$Res> {
+class _$MentionCopyWithImpl<$Res, $Val extends Mention>
+    implements $MentionCopyWith<$Res> {
   _$MentionCopyWithImpl(this._value, this._then);
 
-  final Mention _value;
   // ignore: unused_field
-  final $Res Function(Mention) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
-    Object? username = freezed,
-    Object? start = freezed,
-    Object? end = freezed,
+    Object? username = null,
+    Object? start = null,
+    Object? end = null,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      username: username == freezed
+      username: null == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
-      start: start == freezed
+      start: null == start
           ? _value.start
           : start // ignore: cast_nullable_to_non_nullable
               as int,
-      end: end == freezed
+      end: null == end
           ? _value.end
           : end // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+    ) as $Val);
   }
 }
 
@@ -92,39 +96,39 @@ abstract class _$$_MentionCopyWith<$Res> implements $MentionCopyWith<$Res> {
           _$_Mention value, $Res Function(_$_Mention) then) =
       __$$_MentionCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String? id, String username, int start, int end});
 }
 
 /// @nodoc
-class __$$_MentionCopyWithImpl<$Res> extends _$MentionCopyWithImpl<$Res>
+class __$$_MentionCopyWithImpl<$Res>
+    extends _$MentionCopyWithImpl<$Res, _$_Mention>
     implements _$$_MentionCopyWith<$Res> {
   __$$_MentionCopyWithImpl(_$_Mention _value, $Res Function(_$_Mention) _then)
-      : super(_value, (v) => _then(v as _$_Mention));
+      : super(_value, _then);
 
-  @override
-  _$_Mention get _value => super._value as _$_Mention;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
-    Object? username = freezed,
-    Object? start = freezed,
-    Object? end = freezed,
+    Object? username = null,
+    Object? start = null,
+    Object? end = null,
   }) {
     return _then(_$_Mention(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      username: username == freezed
+      username: null == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
-      start: start == freezed
+      start: null == start
           ? _value.start
           : start // ignore: cast_nullable_to_non_nullable
               as int,
-      end: end == freezed
+      end: null == end
           ? _value.end
           : end // ignore: cast_nullable_to_non_nullable
               as int,
@@ -177,23 +181,20 @@ class _$_Mention implements _Mention {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Mention &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.username, username) &&
-            const DeepCollectionEquality().equals(other.start, start) &&
-            const DeepCollectionEquality().equals(other.end, end));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.username, username) ||
+                other.username == username) &&
+            (identical(other.start, start) || other.start == start) &&
+            (identical(other.end, end) || other.end == end));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(username),
-      const DeepCollectionEquality().hash(start),
-      const DeepCollectionEquality().hash(end));
+  int get hashCode => Object.hash(runtimeType, id, username, start, end);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_MentionCopyWith<_$_Mention> get copyWith =>
       __$$_MentionCopyWithImpl<_$_Mention>(this, _$identity);
 

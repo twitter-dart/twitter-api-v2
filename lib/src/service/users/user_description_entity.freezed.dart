@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'user_description_entity.dart';
 
@@ -43,7 +43,8 @@ mixin _$UserDescriptionEntity {
 abstract class $UserDescriptionEntityCopyWith<$Res> {
   factory $UserDescriptionEntityCopyWith(UserDescriptionEntity value,
           $Res Function(UserDescriptionEntity) then) =
-      _$UserDescriptionEntityCopyWithImpl<$Res>;
+      _$UserDescriptionEntityCopyWithImpl<$Res, UserDescriptionEntity>;
+  @useResult
   $Res call(
       {List<Url>? urls,
       List<Tag>? hashtags,
@@ -52,14 +53,17 @@ abstract class $UserDescriptionEntityCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UserDescriptionEntityCopyWithImpl<$Res>
+class _$UserDescriptionEntityCopyWithImpl<$Res,
+        $Val extends UserDescriptionEntity>
     implements $UserDescriptionEntityCopyWith<$Res> {
   _$UserDescriptionEntityCopyWithImpl(this._value, this._then);
 
-  final UserDescriptionEntity _value;
   // ignore: unused_field
-  final $Res Function(UserDescriptionEntity) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? urls = freezed,
@@ -68,23 +72,23 @@ class _$UserDescriptionEntityCopyWithImpl<$Res>
     Object? mentions = freezed,
   }) {
     return _then(_value.copyWith(
-      urls: urls == freezed
+      urls: freezed == urls
           ? _value.urls
           : urls // ignore: cast_nullable_to_non_nullable
               as List<Url>?,
-      hashtags: hashtags == freezed
+      hashtags: freezed == hashtags
           ? _value.hashtags
           : hashtags // ignore: cast_nullable_to_non_nullable
               as List<Tag>?,
-      cashtags: cashtags == freezed
+      cashtags: freezed == cashtags
           ? _value.cashtags
           : cashtags // ignore: cast_nullable_to_non_nullable
               as List<Tag>?,
-      mentions: mentions == freezed
+      mentions: freezed == mentions
           ? _value.mentions
           : mentions // ignore: cast_nullable_to_non_nullable
               as List<Mention>?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -95,6 +99,7 @@ abstract class _$$_UserDescriptionEntityCopyWith<$Res>
           $Res Function(_$_UserDescriptionEntity) then) =
       __$$_UserDescriptionEntityCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {List<Url>? urls,
       List<Tag>? hashtags,
@@ -104,16 +109,13 @@ abstract class _$$_UserDescriptionEntityCopyWith<$Res>
 
 /// @nodoc
 class __$$_UserDescriptionEntityCopyWithImpl<$Res>
-    extends _$UserDescriptionEntityCopyWithImpl<$Res>
+    extends _$UserDescriptionEntityCopyWithImpl<$Res, _$_UserDescriptionEntity>
     implements _$$_UserDescriptionEntityCopyWith<$Res> {
   __$$_UserDescriptionEntityCopyWithImpl(_$_UserDescriptionEntity _value,
       $Res Function(_$_UserDescriptionEntity) _then)
-      : super(_value, (v) => _then(v as _$_UserDescriptionEntity));
+      : super(_value, _then);
 
-  @override
-  _$_UserDescriptionEntity get _value =>
-      super._value as _$_UserDescriptionEntity;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? urls = freezed,
@@ -122,19 +124,19 @@ class __$$_UserDescriptionEntityCopyWithImpl<$Res>
     Object? mentions = freezed,
   }) {
     return _then(_$_UserDescriptionEntity(
-      urls: urls == freezed
+      urls: freezed == urls
           ? _value._urls
           : urls // ignore: cast_nullable_to_non_nullable
               as List<Url>?,
-      hashtags: hashtags == freezed
+      hashtags: freezed == hashtags
           ? _value._hashtags
           : hashtags // ignore: cast_nullable_to_non_nullable
               as List<Tag>?,
-      cashtags: cashtags == freezed
+      cashtags: freezed == cashtags
           ? _value._cashtags
           : cashtags // ignore: cast_nullable_to_non_nullable
               as List<Tag>?,
-      mentions: mentions == freezed
+      mentions: freezed == mentions
           ? _value._mentions
           : mentions // ignore: cast_nullable_to_non_nullable
               as List<Mention>?,
@@ -167,6 +169,7 @@ class _$_UserDescriptionEntity implements _UserDescriptionEntity {
   List<Url>? get urls {
     final value = _urls;
     if (value == null) return null;
+    if (_urls is EqualUnmodifiableListView) return _urls;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -179,6 +182,7 @@ class _$_UserDescriptionEntity implements _UserDescriptionEntity {
   List<Tag>? get hashtags {
     final value = _hashtags;
     if (value == null) return null;
+    if (_hashtags is EqualUnmodifiableListView) return _hashtags;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -191,6 +195,7 @@ class _$_UserDescriptionEntity implements _UserDescriptionEntity {
   List<Tag>? get cashtags {
     final value = _cashtags;
     if (value == null) return null;
+    if (_cashtags is EqualUnmodifiableListView) return _cashtags;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -203,6 +208,7 @@ class _$_UserDescriptionEntity implements _UserDescriptionEntity {
   List<Mention>? get mentions {
     final value = _mentions;
     if (value == null) return null;
+    if (_mentions is EqualUnmodifiableListView) return _mentions;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -234,6 +240,7 @@ class _$_UserDescriptionEntity implements _UserDescriptionEntity {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_UserDescriptionEntityCopyWith<_$_UserDescriptionEntity> get copyWith =>
       __$$_UserDescriptionEntityCopyWithImpl<_$_UserDescriptionEntity>(
           this, _$identity);

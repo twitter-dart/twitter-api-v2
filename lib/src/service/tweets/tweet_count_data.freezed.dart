@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'tweet_count_data.dart';
 
@@ -40,40 +40,43 @@ mixin _$TweetCountData {
 abstract class $TweetCountDataCopyWith<$Res> {
   factory $TweetCountDataCopyWith(
           TweetCountData value, $Res Function(TweetCountData) then) =
-      _$TweetCountDataCopyWithImpl<$Res>;
+      _$TweetCountDataCopyWithImpl<$Res, TweetCountData>;
+  @useResult
   $Res call(
       {DateTime start, DateTime end, @JsonKey(name: 'tweet_count') int count});
 }
 
 /// @nodoc
-class _$TweetCountDataCopyWithImpl<$Res>
+class _$TweetCountDataCopyWithImpl<$Res, $Val extends TweetCountData>
     implements $TweetCountDataCopyWith<$Res> {
   _$TweetCountDataCopyWithImpl(this._value, this._then);
 
-  final TweetCountData _value;
   // ignore: unused_field
-  final $Res Function(TweetCountData) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? start = freezed,
-    Object? end = freezed,
-    Object? count = freezed,
+    Object? start = null,
+    Object? end = null,
+    Object? count = null,
   }) {
     return _then(_value.copyWith(
-      start: start == freezed
+      start: null == start
           ? _value.start
           : start // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      end: end == freezed
+      end: null == end
           ? _value.end
           : end // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      count: count == freezed
+      count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+    ) as $Val);
   }
 }
 
@@ -84,37 +87,36 @@ abstract class _$$_TweetCountDataCopyWith<$Res>
           _$_TweetCountData value, $Res Function(_$_TweetCountData) then) =
       __$$_TweetCountDataCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {DateTime start, DateTime end, @JsonKey(name: 'tweet_count') int count});
 }
 
 /// @nodoc
 class __$$_TweetCountDataCopyWithImpl<$Res>
-    extends _$TweetCountDataCopyWithImpl<$Res>
+    extends _$TweetCountDataCopyWithImpl<$Res, _$_TweetCountData>
     implements _$$_TweetCountDataCopyWith<$Res> {
   __$$_TweetCountDataCopyWithImpl(
       _$_TweetCountData _value, $Res Function(_$_TweetCountData) _then)
-      : super(_value, (v) => _then(v as _$_TweetCountData));
+      : super(_value, _then);
 
-  @override
-  _$_TweetCountData get _value => super._value as _$_TweetCountData;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? start = freezed,
-    Object? end = freezed,
-    Object? count = freezed,
+    Object? start = null,
+    Object? end = null,
+    Object? count = null,
   }) {
     return _then(_$_TweetCountData(
-      start: start == freezed
+      start: null == start
           ? _value.start
           : start // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      end: end == freezed
+      end: null == end
           ? _value.end
           : end // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      count: count == freezed
+      count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
@@ -156,21 +158,18 @@ class _$_TweetCountData implements _TweetCountData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TweetCountData &&
-            const DeepCollectionEquality().equals(other.start, start) &&
-            const DeepCollectionEquality().equals(other.end, end) &&
-            const DeepCollectionEquality().equals(other.count, count));
+            (identical(other.start, start) || other.start == start) &&
+            (identical(other.end, end) || other.end == end) &&
+            (identical(other.count, count) || other.count == count));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(start),
-      const DeepCollectionEquality().hash(end),
-      const DeepCollectionEquality().hash(count));
+  int get hashCode => Object.hash(runtimeType, start, end, count);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_TweetCountDataCopyWith<_$_TweetCountData> get copyWith =>
       __$$_TweetCountDataCopyWithImpl<_$_TweetCountData>(this, _$identity);
 

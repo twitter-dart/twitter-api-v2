@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'place_data.dart';
 
@@ -82,7 +82,8 @@ mixin _$PlaceData {
 /// @nodoc
 abstract class $PlaceDataCopyWith<$Res> {
   factory $PlaceDataCopyWith(PlaceData value, $Res Function(PlaceData) then) =
-      _$PlaceDataCopyWithImpl<$Res>;
+      _$PlaceDataCopyWithImpl<$Res, PlaceData>;
+  @useResult
   $Res call(
       {String id,
       String fullName,
@@ -97,17 +98,20 @@ abstract class $PlaceDataCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PlaceDataCopyWithImpl<$Res> implements $PlaceDataCopyWith<$Res> {
+class _$PlaceDataCopyWithImpl<$Res, $Val extends PlaceData>
+    implements $PlaceDataCopyWith<$Res> {
   _$PlaceDataCopyWithImpl(this._value, this._then);
 
-  final PlaceData _value;
   // ignore: unused_field
-  final $Res Function(PlaceData) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? fullName = freezed,
+    Object? id = null,
+    Object? fullName = null,
     Object? name = freezed,
     Object? placeType = freezed,
     Object? countryName = freezed,
@@ -116,49 +120,50 @@ class _$PlaceDataCopyWithImpl<$Res> implements $PlaceDataCopyWith<$Res> {
     Object? containedWithin = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      fullName: fullName == freezed
+      fullName: null == fullName
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      placeType: placeType == freezed
+      placeType: freezed == placeType
           ? _value.placeType
           : placeType // ignore: cast_nullable_to_non_nullable
               as PlaceType?,
-      countryName: countryName == freezed
+      countryName: freezed == countryName
           ? _value.countryName
           : countryName // ignore: cast_nullable_to_non_nullable
               as String?,
-      country: country == freezed
+      country: freezed == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
               as Country?,
-      geo: geo == freezed
+      geo: freezed == geo
           ? _value.geo
           : geo // ignore: cast_nullable_to_non_nullable
               as PlaceGeo?,
-      containedWithin: containedWithin == freezed
+      containedWithin: freezed == containedWithin
           ? _value.containedWithin
           : containedWithin // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $PlaceGeoCopyWith<$Res>? get geo {
     if (_value.geo == null) {
       return null;
     }
 
     return $PlaceGeoCopyWith<$Res>(_value.geo!, (value) {
-      return _then(_value.copyWith(geo: value));
+      return _then(_value.copyWith(geo: value) as $Val);
     });
   }
 }
@@ -169,6 +174,7 @@ abstract class _$$_PlaceDataCopyWith<$Res> implements $PlaceDataCopyWith<$Res> {
           _$_PlaceData value, $Res Function(_$_PlaceData) then) =
       __$$_PlaceDataCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String id,
       String fullName,
@@ -184,19 +190,18 @@ abstract class _$$_PlaceDataCopyWith<$Res> implements $PlaceDataCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_PlaceDataCopyWithImpl<$Res> extends _$PlaceDataCopyWithImpl<$Res>
+class __$$_PlaceDataCopyWithImpl<$Res>
+    extends _$PlaceDataCopyWithImpl<$Res, _$_PlaceData>
     implements _$$_PlaceDataCopyWith<$Res> {
   __$$_PlaceDataCopyWithImpl(
       _$_PlaceData _value, $Res Function(_$_PlaceData) _then)
-      : super(_value, (v) => _then(v as _$_PlaceData));
+      : super(_value, _then);
 
-  @override
-  _$_PlaceData get _value => super._value as _$_PlaceData;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? fullName = freezed,
+    Object? id = null,
+    Object? fullName = null,
     Object? name = freezed,
     Object? placeType = freezed,
     Object? countryName = freezed,
@@ -205,35 +210,35 @@ class __$$_PlaceDataCopyWithImpl<$Res> extends _$PlaceDataCopyWithImpl<$Res>
     Object? containedWithin = freezed,
   }) {
     return _then(_$_PlaceData(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      fullName: fullName == freezed
+      fullName: null == fullName
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      placeType: placeType == freezed
+      placeType: freezed == placeType
           ? _value.placeType
           : placeType // ignore: cast_nullable_to_non_nullable
               as PlaceType?,
-      countryName: countryName == freezed
+      countryName: freezed == countryName
           ? _value.countryName
           : countryName // ignore: cast_nullable_to_non_nullable
               as String?,
-      country: country == freezed
+      country: freezed == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
               as Country?,
-      geo: geo == freezed
+      geo: freezed == geo
           ? _value.geo
           : geo // ignore: cast_nullable_to_non_nullable
               as PlaceGeo?,
-      containedWithin: containedWithin == freezed
+      containedWithin: freezed == containedWithin
           ? _value._containedWithin
           : containedWithin // ignore: cast_nullable_to_non_nullable
               as List<String>?,
@@ -325,6 +330,7 @@ class _$_PlaceData implements _PlaceData {
   List<String>? get containedWithin {
     final value = _containedWithin;
     if (value == null) return null;
+    if (_containedWithin is EqualUnmodifiableListView) return _containedWithin;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -339,14 +345,16 @@ class _$_PlaceData implements _PlaceData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PlaceData &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.fullName, fullName) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.placeType, placeType) &&
-            const DeepCollectionEquality()
-                .equals(other.countryName, countryName) &&
-            const DeepCollectionEquality().equals(other.country, country) &&
-            const DeepCollectionEquality().equals(other.geo, geo) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.placeType, placeType) ||
+                other.placeType == placeType) &&
+            (identical(other.countryName, countryName) ||
+                other.countryName == countryName) &&
+            (identical(other.country, country) || other.country == country) &&
+            (identical(other.geo, geo) || other.geo == geo) &&
             const DeepCollectionEquality()
                 .equals(other._containedWithin, _containedWithin));
   }
@@ -355,17 +363,18 @@ class _$_PlaceData implements _PlaceData {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(fullName),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(placeType),
-      const DeepCollectionEquality().hash(countryName),
-      const DeepCollectionEquality().hash(country),
-      const DeepCollectionEquality().hash(geo),
+      id,
+      fullName,
+      name,
+      placeType,
+      countryName,
+      country,
+      geo,
       const DeepCollectionEquality().hash(_containedWithin));
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_PlaceDataCopyWith<_$_PlaceData> get copyWith =>
       __$$_PlaceDataCopyWithImpl<_$_PlaceData>(this, _$identity);
 

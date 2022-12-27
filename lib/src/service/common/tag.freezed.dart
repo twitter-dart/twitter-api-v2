@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'tag.dart';
 
@@ -39,38 +39,41 @@ mixin _$Tag {
 /// @nodoc
 abstract class $TagCopyWith<$Res> {
   factory $TagCopyWith(Tag value, $Res Function(Tag) then) =
-      _$TagCopyWithImpl<$Res>;
+      _$TagCopyWithImpl<$Res, Tag>;
+  @useResult
   $Res call({int start, int end, String tag});
 }
 
 /// @nodoc
-class _$TagCopyWithImpl<$Res> implements $TagCopyWith<$Res> {
+class _$TagCopyWithImpl<$Res, $Val extends Tag> implements $TagCopyWith<$Res> {
   _$TagCopyWithImpl(this._value, this._then);
 
-  final Tag _value;
   // ignore: unused_field
-  final $Res Function(Tag) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? start = freezed,
-    Object? end = freezed,
-    Object? tag = freezed,
+    Object? start = null,
+    Object? end = null,
+    Object? tag = null,
   }) {
     return _then(_value.copyWith(
-      start: start == freezed
+      start: null == start
           ? _value.start
           : start // ignore: cast_nullable_to_non_nullable
               as int,
-      end: end == freezed
+      end: null == end
           ? _value.end
           : end // ignore: cast_nullable_to_non_nullable
               as int,
-      tag: tag == freezed
+      tag: null == tag
           ? _value.tag
           : tag // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -79,34 +82,33 @@ abstract class _$$_TagCopyWith<$Res> implements $TagCopyWith<$Res> {
   factory _$$_TagCopyWith(_$_Tag value, $Res Function(_$_Tag) then) =
       __$$_TagCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({int start, int end, String tag});
 }
 
 /// @nodoc
-class __$$_TagCopyWithImpl<$Res> extends _$TagCopyWithImpl<$Res>
+class __$$_TagCopyWithImpl<$Res> extends _$TagCopyWithImpl<$Res, _$_Tag>
     implements _$$_TagCopyWith<$Res> {
   __$$_TagCopyWithImpl(_$_Tag _value, $Res Function(_$_Tag) _then)
-      : super(_value, (v) => _then(v as _$_Tag));
+      : super(_value, _then);
 
-  @override
-  _$_Tag get _value => super._value as _$_Tag;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? start = freezed,
-    Object? end = freezed,
-    Object? tag = freezed,
+    Object? start = null,
+    Object? end = null,
+    Object? tag = null,
   }) {
     return _then(_$_Tag(
-      start: start == freezed
+      start: null == start
           ? _value.start
           : start // ignore: cast_nullable_to_non_nullable
               as int,
-      end: end == freezed
+      end: null == end
           ? _value.end
           : end // ignore: cast_nullable_to_non_nullable
               as int,
-      tag: tag == freezed
+      tag: null == tag
           ? _value.tag
           : tag // ignore: cast_nullable_to_non_nullable
               as String,
@@ -145,21 +147,18 @@ class _$_Tag implements _Tag {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Tag &&
-            const DeepCollectionEquality().equals(other.start, start) &&
-            const DeepCollectionEquality().equals(other.end, end) &&
-            const DeepCollectionEquality().equals(other.tag, tag));
+            (identical(other.start, start) || other.start == start) &&
+            (identical(other.end, end) || other.end == end) &&
+            (identical(other.tag, tag) || other.tag == tag));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(start),
-      const DeepCollectionEquality().hash(end),
-      const DeepCollectionEquality().hash(tag));
+  int get hashCode => Object.hash(runtimeType, start, end, tag);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_TagCopyWith<_$_Tag> get copyWith =>
       __$$_TagCopyWithImpl<_$_Tag>(this, _$identity);
 

@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'user_url_entity.dart';
 
@@ -33,29 +33,32 @@ mixin _$UserUrlEntity {
 abstract class $UserUrlEntityCopyWith<$Res> {
   factory $UserUrlEntityCopyWith(
           UserUrlEntity value, $Res Function(UserUrlEntity) then) =
-      _$UserUrlEntityCopyWithImpl<$Res>;
+      _$UserUrlEntityCopyWithImpl<$Res, UserUrlEntity>;
+  @useResult
   $Res call({List<Url> urls});
 }
 
 /// @nodoc
-class _$UserUrlEntityCopyWithImpl<$Res>
+class _$UserUrlEntityCopyWithImpl<$Res, $Val extends UserUrlEntity>
     implements $UserUrlEntityCopyWith<$Res> {
   _$UserUrlEntityCopyWithImpl(this._value, this._then);
 
-  final UserUrlEntity _value;
   // ignore: unused_field
-  final $Res Function(UserUrlEntity) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? urls = freezed,
+    Object? urls = null,
   }) {
     return _then(_value.copyWith(
-      urls: urls == freezed
+      urls: null == urls
           ? _value.urls
           : urls // ignore: cast_nullable_to_non_nullable
               as List<Url>,
-    ));
+    ) as $Val);
   }
 }
 
@@ -66,26 +69,25 @@ abstract class _$$_UserUrlEntityCopyWith<$Res>
           _$_UserUrlEntity value, $Res Function(_$_UserUrlEntity) then) =
       __$$_UserUrlEntityCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({List<Url> urls});
 }
 
 /// @nodoc
 class __$$_UserUrlEntityCopyWithImpl<$Res>
-    extends _$UserUrlEntityCopyWithImpl<$Res>
+    extends _$UserUrlEntityCopyWithImpl<$Res, _$_UserUrlEntity>
     implements _$$_UserUrlEntityCopyWith<$Res> {
   __$$_UserUrlEntityCopyWithImpl(
       _$_UserUrlEntity _value, $Res Function(_$_UserUrlEntity) _then)
-      : super(_value, (v) => _then(v as _$_UserUrlEntity));
+      : super(_value, _then);
 
-  @override
-  _$_UserUrlEntity get _value => super._value as _$_UserUrlEntity;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? urls = freezed,
+    Object? urls = null,
   }) {
     return _then(_$_UserUrlEntity(
-      urls: urls == freezed
+      urls: null == urls
           ? _value._urls
           : urls // ignore: cast_nullable_to_non_nullable
               as List<Url>,
@@ -107,6 +109,7 @@ class _$_UserUrlEntity implements _UserUrlEntity {
   /// Contains details about the user's profile website.
   @override
   List<Url> get urls {
+    if (_urls is EqualUnmodifiableListView) return _urls;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_urls);
   }
@@ -131,6 +134,7 @@ class _$_UserUrlEntity implements _UserUrlEntity {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_UserUrlEntityCopyWith<_$_UserUrlEntity> get copyWith =>
       __$$_UserUrlEntityCopyWithImpl<_$_UserUrlEntity>(this, _$identity);
 

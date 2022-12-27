@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'tweet_context_annotation.dart';
 
@@ -47,39 +47,43 @@ mixin _$TweetContextAnnotation {
 abstract class $TweetContextAnnotationCopyWith<$Res> {
   factory $TweetContextAnnotationCopyWith(TweetContextAnnotation value,
           $Res Function(TweetContextAnnotation) then) =
-      _$TweetContextAnnotationCopyWithImpl<$Res>;
+      _$TweetContextAnnotationCopyWithImpl<$Res, TweetContextAnnotation>;
+  @useResult
   $Res call({String id, String name, String? description});
 }
 
 /// @nodoc
-class _$TweetContextAnnotationCopyWithImpl<$Res>
+class _$TweetContextAnnotationCopyWithImpl<$Res,
+        $Val extends TweetContextAnnotation>
     implements $TweetContextAnnotationCopyWith<$Res> {
   _$TweetContextAnnotationCopyWithImpl(this._value, this._then);
 
-  final TweetContextAnnotation _value;
   // ignore: unused_field
-  final $Res Function(TweetContextAnnotation) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
+    Object? id = null,
+    Object? name = null,
     Object? description = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      description: description == freezed
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -90,37 +94,36 @@ abstract class _$$_TweetContextAnnotationCopyWith<$Res>
           $Res Function(_$_TweetContextAnnotation) then) =
       __$$_TweetContextAnnotationCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String id, String name, String? description});
 }
 
 /// @nodoc
 class __$$_TweetContextAnnotationCopyWithImpl<$Res>
-    extends _$TweetContextAnnotationCopyWithImpl<$Res>
+    extends _$TweetContextAnnotationCopyWithImpl<$Res,
+        _$_TweetContextAnnotation>
     implements _$$_TweetContextAnnotationCopyWith<$Res> {
   __$$_TweetContextAnnotationCopyWithImpl(_$_TweetContextAnnotation _value,
       $Res Function(_$_TweetContextAnnotation) _then)
-      : super(_value, (v) => _then(v as _$_TweetContextAnnotation));
+      : super(_value, _then);
 
-  @override
-  _$_TweetContextAnnotation get _value =>
-      super._value as _$_TweetContextAnnotation;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
+    Object? id = null,
+    Object? name = null,
     Object? description = freezed,
   }) {
     return _then(_$_TweetContextAnnotation(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      description: description == freezed
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -167,22 +170,19 @@ class _$_TweetContextAnnotation implements _TweetContextAnnotation {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TweetContextAnnotation &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality()
-                .equals(other.description, description));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.description, description) ||
+                other.description == description));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(description));
+  int get hashCode => Object.hash(runtimeType, id, name, description);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_TweetContextAnnotationCopyWith<_$_TweetContextAnnotation> get copyWith =>
       __$$_TweetContextAnnotationCopyWithImpl<_$_TweetContextAnnotation>(
           this, _$identity);

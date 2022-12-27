@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'filtering_rule_meta.dart';
 
@@ -39,7 +39,8 @@ mixin _$FilteringRuleMeta {
 abstract class $FilteringRuleMetaCopyWith<$Res> {
   factory $FilteringRuleMetaCopyWith(
           FilteringRuleMeta value, $Res Function(FilteringRuleMeta) then) =
-      _$FilteringRuleMetaCopyWithImpl<$Res>;
+      _$FilteringRuleMetaCopyWithImpl<$Res, FilteringRuleMeta>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'sent') DateTime? sentAt, FilteringRuleSummary? summary});
 
@@ -47,39 +48,42 @@ abstract class $FilteringRuleMetaCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$FilteringRuleMetaCopyWithImpl<$Res>
+class _$FilteringRuleMetaCopyWithImpl<$Res, $Val extends FilteringRuleMeta>
     implements $FilteringRuleMetaCopyWith<$Res> {
   _$FilteringRuleMetaCopyWithImpl(this._value, this._then);
 
-  final FilteringRuleMeta _value;
   // ignore: unused_field
-  final $Res Function(FilteringRuleMeta) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? sentAt = freezed,
     Object? summary = freezed,
   }) {
     return _then(_value.copyWith(
-      sentAt: sentAt == freezed
+      sentAt: freezed == sentAt
           ? _value.sentAt
           : sentAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      summary: summary == freezed
+      summary: freezed == summary
           ? _value.summary
           : summary // ignore: cast_nullable_to_non_nullable
               as FilteringRuleSummary?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $FilteringRuleSummaryCopyWith<$Res>? get summary {
     if (_value.summary == null) {
       return null;
     }
 
     return $FilteringRuleSummaryCopyWith<$Res>(_value.summary!, (value) {
-      return _then(_value.copyWith(summary: value));
+      return _then(_value.copyWith(summary: value) as $Val);
     });
   }
 }
@@ -91,6 +95,7 @@ abstract class _$$_FilteringRuleMetaCopyWith<$Res>
           $Res Function(_$_FilteringRuleMeta) then) =
       __$$_FilteringRuleMetaCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'sent') DateTime? sentAt, FilteringRuleSummary? summary});
 
@@ -100,26 +105,24 @@ abstract class _$$_FilteringRuleMetaCopyWith<$Res>
 
 /// @nodoc
 class __$$_FilteringRuleMetaCopyWithImpl<$Res>
-    extends _$FilteringRuleMetaCopyWithImpl<$Res>
+    extends _$FilteringRuleMetaCopyWithImpl<$Res, _$_FilteringRuleMeta>
     implements _$$_FilteringRuleMetaCopyWith<$Res> {
   __$$_FilteringRuleMetaCopyWithImpl(
       _$_FilteringRuleMeta _value, $Res Function(_$_FilteringRuleMeta) _then)
-      : super(_value, (v) => _then(v as _$_FilteringRuleMeta));
+      : super(_value, _then);
 
-  @override
-  _$_FilteringRuleMeta get _value => super._value as _$_FilteringRuleMeta;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? sentAt = freezed,
     Object? summary = freezed,
   }) {
     return _then(_$_FilteringRuleMeta(
-      sentAt: sentAt == freezed
+      sentAt: freezed == sentAt
           ? _value.sentAt
           : sentAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      summary: summary == freezed
+      summary: freezed == summary
           ? _value.summary
           : summary // ignore: cast_nullable_to_non_nullable
               as FilteringRuleSummary?,
@@ -158,19 +161,17 @@ class _$_FilteringRuleMeta implements _FilteringRuleMeta {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_FilteringRuleMeta &&
-            const DeepCollectionEquality().equals(other.sentAt, sentAt) &&
-            const DeepCollectionEquality().equals(other.summary, summary));
+            (identical(other.sentAt, sentAt) || other.sentAt == sentAt) &&
+            (identical(other.summary, summary) || other.summary == summary));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(sentAt),
-      const DeepCollectionEquality().hash(summary));
+  int get hashCode => Object.hash(runtimeType, sentAt, summary);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_FilteringRuleMetaCopyWith<_$_FilteringRuleMeta> get copyWith =>
       __$$_FilteringRuleMetaCopyWithImpl<_$_FilteringRuleMeta>(
           this, _$identity);
