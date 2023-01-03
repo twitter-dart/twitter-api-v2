@@ -243,6 +243,16 @@
         "question",
         "userTesting"
       ]
+    },
+    {
+      "login": "shinobi-art",
+      "name": "shinobi-art",
+      "avatar_url": "https://avatars.githubusercontent.com/u/79818229?v=4",
+      "profile": "https://github.com/shinobi-art",
+      "contributions": [
+        "bug",
+        "question"
+      ]
     }
   ],
   "contributorsPerLine": 5,
