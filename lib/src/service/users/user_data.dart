@@ -48,7 +48,7 @@ class UserData with _$UserData implements Data {
 
     /// The Twitter screen name, handle, or alias that this user identifies
     /// themselves with. Usernames are unique but subject to change. Typically
-    ///  a maximum of 15 characters long, but some historical accounts may exist
+    /// a maximum of 15 characters long, but some historical accounts may exist
     /// with longer names.
     required String username,
 

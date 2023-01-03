@@ -10,6 +10,7 @@ import 'dart:convert';
 import 'package:http/http.dart';
 
 // 🌎 Project imports:
+import '../core/adaptor/object_adaptor.dart';
 import '../core/client/client_context.dart';
 import '../core/client/stream_response.dart';
 import '../core/client/user_context.dart';
@@ -54,6 +55,13 @@ abstract class _Service {
     String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
     Map<String, String> body = const {},
+  });
+
+  Future<Response> postMultipart(
+    final UserContext userContext,
+    final String unencodedPath, {
+    List<MultipartFile> files = const [],
+    Map<String, dynamic> queryParameters = const {},
   });
 
   Future<Response> delete(
@@ -183,6 +191,21 @@ abstract class BaseService implements _Service {
       );
 
   @override
+  Future<Response> postMultipart(
+    final UserContext userContext,
+    final String unencodedPath, {
+    List<MultipartFile> files = const [],
+    Map<String, dynamic> queryParameters = const {},
+  }) async =>
+      await _helper.postMultipart(
+        userContext,
+        unencodedPath,
+        files: files,
+        queryParameters: queryParameters,
+        validate: checkResponse,
+      );
+
+  @override
   Future<Response> delete(
     final UserContext userContext,
     final String unencodedPath,
@@ -212,8 +235,11 @@ abstract class BaseService implements _Service {
     Response response, {
     required DataBuilder<D> dataBuilder,
     MetaBuilder<M>? metaBuilder,
+    ObjectAdaptor? adaptor,
   }) {
-    final jsonBody = _checkResponseBody(response);
+    final jsonBody = adaptor != null
+        ? adaptor.execute(tryJsonDecode(response, response.body))
+        : _checkResponseBody(response);
 
     return TwitterResponse(
       rateLimit: RateLimit.fromJson(

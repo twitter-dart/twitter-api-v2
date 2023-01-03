@@ -3,6 +3,11 @@
 // modification, are permitted provided the conditions.
 
 // 🌎 Project imports:
+import 'dart:io';
+
+import 'package:http/http.dart';
+
+import '../../core/adaptor/user_object_adaptor.dart';
 import '../../core/client/client_context.dart';
 import '../../core/client/user_context.dart';
 import '../base_service.dart';
@@ -922,7 +927,6 @@ abstract class UsersService {
   ///             `PaginationControl.stop()` to terminate paging on
   ///             arbitrary conditions, otherwise paging continues until the
   ///             next page runs out.
-
   ///
   /// ## Endpoint Url
   ///
@@ -955,6 +959,33 @@ abstract class UsersService {
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
     Paging<List<UserData>, UserMeta>? paging,
+  });
+
+  /// Updates the authenticating user's profile image. Note that this method
+  /// expects raw multipart data, not a URL to an image.
+  ///
+  /// ## Parameters
+  ///
+  /// - [imageFile]: The avatar image for the profile, base64-encoded.
+  ///                Must be a valid GIF, JPG, or PNG image of less than
+  ///                700 kilobytes in size. Images with width larger than
+  ///                400 pixels will be scaled down. Animated GIFs will be
+  ///                converted to a static GIF of the first frame, removing
+  ///                the animation.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/1.1/account/update_profile_image.json
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 1.0a
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/v1/accounts-and-users/manage-account-settings/api-reference/post-account-update_profile_image
+  Future<TwitterResponse<UserData, void>> updateProfileImage({
+    required File imageFile,
   });
 }
 
@@ -1235,5 +1266,25 @@ class _UsersService extends BaseService implements UsersService {
         paging: paging,
         dataBuilder: UserData.fromJson,
         metaBuilder: UserMeta.fromJson,
+      );
+
+  @override
+  Future<TwitterResponse<UserData, void>> updateProfileImage({
+    required File imageFile,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.postMultipart(
+          UserContext.oauth1Only,
+          '/1.1/account/update_profile_image.json',
+          files: [
+            MultipartFile.fromBytes('image', imageFile.readAsBytesSync()),
+          ],
+          queryParameters: {
+            'include_entities': false,
+            'skip_status': true,
+          },
+        ),
+        dataBuilder: UserData.fromJson,
+        adaptor: const UserObjectAdaptor(),
       );
 }
