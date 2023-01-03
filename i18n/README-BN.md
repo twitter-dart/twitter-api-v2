@@ -601,6 +601,9 @@ OSS এ কন্ট্রিবিউট করার অনেক পদ্ধ
       <td align="center"><a href="https://github.com/normidar"><img src="https://avatars.githubusercontent.com/u/36730656?v=4?s=100" width="100px;" alt="normidar"/><br /><sub><b>normidar</b></sub></a><br /><a href="#ideas-normidar" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=normidar" title="Code">💻</a> <a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=normidar" title="Documentation">📖</a> <a href="#question-normidar" title="Answering Questions">💬</a></td>
       <td align="center"><a href="https://github.com/TSurkis"><img src="https://avatars.githubusercontent.com/u/10674270?v=4?s=100" width="100px;" alt="Tim Surkis"/><br /><sub><b>Tim Surkis</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/issues?q=author%3ATSurkis" title="Bug reports">🐛</a> <a href="#ideas-TSurkis" title="Ideas, Planning, & Feedback">🤔</a> <a href="#question-TSurkis" title="Answering Questions">💬</a> <a href="#userTesting-TSurkis" title="User Testing">📓</a></td>
     </tr>
+    <tr>
+      <td align="center"><a href="https://github.com/shinobi-art"><img src="https://avatars.githubusercontent.com/u/79818229?v=4?s=100" width="100px;" alt="shinobi-art"/><br /><sub><b>shinobi-art</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/issues?q=author%3Ashinobi-art" title="Bug reports">🐛</a> <a href="#question-shinobi-art" title="Answering Questions">💬</a></td>
+    </tr>
   </tbody>
 </table>
 
