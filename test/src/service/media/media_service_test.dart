@@ -21,7 +21,7 @@ void main() {
   group('.uploadImage', () {
     test('normal case', () async {
       final mediaService = MediaService(
-        context: context.buildPostMultipartStub(
+        context: context.buildUploadPostMultipartStub(
           UserContext.oauth1Only,
           '/1.1/media/upload.json',
           'test/src/service/media/data/upload_image.json',
