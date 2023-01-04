@@ -422,6 +422,11 @@ abstract class BaseService implements _Service {
       return false;
     }
 
+    if (response.statusCode == 422) {
+      //! Unprocessable.
+      return false;
+    }
+
     return !tryJsonDecode(response, response.body)
         .containsKey(ResponseField.errors.value);
   }
