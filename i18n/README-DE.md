@@ -623,6 +623,7 @@ Ein großes Dankeschön geht an diese wundervollen Menschen ([emoji key](https:/
     </tr>
     <tr>
       <td align="center"><a href="https://github.com/shinobi-art"><img src="https://avatars.githubusercontent.com/u/79818229?v=4?s=100" width="100px;" alt="shinobi-art"/><br /><sub><b>shinobi-art</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/issues?q=author%3Ashinobi-art" title="Bug reports">🐛</a> <a href="#question-shinobi-art" title="Answering Questions">💬</a></td>
+      <td align="center"><a href="https://github.com/Tushar-Mishra999"><img src="https://avatars.githubusercontent.com/u/75738710?v=4?s=100" width="100px;" alt="Tushar Mishra"/><br /><sub><b>Tushar Mishra</b></sub></a><br /><a href="https://github.com/twitter-dart/twitter-api-v2/commits?author=Tushar-Mishra999" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
