@@ -4,6 +4,7 @@
 
 - Supported `POST account/update_profile_image`. ([#617](https://github.com/twitter-dart/twitter-api-v2/issues/617))
 - Supported `POST account/update_profile_banner`. ([#614](https://github.com/twitter-dart/twitter-api-v2/issues/614))
+- Supported `POST account/remove_profile_banner`. ([#616](https://github.com/twitter-dart/twitter-api-v2/issues/616))
 
 ## v4.7.1
 
