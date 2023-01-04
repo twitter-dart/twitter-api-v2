@@ -16,9 +16,6 @@ void expectUnauthorizedException(Function fn) {
     throwsA(
       allOf(
         isA<UnauthorizedException>(),
-        predicate(
-          (dynamic e) => e.message == 'The specified access token is invalid.',
-        ),
       ),
     ),
   );

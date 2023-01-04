@@ -1,5 +1,9 @@
 # Release Note
 
+## v4.8.0
+
+- Supported `POST account/update_profile_image`. ([#617](https://github.com/twitter-dart/twitter-api-v2/issues/617))
+
 ## v4.7.1
 
 - Upgraded dependencies.
