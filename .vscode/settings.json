@@ -59,5 +59,7 @@
     "MD025": {
       "front_matter_title": ""
     }
-  }
+  },
+  "editor.fontFamily": "Fira Code",
+  "editor.fontLigatures": true,
 }
