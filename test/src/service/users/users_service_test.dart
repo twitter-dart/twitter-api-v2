@@ -1769,7 +1769,7 @@ void main() {
       );
 
       final response = await usersService.updateProfileImage(
-        imageFile: File(
+        file: File(
           'test/src/service/users/data/update_profile_image.json',
         ),
       );
@@ -1788,7 +1788,7 @@ void main() {
 
       expectUnauthorizedException(
         () async => await usersService.updateProfileImage(
-          imageFile: File(
+          file: File(
             'test/src/service/users/data/update_profile_image.json',
           ),
         ),
@@ -1811,7 +1811,7 @@ void main() {
 
       expectRateLimitExceededException(
         () async => await usersService.updateProfileImage(
-          imageFile: File(
+          file: File(
             'test/src/service/users/data/update_profile_image.json',
           ),
         ),
@@ -1832,7 +1832,7 @@ void main() {
       );
 
       final response = await usersService.updateProfileImage(
-        imageFile: File(
+        file: File(
           'test/src/service/users/data/update_profile_image.json',
         ),
       );
@@ -1860,7 +1860,7 @@ void main() {
       );
 
       final response = await usersService.updateProfileBanner(
-        imageFile: File(
+        file: File(
           'test/src/service/users/data/update_profile_banner.json',
         ),
         width: 100,
@@ -1883,7 +1883,7 @@ void main() {
 
       expectUnauthorizedException(
         () async => await usersService.updateProfileBanner(
-          imageFile: File(
+          file: File(
             'test/src/service/users/data/update_profile_banner.json',
           ),
           width: 100,
@@ -1912,7 +1912,7 @@ void main() {
 
       expectRateLimitExceededException(
         () async => await usersService.updateProfileBanner(
-          imageFile: File(
+          file: File(
             'test/src/service/users/data/update_profile_banner.json',
           ),
           width: 100,
@@ -1940,7 +1940,7 @@ void main() {
       );
 
       final response = await usersService.updateProfileBanner(
-        imageFile: File(
+        file: File(
           'test/src/service/users/data/update_profile_banner.json',
         ),
         width: 100,
@@ -1948,6 +1948,67 @@ void main() {
         offsetLeft: 10,
         offsetTop: 10,
       );
+
+      expect(response, isA<TwitterResponse<bool, void>>());
+      expect(response.data, isFalse);
+    });
+  });
+
+  group('.destroyProfileBanner', () {
+    test('normal case', () async {
+      final usersService = UsersService(
+        context: context.buildPostStub(
+          UserContext.oauth1Only,
+          '/1.1/account/remove_profile_banner.json',
+          'test/src/service/users/data/destroy_profile_banner.json',
+        ),
+      );
+
+      final response = await usersService.destroyProfileBanner();
+
+      expect(response, isA<TwitterResponse<bool, void>>());
+      expect(response.data, isTrue);
+    });
+
+    test('with invalid access token', () async {
+      final usersService = UsersService(
+        context: ClientContext(
+          bearerToken: '',
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await usersService.destroyProfileBanner(),
+      );
+    });
+
+    test('with rate limit exceeded error', () async {
+      final usersService = UsersService(
+        context: context.buildPostStub(
+          UserContext.oauth1Only,
+          '/1.1/account/remove_profile_banner.json',
+          'test/src/service/users/data/destroy_profile_banner.json',
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await usersService.destroyProfileBanner(),
+      );
+    });
+
+    test('with errors', () async {
+      final usersService = UsersService(
+        context: context.buildPostStub(
+          UserContext.oauth1Only,
+          '/1.1/account/remove_profile_banner.json',
+          'test/src/service/users/data/destroy_profile_banner.json',
+          statusCode: 422,
+        ),
+      );
+
+      final response = await usersService.destroyProfileBanner();
 
       expect(response, isA<TwitterResponse<bool, void>>());
       expect(response.data, isFalse);
