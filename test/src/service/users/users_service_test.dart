@@ -2014,4 +2014,148 @@ void main() {
       expect(response.data, isFalse);
     });
   });
+
+  group('.createReportById', () {
+    test('normal case', () async {
+      final usersService = UsersService(
+        context: context.buildPostStub(
+          UserContext.oauth1Only,
+          '/1.1/users/report_spam.json',
+          'test/src/service/users/data/create_report.json',
+        ),
+      );
+
+      final response = await usersService.createReportById(
+        userId: '1234',
+        performBlock: false,
+      );
+
+      expect(response, isA<TwitterResponse<UserData, void>>());
+      expect(response.data, isA<UserData>());
+    });
+
+    test('with invalid access token', () async {
+      final usersService = UsersService(
+        context: ClientContext(
+          bearerToken: '',
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await usersService.createReportById(
+          userId: '1234',
+          performBlock: false,
+        ),
+      );
+    });
+
+    test('with rate limit exceeded error', () async {
+      final usersService = UsersService(
+        context: context.buildPostStub(
+          UserContext.oauth1Only,
+          '/1.1/users/report_spam.json',
+          'test/src/service/users/data/create_report.json',
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await usersService.createReportById(
+          userId: '1234',
+          performBlock: false,
+        ),
+      );
+    });
+
+    test('with errors', () async {
+      final usersService = UsersService(
+        context: context.buildPostStub(
+          UserContext.oauth1Only,
+          '/1.1/users/report_spam.json',
+          'test/src/service/users/data/create_report.json',
+        ),
+      );
+
+      final response = await usersService.createReportById(
+        userId: '1234',
+        performBlock: false,
+      );
+
+      expect(response, isA<TwitterResponse<UserData, void>>());
+      expect(response.data, isA<UserData>());
+    });
+  });
+
+  group('.createReportByName', () {
+    test('normal case', () async {
+      final usersService = UsersService(
+        context: context.buildPostStub(
+          UserContext.oauth1Only,
+          '/1.1/users/report_spam.json',
+          'test/src/service/users/data/create_report.json',
+        ),
+      );
+
+      final response = await usersService.createReportByName(
+        username: '1234',
+        performBlock: false,
+      );
+
+      expect(response, isA<TwitterResponse<UserData, void>>());
+      expect(response.data, isA<UserData>());
+    });
+
+    test('with invalid access token', () async {
+      final usersService = UsersService(
+        context: ClientContext(
+          bearerToken: '',
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await usersService.createReportByName(
+          username: '1234',
+          performBlock: false,
+        ),
+      );
+    });
+
+    test('with rate limit exceeded error', () async {
+      final usersService = UsersService(
+        context: context.buildPostStub(
+          UserContext.oauth1Only,
+          '/1.1/users/report_spam.json',
+          'test/src/service/users/data/create_report.json',
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await usersService.createReportByName(
+          username: '1234',
+          performBlock: false,
+        ),
+      );
+    });
+
+    test('with errors', () async {
+      final usersService = UsersService(
+        context: context.buildPostStub(
+          UserContext.oauth1Only,
+          '/1.1/users/report_spam.json',
+          'test/src/service/users/data/create_report.json',
+        ),
+      );
+
+      final response = await usersService.createReportByName(
+        username: '1234',
+        performBlock: false,
+      );
+
+      expect(response, isA<TwitterResponse<UserData, void>>());
+      expect(response.data, isA<UserData>());
+    });
+  });
 }
