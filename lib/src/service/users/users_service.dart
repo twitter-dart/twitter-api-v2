@@ -1100,11 +1100,50 @@ abstract class UsersService {
     required String username,
     bool? performBlock,
   });
+
+  /// Sets some values that users are able to set under the "Account" tab of
+  /// their settings page.
+  ///
+  /// Only the parameters specified will be updated.
+  ///
+  /// ## Parameters
+  ///
+  /// - [name]: Full name associated with the profile.
+  ///
+  /// - [description]: A description of the user owning the account.
+  ///
+  /// - [url]: URL associated with the profile.
+  ///          Will be prepended with `http://` if not present.
+  ///
+  /// - [location]: The city or country describing where the user of the
+  ///               account is located. The contents are not normalized or
+  ///               geocoded in any way.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/1.1/account/update_profile.json
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 1.0a
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/v1/accounts-and-users/manage-account-settings/api-reference/post-account-update_profile
+  Future<TwitterResponse<UserData, void>> updateProfile({
+    String? name,
+    String? description,
+    String? url,
+    String? location,
+  });
 }
 
 class _UsersService extends BaseService implements UsersService {
   /// Returns the new instance of [_UsersService].
   _UsersService({required super.context});
+
+  /// The object adaptor for User data.
+  static const _userObjectAdaptor = UserObjectAdaptor();
 
   @override
   Future<TwitterResponse<bool, void>> createFollow({
@@ -1398,7 +1437,7 @@ class _UsersService extends BaseService implements UsersService {
           },
         ),
         dataBuilder: UserData.fromJson,
-        adaptor: const UserObjectAdaptor(),
+        adaptor: _userObjectAdaptor,
       );
 
   @override
@@ -1454,6 +1493,30 @@ class _UsersService extends BaseService implements UsersService {
         performBlock: performBlock,
       );
 
+  @override
+  Future<TwitterResponse<UserData, void>> updateProfile({
+    String? name,
+    String? description,
+    String? url,
+    String? location,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth1Only,
+          '/1.1/account/update_profile.json',
+          body: {
+            'name': name,
+            'description': description,
+            'url': url,
+            'location': location,
+            'include_entities': false,
+            'skip_status': true,
+          },
+        ),
+        dataBuilder: UserData.fromJson,
+        adaptor: _userObjectAdaptor,
+      );
+
   Future<TwitterResponse<UserData, void>> _createReport({
     String? userId,
     String? username,
@@ -1470,6 +1533,6 @@ class _UsersService extends BaseService implements UsersService {
           },
         ),
         dataBuilder: UserData.fromJson,
-        adaptor: const UserObjectAdaptor(),
+        adaptor: _userObjectAdaptor,
       );
 }
