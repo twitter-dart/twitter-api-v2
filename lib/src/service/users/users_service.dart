@@ -1050,6 +1050,56 @@ abstract class UsersService {
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/v1/accounts-and-users/manage-account-settings/api-reference/post-account-remove_profile_banner
   Future<TwitterResponse<bool, void>> destroyProfileBanner();
+
+  /// Report the specified user as a spam account to Twitter.
+  ///
+  /// ## Parameters
+  ///
+  /// - [userId]: The ID of the user to report as a spammer.
+  ///
+  /// - [performBlock]: Whether the account should be blocked by the
+  ///                   authenticated user, as well as being reported for spam.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/1.1/users/report_spam.json
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 1.0a
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/v1/accounts-and-users/mute-block-report-users/api-reference/post-users-report_spam
+  Future<TwitterResponse<UserData, void>> createReportById({
+    required String userId,
+    bool? performBlock,
+  });
+
+  /// Report the specified user as a spam account to Twitter.
+  ///
+  /// ## Parameters
+  ///
+  /// - [username]: The username of the user to report as a spammer.
+  ///
+  /// - [performBlock]: Whether the account should be blocked by the
+  ///                   authenticated user, as well as being reported for spam.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/1.1/users/report_spam.json
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 1.0a
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/v1/accounts-and-users/mute-block-report-users/api-reference/post-users-report_spam
+  Future<TwitterResponse<UserData, void>> createReportByName({
+    required String username,
+    bool? performBlock,
+  });
 }
 
 class _UsersService extends BaseService implements UsersService {
@@ -1382,5 +1432,44 @@ class _UsersService extends BaseService implements UsersService {
           UserContext.oauth1Only,
           '/1.1/account/remove_profile_banner.json',
         ),
+      );
+
+  @override
+  Future<TwitterResponse<UserData, void>> createReportById({
+    required String userId,
+    bool? performBlock,
+  }) async =>
+      await _createReport(
+        userId: userId,
+        performBlock: performBlock,
+      );
+
+  @override
+  Future<TwitterResponse<UserData, void>> createReportByName({
+    required String username,
+    bool? performBlock,
+  }) async =>
+      await _createReport(
+        username: username,
+        performBlock: performBlock,
+      );
+
+  Future<TwitterResponse<UserData, void>> _createReport({
+    String? userId,
+    String? username,
+    bool? performBlock,
+  }) async =>
+      super.transformSingleDataResponse(
+        await super.post(
+          UserContext.oauth1Only,
+          '/1.1/users/report_spam.json',
+          body: {
+            'user_id': userId,
+            'screen_name': username,
+            'perform_block': performBlock,
+          },
+        ),
+        dataBuilder: UserData.fromJson,
+        adaptor: const UserObjectAdaptor(),
       );
 }
