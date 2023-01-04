@@ -968,7 +968,7 @@ abstract class UsersService {
   ///
   /// ## Parameters
   ///
-  /// - [imageFile]: The avatar image for the profile, base64-encoded.
+  /// - [file]: The avatar image for the profile, base64-encoded.
   ///                Must be a valid GIF, JPG, or PNG image of less than
   ///                700 kilobytes in size. Images with width larger than
   ///                400 pixels will be scaled down. Animated GIFs will be
@@ -987,7 +987,7 @@ abstract class UsersService {
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/v1/accounts-and-users/manage-account-settings/api-reference/post-account-update_profile_image
   Future<TwitterResponse<UserData, void>> updateProfileImage({
-    required File imageFile,
+    required File file,
   });
 
   /// Uploads a profile banner on behalf of the authenticating user.
@@ -997,7 +997,7 @@ abstract class UsersService {
   ///
   /// ## Parameters
   ///
-  /// - [imageFile]: The file of user's new profile banner.
+  /// - [file]: The file of user's new profile banner.
   ///
   /// - [width]: The width of the preferred section of the image being
   ///            uploaded in pixels. Use with [height], [offsetLeft],
@@ -1029,12 +1029,27 @@ abstract class UsersService {
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/v1/accounts-and-users/manage-account-settings/api-reference/post-account-update_profile_banner
   Future<TwitterResponse<bool, void>> updateProfileBanner({
-    required File imageFile,
+    required File file,
     int? width,
     int? height,
     int? offsetLeft,
     int? offsetTop,
   });
+
+  /// Removes the uploaded profile banner for the authenticating user.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/1.1/account/remove_profile_banner.json
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 1.0a
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/v1/accounts-and-users/manage-account-settings/api-reference/post-account-remove_profile_banner
+  Future<TwitterResponse<bool, void>> destroyProfileBanner();
 }
 
 class _UsersService extends BaseService implements UsersService {
@@ -1318,14 +1333,14 @@ class _UsersService extends BaseService implements UsersService {
 
   @override
   Future<TwitterResponse<UserData, void>> updateProfileImage({
-    required File imageFile,
+    required File file,
   }) async =>
       super.transformSingleDataResponse(
         await super.postMultipart(
           UserContext.oauth1Only,
           '/1.1/account/update_profile_image.json',
           files: [
-            MultipartFile.fromBytes('image', imageFile.readAsBytesSync()),
+            MultipartFile.fromBytes('image', file.readAsBytesSync()),
           ],
           queryParameters: {
             'include_entities': false,
@@ -1338,7 +1353,7 @@ class _UsersService extends BaseService implements UsersService {
 
   @override
   Future<TwitterResponse<bool, void>> updateProfileBanner({
-    required File imageFile,
+    required File file,
     int? width,
     int? height,
     int? offsetLeft,
@@ -1349,7 +1364,7 @@ class _UsersService extends BaseService implements UsersService {
           UserContext.oauth1Only,
           '/1.1/account/update_profile_banner.json',
           files: [
-            MultipartFile.fromBytes('banner', imageFile.readAsBytesSync()),
+            MultipartFile.fromBytes('banner', file.readAsBytesSync()),
           ],
           queryParameters: {
             'width': width,
@@ -1357,6 +1372,15 @@ class _UsersService extends BaseService implements UsersService {
             'offset_left': offsetLeft,
             'offset_top': offsetTop,
           },
+        ),
+      );
+
+  @override
+  Future<TwitterResponse<bool, void>> destroyProfileBanner() async =>
+      super.evaluateResponse(
+        await super.post(
+          UserContext.oauth1Only,
+          '/1.1/account/remove_profile_banner.json',
         ),
       );
 }
