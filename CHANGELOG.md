@@ -6,6 +6,8 @@
 - Supported `POST account/update_profile_banner`. ([#614](https://github.com/twitter-dart/twitter-api-v2/issues/614))
 - Supported `POST account/remove_profile_banner`. ([#616](https://github.com/twitter-dart/twitter-api-v2/issues/616))
 - Supported `POST users/report_spam`. ([#618](https://github.com/twitter-dart/twitter-api-v2/issues/618))
+- Fixed `tweets.searchRecent` to work with user context tokens as well as AppOnly tokens. ([#619](https://github.com/twitter-dart/twitter-api-v2/issues/619))
+- Supported `POST account/update_profile`. ([#615](https://github.com/twitter-dart/twitter-api-v2/issues/615))
 
 ## v4.7.1
 

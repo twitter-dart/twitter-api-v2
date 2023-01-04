@@ -2158,4 +2158,84 @@ void main() {
       expect(response.data, isA<UserData>());
     });
   });
+
+  group('.updateProfile', () {
+    test('normal case', () async {
+      final usersService = UsersService(
+        context: context.buildPostStub(
+          UserContext.oauth1Only,
+          '/1.1/account/update_profile.json',
+          'test/src/service/users/data/update_profile.json',
+        ),
+      );
+
+      final response = await usersService.updateProfile(
+        name: '1234',
+        description: 'test',
+        url: 'aaa',
+        location: 'bbb',
+      );
+
+      expect(response, isA<TwitterResponse<UserData, void>>());
+      expect(response.data, isA<UserData>());
+    });
+
+    test('with invalid access token', () async {
+      final usersService = UsersService(
+        context: ClientContext(
+          bearerToken: '',
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await usersService.updateProfile(
+          name: '1234',
+          description: 'test',
+          url: 'aaa',
+          location: 'bbb',
+        ),
+      );
+    });
+
+    test('with rate limit exceeded error', () async {
+      final usersService = UsersService(
+        context: context.buildPostStub(
+          UserContext.oauth1Only,
+          '/1.1/account/update_profile.json',
+          'test/src/service/users/data/update_profile.json',
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await usersService.updateProfile(
+          name: '1234',
+          description: 'test',
+          url: 'aaa',
+          location: 'bbb',
+        ),
+      );
+    });
+
+    test('with errors', () async {
+      final usersService = UsersService(
+        context: context.buildPostStub(
+          UserContext.oauth1Only,
+          '/1.1/account/update_profile.json',
+          'test/src/service/users/data/update_profile.json',
+        ),
+      );
+
+      final response = await usersService.updateProfile(
+        name: '1234',
+        description: 'test',
+        url: 'aaa',
+        location: 'bbb',
+      );
+
+      expect(response, isA<TwitterResponse<UserData, void>>());
+      expect(response.data, isA<UserData>());
+    });
+  });
 }
