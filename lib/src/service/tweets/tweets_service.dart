@@ -3077,7 +3077,7 @@ class _TweetsService extends BaseService implements TweetsService {
     ForwardPaging<List<TweetData>, TweetMeta>? paging,
   }) async =>
       await super.executeForwardPaginationIfNecessary(
-        UserContext.appOnly,
+        UserContext.oauth2OrOAuth1,
         '/2/tweets/search/recent',
         {
           'query': query,
