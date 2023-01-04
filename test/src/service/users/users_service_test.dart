@@ -1841,4 +1841,116 @@ void main() {
       expect(response.data, isA<UserData>());
     });
   });
+
+  group('.updateProfileBanner', () {
+    test('normal case', () async {
+      final usersService = UsersService(
+        context: context.buildPostMultipartStub(
+          UserContext.oauth1Only,
+          '/1.1/account/update_profile_banner.json',
+          'test/src/service/users/data/update_profile_banner.json',
+          queryParameters: {
+            'width': '100',
+            'height': '100',
+            'offset_left': '10',
+            'offset_top': '10',
+          },
+          statusCode: 201,
+        ),
+      );
+
+      final response = await usersService.updateProfileBanner(
+        imageFile: File(
+          'test/src/service/users/data/update_profile_banner.json',
+        ),
+        width: 100,
+        height: 100,
+        offsetLeft: 10,
+        offsetTop: 10,
+      );
+
+      expect(response, isA<TwitterResponse<bool, void>>());
+      expect(response.data, isTrue);
+    });
+
+    test('with invalid access token', () async {
+      final usersService = UsersService(
+        context: ClientContext(
+          bearerToken: '',
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await usersService.updateProfileBanner(
+          imageFile: File(
+            'test/src/service/users/data/update_profile_banner.json',
+          ),
+          width: 100,
+          height: 100,
+          offsetLeft: 10,
+          offsetTop: 10,
+        ),
+      );
+    });
+
+    test('with rate limit exceeded error', () async {
+      final usersService = UsersService(
+        context: context.buildPostMultipartStub(
+          UserContext.oauth1Only,
+          '/1.1/account/update_profile_banner.json',
+          'test/src/service/users/data/update_profile_banner.json',
+          queryParameters: {
+            'width': '100',
+            'height': '100',
+            'offset_left': '10',
+            'offset_top': '10',
+          },
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await usersService.updateProfileBanner(
+          imageFile: File(
+            'test/src/service/users/data/update_profile_banner.json',
+          ),
+          width: 100,
+          height: 100,
+          offsetLeft: 10,
+          offsetTop: 10,
+        ),
+      );
+    });
+
+    test('with errors', () async {
+      final usersService = UsersService(
+        context: context.buildPostMultipartStub(
+          UserContext.oauth1Only,
+          '/1.1/account/update_profile_banner.json',
+          'test/src/service/users/data/update_profile_banner.json',
+          queryParameters: {
+            'width': '100',
+            'height': '100',
+            'offset_left': '10',
+            'offset_top': '10',
+          },
+          statusCode: 422,
+        ),
+      );
+
+      final response = await usersService.updateProfileBanner(
+        imageFile: File(
+          'test/src/service/users/data/update_profile_banner.json',
+        ),
+        width: 100,
+        height: 100,
+        offsetLeft: 10,
+        offsetTop: 10,
+      );
+
+      expect(response, isA<TwitterResponse<bool, void>>());
+      expect(response.data, isFalse);
+    });
+  });
 }

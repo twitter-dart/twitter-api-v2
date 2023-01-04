@@ -989,6 +989,52 @@ abstract class UsersService {
   Future<TwitterResponse<UserData, void>> updateProfileImage({
     required File imageFile,
   });
+
+  /// Uploads a profile banner on behalf of the authenticating user.
+  ///
+  /// More information about sizing variations can be found in
+  /// [User Profile Images and Banners](https://developer.twitter.com/en/docs/twitter-api/v1/accounts-and-users/user-profile-images-and-banners).
+  ///
+  /// ## Parameters
+  ///
+  /// - [imageFile]: The file of user's new profile banner.
+  ///
+  /// - [width]: The width of the preferred section of the image being
+  ///            uploaded in pixels. Use with [height], [offsetLeft],
+  ///            and offset_top to select the desired region of the image to
+  ///            use.
+  ///
+  /// - [height]: The height of the preferred section of the image being
+  ///             uploaded in pixels. Use with [width], [offsetLeft], and
+  ///             [offsetTop] to select the desired region of the image to use.
+  ///
+  /// - [offsetLeft]: The number of pixels by which to offset the uploaded
+  ///                 image from the left. Use with [height], [width], and
+  ///                 [offsetTop] to select the desired region of the image
+  ///                 to use.
+  ///
+  /// - [offsetTop]: The number of pixels by which to offset the uploaded image
+  ///                from the top. Use with [height], [width], and [offsetLeft]
+  ///                to select the desired region of the image to use.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/1.1/account/update_profile_banner.json
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 1.0a
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/v1/accounts-and-users/manage-account-settings/api-reference/post-account-update_profile_banner
+  Future<TwitterResponse<bool, void>> updateProfileBanner({
+    required File imageFile,
+    int? width,
+    int? height,
+    int? offsetLeft,
+    int? offsetTop,
+  });
 }
 
 class _UsersService extends BaseService implements UsersService {
@@ -1288,5 +1334,29 @@ class _UsersService extends BaseService implements UsersService {
         ),
         dataBuilder: UserData.fromJson,
         adaptor: const UserObjectAdaptor(),
+      );
+
+  @override
+  Future<TwitterResponse<bool, void>> updateProfileBanner({
+    required File imageFile,
+    int? width,
+    int? height,
+    int? offsetLeft,
+    int? offsetTop,
+  }) async =>
+      super.evaluateResponse(
+        await super.postMultipart(
+          UserContext.oauth1Only,
+          '/1.1/account/update_profile_banner.json',
+          files: [
+            MultipartFile.fromBytes('banner', imageFile.readAsBytesSync()),
+          ],
+          queryParameters: {
+            'width': width,
+            'height': height,
+            'offset_left': offsetLeft,
+            'offset_top': offsetTop,
+          },
+        ),
       );
 }

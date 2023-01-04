@@ -402,6 +402,11 @@ abstract class BaseService implements _Service {
       );
 
   bool _evaluateResponse(final Response response) {
+    if (response.statusCode == 201) {
+      //! 201: Created.
+      return true;
+    }
+
     if (response.statusCode == 204) {
       //! 204: No Content.
       return true;
@@ -414,6 +419,11 @@ abstract class BaseService implements _Service {
 
     if (response.statusCode == 403) {
       //! Forbidden for some reasons.
+      return false;
+    }
+
+    if (response.statusCode == 422) {
+      //! Unprocessable.
       return false;
     }
 
@@ -451,6 +461,11 @@ abstract class BaseService implements _Service {
         'Rate limit exceeded.',
         response,
       );
+    }
+
+    if (response.statusCode == 201) {
+      //! 201: Created.
+      return response;
     }
 
     if (response.statusCode == 204) {
