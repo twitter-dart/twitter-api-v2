@@ -126,6 +126,8 @@ export 'package:twitter_api_v2/src/service/tweets/tweet_type.dart';
 export 'package:twitter_api_v2/src/service/tweets/tweet_withheld.dart';
 export 'package:twitter_api_v2/src/service/tweets/tweets_service.dart';
 export 'package:twitter_api_v2/src/service/tweets/tweets_service_extension.dart';
+export 'package:twitter_api_v2/src/service/users/profile_banner_variant.dart';
+export 'package:twitter_api_v2/src/service/users/profile_banner_variants_data.dart';
 export 'package:twitter_api_v2/src/service/users/user_data.dart';
 export 'package:twitter_api_v2/src/service/users/user_description_entity.dart';
 export 'package:twitter_api_v2/src/service/users/user_entities.dart';

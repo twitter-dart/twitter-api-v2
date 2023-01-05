@@ -1,5 +1,9 @@
 # Release Note
 
+## v4.8.1
+
+- Supported `GET users/profile_banner`. ([#590](https://github.com/twitter-dart/twitter-api-v2/issues/590))
+
 ## v4.8.0
 
 - Supported `POST account/update_profile_image`. ([#617](https://github.com/twitter-dart/twitter-api-v2/issues/617))

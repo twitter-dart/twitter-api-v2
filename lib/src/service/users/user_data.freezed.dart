@@ -35,7 +35,7 @@ mixin _$UserData {
 
   /// The Twitter screen name, handle, or alias that this user identifies
   /// themselves with. Usernames are unique but subject to change. Typically
-  ///  a maximum of 15 characters long, but some historical accounts may exist
+  /// a maximum of 15 characters long, but some historical accounts may exist
   /// with longer names.
   String get username => throw _privateConstructorUsedError;
 
@@ -434,7 +434,7 @@ class _$_UserData implements _UserData {
 
   /// The Twitter screen name, handle, or alias that this user identifies
   /// themselves with. Usernames are unique but subject to change. Typically
-  ///  a maximum of 15 characters long, but some historical accounts may exist
+  /// a maximum of 15 characters long, but some historical accounts may exist
   /// with longer names.
   @override
   final String username;
@@ -638,7 +638,7 @@ abstract class _UserData implements UserData {
 
   /// The Twitter screen name, handle, or alias that this user identifies
   /// themselves with. Usernames are unique but subject to change. Typically
-  ///  a maximum of 15 characters long, but some historical accounts may exist
+  /// a maximum of 15 characters long, but some historical accounts may exist
   /// with longer names.
   String get username;
   @override
