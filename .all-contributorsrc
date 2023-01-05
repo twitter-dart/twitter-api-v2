@@ -262,6 +262,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "azkadev",
+      "name": "Azka Full Snack Developer:)",
+      "avatar_url": "https://avatars.githubusercontent.com/u/82513502?v=4",
+      "profile": "https://github.com/azkadev",
+      "contributions": [
+        "question",
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 5,
