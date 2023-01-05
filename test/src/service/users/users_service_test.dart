@@ -2341,4 +2341,106 @@ void main() {
       );
     });
   });
+
+  group('.lookupProfileBannerByName', () {
+    test('normal case', () async {
+      final usersService = UsersService(
+        context: context.buildGetStub(
+          UserContext.oauth1Only,
+          '/1.1/users/profile_banner.json',
+          'test/src/service/users/data/lookup_profile_banner_by_name.json',
+          {
+            'screen_name': '1111',
+          },
+        ),
+      );
+
+      final response = await usersService.lookupProfileBannerByName(
+        username: '1111',
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<ProfileBannerVariantsData>());
+    });
+
+    test('with invalid access token', () async {
+      final usersService = UsersService(
+        context: ClientContext(
+          bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await usersService.lookupProfileBannerByName(
+          username: '1111',
+        ),
+      );
+    });
+
+    test('with rate limit exceeded error', () async {
+      final usersService = UsersService(
+        context: context.buildGetStub(
+          UserContext.oauth1Only,
+          '/1.1/users/profile_banner.json',
+          'test/src/service/users/data/lookup_profile_banner_by_name.json',
+          {
+            'screen_name': '1111',
+          },
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await usersService.lookupProfileBannerByName(
+          username: '1111',
+        ),
+      );
+    });
+
+    test('with errors', () async {
+      final usersService = UsersService(
+        context: context.buildGetStub(
+          UserContext.oauth1Only,
+          '/1.1/users/profile_banner.json',
+          'test/src/service/users/data/no_data.json',
+          {
+            'screen_name': '1111',
+          },
+          statusCode: 404,
+        ),
+      );
+
+      expectDataNotFoundExceptionDueToNoData(
+        () async => await usersService.lookupProfileBannerByName(
+          username: '1111',
+        ),
+      );
+    });
+
+    test('with no json', () async {
+      final usersService = UsersService(
+        context: context.buildGetStub(
+          UserContext.oauth1Only,
+          '/1.1/users/profile_banner.json',
+          'test/src/service/users/data/no_json.json',
+          {
+            'screen_name': '1111',
+          },
+        ),
+      );
+
+      expectDataNotFoundExceptionDueToNoJson(
+        () async => await usersService.lookupProfileBannerByName(
+          username: '1111',
+        ),
+      );
+    });
+  });
 }
