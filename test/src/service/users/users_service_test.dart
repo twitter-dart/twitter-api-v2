@@ -15,6 +15,7 @@ import 'package:twitter_api_v2/src/core/client/user_context.dart';
 import 'package:twitter_api_v2/src/service/pagination/pagination_control.dart';
 import 'package:twitter_api_v2/src/service/response/pagination_response.dart';
 import 'package:twitter_api_v2/src/service/response/twitter_response.dart';
+import 'package:twitter_api_v2/src/service/users/profile_banner_variants_data.dart';
 import 'package:twitter_api_v2/src/service/users/user_data.dart';
 import 'package:twitter_api_v2/src/service/users/user_meta.dart';
 import 'package:twitter_api_v2/src/service/users/users_service.dart';
@@ -2236,6 +2237,108 @@ void main() {
 
       expect(response, isA<TwitterResponse<UserData, void>>());
       expect(response.data, isA<UserData>());
+    });
+  });
+
+  group('.lookupProfileBannerById', () {
+    test('normal case', () async {
+      final usersService = UsersService(
+        context: context.buildGetStub(
+          UserContext.oauth1Only,
+          '/1.1/users/profile_banner.json',
+          'test/src/service/users/data/lookup_profile_banner_by_id.json',
+          {
+            'user_id': '1111',
+          },
+        ),
+      );
+
+      final response = await usersService.lookupProfileBannerById(
+        userId: '1111',
+      );
+
+      expect(response, isA<TwitterResponse>());
+      expect(response.data, isA<ProfileBannerVariantsData>());
+    });
+
+    test('with invalid access token', () async {
+      final usersService = UsersService(
+        context: ClientContext(
+          bearerToken: '',
+          oauthTokens: OAuthTokens(
+            consumerKey: '1234',
+            consumerSecret: '1234',
+            accessToken: '1234',
+            accessTokenSecret: '1234',
+          ),
+          timeout: Duration(seconds: 10),
+        ),
+      );
+
+      expectUnauthorizedException(
+        () async => await usersService.lookupProfileBannerById(
+          userId: '1111',
+        ),
+      );
+    });
+
+    test('with rate limit exceeded error', () async {
+      final usersService = UsersService(
+        context: context.buildGetStub(
+          UserContext.oauth1Only,
+          '/1.1/users/profile_banner.json',
+          'test/src/service/users/data/lookup_profile_banner_by_id.json',
+          {
+            'user_id': '1111',
+          },
+          statusCode: 429,
+        ),
+      );
+
+      expectRateLimitExceededException(
+        () async => await usersService.lookupProfileBannerById(
+          userId: '1111',
+        ),
+      );
+    });
+
+    test('with errors', () async {
+      final usersService = UsersService(
+        context: context.buildGetStub(
+          UserContext.oauth1Only,
+          '/1.1/users/profile_banner.json',
+          'test/src/service/users/data/no_data.json',
+          {
+            'user_id': '1111',
+          },
+          statusCode: 404,
+        ),
+      );
+
+      expectDataNotFoundExceptionDueToNoData(
+        () async => await usersService.lookupProfileBannerById(
+          userId: '1111',
+        ),
+      );
+    });
+
+    test('with no json', () async {
+      final usersService = UsersService(
+        context: context.buildGetStub(
+          UserContext.oauth1Only,
+          '/1.1/users/profile_banner.json',
+          'test/src/service/users/data/no_json.json',
+          {
+            'user_id': '1111',
+          },
+        ),
+      );
+
+      expectDataNotFoundExceptionDueToNoJson(
+        () async => await usersService.lookupProfileBannerById(
+          userId: '1111',
+        ),
+      );
     });
   });
 }
