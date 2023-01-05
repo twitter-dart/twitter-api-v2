@@ -9,6 +9,7 @@ import 'dart:io';
 import 'package:http/http.dart';
 
 // 🌎 Project imports:
+import '../../core/adaptor/profile_banner_object_adaptor.dart';
 import '../../core/adaptor/user_object_adaptor.dart';
 import '../../core/client/client_context.dart';
 import '../../core/client/user_context.dart';
@@ -16,6 +17,7 @@ import '../base_service.dart';
 import '../pagination/bidirectional_pagination.dart';
 import '../response/twitter_response.dart';
 import '../tweets/tweet_field.dart';
+import 'profile_banner_variants_data.dart';
 import 'user_data.dart';
 import 'user_expansion.dart';
 import 'user_field.dart';
@@ -1136,6 +1138,58 @@ abstract class UsersService {
     String? url,
     String? location,
   });
+
+  /// Returns a map of the available size variations of the specified user's
+  /// profile banner.
+  ///
+  /// The profile banner data available at each size variant's URL is in PNG
+  /// format.
+  ///
+  /// ## Parameters
+  ///
+  /// - [userId]: The ID of the user for whom to return results.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/1.1/users/profile_banner.json?screen_name=twitterapi
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 1.0a
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/v1/accounts-and-users/manage-account-settings/api-reference/get-users-profile_banner
+  Future<TwitterResponse<ProfileBannerVariantsData, void>>
+      lookupProfileBannerById({
+    required String userId,
+  });
+
+  /// Returns a map of the available size variations of the specified user's
+  /// profile banner.
+  ///
+  /// The profile banner data available at each size variant's URL is in PNG
+  /// format.
+  ///
+  /// ## Parameters
+  ///
+  /// - [username]: The screen name of the user for whom to return results.
+  ///
+  /// ## Endpoint Url
+  ///
+  /// - https://api.twitter.com/1.1/users/profile_banner.json?screen_name=twitterapi
+  ///
+  /// ## Authentication Methods
+  ///
+  /// - OAuth 1.0a
+  ///
+  /// ## Reference
+  ///
+  /// - https://developer.twitter.com/en/docs/twitter-api/v1/accounts-and-users/manage-account-settings/api-reference/get-users-profile_banner
+  Future<TwitterResponse<ProfileBannerVariantsData, void>>
+      lookupProfileBannerByName({
+    required String username,
+  });
 }
 
 class _UsersService extends BaseService implements UsersService {
@@ -1517,6 +1571,20 @@ class _UsersService extends BaseService implements UsersService {
         adaptor: _userObjectAdaptor,
       );
 
+  @override
+  Future<TwitterResponse<ProfileBannerVariantsData, void>>
+      lookupProfileBannerById({
+    required String userId,
+  }) async =>
+          _lookupProfileBanner(userId: userId);
+
+  @override
+  Future<TwitterResponse<ProfileBannerVariantsData, void>>
+      lookupProfileBannerByName({
+    required String username,
+  }) async =>
+          _lookupProfileBanner(username: username);
+
   Future<TwitterResponse<UserData, void>> _createReport({
     String? userId,
     String? username,
@@ -1535,4 +1603,22 @@ class _UsersService extends BaseService implements UsersService {
         dataBuilder: UserData.fromJson,
         adaptor: _userObjectAdaptor,
       );
+
+  Future<TwitterResponse<ProfileBannerVariantsData, void>>
+      _lookupProfileBanner({
+    String? userId,
+    String? username,
+  }) async =>
+          super.transformSingleDataResponse(
+            await super.get(
+              UserContext.oauth1Only,
+              '/1.1/users/profile_banner.json',
+              queryParameters: {
+                'user_id': userId,
+                'screen_name': username,
+              },
+            ),
+            dataBuilder: ProfileBannerVariantsData.fromJson,
+            adaptor: const ProfileBannerObjectAdaptor(),
+          );
 }

@@ -494,6 +494,13 @@ abstract class BaseService implements _Service {
       );
     }
 
+    if (response.statusCode == 404) {
+      throw DataNotFoundException(
+        'No data exists in response.',
+        response,
+      );
+    }
+
     if (response.statusCode == 429) {
       throw RateLimitExceededException(
         'Rate limit exceeded.',
