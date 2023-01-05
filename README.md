@@ -63,6 +63,8 @@
       - [1.3.2.2. Lookup Users](#1322-lookup-users)
       - [1.3.2.3. Users Mutes](#1323-users-mutes)
       - [1.3.2.4. Blocks](#1324-blocks)
+      - [1.3.2.5. User Profile](#1325-user-profile)
+      - [1.3.2.6. Report Spam](#1326-report-spam)
     - [1.3.3. Spaces Service](#133-spaces-service)
       - [1.3.3.1. Search Spaces](#1331-search-spaces)
       - [1.3.3.2. Lookup Spaces](#1332-lookup-spaces)
@@ -475,6 +477,28 @@ Future<void> main() async {
 | [POST /2/users/:id/blocking](https://developer.twitter.com/en/docs/twitter-api/users/blocks/api-reference/post-users-user_id-blocking)                                 | [createBlock](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/createBlock.html)                 |
 | [DELETE /2/users/:source_user_id/blocking/:target_user_id](https://developer.twitter.com/en/docs/twitter-api/users/blocks/api-reference/delete-users-user_id-blocking) | [destroyBlock](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/destroyBlock.html)               |
 | [GET /2/users/:id/blocking](https://developer.twitter.com/en/docs/twitter-api/users/blocks/api-reference/get-users-blocking)                                           | [lookupBlockingUsers](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/lookupBlockingUsers.html) |
+
+#### 1.3.2.5. User Profile
+
+> **Note**</br>
+> Twitter API v1.1 endpoint is used because Twitter Official does not yet release the endpoints to manage user profile for Twitter API v2.0. Therefore, this service may be changed in the future.
+
+| Endpoint                                                                                                                                                                                         | Method Name                                                                                                                       |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
+| [POST /1.1/account/update_profile.json](https://developer.twitter.com/en/docs/twitter-api/v1/accounts-and-users/manage-account-settings/api-reference/post-account-update_profile)               | [updateProfile](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/updateProfile.html)               |
+| [POST /1.1/account/update_profile_image.json](https://developer.twitter.com/en/docs/twitter-api/v1/accounts-and-users/manage-account-settings/api-reference/post-account-update_profile_image)   | [updateProfileImage](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/updateProfileImage.html)     |
+| [POST /1.1/account/update_profile_banner.json](https://developer.twitter.com/en/docs/twitter-api/v1/accounts-and-users/manage-account-settings/api-reference/post-account-update_profile_banner) | [updateProfileBanner](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/updateProfileBanner.html)   |
+| [POST /1.1/account/remove_profile_banner.json](https://developer.twitter.com/en/docs/twitter-api/v1/accounts-and-users/manage-account-settings/api-reference/post-account-remove_profile_banner) | [destroyProfileBanner](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/destroyProfileBanner.html) |
+
+#### 1.3.2.6. Report Spam
+
+> **Note**</br>
+> Twitter API v1.1 endpoint is used because Twitter Official does not yet release the endpoints to report spam for Twitter API v2.0. Therefore, this service may be changed in the future.
+
+| Endpoint                                                                                                                                                                 | Method Name                                                                                                                   |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| [POST /1.1/users/report_spam.json](https://developer.twitter.com/en/docs/twitter-api/v1/accounts-and-users/mute-block-report-users/api-reference/post-users-report_spam) | [createReportById](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/createReportById.html)     |
+| [POST /1.1/users/report_spam.json](https://developer.twitter.com/en/docs/twitter-api/v1/accounts-and-users/mute-block-report-users/api-reference/post-users-report_spam) | [createReportByName](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/UsersService/createReportByName.html) |
 
 ### 1.3.3. Spaces Service
 
