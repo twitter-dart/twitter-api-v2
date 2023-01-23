@@ -2,7 +2,24 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-enum ExcludeTweetType {
+import '../../core/serializable.dart';
+
+enum ExcludeTweetType implements Serializable {
   retweets,
-  replies,
+  replies;
+
+  @override
+  String get value => name;
+
+  static ExcludeTweetType valueOf(final String value) {
+    for (final element in values) {
+      if (element.value == value) {
+        return element;
+      }
+    }
+
+    throw UnsupportedError('Unsupported value [$value].');
+  }
+
+  const ExcludeTweetType();
 }

@@ -9,5 +9,15 @@ enum DecahosePartition {
   /// The partition value.
   final int value;
 
+  static DecahosePartition valueOf(final String value) {
+    for (final element in values) {
+      if (element.value.toString() == value) {
+        return element;
+      }
+    }
+
+    throw UnsupportedError('Unsupported value [$value].');
+  }
+
   const DecahosePartition(this.value);
 }

@@ -18,5 +18,15 @@ enum TopicField implements Serializable {
   @override
   final String value;
 
+  static TopicField valueOf(final String value) {
+    for (final element in values) {
+      if (element.value == value) {
+        return element;
+      }
+    }
+
+    throw UnsupportedError('Unsupported value [$value].');
+  }
+
   const TopicField(this.value);
 }

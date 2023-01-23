@@ -48,5 +48,15 @@ enum MediaField implements Serializable {
   @override
   final String value;
 
+  static MediaField valueOf(final String value) {
+    for (final element in values) {
+      if (element.value == value) {
+        return element;
+      }
+    }
+
+    throw UnsupportedError('Unsupported value [$value].');
+  }
+
   const MediaField(this.value);
 }

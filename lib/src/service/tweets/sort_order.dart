@@ -2,7 +2,24 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-enum SortOrder {
+import '../../core/serializable.dart';
+
+enum SortOrder implements Serializable {
   recency,
-  relevancy,
+  relevancy;
+
+  @override
+  String get value => name;
+
+  static SortOrder valueOf(final String value) {
+    for (final element in values) {
+      if (element.value == value) {
+        return element;
+      }
+    }
+
+    throw UnsupportedError('Unsupported value [$value].');
+  }
+
+  const SortOrder();
 }

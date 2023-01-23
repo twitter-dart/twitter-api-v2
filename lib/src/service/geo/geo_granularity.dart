@@ -14,5 +14,15 @@ enum GeoGranularity implements Serializable {
   @override
   String get value => name;
 
+  static GeoGranularity valueOf(final String value) {
+    for (final element in values) {
+      if (element.value == value) {
+        return element;
+      }
+    }
+
+    throw UnsupportedError('Unsupported value [$value].');
+  }
+
   const GeoGranularity();
 }

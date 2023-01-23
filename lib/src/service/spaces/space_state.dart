@@ -2,8 +2,10 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+import '../../core/serializable.dart';
+
 /// This enum represents the state of the space.
-enum SpaceState {
+enum SpaceState implements Serializable {
   /// "scheduled"
   scheduled,
 
@@ -11,5 +13,20 @@ enum SpaceState {
   live,
 
   /// "ended"
-  ended,
+  ended;
+
+  @override
+  String get value => name;
+
+  static SpaceState valueOf(final String value) {
+    for (final element in values) {
+      if (element.value == value) {
+        return element;
+      }
+    }
+
+    throw UnsupportedError('Unsupported value [$value].');
+  }
+
+  const SpaceState();
 }
