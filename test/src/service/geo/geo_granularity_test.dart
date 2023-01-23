@@ -22,4 +22,15 @@ void main() {
     expect(GeoGranularity.admin.value, 'admin');
     expect(GeoGranularity.country.value, 'country');
   });
+
+  group('.valueOf', () {
+    test('normal case', () {
+      expect(GeoGranularity.valueOf('admin'), GeoGranularity.admin);
+    });
+
+    test('when value is unsupported', () {
+      expect(() => GeoGranularity.valueOf('test'),
+          throwsA(isA<UnsupportedError>()));
+    });
+  });
 }

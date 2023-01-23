@@ -13,4 +13,19 @@ void main() {
     expect(SortOrder.recency.name, 'recency');
     expect(SortOrder.relevancy.name, 'relevancy');
   });
+
+  test('.value', () {
+    expect(SortOrder.recency.value, 'recency');
+    expect(SortOrder.relevancy.value, 'relevancy');
+  });
+
+  group('.valueOf', () {
+    test('normal case', () {
+      expect(SortOrder.valueOf('recency'), SortOrder.recency);
+    });
+
+    test('when value is unsupported', () {
+      expect(() => SortOrder.valueOf('test'), throwsA(isA<UnsupportedError>()));
+    });
+  });
 }

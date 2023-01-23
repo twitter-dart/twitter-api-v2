@@ -13,4 +13,20 @@ void main() {
     expect(ExcludeTweetType.retweets.name, 'retweets');
     expect(ExcludeTweetType.replies.name, 'replies');
   });
+
+  test('.value', () {
+    expect(ExcludeTweetType.retweets.value, 'retweets');
+    expect(ExcludeTweetType.replies.value, 'replies');
+  });
+
+  group('.valueOf', () {
+    test('normal case', () {
+      expect(ExcludeTweetType.valueOf('replies'), ExcludeTweetType.replies);
+    });
+
+    test('when value is unsupported', () {
+      expect(() => ExcludeTweetType.valueOf('test'),
+          throwsA(isA<UnsupportedError>()));
+    });
+  });
 }

@@ -24,4 +24,14 @@ void main() {
     expect(PollField.options.value, 'options');
     expect(PollField.votingStatus.value, 'voting_status');
   });
+
+  group('.valueOf', () {
+    test('normal case', () {
+      expect(PollField.valueOf('end_datetime'), PollField.endAt);
+    });
+
+    test('when value is unsupported', () {
+      expect(() => PollField.valueOf('test'), throwsA(isA<UnsupportedError>()));
+    });
+  });
 }

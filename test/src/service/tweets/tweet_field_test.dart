@@ -48,4 +48,15 @@ void main() {
     expect(TweetField.text.value, 'text');
     expect(TweetField.withheld.value, 'withheld');
   });
+
+  group('.valueOf', () {
+    test('normal case', () {
+      expect(TweetField.valueOf('withheld'), TweetField.withheld);
+    });
+
+    test('when value is unsupported', () {
+      expect(
+          () => TweetField.valueOf('test'), throwsA(isA<UnsupportedError>()));
+    });
+  });
 }

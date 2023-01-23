@@ -24,4 +24,15 @@ void main() {
     expect(SpaceExpansion.hostIds.value, 'host_ids');
     expect(SpaceExpansion.topicIds.value, 'topic_ids');
   });
+
+  group('.valueOf', () {
+    test('normal case', () {
+      expect(SpaceExpansion.valueOf('creator_id'), SpaceExpansion.creatorId);
+    });
+
+    test('when value is unsupported', () {
+      expect(() => SpaceExpansion.valueOf('test'),
+          throwsA(isA<UnsupportedError>()));
+    });
+  });
 }

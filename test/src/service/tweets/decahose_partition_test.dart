@@ -18,4 +18,15 @@ void main() {
     expect(DecahosePartition.section1.value, 1);
     expect(DecahosePartition.section2.value, 2);
   });
+
+  group('.valueOf', () {
+    test('normal case', () {
+      expect(DecahosePartition.valueOf('1'), DecahosePartition.section1);
+    });
+
+    test('when value is unsupported', () {
+      expect(() => DecahosePartition.valueOf('test'),
+          throwsA(isA<UnsupportedError>()));
+    });
+  });
 }

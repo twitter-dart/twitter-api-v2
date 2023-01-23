@@ -30,4 +30,15 @@ void main() {
     expect(PlaceField.name.value, 'name');
     expect(PlaceField.placeType.value, 'place_type');
   });
+
+  group('.valueOf', () {
+    test('normal case', () {
+      expect(PlaceField.valueOf('name'), PlaceField.name);
+    });
+
+    test('when value is unsupported', () {
+      expect(
+          () => PlaceField.valueOf('test'), throwsA(isA<UnsupportedError>()));
+    });
+  });
 }

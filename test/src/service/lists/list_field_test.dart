@@ -26,4 +26,14 @@ void main() {
     expect(ListField.ownerId.value, 'owner_id');
     expect(ListField.private.value, 'private');
   });
+
+  group('.valueOf', () {
+    test('normal case', () {
+      expect(ListField.valueOf('owner_id'), ListField.ownerId);
+    });
+
+    test('when value is unsupported', () {
+      expect(() => ListField.valueOf('test'), throwsA(isA<UnsupportedError>()));
+    });
+  });
 }

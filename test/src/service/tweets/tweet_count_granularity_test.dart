@@ -14,4 +14,21 @@ void main() {
     expect(TweetCountGranularity.hour.name, 'hour');
     expect(TweetCountGranularity.day.name, 'day');
   });
+
+  test('.value', () {
+    expect(TweetCountGranularity.minute.value, 'minute');
+    expect(TweetCountGranularity.hour.value, 'hour');
+    expect(TweetCountGranularity.day.value, 'day');
+  });
+
+  group('.valueOf', () {
+    test('normal case', () {
+      expect(TweetCountGranularity.valueOf('day'), TweetCountGranularity.day);
+    });
+
+    test('when value is unsupported', () {
+      expect(() => TweetCountGranularity.valueOf('test'),
+          throwsA(isA<UnsupportedError>()));
+    });
+  });
 }
