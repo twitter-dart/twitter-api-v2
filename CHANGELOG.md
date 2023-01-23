@@ -1,5 +1,9 @@
 # Release Note
 
+## v4.8.2
+
+- Added `valueOf` method in Enum objects. You can convert from a string returned from the API to an Enum. ([#635](https://github.com/twitter-dart/twitter-api-v2/issues/635))
+
 ## v4.8.1
 
 - Supported `GET users/profile_banner`. ([#590](https://github.com/twitter-dart/twitter-api-v2/issues/590))
