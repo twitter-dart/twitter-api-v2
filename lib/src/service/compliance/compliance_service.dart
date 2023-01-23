@@ -142,7 +142,7 @@ class _ComplianceService extends BaseService implements ComplianceService {
           '/2/compliance/jobs',
           queryParameters: {
             'type': jobType.name,
-            'status': jobStatus?.name,
+            'status': jobStatus?.value,
           },
         ),
         dataBuilder: BatchComplianceData.fromJson,

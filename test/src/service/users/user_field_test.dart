@@ -42,4 +42,14 @@ void main() {
     expect(UserField.createdAt.value, 'created_at');
     expect(UserField.withheld.value, 'withheld');
   });
+
+  group('.valueOf', () {
+    test('normal case', () {
+      expect(UserField.valueOf('public_metrics'), UserField.publicMetrics);
+    });
+
+    test('when value is unsupported', () {
+      expect(() => UserField.valueOf('test'), throwsA(isA<UnsupportedError>()));
+    });
+  });
 }

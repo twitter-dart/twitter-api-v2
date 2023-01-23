@@ -40,4 +40,15 @@ void main() {
     expect(MediaField.width.value, 'width');
     expect(MediaField.variants.value, 'variants');
   });
+
+  group('.valueOf', () {
+    test('normal case', () {
+      expect(MediaField.valueOf('public_metrics'), MediaField.publicMetrics);
+    });
+
+    test('when value is unsupported', () {
+      expect(
+          () => MediaField.valueOf('test'), throwsA(isA<UnsupportedError>()));
+    });
+  });
 }

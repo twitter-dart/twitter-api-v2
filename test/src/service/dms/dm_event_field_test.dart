@@ -30,4 +30,15 @@ void main() {
     expect(DMEventField.attachments.value, 'attachments');
     expect(DMEventField.createdAt.value, 'created_at');
   });
+
+  group('.valueOf', () {
+    test('normal case', () {
+      expect(DMEventField.valueOf('sender_id'), DMEventField.senderId);
+    });
+
+    test('when value is unsupported', () {
+      expect(
+          () => DMEventField.valueOf('test'), throwsA(isA<UnsupportedError>()));
+    });
+  });
 }

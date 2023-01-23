@@ -18,4 +18,15 @@ void main() {
     expect(MediaCategory.tweet.value, 'TWEET');
     expect(MediaCategory.directMessage.value, 'DM');
   });
+
+  group('.valueOf', () {
+    test('normal case', () {
+      expect(MediaCategory.valueOf('TWEET'), MediaCategory.tweet);
+    });
+
+    test('when value is unsupported', () {
+      expect(() => MediaCategory.valueOf('test'),
+          throwsA(isA<UnsupportedError>()));
+    });
+  });
 }

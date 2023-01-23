@@ -16,4 +16,16 @@ void main() {
   test('.fieldName', () {
     expect(UserExpansion.pinnedTweetId.value, 'pinned_tweet_id');
   });
+
+  group('.valueOf', () {
+    test('normal case', () {
+      expect(UserExpansion.valueOf('pinned_tweet_id'),
+          UserExpansion.pinnedTweetId);
+    });
+
+    test('when value is unsupported', () {
+      expect(() => UserExpansion.valueOf('test'),
+          throwsA(isA<UnsupportedError>()));
+    });
+  });
 }

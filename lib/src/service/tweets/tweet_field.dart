@@ -72,5 +72,15 @@ enum TweetField implements Serializable {
   @override
   final String value;
 
+  static TweetField valueOf(final String value) {
+    for (final element in values) {
+      if (element.value == value) {
+        return element;
+      }
+    }
+
+    throw UnsupportedError('Unsupported value [$value].');
+  }
+
   const TweetField(this.value);
 }

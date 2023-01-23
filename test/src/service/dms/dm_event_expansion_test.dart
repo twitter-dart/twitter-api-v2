@@ -23,4 +23,15 @@ void main() {
     expect(DMEventExpansion.senderId.value, 'sender_id');
     expect(DMEventExpansion.participantIds.value, 'participant_ids');
   });
+
+  group('.valueOf', () {
+    test('normal case', () {
+      expect(DMEventExpansion.valueOf('sender_id'), DMEventExpansion.senderId);
+    });
+
+    test('when value is unsupported', () {
+      expect(() => DMEventExpansion.valueOf('test'),
+          throwsA(isA<UnsupportedError>()));
+    });
+  });
 }

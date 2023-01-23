@@ -25,5 +25,15 @@ enum SpaceExpansion implements Serializable {
   @override
   final String value;
 
+  static SpaceExpansion valueOf(final String value) {
+    for (final element in values) {
+      if (element.value == value) {
+        return element;
+      }
+    }
+
+    throw UnsupportedError('Unsupported value [$value].');
+  }
+
   const SpaceExpansion(this.value);
 }

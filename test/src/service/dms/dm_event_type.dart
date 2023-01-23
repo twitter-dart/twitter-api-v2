@@ -20,4 +20,15 @@ void main() {
     expect(DMEventType.participantsJoin.value, 'ParticipantsJoin');
     expect(DMEventType.participantsLeave.value, 'ParticipantsLeave');
   });
+
+  group('.valueOf', () {
+    test('normal case', () {
+      expect(DMEventType.valueOf('MessageCreate'), DMEventType.messageCreate);
+    });
+
+    test('when value is unsupported', () {
+      expect(
+          () => DMEventType.valueOf('test'), throwsA(isA<UnsupportedError>()));
+    });
+  });
 }

@@ -24,5 +24,15 @@ enum PollField implements Serializable {
   @override
   final String value;
 
+  static PollField valueOf(final String value) {
+    for (final element in values) {
+      if (element.value == value) {
+        return element;
+      }
+    }
+
+    throw UnsupportedError('Unsupported value [$value].');
+  }
+
   const PollField(this.value);
 }

@@ -14,4 +14,21 @@ void main() {
     expect(ReplySetting.following.name == 'following', isTrue);
     expect(ReplySetting.mentionedUsers.name == 'mentionedUsers', isTrue);
   });
+
+  test('.value', () {
+    expect(ReplySetting.everyone.value == 'everyone', isTrue);
+    expect(ReplySetting.following.value == 'following', isTrue);
+    expect(ReplySetting.mentionedUsers.value == 'mentionedUsers', isTrue);
+  });
+
+  group('.valueOf', () {
+    test('normal case', () {
+      expect(ReplySetting.valueOf('following'), ReplySetting.following);
+    });
+
+    test('when value is unsupported', () {
+      expect(
+          () => ReplySetting.valueOf('test'), throwsA(isA<UnsupportedError>()));
+    });
+  });
 }

@@ -34,4 +34,16 @@ void main() {
     expect(TweetExpansion.referencedTweetsIdAuthorId.value,
         'referenced_tweets.id.author_id');
   });
+
+  group('.valueOf', () {
+    test('normal case', () {
+      expect(TweetExpansion.valueOf('referenced_tweets.id.author_id'),
+          TweetExpansion.referencedTweetsIdAuthorId);
+    });
+
+    test('when value is unsupported', () {
+      expect(() => TweetExpansion.valueOf('test'),
+          throwsA(isA<UnsupportedError>()));
+    });
+  });
 }

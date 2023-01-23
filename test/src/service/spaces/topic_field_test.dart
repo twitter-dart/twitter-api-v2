@@ -20,4 +20,15 @@ void main() {
     expect(TopicField.description.value, 'description');
     expect(TopicField.name.value, 'name');
   });
+
+  group('.valueOf', () {
+    test('normal case', () {
+      expect(TopicField.valueOf('name'), TopicField.name);
+    });
+
+    test('when value is unsupported', () {
+      expect(
+          () => TopicField.valueOf('test'), throwsA(isA<UnsupportedError>()));
+    });
+  });
 }

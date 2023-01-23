@@ -17,4 +17,23 @@ void main() {
     expect(PlaceType.country.name, 'country');
     expect(PlaceType.unknown.name, 'unknown');
   });
+
+  test('.value', () {
+    expect(PlaceType.poi.value, 'poi');
+    expect(PlaceType.neighborhood.value, 'neighborhood');
+    expect(PlaceType.city.value, 'city');
+    expect(PlaceType.admin.value, 'admin');
+    expect(PlaceType.country.value, 'country');
+    expect(PlaceType.unknown.value, 'unknown');
+  });
+
+  group('.valueOf', () {
+    test('normal case', () {
+      expect(PlaceType.valueOf('unknown'), PlaceType.unknown);
+    });
+
+    test('when value is unsupported', () {
+      expect(() => PlaceType.valueOf('test'), throwsA(isA<UnsupportedError>()));
+    });
+  });
 }
