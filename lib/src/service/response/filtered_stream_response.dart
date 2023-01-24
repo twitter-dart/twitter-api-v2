@@ -12,6 +12,7 @@ class FilteredStreamResponse extends TwitterResponse<TweetData, void> {
   const FilteredStreamResponse({
     required super.headers,
     required super.status,
+    required super.request,
     required super.rateLimit,
     required super.data,
     super.includes,

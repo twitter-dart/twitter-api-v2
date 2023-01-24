@@ -6,6 +6,7 @@
 import '../../core/https_status.dart';
 import '../common/includes.dart';
 import '../common/rate_limit.dart';
+import 'twitter_request.dart';
 
 /// The class represents the response from Twitter API v2.
 class TwitterResponse<D, M> {
@@ -13,6 +14,7 @@ class TwitterResponse<D, M> {
   const TwitterResponse({
     required this.headers,
     required this.status,
+    required this.request,
     required this.rateLimit,
     required this.data,
     this.includes,
@@ -24,6 +26,9 @@ class TwitterResponse<D, M> {
 
   /// The http status
   final HttpStatus status;
+
+  /// The request that generated this response
+  final TwitterRequest request;
 
   /// The rate limit
   final RateLimit rateLimit;

@@ -14,6 +14,7 @@ class PaginationResponse<D, M> extends TwitterResponse<D, M> {
     required this.queryParameters,
     required super.headers,
     required super.status,
+    required super.request,
     required super.rateLimit,
     required super.data,
     super.includes,

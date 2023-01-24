@@ -17,6 +17,7 @@ import '../core/client/user_context.dart';
 import '../core/exception/data_not_found_exception.dart';
 import '../core/exception/rate_limit_exceeded_exception.dart';
 import '../core/exception/unauthorized_exception.dart';
+import '../core/http_method.dart';
 import '../core/https_status.dart';
 import '../core/service_helper.dart';
 import '../core/util/json_utils.dart';
@@ -30,6 +31,7 @@ import 'pagination/pageable.dart';
 import 'pagination/unidirectional_pagination.dart';
 import 'response/pagination_response.dart';
 import 'response/response_field.dart';
+import 'response/twitter_request.dart';
 import 'response/twitter_response.dart';
 
 /// The callback function for building data object from response.
@@ -245,6 +247,10 @@ abstract class BaseService implements _Service {
     return TwitterResponse(
       headers: response.headers,
       status: HttpStatus.valueOf(response.statusCode),
+      request: TwitterRequest(
+        method: HttpMethod.valueOf(response.request!.method),
+        url: response.request!.url,
+      ),
       rateLimit: RateLimit.fromJson(
         rateLimitConverter.convert(response.headers),
       ),
@@ -273,6 +279,10 @@ abstract class BaseService implements _Service {
     return TwitterResponse(
       headers: response.headers,
       status: HttpStatus.valueOf(response.statusCode),
+      request: TwitterRequest(
+        method: HttpMethod.valueOf(response.request!.method),
+        url: response.request!.url,
+      ),
       rateLimit: RateLimit.fromJson(
         rateLimitConverter.convert(response.headers),
       ),
@@ -312,6 +322,10 @@ abstract class BaseService implements _Service {
       queryParameters: queryParameters,
       headers: response.headers,
       status: HttpStatus.valueOf(response.statusCode),
+      request: TwitterRequest(
+        method: HttpMethod.valueOf(response.request!.method),
+        url: response.request!.url,
+      ),
       rateLimit: RateLimit.fromJson(
         rateLimitConverter.convert(response.headers),
       ),
@@ -404,6 +418,10 @@ abstract class BaseService implements _Service {
       TwitterResponse(
         headers: response.headers,
         status: HttpStatus.valueOf(response.statusCode),
+        request: TwitterRequest(
+          method: HttpMethod.valueOf(response.request!.method),
+          url: response.request!.url,
+        ),
         rateLimit: RateLimit.fromJson(
           rateLimitConverter.convert(response.headers),
         ),

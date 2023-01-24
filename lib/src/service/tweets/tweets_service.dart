@@ -3479,6 +3479,7 @@ class _TweetsService extends BaseService implements TweetsService {
         (event) => TwitterResponse(
           headers: stream.headers,
           status: stream.status,
+          request: stream.request,
           rateLimit: RateLimit.fromJson(headers),
           data: TweetData.fromJson(event[ResponseField.data.value]),
           includes: event.containsKey(ResponseField.includes.value)
@@ -3524,6 +3525,7 @@ class _TweetsService extends BaseService implements TweetsService {
         (event) => TwitterResponse(
           headers: stream.headers,
           status: stream.status,
+          request: stream.request,
           rateLimit: RateLimit.fromJson(headers),
           data: TweetData.fromJson(event[ResponseField.data.value]),
           includes: event.containsKey(ResponseField.includes.value)
@@ -3566,6 +3568,7 @@ class _TweetsService extends BaseService implements TweetsService {
         (event) => FilteredStreamResponse(
           headers: stream.headers,
           status: stream.status,
+          request: stream.request,
           rateLimit: RateLimit.fromJson(headers),
           data: TweetData.fromJson(event[ResponseField.data.value]),
           includes: event.containsKey(ResponseField.includes.value)

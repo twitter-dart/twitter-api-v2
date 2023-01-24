@@ -6,9 +6,11 @@
 import 'package:test/test.dart';
 
 // 🌎 Project imports:
+import 'package:twitter_api_v2/src/core/http_method.dart';
 import 'package:twitter_api_v2/src/core/https_status.dart';
 import 'package:twitter_api_v2/src/service/common/includes.dart';
 import 'package:twitter_api_v2/src/service/common/rate_limit.dart';
+import 'package:twitter_api_v2/src/service/response/twitter_request.dart';
 import 'package:twitter_api_v2/src/service/response/twitter_response.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_data.dart';
 
@@ -17,6 +19,10 @@ void main() {
     final response = TwitterResponse<bool, bool>(
       headers: {},
       status: HttpStatus.ok,
+      request: TwitterRequest(
+        method: HttpMethod.get,
+        url: Uri(),
+      ),
       rateLimit: RateLimit(
         limitCount: 0,
         remainingCount: 0,
@@ -35,6 +41,10 @@ void main() {
     final response = TwitterResponse<bool, bool>(
         headers: {},
         status: HttpStatus.ok,
+        request: TwitterRequest(
+          method: HttpMethod.get,
+          url: Uri(),
+        ),
         rateLimit: RateLimit(
           limitCount: 0,
           remainingCount: 0,
@@ -51,6 +61,10 @@ void main() {
     final response = TwitterResponse<bool, bool>(
         headers: {},
         status: HttpStatus.ok,
+        request: TwitterRequest(
+          method: HttpMethod.get,
+          url: Uri(),
+        ),
         rateLimit: RateLimit(
           limitCount: 0,
           remainingCount: 0,
@@ -67,6 +81,10 @@ void main() {
     final response = TwitterResponse<bool, bool>(
         headers: {},
         status: HttpStatus.ok,
+        request: TwitterRequest(
+          method: HttpMethod.get,
+          url: Uri(),
+        ),
         rateLimit: RateLimit(
           limitCount: 0,
           remainingCount: 0,
@@ -84,6 +102,10 @@ void main() {
       final response = TwitterResponse<TweetData, void>(
         headers: {},
         status: HttpStatus.ok,
+        request: TwitterRequest(
+          method: HttpMethod.get,
+          url: Uri(),
+        ),
         rateLimit: RateLimit(
           limitCount: 0,
           remainingCount: 0,
@@ -113,6 +135,10 @@ void main() {
       final response = TwitterResponse<List<TweetData>, void>(
         headers: {},
         status: HttpStatus.ok,
+        request: TwitterRequest(
+          method: HttpMethod.get,
+          url: Uri(),
+        ),
         rateLimit: RateLimit(
           limitCount: 0,
           remainingCount: 0,
@@ -140,6 +166,10 @@ void main() {
     final response = TwitterResponse<bool, bool>(
       headers: {},
       status: HttpStatus.ok,
+      request: TwitterRequest(
+        method: HttpMethod.get,
+        url: Uri(),
+      ),
       rateLimit: RateLimit(
         limitCount: 0,
         remainingCount: 0,

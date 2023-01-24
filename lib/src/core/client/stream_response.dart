@@ -3,21 +3,26 @@
 // modification, are permitted provided the conditions.
 
 // 🌎 Project imports:
+import '../../service/response/twitter_request.dart';
 import '../https_status.dart';
 
 class StreamResponse {
   /// Returns the new instance of [StreamResponse].
   const StreamResponse({
-    required this.status,
     required this.headers,
+    required this.status,
+    required this.request,
     required this.body,
   });
+
+  /// The headers
+  final Map<String, String> headers;
 
   /// The http status
   final HttpStatus status;
 
-  /// The headers
-  final Map<String, String> headers;
+  /// The request that generated this response
+  final TwitterRequest request;
 
   /// The body
   final Stream<Map<String, dynamic>> body;
