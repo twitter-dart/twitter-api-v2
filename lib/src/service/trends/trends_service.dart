@@ -12,6 +12,7 @@ import 'package:http/http.dart';
 import '../../core/client/client_context.dart';
 import '../../core/client/user_context.dart';
 import '../../core/exception/data_not_found_exception.dart';
+import '../../core/https_status.dart';
 import '../base_service.dart';
 import '../common/rate_limit.dart';
 import '../response/twitter_response.dart';
@@ -122,6 +123,8 @@ class _TrendsService extends BaseService implements TrendsService {
     final locations = _checkResponse(response);
 
     return TwitterResponse(
+      headers: response.headers,
+      status: HttpStatus.valueOf(response.statusCode),
       rateLimit: RateLimit.fromJson(
         rateLimitConverter.convert(response.headers),
       ),
@@ -150,6 +153,8 @@ class _TrendsService extends BaseService implements TrendsService {
     final locations = _checkResponse(response);
 
     return TwitterResponse(
+      headers: response.headers,
+      status: HttpStatus.valueOf(response.statusCode),
       rateLimit: RateLimit.fromJson(
         rateLimitConverter.convert(response.headers),
       ),
@@ -177,6 +182,8 @@ class _TrendsService extends BaseService implements TrendsService {
     final locations = _checkResponse(response).first['trends'];
 
     return TwitterResponse(
+      headers: response.headers,
+      status: HttpStatus.valueOf(response.statusCode),
       rateLimit: RateLimit.fromJson(
         rateLimitConverter.convert(response.headers),
       ),

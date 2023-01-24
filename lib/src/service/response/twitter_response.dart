@@ -3,6 +3,7 @@
 // modification, are permitted provided the conditions.
 
 // 🌎 Project imports:
+import '../../core/https_status.dart';
 import '../common/includes.dart';
 import '../common/rate_limit.dart';
 
@@ -10,11 +11,19 @@ import '../common/rate_limit.dart';
 class TwitterResponse<D, M> {
   /// Returns the new instance of [TwitterResponse].
   const TwitterResponse({
+    required this.headers,
+    required this.status,
     required this.rateLimit,
     required this.data,
     this.includes,
     this.meta,
   });
+
+  /// The http headers
+  final Map<String, String> headers;
+
+  /// The http status
+  final HttpStatus status;
 
   /// The rate limit
   final RateLimit rateLimit;

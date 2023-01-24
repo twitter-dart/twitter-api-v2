@@ -10,6 +10,8 @@ import 'twitter_response.dart';
 class FilteredStreamResponse extends TwitterResponse<TweetData, void> {
   /// Returns the new instance of [FilteredStreamResponse].
   const FilteredStreamResponse({
+    required super.headers,
+    required super.status,
     required super.rateLimit,
     required super.data,
     super.includes,

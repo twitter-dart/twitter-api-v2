@@ -17,6 +17,7 @@ import '../core/client/user_context.dart';
 import '../core/exception/data_not_found_exception.dart';
 import '../core/exception/rate_limit_exceeded_exception.dart';
 import '../core/exception/unauthorized_exception.dart';
+import '../core/https_status.dart';
 import '../core/service_helper.dart';
 import '../core/util/json_utils.dart';
 import 'common/data.dart';
@@ -242,6 +243,8 @@ abstract class BaseService implements _Service {
         : _checkResponseBody(response);
 
     return TwitterResponse(
+      headers: response.headers,
+      status: HttpStatus.valueOf(response.statusCode),
       rateLimit: RateLimit.fromJson(
         rateLimitConverter.convert(response.headers),
       ),
@@ -268,6 +271,8 @@ abstract class BaseService implements _Service {
     final jsonBody = _checkResponseBody(response);
 
     return TwitterResponse(
+      headers: response.headers,
+      status: HttpStatus.valueOf(response.statusCode),
       rateLimit: RateLimit.fromJson(
         rateLimitConverter.convert(response.headers),
       ),
@@ -305,6 +310,8 @@ abstract class BaseService implements _Service {
       userContext: userContext,
       unencodedPath: unencodedPath,
       queryParameters: queryParameters,
+      headers: response.headers,
+      status: HttpStatus.valueOf(response.statusCode),
       rateLimit: RateLimit.fromJson(
         rateLimitConverter.convert(response.headers),
       ),
@@ -395,6 +402,8 @@ abstract class BaseService implements _Service {
   @override
   TwitterResponse<bool, void> evaluateResponse(final Response response) =>
       TwitterResponse(
+        headers: response.headers,
+        status: HttpStatus.valueOf(response.statusCode),
         rateLimit: RateLimit.fromJson(
           rateLimitConverter.convert(response.headers),
         ),

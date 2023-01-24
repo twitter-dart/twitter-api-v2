@@ -14,6 +14,7 @@ import 'client/client_context.dart';
 import 'client/stream_request.dart';
 import 'client/stream_response.dart';
 import 'client/user_context.dart';
+import 'https_status.dart';
 import 'serializable.dart';
 import 'util/json_utils.dart';
 
@@ -117,6 +118,7 @@ class ServiceHelper implements Service {
     );
 
     return StreamResponse(
+      status: HttpStatus.valueOf(streamedResponse.statusCode),
       headers: streamedResponse.headers,
       body: streamedResponse.stream.transform(converter.utf8.decoder).map(
             (event) => validate != null

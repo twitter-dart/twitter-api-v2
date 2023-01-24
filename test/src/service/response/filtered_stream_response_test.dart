@@ -6,6 +6,7 @@
 import 'package:test/test.dart';
 
 // 🌎 Project imports:
+import 'package:twitter_api_v2/src/core/https_status.dart';
 import 'package:twitter_api_v2/src/service/common/rate_limit.dart';
 import 'package:twitter_api_v2/src/service/response/filtered_stream_response.dart';
 import 'package:twitter_api_v2/src/service/tweets/matching_rule.dart';
@@ -16,6 +17,8 @@ void main() {
     final now = DateTime.now();
 
     final response = FilteredStreamResponse(
+      headers: {},
+      status: HttpStatus.ok,
       rateLimit: RateLimit(
         limitCount: 0,
         remainingCount: 0,
