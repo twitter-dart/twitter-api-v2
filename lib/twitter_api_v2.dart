@@ -95,7 +95,6 @@ export 'package:twitter_api_v2/src/service/tweets/filtering/channel/entry_channe
 export 'package:twitter_api_v2/src/service/tweets/filtering/channel/logical_channel.dart';
 export 'package:twitter_api_v2/src/service/tweets/filtering/channel/post_logical_channel.dart';
 export 'package:twitter_api_v2/src/service/tweets/filtering/filtering_rule.dart';
-export 'package:twitter_api_v2/src/service/tweets/filtering/filtering_rule.dart';
 export 'package:twitter_api_v2/src/service/tweets/filtering_rule_data.dart';
 export 'package:twitter_api_v2/src/service/tweets/filtering_rule_meta.dart';
 export 'package:twitter_api_v2/src/service/tweets/filtering_rule_param.dart';
