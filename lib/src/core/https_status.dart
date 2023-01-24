@@ -1,4 +1,4 @@
-// Copyright 2022 Kato Shinya. All rights reserved.
+// Copyright 2023 Kato Shinya. All rights reserved.
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
@@ -86,6 +86,12 @@ enum HttpStatus {
   /// https://tools.ietf.org/html/rfc2518#section-10.3
   unprocessableEntity(422, 'Unprocessable Entity'),
 
+  /// The user has sent too many requests
+  /// in a given amount of time ("rate limiting").
+  ///
+  /// https://tools.ietf.org/html/rfc6585#section-4
+  tooManyRequests(429, 'Too Many Requests'),
+
   /// The server encountered an unexpected condition that prevented it
   /// from fulfilling the request.
   ///
@@ -139,6 +145,9 @@ enum HttpStatus {
 
     throw UnsupportedError('Unsupported value [$code].');
   }
+
+  /// Returns true if this [code] equals to passed [code], otherwise false.
+  bool equalsByCode(final int code) => this.code == code;
 
   const HttpStatus(this.code, this.message);
 }
