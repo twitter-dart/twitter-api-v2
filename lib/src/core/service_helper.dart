@@ -10,10 +10,13 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
 // 🌎 Project imports:
+import '../service/response/twitter_request.dart';
 import 'client/client_context.dart';
 import 'client/stream_request.dart';
 import 'client/stream_response.dart';
 import 'client/user_context.dart';
+import 'http_method.dart';
+import 'https_status.dart';
 import 'serializable.dart';
 import 'util/json_utils.dart';
 
@@ -118,6 +121,11 @@ class ServiceHelper implements Service {
 
     return StreamResponse(
       headers: streamedResponse.headers,
+      status: HttpStatus.valueOf(streamedResponse.statusCode),
+      request: TwitterRequest(
+        method: HttpMethod.valueOf(streamedResponse.request!.method),
+        url: streamedResponse.request!.url,
+      ),
       body: streamedResponse.stream.transform(converter.utf8.decoder).map(
             (event) => validate != null
                 ? validate(streamedResponse, event)

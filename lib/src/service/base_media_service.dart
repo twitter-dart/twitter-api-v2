@@ -116,6 +116,7 @@ abstract class BaseMediaService extends BaseService implements _MediaService {
         }),
         response.statusCode,
         headers: response.headers,
+        request: response.request,
       ),
       dataBuilder: dataBuilder,
     );

@@ -17,6 +17,8 @@ import '../core/client/user_context.dart';
 import '../core/exception/data_not_found_exception.dart';
 import '../core/exception/rate_limit_exceeded_exception.dart';
 import '../core/exception/unauthorized_exception.dart';
+import '../core/http_method.dart';
+import '../core/https_status.dart';
 import '../core/service_helper.dart';
 import '../core/util/json_utils.dart';
 import 'common/data.dart';
@@ -29,6 +31,7 @@ import 'pagination/pageable.dart';
 import 'pagination/unidirectional_pagination.dart';
 import 'response/pagination_response.dart';
 import 'response/response_field.dart';
+import 'response/twitter_request.dart';
 import 'response/twitter_response.dart';
 
 /// The callback function for building data object from response.
@@ -242,6 +245,12 @@ abstract class BaseService implements _Service {
         : _checkResponseBody(response);
 
     return TwitterResponse(
+      headers: response.headers,
+      status: HttpStatus.valueOf(response.statusCode),
+      request: TwitterRequest(
+        method: HttpMethod.valueOf(response.request!.method),
+        url: response.request!.url,
+      ),
       rateLimit: RateLimit.fromJson(
         rateLimitConverter.convert(response.headers),
       ),
@@ -268,6 +277,12 @@ abstract class BaseService implements _Service {
     final jsonBody = _checkResponseBody(response);
 
     return TwitterResponse(
+      headers: response.headers,
+      status: HttpStatus.valueOf(response.statusCode),
+      request: TwitterRequest(
+        method: HttpMethod.valueOf(response.request!.method),
+        url: response.request!.url,
+      ),
       rateLimit: RateLimit.fromJson(
         rateLimitConverter.convert(response.headers),
       ),
@@ -305,6 +320,12 @@ abstract class BaseService implements _Service {
       userContext: userContext,
       unencodedPath: unencodedPath,
       queryParameters: queryParameters,
+      headers: response.headers,
+      status: HttpStatus.valueOf(response.statusCode),
+      request: TwitterRequest(
+        method: HttpMethod.valueOf(response.request!.method),
+        url: response.request!.url,
+      ),
       rateLimit: RateLimit.fromJson(
         rateLimitConverter.convert(response.headers),
       ),
@@ -395,6 +416,12 @@ abstract class BaseService implements _Service {
   @override
   TwitterResponse<bool, void> evaluateResponse(final Response response) =>
       TwitterResponse(
+        headers: response.headers,
+        status: HttpStatus.valueOf(response.statusCode),
+        request: TwitterRequest(
+          method: HttpMethod.valueOf(response.request!.method),
+          url: response.request!.url,
+        ),
         rateLimit: RateLimit.fromJson(
           rateLimitConverter.convert(response.headers),
         ),
@@ -402,28 +429,15 @@ abstract class BaseService implements _Service {
       );
 
   bool _evaluateResponse(final Response response) {
-    if (response.statusCode == 201) {
-      //! 201: Created.
+    if ((HttpStatus.ok.equalsByCode(response.statusCode) &&
+            response.body.isEmpty) ||
+        HttpStatus.created.equalsByCode(response.statusCode) ||
+        HttpStatus.noContent.equalsByCode(response.statusCode)) {
       return true;
     }
 
-    if (response.statusCode == 204) {
-      //! 204: No Content.
-      return true;
-    }
-
-    if (response.statusCode == 200 && response.body.isEmpty) {
-      //! No JSON in response but okay, it's succeeded.
-      return true;
-    }
-
-    if (response.statusCode == 403) {
-      //! Forbidden for some reasons.
-      return false;
-    }
-
-    if (response.statusCode == 422) {
-      //! Unprocessable.
+    if (HttpStatus.forbidden.equalsByCode(response.statusCode) ||
+        HttpStatus.unprocessableEntity.equalsByCode(response.statusCode)) {
       return false;
     }
 
@@ -449,32 +463,24 @@ abstract class BaseService implements _Service {
   Response checkResponse(
     final Response response,
   ) {
-    if (response.statusCode == 401) {
+    if (HttpStatus.unauthorized.equalsByCode(response.statusCode)) {
       throw UnauthorizedException(
         'The specified access token is invalid.',
         response,
       );
     }
 
-    if (response.statusCode == 429) {
+    if (HttpStatus.tooManyRequests.equalsByCode(response.statusCode)) {
       throw RateLimitExceededException(
         'Rate limit exceeded.',
         response,
       );
     }
 
-    if (response.statusCode == 201) {
-      //! 201: Created.
-      return response;
-    }
-
-    if (response.statusCode == 204) {
-      //! 204: No Content.
-      return response;
-    }
-
-    if (response.statusCode == 200 && response.body.isEmpty) {
-      //! No JSON in response but okay, it's succeeded.
+    if ((HttpStatus.ok.equalsByCode(response.statusCode) &&
+            response.body.isEmpty) ||
+        HttpStatus.created.equalsByCode(response.statusCode) ||
+        HttpStatus.noContent.equalsByCode(response.statusCode)) {
       return response;
     }
 
@@ -487,21 +493,21 @@ abstract class BaseService implements _Service {
     final BaseResponse response,
     final String event,
   ) {
-    if (response.statusCode == 401) {
+    if (HttpStatus.unauthorized.equalsByCode(response.statusCode)) {
       throw UnauthorizedException(
         'The specified access token is invalid.',
         response,
       );
     }
 
-    if (response.statusCode == 404) {
+    if (HttpStatus.notFound.equalsByCode(response.statusCode)) {
       throw DataNotFoundException(
         'No data exists in response.',
         response,
       );
     }
 
-    if (response.statusCode == 429) {
+    if (HttpStatus.tooManyRequests.equalsByCode(response.statusCode)) {
       throw RateLimitExceededException(
         'Rate limit exceeded.',
         response,
