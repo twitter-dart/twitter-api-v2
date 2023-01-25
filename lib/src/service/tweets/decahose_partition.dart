@@ -3,15 +3,15 @@
 // modification, are permitted provided the conditions.
 
 enum DecahosePartition {
-  section1(1),
-  section2(2);
+  section1('1'),
+  section2('2');
 
   /// The partition value.
-  final int value;
+  final String value;
 
   static DecahosePartition valueOf(final String value) {
     for (final element in values) {
-      if (element.value.toString() == value) {
+      if (element.value == value) {
         return element;
       }
     }

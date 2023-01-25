@@ -3,6 +3,7 @@
 ## v4.8.2
 
 - Added `valueOf` method in Enum objects. You can convert from a string returned from the API to an Enum. ([#635](https://github.com/twitter-dart/twitter-api-v2/issues/635))
+- Added `HttpStatus`, `headers`, and `request` to response information. ([#637](https://github.com/twitter-dart/twitter-api-v2/issues/637))
 
 ## v4.8.1
 
