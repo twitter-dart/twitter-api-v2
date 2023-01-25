@@ -21,12 +21,12 @@ void main() {
 
   group('.valueOf', () {
     test('normal case', () {
-      expect(DecahosePartition.valueOf('1'), DecahosePartition.section1);
+      expect(DecahosePartition.valueOf(1), DecahosePartition.section1);
     });
 
     test('when value is unsupported', () {
-      expect(() => DecahosePartition.valueOf('test'),
-          throwsA(isA<UnsupportedError>()));
+      expect(
+          () => DecahosePartition.valueOf(0), throwsA(isA<UnsupportedError>()));
     });
   });
 }

@@ -9,9 +9,9 @@ enum DecahosePartition {
   /// The partition value.
   final int value;
 
-  static DecahosePartition valueOf(final String value) {
+  static DecahosePartition valueOf(final int value) {
     for (final element in values) {
-      if (element.value.toString() == value) {
+      if (element.value == value) {
         return element;
       }
     }
