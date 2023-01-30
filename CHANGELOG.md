@@ -1,5 +1,9 @@
 # Release Note
 
+## v4.8.3
+
+- Exposed `Serializable`. ([#641](https://github.com/twitter-dart/twitter-api-v2/issues/641))
+
 ## v4.8.2
 
 - Added `valueOf` method in Enum objects. You can convert from a string returned from the API to an Enum. ([#635](https://github.com/twitter-dart/twitter-api-v2/issues/635))
