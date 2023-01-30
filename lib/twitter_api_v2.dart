@@ -2,7 +2,6 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-export 'package:twitter_api_v2/src/core//serializable.dart';
 export 'package:twitter_api_v2/src/core/client/oauth_tokens.dart';
 export 'package:twitter_api_v2/src/core/client/retry_event.dart';
 export 'package:twitter_api_v2/src/core/config/retry_config.dart';
@@ -17,6 +16,7 @@ export 'package:twitter_api_v2/src/core/https_status.dart';
 export 'package:twitter_api_v2/src/core/language.dart';
 export 'package:twitter_api_v2/src/core/oauth_response.dart' show OAuthResponse;
 export 'package:twitter_api_v2/src/core/scope.dart';
+export 'package:twitter_api_v2/src/core/serializable.dart';
 export 'package:twitter_api_v2/src/core/util/oauth_utils.dart';
 export 'package:twitter_api_v2/src/service/common/includes.dart';
 export 'package:twitter_api_v2/src/service/common/locale.dart';
