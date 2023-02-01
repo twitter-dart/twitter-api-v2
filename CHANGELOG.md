@@ -1,5 +1,9 @@
 # Release Note
 
+## v4.9.0
+
+- The return type of `TwitterResponse<bool, void>` has been modified to assign an object corresponding to each endpoint. ([#644](https://github.com/twitter-dart/twitter-api-v2/issues/644))
+
 ## v4.8.3
 
 - Exposed `Serializable`. ([#641](https://github.com/twitter-dart/twitter-api-v2/issues/641))

@@ -14,9 +14,13 @@ import '../../core/adaptor/user_object_adaptor.dart';
 import '../../core/client/client_context.dart';
 import '../../core/client/user_context.dart';
 import '../base_service.dart';
+import '../common/empty_data.dart';
+import '../common/follow_state_data.dart';
 import '../pagination/bidirectional_pagination.dart';
 import '../response/twitter_response.dart';
 import '../tweets/tweet_field.dart';
+import 'block_state_data.dart';
+import 'mute_state_data.dart';
 import 'profile_banner_variants_data.dart';
 import 'user_data.dart';
 import 'user_expansion.dart';
@@ -70,7 +74,7 @@ abstract class UsersService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/users/follows/api-reference/post-users-source_user_id-following
-  Future<TwitterResponse<bool, void>> createFollow(
+  Future<TwitterResponse<FollowStateData, void>> createFollow(
       {required String userId, required String targetUserId});
 
   /// Allows a user ID to unfollow another user.
@@ -110,7 +114,7 @@ abstract class UsersService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/users/follows/api-reference/delete-users-source_id-following
-  Future<TwitterResponse<bool, void>> destroyFollow(
+  Future<TwitterResponse<FollowStateData, void>> destroyFollow(
       {required String userId, required String targetUserId});
 
   /// Returns a list of users who are followers of the specified user ID.
@@ -647,7 +651,7 @@ abstract class UsersService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/users/mutes/api-reference/post-users-user_id-muting
-  Future<TwitterResponse<bool, void>> createMute(
+  Future<TwitterResponse<MuteStateData, void>> createMute(
       {required String userId, required String targetUserId});
 
   /// Allows an authenticated user ID to unmute the target user.
@@ -689,7 +693,7 @@ abstract class UsersService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/users/mutes/api-reference/delete-users-user_id-muting
-  Future<TwitterResponse<bool, void>> destroyMute(
+  Future<TwitterResponse<MuteStateData, void>> destroyMute(
       {required String userId, required String targetUserId});
 
   /// Returns a list of users who are muted by the specified user ID.
@@ -826,7 +830,7 @@ abstract class UsersService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/users/blocks/api-reference/post-users-user_id-blocking
-  Future<TwitterResponse<bool, void>> createBlock(
+  Future<TwitterResponse<BlockStateData, void>> createBlock(
       {required String userId, required String targetUserId});
 
   /// Allows a user or authenticated user ID to unblock another user.
@@ -867,7 +871,7 @@ abstract class UsersService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/users/blocks/api-reference/delete-users-user_id-blocking
-  Future<TwitterResponse<bool, void>> destroyBlock(
+  Future<TwitterResponse<BlockStateData, void>> destroyBlock(
       {required String userId, required String targetUserId});
 
   /// Returns a list of users who are blocked by the specified user ID.
@@ -1030,7 +1034,7 @@ abstract class UsersService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/v1/accounts-and-users/manage-account-settings/api-reference/post-account-update_profile_banner
-  Future<TwitterResponse<bool, void>> updateProfileBanner({
+  Future<TwitterResponse<EmptyData, void>> updateProfileBanner({
     required File file,
     int? width,
     int? height,
@@ -1051,7 +1055,7 @@ abstract class UsersService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/v1/accounts-and-users/manage-account-settings/api-reference/post-account-remove_profile_banner
-  Future<TwitterResponse<bool, void>> destroyProfileBanner();
+  Future<TwitterResponse<EmptyData, void>> destroyProfileBanner();
 
   /// Report the specified user as a spam account to Twitter.
   ///
@@ -1200,28 +1204,30 @@ class _UsersService extends BaseService implements UsersService {
   static const _userObjectAdaptor = UserObjectAdaptor();
 
   @override
-  Future<TwitterResponse<bool, void>> createFollow({
+  Future<TwitterResponse<FollowStateData, void>> createFollow({
     required String userId,
     required String targetUserId,
   }) async =>
-      super.evaluateResponse(
+      super.transformSingleDataResponse(
         await super.post(
           UserContext.oauth2OrOAuth1,
           '/2/users/$userId/following',
           body: {'target_user_id': targetUserId},
         ),
+        dataBuilder: FollowStateData.fromJson,
       );
 
   @override
-  Future<TwitterResponse<bool, void>> destroyFollow({
+  Future<TwitterResponse<FollowStateData, void>> destroyFollow({
     required String userId,
     required String targetUserId,
   }) async =>
-      super.evaluateResponse(
+      super.transformSingleDataResponse(
         await super.delete(
           UserContext.oauth2OrOAuth1,
           '/2/users/$userId/following/$targetUserId',
         ),
+        dataBuilder: FollowStateData.fromJson,
       );
 
   @override
@@ -1375,28 +1381,30 @@ class _UsersService extends BaseService implements UsersService {
       );
 
   @override
-  Future<TwitterResponse<bool, void>> createMute({
+  Future<TwitterResponse<MuteStateData, void>> createMute({
     required String userId,
     required String targetUserId,
   }) async =>
-      super.evaluateResponse(
+      super.transformSingleDataResponse(
         await super.post(
           UserContext.oauth2OrOAuth1,
           '/2/users/$userId/muting',
           body: {'target_user_id': targetUserId},
         ),
+        dataBuilder: MuteStateData.fromJson,
       );
 
   @override
-  Future<TwitterResponse<bool, void>> destroyMute({
+  Future<TwitterResponse<MuteStateData, void>> destroyMute({
     required String userId,
     required String targetUserId,
   }) async =>
-      super.evaluateResponse(
+      super.transformSingleDataResponse(
         await super.delete(
           UserContext.oauth2OrOAuth1,
           '/2/users/$userId/muting/$targetUserId',
         ),
+        dataBuilder: MuteStateData.fromJson,
       );
 
   @override
@@ -1425,28 +1433,30 @@ class _UsersService extends BaseService implements UsersService {
       );
 
   @override
-  Future<TwitterResponse<bool, void>> createBlock({
+  Future<TwitterResponse<BlockStateData, void>> createBlock({
     required String userId,
     required String targetUserId,
   }) async =>
-      super.evaluateResponse(
+      super.transformSingleDataResponse(
         await super.post(
           UserContext.oauth2OrOAuth1,
           '/2/users/$userId/blocking',
           body: {'target_user_id': targetUserId},
         ),
+        dataBuilder: BlockStateData.fromJson,
       );
 
   @override
-  Future<TwitterResponse<bool, void>> destroyBlock({
+  Future<TwitterResponse<BlockStateData, void>> destroyBlock({
     required String userId,
     required String targetUserId,
   }) async =>
-      super.evaluateResponse(
+      super.transformSingleDataResponse(
         await super.delete(
           UserContext.oauth2OrOAuth1,
           '/2/users/$userId/blocking/$targetUserId',
         ),
+        dataBuilder: BlockStateData.fromJson,
       );
 
   @override
@@ -1495,14 +1505,14 @@ class _UsersService extends BaseService implements UsersService {
       );
 
   @override
-  Future<TwitterResponse<bool, void>> updateProfileBanner({
+  Future<TwitterResponse<EmptyData, void>> updateProfileBanner({
     required File file,
     int? width,
     int? height,
     int? offsetLeft,
     int? offsetTop,
   }) async =>
-      super.evaluateResponse(
+      super.transformEmptyDataResponse(
         await super.postMultipart(
           UserContext.oauth1Only,
           '/1.1/account/update_profile_banner.json',
@@ -1519,8 +1529,8 @@ class _UsersService extends BaseService implements UsersService {
       );
 
   @override
-  Future<TwitterResponse<bool, void>> destroyProfileBanner() async =>
-      super.evaluateResponse(
+  Future<TwitterResponse<EmptyData, void>> destroyProfileBanner() async =>
+      super.transformEmptyDataResponse(
         await super.post(
           UserContext.oauth1Only,
           '/1.1/account/remove_profile_banner.json',

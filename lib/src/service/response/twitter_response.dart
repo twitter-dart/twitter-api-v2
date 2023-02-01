@@ -4,6 +4,7 @@
 
 // 🌎 Project imports:
 import '../../core/https_status.dart';
+import '../common/empty_data.dart';
 import '../common/includes.dart';
 import '../common/rate_limit.dart';
 import 'twitter_request.dart';
@@ -58,11 +59,13 @@ class TwitterResponse<D, M> {
   ///
   /// It equals to raw JSON response from Twitter.
   Map<String, dynamic> toJson() {
-    final json = {
-      'data': data is List
+    final json = <String, dynamic>{};
+
+    if (data is! EmptyData) {
+      json['data'] = data is List
           ? (data as List).map((e) => e.toJson()).toList()
-          : (data as dynamic).toJson()
-    };
+          : (data as dynamic).toJson();
+    }
 
     final $includes = includes?.toJson();
     if ($includes != null) {

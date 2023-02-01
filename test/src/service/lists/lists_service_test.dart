@@ -9,6 +9,11 @@ import 'package:test/test.dart';
 import 'package:twitter_api_v2/src/core/client/client_context.dart';
 import 'package:twitter_api_v2/src/core/client/oauth_tokens.dart';
 import 'package:twitter_api_v2/src/core/client/user_context.dart';
+import 'package:twitter_api_v2/src/service/common/delete_state_data.dart';
+import 'package:twitter_api_v2/src/service/common/follow_state_data.dart';
+import 'package:twitter_api_v2/src/service/common/member_state_data.dart';
+import 'package:twitter_api_v2/src/service/common/pinned_state_data.dart';
+import 'package:twitter_api_v2/src/service/common/update_state_data.dart';
 import 'package:twitter_api_v2/src/service/lists/list_data.dart';
 import 'package:twitter_api_v2/src/service/lists/list_meta.dart';
 import 'package:twitter_api_v2/src/service/lists/lists_service.dart';
@@ -337,8 +342,8 @@ void main() {
         listId: '1111',
       );
 
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isTrue);
+      expect(response, isA<TwitterResponse<PinnedStateData, void>>());
+      expect(response.data.isPinned, isTrue);
     });
 
     test('with invalid access token', () async {
@@ -390,13 +395,12 @@ void main() {
         ),
       );
 
-      final response = await listsService.createPinnedList(
-        userId: '5555',
-        listId: '1111',
+      expectDataNotFoundExceptionDueToNoData(
+        () async => await listsService.createPinnedList(
+          userId: '5555',
+          listId: '1111',
+        ),
       );
-
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isFalse);
     });
   });
 
@@ -415,8 +419,8 @@ void main() {
         listId: '1111',
       );
 
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isTrue);
+      expect(response, isA<TwitterResponse<PinnedStateData, void>>());
+      expect(response.data.isPinned, isFalse);
     });
 
     test('with invalid access token', () async {
@@ -468,13 +472,12 @@ void main() {
         ),
       );
 
-      final response = await listsService.destroyPinnedList(
-        userId: '5555',
-        listId: '1111',
+      expectDataNotFoundExceptionDueToNoData(
+        () async => await listsService.destroyPinnedList(
+          userId: '5555',
+          listId: '1111',
+        ),
       );
-
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isFalse);
     });
   });
 
@@ -976,8 +979,8 @@ void main() {
 
       final response = await listsService.destroyList(listId: '1111');
 
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isTrue);
+      expect(response, isA<TwitterResponse<DeleteStateData, void>>());
+      expect(response.data.isDeleted, isTrue);
     });
 
     test('with invalid access token', () async {
@@ -1023,10 +1026,9 @@ void main() {
         ),
       );
 
-      final response = await listsService.destroyList(listId: '1111');
-
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isFalse);
+      expectDataNotFoundExceptionDueToNoData(
+        () async => await listsService.destroyList(listId: '1111'),
+      );
     });
   });
 
@@ -1045,8 +1047,8 @@ void main() {
         description: 'test description',
       );
 
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isTrue);
+      expect(response, isA<TwitterResponse<UpdateStateData, void>>());
+      expect(response.data.isUpdated, isTrue);
     });
 
     test('with invalid access token', () async {
@@ -1098,14 +1100,13 @@ void main() {
         ),
       );
 
-      final response = await listsService.updateListAsPublic(
-        listId: '1111',
-        name: 'test',
-        description: 'test description',
+      expectDataNotFoundExceptionDueToNoData(
+        () async => await listsService.updateListAsPublic(
+          listId: '1111',
+          name: 'test',
+          description: 'test description',
+        ),
       );
-
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isFalse);
     });
   });
 
@@ -1124,8 +1125,8 @@ void main() {
         description: 'test description',
       );
 
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isTrue);
+      expect(response, isA<TwitterResponse<UpdateStateData, void>>());
+      expect(response.data.isUpdated, isTrue);
     });
 
     test('with invalid access token', () async {
@@ -1177,14 +1178,13 @@ void main() {
         ),
       );
 
-      final response = await listsService.updateListAsPrivate(
-        listId: '1111',
-        name: 'test',
-        description: 'test description',
+      expectDataNotFoundExceptionDueToNoData(
+        () async => await listsService.updateListAsPrivate(
+          listId: '1111',
+          name: 'test',
+          description: 'test description',
+        ),
       );
-
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isFalse);
     });
   });
 
@@ -1203,8 +1203,8 @@ void main() {
         listId: '2222',
       );
 
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isTrue);
+      expect(response, isA<TwitterResponse<FollowStateData, void>>());
+      expect(response.data.isFollowing, isTrue);
     });
 
     test('with invalid access token', () async {
@@ -1256,13 +1256,12 @@ void main() {
         ),
       );
 
-      final response = await listsService.createFollow(
-        userId: '1111',
-        listId: '2222',
+      expectDataNotFoundExceptionDueToNoData(
+        () async => await listsService.createFollow(
+          userId: '1111',
+          listId: '2222',
+        ),
       );
-
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isFalse);
     });
   });
 
@@ -1281,8 +1280,8 @@ void main() {
         listId: '2222',
       );
 
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isTrue);
+      expect(response, isA<TwitterResponse<FollowStateData, void>>());
+      expect(response.data.isFollowing, isFalse);
     });
 
     test('with invalid access token', () async {
@@ -1334,13 +1333,12 @@ void main() {
         ),
       );
 
-      final response = await listsService.destroyFollow(
-        userId: '1111',
-        listId: '2222',
+      expectDataNotFoundExceptionDueToNoData(
+        () async => await listsService.destroyFollow(
+          userId: '1111',
+          listId: '2222',
+        ),
       );
-
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isFalse);
     });
   });
 
@@ -1783,8 +1781,8 @@ void main() {
         userId: '1111',
       );
 
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isTrue);
+      expect(response, isA<TwitterResponse<MemberStateData, void>>());
+      expect(response.data.isMember, isTrue);
     });
 
     test('with invalid access token', () async {
@@ -1836,13 +1834,12 @@ void main() {
         ),
       );
 
-      final response = await listsService.createMember(
-        listId: '0000',
-        userId: '1111',
+      expectDataNotFoundExceptionDueToNoData(
+        () async => await listsService.createMember(
+          listId: '0000',
+          userId: '1111',
+        ),
       );
-
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isFalse);
     });
   });
 
@@ -1861,8 +1858,8 @@ void main() {
         userId: '1111',
       );
 
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isTrue);
+      expect(response, isA<TwitterResponse<MemberStateData, void>>());
+      expect(response.data.isMember, isFalse);
     });
 
     test('with invalid access token', () async {
@@ -1914,13 +1911,12 @@ void main() {
         ),
       );
 
-      final response = await listsService.destroyMember(
-        listId: '0000',
-        userId: '1111',
+      expectDataNotFoundExceptionDueToNoData(
+        () async => await listsService.destroyMember(
+          listId: '0000',
+          userId: '1111',
+        ),
       );
-
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isFalse);
     });
   });
 
