@@ -18,6 +18,7 @@ import '../../core/exception/twitter_upload_exception.dart';
 import '../../core/language.dart';
 import '../../core/util/json_utils.dart';
 import '../base_media_service.dart';
+import '../common/empty_data.dart';
 import '../common/locale.dart';
 import '../response/twitter_response.dart';
 import 'media_category.dart';
@@ -187,7 +188,7 @@ abstract class MediaService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/post-media-subtitles-create
-  Future<TwitterResponse<bool, void>> createSubtitle({
+  Future<TwitterResponse<EmptyData, void>> createSubtitle({
     required String videoId,
     required String captionId,
     required Language language,
@@ -222,7 +223,7 @@ abstract class MediaService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/post-media-subtitles-delete
-  Future<TwitterResponse<bool, void>> destroySubtitle({
+  Future<TwitterResponse<EmptyData, void>> destroySubtitle({
     required String videoId,
     required String captionId,
     required Language language,
@@ -321,13 +322,13 @@ class _MediaService extends BaseMediaService implements MediaService {
   }
 
   @override
-  Future<TwitterResponse<bool, void>> createSubtitle({
+  Future<TwitterResponse<EmptyData, void>> createSubtitle({
     required String videoId,
     required String captionId,
     required Language language,
     MediaCategory category = MediaCategory.tweet,
   }) async =>
-      super.evaluateResponse(
+      super.transformEmptyDataResponse(
         await super.post(
           UserContext.oauth1Only,
           '/1.1/media/subtitles/create.json',
@@ -351,13 +352,13 @@ class _MediaService extends BaseMediaService implements MediaService {
       );
 
   @override
-  Future<TwitterResponse<bool, void>> destroySubtitle({
+  Future<TwitterResponse<EmptyData, void>> destroySubtitle({
     required String videoId,
     required String captionId,
     required Language language,
     MediaCategory mediaCategory = MediaCategory.tweet,
   }) async =>
-      super.evaluateResponse(
+      super.transformEmptyDataResponse(
         await super.post(
           UserContext.oauth1Only,
           '/1.1/media/subtitles/delete.json',

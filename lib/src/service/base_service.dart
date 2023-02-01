@@ -16,12 +16,14 @@ import '../core/client/stream_response.dart';
 import '../core/client/user_context.dart';
 import '../core/exception/data_not_found_exception.dart';
 import '../core/exception/rate_limit_exceeded_exception.dart';
+import '../core/exception/twitter_exception.dart';
 import '../core/exception/unauthorized_exception.dart';
 import '../core/http_method.dart';
 import '../core/https_status.dart';
 import '../core/service_helper.dart';
 import '../core/util/json_utils.dart';
 import 'common/data.dart';
+import 'common/empty_data.dart';
 import 'common/includes.dart';
 import 'common/meta.dart';
 import 'common/rate_limit.dart';
@@ -85,6 +87,11 @@ abstract class _Service {
     MetaBuilder<M>? metaBuilder,
   });
 
+  TwitterResponse<EmptyData, M> transformEmptyDataResponse<M extends Meta>(
+    Response response, {
+    MetaBuilder<M>? metaBuilder,
+  });
+
   TwitterResponse<List<D>, M>
       transformMultiDataResponse<D extends Data, M extends Meta>(
     Response response, {
@@ -119,8 +126,6 @@ abstract class _Service {
     required DataBuilder<D> dataBuilder,
     required MetaBuilder<M> metaBuilder,
   });
-
-  TwitterResponse<bool, void> evaluateResponse(final Response response);
 }
 
 abstract class BaseService implements _Service {
@@ -257,6 +262,37 @@ abstract class BaseService implements _Service {
       data: dataBuilder(
         jsonBody[ResponseField.data.value],
       ),
+      includes: jsonBody.containsKey(ResponseField.includes.value)
+          ? Includes.fromJson(jsonBody[ResponseField.includes.value])
+          : null,
+      meta:
+          jsonBody.containsKey(ResponseField.meta.value) && metaBuilder != null
+              ? metaBuilder(jsonBody[ResponseField.meta.value])
+              : null,
+    );
+  }
+
+  @override
+  TwitterResponse<EmptyData, M> transformEmptyDataResponse<M extends Meta>(
+    Response response, {
+    MetaBuilder<M>? metaBuilder,
+    ObjectAdaptor? adaptor,
+  }) {
+    final jsonBody = adaptor != null
+        ? adaptor.execute(tryJsonDecode(response, response.body))
+        : tryJsonDecode(response, response.body);
+
+    return TwitterResponse(
+      headers: response.headers,
+      status: HttpStatus.valueOf(response.statusCode),
+      request: TwitterRequest(
+        method: HttpMethod.valueOf(response.request!.method),
+        url: response.request!.url,
+      ),
+      rateLimit: RateLimit.fromJson(
+        rateLimitConverter.convert(response.headers),
+      ),
+      data: const EmptyData(),
       includes: jsonBody.containsKey(ResponseField.includes.value)
           ? Includes.fromJson(jsonBody[ResponseField.includes.value])
           : null,
@@ -413,38 +449,6 @@ abstract class BaseService implements _Service {
     return rootPage;
   }
 
-  @override
-  TwitterResponse<bool, void> evaluateResponse(final Response response) =>
-      TwitterResponse(
-        headers: response.headers,
-        status: HttpStatus.valueOf(response.statusCode),
-        request: TwitterRequest(
-          method: HttpMethod.valueOf(response.request!.method),
-          url: response.request!.url,
-        ),
-        rateLimit: RateLimit.fromJson(
-          rateLimitConverter.convert(response.headers),
-        ),
-        data: _evaluateResponse(response),
-      );
-
-  bool _evaluateResponse(final Response response) {
-    if ((HttpStatus.ok.equalsByCode(response.statusCode) &&
-            response.body.isEmpty) ||
-        HttpStatus.created.equalsByCode(response.statusCode) ||
-        HttpStatus.noContent.equalsByCode(response.statusCode)) {
-      return true;
-    }
-
-    if (HttpStatus.forbidden.equalsByCode(response.statusCode) ||
-        HttpStatus.unprocessableEntity.equalsByCode(response.statusCode)) {
-      return false;
-    }
-
-    return !tryJsonDecode(response, response.body)
-        .containsKey(ResponseField.errors.value);
-  }
-
   Map<String, dynamic> _checkResponseBody(final Response response) {
     final jsonBody = tryJsonDecode(response, response.body);
 
@@ -473,6 +477,14 @@ abstract class BaseService implements _Service {
     if (HttpStatus.tooManyRequests.equalsByCode(response.statusCode)) {
       throw RateLimitExceededException(
         'Rate limit exceeded.',
+        response,
+      );
+    }
+
+    if (HttpStatus.forbidden.equalsByCode(response.statusCode) ||
+        HttpStatus.unprocessableEntity.equalsByCode(response.statusCode)) {
+      throw TwitterException(
+        'Invalid request.',
         response,
       );
     }

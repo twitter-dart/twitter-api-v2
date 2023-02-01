@@ -6,6 +6,11 @@
 import '../../core/client/client_context.dart';
 import '../../core/client/user_context.dart';
 import '../base_service.dart';
+import '../common/delete_state_data.dart';
+import '../common/follow_state_data.dart';
+import '../common/member_state_data.dart';
+import '../common/pinned_state_data.dart';
+import '../common/update_state_data.dart';
 import '../pagination/bidirectional_pagination.dart';
 import '../response/twitter_response.dart';
 import '../tweets/tweet_data.dart';
@@ -221,7 +226,7 @@ abstract class ListsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/lists/pinned-lists/api-reference/post-users-id-pinned-lists
-  Future<TwitterResponse<bool, void>> createPinnedList(
+  Future<TwitterResponse<PinnedStateData, void>> createPinnedList(
       {required String userId, required String listId});
 
   /// Enables the authenticated user to unpin a List.
@@ -258,7 +263,7 @@ abstract class ListsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/lists/pinned-lists/api-reference/delete-users-id-pinned-lists-list_id
-  Future<TwitterResponse<bool, void>> destroyPinnedList(
+  Future<TwitterResponse<PinnedStateData, void>> destroyPinnedList(
       {required String userId, required String listId});
 
   /// Returns the Lists pinned by a specified user.
@@ -519,7 +524,8 @@ abstract class ListsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/lists/manage-lists/api-reference/delete-lists-id
-  Future<TwitterResponse<bool, void>> destroyList({required String listId});
+  Future<TwitterResponse<DeleteStateData, void>> destroyList(
+      {required String listId});
 
   /// Enables the authenticated user to update the meta data of a specified List
   /// that they own as a public scope.
@@ -555,7 +561,7 @@ abstract class ListsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/lists/manage-lists/api-reference/delete-lists-id
-  Future<TwitterResponse<bool, void>> updateListAsPublic(
+  Future<TwitterResponse<UpdateStateData, void>> updateListAsPublic(
       {required String listId, String? name, String? description});
 
   /// Enables the authenticated user to update the meta data of a specified List
@@ -592,7 +598,7 @@ abstract class ListsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/lists/manage-lists/api-reference/delete-lists-id
-  Future<TwitterResponse<bool, void>> updateListAsPrivate(
+  Future<TwitterResponse<UpdateStateData, void>> updateListAsPrivate(
       {required String listId, String? name, String? description});
 
   /// Enables the authenticated user to follow a List.
@@ -629,7 +635,7 @@ abstract class ListsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/lists/list-follows/api-reference/post-users-id-followed-lists
-  Future<TwitterResponse<bool, void>> createFollow(
+  Future<TwitterResponse<FollowStateData, void>> createFollow(
       {required String userId, required String listId});
 
   /// Enables the authenticated user to unfollow a List.
@@ -667,7 +673,7 @@ abstract class ListsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/lists/list-follows/api-reference/delete-users-id-followed-lists-list_id
-  Future<TwitterResponse<bool, void>> destroyFollow(
+  Future<TwitterResponse<FollowStateData, void>> destroyFollow(
       {required String userId, required String listId});
 
   /// Returns a list of users who are followers of the specified List.
@@ -890,7 +896,7 @@ abstract class ListsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/lists/list-members/api-reference/post-lists-id-members
-  Future<TwitterResponse<bool, void>> createMember(
+  Future<TwitterResponse<MemberStateData, void>> createMember(
       {required String listId, required String userId});
 
   /// Enables the authenticated user to remove a member from a List they own.
@@ -925,7 +931,7 @@ abstract class ListsService {
   /// ## Reference
   ///
   /// - https://developer.twitter.com/en/docs/twitter-api/lists/list-members/api-reference/delete-lists-id-members-user_id
-  Future<TwitterResponse<bool, void>> destroyMember(
+  Future<TwitterResponse<MemberStateData, void>> destroyMember(
       {required String listId, required String userId});
 
   /// Returns a list of users who are members of the specified List.
@@ -1177,28 +1183,30 @@ class _ListsService extends BaseService implements ListsService {
       );
 
   @override
-  Future<TwitterResponse<bool, void>> createPinnedList({
+  Future<TwitterResponse<PinnedStateData, void>> createPinnedList({
     required String userId,
     required String listId,
   }) async =>
-      super.evaluateResponse(
+      super.transformSingleDataResponse(
         await super.post(
           UserContext.oauth2OrOAuth1,
           '/2/users/$userId/pinned_lists',
           body: {'list_id': listId},
         ),
+        dataBuilder: PinnedStateData.fromJson,
       );
 
   @override
-  Future<TwitterResponse<bool, void>> destroyPinnedList({
+  Future<TwitterResponse<PinnedStateData, void>> destroyPinnedList({
     required String userId,
     required String listId,
   }) async =>
-      super.evaluateResponse(
+      super.transformSingleDataResponse(
         await super.delete(
           UserContext.oauth2OrOAuth1,
           '/2/users/$userId/pinned_lists/$listId',
         ),
+        dataBuilder: PinnedStateData.fromJson,
       );
 
   @override
@@ -1270,17 +1278,18 @@ class _ListsService extends BaseService implements ListsService {
       );
 
   @override
-  Future<TwitterResponse<bool, void>> destroyList(
+  Future<TwitterResponse<DeleteStateData, void>> destroyList(
           {required String listId}) async =>
-      super.evaluateResponse(
+      super.transformSingleDataResponse(
         await super.delete(
           UserContext.oauth2OrOAuth1,
           '/2/lists/$listId',
         ),
+        dataBuilder: DeleteStateData.fromJson,
       );
 
   @override
-  Future<TwitterResponse<bool, void>> updateListAsPublic({
+  Future<TwitterResponse<UpdateStateData, void>> updateListAsPublic({
     required String listId,
     String? name,
     String? description,
@@ -1293,7 +1302,7 @@ class _ListsService extends BaseService implements ListsService {
       );
 
   @override
-  Future<TwitterResponse<bool, void>> updateListAsPrivate({
+  Future<TwitterResponse<UpdateStateData, void>> updateListAsPrivate({
     required String listId,
     String? name,
     String? description,
@@ -1306,11 +1315,11 @@ class _ListsService extends BaseService implements ListsService {
       );
 
   @override
-  Future<TwitterResponse<bool, void>> createFollow({
+  Future<TwitterResponse<FollowStateData, void>> createFollow({
     required String userId,
     required String listId,
   }) async =>
-      super.evaluateResponse(
+      super.transformSingleDataResponse(
         await super.post(
           UserContext.oauth2OrOAuth1,
           '/2/users/$userId/followed_lists',
@@ -1318,18 +1327,20 @@ class _ListsService extends BaseService implements ListsService {
             'list_id': listId,
           },
         ),
+        dataBuilder: FollowStateData.fromJson,
       );
 
   @override
-  Future<TwitterResponse<bool, void>> destroyFollow({
+  Future<TwitterResponse<FollowStateData, void>> destroyFollow({
     required String userId,
     required String listId,
   }) async =>
-      super.evaluateResponse(
+      super.transformSingleDataResponse(
         await super.delete(
           UserContext.oauth2OrOAuth1,
           '/2/users/$userId/followed_lists/$listId',
         ),
+        dataBuilder: FollowStateData.fromJson,
       );
 
   @override
@@ -1381,11 +1392,11 @@ class _ListsService extends BaseService implements ListsService {
       );
 
   @override
-  Future<TwitterResponse<bool, void>> createMember({
+  Future<TwitterResponse<MemberStateData, void>> createMember({
     required String listId,
     required String userId,
   }) async =>
-      super.evaluateResponse(
+      super.transformSingleDataResponse(
         await super.post(
           UserContext.oauth2OrOAuth1,
           '/2/lists/$listId/members',
@@ -1393,18 +1404,20 @@ class _ListsService extends BaseService implements ListsService {
             'user_id': userId,
           },
         ),
+        dataBuilder: MemberStateData.fromJson,
       );
 
   @override
-  Future<TwitterResponse<bool, void>> destroyMember({
+  Future<TwitterResponse<MemberStateData, void>> destroyMember({
     required String listId,
     required String userId,
   }) async =>
-      super.evaluateResponse(
+      super.transformSingleDataResponse(
         await super.delete(
           UserContext.oauth2OrOAuth1,
           '/2/lists/$listId/members/$userId',
         ),
+        dataBuilder: MemberStateData.fromJson,
       );
 
   @override
@@ -1475,13 +1488,13 @@ class _ListsService extends BaseService implements ListsService {
         dataBuilder: ListData.fromJson,
       );
 
-  Future<TwitterResponse<bool, void>> _updateList({
+  Future<TwitterResponse<UpdateStateData, void>> _updateList({
     required String listId,
     String? name,
     String? description,
     required bool private,
   }) async =>
-      super.evaluateResponse(
+      super.transformSingleDataResponse(
         await super.put(
           UserContext.oauth2OrOAuth1,
           '/2/lists/$listId',
@@ -1491,5 +1504,6 @@ class _ListsService extends BaseService implements ListsService {
             'private': private,
           },
         ),
+        dataBuilder: UpdateStateData.fromJson,
       );
 }
