@@ -8,6 +8,7 @@ import 'package:test/test.dart';
 // 🌎 Project imports:
 import 'package:twitter_api_v2/src/core/exception/data_not_found_exception.dart';
 import 'package:twitter_api_v2/src/core/exception/rate_limit_exceeded_exception.dart';
+import 'package:twitter_api_v2/src/core/exception/twitter_exception.dart';
 import 'package:twitter_api_v2/src/core/exception/unauthorized_exception.dart';
 
 void expectUnauthorizedException(Function fn) {
@@ -94,6 +95,15 @@ void expectDataNotFoundExceptionDueToNoJson(Function fn) {
               e.message == 'No body exists in response.',
         ),
       ),
+    ),
+  );
+}
+
+void expectTwitterExceptionDueToInvalidRequest(Function fn) {
+  expect(
+    () async => await fn.call(),
+    throwsA(
+      allOf(isA<TwitterException>()),
     ),
   );
 }

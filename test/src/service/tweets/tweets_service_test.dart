@@ -10,18 +10,24 @@ import 'package:twitter_api_v2/src/core/client/client_context.dart';
 import 'package:twitter_api_v2/src/core/client/oauth_tokens.dart';
 import 'package:twitter_api_v2/src/core/client/user_context.dart';
 import 'package:twitter_api_v2/src/core/exception/data_not_found_exception.dart';
+import 'package:twitter_api_v2/src/service/common/delete_state_data.dart';
+import 'package:twitter_api_v2/src/service/common/empty_data.dart';
 import 'package:twitter_api_v2/src/service/pagination/forward_pagination_control.dart';
 import 'package:twitter_api_v2/src/service/pagination/pagination_control.dart';
 import 'package:twitter_api_v2/src/service/response/filtered_stream_response.dart';
 import 'package:twitter_api_v2/src/service/response/pagination_response.dart';
 import 'package:twitter_api_v2/src/service/response/twitter_response.dart';
 import 'package:twitter_api_v2/src/service/response/twitter_stream_response.dart';
+import 'package:twitter_api_v2/src/service/tweets/bookmark_state_data.dart';
 import 'package:twitter_api_v2/src/service/tweets/decahose_partition.dart';
 import 'package:twitter_api_v2/src/service/tweets/exclude_tweet_type.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering_rule_data.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering_rule_meta.dart';
 import 'package:twitter_api_v2/src/service/tweets/filtering_rule_param.dart';
+import 'package:twitter_api_v2/src/service/tweets/like_state_data.dart';
 import 'package:twitter_api_v2/src/service/tweets/matching_rule.dart';
+import 'package:twitter_api_v2/src/service/tweets/reply_state_data.dart';
+import 'package:twitter_api_v2/src/service/tweets/retweet_state_data.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_count_data.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_count_meta.dart';
 import 'package:twitter_api_v2/src/service/tweets/tweet_data.dart';
@@ -146,8 +152,8 @@ void main() {
 
       final response = await tweetsService.destroyTweet(tweetId: '1111');
 
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isTrue);
+      expect(response, isA<TwitterResponse<DeleteStateData, void>>());
+      expect(response.data.isDeleted, isTrue);
     });
 
     test('with invalid access token', () async {
@@ -195,10 +201,9 @@ void main() {
         ),
       );
 
-      final response = await tweetsService.destroyTweet(tweetId: '1111');
-
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isFalse);
+      expectDataNotFoundExceptionDueToNoData(
+        () async => await tweetsService.destroyTweet(tweetId: '1111'),
+      );
     });
   });
 
@@ -217,8 +222,8 @@ void main() {
         tweetId: '1111',
       );
 
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isTrue);
+      expect(response, isA<TwitterResponse<LikeStateData, void>>());
+      expect(response.data.isLiked, isTrue);
     });
 
     test('with invalid access token', () async {
@@ -270,13 +275,12 @@ void main() {
         ),
       );
 
-      final response = await tweetsService.createLike(
-        userId: '0000',
-        tweetId: '1111',
+      expectDataNotFoundExceptionDueToNoData(
+        () async => await tweetsService.createLike(
+          userId: '0000',
+          tweetId: '1111',
+        ),
       );
-
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isFalse);
     });
   });
 
@@ -295,8 +299,8 @@ void main() {
         tweetId: '1111',
       );
 
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isTrue);
+      expect(response, isA<TwitterResponse<LikeStateData, void>>());
+      expect(response.data.isLiked, isFalse);
     });
 
     test('with invalid access token', () async {
@@ -348,13 +352,12 @@ void main() {
         ),
       );
 
-      final response = await tweetsService.destroyLike(
-        userId: '0000',
-        tweetId: '1111',
+      expectDataNotFoundExceptionDueToNoData(
+        () async => await tweetsService.destroyLike(
+          userId: '0000',
+          tweetId: '1111',
+        ),
       );
-
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isFalse);
     });
   });
 
@@ -373,8 +376,8 @@ void main() {
         tweetId: '1111',
       );
 
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isTrue);
+      expect(response, isA<TwitterResponse<RetweetStateData, void>>());
+      expect(response.data.isRetweeted, isTrue);
     });
 
     test('with invalid access token', () async {
@@ -426,13 +429,12 @@ void main() {
         ),
       );
 
-      final response = await tweetsService.createRetweet(
-        userId: '0000',
-        tweetId: '1111',
+      expectDataNotFoundExceptionDueToNoData(
+        () async => await tweetsService.createRetweet(
+          userId: '0000',
+          tweetId: '1111',
+        ),
       );
-
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isFalse);
     });
   });
 
@@ -451,8 +453,8 @@ void main() {
         tweetId: '1111',
       );
 
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isTrue);
+      expect(response, isA<TwitterResponse<RetweetStateData, void>>());
+      expect(response.data.isRetweeted, isFalse);
     });
 
     test('with invalid access token', () async {
@@ -504,13 +506,12 @@ void main() {
         ),
       );
 
-      final response = await tweetsService.destroyRetweet(
-        userId: '0000',
-        tweetId: '1111',
+      expectDataNotFoundExceptionDueToNoData(
+        () async => await tweetsService.destroyRetweet(
+          userId: '0000',
+          tweetId: '1111',
+        ),
       );
-
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isFalse);
     });
   });
 
@@ -2346,8 +2347,8 @@ void main() {
         tweetId: '1111',
       );
 
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isTrue);
+      expect(response, isA<TwitterResponse<BookmarkStateData, void>>());
+      expect(response.data.isBookmarked, isTrue);
     });
 
     test('with invalid access token', () async {
@@ -2393,13 +2394,12 @@ void main() {
         ),
       );
 
-      final response = await tweetsService.createBookmark(
-        userId: '0000',
-        tweetId: '1111',
+      expectDataNotFoundExceptionDueToNoData(
+        () async => await tweetsService.createBookmark(
+          userId: '0000',
+          tweetId: '1111',
+        ),
       );
-
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isFalse);
     });
   });
 
@@ -2418,8 +2418,8 @@ void main() {
         tweetId: '1111',
       );
 
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isTrue);
+      expect(response, isA<TwitterResponse<BookmarkStateData, void>>());
+      expect(response.data.isBookmarked, isFalse);
     });
 
     test('with invalid access token', () async {
@@ -2465,13 +2465,12 @@ void main() {
         ),
       );
 
-      final response = await tweetsService.destroyBookmark(
-        userId: '0000',
-        tweetId: '1111',
+      expectDataNotFoundExceptionDueToNoData(
+        () async => await tweetsService.destroyBookmark(
+          userId: '0000',
+          tweetId: '1111',
+        ),
       );
-
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isFalse);
     });
   });
 
@@ -2571,8 +2570,8 @@ void main() {
 
       final response = await tweetsService.createHiddenReply(tweetId: '0000');
 
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isTrue);
+      expect(response, isA<TwitterResponse<ReplyStateData, void>>());
+      expect(response.data.isHidden, isTrue);
     });
 
     test('when forbidden', () async {
@@ -2584,10 +2583,9 @@ void main() {
         ),
       );
 
-      final response = await tweetsService.createHiddenReply(tweetId: '0000');
-
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isFalse);
+      expectTwitterExceptionDueToInvalidRequest(
+        () async => await tweetsService.createHiddenReply(tweetId: '0000'),
+      );
     });
 
     test('with invalid access token', () async {
@@ -2635,12 +2633,11 @@ void main() {
         ),
       );
 
-      final response = await tweetsService.createHiddenReply(
-        tweetId: '0000',
+      expectDataNotFoundExceptionDueToNoData(
+        () async => await tweetsService.createHiddenReply(
+          tweetId: '0000',
+        ),
       );
-
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isFalse);
     });
   });
 
@@ -2655,8 +2652,8 @@ void main() {
 
       final response = await tweetsService.destroyHiddenReply(tweetId: '0000');
 
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isTrue);
+      expect(response, isA<TwitterResponse<ReplyStateData, void>>());
+      expect(response.data.isHidden, isFalse);
     });
 
     test('when forbidden', () async {
@@ -2668,10 +2665,9 @@ void main() {
         ),
       );
 
-      final response = await tweetsService.destroyHiddenReply(tweetId: '0000');
-
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isFalse);
+      expectTwitterExceptionDueToInvalidRequest(
+        () async => await tweetsService.destroyHiddenReply(tweetId: '0000'),
+      );
     });
 
     test('with invalid access token', () async {
@@ -2719,12 +2715,11 @@ void main() {
         ),
       );
 
-      final response = await tweetsService.destroyHiddenReply(
-        tweetId: '0000',
+      expectDataNotFoundExceptionDueToNoData(
+        () async => await tweetsService.destroyHiddenReply(
+          tweetId: '0000',
+        ),
       );
-
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isFalse);
     });
   });
 
@@ -3633,8 +3628,8 @@ void main() {
         ruleIds: ['XXXX', 'YYYY'],
       );
 
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isTrue);
+      expect(response, isA<TwitterResponse<EmptyData, void>>());
+      expect(response.data, isA<EmptyData>());
     });
 
     test('with invalid access token', () async {
@@ -3680,8 +3675,8 @@ void main() {
         ruleIds: ['XXXX', 'YYYY'],
       );
 
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isFalse);
+      expect(response, isA<TwitterResponse<EmptyData, void>>());
+      expect(response.data, isA<EmptyData>());
     });
   });
 

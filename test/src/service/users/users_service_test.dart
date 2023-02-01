@@ -12,9 +12,13 @@ import 'package:test/test.dart';
 import 'package:twitter_api_v2/src/core/client/client_context.dart';
 import 'package:twitter_api_v2/src/core/client/oauth_tokens.dart';
 import 'package:twitter_api_v2/src/core/client/user_context.dart';
+import 'package:twitter_api_v2/src/service/common/empty_data.dart';
+import 'package:twitter_api_v2/src/service/common/follow_state_data.dart';
 import 'package:twitter_api_v2/src/service/pagination/pagination_control.dart';
 import 'package:twitter_api_v2/src/service/response/pagination_response.dart';
 import 'package:twitter_api_v2/src/service/response/twitter_response.dart';
+import 'package:twitter_api_v2/src/service/users/block_state_data.dart';
+import 'package:twitter_api_v2/src/service/users/mute_state_data.dart';
 import 'package:twitter_api_v2/src/service/users/profile_banner_variants_data.dart';
 import 'package:twitter_api_v2/src/service/users/user_data.dart';
 import 'package:twitter_api_v2/src/service/users/user_meta.dart';
@@ -38,8 +42,9 @@ void main() {
         targetUserId: '1111',
       );
 
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isTrue);
+      expect(response, isA<TwitterResponse<FollowStateData, void>>());
+      expect(response.data.isFollowing, isTrue);
+      expect(response.data.isPending, isFalse);
     });
 
     test('with invalid access token', () async {
@@ -91,13 +96,12 @@ void main() {
         ),
       );
 
-      final response = await usersService.createFollow(
-        userId: '0000',
-        targetUserId: '1111',
+      expectDataNotFoundExceptionDueToNoData(
+        () async => await usersService.createFollow(
+          userId: '0000',
+          targetUserId: '1111',
+        ),
       );
-
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isFalse);
     });
   });
 
@@ -116,8 +120,9 @@ void main() {
         targetUserId: '1111',
       );
 
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isTrue);
+      expect(response, isA<TwitterResponse<FollowStateData, void>>());
+      expect(response.data.isFollowing, isFalse);
+      expect(response.data.isPending, isFalse);
     });
 
     test('with invalid access token', () async {
@@ -169,13 +174,12 @@ void main() {
         ),
       );
 
-      final response = await usersService.destroyFollow(
-        userId: '0000',
-        targetUserId: '1111',
+      expectDataNotFoundExceptionDueToNoData(
+        () async => await usersService.destroyFollow(
+          userId: '0000',
+          targetUserId: '1111',
+        ),
       );
-
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isFalse);
     });
   });
 
@@ -1036,8 +1040,8 @@ void main() {
         targetUserId: '2222',
       );
 
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isTrue);
+      expect(response, isA<TwitterResponse<MuteStateData, void>>());
+      expect(response.data.isMuting, isTrue);
     });
 
     test('with invalid access token', () async {
@@ -1089,13 +1093,12 @@ void main() {
         ),
       );
 
-      final response = await usersService.createMute(
-        userId: '1111',
-        targetUserId: '2222',
+      expectDataNotFoundExceptionDueToNoData(
+        () async => await usersService.createMute(
+          userId: '1111',
+          targetUserId: '2222',
+        ),
       );
-
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isFalse);
     });
   });
 
@@ -1114,8 +1117,8 @@ void main() {
         targetUserId: '2222',
       );
 
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isTrue);
+      expect(response, isA<TwitterResponse<MuteStateData, void>>());
+      expect(response.data.isMuting, isFalse);
     });
 
     test('with invalid access token', () async {
@@ -1167,13 +1170,12 @@ void main() {
         ),
       );
 
-      final response = await usersService.destroyMute(
-        userId: '1111',
-        targetUserId: '2222',
+      expectDataNotFoundExceptionDueToNoData(
+        () async => await usersService.destroyMute(
+          userId: '1111',
+          targetUserId: '2222',
+        ),
       );
-
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isFalse);
     });
   });
 
@@ -1402,8 +1404,8 @@ void main() {
         targetUserId: '1111',
       );
 
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isTrue);
+      expect(response, isA<TwitterResponse<BlockStateData, void>>());
+      expect(response.data.isBlocking, isTrue);
     });
 
     test('with invalid access token', () async {
@@ -1455,13 +1457,12 @@ void main() {
         ),
       );
 
-      final response = await usersService.createBlock(
-        userId: '0000',
-        targetUserId: '1111',
+      expectDataNotFoundExceptionDueToNoData(
+        () async => await usersService.createBlock(
+          userId: '0000',
+          targetUserId: '1111',
+        ),
       );
-
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isFalse);
     });
   });
 
@@ -1480,8 +1481,8 @@ void main() {
         targetUserId: '1111',
       );
 
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isTrue);
+      expect(response, isA<TwitterResponse<BlockStateData, void>>());
+      expect(response.data.isBlocking, isFalse);
     });
 
     test('with invalid access token', () async {
@@ -1533,13 +1534,12 @@ void main() {
         ),
       );
 
-      final response = await usersService.destroyBlock(
-        userId: '0000',
-        targetUserId: '1111',
+      expectDataNotFoundExceptionDueToNoData(
+        () async => await usersService.destroyBlock(
+          userId: '0000',
+          targetUserId: '1111',
+        ),
       );
-
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isFalse);
     });
   });
 
@@ -1870,8 +1870,8 @@ void main() {
         offsetTop: 10,
       );
 
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isTrue);
+      expect(response, isA<TwitterResponse<EmptyData, void>>());
+      expect(response.data, isA<EmptyData>());
     });
 
     test('with invalid access token', () async {
@@ -1940,18 +1940,17 @@ void main() {
         ),
       );
 
-      final response = await usersService.updateProfileBanner(
-        file: File(
-          'test/src/service/users/data/update_profile_banner.json',
+      expectTwitterExceptionDueToInvalidRequest(
+        () async => await usersService.updateProfileBanner(
+          file: File(
+            'test/src/service/users/data/update_profile_banner.json',
+          ),
+          width: 100,
+          height: 100,
+          offsetLeft: 10,
+          offsetTop: 10,
         ),
-        width: 100,
-        height: 100,
-        offsetLeft: 10,
-        offsetTop: 10,
       );
-
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isFalse);
     });
   });
 
@@ -1967,8 +1966,8 @@ void main() {
 
       final response = await usersService.destroyProfileBanner();
 
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isTrue);
+      expect(response, isA<TwitterResponse<EmptyData, void>>());
+      expect(response.data, isA<EmptyData>());
     });
 
     test('with invalid access token', () async {
@@ -2009,10 +2008,9 @@ void main() {
         ),
       );
 
-      final response = await usersService.destroyProfileBanner();
-
-      expect(response, isA<TwitterResponse<bool, void>>());
-      expect(response.data, isFalse);
+      expectTwitterExceptionDueToInvalidRequest(
+        () async => await usersService.destroyProfileBanner(),
+      );
     });
   });
 
