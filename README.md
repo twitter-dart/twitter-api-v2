@@ -102,11 +102,10 @@
     - [1.4.11. Automatic Retry](#1411-automatic-retry)
       - [1.4.11.1. Exponential BackOff and Jitter](#14111-exponential-backoff-and-jitter)
       - [1.4.11.2. Do Something on Retry](#14112-do-something-on-retry)
-    - [1.4.12. Meaning of the Returned Boolean](#1412-meaning-of-the-returned-boolean)
-    - [1.4.13. Thrown Exceptions](#1413-thrown-exceptions)
-    - [1.4.14. Upload Media](#1414-upload-media)
-    - [1.4.15. Check the Progress of Media Upload](#1415-check-the-progress-of-media-upload)
-    - [1.4.16. Generate Filtering Rules Safely and Easily](#1416-generate-filtering-rules-safely-and-easily)
+    - [1.4.12. Thrown Exceptions](#1412-thrown-exceptions)
+    - [1.4.13. Upload Media](#1413-upload-media)
+    - [1.4.14. Check the Progress of Media Upload](#1414-check-the-progress-of-media-upload)
+    - [1.4.15. Generate Filtering Rules Safely and Easily](#1415-generate-filtering-rules-safely-and-easily)
   - [1.5. Contribution 🏆](#15-contribution-)
   - [1.6. Contributors ✨](#16-contributors-)
   - [1.7. Support ❤️](#17-support-️)
@@ -984,27 +983,7 @@ Future<void> main() async {
 
 The [RetryEvent](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/RetryEvent-class.html) passed to the callback contains information on retries.
 
-### 1.4.12. Meaning of the Returned Boolean
-
-A boolean value is returned from the endpoint when the communication is primarily POST, DELETE, or PUT.
-
-For example, **twitter_api_v2** provides the [createRetweet](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/createRetweet.html) method for creating retweets. This method returns true if the request sent in generating the retweet was accepted, and false if an error occurred for whatever reason.
-
-If true is returned at this time, the reason is as follows.
-
-- The target tweet exists and the target tweet was successfully retweeted.
-
-Conversely, if false is returned, the reasons may be as follows.
-
-- The tweet to be retweeted did not exist.
-- The tweet subject to retweet was deleted by the author.
-- Miscellaneous errors.
-
-Note that this specification differs from the official [Twitter API v2.0](https://developer.twitter.com/en/docs/twitter-api). The official [Twitter API v2.0](https://developer.twitter.com/en/docs/twitter-api) consistently returns a flag indicating the state of the content after API communication when using endpoints that change the state of such content.
-
-However, as mentioned earlier in **twitter_api_v2**, for example if you use the [createRetweet](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/createRetweet.html) method, it will return a **flag indicating whether the process was successful or not**. This principle applies not only to the [createRetweet](https://pub.dev/documentation/twitter_api_v2/latest/twitter_api_v2/TweetsService/createRetweet.html) method, but to all methods that return flags as a result of processing.
-
-### 1.4.13. Thrown Exceptions
+### 1.4.12. Thrown Exceptions
 
 **twitter_api_v2** provides a convenient exception object for easy handling of exceptional responses and errors returned from [Twitter API v2.0](https://developer.twitter.com/en/docs/twitter-api/data-dictionary/introduction).
 
@@ -1049,7 +1028,7 @@ Future<void> main() async {
 }
 ```
 
-### 1.4.14. Upload Media
+### 1.4.13. Upload Media
 
 Uploading media on Twitter and sharing it with various people is a very interesting activity. Also, from a business perspective, accompanying tweets with media will attract even more interest from people.
 
@@ -1100,7 +1079,7 @@ This upload process works very safely, but note that [TwitterUploadException](ht
 > **Note**</br>
 > Also note that the v1.1 endpoint is used to achieve this specification in twitter_api_v2. This is because the official Twitter API v2.0 does not yet support media uploads. While I'm trying to keep the implementation as non-disruptive as possible in the future, there may be disruptive changes when media uploads are supported by the official Twitter API v2.0.
 
-### 1.4.15. Check the Progress of Media Upload
+### 1.4.14. Check the Progress of Media Upload
 
 Uploading small images to Twitter does not take long, but uploading large videos takes longer to complete. At that time, it would be very useful if you could show users how far along we are in the uploading process.
 
@@ -1172,7 +1151,7 @@ And the trigger that calls the `onProgress` callback is as follows. But if the m
 
 Note that media uploads may also fail for reasons such as broken media. In such cases, [TwitterUploadException](https://pub.dev/documentation/twitter_api_core/latest/twitter_api_core/TwitterUploadException-class.html) is always thrown.
 
-### 1.4.16. Generate Filtering Rules Safely and Easily
+### 1.4.15. Generate Filtering Rules Safely and Easily
 
 Some endpoints in [Twitter API v2.0](https://developer.twitter.com/en/docs/twitter-api/data-dictionary/introduction) supports a number of operators for advanced searches, not just `keywords` and `hashtags`.
 
