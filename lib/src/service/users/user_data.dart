@@ -11,6 +11,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../common/data.dart';
 import 'public_user_metrics.dart';
 import 'user_entities.dart';
+import 'user_verified_type.dart';
 import 'user_withheld.dart';
 
 part 'user_data.freezed.dart';
@@ -90,6 +91,10 @@ class UserData with _$UserData implements Data {
     ///   A verified account lets people know that an account of public
     ///   interest is authentic.
     @JsonKey(name: 'verified') bool? isVerified,
+
+    /// The Twitter Blue verified type of the user,
+    /// eg: blue, government, business or none.
+    UserVerifiedType? verifiedType,
 
     /// Unique identifier of this user's pinned Tweet.
     ///

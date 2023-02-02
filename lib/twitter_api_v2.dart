@@ -150,6 +150,7 @@ export 'package:twitter_api_v2/src/service/users/user_expansion.dart';
 export 'package:twitter_api_v2/src/service/users/user_field.dart';
 export 'package:twitter_api_v2/src/service/users/user_meta.dart';
 export 'package:twitter_api_v2/src/service/users/user_url_entity.dart';
+export 'package:twitter_api_v2/src/service/users/user_verified_type.dart';
 export 'package:twitter_api_v2/src/service/users/user_withheld.dart';
 export 'package:twitter_api_v2/src/service/users/users_service.dart';
 export 'package:twitter_api_v2/src/twitter_api.dart';
