@@ -66,6 +66,7 @@ Future<void> main() async {
       userFields: [
         v2.UserField.location,
         v2.UserField.verified,
+        v2.UserField.verifiedType,
         v2.UserField.entities,
         v2.UserField.publicMetrics,
       ],

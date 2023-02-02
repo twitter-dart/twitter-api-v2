@@ -23,6 +23,8 @@ _$_UserData _$$_UserDataFromJson(Map json) => $checkedCreate(
           location: $checkedConvert('location', (v) => v as String?),
           isProtected: $checkedConvert('protected', (v) => v as bool?),
           isVerified: $checkedConvert('verified', (v) => v as bool?),
+          verifiedType: $checkedConvert('verified_type',
+              (v) => $enumDecodeNullable(_$UserVerifiedTypeEnumMap, v)),
           pinnedTweetId:
               $checkedConvert('pinned_tweet_id', (v) => v as String?),
           entities: $checkedConvert(
@@ -50,6 +52,7 @@ _$_UserData _$$_UserDataFromJson(Map json) => $checkedCreate(
         'profileImageUrl': 'profile_image_url',
         'isProtected': 'protected',
         'isVerified': 'verified',
+        'verifiedType': 'verified_type',
         'pinnedTweetId': 'pinned_tweet_id',
         'publicMetrics': 'public_metrics',
         'createdAt': 'created_at'
@@ -75,6 +78,8 @@ Map<String, dynamic> _$$_UserDataToJson(_$_UserData instance) {
   writeNotNull('location', instance.location);
   writeNotNull('protected', instance.isProtected);
   writeNotNull('verified', instance.isVerified);
+  writeNotNull(
+      'verified_type', _$UserVerifiedTypeEnumMap[instance.verifiedType]);
   writeNotNull('pinned_tweet_id', instance.pinnedTweetId);
   writeNotNull('entities', instance.entities?.toJson());
   writeNotNull('public_metrics', instance.publicMetrics?.toJson());
@@ -82,3 +87,10 @@ Map<String, dynamic> _$$_UserDataToJson(_$_UserData instance) {
   writeNotNull('withheld', instance.withheld?.toJson());
   return val;
 }
+
+const _$UserVerifiedTypeEnumMap = {
+  UserVerifiedType.blue: 'blue',
+  UserVerifiedType.government: 'government',
+  UserVerifiedType.business: 'business',
+  UserVerifiedType.none: 'none',
+};

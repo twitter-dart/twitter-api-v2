@@ -80,6 +80,10 @@ mixin _$UserData {
   @JsonKey(name: 'verified')
   bool? get isVerified => throw _privateConstructorUsedError;
 
+  /// The Twitter Blue verified type of the user,
+  /// eg: blue, government, business or none.
+  UserVerifiedType? get verifiedType => throw _privateConstructorUsedError;
+
   /// Unique identifier of this user's pinned Tweet.
   ///
   /// ## How It Can Be Used
@@ -140,6 +144,7 @@ abstract class $UserDataCopyWith<$Res> {
       String? location,
       @JsonKey(name: 'protected') bool? isProtected,
       @JsonKey(name: 'verified') bool? isVerified,
+      UserVerifiedType? verifiedType,
       String? pinnedTweetId,
       UserEntities? entities,
       PublicUserMetrics? publicMetrics,
@@ -173,6 +178,7 @@ class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
     Object? location = freezed,
     Object? isProtected = freezed,
     Object? isVerified = freezed,
+    Object? verifiedType = freezed,
     Object? pinnedTweetId = freezed,
     Object? entities = freezed,
     Object? publicMetrics = freezed,
@@ -216,6 +222,10 @@ class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
           ? _value.isVerified
           : isVerified // ignore: cast_nullable_to_non_nullable
               as bool?,
+      verifiedType: freezed == verifiedType
+          ? _value.verifiedType
+          : verifiedType // ignore: cast_nullable_to_non_nullable
+              as UserVerifiedType?,
       pinnedTweetId: freezed == pinnedTweetId
           ? _value.pinnedTweetId
           : pinnedTweetId // ignore: cast_nullable_to_non_nullable
@@ -293,6 +303,7 @@ abstract class _$$_UserDataCopyWith<$Res> implements $UserDataCopyWith<$Res> {
       String? location,
       @JsonKey(name: 'protected') bool? isProtected,
       @JsonKey(name: 'verified') bool? isVerified,
+      UserVerifiedType? verifiedType,
       String? pinnedTweetId,
       UserEntities? entities,
       PublicUserMetrics? publicMetrics,
@@ -327,6 +338,7 @@ class __$$_UserDataCopyWithImpl<$Res>
     Object? location = freezed,
     Object? isProtected = freezed,
     Object? isVerified = freezed,
+    Object? verifiedType = freezed,
     Object? pinnedTweetId = freezed,
     Object? entities = freezed,
     Object? publicMetrics = freezed,
@@ -370,6 +382,10 @@ class __$$_UserDataCopyWithImpl<$Res>
           ? _value.isVerified
           : isVerified // ignore: cast_nullable_to_non_nullable
               as bool?,
+      verifiedType: freezed == verifiedType
+          ? _value.verifiedType
+          : verifiedType // ignore: cast_nullable_to_non_nullable
+              as UserVerifiedType?,
       pinnedTweetId: freezed == pinnedTweetId
           ? _value.pinnedTweetId
           : pinnedTweetId // ignore: cast_nullable_to_non_nullable
@@ -408,6 +424,7 @@ class _$_UserData implements _UserData {
       this.location,
       @JsonKey(name: 'protected') this.isProtected,
       @JsonKey(name: 'verified') this.isVerified,
+      this.verifiedType,
       this.pinnedTweetId,
       this.entities,
       this.publicMetrics,
@@ -486,6 +503,11 @@ class _$_UserData implements _UserData {
   @JsonKey(name: 'verified')
   final bool? isVerified;
 
+  /// The Twitter Blue verified type of the user,
+  /// eg: blue, government, business or none.
+  @override
+  final UserVerifiedType? verifiedType;
+
   /// Unique identifier of this user's pinned Tweet.
   ///
   /// ## How It Can Be Used
@@ -532,7 +554,7 @@ class _$_UserData implements _UserData {
 
   @override
   String toString() {
-    return 'UserData(id: $id, name: $name, username: $username, description: $description, url: $url, profileImageUrl: $profileImageUrl, location: $location, isProtected: $isProtected, isVerified: $isVerified, pinnedTweetId: $pinnedTweetId, entities: $entities, publicMetrics: $publicMetrics, createdAt: $createdAt, withheld: $withheld)';
+    return 'UserData(id: $id, name: $name, username: $username, description: $description, url: $url, profileImageUrl: $profileImageUrl, location: $location, isProtected: $isProtected, isVerified: $isVerified, verifiedType: $verifiedType, pinnedTweetId: $pinnedTweetId, entities: $entities, publicMetrics: $publicMetrics, createdAt: $createdAt, withheld: $withheld)';
   }
 
   @override
@@ -555,6 +577,8 @@ class _$_UserData implements _UserData {
                 other.isProtected == isProtected) &&
             (identical(other.isVerified, isVerified) ||
                 other.isVerified == isVerified) &&
+            (identical(other.verifiedType, verifiedType) ||
+                other.verifiedType == verifiedType) &&
             (identical(other.pinnedTweetId, pinnedTweetId) ||
                 other.pinnedTweetId == pinnedTweetId) &&
             (identical(other.entities, entities) ||
@@ -580,6 +604,7 @@ class _$_UserData implements _UserData {
       location,
       isProtected,
       isVerified,
+      verifiedType,
       pinnedTweetId,
       entities,
       publicMetrics,
@@ -611,6 +636,7 @@ abstract class _UserData implements UserData {
       final String? location,
       @JsonKey(name: 'protected') final bool? isProtected,
       @JsonKey(name: 'verified') final bool? isVerified,
+      final UserVerifiedType? verifiedType,
       final String? pinnedTweetId,
       final UserEntities? entities,
       final PublicUserMetrics? publicMetrics,
@@ -688,6 +714,11 @@ abstract class _UserData implements UserData {
   ///   interest is authentic.
   @JsonKey(name: 'verified')
   bool? get isVerified;
+  @override
+
+  /// The Twitter Blue verified type of the user,
+  /// eg: blue, government, business or none.
+  UserVerifiedType? get verifiedType;
   @override
 
   /// Unique identifier of this user's pinned Tweet.

@@ -20,6 +20,7 @@ void main() {
     expect(UserField.pinnedTweetId.name, 'pinnedTweetId');
     expect(UserField.protected.name, 'protected');
     expect(UserField.verified.name, 'verified');
+    expect(UserField.verifiedType.name, 'verifiedType');
     expect(UserField.publicMetrics.name, 'publicMetrics');
     expect(UserField.entities.name, 'entities');
     expect(UserField.createdAt.name, 'createdAt');
@@ -37,6 +38,7 @@ void main() {
     expect(UserField.pinnedTweetId.value, 'pinned_tweet_id');
     expect(UserField.protected.value, 'protected');
     expect(UserField.verified.value, 'verified');
+    expect(UserField.verifiedType.value, 'verified_type');
     expect(UserField.publicMetrics.value, 'public_metrics');
     expect(UserField.entities.value, 'entities');
     expect(UserField.createdAt.value, 'created_at');

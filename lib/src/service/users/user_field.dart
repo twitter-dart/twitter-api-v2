@@ -36,6 +36,9 @@ enum UserField implements Serializable {
   /// `verified`
   verified('verified'),
 
+  /// `verified_type`
+  verifiedType('verified_type'),
+
   /// `public_metrics`
   publicMetrics('public_metrics'),
 
