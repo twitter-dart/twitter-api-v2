@@ -1,5 +1,9 @@
 # Release Note
 
+## v4.9.2
+
+- Added `202 Accepted` in `HttpStatus`. ([#651](https://github.com/twitter-dart/twitter-api-v2/issues/651))
+
 ## v4.9.1
 
 - Added `verifiedType` in `UserField`. ([#646](https://github.com/twitter-dart/twitter-api-v2/issues/646))
