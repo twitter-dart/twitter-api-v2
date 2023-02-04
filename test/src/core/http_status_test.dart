@@ -12,6 +12,7 @@ void main() {
   test('.name', () {
     expect(HttpStatus.ok.name, 'ok');
     expect(HttpStatus.created.name, 'created');
+    expect(HttpStatus.accepted.name, 'accepted');
     expect(HttpStatus.noContent.name, 'noContent');
     expect(HttpStatus.badRequest.name, 'badRequest');
     expect(HttpStatus.unauthorized.name, 'unauthorized');
@@ -29,6 +30,7 @@ void main() {
   test('.code', () {
     expect(HttpStatus.ok.code, 200);
     expect(HttpStatus.created.code, 201);
+    expect(HttpStatus.accepted.code, 202);
     expect(HttpStatus.noContent.code, 204);
     expect(HttpStatus.badRequest.code, 400);
     expect(HttpStatus.unauthorized.code, 401);
@@ -46,6 +48,7 @@ void main() {
   test('.message', () {
     expect(HttpStatus.ok.message, 'OK');
     expect(HttpStatus.created.message, 'Created');
+    expect(HttpStatus.accepted.message, 'Accepted');
     expect(HttpStatus.noContent.message, 'No Content');
     expect(HttpStatus.badRequest.message, 'Bad Request');
     expect(HttpStatus.unauthorized.message, 'Unauthorized');

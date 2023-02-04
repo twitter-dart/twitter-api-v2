@@ -24,6 +24,16 @@ enum HttpStatus {
   /// https://tools.ietf.org/html/rfc7231#section-6.3.2
   created(201, 'Created'),
 
+  /// The request has been received but not yet acted upon.
+  /// It is noncommittal, since there is no way in HTTP to later send
+  /// an asynchronous response indicating the outcome of the request.
+  ///
+  /// It is intended for cases where another process or server handles t
+  /// he request, or for batch processing.
+  ///
+  /// https://tools.ietf.org/html/rfc7231#section-6.3.3
+  accepted(202, 'Accepted'),
+
   /// There is no content to send for this request, but the headers
   /// may be useful. The user-agent may update its cached headers
   /// for this resource with the new ones.
