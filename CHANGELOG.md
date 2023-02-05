@@ -1,5 +1,9 @@
 # Release Note
 
+## v4.9.3
+
+- Added `exclude` parameter to `TweetsService.lookupQuoteTweets`. ([#647](https://github.com/twitter-dart/twitter-api-v2/issues/647))
+
 ## v4.9.2
 
 - Added `202 Accepted` in `HttpStatus`. ([#651](https://github.com/twitter-dart/twitter-api-v2/issues/651))
