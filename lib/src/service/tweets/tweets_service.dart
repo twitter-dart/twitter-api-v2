@@ -733,6 +733,8 @@ abstract class TweetsService {
   ///
   /// - [tweetId]: Unique identifier of the Tweet to request.
   ///
+  /// - [exclude]: A type of Tweets to exclude from the response.
+  ///
   /// - [maxResults]: Specifies the number of Tweets to try and retrieve,
   ///                 up to a maximum of 100 per distinct request. By default,
   ///                 10 results are returned if this parameter is not supplied.
@@ -848,6 +850,7 @@ abstract class TweetsService {
   /// - https://developer.twitter.com/en/docs/twitter-api/tweets/quote-tweets/api-reference/get-tweets-id-quote_tweets
   Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupQuoteTweets({
     required String tweetId,
+    ExcludeTweetType? exclude,
     int? maxResults,
     String? paginationToken,
     List<TweetExpansion>? expansions,
@@ -3042,6 +3045,7 @@ class _TweetsService extends BaseService implements TweetsService {
   @override
   Future<TwitterResponse<List<TweetData>, TweetMeta>> lookupQuoteTweets({
     required String tweetId,
+    ExcludeTweetType? exclude,
     int? maxResults,
     String? paginationToken,
     List<TweetExpansion>? expansions,
@@ -3057,6 +3061,7 @@ class _TweetsService extends BaseService implements TweetsService {
         '/2/tweets/$tweetId/quote_tweets',
         {
           'max_results': maxResults,
+          'exclude': exclude,
           'pagination_token': paginationToken,
           'expansions': expansions,
           'tweet.fields': tweetFields,
