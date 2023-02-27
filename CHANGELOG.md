@@ -1,5 +1,9 @@
 # Release Note
 
+## v4.9.4
+
+- Fixed some named parameters as nullable. ([#657](https://github.com/twitter-dart/twitter-api-v2/issues/657))
+
 ## v4.9.3
 
 - Added `exclude` parameter to `TweetsService.lookupQuoteTweets`. ([#647](https://github.com/twitter-dart/twitter-api-v2/issues/647))
