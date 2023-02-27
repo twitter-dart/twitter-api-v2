@@ -421,7 +421,7 @@ abstract class ListsService {
     required String listId,
     int? maxResults,
     String? paginationToken,
-    List<TweetExpansion> expansions,
+    List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
     Paging<List<TweetData>, TweetMeta>? paging,
@@ -760,8 +760,8 @@ abstract class ListsService {
     required String listId,
     int? maxResults,
     String? paginationToken,
-    List<UserExpansion> expansions,
-    List<UserField> userFields,
+    List<UserExpansion>? expansions,
+    List<UserField>? userFields,
     Paging<List<UserData>, UserMeta>? paging,
   });
 
@@ -826,7 +826,6 @@ abstract class ListsService {
   ///             `PaginationControl.stop()` to terminate paging on
   ///             arbitrary conditions, otherwise paging continues until the
   ///             next page runs out.
-
   ///
   /// ## Endpoint Url
   ///
@@ -1027,7 +1026,7 @@ abstract class ListsService {
     required String listId,
     int? maxResults,
     String? paginationToken,
-    List<UserExpansion> expansions,
+    List<UserExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
     Paging<List<UserData>, UserMeta>? paging,
