@@ -11,7 +11,10 @@ import '../common/follow_state_data.dart';
 import '../common/member_state_data.dart';
 import '../common/pinned_state_data.dart';
 import '../common/update_state_data.dart';
+import '../geo/place_field.dart';
+import '../media/media_field.dart';
 import '../pagination/bidirectional_pagination.dart';
+import '../polls/poll_field.dart';
 import '../response/twitter_response.dart';
 import '../tweets/tweet_data.dart';
 import '../tweets/tweet_expansion.dart';
@@ -373,6 +376,37 @@ abstract class ListsService {
   ///                 specified user fields will display directly in the user
   ///                 data objects.
   ///
+  /// - [mediaFields]: This fields parameter enables you to select which specific
+  ///                  media fields will deliver in each returned Tweet. Specify
+  ///                  the desired fields in a comma-separated list without
+  ///                  spaces between commas and fields. The Tweet will only
+  ///                  return media fields if the Tweet contains media and if
+  ///                  you've also included the
+  ///                  expansions=attachments.media_keys query parameter in your
+  ///                  request. While the media ID will be located in the Tweet
+  ///                  object, you will find this ID and all additional media
+  ///                  fields in the includes data object.
+  ///
+  /// - [placeFields]: This fields parameter enables you to select which specific
+  ///                  place fields will deliver in each returned Tweet. Specify
+  ///                  the desired fields in a comma-separated list without
+  ///                  spaces between commas and fields. The Tweet will only
+  ///                  return place fields if the Tweet contains a place and if
+  ///                  you've also included the expansions=geo.place_id query
+  ///                  parameter in your request. While the place ID will be
+  ///                  located in the Tweet object, you will find this ID and all
+  ///                  additional place fields in the includes data object.
+  ///
+  /// - [pollFields]: This fields parameter enables you to select which specific
+  ///                 poll fields will deliver in each returned Tweet. Specify
+  ///                 the desired fields in a comma-separated list without spaces
+  ///                 between commas and fields. The Tweet will only return poll
+  ///                 fields if the Tweet contains a poll and if you've also
+  ///                 included the expansions=attachments.poll_ids query
+  ///                 parameter in your request. While the poll ID will be
+  ///                 located in the Tweet object, you will find this ID and all
+  ///                 additional poll fields in the includes data object.
+  ///
   /// - [paging]: If this callback function is specified, paging is
   ///             performed continuously until certain conditions are met.
   ///             This paging function is bi-directional,
@@ -424,6 +458,9 @@ abstract class ListsService {
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
+    List<PlaceField>? placeFields,
+    List<PollField>? pollFields,
+    List<MediaField>? mediaFields,
     Paging<List<TweetData>, TweetMeta>? paging,
   });
 
@@ -1237,6 +1274,9 @@ class _ListsService extends BaseService implements ListsService {
     List<TweetExpansion>? expansions,
     List<TweetField>? tweetFields,
     List<UserField>? userFields,
+    List<PlaceField>? placeFields,
+    List<PollField>? pollFields,
+    List<MediaField>? mediaFields,
     Paging<List<TweetData>, TweetMeta>? paging,
   }) async =>
       await super.executePaginationIfNecessary(
@@ -1248,6 +1288,9 @@ class _ListsService extends BaseService implements ListsService {
           'expansions': expansions,
           'tweet.fields': tweetFields,
           'user.fields': userFields,
+          'place.fields': placeFields,
+          'poll.fields': pollFields,
+          'media.fields': mediaFields,
         },
         paging: paging,
         dataBuilder: TweetData.fromJson,
