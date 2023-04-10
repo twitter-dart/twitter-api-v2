@@ -28,6 +28,7 @@ Map<String, dynamic> _$$_LocaleToJson(_$_Locale instance) => <String, dynamic>{
     };
 
 const _$LanguageEnumMap = {
+  Language.art: 'art',
   Language.amharic: 'am',
   Language.german: 'de',
   Language.malayalam: 'ml',

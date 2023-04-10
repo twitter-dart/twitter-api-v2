@@ -245,7 +245,10 @@ enum Language {
   /// For tweets with either media or Twitter Card only, without any additional
   /// text (works for tweets since 2022-06-14)
   @JsonValue('zxx')
-  mediaOrCardOnly('zxx');
+  mediaOrCardOnly('zxx'),
+
+  @JsonValue('art')
+  art('art');
 
   /// The language code
   final String code;
@@ -276,6 +279,5 @@ enum Language {
       values.where((element) => element != Language.undefined).toList();
 
   /// Returns [name] with the first letter of the element [name] capitalized.
-  String get properName =>
-      name.substring(0, 1).toUpperCase() + name.substring(1);
+  String get properName => name.substring(0, 1).toUpperCase() + name.substring(1);
 }

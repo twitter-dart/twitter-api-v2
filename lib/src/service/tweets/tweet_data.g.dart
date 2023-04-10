@@ -155,6 +155,7 @@ Map<String, dynamic> _$$_TweetDataToJson(_$_TweetData instance) {
 }
 
 const _$LanguageEnumMap = {
+  Language.art: 'art',
   Language.amharic: 'am',
   Language.german: 'de',
   Language.malayalam: 'ml',
