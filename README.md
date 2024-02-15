@@ -157,7 +157,7 @@ Also, this library is listed in the [Official Twitter page](https://developer.tw
 ### 1.2.2. Import
 
 ```dart
-import 'package:twitter_api_v2/twitter_api_v2';
+import 'package:twitter_api_v2/twitter_api_v2.dart';
 ```
 
 ### 1.2.3. Implementation
